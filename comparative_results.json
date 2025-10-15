@@ -1,0 +1,1758 @@
+{
+  "peab": {
+    "pima_indians_diabetes": {
+      "config": {
+        "dataset_name": "pima_indians_diabetes",
+        "test_size": 0.3,
+        "random_state": 42,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.46733232813256265,
+        "t_minus": -0.668431216320065
+      },
+      "performance": {
+        "accuracy_without_rejection": 74.45887445887446,
+        "accuracy_with_rejection": 81.62162162162161,
+        "rejection_rate": 19.913419913419915
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 44,
+          "min_length": 2,
+          "mean_length": 4.340909090909091,
+          "max_length": 8,
+          "std_length": 1.5803219151084062
+        },
+        "negative": {
+          "count": 141,
+          "min_length": 2,
+          "mean_length": 4.709219858156028,
+          "max_length": 8,
+          "std_length": 1.0688298572360002
+        },
+        "rejected": {
+          "count": 46,
+          "min_length": 5,
+          "mean_length": 6.3478260869565215,
+          "max_length": 8,
+          "std_length": 0.7580693814853346
+        }
+      },
+      "computation_time": {
+        "total": 10.1015105000115,
+        "mean_per_instance": 0.04372948268403247,
+        "positive": 0.0303137386369847,
+        "negative": 0.03283283617041992,
+        "rejected": 0.08995627825915227
+      },
+      "top_features": [
+        {
+          "feature": "imc",
+          "count": 231
+        },
+        {
+          "feature": "glicose",
+          "count": 231
+        },
+        {
+          "feature": "num_gravidezes",
+          "count": 213
+        },
+        {
+          "feature": "diabetes_pedigree",
+          "count": 191
+        },
+        {
+          "feature": "pressao_sangue",
+          "count": 147
+        },
+        {
+          "feature": "idade",
+          "count": 66
+        },
+        {
+          "feature": "insulina",
+          "count": 51
+        },
+        {
+          "feature": "espessura_pele",
+          "count": 17
+        }
+      ]
+    },
+    "breast_cancer": {
+      "config": {
+        "dataset_name": "breast_cancer",
+        "test_size": 0.3,
+        "random_state": 42,
+        "rejection_cost": 0.22
+      },
+      "thresholds": {
+        "t_plus": 0.3801747072613096,
+        "t_minus": -0.01
+      },
+      "performance": {
+        "accuracy_without_rejection": 92.39766081871345,
+        "accuracy_with_rejection": 97.98657718120806,
+        "rejection_rate": 12.865497076023392
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 96,
+          "min_length": 12,
+          "mean_length": 16.59375,
+          "max_length": 26,
+          "std_length": 2.991578892630668
+        },
+        "negative": {
+          "count": 53,
+          "min_length": 6,
+          "mean_length": 16.50943396226415,
+          "max_length": 29,
+          "std_length": 4.81202362605531
+        },
+        "rejected": {
+          "count": 22,
+          "min_length": 24,
+          "mean_length": 25.363636363636363,
+          "max_length": 28,
+          "std_length": 1.0679400113155209
+        }
+      },
+      "computation_time": {
+        "total": 13.446299300063401,
+        "mean_per_instance": 0.07863332924013686,
+        "positive": 0.06292231354503504,
+        "negative": 0.06115794149974255,
+        "rejected": 0.18928504091243006
+      },
+      "top_features": [
+        {
+          "feature": "mean concave points",
+          "count": 171
+        },
+        {
+          "feature": "worst concave points",
+          "count": 170
+        },
+        {
+          "feature": "worst perimeter",
+          "count": 170
+        },
+        {
+          "feature": "worst radius",
+          "count": 169
+        },
+        {
+          "feature": "worst area",
+          "count": 167
+        },
+        {
+          "feature": "mean concavity",
+          "count": 165
+        },
+        {
+          "feature": "mean area",
+          "count": 165
+        },
+        {
+          "feature": "radius error",
+          "count": 160
+        },
+        {
+          "feature": "worst concavity",
+          "count": 155
+        },
+        {
+          "feature": "mean perimeter",
+          "count": 154
+        }
+      ]
+    },
+    "sonar": {
+      "config": {
+        "dataset_name": "sonar",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.49
+      },
+      "thresholds": {
+        "t_plus": 0.03648821427633618,
+        "t_minus": -0.01
+      },
+      "performance": {
+        "accuracy_without_rejection": 73.01587301587301,
+        "accuracy_with_rejection": 74.19354838709677,
+        "rejection_rate": 1.5873015873015928
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 50,
+          "min_length": 11,
+          "mean_length": 26.98,
+          "max_length": 56,
+          "std_length": 10.799055514256791
+        },
+        "negative": {
+          "count": 12,
+          "min_length": 35,
+          "mean_length": 40.916666666666664,
+          "max_length": 51,
+          "std_length": 4.34853104188325
+        },
+        "rejected": {
+          "count": 1,
+          "min_length": 46,
+          "mean_length": 46.0,
+          "max_length": 46,
+          "std_length": 0.0
+        }
+      },
+      "computation_time": {
+        "total": 9.262775499955751,
+        "mean_per_instance": 0.14702818253898017,
+        "positive": 0.1338240780029446,
+        "negative": 0.16944270833240202,
+        "rejected": 0.5382153999526054
+      },
+      "top_features": [
+        {
+          "feature": "feature_35",
+          "count": 62
+        },
+        {
+          "feature": "feature_34",
+          "count": 61
+        },
+        {
+          "feature": "feature_21",
+          "count": 60
+        },
+        {
+          "feature": "feature_20",
+          "count": 59
+        },
+        {
+          "feature": "feature_19",
+          "count": 58
+        },
+        {
+          "feature": "feature_10",
+          "count": 58
+        },
+        {
+          "feature": "feature_36",
+          "count": 57
+        },
+        {
+          "feature": "feature_12",
+          "count": 56
+        },
+        {
+          "feature": "feature_11",
+          "count": 54
+        },
+        {
+          "feature": "feature_22",
+          "count": 53
+        }
+      ]
+    },
+    "vertebral_column": {
+      "config": {
+        "dataset_name": "vertebral_column",
+        "test_size": 0.3,
+        "random_state": 42,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.8538082538834857,
+        "t_minus": -0.08177463677721986
+      },
+      "performance": {
+        "accuracy_without_rejection": 76.34408602150538,
+        "accuracy_with_rejection": 86.56716417910447,
+        "rejection_rate": 27.956989247311824
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 50,
+          "min_length": 2,
+          "mean_length": 3.64,
+          "max_length": 6,
+          "std_length": 0.8890444308357147
+        },
+        "negative": {
+          "count": 17,
+          "min_length": 5,
+          "mean_length": 5.352941176470588,
+          "max_length": 6,
+          "std_length": 0.47788461203740945
+        },
+        "rejected": {
+          "count": 26,
+          "min_length": 5,
+          "mean_length": 5.0,
+          "max_length": 5,
+          "std_length": 0.0
+        }
+      },
+      "computation_time": {
+        "total": 1.9770989999960875,
+        "mean_per_instance": 0.021259129032215995,
+        "positive": 0.013568524000438629,
+        "negative": 0.015979152941487402,
+        "rejected": 0.03949916538504812
+      },
+      "top_features": [
+        {
+          "feature": "pelvic_tilt",
+          "count": 93
+        },
+        {
+          "feature": "pelvic_radius",
+          "count": 91
+        },
+        {
+          "feature": "lumbar_lordosis_angle",
+          "count": 88
+        },
+        {
+          "feature": "pelvic_incidence",
+          "count": 70
+        },
+        {
+          "feature": "spondylolisthesis_grade",
+          "count": 54
+        },
+        {
+          "feature": "sacral_slope",
+          "count": 7
+        }
+      ]
+    },
+    "wine": {
+      "config": {
+        "dataset_name": "wine",
+        "test_size": 0.3,
+        "random_state": 42,
+        "rejection_cost": 0.23
+      },
+      "thresholds": {
+        "t_plus": 0.5150090363132471,
+        "t_minus": -0.4046243322083001
+      },
+      "performance": {
+        "accuracy_without_rejection": 94.44444444444444,
+        "accuracy_with_rejection": 100.0,
+        "rejection_rate": 7.4074074074074066
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 33,
+          "min_length": 4,
+          "mean_length": 5.7272727272727275,
+          "max_length": 12,
+          "std_length": 1.5427784316797402
+        },
+        "negative": {
+          "count": 17,
+          "min_length": 4,
+          "mean_length": 7.117647058823529,
+          "max_length": 10,
+          "std_length": 1.9668533526235867
+        },
+        "rejected": {
+          "count": 4,
+          "min_length": 10,
+          "mean_length": 10.75,
+          "max_length": 12,
+          "std_length": 0.82915619758885
+        }
+      },
+      "computation_time": {
+        "total": 1.5014447000576183,
+        "mean_per_instance": 0.027804531482548488,
+        "positive": 0.02284834544513036,
+        "negative": 0.025513235315242234,
+        "rejected": 0.0784198000037577
+      },
+      "top_features": [
+        {
+          "feature": "proline",
+          "count": 54
+        },
+        {
+          "feature": "alcalinity_of_ash",
+          "count": 54
+        },
+        {
+          "feature": "flavanoids",
+          "count": 52
+        },
+        {
+          "feature": "alcohol",
+          "count": 50
+        },
+        {
+          "feature": "nonflavanoid_phenols",
+          "count": 48
+        },
+        {
+          "feature": "od280/od315_of_diluted_wines",
+          "count": 27
+        },
+        {
+          "feature": "total_phenols",
+          "count": 24
+        },
+        {
+          "feature": "malic_acid",
+          "count": 15
+        },
+        {
+          "feature": "proanthocyanins",
+          "count": 12
+        },
+        {
+          "feature": "ash",
+          "count": 6
+        }
+      ]
+    },
+    "iris": {
+      "config": {
+        "dataset_name": "iris",
+        "test_size": 0.3,
+        "random_state": 42,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.01,
+        "t_minus": -0.7454291660366537
+      },
+      "performance": {
+        "accuracy_without_rejection": 100.0,
+        "accuracy_with_rejection": 100.0,
+        "rejection_rate": 0.0
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 30,
+          "min_length": 2,
+          "mean_length": 2.1666666666666665,
+          "max_length": 3,
+          "std_length": 0.3726779962499649
+        },
+        "negative": {
+          "count": 15,
+          "min_length": 3,
+          "mean_length": 3.8666666666666667,
+          "max_length": 4,
+          "std_length": 0.339934634239519
+        },
+        "rejected": {
+          "count": 0,
+          "min_length": 0,
+          "mean_length": 0,
+          "max_length": 0,
+          "std_length": 0
+        }
+      },
+      "computation_time": {
+        "total": 0.5311122999992222,
+        "mean_per_instance": 0.01180249555553827,
+        "positive": 0.010916979999941153,
+        "negative": 0.013571840000804514,
+        "rejected": 0
+      },
+      "top_features": [
+        {
+          "feature": "petal length (cm)",
+          "count": 45
+        },
+        {
+          "feature": "petal width (cm)",
+          "count": 44
+        },
+        {
+          "feature": "sepal width (cm)",
+          "count": 21
+        },
+        {
+          "feature": "sepal length (cm)",
+          "count": 13
+        }
+      ]
+    }
+  },
+  "anchor": {
+    "breast_cancer": {
+      "config": {
+        "dataset_name": "breast_cancer",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.4601878562088462,
+        "t_minus": -0.14645970689914378
+      },
+      "performance": {
+        "accuracy_without_rejection": 95.32163742690058,
+        "accuracy_with_rejection": 98.75776397515527,
+        "rejection_rate": 5.847953216374268
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 103,
+          "min": 2,
+          "media": 2.320388349514563,
+          "max": 3,
+          "std_dev": 0.46662581905622974
+        },
+        "negative": {
+          "instancias": 58,
+          "min": 3,
+          "media": 3.0,
+          "max": 3,
+          "std_dev": 0.0
+        },
+        "rejected": {
+          "instancias": 10,
+          "min": 3,
+          "media": 3.1,
+          "max": 4,
+          "std_dev": 0.3
+        }
+      },
+      "computation_time": {
+        "total": 169.63464879989624,
+        "mean_per_instance": 0.9920154900578727,
+        "positive": 0.8870240785543201,
+        "negative": 1.1943134521615917,
+        "rejected": 0.9000988483428956
+      },
+      "top_features": [
+        {
+          "feature": "worst concave points",
+          "count": 120
+        },
+        {
+          "feature": "worst perimeter",
+          "count": 49
+        },
+        {
+          "feature": "worst radius",
+          "count": 46
+        },
+        {
+          "feature": "mean concave points",
+          "count": 30
+        },
+        {
+          "feature": "worst texture",
+          "count": 23
+        },
+        {
+          "feature": "worst concavity",
+          "count": 19
+        },
+        {
+          "feature": "worst smoothness",
+          "count": 18
+        },
+        {
+          "feature": "worst area",
+          "count": 16
+        },
+        {
+          "feature": "mean perimeter",
+          "count": 15
+        },
+        {
+          "feature": "mean concavity",
+          "count": 15
+        }
+      ]
+    },
+    "pima_indians_diabetes": {
+      "config": {
+        "dataset_name": "pima_indians_diabetes",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.5904537130641898,
+        "t_minus": -1.2337372496104724
+      },
+      "performance": {
+        "accuracy_without_rejection": 76.62337662337663,
+        "accuracy_with_rejection": 89.47368421052632,
+        "rejection_rate": 58.87445887445888
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 25,
+          "min": 3,
+          "media": 4.36,
+          "max": 6,
+          "std_dev": 1.1959933110180843
+        },
+        "negative": {
+          "instancias": 70,
+          "min": 1,
+          "media": 1.7142857142857142,
+          "max": 3,
+          "std_dev": 0.4823412290324038
+        },
+        "rejected": {
+          "instancias": 136,
+          "min": 1,
+          "media": 3.389705882352941,
+          "max": 8,
+          "std_dev": 1.6095888866673518
+        }
+      },
+      "computation_time": {
+        "total": 15.423846006393433,
+        "mean_per_instance": 0.0667698961315733,
+        "positive": 0.09392096519470215,
+        "negative": 0.03296184539794922,
+        "rejected": 0.07918009337256937
+      },
+      "top_features": [
+        {
+          "feature": "glicose",
+          "count": 214
+        },
+        {
+          "feature": "imc",
+          "count": 95
+        },
+        {
+          "feature": "num_gravidezes",
+          "count": 94
+        },
+        {
+          "feature": "idade",
+          "count": 84
+        },
+        {
+          "feature": "diabetes_pedigree",
+          "count": 81
+        },
+        {
+          "feature": "pressao_sangue",
+          "count": 51
+        },
+        {
+          "feature": "espessura_pele",
+          "count": 38
+        },
+        {
+          "feature": "insulina",
+          "count": 33
+        }
+      ]
+    },
+    "iris": {
+      "config": {
+        "dataset_name": "iris",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.01,
+        "t_minus": -1.047769648292065
+      },
+      "performance": {
+        "accuracy_without_rejection": 100.0,
+        "accuracy_with_rejection": 100.0,
+        "rejection_rate": 2.2222222222222223
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 30,
+          "min": 1,
+          "media": 1.6333333333333333,
+          "max": 3,
+          "std_dev": 0.5467073155618908
+        },
+        "negative": {
+          "instancias": 14,
+          "min": 2,
+          "media": 2.142857142857143,
+          "max": 3,
+          "std_dev": 0.3499271061118826
+        },
+        "rejected": {
+          "instancias": 1,
+          "min": 2,
+          "media": 2.0,
+          "max": 2,
+          "std_dev": 0.0
+        }
+      },
+      "computation_time": {
+        "total": 2.000154495239258,
+        "mean_per_instance": 0.04444787767198351,
+        "positive": 0.020272246996561685,
+        "negative": 0.09344969476972308,
+        "rejected": 0.08369135856628418
+      },
+      "top_features": [
+        {
+          "feature": "petal width (cm)",
+          "count": 29
+        },
+        {
+          "feature": "petal length (cm)",
+          "count": 24
+        },
+        {
+          "feature": "sepal length (cm)",
+          "count": 15
+        },
+        {
+          "feature": "sepal width (cm)",
+          "count": 13
+        }
+      ]
+    },
+    "sonar": {
+      "config": {
+        "dataset_name": "sonar",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.5874140237173222,
+        "t_minus": -0.8409262928505106
+      },
+      "performance": {
+        "accuracy_without_rejection": 85.71428571428571,
+        "accuracy_with_rejection": 95.1219512195122,
+        "rejection_rate": 34.92063492063492
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 24,
+          "min": 3,
+          "media": 3.0,
+          "max": 3,
+          "std_dev": 0.0
+        },
+        "negative": {
+          "instancias": 17,
+          "min": 3,
+          "media": 3.0,
+          "max": 3,
+          "std_dev": 0.0
+        },
+        "rejected": {
+          "instancias": 22,
+          "min": 3,
+          "media": 3.1818181818181817,
+          "max": 4,
+          "std_dev": 0.385694607919935
+        }
+      },
+      "computation_time": {
+        "total": 245.24989938735962,
+        "mean_per_instance": 3.892855545831105,
+        "positive": 3.6333872079849243,
+        "negative": 3.939043395659503,
+        "rejected": 4.1402213031595405
+      },
+      "top_features": [
+        {
+          "feature": "feature_1",
+          "count": 67
+        },
+        {
+          "feature": "feature_10",
+          "count": 36
+        },
+        {
+          "feature": "feature_4",
+          "count": 32
+        },
+        {
+          "feature": "feature_3",
+          "count": 22
+        },
+        {
+          "feature": "feature_0",
+          "count": 20
+        },
+        {
+          "feature": "feature_2",
+          "count": 20
+        },
+        {
+          "feature": "feature_11",
+          "count": 16
+        },
+        {
+          "feature": "feature_5",
+          "count": 13
+        },
+        {
+          "feature": "feature_20",
+          "count": 13
+        },
+        {
+          "feature": "feature_9",
+          "count": 10
+        }
+      ]
+    },
+    "vertebral_column": {
+      "config": {
+        "dataset_name": "vertebral_column",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.8744650089656884,
+        "t_minus": -0.0630414567544807
+      },
+      "performance": {
+        "accuracy_without_rejection": 74.19354838709677,
+        "accuracy_with_rejection": 84.375,
+        "rejection_rate": 31.182795698924732
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 47,
+          "min": 1,
+          "media": 1.8085106382978724,
+          "max": 2,
+          "std_dev": 0.3934732342320624
+        },
+        "negative": {
+          "instancias": 17,
+          "min": 4,
+          "media": 5.0588235294117645,
+          "max": 6,
+          "std_dev": 0.7252251768198796
+        },
+        "rejected": {
+          "instancias": 29,
+          "min": 1,
+          "media": 2.1724137931034484,
+          "max": 6,
+          "std_dev": 0.9123280382981346
+        }
+      },
+      "computation_time": {
+        "total": 4.335398197174072,
+        "mean_per_instance": 0.04661718491585024,
+        "positive": 0.02821254222951037,
+        "negative": 0.11761201129240148,
+        "rejected": 0.034827742083319305
+      },
+      "top_features": [
+        {
+          "feature": "pelvic_radius",
+          "count": 62
+        },
+        {
+          "feature": "pelvic_incidence",
+          "count": 54
+        },
+        {
+          "feature": "pelvic_tilt",
+          "count": 44
+        },
+        {
+          "feature": "lumbar_lordosis_angle",
+          "count": 37
+        },
+        {
+          "feature": "spondylolisthesis_grade",
+          "count": 25
+        },
+        {
+          "feature": "sacral_slope",
+          "count": 12
+        }
+      ]
+    },
+    "wine": {
+      "config": {
+        "dataset_name": "wine",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.27143741884028727,
+        "t_minus": -0.16092642162476833
+      },
+      "performance": {
+        "accuracy_without_rejection": 94.44444444444444,
+        "accuracy_with_rejection": 97.95918367346938,
+        "rejection_rate": 9.25925925925926
+      },
+      "explanation_stats": {
+        "positive": {
+          "instancias": 36,
+          "min": 2,
+          "media": 2.0277777777777777,
+          "max": 3,
+          "std_dev": 0.16433554953054488
+        },
+        "negative": {
+          "instancias": 13,
+          "min": 3,
+          "media": 3.0,
+          "max": 3,
+          "std_dev": 0.0
+        },
+        "rejected": {
+          "instancias": 5,
+          "min": 2,
+          "media": 3.4,
+          "max": 5,
+          "std_dev": 1.019803902718557
+        }
+      },
+      "computation_time": {
+        "total": 8.96526312828064,
+        "mean_per_instance": 0.16602339126445628,
+        "positive": 0.12543239858415392,
+        "negative": 0.26870030623215896,
+        "rejected": 0.19131855964660643
+      },
+      "top_features": [
+        {
+          "feature": "proline",
+          "count": 54
+        },
+        {
+          "feature": "alcohol",
+          "count": 19
+        },
+        {
+          "feature": "flavanoids",
+          "count": 16
+        },
+        {
+          "feature": "magnesium",
+          "count": 8
+        },
+        {
+          "feature": "od280/od315_of_diluted_wines",
+          "count": 8
+        },
+        {
+          "feature": "color_intensity",
+          "count": 8
+        },
+        {
+          "feature": "total_phenols",
+          "count": 5
+        },
+        {
+          "feature": "ash",
+          "count": 5
+        },
+        {
+          "feature": "alcalinity_of_ash",
+          "count": 3
+        },
+        {
+          "feature": "proanthocyanins",
+          "count": 2
+        }
+      ]
+    }
+  },
+  "MinExp": {
+    "breast_cancer": {
+      "config": {
+        "dataset_name": "breast_cancer",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.23703361750377444,
+        "t_minus": -0.4914721238644589
+      },
+      "performance": {
+        "accuracy_without_rejection": 97.6608187134503,
+        "accuracy_with_rejection": 98.76543209876543,
+        "rejection_rate": 5.263157894736842
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 104,
+          "min_length": 17,
+          "mean_length": 23.08653846153846,
+          "max_length": 28,
+          "std_length": 2.2917518363230216
+        },
+        "negative": {
+          "count": 58,
+          "min_length": 14,
+          "mean_length": 22.25862068965517,
+          "max_length": 29,
+          "std_length": 3.7990940155361095
+        },
+        "rejected": {
+          "count": 9,
+          "min_length": 26,
+          "mean_length": 27.11111111111111,
+          "max_length": 29,
+          "std_length": 0.8748897637790901
+        }
+      },
+      "computation_time": {
+        "total": 134.40363430976868,
+        "mean_per_instance": 0.7859861655542028,
+        "positive": 0.7612068698956416,
+        "negative": 0.7881515642692303,
+        "rejected": 1.0583699014451768
+      },
+      "top_features": [
+        {
+          "feature": "worst radius",
+          "count": 171
+        },
+        {
+          "feature": "worst texture",
+          "count": 171
+        },
+        {
+          "feature": "worst perimeter",
+          "count": 171
+        },
+        {
+          "feature": "worst area",
+          "count": 171
+        },
+        {
+          "feature": "worst smoothness",
+          "count": 171
+        },
+        {
+          "feature": "worst concavity",
+          "count": 171
+        },
+        {
+          "feature": "worst concave points",
+          "count": 171
+        },
+        {
+          "feature": "worst symmetry",
+          "count": 171
+        },
+        {
+          "feature": "worst compactness",
+          "count": 169
+        },
+        {
+          "feature": "area error",
+          "count": 164
+        },
+        {
+          "feature": "worst fractal dimension",
+          "count": 164
+        },
+        {
+          "feature": "concave points error",
+          "count": 163
+        },
+        {
+          "feature": "perimeter error",
+          "count": 162
+        },
+        {
+          "feature": "mean concave points",
+          "count": 160
+        },
+        {
+          "feature": "compactness error",
+          "count": 160
+        },
+        {
+          "feature": "fractal dimension error",
+          "count": 158
+        },
+        {
+          "feature": "radius error",
+          "count": 157
+        },
+        {
+          "feature": "mean concavity",
+          "count": 148
+        },
+        {
+          "feature": "smoothness error",
+          "count": 135
+        },
+        {
+          "feature": "mean area",
+          "count": 131
+        },
+        {
+          "feature": "mean fractal dimension",
+          "count": 121
+        },
+        {
+          "feature": "concavity error",
+          "count": 109
+        },
+        {
+          "feature": "mean perimeter",
+          "count": 105
+        },
+        {
+          "feature": "mean symmetry",
+          "count": 102
+        },
+        {
+          "feature": "mean texture",
+          "count": 75
+        },
+        {
+          "feature": "mean smoothness",
+          "count": 61
+        },
+        {
+          "feature": "texture error",
+          "count": 44
+        },
+        {
+          "feature": "mean radius",
+          "count": 33
+        },
+        {
+          "feature": "symmetry error",
+          "count": 25
+        },
+        {
+          "feature": "mean compactness",
+          "count": 22
+        }
+      ]
+    },
+    "iris": {
+      "config": {
+        "dataset_name": "iris",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.035298045645940884,
+        "t_minus": -0.01570364172897438
+      },
+      "performance": {
+        "accuracy_without_rejection": 100.0,
+        "accuracy_with_rejection": 100.0,
+        "rejection_rate": 0.0
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 30,
+          "min_length": 2,
+          "mean_length": 2.1666666666666665,
+          "max_length": 3,
+          "std_length": 0.3726779962499649
+        },
+        "negative": {
+          "count": 15,
+          "min_length": 3,
+          "mean_length": 3.0,
+          "max_length": 3,
+          "std_length": 0.0
+        },
+        "rejected": {
+          "count": 0,
+          "min_length": 0,
+          "mean_length": 0,
+          "max_length": 0,
+          "std_length": 0
+        }
+      },
+      "computation_time": {
+        "total": 2.313918113708496,
+        "mean_per_instance": 0.051420402526855466,
+        "positive": 0.04630808830261231,
+        "negative": 0.0616450309753418,
+        "rejected": 0
+      },
+      "top_features": [
+        {
+          "feature": "petal length (cm)",
+          "count": 45
+        },
+        {
+          "feature": "petal width (cm)",
+          "count": 43
+        },
+        {
+          "feature": "sepal width (cm)",
+          "count": 21
+        },
+        {
+          "feature": "sepal length (cm)",
+          "count": 1
+        }
+      ]
+    },
+    "pima_indians_diabetes": {
+      "config": {
+        "dataset_name": "pima_indians_diabetes",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.8312645949417792,
+        "t_minus": -1.1585370871177985
+      },
+      "performance": {
+        "accuracy_without_rejection": 76.62337662337663,
+        "accuracy_with_rejection": 92.20779220779221,
+        "rejection_rate": 66.66666666666666
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 17,
+          "min_length": 3,
+          "mean_length": 5.235294117647059,
+          "max_length": 7,
+          "std_length": 1.0017286097603766
+        },
+        "negative": {
+          "count": 60,
+          "min_length": 3,
+          "mean_length": 5.05,
+          "max_length": 8,
+          "std_length": 0.9733961166965892
+        },
+        "rejected": {
+          "count": 154,
+          "min_length": 4,
+          "mean_length": 4.636363636363637,
+          "max_length": 8,
+          "std_length": 0.8043564969975076
+        }
+      },
+      "computation_time": {
+        "total": 60.00236105918884,
+        "mean_per_instance": 0.2597504807757093,
+        "positive": 0.18117598926319795,
+        "negative": 0.19169948101043702,
+        "rejected": 0.2949376648122614
+      },
+      "top_features": [
+        {
+          "feature": "glicose",
+          "count": 231
+        },
+        {
+          "feature": "imc",
+          "count": 230
+        },
+        {
+          "feature": "diabetes_pedigree",
+          "count": 227
+        },
+        {
+          "feature": "idade",
+          "count": 173
+        },
+        {
+          "feature": "num_gravidezes",
+          "count": 100
+        },
+        {
+          "feature": "insulina",
+          "count": 100
+        },
+        {
+          "feature": "espessura_pele",
+          "count": 36
+        },
+        {
+          "feature": "pressao_sangue",
+          "count": 9
+        }
+      ]
+    },
+    "sonar": {
+      "config": {
+        "dataset_name": "sonar",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.3023417727459762,
+        "t_minus": -0.19359835867164463
+      },
+      "performance": {
+        "accuracy_without_rejection": 87.3015873015873,
+        "accuracy_with_rejection": 90.74074074074075,
+        "rejection_rate": 14.285714285714285
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 29,
+          "min_length": 43,
+          "mean_length": 50.37931034482759,
+          "max_length": 57,
+          "std_length": 4.286416340209747
+        },
+        "negative": {
+          "count": 25,
+          "min_length": 47,
+          "mean_length": 51.56,
+          "max_length": 58,
+          "std_length": 2.6089078174592526
+        },
+        "rejected": {
+          "count": 9,
+          "min_length": 55,
+          "mean_length": 56.333333333333336,
+          "max_length": 58,
+          "std_length": 0.816496580927726
+        }
+      },
+      "computation_time": {
+        "total": 100.8928234577179,
+        "mean_per_instance": 1.6014733882177443,
+        "positive": 1.6165668882172683,
+        "negative": 1.5005022716522216,
+        "rejected": 1.8333141009012859
+      },
+      "top_features": [
+        {
+          "feature": "feature_11",
+          "count": 63
+        },
+        {
+          "feature": "feature_15",
+          "count": 63
+        },
+        {
+          "feature": "feature_30",
+          "count": 63
+        },
+        {
+          "feature": "feature_34",
+          "count": 63
+        },
+        {
+          "feature": "feature_35",
+          "count": 63
+        },
+        {
+          "feature": "feature_36",
+          "count": 63
+        },
+        {
+          "feature": "feature_38",
+          "count": 63
+        },
+        {
+          "feature": "feature_39",
+          "count": 63
+        },
+        {
+          "feature": "feature_41",
+          "count": 63
+        },
+        {
+          "feature": "feature_42",
+          "count": 63
+        },
+        {
+          "feature": "feature_43",
+          "count": 63
+        },
+        {
+          "feature": "feature_44",
+          "count": 63
+        },
+        {
+          "feature": "feature_45",
+          "count": 63
+        },
+        {
+          "feature": "feature_48",
+          "count": 63
+        },
+        {
+          "feature": "feature_50",
+          "count": 63
+        },
+        {
+          "feature": "feature_51",
+          "count": 63
+        },
+        {
+          "feature": "feature_52",
+          "count": 63
+        },
+        {
+          "feature": "feature_58",
+          "count": 63
+        },
+        {
+          "feature": "feature_10",
+          "count": 62
+        },
+        {
+          "feature": "feature_19",
+          "count": 62
+        },
+        {
+          "feature": "feature_20",
+          "count": 62
+        },
+        {
+          "feature": "feature_37",
+          "count": 62
+        },
+        {
+          "feature": "feature_57",
+          "count": 62
+        },
+        {
+          "feature": "feature_59",
+          "count": 62
+        },
+        {
+          "feature": "feature_27",
+          "count": 61
+        },
+        {
+          "feature": "feature_29",
+          "count": 61
+        },
+        {
+          "feature": "feature_32",
+          "count": 61
+        },
+        {
+          "feature": "feature_46",
+          "count": 61
+        },
+        {
+          "feature": "feature_49",
+          "count": 61
+        },
+        {
+          "feature": "feature_53",
+          "count": 61
+        },
+        {
+          "feature": "feature_54",
+          "count": 61
+        },
+        {
+          "feature": "feature_16",
+          "count": 60
+        },
+        {
+          "feature": "feature_21",
+          "count": 60
+        },
+        {
+          "feature": "feature_22",
+          "count": 60
+        },
+        {
+          "feature": "feature_17",
+          "count": 59
+        },
+        {
+          "feature": "feature_23",
+          "count": 59
+        },
+        {
+          "feature": "feature_26",
+          "count": 59
+        },
+        {
+          "feature": "feature_33",
+          "count": 59
+        },
+        {
+          "feature": "feature_47",
+          "count": 59
+        },
+        {
+          "feature": "feature_55",
+          "count": 59
+        },
+        {
+          "feature": "feature_56",
+          "count": 59
+        },
+        {
+          "feature": "feature_8",
+          "count": 57
+        },
+        {
+          "feature": "feature_9",
+          "count": 57
+        },
+        {
+          "feature": "feature_14",
+          "count": 57
+        },
+        {
+          "feature": "feature_24",
+          "count": 55
+        },
+        {
+          "feature": "feature_25",
+          "count": 55
+        },
+        {
+          "feature": "feature_18",
+          "count": 50
+        },
+        {
+          "feature": "feature_28",
+          "count": 49
+        },
+        {
+          "feature": "feature_13",
+          "count": 48
+        },
+        {
+          "feature": "feature_6",
+          "count": 46
+        },
+        {
+          "feature": "feature_7",
+          "count": 44
+        },
+        {
+          "feature": "feature_40",
+          "count": 40
+        },
+        {
+          "feature": "feature_12",
+          "count": 38
+        },
+        {
+          "feature": "feature_3",
+          "count": 35
+        },
+        {
+          "feature": "feature_4",
+          "count": 23
+        },
+        {
+          "feature": "feature_2",
+          "count": 22
+        },
+        {
+          "feature": "feature_5",
+          "count": 22
+        },
+        {
+          "feature": "feature_0",
+          "count": 19
+        },
+        {
+          "feature": "feature_31",
+          "count": 9
+        },
+        {
+          "feature": "feature_1",
+          "count": 5
+        }
+      ]
+    },
+    "vertebral_column": {
+      "config": {
+        "dataset_name": "vertebral_column",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.8396593681363677,
+        "t_minus": -0.33345790086146015
+      },
+      "performance": {
+        "accuracy_without_rejection": 76.34408602150538,
+        "accuracy_with_rejection": 89.65517241379311,
+        "rejection_rate": 37.634408602150536
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 49,
+          "min_length": 2,
+          "mean_length": 4.204081632653061,
+          "max_length": 6,
+          "std_length": 1.106190223091237
+        },
+        "negative": {
+          "count": 9,
+          "min_length": 5,
+          "mean_length": 5.111111111111111,
+          "max_length": 6,
+          "std_length": 0.3142696805273545
+        },
+        "rejected": {
+          "count": 35,
+          "min_length": 4,
+          "mean_length": 4.885714285714286,
+          "max_length": 6,
+          "std_length": 0.39795395077668916
+        }
+      },
+      "computation_time": {
+        "total": 15.222001314163208,
+        "mean_per_instance": 0.16367743348562588,
+        "positive": 0.1316338315302012,
+        "negative": 0.13463075955708823,
+        "rejected": 0.2160076209477016
+      },
+      "top_features": [
+        {
+          "feature": "pelvic_radius",
+          "count": 93
+        },
+        {
+          "feature": "pelvic_tilt",
+          "count": 89
+        },
+        {
+          "feature": "spondylolisthesis_grade",
+          "count": 84
+        },
+        {
+          "feature": "lumbar_lordosis_angle",
+          "count": 75
+        },
+        {
+          "feature": "pelvic_incidence",
+          "count": 42
+        },
+        {
+          "feature": "sacral_slope",
+          "count": 40
+        }
+      ]
+    },
+    "wine": {
+      "config": {
+        "dataset_name": "wine",
+        "test_size": 0.3,
+        "random_state": 107,
+        "rejection_cost": 0.24
+      },
+      "thresholds": {
+        "t_plus": 0.024350947092917803,
+        "t_minus": -0.025953681923489312
+      },
+      "performance": {
+        "accuracy_without_rejection": 96.29629629629629,
+        "accuracy_with_rejection": 96.2962962962963,
+        "rejection_rate": 0.0
+      },
+      "explanation_stats": {
+        "positive": {
+          "count": 38,
+          "min_length": 4,
+          "mean_length": 7.342105263157895,
+          "max_length": 11,
+          "std_length": 1.705661097168295
+        },
+        "negative": {
+          "count": 16,
+          "min_length": 5,
+          "mean_length": 7.375,
+          "max_length": 11,
+          "std_length": 1.5761900266148114
+        },
+        "rejected": {
+          "count": 0,
+          "min_length": 0,
+          "mean_length": 0,
+          "max_length": 0,
+          "std_length": 0
+        }
+      },
+      "computation_time": {
+        "total": 16.709137201309204,
+        "mean_per_instance": 0.3094284666909112,
+        "positive": 0.3131647235468814,
+        "negative": 0.3005548566579819,
+        "rejected": 0
+      },
+      "top_features": [
+        {
+          "feature": "flavanoids",
+          "count": 54
+        },
+        {
+          "feature": "od280/od315_of_diluted_wines",
+          "count": 54
+        },
+        {
+          "feature": "proline",
+          "count": 54
+        },
+        {
+          "feature": "alcalinity_of_ash",
+          "count": 53
+        },
+        {
+          "feature": "total_phenols",
+          "count": 48
+        },
+        {
+          "feature": "nonflavanoid_phenols",
+          "count": 40
+        },
+        {
+          "feature": "ash",
+          "count": 23
+        },
+        {
+          "feature": "magnesium",
+          "count": 23
+        },
+        {
+          "feature": "alcohol",
+          "count": 17
+        },
+        {
+          "feature": "hue",
+          "count": 10
+        },
+        {
+          "feature": "proanthocyanins",
+          "count": 8
+        },
+        {
+          "feature": "malic_acid",
+          "count": 7
+        },
+        {
+          "feature": "color_intensity",
+          "count": 6
+        }
+      ]
+    }
+  }
+}

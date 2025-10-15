@@ -1,0 +1,35 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: iris_setosa_vs_rest
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 45
+  - Número de Features do Modelo: 4
+  - Acurácia do Modelo (teste, sem rejeição): 100.00%
+  - Thresholds de Rejeição (Score): t+ = 0.0100, t- = -1.0478
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 2.0002 segundos
+  - Tempo Médio por Instância (Geral): 0.0444 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 2.22% (1 de 45 instâncias)
+  - Acurácia com Opção de Rejeição (nas 44 instâncias aceitas): 100.00%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (30 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.63 ± 0.55  (Min: 1, Max: 3)
+  - Classe Negativa (Aceitas): (14 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.14 ± 0.35  (Min: 2, Max: 3)
+  - Classe REJEITADA: (1 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.00 ± 0.00  (Min: 2, Max: 2)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - petal width (cm): 29 vezes
+    - petal length (cm): 24 vezes
+    - sepal length (cm): 15 vezes
+    - sepal width (cm): 13 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.0203 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0934 segundos
+  - Tempo Médio (Rejeitadas): 0.0837 segundos

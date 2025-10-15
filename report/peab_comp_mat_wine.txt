@@ -1,0 +1,2490 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE DE EXPLICAÇÕES ABDUTIVAS(MÉTODO FORMAL BIDIRECIONAL)
+================================================================================
+
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+
+  - Dataset: wine
+  - Total de Instâncias de Teste: 54
+  - Tamanho do Conjunto de Teste: 30%
+  - Número de Features do Modelo: 13
+  - Acurácia do Modelo (teste, sem rejeição): 94.44%
+  - Thresholds de Rejeição: t+ = 0.5150, t- = -0.4046
+  - Custo de Rejeição WR: 0.23
+  - Intercepto do Modelo (w0): 2.2967
+
+  - Tempo Total de Geração das Explicações: 1.50 segundos
+  - Tempo Médio por Instância: 0.0278 segundos
+
+================================================================================
+                    ANÁLISE DETALHADA POR INSTÂNCIA
+================================================================================
+
+--------------------------------------------------------------------------------
+                         SEÇÃO A: INSTÂNCIAS REJEITADAS
+--------------------------------------------------------------------------------
+--- INSTÂNCIA #3 | Predição Original: REJEITADA (Score: 0.2587) | Classe Real: Não-class_0 ---
+
+   --> Esta instância caiu na 'zona de rejeição'. Para explicá-la, o sistema testa duas estratégias de busca e escolhe a que gera a explicação mais curta.
+
+==================== ESTRATÉGIA DE BUSCA 1 (Objetivo: Evitar Classe 0) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['alcalinity_of_ash = 30.0000', 'proline = 985.0000', 'alcohol = 12.9900', 'flavanoids = 2.8900', 'proanthocyanins = 1.9600', 'nonflavanoid_phenols = 0.2100', 'hue = 1.3100', 'total_phenols = 3.3000', 'malic_acid = 1.6700', 'od280/od315_of_diluted_wines = 3.5000', 'ash = 2.6000', 'color_intensity = 3.3500', 'magnesium = 139.0000']
+
+==================== ESTRATÉGIA DE BUSCA 2 (Objetivo: Evitar Classe 1) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['proline = 985.0000', 'flavanoids = 2.8900', 'nonflavanoid_phenols = 0.2100', 'alcohol = 12.9900', 'od280/od315_of_diluted_wines = 3.5000', 'total_phenols = 3.3000', 'malic_acid = 1.6700', 'proanthocyanins = 1.9600', 'alcalinity_of_ash = 30.0000', 'ash = 2.6000', 'magnesium = 139.0000', 'hue = 1.3100', 'color_intensity = 3.3500']
+
+==================== ESTRATÉGIA DE BUSCA 1 (Evitar Classe 0) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 0)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2587 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2587 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 0)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['magnesium', 'color_intensity', 'ash', 'od280/od315_of_diluted_wines', 'malic_acid', 'total_phenols', 'hue', 'nonflavanoid_phenols', 'proanthocyanins', 'flavanoids', 'alcohol', 'proline', 'alcalinity_of_ash']
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2170 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.3838 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'magnesium' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.1599 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.3961 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 11 features.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0892 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.5376 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0523 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.9623 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0445 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.9084 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0260 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.9318 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.0302 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.4948 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'hue' manteve a robustez bi-direcional. Explicação agora com 10 features.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2279 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.5329 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2867 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7647 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.4621 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.8208 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -1.1640 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -2.2640 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features.
+   --> Resultado da Estratégia 1: Explicação com 10 features (calculado em 0.0439s).
+
+==================== ESTRATÉGIA DE BUSCA 2 (Evitar Classe 1) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 1)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2587 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2587 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 1)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['color_intensity', 'hue', 'magnesium', 'ash', 'alcalinity_of_ash', 'proanthocyanins', 'malic_acid', 'total_phenols', 'od280/od315_of_diluted_wines', 'alcohol', 'nonflavanoid_phenols', 'flavanoids', 'proline']
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2016 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2709 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.0116 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.3697 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'hue' manteve a robustez bi-direcional. Explicação agora com 11 features.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.0302 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.4948 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'magnesium' manteve a robustez bi-direcional. Explicação agora com 10 features.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1009 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.6363 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -2.2640 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2867 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7647 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1455 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.0071 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1641 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.0305 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1378 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.0610 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.8208 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2279 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.5329 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.4621 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -1.1640 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features.
+   --> Resultado da Estratégia 2: Explicação com 10 features (calculado em 0.0450s).
+
+------------------------- COMPARAÇÃO E DECISÃO FINAL -------------------------
+   -> ESCOLHIDO: Caminho 1 resultou na explicação menor ou de igual tamanho.
+==================== FIM DA BUSCA OTIMIZADA ====================
+
+
+  >> RESULTADO FINAL DA INSTÂNCIA #3:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 10):
+       - alcalinity_of_ash = 30.0000  (Delta: 2.2339)
+       - proline = 985.0000  (Delta: 1.1339)
+       - alcohol = 12.9900  (Delta: 0.7906)
+       - flavanoids = 2.8900  (Delta: 0.4320)
+       - proanthocyanins = 1.9600  (Delta: 0.2566)
+       - nonflavanoid_phenols = 0.2100  (Delta: 0.1977)
+       - total_phenols = 3.3000  (Delta: 0.1339)
+       - malic_acid = 1.6700  (Delta: 0.1154)
+       - od280/od315_of_diluted_wines = 3.5000  (Delta: 0.1076)
+       - ash = 2.6000  (Delta: 0.0708)
+
+--- INSTÂNCIA #21 | Predição Original: REJEITADA (Score: -0.3305) | Classe Real: Não-class_0 ---
+
+   --> Esta instância caiu na 'zona de rejeição'. Para explicá-la, o sistema testa duas estratégias de busca e escolhe a que gera a explicação mais curta.
+
+==================== ESTRATÉGIA DE BUSCA 1 (Objetivo: Evitar Classe 0) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['proline = 660.0000', 'alcohol = 12.3700', 'alcalinity_of_ash = 18.5000', 'od280/od315_of_diluted_wines = 2.7700', 'nonflavanoid_phenols = 0.2400', 'proanthocyanins = 1.9500', 'magnesium = 88.0000', 'ash = 2.1000', 'hue = 1.0400', 'total_phenols = 3.5200', 'color_intensity = 4.5000', 'malic_acid = 1.0700', 'flavanoids = 3.7500']
+
+==================== ESTRATÉGIA DE BUSCA 2 (Objetivo: Evitar Classe 1) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['flavanoids = 3.7500', 'alcalinity_of_ash = 18.5000', 'nonflavanoid_phenols = 0.2400', 'proline = 660.0000', 'malic_acid = 1.0700', 'total_phenols = 3.5200', 'alcohol = 12.3700', 'od280/od315_of_diluted_wines = 2.7700', 'proanthocyanins = 1.9500', 'hue = 1.0400', 'ash = 2.1000', 'magnesium = 88.0000', 'color_intensity = 4.5000']
+
+==================== ESTRATÉGIA DE BUSCA 1 (Evitar Classe 0) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 0)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.3305 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.3305 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 0)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['flavanoids', 'malic_acid', 'color_intensity', 'total_phenols', 'hue', 'ash', 'magnesium', 'proanthocyanins', 'nonflavanoid_phenols', 'od280/od315_of_diluted_wines', 'alcalinity_of_ash', 'alcohol', 'proline']
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.3254 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 1.4026 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.3714 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2563 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'malic_acid' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4217 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'color_intensity' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4545 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4948 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4992 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5056 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'magnesium' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6263 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6433 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6660 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -1.2811 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -1.4284 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -2.2006 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 12 features.
+   --> Resultado da Estratégia 1: Explicação com 12 features (calculado em 0.0294s).
+
+==================== ESTRATÉGIA DE BUSCA 2 (Evitar Classe 1) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 1)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.3305 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.3305 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 1)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['color_intensity', 'magnesium', 'ash', 'hue', 'proanthocyanins', 'od280/od315_of_diluted_wines', 'alcohol', 'total_phenols', 'malic_acid', 'proline', 'nonflavanoid_phenols', 'alcalinity_of_ash', 'flavanoids']
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.3807 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.3114 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5149 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'magnesium' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5086 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5042 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6357 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6754 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -1.4378 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4639 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4217 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -2.2100 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6526 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -1.2904 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.3757 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 1.4217 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 12 features.
+   --> Resultado da Estratégia 2: Explicação com 12 features (calculado em 0.0297s).
+
+------------------------- COMPARAÇÃO E DECISÃO FINAL -------------------------
+   -> ESCOLHIDO: Caminho 1 resultou na explicação menor ou de igual tamanho.
+==================== FIM DA BUSCA OTIMIZADA ====================
+
+
+  >> RESULTADO FINAL DA INSTÂNCIA #21:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 12):
+       - proline = 660.0000  (Delta: 1.8292)
+       - alcohol = 12.3700  (Delta: 1.0570)
+       - alcalinity_of_ash = 18.5000  (Delta: 0.9097)
+       - od280/od315_of_diluted_wines = 2.7700  (Delta: 0.2946)
+       - nonflavanoid_phenols = 0.2400  (Delta: 0.2719)
+       - proanthocyanins = 1.9500  (Delta: 0.2549)
+       - magnesium = 88.0000  (Delta: 0.1342)
+       - ash = 2.1000  (Delta: 0.1278)
+       - hue = 1.0400  (Delta: 0.1234)
+       - total_phenols = 3.5200  (Delta: 0.0831)
+       - color_intensity = 4.5000  (Delta: 0.0503)
+       - flavanoids = 3.7500  (Delta: -0.0051)
+
+--- INSTÂNCIA #25 | Predição Original: REJEITADA (Score: -0.2283) | Classe Real: Não-class_0 ---
+
+   --> Esta instância caiu na 'zona de rejeição'. Para explicá-la, o sistema testa duas estratégias de busca e escolhe a que gera a explicação mais curta.
+
+==================== ESTRATÉGIA DE BUSCA 1 (Objetivo: Evitar Classe 0) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['proline = 502.0000', 'alcohol = 13.1100', 'alcalinity_of_ash = 15.0000', 'nonflavanoid_phenols = 0.2600', 'proanthocyanins = 2.2800', 'flavanoids = 3.1800', 'total_phenols = 2.9800', 'od280/od315_of_diluted_wines = 3.1800', 'ash = 1.7000', 'magnesium = 78.0000', 'hue = 1.1200', 'color_intensity = 5.3000', 'malic_acid = 1.0100']
+
+==================== ESTRATÉGIA DE BUSCA 2 (Objetivo: Evitar Classe 1) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['alcalinity_of_ash = 15.0000', 'flavanoids = 3.1800', 'nonflavanoid_phenols = 0.2600', 'alcohol = 13.1100', 'malic_acid = 1.0100', 'od280/od315_of_diluted_wines = 3.1800', 'proline = 502.0000', 'total_phenols = 2.9800', 'proanthocyanins = 2.2800', 'hue = 1.1200', 'ash = 1.7000', 'color_intensity = 5.3000', 'magnesium = 78.0000']
+
+==================== ESTRATÉGIA DE BUSCA 1 (Evitar Classe 0) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 0)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.2283 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.2283 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 0)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['malic_acid', 'color_intensity', 'hue', 'magnesium', 'ash', 'od280/od315_of_diluted_wines', 'total_phenols', 'flavanoids', 'proanthocyanins', 'nonflavanoid_phenols', 'alcalinity_of_ash', 'alcohol', 'proline']
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.2618 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.3659 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'malic_acid' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.3074 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.3897 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 11 features.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4505 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4597 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'magnesium' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4808 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4970 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.5152 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.5920 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.6173 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.6287 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.8140 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -1.0464 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -2.4746 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 11 features.
+   --> Resultado da Estratégia 1: Explicação com 11 features (calculado em 0.0306s).
+
+==================== ESTRATÉGIA DE BUSCA 2 (Evitar Classe 1) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 1)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.2283 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: -0.2283 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 1)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['magnesium', 'color_intensity', 'ash', 'hue', 'proanthocyanins', 'total_phenols', 'proline', 'od280/od315_of_diluted_wines', 'malic_acid', 'alcohol', 'nonflavanoid_phenols', 'flavanoids', 'alcalinity_of_ash']
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.3806 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: -0.2138 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'magnesium' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4262 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'color_intensity' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5541 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5238 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6905 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5884 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -2.5479 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.5702 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.4141 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -1.1197 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.7020 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.6652 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: -0.8873 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 12 features.
+   --> Resultado da Estratégia 2: Explicação com 12 features (calculado em 0.0284s).
+
+------------------------- COMPARAÇÃO E DECISÃO FINAL -------------------------
+   -> ESCOLHIDO: Caminho 1 resultou na explicação menor ou de igual tamanho.
+==================== FIM DA BUSCA OTIMIZADA ====================
+
+
+  >> RESULTADO FINAL DA INSTÂNCIA #25:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 11):
+       - proline = 502.0000  (Delta: 2.1672)
+       - alcohol = 13.1100  (Delta: 0.7391)
+       - alcalinity_of_ash = 15.0000  (Delta: 0.5066)
+       - nonflavanoid_phenols = 0.2600  (Delta: 0.3213)
+       - proanthocyanins = 2.2800  (Delta: 0.3099)
+       - flavanoids = 3.1800  (Delta: 0.2846)
+       - total_phenols = 2.9800  (Delta: 0.2078)
+       - od280/od315_of_diluted_wines = 3.1800  (Delta: 0.1896)
+       - ash = 1.7000  (Delta: 0.1735)
+       - magnesium = 78.0000  (Delta: 0.1523)
+       - hue = 1.1200  (Delta: 0.1432)
+
+--- INSTÂNCIA #26 | Predição Original: REJEITADA (Score: 0.2280) | Classe Real: class_0 ---
+
+   --> Esta instância caiu na 'zona de rejeição'. Para explicá-la, o sistema testa duas estratégias de busca e escolhe a que gera a explicação mais curta.
+
+==================== ESTRATÉGIA DE BUSCA 1 (Objetivo: Evitar Classe 0) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['proline = 770.0000', 'alcalinity_of_ash = 18.6000', 'alcohol = 12.9300', 'flavanoids = 2.4100', 'malic_acid = 3.8000', 'total_phenols = 2.4100', 'nonflavanoid_phenols = 0.2500', 'proanthocyanins = 1.9800', 'hue = 1.0300', 'magnesium = 102.0000', 'od280/od315_of_diluted_wines = 3.5200', 'ash = 2.6500', 'color_intensity = 4.5000']
+
+==================== ESTRATÉGIA DE BUSCA 2 (Objetivo: Evitar Classe 1) ====================
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (13 feats): ['alcalinity_of_ash = 18.6000', 'proline = 770.0000', 'flavanoids = 2.4100', 'nonflavanoid_phenols = 0.2500', 'alcohol = 12.9300', 'od280/od315_of_diluted_wines = 3.5200', 'total_phenols = 2.4100', 'proanthocyanins = 1.9800', 'malic_acid = 3.8000', 'hue = 1.0300', 'ash = 2.6500', 'magnesium = 102.0000', 'color_intensity = 4.5000']
+
+==================== ESTRATÉGIA DE BUSCA 1 (Evitar Classe 0) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 0)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2280 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2280 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 0)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['color_intensity', 'ash', 'od280/od315_of_diluted_wines', 'magnesium', 'hue', 'proanthocyanins', 'nonflavanoid_phenols', 'total_phenols', 'malic_acid', 'flavanoids', 'alcohol', 'alcalinity_of_ash', 'proline']
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.1777 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2471 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.1127 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.3943 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'ash' manteve a robustez bi-direcional. Explicação agora com 11 features.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0102 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.9656 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0039 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.4523 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'magnesium' manteve a robustez bi-direcional. Explicação agora com 10 features.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1171 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.6202 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2560 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7189 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2927 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.3916 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.3355 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7825 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.3757 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7004 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.6721 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.8125 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.9173 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -1.5900 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features.
+   --> Resultado da Estratégia 1: Explicação com 10 features (calculado em 0.0434s).
+
+==================== ESTRATÉGIA DE BUSCA 2 (Evitar Classe 1) ====================
+
+   [Fase 1] Início do Reforço Aditivo (Premissa de ordenação: evitar Classe 1)
+
+     - Testando robustez da explicação atual com 13 features...
+       -> Teste vs Classe 0 (Diminuir Score)...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2280 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Robusto contra Classe 0. Verificando agora contra Classe 1...
+          (Log Perturbação: Explicação atual com 13 features fixas)
+          -> Score da Instância Perturbada: 0.2280 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é BI-DIRECIONALMENTE robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 13 features.
+
+   [Fase 2] Início da Minimização Subtrativa (Premissa de ordenação: evitar Classe 1)
+     - Ordem de tentativa de remoção (do menor |delta| para o maior): ['color_intensity', 'magnesium', 'ash', 'hue', 'malic_acid', 'proanthocyanins', 'total_phenols', 'od280/od315_of_diluted_wines', 'alcohol', 'nonflavanoid_phenols', 'flavanoids', 'proline', 'alcalinity_of_ash']
+
+     - TENTANDO REMOVER: 'color_intensity'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.1777 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.2471 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'color_intensity' manteve a robustez bi-direcional. Explicação agora com 12 features.
+
+     - TENTANDO REMOVER: 'magnesium'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.0689 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 11 features fixas)
+          -> Score da Instância Perturbada: 0.3051 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'magnesium' manteve a robustez bi-direcional. Explicação agora com 11 features.
+
+     - TENTANDO REMOVER: 'ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.0039 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: 0.4523 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO TOTAL: A remoção de 'ash' manteve a robustez bi-direcional. Explicação agora com 10 features.
+
+     - TENTANDO REMOVER: 'hue'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.1171 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.6202 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'hue' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'malic_acid'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.3757 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7004 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'malic_acid' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proanthocyanins'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2560 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7189 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proanthocyanins' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'total_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.3355 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.7825 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'total_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'od280/od315_of_diluted_wines'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.0986 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.0237 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'od280/od315_of_diluted_wines' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcohol'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.8125 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcohol' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'nonflavanoid_phenols'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.2927 Sim ∈ [t- (-0.4046), t+ (0.5150)]
+       -> SUCESSO PARCIAL. Verificando a segunda direção...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 1.3916 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'nonflavanoid_phenols' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'flavanoids'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.6721 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'flavanoids' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'proline'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -1.5900 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'proline' quebrou a robustez. Mantendo a feature.
+
+     - TENTANDO REMOVER: 'alcalinity_of_ash'...
+       -> Teste de remoção vs Classe 0...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.9173 Não ∈ [t- (-0.4046), t+ (0.5150)]
+       -> FALHA: A remoção de 'alcalinity_of_ash' quebrou a robustez. Mantendo a feature.
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features.
+   --> Resultado da Estratégia 2: Explicação com 10 features (calculado em 0.0454s).
+
+------------------------- COMPARAÇÃO E DECISÃO FINAL -------------------------
+   -> ESCOLHIDO: Caminho 1 resultou na explicação menor ou de igual tamanho.
+==================== FIM DA BUSCA OTIMIZADA ====================
+
+
+  >> RESULTADO FINAL DA INSTÂNCIA #26:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 10):
+       - proline = 770.0000  (Delta: 1.5939)
+       - alcalinity_of_ash = 18.6000  (Delta: 0.9212)
+       - alcohol = 12.9300  (Delta: 0.8164)
+       - flavanoids = 2.4100  (Delta: 0.6759)
+       - malic_acid = 3.8000  (Delta: 0.3796)
+       - total_phenols = 2.4100  (Delta: 0.3394)
+       - nonflavanoid_phenols = 0.2500  (Delta: 0.2966)
+       - proanthocyanins = 1.9800  (Delta: 0.2599)
+       - hue = 1.0300  (Delta: 0.1209)
+       - od280/od315_of_diluted_wines = 3.5200  (Delta: 0.1025)
+
+--------------------------------------------------------------------------------
+                       SEÇÃO B: INSTÂNCIAS CLASSIFICADAS
+--------------------------------------------------------------------------------
+--- INSTÂNCIA #0 | Predição Original: CLASSE 1 (Score: 1.5402) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 472.0000', 'alcalinity_of_ash = 24.0000', 'flavanoids = 1.8400', 'alcohol = 13.4900', 'total_phenols = 1.8800', 'nonflavanoid_phenols = 0.2700']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.6211 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #0:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 472.0000  (Delta: 2.2314)
+       - alcalinity_of_ash = 24.0000  (Delta: 1.5430)
+       - flavanoids = 1.8400  (Delta: 0.9656)
+       - alcohol = 13.4900  (Delta: 0.5758)
+       - total_phenols = 1.8800  (Delta: 0.4618)
+       - nonflavanoid_phenols = 0.2700  (Delta: 0.3460)
+
+--- INSTÂNCIA #1 | Predição Original: CLASSE 0 (Score: -3.3888) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 1680.0000', 'flavanoids = 3.9300', 'alcalinity_of_ash = 16.5000', 'alcohol = 14.1900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: -0.5269 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #1:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 1680.0000  (Delta: -2.9995)
+       - flavanoids = 3.9300  (Delta: -1.8245)
+       - alcalinity_of_ash = 16.5000  (Delta: -1.3818)
+       - alcohol = 14.1900  (Delta: -1.3578)
+
+--- INSTÂNCIA #2 | Predição Original: CLASSE 1 (Score: 1.9980) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['flavanoids = 0.6800', 'proline = 840.0000', 'alcalinity_of_ash = 20.0000', 'nonflavanoid_phenols = 0.5300', 'alcohol = 13.1700', 'od280/od315_of_diluted_wines = 1.6200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.8704 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #2:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - flavanoids = 0.6800  (Delta: 1.5552)
+       - proline = 840.0000  (Delta: 1.4441)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - nonflavanoid_phenols = 0.5300  (Delta: 0.9887)
+       - alcohol = 13.1700  (Delta: 0.7133)
+       - od280/od315_of_diluted_wines = 1.6200  (Delta: 0.5893)
+
+--- INSTÂNCIA #4 | Predição Original: CLASSE 1 (Score: 2.4762) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 560.0000', 'alcalinity_of_ash = 24.0000', 'flavanoids = 1.0900', 'alcohol = 12.8100', 'od280/od315_of_diluted_wines = 1.3600']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.9543 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #4:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 560.0000  (Delta: 2.0432)
+       - alcalinity_of_ash = 24.0000  (Delta: 1.5430)
+       - flavanoids = 1.0900  (Delta: 1.3468)
+       - alcohol = 12.8100  (Delta: 0.8680)
+       - od280/od315_of_diluted_wines = 1.3600  (Delta: 0.6559)
+
+--- INSTÂNCIA #5 | Predição Original: CLASSE 0 (Score: -3.4370) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 1547.0000', 'alcalinity_of_ash = 12.0000', 'flavanoids = 3.6400', 'alcohol = 14.3800']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: -0.6948 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #5:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 1547.0000  (Delta: -2.7149)
+       - alcalinity_of_ash = 12.0000  (Delta: -1.8999)
+       - flavanoids = 3.6400  (Delta: -1.6772)
+       - alcohol = 14.3800  (Delta: -1.4395)
+
+--- INSTÂNCIA #6 | Predição Original: CLASSE 0 (Score: -1.4932) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (7 feats): ['proline = 1035.0000', 'alcalinity_of_ash = 16.6000', 'flavanoids = 2.8800', 'alcohol = 13.7100', 'nonflavanoid_phenols = 0.2700', 'od280/od315_of_diluted_wines = 4.0000', 'malic_acid = 1.8600']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 7 features...
+          (Log Perturbação: Explicação atual com 7 features fixas)
+          -> Score da Instância Perturbada: -0.4685 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 7 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 7 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #6:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 7):
+       - proline = 1035.0000  (Delta: -1.6195)
+       - alcalinity_of_ash = 16.6000  (Delta: -1.3703)
+       - flavanoids = 2.8800  (Delta: -1.2909)
+       - alcohol = 13.7100  (Delta: -1.1516)
+       - nonflavanoid_phenols = 0.2700  (Delta: -0.8898)
+       - od280/od315_of_diluted_wines = 4.0000  (Delta: -0.6943)
+       - malic_acid = 1.8600  (Delta: -0.4888)
+
+--- INSTÂNCIA #7 | Predição Original: CLASSE 1 (Score: 1.2086) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 465.0000', 'alcalinity_of_ash = 28.5000', 'alcohol = 11.5600', 'nonflavanoid_phenols = 0.4700']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: 1.0505 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #7:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 465.0000  (Delta: 2.2464)
+       - alcalinity_of_ash = 28.5000  (Delta: 2.0611)
+       - alcohol = 11.5600  (Delta: 1.4051)
+       - nonflavanoid_phenols = 0.4700  (Delta: 0.8404)
+
+--- INSTÂNCIA #8 | Predição Original: CLASSE 1 (Score: 3.1227) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 570.0000', 'flavanoids = 0.6000', 'alcalinity_of_ash = 22.0000', 'nonflavanoid_phenols = 0.6000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: 0.5895 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #8:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 570.0000  (Delta: 2.0218)
+       - flavanoids = 0.6000  (Delta: 1.5958)
+       - alcalinity_of_ash = 22.0000  (Delta: 1.3127)
+       - nonflavanoid_phenols = 0.6000  (Delta: 1.1617)
+
+--- INSTÂNCIA #9 | Predição Original: CLASSE 1 (Score: 2.0553) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 680.0000', 'flavanoids = 1.0900', 'nonflavanoid_phenols = 0.6300', 'alcohol = 12.3300', 'alcalinity_of_ash = 16.0000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.5626 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #9:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 680.0000  (Delta: 1.7864)
+       - flavanoids = 1.0900  (Delta: 1.3468)
+       - nonflavanoid_phenols = 0.6300  (Delta: 1.2359)
+       - alcohol = 12.3300  (Delta: 1.0742)
+       - alcalinity_of_ash = 16.0000  (Delta: 0.6218)
+
+--- INSTÂNCIA #10 | Predição Original: CLASSE 1 (Score: 2.0059) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 312.0000', 'alcohol = 12.2200', 'alcalinity_of_ash = 19.0000', 'flavanoids = 2.0400', 'nonflavanoid_phenols = 0.3900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.6666 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #10:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 312.0000  (Delta: 2.5737)
+       - alcohol = 12.2200  (Delta: 1.1215)
+       - alcalinity_of_ash = 19.0000  (Delta: 0.9672)
+       - flavanoids = 2.0400  (Delta: 0.8640)
+       - nonflavanoid_phenols = 0.3900  (Delta: 0.6427)
+
+--- INSTÂNCIA #11 | Predição Original: CLASSE 1 (Score: 1.2183) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 630.0000', 'flavanoids = 1.2500', 'alcalinity_of_ash = 18.0000', 'alcohol = 12.8600', 'od280/od315_of_diluted_wines = 1.2900', 'total_phenols = 1.5100']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.5760 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #11:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 630.0000  (Delta: 1.8934)
+       - flavanoids = 1.2500  (Delta: 1.2655)
+       - alcalinity_of_ash = 18.0000  (Delta: 0.8521)
+       - alcohol = 12.8600  (Delta: 0.8465)
+       - od280/od315_of_diluted_wines = 1.2900  (Delta: 0.6738)
+       - total_phenols = 1.5100  (Delta: 0.5472)
+
+--- INSTÂNCIA #12 | Predição Original: CLASSE 0 (Score: -0.6665) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (10 feats): ['proline = 920.0000', 'flavanoids = 2.9800', 'alcohol = 13.4800', 'alcalinity_of_ash = 20.5000', 'nonflavanoid_phenols = 0.2600', 'od280/od315_of_diluted_wines = 3.4700', 'malic_acid = 1.8100', 'total_phenols = 2.7000', 'proanthocyanins = 1.8600', 'hue = 1.0400']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 10 features...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4697 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 10 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #12:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 10):
+       - proline = 920.0000  (Delta: -1.3735)
+       - flavanoids = 2.9800  (Delta: -1.3417)
+       - alcohol = 13.4800  (Delta: -1.0527)
+       - alcalinity_of_ash = 20.5000  (Delta: -0.9212)
+       - nonflavanoid_phenols = 0.2600  (Delta: -0.9145)
+       - od280/od315_of_diluted_wines = 3.4700  (Delta: -0.5585)
+       - malic_acid = 1.8100  (Delta: -0.4950)
+       - total_phenols = 2.7000  (Delta: -0.3972)
+       - proanthocyanins = 1.8600  (Delta: -0.2866)
+       - hue = 1.0400  (Delta: -0.1654)
+
+--- INSTÂNCIA #13 | Predição Original: CLASSE 1 (Score: 2.4420) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 355.0000', 'alcohol = 12.1700', 'flavanoids = 1.7500', 'alcalinity_of_ash = 19.0000', 'nonflavanoid_phenols = 0.4500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.8918 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #13:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 355.0000  (Delta: 2.4817)
+       - alcohol = 12.1700  (Delta: 1.1430)
+       - flavanoids = 1.7500  (Delta: 1.0114)
+       - alcalinity_of_ash = 19.0000  (Delta: 0.9672)
+       - nonflavanoid_phenols = 0.4500  (Delta: 0.7910)
+
+--- INSTÂNCIA #14 | Predição Original: CLASSE 1 (Score: 1.6911) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 660.0000', 'flavanoids = 0.7000', 'alcalinity_of_ash = 20.0000', 'nonflavanoid_phenols = 0.4400', 'od280/od315_of_diluted_wines = 1.7100', 'total_phenols = 1.6800']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.7945 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #14:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 660.0000  (Delta: 1.8292)
+       - flavanoids = 0.7000  (Delta: 1.5450)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - nonflavanoid_phenols = 0.4400  (Delta: 0.7662)
+       - od280/od315_of_diluted_wines = 1.7100  (Delta: 0.5662)
+       - total_phenols = 1.6800  (Delta: 0.5080)
+
+--- INSTÂNCIA #15 | Predição Original: CLASSE 0 (Score: -2.6087) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 1285.0000', 'flavanoids = 3.6700', 'alcalinity_of_ash = 16.7000', 'alcohol = 13.7200', 'nonflavanoid_phenols = 0.1900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: -0.4123 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #15:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 1285.0000  (Delta: -2.1544)
+       - flavanoids = 3.6700  (Delta: -1.6924)
+       - alcalinity_of_ash = 16.7000  (Delta: -1.3587)
+       - alcohol = 13.7200  (Delta: -1.1559)
+       - nonflavanoid_phenols = 0.1900  (Delta: -1.0876)
+
+--- INSTÂNCIA #16 | Predição Original: CLASSE 1 (Score: 1.0245) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (8 feats): ['proline = 625.0000', 'alcohol = 11.4500', 'alcalinity_of_ash = 20.0000', 'flavanoids = 2.7900', 'nonflavanoid_phenols = 0.3200', 'proanthocyanins = 1.8300', 'total_phenols = 2.9000', 'malic_acid = 2.4000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 8 features...
+          (Log Perturbação: Explicação atual com 8 features fixas)
+          -> Score da Instância Perturbada: 0.5559 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 8 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 8 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #16:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 8):
+       - proline = 625.0000  (Delta: 1.9041)
+       - alcohol = 11.4500  (Delta: 1.4524)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - flavanoids = 2.7900  (Delta: 0.4828)
+       - nonflavanoid_phenols = 0.3200  (Delta: 0.4696)
+       - proanthocyanins = 1.8300  (Delta: 0.2349)
+       - total_phenols = 2.9000  (Delta: 0.2263)
+       - malic_acid = 2.4000  (Delta: 0.2059)
+
+--- INSTÂNCIA #17 | Predição Original: CLASSE 0 (Score: -1.8097) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (7 feats): ['proline = 1295.0000', 'alcohol = 14.0600', 'alcalinity_of_ash = 17.6000', 'flavanoids = 2.5100', 'nonflavanoid_phenols = 0.3100', 'od280/od315_of_diluted_wines = 3.5800', 'malic_acid = 2.1500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 7 features...
+          (Log Perturbação: Explicação atual com 7 features fixas)
+          -> Score da Instância Perturbada: -0.6295 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 7 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 7 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #17:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 7):
+       - proline = 1295.0000  (Delta: -2.1758)
+       - alcohol = 14.0600  (Delta: -1.3020)
+       - alcalinity_of_ash = 17.6000  (Delta: -1.2551)
+       - flavanoids = 2.5100  (Delta: -1.1029)
+       - nonflavanoid_phenols = 0.3100  (Delta: -0.7910)
+       - od280/od315_of_diluted_wines = 3.5800  (Delta: -0.5867)
+       - malic_acid = 2.1500  (Delta: -0.4528)
+
+--- INSTÂNCIA #18 | Predição Original: CLASSE 1 (Score: 2.2397) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 615.0000', 'flavanoids = 0.6800', 'alcalinity_of_ash = 22.0000', 'nonflavanoid_phenols = 0.4100', 'total_phenols = 1.3500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.5671 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #18:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 615.0000  (Delta: 1.9255)
+       - flavanoids = 0.6800  (Delta: 1.5552)
+       - alcalinity_of_ash = 22.0000  (Delta: 1.3127)
+       - nonflavanoid_phenols = 0.4100  (Delta: 0.6921)
+       - total_phenols = 1.3500  (Delta: 0.5842)
+
+--- INSTÂNCIA #19 | Predição Original: CLASSE 0 (Score: -0.6670) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (10 feats): ['proline = 1015.0000', 'alcalinity_of_ash = 17.8000', 'flavanoids = 2.3700', 'nonflavanoid_phenols = 0.2600', 'alcohol = 12.8500', 'od280/od315_of_diluted_wines = 3.6300', 'malic_acid = 1.6000', 'proanthocyanins = 1.4600', 'total_phenols = 2.4800', 'hue = 1.0900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 10 features...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.4736 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 10 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #19:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 10):
+       - proline = 1015.0000  (Delta: -1.5768)
+       - alcalinity_of_ash = 17.8000  (Delta: -1.2321)
+       - flavanoids = 2.3700  (Delta: -1.0317)
+       - nonflavanoid_phenols = 0.2600  (Delta: -0.9145)
+       - alcohol = 12.8500  (Delta: -0.7820)
+       - od280/od315_of_diluted_wines = 3.6300  (Delta: -0.5995)
+       - malic_acid = 1.6000  (Delta: -0.5210)
+       - proanthocyanins = 1.4600  (Delta: -0.3532)
+       - total_phenols = 2.4800  (Delta: -0.3464)
+       - hue = 1.0900  (Delta: -0.1530)
+
+--- INSTÂNCIA #20 | Predição Original: CLASSE 1 (Score: 2.4396) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 607.0000', 'alcohol = 11.7600', 'nonflavanoid_phenols = 0.6000', 'alcalinity_of_ash = 20.0000', 'flavanoids = 2.0300']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.8724 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #20:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 607.0000  (Delta: 1.9426)
+       - alcohol = 11.7600  (Delta: 1.3192)
+       - nonflavanoid_phenols = 0.6000  (Delta: 1.1617)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - flavanoids = 2.0300  (Delta: 0.8691)
+
+--- INSTÂNCIA #22 | Predição Original: CLASSE 1 (Score: 2.4028) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 550.0000', 'flavanoids = 0.8000', 'alcalinity_of_ash = 20.0000', 'nonflavanoid_phenols = 0.4700', 'malic_acid = 4.9500', 'alcohol = 13.6200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 1.0212 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #22:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 550.0000  (Delta: 2.0645)
+       - flavanoids = 0.8000  (Delta: 1.4942)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - nonflavanoid_phenols = 0.4700  (Delta: 0.8404)
+       - malic_acid = 4.9500  (Delta: 0.5223)
+       - alcohol = 13.6200  (Delta: 0.5199)
+
+--- INSTÂNCIA #23 | Predição Original: CLASSE 1 (Score: 1.6520) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 325.0000', 'alcalinity_of_ash = 21.0000', 'alcohol = 12.5200', 'flavanoids = 2.2700', 'nonflavanoid_phenols = 0.2600', 'total_phenols = 2.5500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.6090 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #23:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 325.0000  (Delta: 2.5459)
+       - alcalinity_of_ash = 21.0000  (Delta: 1.1975)
+       - alcohol = 12.5200  (Delta: 0.9926)
+       - flavanoids = 2.2700  (Delta: 0.7471)
+       - nonflavanoid_phenols = 0.2600  (Delta: 0.3213)
+       - total_phenols = 2.5500  (Delta: 0.3071)
+
+--- INSTÂNCIA #24 | Predição Original: CLASSE 0 (Score: -1.4167) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (8 feats): ['alcalinity_of_ash = 16.0000', 'flavanoids = 3.1700', 'alcohol = 14.0600', 'proline = 780.0000', 'nonflavanoid_phenols = 0.2400', 'od280/od315_of_diluted_wines = 3.7100', 'malic_acid = 1.6300', 'total_phenols = 3.0000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 8 features...
+          (Log Perturbação: Explicação atual com 8 features fixas)
+          -> Score da Instância Perturbada: -0.7847 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 8 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 8 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #24:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 8):
+       - alcalinity_of_ash = 16.0000  (Delta: -1.4393)
+       - flavanoids = 3.1700  (Delta: -1.4383)
+       - alcohol = 14.0600  (Delta: -1.3020)
+       - proline = 780.0000  (Delta: -1.0740)
+       - nonflavanoid_phenols = 0.2400  (Delta: -0.9640)
+       - od280/od315_of_diluted_wines = 3.7100  (Delta: -0.6200)
+       - malic_acid = 1.6300  (Delta: -0.5173)
+       - total_phenols = 3.0000  (Delta: -0.4664)
+
+--- INSTÂNCIA #27 | Predição Original: CLASSE 0 (Score: -1.8682) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 1265.0000', 'flavanoids = 2.9900', 'alcalinity_of_ash = 17.2000', 'alcohol = 13.8300', 'nonflavanoid_phenols = 0.2200', 'od280/od315_of_diluted_wines = 3.3700']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: -0.4724 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #27:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 1265.0000  (Delta: -2.1116)
+       - flavanoids = 2.9900  (Delta: -1.3468)
+       - alcalinity_of_ash = 17.2000  (Delta: -1.3012)
+       - alcohol = 13.8300  (Delta: -1.2031)
+       - nonflavanoid_phenols = 0.2200  (Delta: -1.0134)
+       - od280/od315_of_diluted_wines = 3.3700  (Delta: -0.5329)
+
+--- INSTÂNCIA #28 | Predição Original: CLASSE 0 (Score: -1.7846) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 1065.0000', 'alcohol = 14.3800', 'alcalinity_of_ash = 16.0000', 'flavanoids = 3.1700', 'nonflavanoid_phenols = 0.2700', 'od280/od315_of_diluted_wines = 3.4400']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: -0.4048 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #28:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 1065.0000  (Delta: -1.6837)
+       - alcohol = 14.3800  (Delta: -1.4395)
+       - alcalinity_of_ash = 16.0000  (Delta: -1.4393)
+       - flavanoids = 3.1700  (Delta: -1.4383)
+       - nonflavanoid_phenols = 0.2700  (Delta: -0.8898)
+       - od280/od315_of_diluted_wines = 3.4400  (Delta: -0.5509)
+
+--- INSTÂNCIA #29 | Predição Original: CLASSE 0 (Score: -0.9672) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (9 feats): ['proline = 1060.0000', 'alcohol = 14.1000', 'flavanoids = 2.9200', 'alcalinity_of_ash = 18.8000', 'nonflavanoid_phenols = 0.3200', 'malic_acid = 2.0200', 'total_phenols = 2.7500', 'od280/od315_of_diluted_wines = 2.7500', 'proanthocyanins = 2.3800']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 9 features...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.6016 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 9 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 9 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #29:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 9):
+       - proline = 1060.0000  (Delta: -1.6730)
+       - alcohol = 14.1000  (Delta: -1.3192)
+       - flavanoids = 2.9200  (Delta: -1.3112)
+       - alcalinity_of_ash = 18.8000  (Delta: -1.1169)
+       - nonflavanoid_phenols = 0.3200  (Delta: -0.7662)
+       - malic_acid = 2.0200  (Delta: -0.4689)
+       - total_phenols = 2.7500  (Delta: -0.4087)
+       - od280/od315_of_diluted_wines = 2.7500  (Delta: -0.3741)
+       - proanthocyanins = 2.3800  (Delta: -0.1999)
+
+--- INSTÂNCIA #30 | Predição Original: CLASSE 0 (Score: -2.5540) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 1510.0000', 'flavanoids = 3.3200', 'alcohol = 14.1000', 'alcalinity_of_ash = 18.0000', 'nonflavanoid_phenols = 0.2200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: -0.6552 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #30:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 1510.0000  (Delta: -2.6358)
+       - flavanoids = 3.3200  (Delta: -1.5145)
+       - alcohol = 14.1000  (Delta: -1.3192)
+       - alcalinity_of_ash = 18.0000  (Delta: -1.2090)
+       - nonflavanoid_phenols = 0.2200  (Delta: -1.0134)
+
+--- INSTÂNCIA #31 | Predição Original: CLASSE 1 (Score: 2.6829) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 640.0000', 'flavanoids = 0.5800', 'alcalinity_of_ash = 20.0000', 'nonflavanoid_phenols = 0.5300', 'alcohol = 12.5800']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 1.0134 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #31:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 640.0000  (Delta: 1.8720)
+       - flavanoids = 0.5800  (Delta: 1.6060)
+       - alcalinity_of_ash = 20.0000  (Delta: 1.0824)
+       - nonflavanoid_phenols = 0.5300  (Delta: 0.9887)
+       - alcohol = 12.5800  (Delta: 0.9668)
+
+--- INSTÂNCIA #32 | Predição Original: CLASSE 1 (Score: 3.1256) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 315.0000', 'alcalinity_of_ash = 22.0000', 'nonflavanoid_phenols = 0.6600', 'alcohol = 12.4200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: 0.7230 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #32:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 315.0000  (Delta: 2.5673)
+       - alcalinity_of_ash = 22.0000  (Delta: 1.3127)
+       - nonflavanoid_phenols = 0.6600  (Delta: 1.3100)
+       - alcohol = 12.4200  (Delta: 1.0356)
+
+--- INSTÂNCIA #33 | Predição Original: CLASSE 1 (Score: 2.7192) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 580.0000', 'flavanoids = 0.4800', 'nonflavanoid_phenols = 0.5800', 'alcalinity_of_ash = 19.5000', 'alcohol = 13.4900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.8676 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #33:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 580.0000  (Delta: 2.0004)
+       - flavanoids = 0.4800  (Delta: 1.6568)
+       - nonflavanoid_phenols = 0.5800  (Delta: 1.1123)
+       - alcalinity_of_ash = 19.5000  (Delta: 1.0248)
+       - alcohol = 13.4900  (Delta: 0.5758)
+
+--- INSTÂNCIA #34 | Predição Original: CLASSE 0 (Score: -2.5939) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 1095.0000', 'flavanoids = 3.5600', 'alcalinity_of_ash = 15.0000', 'alcohol = 13.8800', 'nonflavanoid_phenols = 0.1700', 'od280/od315_of_diluted_wines = 3.5600']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: -0.8455 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #34:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 1095.0000  (Delta: -1.7479)
+       - flavanoids = 3.5600  (Delta: -1.6365)
+       - alcalinity_of_ash = 15.0000  (Delta: -1.5545)
+       - alcohol = 13.8800  (Delta: -1.2246)
+       - nonflavanoid_phenols = 0.1700  (Delta: -1.1370)
+       - od280/od315_of_diluted_wines = 3.5600  (Delta: -0.5816)
+
+--- INSTÂNCIA #35 | Predição Original: CLASSE 1 (Score: 1.5475) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 438.0000', 'alcalinity_of_ash = 21.0000', 'alcohol = 12.3400', 'flavanoids = 2.1100', 'nonflavanoid_phenols = 0.3400', 'total_phenols = 2.5600']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.7214 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #35:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 438.0000  (Delta: 2.3042)
+       - alcalinity_of_ash = 21.0000  (Delta: 1.1975)
+       - alcohol = 12.3400  (Delta: 1.0699)
+       - flavanoids = 2.1100  (Delta: 0.8284)
+       - nonflavanoid_phenols = 0.3400  (Delta: 0.5191)
+       - total_phenols = 2.5600  (Delta: 0.3048)
+
+--- INSTÂNCIA #36 | Predição Original: CLASSE 0 (Score: -1.5383) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (7 feats): ['alcalinity_of_ash = 13.2000', 'flavanoids = 3.0400', 'alcohol = 14.2200', 'nonflavanoid_phenols = 0.2000', 'proline = 760.0000', 'od280/od315_of_diluted_wines = 3.5300', 'total_phenols = 3.0000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 7 features...
+          (Log Perturbação: Explicação atual com 7 features fixas)
+          -> Score da Instância Perturbada: -0.6024 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 7 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 7 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #36:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 7):
+       - alcalinity_of_ash = 13.2000  (Delta: -1.7618)
+       - flavanoids = 3.0400  (Delta: -1.3722)
+       - alcohol = 14.2200  (Delta: -1.3707)
+       - nonflavanoid_phenols = 0.2000  (Delta: -1.0628)
+       - proline = 760.0000  (Delta: -1.0312)
+       - od280/od315_of_diluted_wines = 3.5300  (Delta: -0.5739)
+       - total_phenols = 3.0000  (Delta: -0.4664)
+
+--- INSTÂNCIA #37 | Predição Original: CLASSE 1 (Score: 2.8058) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 495.0000', 'alcalinity_of_ash = 20.7000', 'flavanoids = 1.4600', 'nonflavanoid_phenols = 0.5800', 'alcohol = 12.6900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 1.0333 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #37:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 495.0000  (Delta: 2.1822)
+       - alcalinity_of_ash = 20.7000  (Delta: 1.1630)
+       - flavanoids = 1.4600  (Delta: 1.1588)
+       - nonflavanoid_phenols = 0.5800  (Delta: 1.1123)
+       - alcohol = 12.6900  (Delta: 0.9195)
+
+--- INSTÂNCIA #38 | Predição Original: CLASSE 1 (Score: 2.4588) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 580.0000', 'alcalinity_of_ash = 22.0000', 'alcohol = 12.0400', 'flavanoids = 1.7500', 'nonflavanoid_phenols = 0.4200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.7375 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #38:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 580.0000  (Delta: 2.0004)
+       - alcalinity_of_ash = 22.0000  (Delta: 1.3127)
+       - alcohol = 12.0400  (Delta: 1.1988)
+       - flavanoids = 1.7500  (Delta: 1.0114)
+       - nonflavanoid_phenols = 0.4200  (Delta: 0.7168)
+
+--- INSTÂNCIA #39 | Predição Original: CLASSE 0 (Score: -0.7202) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (10 feats): ['proline = 915.0000', 'flavanoids = 2.9700', 'alcohol = 13.8700', 'alcalinity_of_ash = 19.4000', 'nonflavanoid_phenols = 0.3700', 'od280/od315_of_diluted_wines = 3.4000', 'malic_acid = 1.9000', 'total_phenols = 2.9500', 'proanthocyanins = 1.7600', 'ash = 2.8000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 10 features...
+          (Log Perturbação: Explicação atual com 10 features fixas)
+          -> Score da Instância Perturbada: -0.5205 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 10 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 10 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #39:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 10):
+       - proline = 915.0000  (Delta: -1.3628)
+       - flavanoids = 2.9700  (Delta: -1.3366)
+       - alcohol = 13.8700  (Delta: -1.2203)
+       - alcalinity_of_ash = 19.4000  (Delta: -1.0478)
+       - nonflavanoid_phenols = 0.3700  (Delta: -0.6427)
+       - od280/od315_of_diluted_wines = 3.4000  (Delta: -0.5406)
+       - malic_acid = 1.9000  (Delta: -0.4838)
+       - total_phenols = 2.9500  (Delta: -0.4549)
+       - proanthocyanins = 1.7600  (Delta: -0.3032)
+       - ash = 2.8000  (Delta: -0.1643)
+
+--- INSTÂNCIA #40 | Predição Original: CLASSE 1 (Score: 1.2717) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (7 feats): ['proline = 345.0000', 'alcohol = 11.6200', 'alcalinity_of_ash = 18.0000', 'flavanoids = 2.2600', 'od280/od315_of_diluted_wines = 2.9600', 'total_phenols = 3.0200', 'malic_acid = 1.9900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 7 features...
+          (Log Perturbação: Explicação atual com 7 features fixas)
+          -> Score da Instância Perturbada: 0.5838 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 7 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 7 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #40:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 7):
+       - proline = 345.0000  (Delta: 2.5031)
+       - alcohol = 11.6200  (Delta: 1.3793)
+       - alcalinity_of_ash = 18.0000  (Delta: 0.8521)
+       - flavanoids = 2.2600  (Delta: 0.7522)
+       - od280/od315_of_diluted_wines = 2.9600  (Delta: 0.2460)
+       - total_phenols = 3.0200  (Delta: 0.1986)
+       - malic_acid = 1.9900  (Delta: 0.1551)
+
+--- INSTÂNCIA #41 | Predição Original: CLASSE 0 (Score: -1.1051) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (8 feats): ['proline = 1185.0000', 'flavanoids = 3.2400', 'alcalinity_of_ash = 18.6000', 'alcohol = 13.1600', 'nonflavanoid_phenols = 0.3000', 'od280/od315_of_diluted_wines = 3.1700', 'malic_acid = 2.3600', 'total_phenols = 2.8000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 8 features...
+          (Log Perturbação: Explicação atual com 8 features fixas)
+          -> Score da Instância Perturbada: -0.5772 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 8 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 8 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #41:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 8):
+       - proline = 1185.0000  (Delta: -1.9405)
+       - flavanoids = 3.2400  (Delta: -1.4739)
+       - alcalinity_of_ash = 18.6000  (Delta: -1.1400)
+       - alcohol = 13.1600  (Delta: -0.9152)
+       - nonflavanoid_phenols = 0.3000  (Delta: -0.8157)
+       - od280/od315_of_diluted_wines = 3.1700  (Delta: -0.4817)
+       - malic_acid = 2.3600  (Delta: -0.4267)
+       - total_phenols = 2.8000  (Delta: -0.4202)
+
+--- INSTÂNCIA #42 | Predição Original: CLASSE 1 (Score: 0.5985) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (12 feats): ['proline = 630.0000', 'flavanoids = 1.7900', 'alcalinity_of_ash = 18.0000', 'alcohol = 13.6700', 'nonflavanoid_phenols = 0.3200', 'total_phenols = 2.1000', 'od280/od315_of_diluted_wines = 2.4600', 'hue = 1.2300', 'ash = 1.9200', 'magnesium = 94.0000', 'malic_acid = 1.2500', 'color_intensity = 3.8000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 12 features...
+          (Log Perturbação: Explicação atual com 12 features fixas)
+          -> Score da Instância Perturbada: 0.5468 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 12 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 12 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #42:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 12):
+       - proline = 630.0000  (Delta: 1.8934)
+       - flavanoids = 1.7900  (Delta: 0.9910)
+       - alcalinity_of_ash = 18.0000  (Delta: 0.8521)
+       - alcohol = 13.6700  (Delta: 0.4984)
+       - nonflavanoid_phenols = 0.3200  (Delta: 0.4696)
+       - total_phenols = 2.1000  (Delta: 0.4110)
+       - od280/od315_of_diluted_wines = 2.4600  (Delta: 0.3741)
+       - hue = 1.2300  (Delta: 0.1703)
+       - ash = 1.9200  (Delta: 0.1484)
+       - magnesium = 94.0000  (Delta: 0.1233)
+       - malic_acid = 1.2500  (Delta: 0.0633)
+       - color_intensity = 3.8000  (Delta: 0.0544)
+
+--- INSTÂNCIA #43 | Predição Original: CLASSE 0 (Score: -0.8269) | Classe Real: class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (9 feats): ['proline = 1020.0000', 'alcalinity_of_ash = 15.5000', 'flavanoids = 2.6400', 'alcohol = 13.0700', 'nonflavanoid_phenols = 0.2800', 'malic_acid = 1.5000', 'proanthocyanins = 1.3700', 'od280/od315_of_diluted_wines = 2.6900', 'total_phenols = 2.4000']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 9 features...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: -0.5465 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 9 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 9 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #43:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 9):
+       - proline = 1020.0000  (Delta: -1.5875)
+       - alcalinity_of_ash = 15.5000  (Delta: -1.4969)
+       - flavanoids = 2.6400  (Delta: -1.1689)
+       - alcohol = 13.0700  (Delta: -0.8766)
+       - nonflavanoid_phenols = 0.2800  (Delta: -0.8651)
+       - malic_acid = 1.5000  (Delta: -0.5334)
+       - proanthocyanins = 1.3700  (Delta: -0.3682)
+       - od280/od315_of_diluted_wines = 2.6900  (Delta: -0.3587)
+       - total_phenols = 2.4000  (Delta: -0.3279)
+
+--- INSTÂNCIA #44 | Predição Original: CLASSE 1 (Score: 1.6618) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 510.0000', 'alcohol = 12.2500', 'alcalinity_of_ash = 19.0000', 'flavanoids = 2.0300', 'nonflavanoid_phenols = 0.3700', 'total_phenols = 1.6500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.7006 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #44:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 510.0000  (Delta: 2.1501)
+       - alcohol = 12.2500  (Delta: 1.1086)
+       - alcalinity_of_ash = 19.0000  (Delta: 0.9672)
+       - flavanoids = 2.0300  (Delta: 0.8691)
+       - nonflavanoid_phenols = 0.3700  (Delta: 0.5932)
+       - total_phenols = 1.6500  (Delta: 0.5149)
+
+--- INSTÂNCIA #45 | Predição Original: CLASSE 1 (Score: 3.2843) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 720.0000', 'flavanoids = 0.4700', 'alcalinity_of_ash = 21.0000', 'alcohol = 12.2500', 'nonflavanoid_phenols = 0.5300']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 1.1551 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #45:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 720.0000  (Delta: 1.7008)
+       - flavanoids = 0.4700  (Delta: 1.6619)
+       - alcalinity_of_ash = 21.0000  (Delta: 1.1975)
+       - alcohol = 12.2500  (Delta: 1.1086)
+       - nonflavanoid_phenols = 0.5300  (Delta: 0.9887)
+
+--- INSTÂNCIA #46 | Predição Original: CLASSE 1 (Score: 1.5886) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (7 feats): ['proline = 290.0000', 'alcohol = 12.2900', 'alcalinity_of_ash = 18.0000', 'flavanoids = 2.2500', 'total_phenols = 2.4500', 'nonflavanoid_phenols = 0.2500', 'proanthocyanins = 1.9900']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 7 features...
+          (Log Perturbação: Explicação atual com 7 features fixas)
+          -> Score da Instância Perturbada: 0.7074 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 7 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 7 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #46:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 7):
+       - proline = 290.0000  (Delta: 2.6208)
+       - alcohol = 12.2900  (Delta: 1.0914)
+       - alcalinity_of_ash = 18.0000  (Delta: 0.8521)
+       - flavanoids = 2.2500  (Delta: 0.7573)
+       - total_phenols = 2.4500  (Delta: 0.3302)
+       - nonflavanoid_phenols = 0.2500  (Delta: 0.2966)
+       - proanthocyanins = 1.9900  (Delta: 0.2616)
+
+--- INSTÂNCIA #47 | Predição Original: CLASSE 1 (Score: 2.1610) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['flavanoids = 0.5500', 'proline = 830.0000', 'alcalinity_of_ash = 21.0000', 'nonflavanoid_phenols = 0.4300', 'alcohol = 13.1600', 'od280/od315_of_diluted_wines = 1.6800']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.8148 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #47:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - flavanoids = 0.5500  (Delta: 1.6213)
+       - proline = 830.0000  (Delta: 1.4655)
+       - alcalinity_of_ash = 21.0000  (Delta: 1.1975)
+       - nonflavanoid_phenols = 0.4300  (Delta: 0.7415)
+       - alcohol = 13.1600  (Delta: 0.7176)
+       - od280/od315_of_diluted_wines = 1.6800  (Delta: 0.5739)
+
+--- INSTÂNCIA #48 | Predição Original: CLASSE 1 (Score: 2.9276) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (4 feats): ['proline = 590.0000', 'flavanoids = 0.6000', 'alcalinity_of_ash = 24.0000', 'nonflavanoid_phenols = 0.5300']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 4 features...
+          (Log Perturbação: Explicação atual com 4 features fixas)
+          -> Score da Instância Perturbada: 0.6040 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 4 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 4 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #48:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 4):
+       - proline = 590.0000  (Delta: 1.9790)
+       - flavanoids = 0.6000  (Delta: 1.5958)
+       - alcalinity_of_ash = 24.0000  (Delta: 1.5430)
+       - nonflavanoid_phenols = 0.5300  (Delta: 0.9887)
+
+--- INSTÂNCIA #49 | Predição Original: CLASSE 1 (Score: 2.2978) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 650.0000', 'flavanoids = 0.7600', 'alcalinity_of_ash = 21.5000', 'nonflavanoid_phenols = 0.4500', 'alcohol = 13.3200']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.5575 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #49:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 650.0000  (Delta: 1.8506)
+       - flavanoids = 0.7600  (Delta: 1.5145)
+       - alcalinity_of_ash = 21.5000  (Delta: 1.2551)
+       - nonflavanoid_phenols = 0.4500  (Delta: 0.7910)
+       - alcohol = 13.3200  (Delta: 0.6488)
+
+--- INSTÂNCIA #50 | Predição Original: CLASSE 1 (Score: 2.6544) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 600.0000', 'flavanoids = 0.5000', 'alcalinity_of_ash = 21.0000', 'nonflavanoid_phenols = 0.5300', 'alcohol = 12.9300']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 1.1044 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #50:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 600.0000  (Delta: 1.9576)
+       - flavanoids = 0.5000  (Delta: 1.6467)
+       - alcalinity_of_ash = 21.0000  (Delta: 1.1975)
+       - nonflavanoid_phenols = 0.5300  (Delta: 0.9887)
+       - alcohol = 12.9300  (Delta: 0.8164)
+
+--- INSTÂNCIA #51 | Predição Original: CLASSE 1 (Score: 2.2223) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (6 feats): ['proline = 685.0000', 'flavanoids = 0.6600', 'alcalinity_of_ash = 19.5000', 'alcohol = 12.8200', 'nonflavanoid_phenols = 0.4000', 'od280/od315_of_diluted_wines = 1.7500']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 6 features...
+          (Log Perturbação: Explicação atual com 6 features fixas)
+          -> Score da Instância Perturbada: 0.9504 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 6 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 6 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #51:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 6):
+       - proline = 685.0000  (Delta: 1.7757)
+       - flavanoids = 0.6600  (Delta: 1.5653)
+       - alcalinity_of_ash = 19.5000  (Delta: 1.0248)
+       - alcohol = 12.8200  (Delta: 0.8637)
+       - nonflavanoid_phenols = 0.4000  (Delta: 0.6674)
+       - od280/od315_of_diluted_wines = 1.7500  (Delta: 0.5560)
+
+--- INSTÂNCIA #52 | Predição Original: CLASSE 1 (Score: 2.1171) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (5 feats): ['proline = 480.0000', 'alcalinity_of_ash = 22.0000', 'flavanoids = 1.3600', 'alcohol = 12.7900', 'od280/od315_of_diluted_wines = 1.4700']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 5 features...
+          (Log Perturbação: Explicação atual com 5 features fixas)
+          -> Score da Instância Perturbada: 0.7383 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 5 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 5 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #52:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 5):
+       - proline = 480.0000  (Delta: 2.2143)
+       - alcalinity_of_ash = 22.0000  (Delta: 1.3127)
+       - flavanoids = 1.3600  (Delta: 1.2096)
+       - alcohol = 12.7900  (Delta: 0.8766)
+       - od280/od315_of_diluted_wines = 1.4700  (Delta: 0.6277)
+
+--- INSTÂNCIA #53 | Predição Original: CLASSE 1 (Score: 0.9643) | Classe Real: Não-class_0 ---
+
+   --> O objetivo é encontrar a explicação mais simples que mantém a classificação original.
+   [Passo 1] Geração da Explicação Inicial:
+     - Explicação Inicial Gerada (9 feats): ['proline = 392.0000', 'flavanoids = 2.0300', 'alcohol = 13.0300', 'alcalinity_of_ash = 16.0000', 'total_phenols = 1.9500', 'od280/od315_of_diluted_wines = 2.4800', 'nonflavanoid_phenols = 0.2400', 'proanthocyanins = 1.4600', 'ash = 1.7100']
+
+   [Fase 1] Início do Reforço Aditivo Uni-Direcional
+     - Testando robustez da explicação atual com 9 features...
+          (Log Perturbação: Explicação atual com 9 features fixas)
+          -> Score da Instância Perturbada: 0.5965 Não ∈ [t- (-0.4046), t+ (0.5150)]
+     -> SUCESSO: Explicação é robusta.
+
+   -> Fim da Fase 1. Explicação robusta final tem 9 features.
+
+   [Fase 2] Início da Minimização Subtrativa Uni-Direcional
+
+   -> Fim da Fase 2. Explicação mínima final tem 9 features (removidas: 0).
+
+  >> RESULTADO FINAL DA INSTÂNCIA #53:
+     - PI-EXPLICAÇÃO FINAL (Tamanho: 9):
+       - proline = 392.0000  (Delta: 2.4026)
+       - flavanoids = 2.0300  (Delta: 0.8691)
+       - alcohol = 13.0300  (Delta: 0.7734)
+       - alcalinity_of_ash = 16.0000  (Delta: 0.6218)
+       - total_phenols = 1.9500  (Delta: 0.4456)
+       - od280/od315_of_diluted_wines = 2.4800  (Delta: 0.3690)
+       - nonflavanoid_phenols = 0.2400  (Delta: 0.2719)
+       - proanthocyanins = 1.4600  (Delta: 0.1733)
+       - ash = 1.7100  (Delta: 0.1723)
+
+================================================================================
+                         RESUMO ESTATÍSTICO GERAL
+================================================================================
+
+[Métricas de Desempenho do Modelo]
+  - Acurácia Geral (sem rejeição): 94.44%
+  - Taxa de Rejeição no Teste: 7.41% (4 de 54 instâncias)
+  - Acurácia com Opção de Rejeição (nas 50 instâncias aceitas): 100.00%
+
+[Estatísticas do Tamanho das Explicações]
+  - Classe Positiva (33 instâncias - 61.1% do total):
+    - Tamanho Explicação (Min / Média / Max): 4 / 5.73 / 12
+    - Tamanho Explicação (Média ± Desv. Padrão): 5.73 ± 1.54  (Min: 4, Max: 12)
+  - Classe Negativa (17 instâncias - 31.5% do total):
+    - Tamanho Explicação (Min / Média / Max): 4 / 7.12 / 10
+    - Tamanho Explicação (Média ± Desv. Padrão): 7.12 ± 1.97  (Min: 4, Max: 10)
+  - Classe REJEITADA (4 instâncias - 7.4% do total):
+    - Tamanho Explicação (Min / Média / Max): 10 / 10.75 / 12
+    - Tamanho Explicação (Média ± Desv. Padrão): 10.75 ± 0.83  (Min: 10, Max: 12)
+
+[Análise de Importância de Features]
+  - Top 10 Features Mais Frequentes em Todas as Explicações:
+    - proline: 54 vezes
+    - alcalinity_of_ash: 54 vezes
+    - flavanoids: 52 vezes
+    - alcohol: 50 vezes
+    - nonflavanoid_phenols: 48 vezes
+    - od280/od315_of_diluted_wines: 27 vezes
+    - total_phenols: 24 vezes
+    - malic_acid: 15 vezes
+    - proanthocyanins: 12 vezes
+    - ash: 6 vezes
+
+  - Top 10 Pesos (Coeficientes) do Modelo (por valor absoluto):
+    - proline                  : -2.6465
+    - alcalinity_of_ash        : 2.0611
+    - flavanoids               : -1.7280
+    - alcohol                  : -1.6328
+    - nonflavanoid_phenols     : 1.2359
+    - od280/od315_of_diluted_wines: -0.6738
+    - total_phenols            : -0.6696
+    - malic_acid               : 0.6277
+    - proanthocyanins          : 0.5265
+    - hue                      : 0.2888
+
+[Análise do Processo de Geração da Explicação (Método Formal)]
+  - Instâncias que precisaram de reforço na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva de features na Fase 2: 4 (7.41%)
+    - Média de features removidas (quando houve remoção): 2.25
+
+
+  - Custo Computacional por Classe:
+    - Tempo Médio (Positivas): 0.0228 segundos
+    - Tempo Médio (Negativas): 0.0255 segundos
+    - Tempo Médio (Rejeitadas): 0.0784 segundos
+        - Tempo Médio (Rej. - Apenas Caminho 1): 0.0368 segundos
+        - Tempo Médio (Rej. - Apenas Caminho 2): 0.0371 segundos
+
