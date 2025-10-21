@@ -1,67 +1,176 @@
 
----
+# XAI com Rejeição: Explicações Abdutivas Mínimas para Regressão Logística
 
-# PI-Explainer: Explicações de Modelos Lineares com Opção de Rejeição
+Este projeto implementa e avalia um método para gerar explicações abdutivas mínimas para modelos de Regressão Logística com opção de rejeição. O objetivo é fornecer explicações que sejam mínimas (usando o menor número possível de features) e confiáveis para as predições do modelo.
 
-Este projeto implementa e avalia um método para gerar **PI-Explicações** para modelos de Regressão Logística, com um diferencial crucial: a capacidade do modelo de **rejeitar** a classificação de instâncias ambíguas, sobre as quais ele não tem certeza. O objetivo é fornecer explicações que não sejam apenas **mínimas** (usando o menor número de features possível), mas também **robustas** (a explicação se mantém mesmo sob perturbações adversárias).
+## Conceitos Fundamentais
 
-### Conceitos Fundamentais
+* **Explicação Abdutiva:** Um conjunto suficiente de features e seus valores que, por si só, justificam a predição do modelo para uma determinada instância.
+* **Classificador com Rejeição:** Um modelo que, além de classificar em Classe 0 ou Classe 1, pode optar por não tomar uma decisão ("rejeitar") quando a instância cai em uma "zona de incerteza", aumentando assim a confiabilidade das predições realizadas.
+* **Minimalidade:** Busca-se encontrar a explicação abdutiva que utilize o menor número possível de features, mantendo a qualidade da explicação.
+* **Confiabilidade:** As explicações são validadas para garantir que representam fielmente o comportamento do modelo.
 
-* **PI-Explicação:** Inspirado no conceito de "Prime Implicant" da lógica booleana, é um conjunto *suficiente* de features e seus valores que, sozinhos, justificam a predição do modelo para uma dada instância.
-* **Classificador com Rejeição:** Um modelo que, além de classificar em Classe 0 ou Classe 1, pode optar por não tomar uma decisão ("rejeitar"), caso a instância caia em uma "zona de incerteza". Isso aumenta a confiabilidade das predições que são de fato realizadas.
-* **Robustez:** Uma explicação é robusta se a predição do modelo não se altera mesmo que todas as features *fora* da explicação sejam modificadas para seus piores valores possíveis (aqueles que mais empurram a decisão na direção oposta).
-* **Minimalidade:** O objetivo de encontrar a PI-Explicação robusta com o menor número possível de features.
+## Visão Geral do Projeto
 
----
+O projeto consiste em três componentes principais:
 
-## A Jornada de uma Instância: Do Dado Cru à Explicação Final
+1. **Gerador de Explicações Abdutivas Mínimas**
+   - Implementa um algoritmo para encontrar explicações mínimas
+   - Inclui mecanismo de rejeição para casos ambíguos
+   - Otimiza explicações para máxima confiabilidade
 
-Esta é a história de como uma única linha de dados é processada pelo nosso sistema para gerar uma explicação compreensível e confiável.
+2. **Sistema de Comparação**
+   - ANCHOR: Comparação com explicações baseadas em regras
+   - MinExp: Comparação com explicações minimais tradicionais
+   - Análise detalhada das diferenças e vantagens
 
-### Etapa 1: A Preparação do Terreno
+3. **Framework de Análise**
+   - Métricas de avaliação: tamanho das explicações, fidelidade
+   - Análise estatística dos resultados
+   - Visualizações comparativas detalhadas
 
-Tudo começa com a seleção e preparação dos dados, um processo orquestrado por dois scripts principais.
+## Estrutura do Projeto
 
-* **`datasets.py`:** Através de um menu interativo na função `selecionar_dataset_e_classe()`, o usuário escolhe um dos 10 datasets de teste. Este script é responsável por:
-    * Carregar os dados brutos.
-    * Realizar limpezas específicas, como no **`Pima`**, onde valores impossíveis (ex: `glicose = 0`) são removidos.
-    * Lidar com desafios de escala, como no **`creditcard`**, onde uma amostra estratificada de **20%** dos dados é utilizada para manter a viabilidade computacional.
-    * Transformar problemas multi-classe (como `Wine` e `Sonar`) em problemas binários, permitindo que o usuário defina qual classe original será a Classe 0 e qual será a Classe 1.
+```
+├── utils/                  # Módulos de suporte
+│   ├── results_handler.py  # Gerenciamento de resultados
+│   ├── svm_explainer.py   # Explicador base
+│   ├── utility.py         # Funções utilitárias
+│   ├── plot_generator.py  # Geração de gráficos
+│   └── find_best_hyperparameters.py # Otimização de parâmetros
+├── json/                   # Arquivos de configuração
+│   └── hiperparametros.json # Parâmetros otimizados
+├── results/               # Resultados e relatórios
+├── cache/                # Cache de processamento
+└── data/                 # Datasets e dados processados
 
-* **`find_best_hyperparameters.py`:** Antes da análise principal, este script realiza uma busca exaustiva (Grid Search com Validação Cruzada) para encontrar a combinação ótima de hiperparâmetros (`penalty`, `C`, `solver`, etc.) para a `LogisticRegression` em *cada* um dos datasets. Os melhores parâmetros são salvos no arquivo `hiperparametros.json`, garantindo que nosso modelo principal seja sempre o mais performático possível.
+# Arquivos Principais
+├── peab_comparation.py    # Experimento principal
+├── minexp_comparation.py  # Comparação com MinExp
+├── anchor_comparation.py  # Comparação com ANCHOR
+└── detailed_explanation.py # Análise detalhada de explicações
+```
 
-### Etapa 2: A Construção e o Treinamento do Modelo
+## Fluxo de Execução e Estrutura de Arquivos
 
-Com os dados e os melhores parâmetros em mãos, o script principal `pi_explainer_additive_bidirecional.py` assume o controle.
+### 1. Preparação do Ambiente
+```
+├── json/                   # Configurações e parâmetros
+│   └── hiperparametros.json  # Parâmetros otimizados por dataset
+├── cache/                  # Armazenamento de processamento
+│   └── cache_cumulativo.pkl  # Cache centralizado dos resultados
+├── data/                   # Dados de entrada
+│   └── datasets/          # Datasets processados
+└── results/               # Resultados e relatórios
+    └── report/           # Logs detalhados por dataset
+```
 
-* **A Linha de Montagem (`Pipeline`):** A primeira ação na função `main()` é criar uma `Pipeline` do Scikit-learn. Esta é a nossa "linha de montagem" que garante a consistência e o rigor metodológico. Ela contém duas estações:
-    1.  `StandardScaler`: Padroniza a escala das features.
-    2.  `LogisticRegression`: O nosso classificador.
-* **Treinamento (`pipeline.fit`)**: A `Pipeline` é treinada **apenas com os dados de treino**. O `StandardScaler` aprende as médias e desvios e, em seguida, a `LogisticRegression` aprende seus `pesos` com base nos dados já padronizados e nos hiperparâmetros otimizados do arquivo JSON. Isso previne qualquer "vazamento de dados" do conjunto de teste.
-* **Definindo a Incerteza (`calcular_thresholds`)**: Após o treino, o sistema analisa as predições no conjunto de treino para definir a "zona de incerteza". A função `calcular_thresholds()` encontra os limiares `t+` e `t-` ideais, minimizando um custo que equilibra o erro de classificação versus o custo de rejeitar uma instância. Qualquer instância cujo score caia entre `t-` e `t+` será, a partir de agora, **rejeitada**.
+### 2. Execução Principal (peab_comparation.py)
+O script realiza as seguintes etapas para cada dataset:
 
-### Etapa 3: A Geração da Explicação
+1. **Carregamento e Configuração**
+   - Lê hiperparâmetros de `json/hiperparametros.json`
+   - Carrega dataset da pasta `data/`
+   - Inicializa cache em `cache/cache_cumulativo.pkl`
 
-Para cada instância no conjunto de teste, o processo de explicação individual começa.
+2. **Processamento**
+   - Pipeline com MinMaxScaler e LogisticRegression
+   - Split treino/teste controlado
+   - Cálculo de thresholds de rejeição
 
-* **A Contribuição de Cada Feature (`calculate_deltas`)**: O cérebro da explicação. Esta função calcula o "delta" de cada feature, que representa o quanto o valor daquela feature empurrou o score da instância para longe do "pior caso" possível. É uma medida de impacto.
-* **A Primeira Versão (`one_explanation`)**: Com base nos deltas, o sistema constrói uma explicação inicial, adicionando as features de maior impacto até que a predição do modelo seja justificada.
+3. **Geração de Explicações**
+   - Processamento por instância
+   - Cálculo de features relevantes
+   - Validação de minimalidade
 
-### Etapa 4: O Refinamento (A Busca por Robustez e Minimalidade)
+4. **Salvamento de Resultados**
+   - Log detalhado em `results/report/<dataset>_report.txt`
+   - Atualização do cache em `cache/cache_cumulativo.pkl`
+   - Métricas e estatísticas em JSON
 
-A explicação inicial é boa, mas não é garantidamente robusta ou mínima. Agora ela passa por um processo de refinamento de duas fases.
+### 3. Análise Comparativa
+Execução dos comparadores:
+```
+├── anchor_comparation.py   # Comparação com ANCHOR
+├── minexp_comparation.py   # Comparação com MinExp
+└── analyze_results.py      # Análise consolidada
+```
 
-* **Para Instâncias CLASSIFICADAS (Caminho Único):**
-    1.  **Fase 1 - Reforço (`executar_fase_1_reforco_unidirecional`):** O sistema testa a explicação. Se ela não for robusta a uma perturbação adversária, o algoritmo adiciona mais features (as próximas de maior impacto) até que a robustez seja alcançada.
-    2.  **Fase 2 - Minimização (`executar_fase_2_minimizacao_unidirecional`):** Com uma explicação robusta em mãos, o sistema tenta "enxugá-la". Ele tenta remover features, uma por uma (começando pela de menor impacto), e só mantém a remoção se a explicação continuar robusta.
+### 4. Visualização e Relatórios
+```
+results/
+├── report/                # Logs detalhados por dataset
+│   ├── dataset1_report.txt
+│   └── dataset2_report.txt
+└── plots/                # Visualizações comparativas
+```
 
-* **O Tratamento Especial para Instâncias REJEITADAS: A Busca Dupla**
-    * Aqui reside uma das contribuições mais sofisticadas do projeto. Como uma instância rejeitada não tem uma "direção" clara, testamos ambos os cenários para encontrar a explicação mais enxuta possível.
-    * A função `encontrar_explicacao_otimizada_para_rejeitada()` orquestra uma **busca dupla**:
-        1.  **Caminho 1:** Roda o processo completo de reforço e minimização com os deltas ordenados para evitar que a instância vire **Classe 0**.
-        2.  **Caminho 2:** Roda o processo completo novamente, mas com os deltas ordenados para evitar que a instância vire **Classe 1**.
-    * **A Decisão Final:** O sistema compara as duas explicações robustas resultantes e **escolhe a que tiver o menor número de features**. Isso garante que a PI-Explicação para um caso de rejeição seja o mais minimalista possível.
+## Como Usar
 
-### Etapa 5: O Relatório Final
+1. **Configuração do Ambiente**
+   ```bash
+   python -m venv env
+   source env/bin/activate  # ou env\Scripts\activate no Windows
+   pip install -r requirements.txt
+   ```
 
-Finalmente, a função `gerar_relatorio_consolidado()` coleta os resultados de todas as instâncias de teste e gera um arquivo `.txt` detalhado, contendo as estatísticas de desempenho, as explicações finais para cada instância e os logs completos do processo de geração, servindo como um registro transparente e completo de todo o experimento.
+2. **Execução dos Experimentos**
+   ```python
+   # Experimento principal com cache cumulativo
+   python peab_comparation.py
+   
+   # Comparações com outros métodos
+   python anchor_comparation.py
+   python minexp_comparation.py
+   
+   # Análise dos resultados
+   python analyze_results.py
+   ```
+
+3. **Estrutura dos Resultados**
+   ```
+   results/
+   ├── report/                      # Logs detalhados
+   │   ├── peab_dataset1.txt       # Log PEAB
+   │   ├── anchor_dataset1.txt     # Log ANCHOR
+   │   └── minexp_dataset1.txt     # Log MinExp
+   └── plots/                      # Visualizações
+       └── comparisons/            # Gráficos comparativos
+   ```
+
+4. **Cache e Reprodutibilidade**
+   - Cache cumulativo em `cache/cache_cumulativo.pkl`
+   - Hiperparâmetros em `json/hiperparametros.json`
+   - Datasets processados em `data/`
+
+## Datasets Suportados
+
+O projeto inclui suporte para diversos datasets de classificação binária:
+- Breast Cancer
+- Iris (convertido para binário)
+- Pima Indians Diabetes
+- Sonar
+- Vertebral Column
+- Wine (convertido para binário)
+- E outros
+
+## Contribuições Principais
+
+1. **Explicações Mínimas com Rejeição**
+   - Nova abordagem para lidar com casos ambíguos
+   - Garantia de minimalidade e confiabilidade
+   - Otimização do processo de geração de explicações
+
+2. **Framework Comparativo**
+   - Metodologia sistemática de avaliação
+   - Métricas abrangentes de qualidade
+   - Análise detalhada do desempenho
+
+3. **Resultados Empíricos**
+   - Análise extensiva em múltiplos datasets
+   - Validação estatística dos resultados
+   - Demonstração das vantagens da abordagem proposta
+
+## Referências
+
+[A serem adicionadas - artigos relevantes sobre XAI, rejeição e explicações abdutivas]

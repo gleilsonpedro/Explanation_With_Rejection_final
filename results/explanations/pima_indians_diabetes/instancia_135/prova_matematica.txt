@@ -1,0 +1,156 @@
+
+================================================================================
+EXPLICACAO DETALHADA - INSTANCIA 135
+Dataset: pima_indians_diabetes
+================================================================================
+
+CLASSE REAL: Diabético
+PREDICAO: Diabético
+STATUS: ACEITA - CLASSE 1 (POSITIVA)
+SCORE: 3.951539
+THRESHOLDS: t+ = 0.467332, t- = -0.668431
+ACURACIA GLOBAL: 74.4589
+
+================================================================================
+SECAO 1: DEFINICAO DO MODELO
+================================================================================
+
+O modelo de classificacao utiliza uma funcao linear de decisao:
+
+    s(x) = w_0 + sum_i w_i * x_i
+
+Onde:
+- s(x) eh o score de decisao
+- w_0 = -7.717096 (intercepto)
+- w_i sao os pesos de cada feature
+- x_i sao os valores escalonados das features
+
+Regra de classificacao:
+- Se s(x) >= t+ = 0.467332 -> Classe 1 (Diabético)
+- Se s(x) <= t- = -0.668431 -> Classe 0 (Não Diabético)
+- Se t- < s(x) < t+ -> REJEITADA (incerteza)
+
+
+================================================================================
+SECAO 2: VALORES E CONTRIBUICOES DAS FEATURES
+================================================================================
+
+Feature                        |     Original |   Escalonado |         Peso |   Contribuicao
+-------------------------------+--------------+--------------+--------------+---------------
+num_gravidezes                 |     0.000000 |     0.000000 |     2.200444 |       0.000000
+glicose                        |   180.000000 |     0.909091 |     6.718124 |       6.107386
+pressao_sangue                 |    78.000000 |     0.639344 |    -1.135883 |      -0.726221
+espessura_pele                 |    63.000000 |     1.050000 |    -0.123065 |      -0.129218
+insulina                       |    14.000000 |     0.018817 |    -0.365614 |      -0.006880
+imc                            |    59.400000 |     0.885246 |     5.447885 |       4.822718
+diabetes_pedigree              |     2.420000 |     1.040535 |     1.504695 |       1.565687
+idade                          |    25.000000 |     0.066667 |     0.527446 |       0.035163
+
+Intercepto (w_0)               |              |              |              |      -7.717096
+===============================+==============+==============+==============+===============
+SCORE TOTAL                    |              |              |              |       3.951539
+
+Verificacao: s(x) = -7.717096 + 11.668635 = 3.951539
+
+================================================================================
+SECAO 3: CONSTRUCAO PROGRESSIVA DA EXPLICACAO
+================================================================================
+
+Algoritmo de construcao da explicacao minimal E = {f_1, f_2, ..., f_k}:
+
+Passo 0 (baseline): s_0 = w_0 = -7.717096
+
+Passo 1: Adicionando glicose
+         s_(1) = s_(0) + w_(1) * x_(1)
+         s_(1) = -7.717096 + (6.718124 x 0.909091)
+         s_(1) = -7.717096 + 6.107386
+         s_(1) = -1.609711
+
+Passo 2: Adicionando imc
+         s_(2) = s_(1) + w_(5) * x_(5)
+         s_(2) = -1.609711 + (5.447885 x 0.885246)
+         s_(2) = -1.609711 + 4.822718
+         s_(2) = 3.213007
+
+CONDICAO ATINGIDA: s_(2) = 3.213007 >= t+ = 0.467332
+  Explicacao minimal encontrada com 2 features.
+
+================================================================================
+SECAO 4: VERIFICACAO DE ESTABILIDADE
+================================================================================
+
+Testando robustez da explicacao com perturbacoes:
+
+
+Feature: glicose
+  Valor original: 0.909091
+  Perturbacao +1.0%: x' = 0.918182 -> Delta_s = +0.061074 -> s' = 4.012613
+  Perturbacao -1.0%: x' = 0.900000 -> Delta_s = -0.061074 -> s' = 3.890465
+  Estavel: + (positiva), + (negativa)
+
+Feature: imc
+  Valor original: 0.885246
+  Perturbacao +1.0%: x' = 0.894098 -> Delta_s = +0.048227 -> s' = 3.999766
+  Perturbacao -1.0%: x' = 0.876393 -> Delta_s = -0.048227 -> s' = 3.903312
+  Estavel: + (positiva), + (negativa)
+
+================================================================================
+SECAO 5: PROVA DE MINIMALIDADE
+================================================================================
+
+Teorema: A explicacao E = {glicose, imc} eh minimal.
+
+Prova por contradicao:
+Suponha que existe E' subset E tal que E' tambem satisfaz a condicao de classificacao.
+Testando remocao de cada feature:
+
+
+Tentativa: Remover glicose
+  Score sem esta feature: s' = 3.951539 - 6.107386 = -2.155847
+  Condicao: s' >= t+ -> -2.155847 >= 0.467332 -> False
+  Feature eh NECESSARIA (remocao viola a condicao)
+
+Tentativa: Remover imc
+  Score sem esta feature: s' = 3.951539 - 4.822718 = -0.871179
+  Condicao: s' >= t+ -> -0.871179 >= 0.467332 -> False
+  Feature eh NECESSARIA (remocao viola a condicao)
+
+Portanto: Nenhuma feature em E pode ser removida sem violar a condicao.
+Logo, E eh MINIMAL.
+
+================================================================================
+SECAO 6: INTERPRETACAO E RACIOCINIO ABDUTIVO
+================================================================================
+
+SUMARIO DA EXPLICACAO:
+----------------------
+Dataset: pima_indians_diabetes
+Instancia: 135
+Classe Real: Diabético
+Predicao: Diabético
+Score Final: 3.951539
+Status: ACEITA
+
+EXPLICACAO MINIMAL:
+-------------------
+A classificacao eh determinada por 2 feature(s):
+
+1. glicose
+   Valor: 180.000000
+   Contribuicao: +6.107386
+2. imc
+   Valor: 59.400000
+   Contribuicao: +4.822718
+
+RACIOCINIO ABDUTIVO:
+--------------------
+O modelo classificou como Diabético porque:
+  - Score s(x) = 3.951539 >= t+ = 0.467332
+  - As features listadas contribuem positivamente
+  - Esta eh a explicacao MINIMAL suficiente
+
+PREDICAO CORRETA: Classe real = Classe predita
+
+================================================================================
+FIM DA EXPLICACAO DETALHADA
+================================================================================
