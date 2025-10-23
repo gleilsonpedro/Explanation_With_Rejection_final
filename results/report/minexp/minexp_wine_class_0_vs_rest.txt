@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: wine_class_0_vs_rest
+  - Classificador: SVM (kernel='linear')
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 54
+  - Número de Features do Modelo: 13
+  - Acurácia do Modelo (teste, sem rejeição): 96.30%
+  - Thresholds de Rejeição: t+ = 0.0244, t- = -0.0260
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 28.1093 segundos
+  - Tempo Médio por Instância (Geral): 0.5205 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 0.00% (0 de 54 instâncias)
+  - Acurácia com Opção de Rejeição (nas 54 instâncias aceitas): 96.30%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (38 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 7.34 ± 1.71 (Min: 4, Max: 11)
+  - Classe Negativa (16 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 7.38 ± 1.58 (Min: 5, Max: 11)
+  - Classe REJEITADA (0 instâncias):
+    - N/A
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - flavanoids: 54 vezes
+    - od280/od315_of_diluted_wines: 54 vezes
+    - proline: 54 vezes
+    - alcalinity_of_ash: 53 vezes
+    - total_phenols: 48 vezes
+    - nonflavanoid_phenols: 40 vezes
+    - ash: 23 vezes
+    - magnesium: 23 vezes
+    - alcohol: 17 vezes
+    - hue: 10 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 0.5304 segundos
+  - Negativas: 0.4971 segundos
+  - Rejeitadas: 0.0000 segundos

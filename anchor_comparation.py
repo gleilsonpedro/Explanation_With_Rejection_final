@@ -19,11 +19,11 @@ sys.path.append(os.getcwd())
 try:
     # Importa o Anchor da biblioteca ALIBI
     from alibi.explainers import AnchorTabular
-    from datasets.datasets_Mateus_comparation_complete import selecionar_dataset_e_classe
+    from data.datasets import selecionar_dataset_e_classe
     # Importa as funções de rejeição do nosso arquivo auxiliar
-    from auxiliary_files.rejection_logic import executar_logica_rejeicao
-    # ADICIONE ESTE IMPORT
-    from auxiliary_files.results_handler import update_method_results
+    from utils.rejection_logic import executar_logica_rejeicao
+
+    from utils.results_handler import update_method_results
 except ImportError as e:
     print(f"ERRO CRÍTICO AO IMPORTAR MÓDULO: {e}")
     print("Verifique se você instalou 'alibi[tabular]' (pip install alibi[tabular]) e se todas as pastas e arquivos do projeto estão corretos.")
@@ -254,9 +254,11 @@ if __name__ == '__main__':
         metricas['features_frequentes'] = feature_counts.most_common(10)
         
         log_final = formatar_log_anchor(metricas)
-        if not os.path.exists('report'): os.makedirs('report')
-        caminho_arquivo = os.path.join('report', f'anchor_{nome_relatorio}.txt')
-        with open(caminho_arquivo, 'w', encoding='utf-8') as f: f.write(log_final)
+        base_dir = os.path.join('results','report', 'anchor')
+        os.makedirs(base_dir, exist_ok=True)
+        caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_relatorio}.txt')
+        with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+            f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
         
         dataset_key = nome_dataset_original
@@ -296,15 +298,17 @@ if __name__ == '__main__':
         }
         
         update_method_results("anchor", dataset_key, results_data)
-        
-        if not os.path.exists('plot'): os.makedirs('plot')
+
+        # Salvar plot também dentro de results/anchor/plots
+        plot_dir = os.path.join(base_dir, 'plots')
+        os.makedirs(plot_dir, exist_ok=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(range(len(tempos_total)), tempos_total, alpha=0.6)
         plt.title(f'Tempo de Geração de Explicação (Anchor) por Instância\nDataset: {nome_relatorio}')
         plt.xlabel('Índice da Instância no Conjunto de Teste')
         plt.ylabel('Tempo de Execução (segundos)')
         plt.grid(True)
-        caminho_plot = os.path.join('plot', f'plot_tempo_anchor_{nome_relatorio}.png')
+        caminho_plot = os.path.join(plot_dir, f'plot_tempo_anchor_{nome_relatorio}.png')
         plt.savefig(caminho_plot)
         print(f"Gráfico de dispersão salvo em: {caminho_plot}")
 

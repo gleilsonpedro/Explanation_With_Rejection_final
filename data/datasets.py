@@ -105,7 +105,7 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00212/vertebral_column_data.zip"
             col_names = ["pelvic_incidence", "pelvic_tilt", "lumbar_lordosis_angle", 
                          "sacral_slope", "pelvic_radius", "spondylolisthesis_grade", "target"]
-            file_path = os.path.join('datasets', 'column_2C.dat')
+            file_path = os.path.join('data', 'column_2C.dat')
             # (Código original de download e carga)
             data_df = pd.read_csv(file_path, header=None, names=col_names, sep=r'\s+')
             data_df["target"] = data_df["target"].apply(lambda x: 0 if x == 'NO' else 1)

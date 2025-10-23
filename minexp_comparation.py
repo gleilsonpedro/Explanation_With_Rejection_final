@@ -234,9 +234,11 @@ if __name__ == '__main__':
         metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item  [1], reverse=True)
 
         log_final = formatar_log(metricas)
-        if not os.path.exists('report'): os.makedirs('report')
-        caminho_arquivo = os.path.join('report', f'MinExp_{nome_relatorio}.txt')
-        with open(caminho_arquivo, 'w', encoding='utf-8') as f: f.write(log_final)
+        base_dir = os.path.join('results', 'report', 'minexp')
+        os.makedirs(base_dir, exist_ok=True)
+        caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_relatorio}.txt')
+        with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+            f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
         
         ### ADICIONADO: Bloco inteiro para formatar e salvar os resultados no JSON ###

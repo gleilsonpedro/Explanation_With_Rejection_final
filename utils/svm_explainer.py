@@ -27,7 +27,7 @@ def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_
     for i, ranges in enumerate(features_ranges):
         X_val_neg[i].lowBound = ranges[0]
         X_val_neg[i].upBound = ranges[1]
-    neg_sat_val = neg_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads,warmStart=True))
+    neg_sat_val = neg_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
     if neg_sat_val == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -37,7 +37,7 @@ def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_
     for i, ranges in enumerate(features_ranges):
         X_val_pos[i].lowBound = ranges[0]
         X_val_pos[i].upBound = ranges[1]
-    pos_sat_val = pos_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads,warmStart=True))
+    pos_sat_val = pos_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
     if pos_sat_val == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -132,7 +132,7 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
             relevance_value = [data[z][exclude], data[z][exclude]]
             
             #Check if the feature is relevant and makes the pattern leave the reject region (negative)
-            sat_neg = neg_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads,warmStart=True))
+            sat_neg = neg_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
             if sat_neg == 1:
                 values = []
                 for v in X_neg:
@@ -142,7 +142,7 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
                 explanation.append((exclude, data[z][exclude]))
             else:
                 #Check if the feature is relevant and makes the pattern leave the reject region (positive)
-                sat_pos = pos_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads,warmStart=True))
+                sat_pos = pos_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
                 if sat_pos == 1:
                     values = []
                     for v in X_pos:
@@ -191,7 +191,7 @@ def binary_validation(dual_coef, support_vectors, intercept, data, features_rang
     for i, ranges in enumerate(features_ranges):
         X_validation[i].lowBound = ranges[0]
         X_validation[i].upBound = ranges[1]
-    sat_validation = validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=True))
+    sat_validation = validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
     if sat_validation == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -278,7 +278,7 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
             relevance_value = [data[z][exclude],data[z][exclude]]
             
             #Check if the feature is relevant and makes the predicted class change
-            sat = relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=True))
+            sat = relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
             if sat == 1:
                 values = []
                 for v in X:
