@@ -107,7 +107,7 @@ def calcular_thresholds(modelo: Pipeline, X_train: pd.DataFrame, y_train: pd.Ser
 # O parâmetro 'premis_class' é crucial, pois define qual é o "pior cenário" (se é virar classe 0 ou 1).
 def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, premis_class: int) -> np.ndarray:
     scaler = modelo.named_steps['scaler']
-    logreg = modelo.named_steps['modelo']
+    logreg = modelo.named_steps['model']
     coefs = logreg.coef_[0]
     scaled_instance_vals = scaler.transform(instance_df)[0]
     X_train_scaled = scaler.transform(X_train)
@@ -187,7 +187,7 @@ def perturbar_e_validar_com_log(modelo: Pipeline, instance_df: pd.DataFrame, exp
     features_explicacao = {f.split(' = ')[0] for f in explicacao}
     
     perturbar_para_diminuir_score = (direcao_override == 1)
-    modelo_interno = modelo.named_steps['modelo']
+    modelo_interno = modelo.named_steps['model']
     
     for feat_idx, feat_nome in enumerate(X_train.columns):
         if feat_nome in features_explicacao:
@@ -238,7 +238,7 @@ def executar_fase_1_reforco_bidirecional(modelo: Pipeline, instance_df: pd.DataF
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
 
     while True:
-        log_collector.append(f"\n     - Testando robustez da explicação atual com {len(expl_robusta)} features...")
+        log_collector.append(f"\n     - Verificando a suficiência da explicação atual com {len(expl_robusta)} features...")
         
         status1, _, calc_log1 = perturbar_e_validar_com_log(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, class_names, 1)
         log_collector.append(f"       -> Teste vs Classe 0 (Diminuir Score)...")
@@ -314,12 +314,12 @@ def executar_fase_2_minimizacao_bidirecional(modelo: Pipeline, instance_df: pd.D
             if status2.startswith("VÁLIDA"):
                 remocao_bem_sucedida = True
         
-        if remocao_bem_sucedida:
-            log_collector.append(f"       -> SUCESSO TOTAL: A remoção de '{feat_nome}' manteve a robustez bi-direcional. Explicação agora com {len(expl_temp)} features.")
-            expl_minima = expl_temp
-            remocoes += 1
-        else:
-            log_collector.append(f"       -> FALHA: A remoção de '{feat_nome}' quebrou a robustez. Mantendo a feature.")
+    if remocao_bem_sucedida:
+        log_collector.append(f"       -> SUCESSO: A remoção de '{feat_nome}' foi validada. A nova explicação com    {len(expl_temp)} features mantém a garantia de robustez bidirecional.")
+        expl_minima = expl_temp
+        remocoes += 1
+    else:
+        log_collector.append(f"       -> FALHA: A remoção de '{feat_nome}' quebrou a garantia de robustez   bidirecional. A feature será mantida.")
             
     log_collector.append(f"\n   -> Fim da Fase 2. Explicação mínima final tem {len(expl_minima)} features.")
     return expl_minima, remocoes
@@ -442,13 +442,13 @@ def encontrar_explicacao_otimizada_para_rejeitada(
 #==============================================================================
 
 def gerar_relatorio_consolidado(modelo: Pipeline, X_test: pd.DataFrame, y_test: pd.Series, X_train: pd.DataFrame, y_train: pd.Series, class_names: List[str], nome_dataset: str, t_plus: float, t_minus: float, rejection_cost, test_size_atual):
-    report_dir = os.path.join("results", "report")
+    report_dir = os.path.join("results", "report","peab")
     if not os.path.exists(report_dir):
         os.makedirs(report_dir)
-    caminho_relatorio = os.path.join(report_dir, f"peab_comp_mat_{nome_dataset}.txt")
+    caminho_relatorio = os.path.join(report_dir, f"peab_{nome_dataset}.txt")
     
     scores_teste = modelo.decision_function(X_test)
-    modelo_interno = modelo.named_steps['modelo']
+    modelo_interno = modelo.named_steps['model']
     intercepto = modelo_interno.intercept_[0]
     pesos = modelo_interno.coef_[0]
 
@@ -724,7 +724,7 @@ def main():
     config_experimento = DATASET_CONFIG.get(nome_dataset)
     if not config_experimento:
         print(f"AVISO: Configurações de experimento para '{nome_dataset}' não encontradas. Usando padrões.")
-        config_experimento = {'test_size': 0.3, 'rejection_cost': 0.25}
+        config_experimento = {'test_size': 0.3, 'rejection_cost': 0.24}
 
     test_size_atual = config_experimento['test_size']
     rejection_cost_atual = config_experimento['rejection_cost']
@@ -750,7 +750,7 @@ def main():
     pipeline_modelo = Pipeline([
         # [MODIFICAÇÃO IMPORTANTE] Uso do MinMaxScaler para consistência
         ('scaler', MinMaxScaler()),
-        ('modelo', LogisticRegression(**parametros_para_modelo, random_state=RANDOM_STATE))
+        ('model', LogisticRegression(**parametros_para_modelo, random_state=RANDOM_STATE))
     ])
 
     # [MODIFICAÇÃO] A função train_test_split agora usa a variável 'test_size_atual'.
@@ -875,7 +875,7 @@ def main():
         
         # Extrai parâmetros do modelo e scaler
         scaler = pipeline_modelo.named_steps['scaler']
-        modelo_lr = pipeline_modelo.named_steps['modelo']
+        modelo_lr = pipeline_modelo.named_steps['model']
         coefs = [float(c) for c in modelo_lr.coef_[0]]
         intercepto = float(modelo_lr.intercept_[0])
         

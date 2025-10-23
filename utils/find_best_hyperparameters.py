@@ -18,7 +18,7 @@ from sklearn.exceptions import ConvergenceWarning
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from datasets.datasets_Mateus_comparation_complete import carregar_dataset
+from data.datasets import carregar_dataset
 
 # Ignora avisos de convergência durante a busca para não poluir a saída.
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
@@ -27,10 +27,10 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 # Hiperparâmetros para a busca em grade (Grid Search)
 PARAM_GRID = {
-    "modelo__penalty": ["l1", "l2"],
-    "modelo__C": [0.01, 0.1, 1, 10, 100],
-    "modelo__max_iter": [200, 500, 1000],
-    "modelo__solver": ["liblinear", "saga"]
+    "model__penalty": ["l1", "l2"],
+    "model__C": [0.01, 0.1, 1, 10, 100],
+    "model__max_iter": [200, 500, 1000],
+    "model__solver": ["liblinear", "saga"]
 }
 
 # Lista de todos os datasets que serão processados automaticamente
@@ -96,7 +96,7 @@ def avaliar_combinacao(args: Tuple) -> Optional[Dict]:
     # Cria a pipeline uma vez
     pipeline = Pipeline([
         ('scaler', StandardScaler()),
-        ('modelo', LogisticRegression(random_state=42))
+        ('model', LogisticRegression(random_state=42))
     ])
 
     # Define os parâmetros para a pipeline nesta iteração
@@ -114,7 +114,7 @@ def avaliar_combinacao(args: Tuple) -> Optional[Dict]:
             y_pred = pipeline.predict(X_val)
 
             # Acessa o modelo treinado dentro da pipeline para ver os coeficientes
-            modelo_treinado = pipeline.named_steps['modelo']
+            modelo_treinado = pipeline.named_steps['model']
             non_zero_coeffs.append(np.count_nonzero(np.abs(modelo_treinado.coef_) > 1e-5))
             accs.append(accuracy_score(y_val, y_pred))
             f1s.append(f1_score(y_val, y_pred, zero_division=0))
@@ -126,8 +126,8 @@ def avaliar_combinacao(args: Tuple) -> Optional[Dict]:
         return None
 
     return {
-        # Retorna os parâmetros com o prefixo 'modelo__' removido para o JSON final
-        "params": {key.replace('modelo__', ''): val for key, val in params.items()},
+    # Retorna os parâmetros com o prefixo 'model__' removido para o JSON final
+    "params": {key.replace('model__', ''): val for key, val in params.items()},
         "accuracy": np.mean(accs),
         "f1_score": np.mean(f1s),
         "avg_non_zero_coeffs": np.mean(non_zero_coeffs)

@@ -79,7 +79,7 @@ def processar_instancia(dataset_nome, cache_dataset, pipeline, X_test, y_test, t
         # Extrai componentes do pipeline e verifica se são válidos
         try:
             scaler = pipeline.named_steps['scaler']
-            classifier = pipeline.named_steps['modelo']
+            classifier = pipeline.named_steps['model']
         except KeyError as e:
             raise ValueError(f"Erro ao acessar componentes do pipeline: {e}")
         

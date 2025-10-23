@@ -1,0 +1,51 @@
+================================================================================
+          PROVA MATEMÁTICA DA EXPLICAÇÃO MINIMAL - INSTÂNCIA #2
+================================================================================
+Dataset: iris
+Classe Real: setosa
+Predição: CLASSE 0 (setosa)
+Score Final: -1.4567
+
+LEGENDA DOS SÍMBOLOS
+   δ (Delta): Contribuição real da feature nesta instância (w_i × x_i)
+   Σδ: Soma acumulada das contribuições
+   ● Feature Essencial: precisa ser fixada para garantir o resultado
+   ○ Feature Desafixada: pode variar sem alterar o resultado
+   s': Score após desafixar/perturbar sob pior cenário
+
+================================================================================
+SEÇÃO 1: DADOS INICIAIS (O PONTO DE PARTIDA)
+================================================================================
+- Intercepto do Modelo (Viés Inicial): -0.9175
+- Limiares de Decisão: t+ = 0.4260, t- = 0.4260
+- Condição para Classe 0: Score <= 0.4260
+
+Tabela de Contribuições (δ):
+--------------------------------------------------------------------------------
+Feature                        |   Original |  Normalizado |       Peso |   Contribuição (δ)
+--------------------------------------------------------------------------------
+sepal length (cm)              |     5.2000 |       0.2500 |     1.3586 |            +0.3397 ↑
+sepal width (cm)               |     3.4000 |       0.5833 |    -1.9466 |            -1.1355 ↓
+petal length (cm)              |     1.4000 |       0.0517 |     2.7673 |            +0.1431 ↑
+petal width (cm)               |     0.2000 |       0.0417 |     2.7240 |            +0.1135 ↑
+--------------------------------------------------------------------------------
+Soma das Contribuições: -0.5392
+Score Verificado: -0.9175 + -0.5392 = -1.4567
+
+================================================================================
+SEÇÃO 2: HEURÍSTICA INICIAL
+================================================================================
+- Objetivo Heurístico: Encontrar conjunto inicial que satisfaça o limiar.
+- Processo: Somar δ em ordem de |δ| até que Σδ + Intercepto <= o limiar.
+- Resultado: {petal length (cm), petal width (cm), sepal width (cm)} -> Score Acumulado = -0.4377 <= 0.4260.
+- Ponto de Partida para Minimização (robusto): {sepal width (cm), petal length (cm), petal width (cm)}
+
+================================================================================
+SEÇÃO 3: PROVA DE MINIMALIDADE (DESAFIXAÇÃO)
+================================================================================
+├── Tentativas de Desafixação:
+├─ ● petal length (cm) (δ: -2.624): s' = 2.186 (NÃO < t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: -2.610): s' = 2.173 (NÃO < t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal width (cm) (δ: -1.135): s' = 0.698 (NÃO < t- (0.4260)) → FALHA. ESSENCIAL.
+
+└── Explicação Minimal Final (3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
