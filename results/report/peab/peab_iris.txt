@@ -35,11 +35,11 @@ LEGENDA DOS SÍMBOLOS
 [ DESEMPENHO COMPUTACIONAL ]
 
   - Tempo Total de Geração das Explicações: 0.68 segundos
-  - Tempo Médio por Instância: 0.0150 segundos
+  - Tempo Médio por Instância: 0.0152 segundos
 
   - Custo Computacional por Classe:
-    - Tempo Médio (Positivas): 0.0147 segundos
-    - Tempo Médio (Negativas): 0.0158 segundos
+    - Tempo Médio (Positivas): 0.0146 segundos
+    - Tempo Médio (Negativas): 0.0161 segundos
     - Tempo Médio (Rejeitadas): 0.0000 segundos
 
 **********  PROCESSAMENTO POR INSTÂNCIA  **********
@@ -124,15 +124,14 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #7 | CLASSE REAL: setosa | PREDIÇÃO: CLASSE 0 | SCORE: -0.9297 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
-├── Iniciando processo de minimização com 4 features.
-├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal length (cm)', 'sepal width (cm)']
-├─ ● petal length (cm) (δ: -2.481): s' = 1.551 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● petal width (cm) (δ: -2.270): s' = 1.340 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● sepal length (cm) (δ: -1.057): s' = 0.127 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● sepal width (cm) (δ: -1.054): s' = 0.125 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal length (cm)']
+├─ ● petal length (cm) (δ: -2.481): s' = 2.606 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: -2.270): s' = 2.395 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal length (cm) (δ: -1.057): s' = 1.181 (< t- (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #7):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['petal length (cm)', 'petal width (cm)', 'sepal length (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal length (cm)']
 
 --- INSTÂNCIA #8 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 4.0322 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
@@ -161,10 +160,10 @@ LEGENDA DOS SÍMBOLOS
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.622): s' = -0.140 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 ├─ ● petal width (cm) (δ: +1.589): s' = -0.106 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ sepal width (cm) (δ: +1.135): s' = 0.347 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
+├─ ● sepal width (cm) (δ: +1.135): s' = 0.347 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #10):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'petal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #11 | CLASSE REAL: setosa | PREDIÇÃO: CLASSE 0 | SCORE: -1.8123 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
@@ -223,11 +222,11 @@ LEGENDA DOS SÍMBOLOS
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.670): s' = -0.285 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ petal width (cm) (δ: +1.362): s' = 0.022 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
-├─ ● sepal width (cm) (δ: +1.217): s' = -1.194 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: +1.362): s' = 0.022 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal width (cm) (δ: +1.217): s' = 0.168 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #16):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #17 | CLASSE REAL: setosa | PREDIÇÃO: CLASSE 0 | SCORE: -1.5475 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
@@ -256,11 +255,11 @@ LEGENDA DOS SÍMBOLOS
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.622): s' = -0.204 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ petal width (cm) (δ: +1.362): s' = 0.056 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
-├─ ● sepal width (cm) (δ: +1.298): s' = -1.242 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: +1.362): s' = 0.056 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal width (cm) (δ: +1.298): s' = 0.120 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #19):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #20 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 2.1130 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
@@ -268,33 +267,32 @@ LEGENDA DOS SÍMBOLOS
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.622): s' = -0.302 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 ├─ ● petal width (cm) (δ: +1.589): s' = -0.269 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ sepal width (cm) (δ: +0.973): s' = 0.347 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
+├─ ● sepal width (cm) (δ: +0.973): s' = 0.347 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #20):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'petal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #21 | CLASSE REAL: setosa | PREDIÇÃO: CLASSE 0 | SCORE: -1.0639 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
-├── Iniciando processo de minimização com 4 features.
-├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)', 'sepal length (cm)']
-├─ ● petal length (cm) (δ: -2.529): s' = 1.465 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● petal width (cm) (δ: -2.156): s' = 1.093 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● sepal width (cm) (δ: -1.217): s' = 0.153 (< t- (0.4260)) → FALHA. ESSENCIAL.
-├─ ● sepal length (cm) (δ: -1.094): s' = 0.031 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
+├─ ● petal length (cm) (δ: -2.529): s' = 2.559 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: -2.156): s' = 2.187 (< t- (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal width (cm) (δ: -1.217): s' = 1.247 (< t- (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #21):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['petal length (cm)', 'petal width (cm)', 'sepal length (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #22 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 2.2250 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.718): s' = -0.172 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ petal width (cm) (δ: +1.475): s' = 0.070 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
-├─ ● sepal width (cm) (δ: +1.217): s' = -1.146 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: +1.475): s' = 0.070 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● sepal width (cm) (δ: +1.217): s' = 0.329 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #22):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #23 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 2.7673 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
@@ -322,11 +320,11 @@ LEGENDA DOS SÍMBOLOS
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
 ├─ ● sepal width (cm) (δ: +1.703): s' = -0.118 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ petal length (cm) (δ: +1.384): s' = 0.201 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
-├─ ● petal width (cm) (δ: +1.362): s' = -1.161 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal length (cm) (δ: +1.384): s' = 0.201 (> t+ (0.4260)) → FALHA. ESSENCIAL.
+├─ ● petal width (cm) (δ: +1.362): s' = 0.223 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #25):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal width (cm)', 'sepal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #26 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 3.1839 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
@@ -344,10 +342,10 @@ LEGENDA DOS SÍMBOLOS
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 ├─ ● petal length (cm) (δ: +1.527): s' = -0.285 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 ├─ ● petal width (cm) (δ: +1.362): s' = -0.121 (> t+ (0.4260)) → FALHA. ESSENCIAL.
-├─ ○ sepal width (cm) (δ: +1.217): s' = 0.025 (> t+ (0.4260)) → SUCESSO. DESAFIXADA.
+├─ ● sepal width (cm) (δ: +1.217): s' = 0.025 (> t+ (0.4260)) → FALHA. ESSENCIAL.
 
    --> RESULTADO FINAL (Instância #27):
-       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['petal length (cm)', 'petal width (cm)']
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['petal length (cm)', 'petal width (cm)', 'sepal width (cm)']
 
 --- INSTÂNCIA #28 | CLASSE REAL: Não-Setosa | PREDIÇÃO: CLASSE 1 | SCORE: 1.1745 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
@@ -533,35 +531,30 @@ LEGENDA DOS SÍMBOLOS
 [ ESTATÍSTICAS POR CLASSE PREVISTA ]
 
   - CLASSE POSITIVA (30 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 2.17 ± 0.37 (Min: 2, Max: 3)
+    - Tamanho (Média ± Desv. Padrão): 2.40 ± 0.49 (Min: 2, Max: 3)
 
   - CLASSE NEGATIVA (15 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 3.13 ± 0.34 (Min: 3, Max: 4)
+    - Tamanho (Média ± Desv. Padrão): 3.00 ± 0.00 (Min: 3, Max: 3)
 
   - REJEITADA (0 instâncias):
     - Tamanho (Média ± Desv. Padrão): 0.00 ± 0.00 (Min: 0, Max: 0)
 
-[ ANÁLISE DO PROCESSO DE GERAÇÃO ]
-
-  - Para a classe Positiva:
-    - Instâncias que precisaram de reforço na Fase 1: 0 (0.00%)
-    - Instâncias com remoção efetiva na Fase 2: 7 (23.33%)
-      - Média de features removidas: 1.00
-
-  - Para a classe Negativa:
-    - Instâncias que precisaram de reforço na Fase 1: 2 (13.33%)
-      - Média de features adicionadas: 1.00
-    - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
-  - Para a classe Rejeitada:
-    - Instâncias que precisaram de reforço na Fase 1: 0 (0.00%)
-    - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
+[ ESTATÍSTICAS DO PROCESSO - Positiva ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
+[ ESTATÍSTICAS DO PROCESSO - Negativa ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
+[ ESTATÍSTICAS DO PROCESSO - Rejeitada ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
 [ ANÁLISE DE FREQUÊNCIA DAS FEATURES NAS EXPLICAÇÕES ]
 
   - Features Mais Frequentes (em todas as explicações):
-    - petal length (cm): 44 vezes
-    - petal width (cm): 42 vezes
-    - sepal width (cm): 19 vezes
-    - sepal length (cm): 7 vezes
+    - petal length (cm): 45 vezes
+    - petal width (cm): 45 vezes
+    - sepal width (cm): 21 vezes
+    - sepal length (cm): 6 vezes
 
 [ PESOS DO MODELO (COEFICIENTES GLOBAIS) ]
 

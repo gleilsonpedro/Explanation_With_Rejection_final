@@ -78,7 +78,7 @@ LOG_TEMPLATES = {
     'rejeitada_feat_footer_sucesso': "│   └─> SUCESSO. Feature DESAFIXADA.",
     'rejeitada_feat_footer_falha': "│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).",
 }
-
+# coisas do antigo com o novo _ remover depois de testes de funcionamento
 def _get_lr(modelo: Pipeline):
     """Retorna a etapa de Regressão Logística independente do nome do passo ('model' ou 'modelo')."""
     if 'model' in modelo.named_steps:
@@ -105,40 +105,45 @@ def carregar_hiperparametros(caminho_arquivo: str = HIPERPARAMETROS_FILE) -> dic
         return {}
 
 def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, premis_class: int) -> np.ndarray:
-    scaler = modelo.named_steps['scaler']
-    logreg = _get_lr(modelo)
-    coefs = logreg.coef_[0]
-    instance_df_ordered = instance_df[X_train.columns]
-    scaled_instance_vals = scaler.transform(instance_df_ordered)[0]
-    X_train_scaled = scaler.transform(X_train)
-    X_train_scaled_min = X_train_scaled.min(axis=0)
+    scaler = modelo.named_steps['scaler'] # normalizador
+    logreg = _get_lr(modelo) # modelo de reg logist
+    coefs = logreg.coef_[0] # pesos
+    instance_df_ordered = instance_df[X_train.columns] # ordena colunas
+    scaled_instance_vals = scaler.transform(instance_df_ordered)[0] # instancia escalonada
+    X_train_scaled = scaler.transform(X_train) 
+    X_train_scaled_min = X_train_scaled.min(axis=0) 
     X_train_scaled_max = X_train_scaled.max(axis=0)
-    deltas = np.zeros_like(coefs)
+    deltas = np.zeros_like(coefs) # craindo um arrai de zeros com o mesmo tamanho dos coeficientes
     for i, (coef, scaled_val) in enumerate(zip(coefs, scaled_instance_vals)):
         if premis_class == 1:
             pior_valor_escalonado = X_train_scaled_min[i] if coef > 0 else X_train_scaled_max[i]
         else:
             pior_valor_escalonado = X_train_scaled_max[i] if coef > 0 else X_train_scaled_min[i]
+        # delta = (x_i - s') * w_i
         deltas[i] = (scaled_val - pior_valor_escalonado) * coef
     return deltas
 
 def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, t_plus: float, t_minus: float, premis_class: int) -> List[str]:
     score = modelo.decision_function(instance_df)[0]
     deltas = calculate_deltas(modelo, instance_df, X_train, premis_class)
-    indices_ordenados = np.argsort(-np.abs(deltas))
+    indices_ordenados = np.argsort(-np.abs(deltas)) #ordena indices dos deltas em ordem decrescente de valor absoluto
     explicacao = []
+    #aqui começa a heuristica inicial para as classes
     score_base = score - np.sum(deltas)
-    soma_deltas_cumulativa = score_base
+    soma_deltas_cumulativa = score_base 
     target_score = t_plus if premis_class == 1 else t_minus
-    for i in indices_ordenados:
+    for i in indices_ordenados: # percorrendo as feat pela ordem de importancia
         feature_nome = X_train.columns[i]
         valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)]
-        if abs(deltas[i]) > 1e-9:
-             soma_deltas_cumulativa += deltas[i]
+        if abs(deltas[i]) > 1e-9: #so considera as features com valores significativos
+             soma_deltas_cumulativa += deltas[i] # adiciona a contrib da feature
              explicacao.append(f"{feature_nome} = {valor_original_feature:.4f}")
+             # condição de parada ao chegar nos limites 
+             # classe 1 = Σδ > t_plus e classe 0 = Σδ < t_minus
         if (premis_class == 1 and soma_deltas_cumulativa > target_score and explicacao) or \
            (premis_class == 0 and soma_deltas_cumulativa < target_score and explicacao):
             break
+    # segurança para garantir que sempre retorna pelo menos uma feature    
     if not explicacao and len(deltas) > 0:
          idx_maior_delta = indices_ordenados[0]
          feat_nome = X_train.columns[idx_maior_delta]
@@ -149,59 +154,75 @@ def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train:
 def perturbar_e_validar(modelo: Pipeline, instance_df: pd.DataFrame, explicacao: List[str], X_train: pd.DataFrame, t_plus: float, t_minus: float, direcao_override: int) -> Tuple[bool, float]:
     if not explicacao:
         return False, 0.0
-    inst_pert = instance_df.copy()
-    features_explicacao = {f.split(' = ')[0] for f in explicacao}
+    inst_pert = instance_df.copy() #criando uma cópia para perturação
+    features_explicacao = {f.split(' = ')[0] for f in explicacao} # extrai o nome das feat para a explic.
+    #define a direção da perturbação:
+        # direcao_override = 1 → perturbar para diminuir score
+        # direcao_override = 0 → perturbar para aumentar score
     perturbar_para_diminuir_score = (direcao_override == 1)
-    modelo_interno = _get_lr(modelo)
-    X_train_min = X_train.min(axis=0)
+    modelo_interno = _get_lr(modelo) # modelo de reg logist
+    X_train_min = X_train.min(axis=0) 
     X_train_max = X_train.max(axis=0)
     for feat_idx, feat_nome in enumerate(X_train.columns):
         if feat_nome in features_explicacao:
-            continue
-        coef = modelo_interno.coef_[0][feat_idx]
+            continue # pular features da explicação (nãso alterar)
+        coef = modelo_interno.coef_[0][feat_idx] 
+        # define o valor perrtiurbado a feature que nao esta fixa
         valor_pert = (X_train_min[feat_nome] if coef > 0 else X_train_max[feat_nome]) if perturbar_para_diminuir_score else (X_train_max[feat_nome] if coef > 0 else X_train_min[feat_nome])
         inst_pert.loc[inst_pert.index[0], feat_nome] = valor_pert
+    # calcula o score da instancia perturbada
     score_pert = modelo.decision_function(inst_pert)[0]
+    # verificando se o s'(o score perturbasdo) caiu na rejeição
     pert_rejeitada = t_minus <= score_pert <= t_plus
+   
     score_original = modelo.decision_function(instance_df)[0]
+    # verificando se a instancia original é rejeitada (retornaboelano)
     is_original_rejected = t_minus <= score_original <= t_plus
-    if is_original_rejected:
+    if is_original_rejected: # se a boleana for True
         return pert_rejeitada, score_pert
     else:
-        pred_original_class = modelo.predict(instance_df)[0]
-        pred_pert = 1 if score_pert >= 0 else 0 # Simples predição binária
-        return pred_pert == pred_original_class and not pert_rejeitada, score_pert
+        # Caso original CLASSIFICADA: exigir explicitamente contra t+ / t-
+        pred_original_class = int(modelo.predict(instance_df)[0])
+        if pred_original_class == 1:
+            # Para classe positiva, robusto se s' >= t+
+            return (score_pert >= t_plus), score_pert
+        else:
+            # Para classe negativa, robusto se s' <= t-
+            return (score_pert <= t_minus), score_pert
 
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, premisa_ordenacao: int) -> Tuple[List[str], int]:
-    expl_robusta = list(expl_inicial)
-    adicoes = 0
-    deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
+    expl_robusta = list(expl_inicial) # copia da explicação inicial
+    adicoes = 0 # Contador de features adicionadas
+    deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class = premisa_ordenacao) # Cálculo dos deltas para ordenação
+    # Ordenar índices das features por |δ| decrescente ( mais importnate primeiro)
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
-    while True:
+    while True: #para as rejeitadas testa as duas direções
         if is_rejected:
-            valido1, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 1)
-            valido2, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 0)
-            if valido1 and valido2: break
-        else:
-            direcao = 1 if modelo.predict(instance_df)[0] == 1 else 0
-            valido, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, direcao)
-            if valido: break
-        if len(expl_robusta) == X_train.shape[1]: break
-        features_explicacao_set = {f.split(' = ')[0] for f in expl_robusta}
-        adicionou_feature = False
+            valido1, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 1) # direção para diminuir score
+            valido2, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 0) # direção para aumentar score
+            if valido1 and valido2: break # se for valido nas duas direções sai do loop
+        else: # para as classificadas testa a direção da predição
+            direcao = 1 if modelo.predict(instance_df)[0] == 1 else 0 # direção baseada na predição
+            valido, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, direcao) 
+            if valido: break # se for valido sai do loop
+        
+        if len(expl_robusta) == X_train.shape[1]: break # se todas as features já estão na explicação pare
+        features_explicacao_set = {f.split(' = ')[0] for f in expl_robusta} # extrai nomes das features na explicação atual para facilitar verificação
+        adicionou_feature = False 
         for idx in indices_ordenados:
             feat_nome = X_train.columns[idx]
-            if feat_nome not in features_explicacao_set:
+            if feat_nome not in features_explicacao_set: # se a feature não está na explicação atual
+                # Adiciona a feature à explicação robusta
                 valor_feat = instance_df.iloc[0, X_train.columns.get_loc(feat_nome)]
                 expl_robusta.append(f"{feat_nome} = {valor_feat:.4f}")
                 adicoes += 1
-                adicionou_feature = True
+                adicionou_feature = True 
                 break
-        if not adicionou_feature: break
-    return expl_robusta, adicoes
+        if not adicionou_feature: break # se não conseguiu adicionar mais features, sai do loop
+    return expl_robusta, adicoes 
 
 def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta: List[str], X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, premisa_ordenacao: int, log_passos: List[Dict]) -> Tuple[List[str], int]:
-    expl_minima = list(expl_robusta)
+    expl_minima = list(expl_robusta) # copia da explicação robusta
     remocoes = 0
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     # Remover da mais importante para a menos importante (maior |δ| primeiro)
@@ -210,9 +231,9 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         key=lambda nome: abs(deltas_para_ordenar[X_train.columns.get_loc(nome)]),
         reverse=True
     )
-    for feat_nome in features_para_remover:
+    for feat_nome in features_para_remover: # tenta remover cada feature
         if len(expl_minima) <= 1: break
-        expl_temp = [f for f in expl_minima if not f.startswith(feat_nome)]
+        expl_temp = [f for f in expl_minima if not f.startswith(feat_nome)] # explicação temporária sem a feature atual 
         
         remocao_bem_sucedida = False
         score_pert_final = None
@@ -681,15 +702,15 @@ def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, 
         f.write(f"  - REJEITADA ({rej_stats['instancias']} instâncias):\n")
         f.write(f"    - Tamanho (Média ± Desv. Padrão): {rej_stats['media']:.2f} ± {rej_stats['std_dev']:.2f} (Min: {rej_stats['min']}, Max: {rej_stats['max']})\n\n")
         
-        # [NOVO] Análise do Processo
-        f.write("[ ANÁLISE DO PROCESSO DE GERAÇÃO ]\n\n")
-        def print_proc_stats(class_name, stats):
-            f.write(f"  - Para a classe {class_name}:\n")
-            f.write(f"    - Instâncias que precisaram de reforço na Fase 1: {stats['inst_com_adicao']} ({stats['perc_adicao']:.2f}%)\n")
-            if stats['inst_com_adicao'] > 0: f.write(f"      - Média de features adicionadas: {stats['media_adicoes']:.2f}\n")
-            f.write(f"    - Instâncias com remoção efetiva na Fase 2: {stats['inst_com_remocao']} ({stats['perc_remocao']:.2f}%)\n")
-            if stats['inst_com_remocao'] > 0: f.write(f"      - Média de features removidas: {stats['media_remocoes']:.2f}\n\n")
-        
+        def print_proc_stats(label: str, stats: Dict[str, Any]):
+            f.write(f"[ ESTATÍSTICAS DO PROCESSO - {label} ]\n")
+            f.write(f"  - Instâncias com adições na Fase 1: {stats['inst_com_adicao']} ({stats['perc_adicao']:.2f}%)\n")
+            if stats['inst_com_adicao'] > 0:
+                f.write(f"    - Média de features adicionadas: {stats['media_adicoes']:.2f}\n")
+            f.write(f"  - Instâncias com remoção efetiva na Fase 2: {stats['inst_com_remocao']} ({stats['perc_remocao']:.2f}%)\n")
+            if stats['inst_com_remocao'] > 0:
+                f.write(f"    - Média de features removidas: {stats['media_remocoes']:.2f}\n\n")
+
         print_proc_stats("Positiva", metricas['processo_stats_pos'])
         print_proc_stats("Negativa", metricas['processo_stats_neg'])
         print_proc_stats("Rejeitada", metricas['processo_stats_rej'])
