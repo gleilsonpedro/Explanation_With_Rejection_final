@@ -148,11 +148,19 @@ results/
 O projeto inclui suporte para diversos datasets de classificação binária:
 - Breast Cancer
 - Iris (convertido para binário)
+- MNIST (convertido para binário: dígito '0' vs resto)
 - Pima Indians Diabetes
 - Sonar
 - Vertebral Column
 - Wine (convertido para binário)
 - E outros
+
+### Datasets e cache offline
+
+- Alguns datasets são baixados de fontes públicas (UCI, GitHub raw). Para evitar erros temporários de rede (ex.: HTTP 429 Too Many Requests), o carregador salva uma cópia local na pasta `data/` e passa a reutilizá-la nas próximas execuções.
+- Exemplo (Pima Indians Diabetes):
+   - Arquivo de cache: `data/pima-indians-diabetes.csv`
+   - Se o download falhar, você pode baixar manualmente e salvar nesse caminho; o código detectará o arquivo local automaticamente.
 
 ## Contribuições Principais
 

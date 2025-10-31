@@ -19,7 +19,8 @@ from utils.results_handler import update_method_results
 #==============================================================================
 RANDOM_STATE: int = 42
 DATASET_CONFIG = {
-    "iris":                 {'test_size': 0.3, 'rejection_cost': 0.24},
+    # "iris":                 {'test_size': 0.3, 'rejection_cost': 0.24},  # substituído por MNIST no menu
+    "mnist":               {'test_size': 0.3, 'rejection_cost': 0.24, 'subsample_size': 0.1},
     "wine":                 {'test_size': 0.3, 'rejection_cost': 0.24},
     "breast_cancer":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},

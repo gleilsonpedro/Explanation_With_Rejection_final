@@ -2,6 +2,7 @@
 import os
 import io
 import zipfile
+import time
 import requests
 import numpy as np
 import pandas as pd
@@ -9,6 +10,97 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris, fetch_openml, load_breast_cancer, load_wine
 from typing import List, Tuple, Dict, Any, Optional
+
+# ------------------------ Utilitários de download/cache ------------------------
+def _ensure_dir(path: str) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+
+
+def _download_with_retries(url: str, dest_path: str, max_retries: int = 3, timeout: int = 20) -> bool:
+    """Tenta baixar um arquivo com cabeçalho User-Agent e backoff exponencial.
+    Retorna True se salvou em dest_path, False caso contrário.
+    """
+    session = requests.Session()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "Accept": "text/csv,application/octet-stream,*/*;q=0.8",
+        "Connection": "keep-alive",
+    }
+
+    backoff = 1.5
+    delay = 1.0
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = session.get(url, headers=headers, timeout=timeout)
+            # Respeita 429 Too Many Requests com pequeno backoff
+            if resp.status_code == 429:
+                retry_after = resp.headers.get("Retry-After")
+                if retry_after and retry_after.isdigit():
+                    wait_s = min(int(retry_after), 10)
+                else:
+                    wait_s = min(int(delay), 10)
+                time.sleep(wait_s)
+                delay *= backoff
+                continue
+
+            if 200 <= resp.status_code < 300:
+                _ensure_dir(dest_path)
+                with open(dest_path, "wb") as f:
+                    f.write(resp.content)
+                return True
+            # Em outros códigos, tenta novamente com backoff leve
+            time.sleep(min(int(delay), 5))
+            delay *= backoff
+        except requests.RequestException:
+            time.sleep(min(int(delay), 5))
+            delay *= backoff
+    return False
+
+
+def _read_csv_with_cache(urls: List[str], local_path: str, **read_csv_kwargs) -> pd.DataFrame:
+    """Lê CSV de um caminho local (se existir) ou tenta baixar de uma lista de URLs.
+    Em caso de falha no download, levanta uma exceção com instruções para cache manual.
+    """
+    # 1) Usa cache local se existir
+    if os.path.exists(local_path):
+        return pd.read_csv(local_path, **read_csv_kwargs)
+
+    # 2) Tenta baixar de alguma URL
+    for url in urls:
+        if _download_with_retries(url, local_path):
+            try:
+                return pd.read_csv(local_path, **read_csv_kwargs)
+            except Exception:
+                # Arquivo baixado pode não estar conforme esperado; tenta próxima URL
+                try:
+                    os.remove(local_path)
+                except OSError:
+                    pass
+                continue
+
+    # 3) Falhou totalmente
+    raise RuntimeError(
+        (
+            f"Não foi possível obter o dataset a partir das URLs fornecidas. "
+            f"Por favor, baixe manualmente o arquivo e salve em '{local_path}'."
+        )
+    )
+
+
+def _fetch_openml_with_retries(dataset_name: str, version: int = 1, as_frame: bool = True, max_retries: int = 3):
+    """Wrapper para fetch_openml com tentativas e backoff simples."""
+    delay = 1.0
+    backoff = 1.7
+    last_err = None
+    for _ in range(max_retries):
+        try:
+            return fetch_openml(dataset_name, version=version, as_frame=as_frame, parser='auto')
+        except Exception as e:
+            last_err = e
+            time.sleep(min(int(delay), 5))
+            delay *= backoff
+    raise last_err if last_err else RuntimeError(f"Falha ao baixar dataset OpenML: {dataset_name}")
 
 RANDOM_STATE: int = 42
 
@@ -27,20 +119,29 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             y_series = np.where(y_series == 0, 0, 1)  # Setosa (0) vs Versicolor +      Virginica (1)
             class_names_list = [class_names_list[0], "Não-Setosa"]  # ["setosa",        "Não-Setosa"]
         elif nome_dataset == 'sonar':
-            url = "https://archive.ics.uci.edu/ml/machine-learning-databases/undocumented/connectionist-bench/sonar/sonar.all-data"
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/undocumented/connectionist-bench/sonar/sonar.all-data",
+            ]
+            local_path = os.path.join('data', 'sonar.all-data')
             # As features não têm nomes, então vamos nomeá-las genericamente
             col_names = [f"feature_{i}" for i in range(60)] + ["target"]
-            data_df = pd.read_csv(url, header=None, names=col_names)
+            data_df = _read_csv_with_cache(urls, local_path, header=None, names=col_names)
             # Converte a classe alvo (M para mina, R para rocha) em 1 e 0
             data_df["target"] = data_df["target"].apply(lambda x: 1 if x == 'M' else 0)
             X = data_df.drop("target", axis=1)
             y_series = data_df["target"]
             class_names_list = ["Rocha", "Mina (Metal)"]
         elif nome_dataset == 'pima_indians_diabetes':
-            url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv"
+            # URLs alternativas para reduzir risco de 429 e quedas de serviço
+            urls = [
+                "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv",
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data",
+            ]
+            local_path = os.path.join('data', 'pima-indians-diabetes.csv')
             col_names = ['num_gravidezes', 'glicose', 'pressao_sangue', 'espessura_pele',
                          'insulina', 'imc', 'diabetes_pedigree', 'idade', 'target']
-            data_df = pd.read_csv(url, header=None, names=col_names)
+            # Usa cache local se existir; caso contrário, tenta baixar de uma das URLs
+            data_df = _read_csv_with_cache(urls, local_path, header=None, names=col_names)
             
             # --- SEÇÃO DE TRATAMENTO REMOVIDA PARA COMPARAÇÃO DIRETA COM O DO MATEUS ---
             # As linhas abaixo, que limpavam os zeros inválidos, foram removidas.
@@ -60,17 +161,23 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             y_series = pd.Series(data.target, name='target')
             class_names_list = list(data.target_names)
         elif nome_dataset == 'banknote':
-            url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00267/data_banknote_authentication.txt"
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/00267/data_banknote_authentication.txt"
+            ]
+            local_path = os.path.join('data', 'data_banknote_authentication.txt')
             col_names = ["variance", "skewness", "curtosis", "entropy", "target"]
-            data_df = pd.read_csv(url, names=col_names)
+            data_df = _read_csv_with_cache(urls, local_path, names=col_names)
             X = data_df.drop("target", axis=1)
             y_series = data_df["target"].astype(int)
             class_names_list = ["Autêntica", "Falsificada"]
         elif nome_dataset == 'heart_disease':
-            url = "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
+            ]
             col_names = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg",
                          "thalach", "exang", "oldpeak", "slope", "ca", "thal", "target"]
-            data_df = pd.read_csv(url, names=col_names, na_values="?")
+            local_path = os.path.join('data', 'processed.cleveland.data')
+            data_df = _read_csv_with_cache(urls, local_path, names=col_names, na_values="?")
             data_df.dropna(inplace=True)
             data_df["target"] = pd.to_numeric(data_df["target"], errors='coerce')
             data_df.dropna(subset=["target"], inplace=True)
@@ -79,8 +186,11 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             y_series = data_df["target"]
             class_names_list = ["Sem Doença", "Com Doença"]
         elif nome_dataset == 'wine_quality':
-            url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
-            data_df = pd.read_csv(url, sep=";")
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+            ]
+            local_path = os.path.join('data', 'winequality-red.csv')
+            data_df = _read_csv_with_cache(urls, local_path, sep=";")
             data_df["target"] = data_df["quality"].apply(lambda x: 1 if x >= 7 else 0)
             X = data_df.drop(["quality", "target"], axis=1)
             y_series = data_df["target"]
@@ -88,7 +198,7 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
         elif nome_dataset == 'creditcard':
             # Apenas carrega o dataset completo e o retorna.
             # A amostragem será feita no script principal.
-            data_openml = fetch_openml('creditcard', version=1, as_frame=True, parser='auto')
+            data_openml = _fetch_openml_with_retries('creditcard', version=1, as_frame=True)
             X = data_openml.data
             y_series = data_openml.target.astype(int)
             class_names_list = ['Normal', 'Fraude']
@@ -106,14 +216,32 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             col_names = ["pelvic_incidence", "pelvic_tilt", "lumbar_lordosis_angle", 
                          "sacral_slope", "pelvic_radius", "spondylolisthesis_grade", "target"]
             file_path = os.path.join('data', 'column_2C.dat')
-            # (Código original de download e carga)
+            # Faz download e extrai se não existir localmente
+            if not os.path.exists(file_path):
+                zip_path = os.path.join('data', 'vertebral_column_data.zip')
+                ok = _download_with_retries(url, zip_path)
+                if not ok:
+                    raise RuntimeError("Falha ao baixar vertebral_column_data.zip. Faça o download manual e coloque em 'data/'.")
+                with zipfile.ZipFile(zip_path, 'r') as zf:
+                    # Extrai apenas o arquivo 2 classes (column_2C.dat)
+                    for name in zf.namelist():
+                        if name.endswith('column_2C.dat'):
+                            zf.extract(name, 'data')
+                            # Mover/renomear se estiver em subpasta
+                            src = os.path.join('data', name)
+                            if src != file_path:
+                                os.replace(src, file_path)
+                            break
             data_df = pd.read_csv(file_path, header=None, names=col_names, sep=r'\s+')
             data_df["target"] = data_df["target"].apply(lambda x: 0 if x == 'NO' else 1)
             X = data_df.drop("target", axis=1)
             y_series = data_df["target"]
             class_names_list = ["Normal", "Anormal"]
         elif nome_dataset == 'spambase':
-            url = "https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data"
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data"
+            ]
+            local_path = os.path.join('data', 'spambase.data')
             
             # Nomes das 57 features, seguidos pela coluna 'target'
             # (Conforme a documentação oficial do dataset)
@@ -137,7 +265,7 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             ]
             
             # Carrega os dados usando pandas
-            data_df = pd.read_csv(url, names=col_names, header=None)
+            data_df = _read_csv_with_cache(urls, local_path, names=col_names, header=None)
             
             # Separa os alvos (y) e as features (X)
             y_series = data_df["target"].astype(int) # Alvo já é 0 (não spam) ou 1 (spam)
@@ -145,6 +273,14 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             
             # Define os nomes das classes para o menu
             class_names_list = ["Não Spam", "Spam"]
+        elif nome_dataset == 'mnist':
+            # MNIST via OpenML, com cache do scikit-learn e retries
+            data_openml = _fetch_openml_with_retries('mnist_784', version=1, as_frame=True)
+            X = data_openml.data
+            y_original = pd.Series(data_openml.target.astype(str), name='target')
+            # Binarização: dígito '0' vs resto
+            y_series = y_original.apply(lambda v: 0 if v == '0' else 1)
+            class_names_list = ['0', 'Não-0']
         else:
             raise ValueError(f"Dataset '{nome_dataset}' não suportado.")
 
@@ -163,7 +299,7 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     menu = '''
     | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
     | Datasets Clássicos para Comparação:                                  |
-    | [0] Breast Cancer (569x30x2)       | [1] Iris (150x4x3)              |
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10 -> binário 0 vs resto) |
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
     | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
     |----------------------------------------------------------------------|
@@ -178,7 +314,7 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     print(menu)
     # [MODIFICAÇÃO IMPORTANTE] Lista de datasets atualizada para corresponder ao menu.
     nomes_datasets = [
-        'breast_cancer', 'iris', 'pima_indians_diabetes', 'sonar', 
+        'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
         'vertebral_column', 'wine', 'banknote', 'heart_disease',
         'wine_quality', 'spambase', 'creditcard'
     ]
