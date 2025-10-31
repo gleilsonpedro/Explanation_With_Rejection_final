@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore", message="Overwriting previously set objective.
 
 
 def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_upper, features_ranges, lower_bound = 0, upper_bound = 1, show_log = 0, n_threads = 1,
-                                       precision = 0.0001, problem_name = "SVM_Explanation"):
+                                       precision = 0.0001, problem_name = "SVM_Explanation", time_limit: float | None = None):
     neg_validate_prob = pulp.LpProblem("Negative_Class_Validation_of_Answer_", pulp.LpMinimize)
     pos_validate_prob = pulp.LpProblem("Positive_Class_Validation_of_Answer_", pulp.LpMinimize)
     X_val_neg = np.asarray([pulp.LpVariable('xv'+str(i+1), lowBound = lower_bound, upBound = upper_bound,cat='Continuous') for i in range(len(data[0]))])
@@ -27,7 +27,8 @@ def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_
     for i, ranges in enumerate(features_ranges):
         X_val_neg[i].lowBound = ranges[0]
         X_val_neg[i].upBound = ranges[1]
-    neg_sat_val = neg_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+    _solver = PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False, timeLimit=time_limit) if time_limit else PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False)
+    neg_sat_val = neg_validate_prob.solve(_solver)
     if neg_sat_val == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -37,7 +38,7 @@ def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_
     for i, ranges in enumerate(features_ranges):
         X_val_pos[i].lowBound = ranges[0]
         X_val_pos[i].upBound = ranges[1]
-    pos_sat_val = pos_validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+    pos_sat_val = pos_validate_prob.solve(_solver)
     if pos_sat_val == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -48,7 +49,7 @@ def rejected_validation(dual_coef, support_vectors, intercept, data, t_lower, t_
         print("Found intervals MAINTAIN the class.")
             
 def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lower, t_upper, lower_bound = 0, upper_bound = 1, validate = False, show_log = 0, n_threads = 1,
-                            precision = 0.0001, problem_name = "SVM_Explanation"):
+                            precision = 0.0001, problem_name = "SVM_Explanation", time_limit: float | None = None):
     """
     ## Generates explanations for rejected class.
     dual_coef - weight vector from trained SVC.
@@ -82,6 +83,9 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
     neg_relevant_prob += ((dual_coef @ support_vectors) @ X_neg.reshape(1, len(X_neg)).T + intercept)[0][0] <= t_lower -precision #All that are inferior to the lower threshold
     pos_relevant_prob += ((dual_coef @ support_vectors) @ X_pos.reshape(1, len(X_pos)).T + intercept)[0][0] >= t_upper +precision #All that are superior to the upper threshold 
     
+
+    # Prepara solver (reutiliza entre solves)
+    _solver = PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False, timeLimit=time_limit) if time_limit else PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False)
 
     #For every pattern
     for z in range(len(data)):
@@ -132,7 +136,7 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
             relevance_value = [data[z][exclude], data[z][exclude]]
             
             #Check if the feature is relevant and makes the pattern leave the reject region (negative)
-            sat_neg = neg_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+            sat_neg = neg_relevant_prob.solve(_solver)
             if sat_neg == 1:
                 values = []
                 for v in X_neg:
@@ -142,7 +146,7 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
                 explanation.append((exclude, data[z][exclude]))
             else:
                 #Check if the feature is relevant and makes the pattern leave the reject region (positive)
-                sat_pos = pos_relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+                sat_pos = pos_relevant_prob.solve(_solver)
                 if sat_pos == 1:
                     values = []
                     for v in X_pos:
@@ -169,14 +173,15 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
                                 data = data,
                                 features_ranges = features_ranges,
                                 show_log = show_log,
-                                n_threads = n_threads
+                                n_threads = n_threads,
+                                time_limit = time_limit
             )
 
         explanations.append(explanation)
     return explanations
 
 def binary_validation(dual_coef, support_vectors, intercept, data, features_ranges, lower_bound = 0, upper_bound = 1, t_lower = 0, t_upper = 0,
-                                      show_log = 0, n_threads = 1, precision = 0.0001, classified = "Positive", problem_name = "SVM_Explanation"):
+                                      show_log = 0, n_threads = 1, precision = 0.0001, classified = "Positive", problem_name = "SVM_Explanation", time_limit: float | None = None):
     validate_prob = None
     X_validation = np.asarray([pulp.LpVariable('xv'+str(i+1), lowBound = lower_bound, upBound = upper_bound, cat='Continuous') for i in range(len(data[0]))])
     if classified == "Positive":
@@ -191,7 +196,8 @@ def binary_validation(dual_coef, support_vectors, intercept, data, features_rang
     for i, ranges in enumerate(features_ranges):
         X_validation[i].lowBound = ranges[0]
         X_validation[i].upBound = ranges[1]
-    sat_validation = validate_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+    _solver = PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False, timeLimit=time_limit) if time_limit else PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False)
+    sat_validation = validate_prob.solve(_solver)
     if sat_validation == 1:
         print("Found intervals DO NOT maintain the class.")
         validation_values = []
@@ -204,7 +210,7 @@ def binary_validation(dual_coef, support_vectors, intercept, data, features_rang
     
     
 def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bound = 0, upper_bound = 1, t_lower = 0, t_upper = 0, validate = False, show_log = 0, n_threads = 1,
-                                       precision = 0.0001, classified = "Positive", problem_name = "SVM_Explanation"):
+                                       precision = 0.0001, classified = "Positive", problem_name = "SVM_Explanation", time_limit: float | None = None):
     """
     ## Generates explanations for rejected class.
     dual_coef - weight vector from trained SVC.
@@ -239,6 +245,9 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
     else:
         relevant_prob += ((dual_coef @ support_vectors) @ X.reshape(1, len(X)).T + intercept)[0][0] >= t_lower + precision #All that are superior to the lower threshold
 
+
+    # Prepara solver (reutiliza entre solves)
+    _solver = PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False, timeLimit=time_limit) if time_limit else PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False)
 
     #For every sample
     for z in range(len(data)):
@@ -278,7 +287,7 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
             relevance_value = [data[z][exclude],data[z][exclude]]
             
             #Check if the feature is relevant and makes the predicted class change
-            sat = relevant_prob.solve(PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False))
+            sat = relevant_prob.solve(_solver)
             if sat == 1:
                 values = []
                 for v in X:
@@ -307,7 +316,8 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
                                 t_upper = t_upper,
                                 classified = classified,
                                 show_log = show_log,
-                                n_threads = n_threads, 
+                                n_threads = n_threads,
+                                time_limit = time_limit 
             )
 
         

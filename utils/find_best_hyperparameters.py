@@ -7,7 +7,7 @@ import warnings
 from typing import List, Tuple, Dict, Any, Optional
 from multiprocessing import Pool, cpu_count
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, f1_score
@@ -36,7 +36,7 @@ PARAM_GRID = {
 # Lista de todos os datasets que serão processados automaticamente
 DATASET_NAMES = [
     'sonar', 'pima_indians_diabetes', 'breast_cancer',
-    'wine', 'vertebral_column', 'iris'#removido credicard
+    'wine', 'vertebral_column'  # MNIST removido: usar defaults quando ausente no JSON
 ]
 
 # Para datasets com mais de 2 classes, define um mapeamento padrão para o problema binário.
@@ -68,23 +68,32 @@ def preparar_dataset_para_binario(nome_dataset: str) -> Optional[Tuple[pd.DataFr
         print(f"  -> Falha ao carregar {nome_dataset}. Pulando.")
         return None, None
 
+    # Se já for binário (0/1), não reprocessa
+    try:
+        vals = pd.Series(y).unique()
+    except Exception:
+        vals = np.unique(y)
+    if len(vals) == 2 and set(map(int, np.unique(vals))) <= {0, 1}:
+        return X, pd.Series(y, index=X.index if isinstance(X, pd.DataFrame) else None)
+
     # Se o dataset tem mais de 2 classes, aplica o mapeamento.
     if nome_dataset in MULTICLASS_TO_BINARY_MAP:
         idx_classe_0, idx_classe_1 = MULTICLASS_TO_BINARY_MAP[nome_dataset]
-        
-        mascara_0 = (y == idx_classe_0)
-        mascara_1 = (y == idx_classe_1)
-        mascara_total = mascara_0 | mascara_1
-        
-        X_filtrado = X[mascara_total].copy()
-        y_filtrado = y[mascara_total].copy()
-        
-        # Converte para 0 e 1
-        y_final = np.where(y_filtrado == idx_classe_0, 0, 1)
-        y_final = pd.Series(y_final, index=X_filtrado.index)
-        
-        print(f"  -> Dataset multi-classe. Usando classes {idx_classe_0} e {idx_classe_1} para binarização.")
-        return X_filtrado, y_final
+
+        if idx_classe_1 == -1:
+            # One-vs-Rest: classe idx_classe_0 vira 0, todo o resto vira 1
+            y_final = pd.Series(np.where(pd.Series(y) == idx_classe_0, 0, 1), index=X.index if isinstance(X, pd.DataFrame) else None)
+            print(f"  -> Dataset multi-classe. Usando OV R: classe {idx_classe_0} vs resto.")
+            return X, y_final
+        else:
+            mascara_0 = (y == idx_classe_0)
+            mascara_1 = (y == idx_classe_1)
+            mascara_total = mascara_0 | mascara_1
+            X_filtrado = X[mascara_total].copy()
+            y_filtrado = pd.Series(y[mascara_total]).copy()
+            y_final = pd.Series(np.where(y_filtrado == idx_classe_0, 0, 1), index=X_filtrado.index)
+            print(f"  -> Dataset multi-classe. Usando classes {idx_classe_0} e {idx_classe_1} para binarização.")
+            return X_filtrado, y_final
 
     # Se já for binário, retorna como está.
     return X, y
@@ -95,7 +104,7 @@ def avaliar_combinacao(args: Tuple) -> Optional[Dict]:
 
     # Cria a pipeline uma vez
     pipeline = Pipeline([
-        ('scaler', StandardScaler()),
+        ('scaler', MinMaxScaler()),
         ('model', LogisticRegression(random_state=42))
     ])
 
@@ -175,9 +184,15 @@ def main():
 
         args_list = [(params, X, y, splits) for params in combinacoes]
 
-        # Usa multiprocessing para acelerar a busca
-        with Pool(processes=max(1, cpu_count() - 1)) as pool:
-            resultados = pool.map(avaliar_combinacao, args_list)
+        # Heurística: para datasets muito grandes (ex.: MNIST), evita multiprocessing (custos de pickling gigantes no Windows)
+        is_huge = (nome_dataset == 'mnist') or (X.shape[0] * X.shape[1] > 5_000_000)
+        if is_huge:
+            print("  -> Dataset grande detectado. Executando busca em modo sequencial para evitar overhead de multiprocessing.")
+            resultados = [avaliar_combinacao(args) for args in args_list]
+        else:
+            # Usa multiprocessing para acelerar a busca
+            with Pool(processes=max(1, cpu_count() - 1)) as pool:
+                resultados = pool.map(avaliar_combinacao, args_list)
 
         # Filtra execuções que falharam e ordena os resultados
         resultados_validos = [r for r in resultados if r is not None]

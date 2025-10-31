@@ -1,9 +1,7 @@
 # Imports Python
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from sklearn import svm
 from sklearn import metrics
 import warnings
 import sys
@@ -14,6 +12,7 @@ import os
 try:
     import utils.svm_explainer
     import utils.utility
+    from utils.shared_training import get_shared_pipeline
     from data.datasets import selecionar_dataset_e_classe
     ### ADICIONADO: Importar a função para salvar os resultados no JSON ###
     from utils.results_handler import update_method_results
@@ -83,79 +82,64 @@ def formatar_log(metricas):
 RANDOM_STATE = 107
 # --- BLOCO PRINCIPAL DE EXECUÇÃO ---
 if __name__ == '__main__':
-    params_config = {
-        "iris":             {'wr': [0.24], 'test_size': 0.3},
-        "wine":             {'wr': [0.24], 'test_size': 0.3},
-        "pima_indians_diabetes": {'wr': [0.24], 'test_size': 0.3},
-        "sonar":            {'wr': [0.24], 'test_size': 0.3},
-        "vertebral_column": {'wr': [0.24], 'test_size': 0.3},
-        "breast_cancer":    {'wr': [0.24], 'test_size': 0.3},
-        "spambase":         {'wr': [0.24], 'test_size': 0.2},
-        "banknote_auth":    {'wr': [0.24], 'test_size': 0.2},
-        "heart_disease":    {'wr': [0.24], 'test_size': 0.3},
-        "wine_quality":     {'wr': [0.24], 'test_size': 0.2},
-        "creditcard":       {'wr': [0.24], 'test_size': 0.3, 'subsample_size': 0.1}
-    }
+    # Config local não é mais necessária para treino/thresholds; ficam a cargo do shared trainer
 
     print("Chamando menu de seleção de dataset...")
     nome_dataset_original, nome_classe_positiva, dados_completos, alvos_completos, _ = selecionar_dataset_e_classe()
 
     if dados_completos is not None:
-        config_atual = params_config.get(nome_dataset_original, {'wr': [0.25], 'test_size': 0.3})
-        wr_param = config_atual['wr']
-        test_size_atual = config_atual['test_size']
-        
-        # Lógica de amostragem para datasets muito grandes
-        if 'subsample_size' in config_atual:
-            print(f"Aplicando amostragem estratificada de {config_atual['subsample_size']*100}%...")
-            dados_prontos, _, alvos_prontos, _ = train_test_split(
-                dados_completos, alvos_completos, 
-                train_size=config_atual['subsample_size'], 
-                random_state= RANDOM_STATE, 
-                stratify=alvos_completos
-            )
-        else:
-            dados_prontos, alvos_prontos = dados_completos, alvos_completos
-      
         nome_relatorio = f"{nome_dataset_original}_{nome_classe_positiva}_vs_rest"
-        nomes_features = dados_completos.columns.tolist() if isinstance(dados_completos, pd.DataFrame) else [f'feature_{i}' for i in range(dados_completos.shape[1])]
+        print(f"\n--- Iniciando análise (MinExp) para: {nome_relatorio} ---")
 
-        print(f"\n--- Iniciando análise (MinExp - SVM) para: {nome_relatorio} ---")
-        metricas = {'dataset_name': nome_relatorio, 'test_size': test_size_atual, 'rejection_cost': wr_param[0]}
-        
-        scaler = MinMaxScaler()
-        scaled_data = scaler.fit_transform(np.array(dados_prontos))
-        metricas['num_features'] = scaled_data.shape[1]
-        final_targets = utils.utility.check_targets(np.array(alvos_prontos))
-        
-        X_train, X_test, y_train, y_test = train_test_split(
-            scaled_data, final_targets, test_size=test_size_atual, random_state=RANDOM_STATE, stratify=final_targets
-        )
-        metricas['total_instancias_teste'] = len(y_test)
-        
-        # Explicações são geradas para o conjunto de teste para comparação justa
-        X_exp, y_exp = X_test, y_test
+        # 1) Obter pipeline e thresholds idênticos ao PEAB
+        pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(nome_dataset_original)
+        nomes_features = meta['feature_names']
 
-        clf = svm.SVC(kernel='linear', C=1.0)
-        clf.fit(X_train, y_train)
+        # 2) Métricas básicas
+        metricas = {
+            'dataset_name': nome_relatorio,
+            'test_size': meta['test_size'],
+            'rejection_cost': meta['rejection_cost'],
+            'num_features': len(nomes_features),
+            'total_instancias_teste': len(y_test)
+        }
+        metricas['acuracia_sem_rejeicao'] = metrics.accuracy_score(y_test, pipeline.predict(X_test)) * 100
 
-        metricas['acuracia_sem_rejeicao'] = metrics.accuracy_score(y_test, clf.predict(X_test)) * 100
-        metricas['intercepto'] = clf.intercept_[0]
+        # 3) Índices por thresholds compartilhados
+        t_upper, t_lower = float(t_plus), float(t_minus)
+        decfun_test = pipeline.decision_function(X_test)
+        pos_idx = np.where(decfun_test > t_upper)[0]
+        neg_idx = np.where(decfun_test < t_lower)[0]
+        rej_idx = np.where((decfun_test <= t_upper) & (decfun_test >= t_lower))[0]
 
-        t_upper, t_lower = utils.utility.find_thresholds(clf, X_train, y_train, wr=wr_param)
-        metricas['t_upper'], metricas['t_lower'] = t_upper, t_lower
-        
-        pos_idx, neg_idx, rej_idx = utils.utility.find_indexes(clf, X_exp, t_upper, t_lower)
+        # 4) Adapter LR -> forma esperada pelo solver MinExp (linear)
+        w = pipeline.named_steps['model'].coef_[0]
+        b = pipeline.named_steps['model'].intercept_[0]
+        support_vectors = np.array([w])        # shape (1, d)
+        dual_coef = np.array([[1.0]])         # shape (1, 1)
+        intercept = np.array([b])             # shape (1,)
+
+        # 5) Dados escalados para o solver (MinMaxScaler)
+        X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
+        lower_bound, upper_bound = 0.0, 1.0
+
         all_explanations = {}
-        
-        tempo_total_explicacoes = 0
+        tempo_total_explicacoes = 0.0
         
         start_time_neg = time.time()
         if len(neg_idx) > 0:
             explanations = utils.svm_explainer.svm_explanation_binary(
-                dual_coef=clf.dual_coef_, support_vectors=clf.support_vectors_, intercept=clf.intercept_,
-                t_lower=t_lower, t_upper=t_upper, lower_bound=scaled_data.min(), upper_bound=scaled_data.max(),
-                show_log=0, n_threads=4, data=X_exp[neg_idx], classified="Negative"
+                dual_coef=dual_coef,
+                support_vectors=support_vectors,
+                intercept=intercept,
+                t_lower=t_lower,
+                t_upper=t_upper,
+                lower_bound=lower_bound,
+                upper_bound=upper_bound,
+                show_log=0,
+                n_threads=4,
+                data=X_test_scaled[neg_idx],
+                classified="Negative"
             )
             all_explanations.update({idx: exp for idx, exp in zip(neg_idx, explanations)})
         runtime_neg = time.time() - start_time_neg
@@ -165,9 +149,17 @@ if __name__ == '__main__':
         start_time_pos = time.time()
         if len(pos_idx) > 0:
             explanations = utils.svm_explainer.svm_explanation_binary(
-                dual_coef=clf.dual_coef_, support_vectors=clf.support_vectors_, intercept=clf.intercept_,
-                t_lower=t_lower, t_upper=t_upper, lower_bound=scaled_data.min(), upper_bound=scaled_data.max(),
-                show_log=0, n_threads=4, data=X_exp[pos_idx], classified="Positive"
+                dual_coef=dual_coef,
+                support_vectors=support_vectors,
+                intercept=intercept,
+                t_lower=t_lower,
+                t_upper=t_upper,
+                lower_bound=lower_bound,
+                upper_bound=upper_bound,
+                show_log=0,
+                n_threads=4,
+                data=X_test_scaled[pos_idx],
+                classified="Positive"
             )
             all_explanations.update({idx: exp for idx, exp in zip(pos_idx, explanations)})
         runtime_pos = time.time() - start_time_pos
@@ -177,9 +169,16 @@ if __name__ == '__main__':
         start_time_rej = time.time()
         if len(rej_idx) > 0:
             explanations = utils.svm_explainer.svm_explanation_rejected(
-                dual_coef=clf.dual_coef_, support_vectors=clf.support_vectors_, intercept=clf.intercept_,
-                t_lower=t_lower, t_upper=t_upper, lower_bound=scaled_data.min(), upper_bound=scaled_data.max(),
-                data=X_exp[rej_idx], show_log=0, n_threads=4
+                dual_coef=dual_coef,
+                support_vectors=support_vectors,
+                intercept=intercept,
+                t_lower=t_lower,
+                t_upper=t_upper,
+                lower_bound=lower_bound,
+                upper_bound=upper_bound,
+                data=X_test_scaled[rej_idx],
+                show_log=0,
+                n_threads=4
             )
             all_explanations.update({idx: exp for idx, exp in zip(rej_idx, explanations)})
         runtime_rej = time.time() - start_time_rej
@@ -187,19 +186,19 @@ if __name__ == '__main__':
         metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
 
         metricas['tempo_total'] = tempo_total_explicacoes
-        metricas['tempo_medio_instancia'] = tempo_total_explicacoes / len(y_exp) if len(y_exp) > 0 else 0
-        
+        metricas['tempo_medio_instancia'] = tempo_total_explicacoes / len(y_test) if len(y_test) > 0 else 0
+
         metricas['num_rejeitadas_teste'] = len(rej_idx)
-        metricas['num_aceitas_teste'] = len(y_exp) - len(rej_idx)
-        metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_exp)) * 100 if len(y_exp) > 0 else 0
-        metricas['acuracia_com_rejeicao'] = utils.utility.calculate_accuracy(clf, t_upper, t_lower, X_test, y_test) * 100
-        
+        metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
+        metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_test)) * 100 if len(y_test) > 0 else 0
+        metricas['acuracia_com_rejeicao'] = utils.utility.calculate_accuracy(pipeline, t_upper, t_lower, X_test, y_test) * 100
+
         feature_counts = {name: 0 for name in nomes_features}
-      
-      # Listas para guardar os tamanhos das explicações por classe
+
+        # Listas para guardar os tamanhos das explicações por classe
         exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
 
-      # Primeiro, itera sobre todas as explicações para coletar os tamanhos e contar as features
+        # Primeiro, itera sobre todas as explicações para coletar os tamanhos e contar as features
         for idx, exp in all_explanations.items():
             exp_len = len(exp)
 
@@ -217,8 +216,8 @@ if __name__ == '__main__':
                 if feature_idx < len(nomes_features):
                     feature_counts[nomes_features[feature_idx]] += 1
 
-      # Agora, calcula as estatísticas para cada classe usando as listas preenchidas
-        for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative",    exp_lengths_neg), ("rejected", exp_lengths_rej)]:
+        # Agora, calcula as estatísticas para cada classe usando as listas preenchidas
+        for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative", exp_lengths_neg), ("rejected", exp_lengths_rej)]:
             stats = {'count': len(exp_lengths)}
             if exp_lengths:
                 stats.update({
@@ -231,7 +230,7 @@ if __name__ == '__main__':
                 stats.update({'min_length': 0, 'mean_length': 0, 'max_length': 0, 'std_length': 0})
             metricas[f'stats_explicacao_{class_key}'] = stats
 
-        metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item  [1], reverse=True)
+        metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item[1], reverse=True)
 
         log_final = formatar_log(metricas)
         base_dir = os.path.join('results', 'report', 'minexp')
@@ -240,19 +239,19 @@ if __name__ == '__main__':
         with open(caminho_arquivo, 'w', encoding='utf-8') as f:
             f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
-        
-        ### ADICIONADO: Bloco inteiro para formatar e salvar os resultados no JSON ###
+
+        # Salvar resultados consolidados no JSON
         dataset_key = nome_dataset_original
         results_data = {
             "config": {
                 "dataset_name": dataset_key,
-                "test_size": test_size_atual,
+                "test_size": float(meta['test_size']),
                 "random_state": RANDOM_STATE,
-                "rejection_cost": wr_param[0]
+                "rejection_cost": float(meta['rejection_cost'])
             },
             "thresholds": {
-                "t_plus": t_upper,
-                "t_minus": t_lower
+                "t_plus": float(t_upper),
+                "t_minus": float(t_lower)
             },
             "performance": {
                 "accuracy_without_rejection": metricas['acuracia_sem_rejeicao'],
@@ -272,7 +271,7 @@ if __name__ == '__main__':
                 "rejected": metricas['tempo_medio_rejeitadas']
             },
             "top_features": [
-                {"feature": feat, "count": count} 
+                {"feature": feat, "count": count}
                 for feat, count in metricas['features_frequentes']
             ]
         }
@@ -280,3 +279,194 @@ if __name__ == '__main__':
         
     else:
         print("Nenhum dataset foi selecionado. Encerrando o programa.")
+
+
+def run_minexp_for_dataset(dataset_name: str) -> dict:
+    """
+    Executa o MinExp usando o MESMO pipeline e thresholds do PEAB para um dataset específico.
+    Retorna um dicionário com métricas principais e caminho do relatório.
+    """
+    pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
+    nomes_features = meta['feature_names']
+
+    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][1]}_vs_rest"
+
+    metricas = {
+        'dataset_name': nome_relatorio,
+        'test_size': meta['test_size'],
+        'rejection_cost': meta['rejection_cost'],
+        'num_features': len(nomes_features),
+        'total_instancias_teste': len(y_test)
+    }
+    metricas['acuracia_sem_rejeicao'] = metrics.accuracy_score(y_test, pipeline.predict(X_test)) * 100
+
+    # Índices com thresholds compartilhados
+    t_upper, t_lower = float(t_plus), float(t_minus)
+    decfun_test = pipeline.decision_function(X_test)
+    pos_idx = np.where(decfun_test > t_upper)[0]
+    neg_idx = np.where(decfun_test < t_lower)[0]
+    rej_idx = np.where((decfun_test <= t_upper) & (decfun_test >= t_lower))[0]
+
+    # Adapter LR -> solver
+    w = pipeline.named_steps['model'].coef_[0]
+    b = pipeline.named_steps['model'].intercept_[0]
+    support_vectors = np.array([w])
+    dual_coef = np.array([[1.0]])
+    intercept = np.array([b])
+
+    X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
+    lower_bound, upper_bound = 0.0, 1.0
+
+    all_explanations = {}
+    tempo_total_explicacoes = 0.0
+
+    start_time_neg = time.time()
+    if len(neg_idx) > 0:
+        time_limit = 1.5 if len(nomes_features) >= 500 else None
+        explanations = utils.svm_explainer.svm_explanation_binary(
+            dual_coef=dual_coef,
+            support_vectors=support_vectors,
+            intercept=intercept,
+            t_lower=t_lower,
+            t_upper=t_upper,
+            lower_bound=lower_bound,
+            upper_bound=upper_bound,
+            show_log=0,
+            n_threads=4,
+            data=X_test_scaled[neg_idx],
+            classified="Negative",
+            time_limit=time_limit
+        )
+        all_explanations.update({idx: exp for idx, exp in zip(neg_idx, explanations)})
+    runtime_neg = time.time() - start_time_neg
+    tempo_total_explicacoes += runtime_neg
+    metricas['tempo_medio_negativas'] = runtime_neg / len(neg_idx) if len(neg_idx) > 0 else 0
+
+    start_time_pos = time.time()
+    if len(pos_idx) > 0:
+        time_limit = 1.5 if len(nomes_features) >= 500 else None
+        explanations = utils.svm_explainer.svm_explanation_binary(
+            dual_coef=dual_coef,
+            support_vectors=support_vectors,
+            intercept=intercept,
+            t_lower=t_lower,
+            t_upper=t_upper,
+            lower_bound=lower_bound,
+            upper_bound=upper_bound,
+            show_log=0,
+            n_threads=4,
+            data=X_test_scaled[pos_idx],
+            classified="Positive",
+            time_limit=time_limit
+        )
+        all_explanations.update({idx: exp for idx, exp in zip(pos_idx, explanations)})
+    runtime_pos = time.time() - start_time_pos
+    tempo_total_explicacoes += runtime_pos
+    metricas['tempo_medio_positivas'] = runtime_pos / len(pos_idx) if len(pos_idx) > 0 else 0
+
+    start_time_rej = time.time()
+    if len(rej_idx) > 0:
+        time_limit = 1.5 if len(nomes_features) >= 500 else None
+        explanations = utils.svm_explainer.svm_explanation_rejected(
+            dual_coef=dual_coef,
+            support_vectors=support_vectors,
+            intercept=intercept,
+            t_lower=t_lower,
+            t_upper=t_upper,
+            lower_bound=lower_bound,
+            upper_bound=upper_bound,
+            data=X_test_scaled[rej_idx],
+            show_log=0,
+            n_threads=4,
+            time_limit=time_limit
+        )
+        all_explanations.update({idx: exp for idx, exp in zip(rej_idx, explanations)})
+    runtime_rej = time.time() - start_time_rej
+    tempo_total_explicacoes += runtime_rej
+    metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
+
+    metricas['tempo_total'] = tempo_total_explicacoes
+    metricas['tempo_medio_instancia'] = tempo_total_explicacoes / len(y_test) if len(y_test) > 0 else 0
+    metricas['num_rejeitadas_teste'] = len(rej_idx)
+    metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
+    metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_test)) * 100 if len(y_test) > 0 else 0
+    metricas['acuracia_com_rejeicao'] = utils.utility.calculate_accuracy(pipeline, t_upper, t_lower, X_test, y_test) * 100
+
+    feature_counts = {name: 0 for name in nomes_features}
+    exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
+    for idx, exp in all_explanations.items():
+        exp_len = len(exp)
+        if idx in pos_idx:
+            exp_lengths_pos.append(exp_len)
+        elif idx in neg_idx:
+            exp_lengths_neg.append(exp_len)
+        elif idx in rej_idx:
+            exp_lengths_rej.append(exp_len)
+        for item_explicacao in exp:
+            feature_idx = item_explicacao[0]
+            if feature_idx < len(nomes_features):
+                feature_counts[nomes_features[feature_idx]] += 1
+
+    for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative", exp_lengths_neg), ("rejected", exp_lengths_rej)]:
+        stats = {'count': len(exp_lengths)}
+        if exp_lengths:
+            stats.update({
+                'min_length': int(np.min(exp_lengths)),
+                'mean_length': float(np.mean(exp_lengths)),
+                'max_length': int(np.max(exp_lengths)),
+                'std_length': float(np.std(exp_lengths))
+            })
+        else:
+            stats.update({'min_length': 0, 'mean_length': 0, 'max_length': 0, 'std_length': 0})
+        metricas[f'stats_explicacao_{class_key}'] = stats
+
+    metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item[1], reverse=True)
+
+    log_final = formatar_log(metricas)
+    base_dir = os.path.join('results', 'report', 'minexp')
+    os.makedirs(base_dir, exist_ok=True)
+    caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_relatorio}.txt')
+    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+        f.write(log_final)
+
+    dataset_key = dataset_name
+    results_data = {
+        "config": {
+            "dataset_name": dataset_key,
+            "test_size": float(meta['test_size']),
+            "random_state": RANDOM_STATE,
+            "rejection_cost": float(meta['rejection_cost'])
+        },
+        "thresholds": {
+            "t_plus": float(t_upper),
+            "t_minus": float(t_lower)
+        },
+        "performance": {
+            "accuracy_without_rejection": metricas['acuracia_sem_rejeicao'],
+            "accuracy_with_rejection": metricas['acuracia_com_rejeicao'],
+            "rejection_rate": metricas['taxa_rejeicao_teste']
+        },
+        "explanation_stats": {
+            "positive": metricas['stats_explicacao_positive'],
+            "negative": metricas['stats_explicacao_negative'],
+            "rejected": metricas['stats_explicacao_rejected']
+        },
+        "computation_time": {
+            "total": metricas['tempo_total'],
+            "mean_per_instance": metricas['tempo_medio_instancia'],
+            "positive": metricas['tempo_medio_positivas'],
+            "negative": metricas['tempo_medio_negativas'],
+            "rejected": metricas['tempo_medio_rejeitadas']
+        },
+        "top_features": [
+            {"feature": feat, "count": count}
+            for feat, count in metricas['features_frequentes']
+        ]
+    }
+    update_method_results("MinExp", dataset_key, results_data)
+
+    return {
+        'report_path': caminho_arquivo,
+        'json_updated_for': dataset_key,
+        'metrics': metricas
+    }
