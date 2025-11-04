@@ -189,21 +189,36 @@ def find_thresholds(classifier,data_train, labels_train, wr = None):
     return T1, T2
 
 def calculate_accuracy(classifier, t1, t2, data, labels):
-    
     """
-    ## Calculates accuracy based on rejection thresholds
+    Calcula acurácia com rejeição baseada em thresholds t1/t2.
+    Corrigido para sempre indexar por posição (evita KeyError em Series pandas).
     """
-    positive_indexes,negative_indexes,rejected_indexes = find_indexes(classifier, data, t1,t2)
-    n_elements = len(labels)
-    #Number of Rejected
+    positive_indexes, negative_indexes, rejected_indexes = find_indexes(classifier, data, t1, t2)
+    # Converter labels para array posicional
+    if isinstance(labels, pd.Series):
+        labels_arr = labels.to_numpy()
+    else:
+        labels_arr = np.asarray(labels)
+
+    n_elements = len(labels_arr)
     R = len(rejected_indexes)
-    #Get Number of Misclassifications
-    class_p = labels[positive_indexes] #All classified as POSITIVE
-    class_n = labels[negative_indexes] #All classified as NEGATIVE
-    error_p = np.where(class_p == np.unique(labels)[0])[0].shape[0] #Calculate how many True Negatives were misclassified as Positives
-    error_n = np.where(class_n == np.unique(labels)[1])[0].shape[0] #Calculate how many True Positives were cmislassifier as Negatives
+
+    # Classes previstas (indexação posicional)
+    class_p = labels_arr[positive_indexes]
+    class_n = labels_arr[negative_indexes]
+
+    # Determinar rótulos únicos (assumindo binário)
+    uniq = np.unique(labels_arr)
+    if uniq.size < 2:
+        # Caso degenerado, evitar divisão por zero
+        return 1.0
+
+    error_p = np.where(class_p == uniq[0])[0].shape[0]
+    error_n = np.where(class_n == uniq[1])[0].shape[0]
     print(f"Error p = {error_p}, Error n = {error_n}, Rejected = {R}")
-    E = (error_p + error_n) 
-    E_ratio =  E/(n_elements - R) #Total misclassfied ratio
+
+    if n_elements - R <= 0:
+        return 1.0
+    E_ratio = (error_p + error_n) / (n_elements - R)
     accuracy = 1 - E_ratio
-    return accuracy
+    return float(accuracy)

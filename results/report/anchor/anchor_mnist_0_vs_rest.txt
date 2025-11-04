@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: mnist_0_vs_rest
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 210
+  - Número de Features do Modelo: 784
+  - Acurácia do Modelo (teste, sem rejeição): 97.62%
+  - Thresholds de Rejeição (Score): t+ = 2.0586, t- = -1.8130
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 19666.1029 segundos
+  - Tempo Médio por Instância (Geral): 93.6481 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 8.10% (17 de 210 instâncias)
+  - Acurácia com Opção de Rejeição (nas 193 instâncias aceitas): 99.48%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (179 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.74 ± 0.45  (Min: 0, Max: 2)
+  - Classe Negativa (Aceitas): (14 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 5.29 ± 1.98  (Min: 3, Max: 9)
+  - Classe REJEITADA: (17 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.41 ± 3.07  (Min: 1, Max: 10)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - pixel4: 250 vezes
+    - pixel3: 71 vezes
+    - pixel43: 69 vezes
+    - pixel5: 68 vezes
+    - pixel46: 66 vezes
+    - pixel40: 33 vezes
+    - pixel6: 29 vezes
+    - pixel2: 29 vezes
+    - pixel49: 26 vezes
+    - pixel436: 24 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 22.6648 segundos
+  - Tempo Médio (Negativas Aceitas): 672.9242 segundos
+  - Tempo Médio (Rejeitadas): 364.0101 segundos

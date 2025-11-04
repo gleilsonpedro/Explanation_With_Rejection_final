@@ -139,37 +139,86 @@ if __name__ == '__main__':
 
         # --- GERAÇÃO DAS EXPLICAÇÕES ANCHOR ---
         # Anchor deve usar a probabilidade do MESMO pipeline (igual PEAB)
-        predict_fn = pipeline.predict_proba
-        explainer = AnchorTabular(predict_fn, feature_names=nomes_features)
-        # O explainer aprende a distribuição dos dados de treino (dados crus; pipeline faz o scaling)
-        explainer.fit(X_train, disc_perc=(25, 50, 75))
+        # Criar um wrapper para garantir que o pipeline receba DataFrame com nomes de features
+        def predict_fn_wrapper(x: np.ndarray):
+            # Alibi frequentemente passa arrays numpy; o pipeline (MinMaxScaler) foi ajustado
+            # com nomes de features (DataFrame). Para evitar warning e garantir alinhamento,
+            # convertemos para DataFrame quando necessário.
+            if isinstance(x, np.ndarray):
+                try:
+                    df = pd.DataFrame(x, columns=nomes_features)
+                except Exception:
+                    # Se a forma não encaixar (e.g., única instância 1D), tentar reshape
+                    arr = x.reshape(1, -1) if x.ndim == 1 else x
+                    df = pd.DataFrame(arr, columns=nomes_features)
+                return pipeline.predict_proba(df)
+            else:
+                return pipeline.predict_proba(x)
 
-        print(f"Gerando explicações com Anchor (Alibi) para as {len(X_test)} instâncias de teste...")
+        explainer = AnchorTabular(predict_fn_wrapper, feature_names=nomes_features)
+        # O explainer aprende a distribuição dos dados de treino (dados crus; pipeline faz o scaling)
+        # Alibi espera um array numpy para discretização por percentis
+        explainer.fit(X_train.values if hasattr(X_train, 'values') else X_train, disc_perc=(25, 50, 75))
+
+        # Para datasets muito grandes/alto-dimensional (ex.: MNIST) limitamos explicações
+        # Contudo, se o experimento já aplicou 'subsample_size' (via peap_2.DATASET_CONFIG),
+        # NÃO aplicamos limite extra — queremos que PEAB/MinExp/Anchor façam a mesma análise.
+        max_instances_to_explain = len(X_test)
+        subsample = meta.get('subsample_size', None)
+        if subsample is None and len(nomes_features) >= 500:
+            # limite seguro para evitar estouro de memória em Alibi (quando NÃO houve subamostragem)
+            max_instances_to_explain = min(200, len(X_test))
+            print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
+                  f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
+
+        print(f"Gerando explicações com Anchor (Alibi) para as {max_instances_to_explain} instâncias de teste (de {len(X_test)} totais)...")
         tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
         explicacoes = {}
+        # Parâmetros low-memory para alta dimensionalidade (ex.: MNIST)
+        low_memory = len(nomes_features) >= 500
+        anchor_params = {}
+        if low_memory:
+            anchor_params = {
+                'batch_size': 32,
+                'beam_size': 1
+            }
 
-        for i in range(len(X_test)):
+        for i in range(max_instances_to_explain):
             start_time = time.time()
-            explanation = explainer.explain(X_test[i], threshold=local_anchor_threshold)
+            instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
+            try:
+                explanation = explainer.explain(instance_arr, threshold=local_anchor_threshold, **anchor_params)
+            except (MemoryError, OverflowError) as mem_err:
+                # Fallback: tentar reduzir ainda mais memória e continuar
+                if low_memory and anchor_params.get('batch_size', 32) > 8:
+                    print(f"MEMORY ERROR na instância {i}. Reduzindo batch_size e tentando novamente...")
+                    try:
+                        explanation = explainer.explain(instance_arr, threshold=local_anchor_threshold, batch_size=8, beam_size=1)
+                    except Exception as e:
+                        print(f"Falha ao re-tentar com batch_size=8: {e}. Pulando esta instância.")
+                        continue
+                else:
+                    print(f"MEMORY ERROR ao explicar instância {i}: {mem_err}. Pulando esta instância.")
+                    continue
+            except Exception as e:
+                print(f"Erro ao explicar instância {i} com Anchor: {e}. Pulando esta instância.")
+                continue
+
             runtime = time.time() - start_time
             tempos_total.append(runtime)
             explicacoes[i] = explanation.anchor
-
-            # Atribui o tempo à classe correta (positiva, negativa ou rejeitada)
             if i in indices_rejeitados:
                 tempos_rej.append(runtime)
-            elif y_pred_final[i] == 1:  # Classe positiva
+            elif y_pred_final[i] == 1:
                 tempos_pos.append(runtime)
-            else:  # Classe negativa
+            else:
                 tempos_neg.append(runtime)
 
-        # --- O RESTO DO CÓDIGO DE CÁLCULO DE MÉTRICAS E PLOT ---
         metricas['tempo_total'] = sum(tempos_total)
         metricas['tempo_medio_instancia'] = np.mean(tempos_total) if tempos_total else 0
         metricas['tempo_medio_positivas'] = np.mean(tempos_pos) if tempos_pos else 0
         metricas['tempo_medio_negativas'] = np.mean(tempos_neg) if tempos_neg else 0
         metricas['tempo_medio_rejeitadas'] = np.mean(tempos_rej) if tempos_rej else 0
-
         feature_counts = Counter()
         exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
         for i in range(len(y_pred_final)):
@@ -192,7 +241,6 @@ if __name__ == '__main__':
             'max': max(exp_lengths_pos) if exp_lengths_pos else 0,
             'std_dev': np.std(exp_lengths_pos) if exp_lengths_pos else 0
         }
-
         stats_neg = {
             'instancias': len(exp_lengths_neg),
             'min': min(exp_lengths_neg) if exp_lengths_neg else 0,
@@ -200,7 +248,6 @@ if __name__ == '__main__':
             'max': max(exp_lengths_neg) if exp_lengths_neg else 0,
             'std_dev': np.std(exp_lengths_neg) if exp_lengths_neg else 0
         }
-
         stats_rej = {
             'instancias': len(exp_lengths_rej),
             'min': min(exp_lengths_rej) if exp_lengths_rej else 0,
@@ -223,42 +270,100 @@ if __name__ == '__main__':
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
 
         dataset_key = nome_dataset_original
+        # JSON detalhado compatível com PEAB
+        X_test_dict = {str(col): [float(x) for x in X_test[col].tolist()] for col in X_test.columns}
+        y_test_list = [int(v) for v in (y_test.tolist() if hasattr(y_test, 'tolist') else list(y_test))]
+        rejected_mask = np.array([i in indices_rejeitados for i in range(len(y_test))])
 
-        results_data = {
-            "config": {
-                "dataset_name": nome_dataset_original,
-                "test_size": float(meta['test_size']),
-                "random_state": RANDOM_STATE,
-                "rejection_cost": float(meta['rejection_cost'])
-            },
-            "thresholds": {
-                "t_plus": float(t_plus),
-                "t_minus": float(t_minus)
-            },
-            "performance": {
-                "accuracy_without_rejection": float(metricas['acuracia_sem_rejeicao']),
-                "accuracy_with_rejection": float(metricas['acuracia_com_rejeicao']),
-                "rejection_rate": float(metricas['taxa_rejeicao_teste'])
-            },
-            "explanation_stats": {
-                "positive": stats_pos,
-                "negative": stats_neg,
-                "rejected": stats_rej
-            },
-            "computation_time": {
-                "total": float(metricas['tempo_total']),
-                "mean_per_instance": float(metricas['tempo_medio_instancia']),
-                "positive": float(metricas['tempo_medio_positivas']),
-                "negative": float(metricas['tempo_medio_negativas']),
-                "rejected": float(metricas['tempo_medio_rejeitadas'])
-            },
-            "top_features": [
-                {"feature": feat, "count": count}
-                for feat, count in metricas['features_frequentes']
-            ]
+        def extract_feats(rules):
+            feats = set()
+            for regra in rules:
+                for fname in nomes_features:
+                    if fname in regra:
+                        feats.add(fname)
+            return sorted(list(feats))
+
+        per_instance = []
+        explicacoes_local = locals().get('explicacoes', {}) if isinstance(locals().get('explicacoes', {}), dict) else {}
+        for i in range(len(y_test_list)):
+            y_pred_i = int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1
+            rules = explicacoes_local.get(i, [])
+            feats_list = extract_feats(rules)
+            per_instance.append({
+                'id': str(i),
+                'y_true': int(y_test_list[i]),
+                'y_pred': y_pred_i,
+                'rejected': bool(rejected_mask[i]),
+                'decision_score': float(decision_scores_test[i]),
+                'explanation': feats_list,
+                'explanation_size': int(len(feats_list))
+            })
+
+        def conv_stats(d):
+            return {
+                'count': int(d.get('instancias', 0)),
+                'min_length': int(d.get('min', 0)),
+                'mean_length': float(d.get('media', 0.0)),
+                'max_length': int(d.get('max', 0)),
+                'std_length': float(d.get('std_dev', 0.0))
+            }
+        explanation_stats = {
+            'positive': conv_stats(stats_pos),
+            'negative': conv_stats(stats_neg),
+            'rejected': conv_stats(stats_rej)
         }
 
-        update_method_results("anchor", dataset_key, results_data)
+        model_params = meta.get('model_params', {})
+        coefs_ordered = [float(model_params.get('coefs', {}).get(col, 0.0)) for col in nomes_features]
+        intercepto = float(model_params.get('intercepto', float(pipeline.named_steps['model'].intercept_[0])))
+        scaler_params = model_params.get('scaler_params', {
+            'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
+            'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
+        })
+
+        dataset_cache = {
+            'config': {
+                'dataset_name': dataset_key,
+                'test_size': float(meta['test_size']),
+                'random_state': RANDOM_STATE,
+                'rejection_cost': float(meta['rejection_cost'])
+            },
+            'thresholds': {
+                't_plus': float(t_plus),
+                't_minus': float(t_minus)
+            },
+            'performance': {
+                'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
+                'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
+                'rejection_rate': float(metricas['taxa_rejeicao_teste'])
+            },
+            'explanation_stats': explanation_stats,
+            'computation_time': {
+                'total': float(metricas.get('tempo_total', 0.0)),
+                'mean_per_instance': float(metricas.get('tempo_medio_instancia', 0.0)),
+                'positive': float(metricas.get('tempo_medio_positivas', 0.0)),
+                'negative': float(metricas.get('tempo_medio_negativas', 0.0)),
+                'rejected': float(metricas.get('tempo_medio_rejeitadas', 0.0))
+            },
+            'top_features': [
+                {"feature": feat, "count": int(count)}
+                for feat, count in metricas['features_frequentes']
+            ],
+            'data': {
+                'feature_names': list(nomes_features),
+                'class_names': list(meta['nomes_classes']),
+                'X_test': X_test_dict,
+                'y_test': y_test_list
+            },
+            'model': {
+                'coefs': coefs_ordered,
+                'intercept': intercepto,
+                'scaler_params': scaler_params
+            },
+            'per_instance': per_instance
+        }
+
+        update_method_results("anchor", dataset_key, dataset_cache)
 
         # Salvar plot também dentro de results/anchor/plots
         plot_dir = os.path.join(base_dir, 'plots')
@@ -322,15 +427,60 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
     metricas['acuracia_com_rejeicao'] = accuracy_score(y_test_aceitos, y_pred_aceitos) * 100 if len(indices_aceitos) > 0 else 100
 
     # Anchor
-    predict_fn = pipeline.predict_proba
-    explainer = AnchorTabular(predict_fn, feature_names=nomes_features)
-    explainer.fit(X_train, disc_perc=(25, 50, 75))
+    def predict_fn_wrapper(x: np.ndarray):
+        if isinstance(x, np.ndarray):
+            try:
+                df = pd.DataFrame(x, columns=nomes_features)
+            except Exception:
+                arr = x.reshape(1, -1) if x.ndim == 1 else x
+                df = pd.DataFrame(arr, columns=nomes_features)
+            return pipeline.predict_proba(df)
+        else:
+            return pipeline.predict_proba(x)
+
+    explainer = AnchorTabular(predict_fn_wrapper, feature_names=nomes_features)
+    explainer.fit(X_train.values if hasattr(X_train, 'values') else X_train, disc_perc=(25, 50, 75))
+
+    # Limitar número de explicações para datasets de alta dimensionalidade
+    # Contudo, se houver subamostragem aplicada (meta['subsample_size']), respeitamos isso
+    max_instances_to_explain = len(X_test)
+    subsample = meta.get('subsample_size', None)
+    if subsample is None and len(nomes_features) >= 500:
+        max_instances_to_explain = min(200, len(X_test))
+        print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
+              f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
 
     tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
     explicacoes = {}
-    for i in range(len(X_test)):
+    # Parâmetros low-memory para alta dimensionalidade (ex.: MNIST)
+    low_memory = len(nomes_features) >= 500
+    anchor_params = {}
+    if low_memory:
+        anchor_params = {
+            'batch_size': 32,
+            'beam_size': 1
+        }
+
+    for i in range(max_instances_to_explain):
         start_time = time.time()
-        explanation = explainer.explain(X_test[i], threshold=local_anchor_threshold)
+        instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
+        try:
+            explanation = explainer.explain(instance_arr, threshold=local_anchor_threshold, **anchor_params)
+        except (MemoryError, OverflowError) as mem_err:
+            if low_memory and anchor_params.get('batch_size', 32) > 8:
+                print(f"MEMORY ERROR na instância {i}. Reduzindo batch_size e tentando novamente...")
+                try:
+                    explanation = explainer.explain(instance_arr, threshold=local_anchor_threshold, batch_size=8, beam_size=1)
+                except Exception as e:
+                    print(f"Falha ao re-tentar com batch_size=8: {e}. Pulando esta instância.")
+                    continue
+            else:
+                print(f"MEMORY ERROR ao explicar instância {i}: {mem_err}. Pulando esta instância.")
+                continue
+        except Exception as e:
+            print(f"Erro ao explicar instância {i} com Anchor: {e}. Pulando esta instância.")
+            continue
+
         runtime = time.time() - start_time
         tempos_total.append(runtime)
         explicacoes[i] = explanation.anchor
@@ -397,6 +547,15 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
     with open(caminho_arquivo, 'w', encoding='utf-8') as f:
         f.write(log_final)
 
+    def _conv_stats(d):
+        return {
+            'count': int(d.get('instancias', 0)),
+            'min_length': int(d.get('min', 0)),
+            'mean_length': float(d.get('media', 0.0)),
+            'max_length': int(d.get('max', 0)),
+            'std_length': float(d.get('std_dev', 0.0))
+        }
+
     results_data = {
         "config": {
             "dataset_name": dataset_name,
@@ -414,9 +573,9 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
             "rejection_rate": float(metricas['taxa_rejeicao_teste'])
         },
         "explanation_stats": {
-            "positive": stats_pos,
-            "negative": stats_neg,
-            "rejected": stats_rej
+            "positive": _conv_stats(stats_pos),
+            "negative": _conv_stats(stats_neg),
+            "rejected": _conv_stats(stats_rej)
         },
         "computation_time": {
             "total": float(metricas['tempo_total']),

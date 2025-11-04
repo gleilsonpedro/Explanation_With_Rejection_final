@@ -110,18 +110,38 @@ def svm_explanation_rejected(dual_coef, support_vectors, intercept, data, t_lowe
             for i, feature in enumerate(data[z]):
                 #If feature is relevant, keep it so that it maintains the class
                 if i != exclude and i in relevant_features:
-                    X_neg[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X_neg[i].setInitialValue(feat_val)
                     X_neg[i].fixValue()
 
-                    X_pos[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X_pos[i].setInitialValue(feat_val)
                     X_pos[i].fixValue()
 
                 #If its not the feature to be checked and haven't been worked upon yet
                 elif i != exclude and i not in not_relevant and i not in relevant_features:
-                    X_neg[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X_neg[i].setInitialValue(feat_val)
                     X_neg[i].fixValue()
 
-                    X_pos[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X_pos[i].setInitialValue(feat_val)
                     X_pos[i].fixValue()
 
                 #If feature is the one to be checked or is irrelevant    
@@ -269,12 +289,22 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
             for i, feature in enumerate(data[z]):
                 #If feature is relevant, keep it so that it maintains the class
                 if i != exclude and i in relevant_features:
-                    X[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X[i].setInitialValue(feat_val)
                     X[i].fixValue()
 
                 #If its not the feature to be checked and haven't been worked upon yet
                 elif i != exclude and i not in not_relevant and i not in relevant_features:
-                    X[i].setInitialValue(feature)
+                    feat_val = float(feature)
+                    if feat_val < lower_bound:
+                        feat_val = lower_bound
+                    elif feat_val > upper_bound:
+                        feat_val = upper_bound
+                    X[i].setInitialValue(feat_val)
                     X[i].fixValue()
 
                 #If feature is the one to be checked or is irrelevant    

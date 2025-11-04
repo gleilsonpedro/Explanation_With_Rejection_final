@@ -121,66 +121,105 @@ if __name__ == '__main__':
 
         # 5) Dados escalados para o solver (MinMaxScaler)
         X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
+        # Importante: o MinMaxScaler pode gerar valores fora de [0,1] em teste (se ultrapassarem min/max do treino).
+        # Como o solver assume variáveis em [0,1], fazemos clipping aqui para evitar erros de warm start no LP.
+        X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
         lower_bound, upper_bound = 0.0, 1.0
+
+        # 5.1) Redução de dimensionalidade apenas para o SOLVER (não altera o classificador nem thresholds)
+        hi_dim = len(nomes_features) >= 500
+        topk_idx = None
+        X_test_solver = X_test_scaled
+        w_solver = w
+        if hi_dim:
+            # Seleciona top-K por |w| para acelerar o MILP
+            K = min(200, len(nomes_features))
+            abs_w = np.abs(w)
+            topk_idx = np.argsort(abs_w)[-K:][::-1]
+            X_test_solver = X_test_scaled[:, topk_idx]
+            w_solver = w[topk_idx]
 
         all_explanations = {}
         tempo_total_explicacoes = 0.0
         
+        # Helper: explicar em chunks para reduzir uso de memória
+        def explain_in_chunks(idx_array, classified_label):
+            if len(idx_array) == 0:
+                return
+            time_limit = 30.0 if hi_dim else None
+            chunk_size = 20 if hi_dim else len(idx_array)
+            for start in range(0, len(idx_array), chunk_size):
+                sl = slice(start, start + chunk_size)
+                sel_idx = idx_array[sl]
+                try:
+                    explanations_local = utils.svm_explainer.svm_explanation_binary(
+                        dual_coef=dual_coef,
+                        support_vectors=np.array([w_solver]),
+                        intercept=intercept,
+                        t_lower=t_lower,
+                        t_upper=t_upper,
+                        lower_bound=lower_bound,
+                        upper_bound=upper_bound,
+                        show_log=0,
+                        n_threads=1,
+                        data=X_test_solver[sel_idx],
+                        classified=classified_label,
+                        time_limit=time_limit
+                    )
+                    # Se reduzimos dimensão, remapear índices para espaço original
+                    if topk_idx is not None:
+                        remapped = []
+                        for exp in explanations_local:
+                            remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
+                        explanations_local = remapped
+                    all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                except Exception as e:
+                    print(f"[MinExp] Solver falhou para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+
         start_time_neg = time.time()
         if len(neg_idx) > 0:
-            explanations = utils.svm_explainer.svm_explanation_binary(
-                dual_coef=dual_coef,
-                support_vectors=support_vectors,
-                intercept=intercept,
-                t_lower=t_lower,
-                t_upper=t_upper,
-                lower_bound=lower_bound,
-                upper_bound=upper_bound,
-                show_log=0,
-                n_threads=4,
-                data=X_test_scaled[neg_idx],
-                classified="Negative"
-            )
-            all_explanations.update({idx: exp for idx, exp in zip(neg_idx, explanations)})
+            explain_in_chunks(neg_idx, "Negative")
         runtime_neg = time.time() - start_time_neg
         tempo_total_explicacoes += runtime_neg
         metricas['tempo_medio_negativas'] = runtime_neg / len(neg_idx) if len(neg_idx) > 0 else 0
 
         start_time_pos = time.time()
         if len(pos_idx) > 0:
-            explanations = utils.svm_explainer.svm_explanation_binary(
-                dual_coef=dual_coef,
-                support_vectors=support_vectors,
-                intercept=intercept,
-                t_lower=t_lower,
-                t_upper=t_upper,
-                lower_bound=lower_bound,
-                upper_bound=upper_bound,
-                show_log=0,
-                n_threads=4,
-                data=X_test_scaled[pos_idx],
-                classified="Positive"
-            )
-            all_explanations.update({idx: exp for idx, exp in zip(pos_idx, explanations)})
+            explain_in_chunks(pos_idx, "Positive")
         runtime_pos = time.time() - start_time_pos
         tempo_total_explicacoes += runtime_pos
         metricas['tempo_medio_positivas'] = runtime_pos / len(pos_idx) if len(pos_idx) > 0 else 0
 
         start_time_rej = time.time()
         if len(rej_idx) > 0:
-            explanations = utils.svm_explainer.svm_explanation_rejected(
-                dual_coef=dual_coef,
-                support_vectors=support_vectors,
-                intercept=intercept,
-                t_lower=t_lower,
-                t_upper=t_upper,
-                lower_bound=lower_bound,
-                upper_bound=upper_bound,
-                data=X_test_scaled[rej_idx],
-                show_log=0,
-                n_threads=4
-            )
-            all_explanations.update({idx: exp for idx, exp in zip(rej_idx, explanations)})
+            # Rejeitadas também em chunks
+            time_limit = 30.0 if hi_dim else None
+            chunk_size = 20 if hi_dim else len(rej_idx)
+            for start in range(0, len(rej_idx), chunk_size):
+                sl = slice(start, start + chunk_size)
+                sel_idx = rej_idx[sl]
+                try:
+                    explanations_local = utils.svm_explainer.svm_explanation_rejected(
+                        dual_coef=dual_coef,
+                        support_vectors=np.array([w_solver]),
+                        intercept=intercept,
+                        t_lower=t_lower,
+                        t_upper=t_upper,
+                        lower_bound=lower_bound,
+                        upper_bound=upper_bound,
+                        data=X_test_solver[sel_idx],
+                        show_log=0,
+                        n_threads=1,
+                        time_limit=time_limit
+                    )
+                    if topk_idx is not None:
+                        remapped = []
+                        for exp in explanations_local:
+                            remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
+                        explanations_local = remapped
+                    all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                except Exception as e:
+                    print(f"[MinExp] Solver falhou para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
         runtime_rej = time.time() - start_time_rej
         tempo_total_explicacoes += runtime_rej
         metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
@@ -195,25 +234,26 @@ if __name__ == '__main__':
 
         feature_counts = {name: 0 for name in nomes_features}
 
-        # Listas para guardar os tamanhos das explicações por classe
+        # Listas para guardar os tamanhos das explicações por classe (contabiliza TODAS as instâncias)
         exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
 
-        # Primeiro, itera sobre todas as explicações para coletar os tamanhos e contar as features
-        for idx, exp in all_explanations.items():
+        # Itera sobre todas as instâncias e usa explicações quando disponíveis (senão tamanho=0)
+        total_n = len(y_test)
+        for i in range(total_n):
+            exp = all_explanations.get(i, [])
             exp_len = len(exp)
 
-            # Adiciona o tamanho à lista da classe correta
-            if idx in pos_idx:
+            if i in pos_idx:
                 exp_lengths_pos.append(exp_len)
-            elif idx in neg_idx:
+            elif i in neg_idx:
                 exp_lengths_neg.append(exp_len)
-            elif idx in rej_idx:
+            elif i in rej_idx:
                 exp_lengths_rej.append(exp_len)
 
-            # Conta a frequência das features
+            # Conta a frequência das features apenas quando houver explicação
             for item_explicacao in exp:
                 feature_idx = item_explicacao[0]
-                if feature_idx < len(nomes_features):
+                if 0 <= feature_idx < len(nomes_features):
                     feature_counts[nomes_features[feature_idx]] += 1
 
         # Agora, calcula as estatísticas para cada classe usando as listas preenchidas
@@ -240,42 +280,93 @@ if __name__ == '__main__':
             f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
 
-        # Salvar resultados consolidados no JSON
+        # Salvar resultados detalhados no JSON (compatível com PEAB)
         dataset_key = nome_dataset_original
-        results_data = {
-            "config": {
-                "dataset_name": dataset_key,
-                "test_size": float(meta['test_size']),
-                "random_state": RANDOM_STATE,
-                "rejection_cost": float(meta['rejection_cost'])
+        # Predições finais por threshold
+        y_pred_final = np.full(len(y_test), -1, dtype=int)
+        y_pred_final[pos_idx] = 1
+        y_pred_final[neg_idx] = 0
+        rejected_mask = np.array([i in rej_idx for i in range(len(y_test))])
+
+        # Dados e rótulos
+        X_test_dict = {}
+        for col in X_test.columns:
+            X_test_dict[str(col)] = [float(x) for x in X_test[col].tolist()]
+        y_test_list = [int(v) for v in (y_test.tolist() if hasattr(y_test, 'tolist') else list(y_test))]
+
+        def extract_feats_minexp(exp):
+            feats = set()
+            for item in exp:
+                try:
+                    fidx = int(item[0])
+                except Exception:
+                    continue
+                if 0 <= fidx < len(nomes_features):
+                    feats.add(nomes_features[fidx])
+            return sorted(list(feats))
+
+        per_instance = []
+        for i in range(len(y_test_list)):
+            feats_list = extract_feats_minexp(all_explanations.get(i, []))
+            per_instance.append({
+                'id': str(i),
+                'y_true': int(y_test_list[i]),
+                'y_pred': int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1,
+                'rejected': bool(rejected_mask[i]),
+                'decision_score': float(decfun_test[i]),
+                'explanation': feats_list,
+                'explanation_size': int(len(feats_list))
+            })
+
+        dataset_cache = {
+            'config': {
+                'dataset_name': dataset_key,
+                'test_size': float(meta['test_size']),
+                'random_state': RANDOM_STATE,
+                'rejection_cost': float(meta['rejection_cost'])
             },
-            "thresholds": {
-                "t_plus": float(t_upper),
-                "t_minus": float(t_lower)
+            'thresholds': {
+                't_plus': float(t_upper),
+                't_minus': float(t_lower)
             },
-            "performance": {
-                "accuracy_without_rejection": metricas['acuracia_sem_rejeicao'],
-                "accuracy_with_rejection": metricas['acuracia_com_rejeicao'],
-                "rejection_rate": metricas['taxa_rejeicao_teste']
+            'performance': {
+                'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
+                'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
+                'rejection_rate': float(metricas['taxa_rejeicao_teste'])
             },
-            "explanation_stats": {
-                "positive": metricas['stats_explicacao_positive'],
-                "negative": metricas['stats_explicacao_negative'],
-                "rejected": metricas['stats_explicacao_rejected']
+            'explanation_stats': {
+                'positive': metricas['stats_explicacao_positive'],
+                'negative': metricas['stats_explicacao_negative'],
+                'rejected': metricas['stats_explicacao_rejected']
             },
-            "computation_time": {
-                "total": metricas['tempo_total'],
-                "mean_per_instance": metricas['tempo_medio_instancia'],
-                "positive": metricas['tempo_medio_positivas'],
-                "negative": metricas['tempo_medio_negativas'],
-                "rejected": metricas['tempo_medio_rejeitadas']
+            'computation_time': {
+                'total': float(metricas['tempo_total']),
+                'mean_per_instance': float(metricas['tempo_medio_instancia']),
+                'positive': float(metricas['tempo_medio_positivas']),
+                'negative': float(metricas['tempo_medio_negativas']),
+                'rejected': float(metricas['tempo_medio_rejeitadas'])
             },
-            "top_features": [
-                {"feature": feat, "count": count}
+            'top_features': [
+                {"feature": feat, "count": int(count)}
                 for feat, count in metricas['features_frequentes']
-            ]
+            ],
+            'data': {
+                'feature_names': list(nomes_features),
+                'class_names': list(meta['nomes_classes']),
+                'X_test': X_test_dict,
+                'y_test': y_test_list
+            },
+            'model': {
+                'coefs': [float(c) for c in pipeline.named_steps['model'].coef_[0].tolist()],
+                'intercept': float(pipeline.named_steps['model'].intercept_[0]),
+                'scaler_params': {
+                    'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
+                    'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
+                }
+            },
+            'per_instance': per_instance
         }
-        update_method_results("MinExp", dataset_key, results_data)
+        update_method_results("MinExp", dataset_key, dataset_cache)
         
     else:
         print("Nenhum dataset foi selecionado. Encerrando o programa.")
@@ -315,72 +406,102 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     intercept = np.array([b])
 
     X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
+    # Clipping para manter dentro de [0,1] esperado pelo solver
+    X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
     lower_bound, upper_bound = 0.0, 1.0
+
+    # Redução de dimensionalidade apenas para o SOLVER em alta dimensionalidade (ex.: MNIST)
+    hi_dim = len(nomes_features) >= 500
+    topk_idx = None
+    X_test_solver = X_test_scaled
+    w_solver = w
+    if hi_dim:
+        K = min(200, len(nomes_features))
+        abs_w = np.abs(w)
+        topk_idx = np.argsort(abs_w)[-K:][::-1]
+        X_test_solver = X_test_scaled[:, topk_idx]
+        w_solver = w[topk_idx]
 
     all_explanations = {}
     tempo_total_explicacoes = 0.0
 
+    # Runner: usar mesma estratégia de chunks e time_limit maior para alta dimensionalidade
+    def explain_in_chunks(idx_array, classified_label):
+        if len(idx_array) == 0:
+            return
+        time_limit = 30.0 if hi_dim else None
+        chunk_size = 20 if hi_dim else len(idx_array)
+        for start in range(0, len(idx_array), chunk_size):
+            sl = slice(start, start + chunk_size)
+            sel_idx = idx_array[sl]
+            try:
+                explanations_local = utils.svm_explainer.svm_explanation_binary(
+                    dual_coef=dual_coef,
+                    support_vectors=np.array([w_solver]),
+                    intercept=intercept,
+                    t_lower=t_lower,
+                    t_upper=t_upper,
+                    lower_bound=lower_bound,
+                    upper_bound=upper_bound,
+                    show_log=0,
+                    n_threads=1,
+                    data=X_test_solver[sel_idx],
+                    classified=classified_label,
+                    time_limit=time_limit
+                )
+                if topk_idx is not None:
+                    remapped = []
+                    for exp in explanations_local:
+                        remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
+                    explanations_local = remapped
+                all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+            except Exception as e:
+                print(f"[MinExp] Solver falhou (runner) para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+
     start_time_neg = time.time()
     if len(neg_idx) > 0:
-        time_limit = 1.5 if len(nomes_features) >= 500 else None
-        explanations = utils.svm_explainer.svm_explanation_binary(
-            dual_coef=dual_coef,
-            support_vectors=support_vectors,
-            intercept=intercept,
-            t_lower=t_lower,
-            t_upper=t_upper,
-            lower_bound=lower_bound,
-            upper_bound=upper_bound,
-            show_log=0,
-            n_threads=4,
-            data=X_test_scaled[neg_idx],
-            classified="Negative",
-            time_limit=time_limit
-        )
-        all_explanations.update({idx: exp for idx, exp in zip(neg_idx, explanations)})
+        explain_in_chunks(neg_idx, "Negative")
     runtime_neg = time.time() - start_time_neg
     tempo_total_explicacoes += runtime_neg
     metricas['tempo_medio_negativas'] = runtime_neg / len(neg_idx) if len(neg_idx) > 0 else 0
 
     start_time_pos = time.time()
     if len(pos_idx) > 0:
-        time_limit = 1.5 if len(nomes_features) >= 500 else None
-        explanations = utils.svm_explainer.svm_explanation_binary(
-            dual_coef=dual_coef,
-            support_vectors=support_vectors,
-            intercept=intercept,
-            t_lower=t_lower,
-            t_upper=t_upper,
-            lower_bound=lower_bound,
-            upper_bound=upper_bound,
-            show_log=0,
-            n_threads=4,
-            data=X_test_scaled[pos_idx],
-            classified="Positive",
-            time_limit=time_limit
-        )
-        all_explanations.update({idx: exp for idx, exp in zip(pos_idx, explanations)})
+        explain_in_chunks(pos_idx, "Positive")
     runtime_pos = time.time() - start_time_pos
     tempo_total_explicacoes += runtime_pos
     metricas['tempo_medio_positivas'] = runtime_pos / len(pos_idx) if len(pos_idx) > 0 else 0
 
     start_time_rej = time.time()
     if len(rej_idx) > 0:
-        time_limit = 1.5 if len(nomes_features) >= 500 else None
-        explanations = utils.svm_explainer.svm_explanation_rejected(
-            dual_coef=dual_coef,
-            support_vectors=support_vectors,
-            intercept=intercept,
-            t_lower=t_lower,
-            t_upper=t_upper,
-            lower_bound=lower_bound,
-            upper_bound=upper_bound,
-            data=X_test_scaled[rej_idx],
-            show_log=0,
-            n_threads=4,
-            time_limit=time_limit
-        )
-        all_explanations.update({idx: exp for idx, exp in zip(rej_idx, explanations)})
+        # chunks para rejeitadas também
+        time_limit = 30.0 if hi_dim else None
+        chunk_size = 20 if hi_dim else len(rej_idx)
+        for start in range(0, len(rej_idx), chunk_size):
+            sl = slice(start, start + chunk_size)
+            sel_idx = rej_idx[sl]
+            try:
+                explanations_local = utils.svm_explainer.svm_explanation_rejected(
+                    dual_coef=dual_coef,
+                    support_vectors=np.array([w_solver]),
+                    intercept=intercept,
+                    t_lower=t_lower,
+                    t_upper=t_upper,
+                    lower_bound=lower_bound,
+                    upper_bound=upper_bound,
+                    data=X_test_solver[sel_idx],
+                    show_log=0,
+                    n_threads=1,
+                    time_limit=time_limit
+                )
+                if topk_idx is not None:
+                    remapped = []
+                    for exp in explanations_local:
+                        remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
+                    explanations_local = remapped
+                all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+            except Exception as e:
+                print(f"[MinExp] Solver falhou (runner) para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
     runtime_rej = time.time() - start_time_rej
     tempo_total_explicacoes += runtime_rej
     metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
@@ -394,17 +515,19 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
 
     feature_counts = {name: 0 for name in nomes_features}
     exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
-    for idx, exp in all_explanations.items():
+    total_n = len(y_test)
+    for i in range(total_n):
+        exp = all_explanations.get(i, [])
         exp_len = len(exp)
-        if idx in pos_idx:
+        if i in pos_idx:
             exp_lengths_pos.append(exp_len)
-        elif idx in neg_idx:
+        elif i in neg_idx:
             exp_lengths_neg.append(exp_len)
-        elif idx in rej_idx:
+        elif i in rej_idx:
             exp_lengths_rej.append(exp_len)
         for item_explicacao in exp:
             feature_idx = item_explicacao[0]
-            if feature_idx < len(nomes_features):
+            if 0 <= feature_idx < len(nomes_features):
                 feature_counts[nomes_features[feature_idx]] += 1
 
     for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative", exp_lengths_neg), ("rejected", exp_lengths_rej)]:
@@ -430,40 +553,90 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
         f.write(log_final)
 
     dataset_key = dataset_name
-    results_data = {
-        "config": {
-            "dataset_name": dataset_key,
-            "test_size": float(meta['test_size']),
-            "random_state": RANDOM_STATE,
-            "rejection_cost": float(meta['rejection_cost'])
+    # Predições finais por threshold
+    y_pred_final = np.full(len(y_test), -1, dtype=int)
+    y_pred_final[pos_idx] = 1
+    y_pred_final[neg_idx] = 0
+    rejected_mask = np.array([i in rej_idx for i in range(len(y_test))])
+
+    X_test_dict = {}
+    for col in X_test.columns:
+        X_test_dict[str(col)] = [float(x) for x in X_test[col].tolist()]
+    y_test_list = [int(v) for v in (y_test.tolist() if hasattr(y_test, 'tolist') else list(y_test))]
+
+    def extract_feats_minexp(exp):
+        feats = set()
+        for item in exp:
+            try:
+                fidx = int(item[0])
+            except Exception:
+                continue
+            if 0 <= fidx < len(nomes_features):
+                feats.add(nomes_features[fidx])
+        return sorted(list(feats))
+
+    per_instance = []
+    for i in range(len(y_test_list)):
+        feats_list = extract_feats_minexp(all_explanations.get(i, []))
+        per_instance.append({
+            'id': str(i),
+            'y_true': int(y_test_list[i]),
+            'y_pred': int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1,
+            'rejected': bool(rejected_mask[i]),
+            'decision_score': float(decfun_test[i]),
+            'explanation': feats_list,
+            'explanation_size': int(len(feats_list))
+        })
+
+    dataset_cache = {
+        'config': {
+            'dataset_name': dataset_key,
+            'test_size': float(meta['test_size']),
+            'random_state': RANDOM_STATE,
+            'rejection_cost': float(meta['rejection_cost'])
         },
-        "thresholds": {
-            "t_plus": float(t_upper),
-            "t_minus": float(t_lower)
+        'thresholds': {
+            't_plus': float(t_upper),
+            't_minus': float(t_lower)
         },
-        "performance": {
-            "accuracy_without_rejection": metricas['acuracia_sem_rejeicao'],
-            "accuracy_with_rejection": metricas['acuracia_com_rejeicao'],
-            "rejection_rate": metricas['taxa_rejeicao_teste']
+        'performance': {
+            'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
+            'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
+            'rejection_rate': float(metricas['taxa_rejeicao_teste'])
         },
-        "explanation_stats": {
-            "positive": metricas['stats_explicacao_positive'],
-            "negative": metricas['stats_explicacao_negative'],
-            "rejected": metricas['stats_explicacao_rejected']
+        'explanation_stats': {
+            'positive': metricas['stats_explicacao_positive'],
+            'negative': metricas['stats_explicacao_negative'],
+            'rejected': metricas['stats_explicacao_rejected']
         },
-        "computation_time": {
-            "total": metricas['tempo_total'],
-            "mean_per_instance": metricas['tempo_medio_instancia'],
-            "positive": metricas['tempo_medio_positivas'],
-            "negative": metricas['tempo_medio_negativas'],
-            "rejected": metricas['tempo_medio_rejeitadas']
+        'computation_time': {
+            'total': float(metricas['tempo_total']),
+            'mean_per_instance': float(metricas['tempo_medio_instancia']),
+            'positive': float(metricas['tempo_medio_positivas']),
+            'negative': float(metricas['tempo_medio_negativas']),
+            'rejected': float(metricas['tempo_medio_rejeitadas'])
         },
-        "top_features": [
-            {"feature": feat, "count": count}
+        'top_features': [
+            {"feature": feat, "count": int(count)}
             for feat, count in metricas['features_frequentes']
-        ]
+        ],
+        'data': {
+            'feature_names': list(nomes_features),
+            'class_names': list(meta['nomes_classes']),
+            'X_test': X_test_dict,
+            'y_test': y_test_list
+        },
+        'model': {
+            'coefs': [float(c) for c in pipeline.named_steps['model'].coef_[0].tolist()],
+            'intercept': float(pipeline.named_steps['model'].intercept_[0]),
+            'scaler_params': {
+                'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
+                'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
+            }
+        },
+        'per_instance': per_instance
     }
-    update_method_results("MinExp", dataset_key, results_data)
+    update_method_results("MinExp", dataset_key, dataset_cache)
 
     return {
         'report_path': caminho_arquivo,

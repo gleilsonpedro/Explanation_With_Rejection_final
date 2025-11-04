@@ -4,36 +4,36 @@
   - Tamanho do Conjunto de Teste: 30%
   - Total de Instâncias de Teste: 231
   - Número de Features do Modelo: 8
-  - Acurácia do Modelo (teste, sem rejeição): 76.62%
-  - Thresholds de Rejeição (Score): t+ = 0.5905, t- = -1.2337
+  - Acurácia do Modelo (teste, sem rejeição): 74.46%
+  - Thresholds de Rejeição (Score): t+ = 0.5516, t- = -0.7566
   - Custo de Rejeição usado para Thresholds: 0.24
-  - Tempo Total de Geração das Explicações: 15.7328 segundos
-  - Tempo Médio por Instância (Geral): 0.0681 segundos
+  - Tempo Total de Geração das Explicações: 21.0805 segundos
+  - Tempo Médio por Instância (Geral): 0.0913 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 58.87% (136 de 231 instâncias)
-  - Acurácia com Opção de Rejeição (nas 95 instâncias aceitas): 89.47%
+  - Taxa de Rejeição no Teste: 24.68% (57 de 231 instâncias)
+  - Acurácia com Opção de Rejeição (nas 174 instâncias aceitas): 82.76%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (Aceitas): (25 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 4.44 ± 1.30  (Min: 3, Max: 8)
-  - Classe Negativa (Aceitas): (70 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 1.70 ± 0.52  (Min: 1, Max: 3)
-  - Classe REJEITADA: (136 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 3.50 ± 1.65  (Min: 1, Max: 8)
+  - Classe Positiva (Aceitas): (40 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.12 ± 1.44  (Min: 3, Max: 8)
+  - Classe Negativa (Aceitas): (134 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.25 ± 0.82  (Min: 1, Max: 6)
+  - Classe REJEITADA: (57 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.05 ± 1.32  (Min: 2, Max: 8)
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - glicose: 214 vezes
-    - num_gravidezes: 109 vezes
-    - diabetes_pedigree: 85 vezes
-    - idade: 85 vezes
-    - imc: 83 vezes
-    - pressao_sangue: 54 vezes
-    - espessura_pele: 41 vezes
-    - insulina: 35 vezes
+    - glicose: 224 vezes
+    - imc: 128 vezes
+    - num_gravidezes: 112 vezes
+    - diabetes_pedigree: 68 vezes
+    - idade: 64 vezes
+    - pressao_sangue: 37 vezes
+    - espessura_pele: 36 vezes
+    - insulina: 29 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 0.0959 segundos
-  - Tempo Médio (Negativas Aceitas): 0.0317 segundos
-  - Tempo Médio (Rejeitadas): 0.0818 segundos
+  - Tempo Médio (Positivas Aceitas): 0.1204 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0580 segundos
+  - Tempo Médio (Rejeitadas): 0.1489 segundos

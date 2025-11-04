@@ -44,6 +44,8 @@ DEFAULT_LOGREG_PARAMS: Dict[str, Any] = {
 
 # Ativa o formato técnico conciso por instância (mantém JSON inalterado)
 TECHNICAL_LOGS: bool = True
+MAX_LOG_FEATURES: int = 200  # acima disso, o log técnico por instância é suprimido automaticamente
+MAX_LOG_STEPS: int = 60      # no máximo quantas linhas de passos detalhados serão emitidas por instância
 
 SYMBOL_LEGEND = [
     "LEGENDA DOS SÍMBOLOS",
@@ -285,9 +287,12 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
     is_rejected = t_minus <= modelo.decision_function(instancia_df)[0] <= t_plus
     log_formatado: List[str] = []
 
+    # Suprime logs técnicos automaticamente em alta dimensionalidade
+    emit_tech_logs = TECHNICAL_LOGS and (X_train.shape[1] <= MAX_LOG_FEATURES)
+
     if is_rejected:
         # Rejeitadas: prova de minimalidade com verificação bidirecional
-        if TECHNICAL_LOGS:
+        if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['rejeitada_analise'].format(t_minus=t_minus, t_plus=t_plus))
             log_formatado.append(LOG_TEMPLATES['rejeitada_prova_header'])
 
@@ -315,12 +320,13 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             expl_inicial_robusta_escolhida = expl_robusta_p2
 
         # Informar conjunto inicial robusto e formatar passos
-        if TECHNICAL_LOGS:
+        if emit_tech_logs:
             feats_iniciais = sorted([f.split(' = ')[0] for f in expl_inicial_robusta_escolhida])
             log_formatado.append(
                 f"├── Conjunto inicial (heurística): {len(feats_iniciais)} features {feats_iniciais}"
             )
-            for passo in passos_escolhidos:
+            # Limita a quantidade de passos logados
+            for passo in passos_escolhidos[:MAX_LOG_STEPS]:
                 key_header = 'rejeitada_feat_header_sucesso' if passo.get('sucesso', False) else 'rejeitada_feat_header_falha'
                 log_formatado.append(LOG_TEMPLATES[key_header].format(feat=passo['feat_nome'], delta=passo.get('delta', 0.0)))
                 cmp_neg = f"> t- ({t_minus:.4f})" if passo.get('score_neg', 0.0) > t_minus else f"< t- ({t_minus:.4f})"
@@ -331,12 +337,15 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
                 log_formatado.append(LOG_TEMPLATES['rejeitada_subteste_pos'].format(score=passo.get('score_pos', 0.0), cmp=cmp_pos, ok=ok_pos))
                 footer_key = 'rejeitada_feat_footer_sucesso' if passo.get('sucesso', False) else 'rejeitada_feat_footer_falha'
                 log_formatado.append(LOG_TEMPLATES[footer_key])
+            # Indica truncamento do log
+            if len(passos_escolhidos) > MAX_LOG_STEPS:
+                log_formatado.append(f"│   ... {len(passos_escolhidos) - MAX_LOG_STEPS} passos omitidos por limite de log ...")
 
     else:
         # Classificadas: verificação unidirecional
         pred_class = int(modelo.predict(instancia_df)[0])
         posicao = 'acima de t+' if pred_class == 1 else 'abaixo de t-'
-        if TECHNICAL_LOGS:
+        if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['classificada_analise'].format(posicao=posicao))
 
         expl_inicial = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, pred_class)
@@ -350,7 +359,7 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             key=lambda nome: abs(deltas[X_train.columns.get_loc(nome)]),
             reverse=True
         )
-        if TECHNICAL_LOGS:
+        if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['classificada_min_inicio'].format(num_features=len(expl_robusta)))
             log_formatado.append(LOG_TEMPLATES['classificada_ordem'].format(lista=str(ordem)))
 
@@ -359,13 +368,15 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
         expl_final, remocoes = fase_2_minimizacao(modelo, instancia_df, expl_robusta, X_train, t_plus, t_minus, False, pred_class, passos)
 
         # Formatar passos
-        if TECHNICAL_LOGS:
+        if emit_tech_logs:
             limiar = t_plus if pred_class == 1 else t_minus
-            for p in passos:
+            for p in passos[:MAX_LOG_STEPS]:
                 cond = ("> t+ (" + f"{limiar:.4f})") if pred_class == 1 else ("< t- (" + f"{limiar:.4f})")
                 key = 'classificada_step_sucesso' if p.get('sucesso', False) else 'classificada_step_falha'
                 score_show = p.get('score_perturbado', np.nan)
                 log_formatado.append(LOG_TEMPLATES[key].format(feat=p['feat_nome'], delta=p.get('delta', 0.0), score=score_show, cond=cond))
+            if len(passos) > MAX_LOG_STEPS:
+                log_formatado.append(f"├─ ... {len(passos) - MAX_LOG_STEPS} passos omitidos por limite de log ...")
 
     return [f.split(' = ')[0] for f in expl_final], log_formatado, adicoes, remocoes
 

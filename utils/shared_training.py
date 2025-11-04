@@ -9,6 +9,7 @@ from peab_2 import (
     carregar_hiperparametros,
     DEFAULT_LOGREG_PARAMS,
     RANDOM_STATE,
+    DATASET_CONFIG,
 )
 from sklearn.model_selection import train_test_split
 
@@ -54,6 +55,7 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         'params_modelo': params_modelo,
         'nomes_classes': nomes_classes,
         'model_params': model_params,
+        'subsample_size': DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', None)
     }
 
     return pipeline, X_train, X_test, y_train, y_test, float(t_plus), float(t_minus), meta

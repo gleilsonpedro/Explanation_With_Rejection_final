@@ -1,0 +1,39 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: pima_indians_diabetes_Diabético_vs_rest
+  - Classificador: SVM (kernel='linear')
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 231
+  - Número de Features do Modelo: 8
+  - Acurácia do Modelo (teste, sem rejeição): 74.46%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 74.7020 segundos
+  - Tempo Médio por Instância (Geral): 0.3234 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 24.68% (57 de 231 instâncias)
+  - Acurácia com Opção de Rejeição (nas 174 instâncias aceitas): 82.76%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (40 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 4.72 ± 1.34 (Min: 2, Max: 8)
+  - Classe Negativa (134 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 4.94 ± 1.12 (Min: 2, Max: 8)
+  - Classe REJEITADA (57 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 6.33 ± 0.84 (Min: 5, Max: 8)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - glicose: 231 vezes
+    - imc: 231 vezes
+    - diabetes_pedigree: 214 vezes
+    - num_gravidezes: 174 vezes
+    - idade: 151 vezes
+    - pressao_sangue: 115 vezes
+    - insulina: 68 vezes
+    - espessura_pele: 28 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 0.2890 segundos
+  - Negativas: 0.2929 segundos
+  - Rejeitadas: 0.4192 segundos
