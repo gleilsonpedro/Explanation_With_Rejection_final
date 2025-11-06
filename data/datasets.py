@@ -3,6 +3,7 @@ import os
 import io
 import zipfile
 import time
+import re
 import requests
 import numpy as np
 import pandas as pd
@@ -103,6 +104,47 @@ def _fetch_openml_with_retries(dataset_name: str, version: int = 1, as_frame: bo
     raise last_err if last_err else RuntimeError(f"Falha ao baixar dataset OpenML: {dataset_name}")
 
 RANDOM_STATE: int = 42
+
+# ------------------------ Opções globais específicas do MNIST ------------------------
+# Modo de features para MNIST: 'raw' (784) ou 'pool2x2' (196)
+MNIST_FEATURE_MODE: str = 'raw'
+# Par de dígitos selecionados (classe A vs classe B). None => usar todas as classes originais
+MNIST_SELECTED_PAIR: Optional[Tuple[int, int]] = None
+
+
+def set_mnist_options(feature_mode: str, pair: Optional[Tuple[int, int]]):
+    """Define opções globais de MNIST que serão respeitadas por carregar_dataset.
+    feature_mode: 'raw' ou 'pool2x2'; pair: (dA, dB) ou None.
+    """
+    global MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+    if feature_mode not in ('raw', 'pool2x2'):
+        feature_mode = 'raw'
+    MNIST_FEATURE_MODE = feature_mode
+    MNIST_SELECTED_PAIR = pair
+
+
+def _pool2x2(arr28: np.ndarray) -> np.ndarray:
+    """Aplica pooling 2x2 por média em uma imagem 28x28, resultando em 14x14 (196)."""
+    out = np.zeros((14, 14), dtype=float)
+    for r in range(14):
+        for c in range(14):
+            block = arr28[2*r:2*r+2, 2*c:2*c+2]
+            out[r, c] = float(block.mean())
+    return out
+
+
+def _apply_pooling_df(X: pd.DataFrame) -> pd.DataFrame:
+    """Converte DataFrame com 784 colunas (28x28) para 196 (14x14) via pooling 2x2."""
+    # cria mapeamento de ordem de colunas para 28x28
+    # assume colunas ordenadas por índice (feature_0..feature_783 ou similares)
+    arr = X.values.astype(float)
+    n = arr.shape[0]
+    pooled = np.zeros((n, 14*14), dtype=float)
+    for i in range(n):
+        img = arr[i].reshape(28, 28)
+        pooled[i] = _pool2x2(img).reshape(-1)
+    cols = [f"bin_{r}_{c}" for r in range(14) for c in range(14)]
+    return pd.DataFrame(pooled, index=X.index, columns=cols)
 
 # --- Funções de Carregamento e Preparação de Dataset ---
 def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optional[pd.Series], Optional[List[str]]]: #
@@ -274,13 +316,28 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             # Define os nomes das classes para o menu
             class_names_list = ["Não Spam", "Spam"]
         elif nome_dataset == 'mnist':
-            # MNIST via OpenML, com cache do scikit-learn e retries
+            # MNIST via OpenML (10 classes), com cache do scikit-learn e retries
             data_openml = _fetch_openml_with_retries('mnist_784', version=1, as_frame=True)
             X = data_openml.data
-            y_original = pd.Series(data_openml.target.astype(str), name='target')
-            # Binarização: dígito '0' vs resto
-            y_series = y_original.apply(lambda v: 0 if v == '0' else 1)
-            class_names_list = ['0', 'Não-0']
+            y_all = pd.Series(data_openml.target.astype(int), name='target')
+            class_names_list = [str(d) for d in range(10)]
+
+            # Aplicar seleção de par (classe vs classe) se definida globalmente
+            global MNIST_SELECTED_PAIR, MNIST_FEATURE_MODE
+            if MNIST_SELECTED_PAIR is not None:
+                a, b = MNIST_SELECTED_PAIR
+                mask = (y_all == a) | (y_all == b)
+                X = X[mask].copy()
+                y_bin_np = np.where(y_all[mask] == a, 0, 1)
+                y_series = pd.Series(y_bin_np, index=X.index, name='target')
+                class_names_list = [str(a), str(b)]
+            else:
+                # Sem par definido: retorna multiclasse original
+                y_series = y_all
+
+            # Aplicar pooling 2x2 (196 features) se requisitado
+            if MNIST_FEATURE_MODE == 'pool2x2':
+                X = _apply_pooling_df(X)
         else:
             raise ValueError(f"Dataset '{nome_dataset}' não suportado.")
 
@@ -299,7 +356,7 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     menu = '''
     | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
     | Datasets Clássicos para Comparação:                                  |
-    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10 -> binário 0 vs resto) |
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
     | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
     |----------------------------------------------------------------------|
@@ -325,7 +382,29 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
         if opcao.isdigit() and 0 <= int(opcao) < len(nomes_datasets):
             nome_dataset_selecionado = nomes_datasets[int(opcao)]
             print(f"\nCarregando {nome_dataset_selecionado}...")
-            X_original_completo, y_original_completo, classes_originais_nomes = carregar_dataset(nome_dataset_selecionado)
+            # Para MNIST, perguntamos antes o modo de features e o par de classes
+            if nome_dataset_selecionado == 'mnist':
+                print("\nSelecione o modo de features para MNIST:")
+                print("  [0] 784 (normal)")
+                print("  [1] 196 (pooling 2x2)")
+                escolha = input("Opção: ").strip()
+                feature_mode = 'pool2x2' if escolha == '1' else 'raw'
+
+                # Carregar multiclasse para exibir classes
+                X_multi, y_multi, classes_multi = carregar_dataset('mnist')
+                print("\nDigite duas classes (0-9) para comparar, separadas por espaço. Ex: 8 5")
+                entrada = input("Par de classes: ").strip()
+                digitos = [int(x) for x in re.findall(r"\d", entrada)]
+                if len(digitos) < 2 or digitos[0] == digitos[1]:
+                    print("Par inválido. Cancelando.")
+                    return None, None, None, None, None
+                dA, dB = digitos[0], digitos[1]
+
+                # Definir opções globais e recarregar já filtrado e no modo escolhido
+                set_mnist_options(feature_mode, (dA, dB))
+                X_original_completo, y_original_completo, classes_originais_nomes = carregar_dataset('mnist')
+            else:
+                X_original_completo, y_original_completo, classes_originais_nomes = carregar_dataset(nome_dataset_selecionado)
 
             if X_original_completo is None or y_original_completo is None or classes_originais_nomes is None:
                 print("Falha ao carregar dataset. Tente novamente.")
@@ -377,6 +456,8 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
 
             X_filtrado = X_original_completo[mascara_combinada].copy()
             y_filtrado = y_original_completo[mascara_combinada].copy()
+
+            # Para MNIST, pooling já foi aplicado em carregar_dataset conforme opção global
             
             # Mapeia para 0 e 1 (LogisticRegression prefere isso)
             y_binario_np = np.where(y_filtrado == indice_classe_0, 0, 1)

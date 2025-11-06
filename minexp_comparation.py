@@ -88,12 +88,12 @@ if __name__ == '__main__':
     nome_dataset_original, nome_classe_positiva, dados_completos, alvos_completos, _ = selecionar_dataset_e_classe()
 
     if dados_completos is not None:
-        nome_relatorio = f"{nome_dataset_original}_{nome_classe_positiva}_vs_rest"
-        print(f"\n--- Iniciando análise (MinExp) para: {nome_relatorio} ---")
-
         # 1) Obter pipeline e thresholds idênticos ao PEAB
         pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(nome_dataset_original)
         nomes_features = meta['feature_names']
+        # Definir nome do relatório com classes efetivas
+        nome_relatorio = f"{nome_dataset_original}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
+        print(f"\n--- Iniciando análise (MinExp) para: {nome_relatorio} ---")
 
         # 2) Métricas básicas
         metricas = {
@@ -380,7 +380,7 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
     nomes_features = meta['feature_names']
 
-    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][1]}_vs_rest"
+    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
 
     metricas = {
         'dataset_name': nome_relatorio,

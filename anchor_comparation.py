@@ -96,7 +96,8 @@ if __name__ == '__main__':
         # Usa treino e thresholds exatamente como no PEAB
         pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(nome_dataset_original)
 
-        nome_relatorio = f"{nome_dataset_original}_{nome_classe_positiva}_vs_rest"
+        # Nome do relatório: usa as classes efetivas do pipeline compartilhado
+        nome_relatorio = f"{nome_dataset_original}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
         print(f"\n--- Iniciando análise com ANCHOR (COM REJEIÇÃO) para: {nome_relatorio} ---")
 
         metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
@@ -307,6 +308,7 @@ if __name__ == '__main__':
                 'max_length': int(d.get('max', 0)),
                 'std_length': float(d.get('std_dev', 0.0))
             }
+
         explanation_stats = {
             'positive': conv_stats(stats_pos),
             'negative': conv_stats(stats_neg),
@@ -321,12 +323,25 @@ if __name__ == '__main__':
             'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
         })
 
+        # Metadados extras para MNIST
+        mnist_meta = {}
+        if nome_dataset_original == 'mnist':
+            try:
+                from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+                mnist_meta = {
+                    'mnist_feature_mode': MNIST_FEATURE_MODE,
+                    'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
+                }
+            except Exception:
+                mnist_meta = {}
+
         dataset_cache = {
             'config': {
                 'dataset_name': dataset_key,
                 'test_size': float(meta['test_size']),
                 'random_state': RANDOM_STATE,
-                'rejection_cost': float(meta['rejection_cost'])
+                'rejection_cost': float(meta['rejection_cost']),
+                **mnist_meta
             },
             'thresholds': {
                 't_plus': float(t_plus),
@@ -392,7 +407,7 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
 
     nomes_features = meta['feature_names']
     # Usa o rótulo positivo reportado em meta (índice 1) apenas para nomear o relatório
-    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][1]}_vs_rest"
+    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
 
     metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
     metricas['total_instancias_teste'] = len(y_test)

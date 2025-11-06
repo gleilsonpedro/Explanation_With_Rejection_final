@@ -20,7 +20,7 @@ from utils.results_handler import update_method_results
 RANDOM_STATE: int = 42
 DATASET_CONFIG = {
     # "iris":                 {'test_size': 0.3, 'rejection_cost': 0.24},  # substituído por MNIST no menu
-    "mnist":               {'test_size': 0.3, 'rejection_cost': 0.24, 'subsample_size': 0.01},
+    "mnist":               {'test_size': 0.3, 'rejection_cost': 0.24, 'subsample_size': 0.02},  # 2% do dataset (~280 instâncias, ~196 treino, ~84 teste)
     "wine":                 {'test_size': 0.3, 'rejection_cost': 0.24},
     "breast_cancer":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},
@@ -782,12 +782,25 @@ def montar_dataset_cache(dataset_name: str,
             'explanation_size': int(resultados_instancias[i]['tamanho_explicacao'])
         })
 
+    # Metadados extras para MNIST (modo de features e par selecionado)
+    mnist_meta = {}
+    if dataset_name == 'mnist':
+        try:
+            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+            mnist_meta = {
+                'mnist_feature_mode': MNIST_FEATURE_MODE,
+                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
+            }
+        except Exception:
+            mnist_meta = {}
+
     dataset_cache = {
         'config': {
             'dataset_name': dataset_name,
             'test_size': float(test_size_atual),
             'random_state': RANDOM_STATE,
-            'rejection_cost': float(WR_REJECTION_COST)
+            'rejection_cost': float(WR_REJECTION_COST),
+            **mnist_meta
         },
         'thresholds': {
             't_plus': float(t_plus),
