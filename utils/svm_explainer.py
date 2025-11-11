@@ -249,107 +249,96 @@ def svm_explanation_binary(dual_coef, support_vectors, intercept, data, lower_bo
     classified - the class of the patterns to be explained. Positive or Negative.
     problem_name - the name of the LP problem.
     """
-    #List of generated explanations
+    # Lista de explicações geradas (uma lista por amostra)
     explanations = []
-    
-    #Specify the types of Optimization Problems
-    relevant_prob = pulp.LpProblem("Relevant_Features_"+problem_name, pulp.LpMinimize)
-    
-    #Specify that the features value range is between 0 and 1 (normalized dataset)
-    X = np.asarray([pulp.LpVariable('x'+str(i+1), lowBound = lower_bound, upBound = upper_bound,cat='Continuous') for i in range(len(data[0]))])
-
-    #Defining the threshold where the SVM decision function returns the Positive/Negative class.
-    if classified == "Positive":
-        relevant_prob += ((dual_coef @ support_vectors) @ X.reshape(1, len(X)).T + intercept)[0][0] <= t_upper - precision #All that are inferior to the upper threshold
-
-    else:
-        relevant_prob += ((dual_coef @ support_vectors) @ X.reshape(1, len(X)).T + intercept)[0][0] >= t_lower + precision #All that are superior to the lower threshold
-
 
     # Prepara solver (reutiliza entre solves)
     _solver = PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False, timeLimit=time_limit) if time_limit else PULP_CBC_CMD(msg=show_log, threads=n_threads, warmStart=False)
 
-    #For every sample
+    # Para cada amostra de teste
     for z in range(len(data)):
         relevant_features = []
         features_ranges = []
         not_relevant = []
         explanation = []
-        
-        #Setting up Prob Variables
-        for x in X:
-            x.lowBound = lower_bound
-            x.upBound = upper_bound
 
-        #For every feature    
+        # Para cada feature, criamos um problema LP limpo (evita acúmulo de restrições/objetivo entre verificações)
         for j in range(len(data[z])):
-            #The feature to be checked
             exclude = j
-            #Iterate over every feature of the pattern
+
+            # 1) Cria novo problema e variáveis desta verificação
+            prob = pulp.LpProblem("Relevant_Features_" + problem_name, pulp.LpMinimize)
+            X = np.asarray([pulp.LpVariable('x' + str(i+1), lowBound=lower_bound, upBound=upper_bound, cat='Continuous')
+                            for i in range(len(data[z]))])
+
+            # 2) Restrição de classe de acordo com a classe original (sair da região de aceitação)
+            if classified == "Positive":
+                # Para deixar de ser aceito como Positivo, basta cair abaixo do limiar superior
+                prob += ((dual_coef @ support_vectors) @ X.reshape(1, len(X)).T + intercept)[0][0] <= t_upper - precision
+            else:
+                # Para deixar de ser aceito como Negativo, basta subir acima do limiar inferior
+                prob += ((dual_coef @ support_vectors) @ X.reshape(1, len(X)).T + intercept)[0][0] >= t_lower + precision
+
+            # 3) Define bounds dos atributos de acordo com o estado atual das listas
             for i, feature in enumerate(data[z]):
-                #If feature is relevant, keep it so that it maintains the class
-                if i != exclude and i in relevant_features:
-                    feat_val = float(feature)
-                    if feat_val < lower_bound:
-                        feat_val = lower_bound
-                    elif feat_val > upper_bound:
-                        feat_val = upper_bound
-                    X[i].setInitialValue(feat_val)
-                    X[i].fixValue()
+                feat_val = float(feature)
+                if feat_val < lower_bound:
+                    feat_val = lower_bound
+                elif feat_val > upper_bound:
+                    feat_val = upper_bound
 
-                #If its not the feature to be checked and haven't been worked upon yet
-                elif i != exclude and i not in not_relevant and i not in relevant_features:
-                    feat_val = float(feature)
-                    if feat_val < lower_bound:
-                        feat_val = lower_bound
-                    elif feat_val > upper_bound:
-                        feat_val = upper_bound
-                    X[i].setInitialValue(feat_val)
-                    X[i].fixValue()
-
-                #If feature is the one to be checked or is irrelevant    
-                elif i == exclude or i in not_relevant:
+                if i == exclude:
+                    # A feature em teste fica livre dentro [lower, upper]
                     X[i].lowBound = lower_bound
                     X[i].upBound = upper_bound
-            relevant_prob += X[exclude]
-            
-            #Feature value is originally upper/lower limited by the same value
-            relevance_value = [data[z][exclude],data[z][exclude]]
-            
-            #Check if the feature is relevant and makes the predicted class change
-            sat = relevant_prob.solve(_solver)
+                elif i in relevant_features:
+                    # As já marcadas como relevantes ficam fixas no valor original
+                    X[i].setInitialValue(feat_val)
+                    X[i].fixValue()
+                elif i in not_relevant:
+                    # As já consideradas não relevantes ficam livres (podem variar)
+                    X[i].lowBound = lower_bound
+                    X[i].upBound = upper_bound
+                else:
+                    # Demais ficam fixas no valor original
+                    X[i].setInitialValue(feat_val)
+                    X[i].fixValue()
+
+            # 4) Objetivo: minimizar o valor da feature analisada (apenas define uma direção)
+            prob += X[exclude]
+
+            # 5) Resolve
+            sat = prob.solve(_solver)
+
+            relevance_value = [data[z][exclude], data[z][exclude]]
             if sat == 1:
-                values = []
-                for v in X:
-                    values.append(v.varValue)
+                # Esta feature, sozinha dadas as condições, consegue tirar a amostra da região de aceitação
                 relevant_features.append(exclude)
                 features_ranges.append(relevance_value)
                 explanation.append((exclude, data[z][exclude]))
-
             else:
-                #Checked feature is not able to change the predicted class.
+                # Não foi possível com esta feature sozinha (mantemos como livre em futuras verificações)
                 not_relevant.append(exclude)
-                features_ranges.append([0,1])
-                
-        #Validate explanations. Only for validation/confirmation purposes, not necessary for generating explanations.
-        if validate:
+                features_ranges.append([0, 1])
+
+        # Validação opcional
+        if validate and len(features_ranges) > 0:
             binary_validation(
-                                dual_coef = dual_coef,
-                                support_vectors = support_vectors,
-                                intercept = intercept,
-                                data = data,
-                                precision = precision,
-                                features_ranges = features_ranges,
-                                lower_bound = lower_bound,
-                                upper_bound = upper_bound,
-                                t_lower = t_lower,
-                                t_upper = t_upper,
-                                classified = classified,
-                                show_log = show_log,
-                                n_threads = n_threads,
-                                time_limit = time_limit 
+                dual_coef=dual_coef,
+                support_vectors=support_vectors,
+                intercept=intercept,
+                data=data,
+                precision=precision,
+                features_ranges=features_ranges,
+                lower_bound=lower_bound,
+                upper_bound=upper_bound,
+                t_lower=t_lower,
+                t_upper=t_upper,
+                classified=classified,
+                show_log=show_log,
+                n_threads=n_threads,
+                time_limit=time_limit
             )
 
-        
         explanations.append(explanation)
     return explanations

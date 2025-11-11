@@ -59,6 +59,29 @@ def _fmt_float(x, digits=4):
         return "N/A"
 
 
+def _format_duration(seconds: float) -> str:
+    """Formata segundos em uma string legível (h, m, s)."""
+    if seconds is None:
+        return "N/A"
+    
+    seconds = float(seconds)
+    if seconds < 60:
+        return f"{seconds:.2f}s"
+
+    minutes, sec = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    
+    parts = []
+    if hours > 0:
+        parts.append(f"{int(hours)}h")
+    if minutes > 0:
+        parts.append(f"{int(minutes)}m")
+    if sec > 0 or not parts:
+        parts.append(f"{int(sec)}s")
+        
+    return " ".join(parts)
+
+
 def build_summary_text(results: Dict[str, Any]) -> str:
     # Mapear métodos presentes, normalizando para títulos
     present_methods = {}
@@ -103,30 +126,39 @@ def build_summary_text(results: Dict[str, Any]) -> str:
             # Tamanhos das explicações (aceita dois formatos: novo e legado)
             def norm_stats(s: Dict[str, Any]):
                 if not isinstance(s, dict):
-                    return {"count": 0, "mean_length": 0.0}
+                    return {"count": 0, "mean_length": 0.0, "std_length": 0.0}
                 if "count" in s or "mean_length" in s:
                     return {
                         "count": s.get("count", 0),
-                        "mean_length": s.get("mean_length", 0.0)
+                        "mean_length": s.get("mean_length", 0.0),
+                        "std_length": s.get("std_length", 0.0)
                     }
                 # Formato legado: instancias/min/media/max/std_dev
                 return {
                     "count": s.get("instancias", 0),
-                    "mean_length": s.get("media", 0.0)
+                    "mean_length": s.get("media", 0.0),
+                    "std_length": s.get("std_dev", 0.0)
                 }
 
             exps = blob.get("explanation_stats", {}) or {}
             for part, title in [("positive", "Explicação (positivas)"), ("negative", "Explicação (negativas)"), ("rejected", "Explicação (rejeitadas)")]:
                 s = norm_stats(exps.get(part, {}) or {})
-                lines.append(f"    - {title}: n={int(s['count'])}, mean={_fmt_float(s['mean_length'], 2)}")
+                lines.append(f"    - {title}: n={int(s['count'])}, mean={_fmt_float(s['mean_length'], 2)} ± {_fmt_float(s['std_length'], 2)}")
             # Tempo
             ct = blob.get("computation_time", {})
+            total_time_secs = ct.get('total')
+            lines.append(f"    - Tempo total: {_format_duration(total_time_secs)}")
             lines.append(f"    - Tempo médio/instância (s): {_fmt_float(ct.get('mean_per_instance'), 4)}")
-            # Top features (top 5)
-            tops = (blob.get("top_features") or [])[:5]
-            if tops:
-                txt = ", ".join([f"{t.get('feature','?')}({t.get('count','?')})" for t in tops])
-                lines.append(f"    - Top features: {txt}")
+            lines.append(f"    - Tempo (pos/neg/rej) (s): {_fmt_float(ct.get('positive'), 4)} / {_fmt_float(ct.get('negative'), 4)} / {_fmt_float(ct.get('rejected'), 4)}")
+            
+            # Top features
+            all_feats = blob.get("top_features") or []
+            top_5 = all_feats[:5]
+            
+            if top_5:
+                txt = ", ".join([f"{t.get('feature','?')}({t.get('count','?')})" for t in top_5])
+                lines.append(f"    - Top 5 features: {txt}")
+            
             lines.append("")
         lines.append("")
 

@@ -1,0 +1,211 @@
+==== Resumo Comparativo de Resultados ====
+
+Métodos encontrados no JSON: Anchor, MinExp, PEAB
+
+-- Cobertura por Dataset --
+breast_cancer: PEAB:OK, MinExp:OK, Anchor:OK
+mnist: PEAB:OK, MinExp:OK, Anchor:OK
+pima_indians_diabetes: PEAB:OK, MinExp:OK, Anchor:OK
+sonar: PEAB:OK, MinExp:OK, Anchor:OK
+vertebral_column: PEAB:OK, MinExp:OK, Anchor:OK
+wine: PEAB:OK, MinExp:OK, Anchor:OK
+
+== Dataset: breast_cancer ==
+  > PEAB
+    - Acurácia sem rejeição (%): 92.3977
+    - Acurácia com rejeição (%): 97.9866
+    - Taxa de rejeição (%): 12.8655
+    - Explicação (positivas): n=96, mean=16.94
+    - Explicação (negativas): n=53, mean=16.49
+    - Explicação (rejeitadas): n=22, mean=27.36
+    - Tempo médio/instância (s): 0.0834
+    - Top features: mean concave points(171), worst concave points(170), worst perimeter(170), worst radius(169), worst area(167)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 92.3977
+    - Acurácia com rejeição (%): 97.9866
+    - Taxa de rejeição (%): 12.8655
+    - Explicação (positivas): n=96, mean=22.61
+    - Explicação (negativas): n=53, mean=21.94
+    - Explicação (rejeitadas): n=22, mean=27.05
+    - Tempo médio/instância (s): 1.2785
+    - Top features: worst radius(171), worst perimeter(171), worst area(171), worst compactness(171), worst concavity(171)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 92.3977
+    - Acurácia com rejeição (%): 97.9866
+    - Taxa de rejeição (%): 12.8655
+    - Explicação (positivas): n=96, mean=2.15
+    - Explicação (negativas): n=53, mean=2.49
+    - Explicação (rejeitadas): n=22, mean=2.95
+    - Tempo médio/instância (s): 1.7574
+    - Top features: worst concave points(123), worst perimeter(64), mean concave points(42), worst radius(37), worst concavity(19)
+
+
+== Dataset: mnist ==
+  > PEAB
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 97.3214
+    - Taxa de rejeição (%): 11.1111
+    - Explicação (positivas): n=52, mean=207.63
+    - Explicação (negativas): n=60, mean=148.53
+    - Explicação (rejeitadas): n=14, mean=525.43
+    - Tempo médio/instância (s): 12.0908
+    - Top features: pixel516(120), pixel462(117), pixel489(117), pixel488(116), pixel297(113)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 97.3214
+    - Taxa de rejeição (%): 11.1111
+    - Explicação (positivas): n=52, mean=146.83
+    - Explicação (negativas): n=60, mean=128.65
+    - Explicação (rejeitadas): n=14, mean=194.93
+    - Tempo médio/instância (s): 9.3052
+    - Top features: pixel462(123), pixel435(122), pixel351(120), pixel379(119), pixel461(119)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 97.3214
+    - Taxa de rejeição (%): 11.1111
+    - Explicação (positivas): n=52, mean=2.04
+    - Explicação (negativas): n=60, mean=2.02
+    - Explicação (rejeitadas): n=14, mean=2.14
+    - Tempo médio/instância (s): 209.2761
+    - Top features: pixel4(79), pixel5(49), pixel1(37), pixel2(33), pixel46(30)
+
+
+== Dataset: pima_indians_diabetes ==
+  > PEAB
+    - Acurácia sem rejeição (%): 74.4589
+    - Acurácia com rejeição (%): 82.7586
+    - Taxa de rejeição (%): 24.6753
+    - Explicação (positivas): n=40, mean=4.22
+    - Explicação (negativas): n=134, mean=4.72
+    - Explicação (rejeitadas): n=57, mean=6.23
+    - Tempo médio/instância (s): 0.0331
+    - Top features: glicose(231), imc(231), num_gravidezes(216), diabetes_pedigree(193), pressao_sangue(150)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 74.4589
+    - Acurácia com rejeição (%): 82.7586
+    - Taxa de rejeição (%): 24.6753
+    - Explicação (positivas): n=40, mean=4.72
+    - Explicação (negativas): n=134, mean=4.94
+    - Explicação (rejeitadas): n=57, mean=6.33
+    - Tempo médio/instância (s): 0.3234
+    - Top features: glicose(231), imc(231), diabetes_pedigree(214), num_gravidezes(174), idade(151)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 74.4589
+    - Acurácia com rejeição (%): 82.7586
+    - Taxa de rejeição (%): 24.6753
+    - Explicação (positivas): n=40, mean=4.17
+    - Explicação (negativas): n=134, mean=2.26
+    - Explicação (rejeitadas): n=57, mean=3.88
+    - Tempo médio/instância (s): 0.1018
+    - Top features: glicose(224), imc(132), num_gravidezes(116), diabetes_pedigree(60), idade(57)
+
+
+== Dataset: sonar ==
+  > PEAB
+    - Acurácia sem rejeição (%): 68.2540
+    - Acurácia com rejeição (%): 95.6522
+    - Taxa de rejeição (%): 63.4921
+    - Explicação (positivas): n=12, mean=39.58
+    - Explicação (negativas): n=11, mean=42.55
+    - Explicação (rejeitadas): n=40, mean=54.02
+    - Tempo médio/instância (s): 0.3362
+    - Top features: feature_5(62), feature_6(62), feature_12(61), feature_13(61), feature_18(61)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 68.2540
+    - Acurácia com rejeição (%): 95.6522
+    - Taxa de rejeição (%): 63.4921
+    - Explicação (positivas): n=12, mean=51.25
+    - Explicação (negativas): n=11, mean=52.64
+    - Explicação (rejeitadas): n=40, mean=49.25
+    - Tempo médio/instância (s): 3.6942
+    - Top features: feature_10(63), feature_19(63), feature_33(63), feature_34(63), feature_35(63)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 68.2540
+    - Acurácia com rejeição (%): 95.6522
+    - Taxa de rejeição (%): 63.4921
+    - Explicação (positivas): n=12, mean=2.00
+    - Explicação (negativas): n=11, mean=4.09
+    - Explicação (rejeitadas): n=40, mean=2.00
+    - Tempo médio/instância (s): 2.3004
+    - Top features: feature_1(55), feature_2(30), feature_3(30), feature_20(20), feature_19(17)
+
+
+== Dataset: vertebral_column ==
+  > PEAB
+    - Acurácia sem rejeição (%): 76.3441
+    - Acurácia com rejeição (%): 86.5672
+    - Taxa de rejeição (%): 27.9570
+    - Explicação (positivas): n=50, mean=3.60
+    - Explicação (negativas): n=17, mean=5.41
+    - Explicação (rejeitadas): n=26, mean=5.08
+    - Tempo médio/instância (s): 0.0266
+    - Top features: pelvic_tilt(93), pelvic_radius(91), lumbar_lordosis_angle(87), pelvic_incidence(70), spondylolisthesis_grade(54)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 76.3441
+    - Acurácia com rejeição (%): 86.5672
+    - Taxa de rejeição (%): 27.9570
+    - Explicação (positivas): n=50, mean=3.78
+    - Explicação (negativas): n=17, mean=5.41
+    - Explicação (rejeitadas): n=26, mean=5.08
+    - Tempo médio/instância (s): 0.2649
+    - Top features: pelvic_radius(92), pelvic_tilt(91), lumbar_lordosis_angle(84), spondylolisthesis_grade(74), pelvic_incidence(57)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 76.3441
+    - Acurácia com rejeição (%): 86.5672
+    - Taxa de rejeição (%): 27.9570
+    - Explicação (positivas): n=50, mean=1.78
+    - Explicação (negativas): n=17, mean=5.00
+    - Explicação (rejeitadas): n=26, mean=2.35
+    - Tempo médio/instância (s): 0.0926
+    - Top features: pelvic_radius(53), pelvic_incidence(52), pelvic_tilt(49), lumbar_lordosis_angle(48), spondylolisthesis_grade(19)
+
+
+== Dataset: wine ==
+  > PEAB
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 98.0392
+    - Taxa de rejeição (%): 5.5556
+    - Explicação (positivas): n=33, mean=5.67
+    - Explicação (negativas): n=18, mean=7.11
+    - Explicação (rejeitadas): n=3, mean=11.67
+    - Tempo médio/instância (s): 0.0278
+    - Top features: alcalinity_of_ash(54), proline(54), flavanoids(52), alcohol(49), nonflavanoid_phenols(48)
+
+  > MinExp
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 98.0392
+    - Taxa de rejeição (%): 5.5556
+    - Explicação (positivas): n=33, mean=7.21
+    - Explicação (negativas): n=18, mean=8.72
+    - Explicação (rejeitadas): n=3, mean=11.00
+    - Tempo médio/instância (s): 0.5262
+    - Top features: proline(54), flavanoids(53), od280/od315_of_diluted_wines(52), alcalinity_of_ash(51), nonflavanoid_phenols(51)
+
+  > Anchor
+    - Acurácia sem rejeição (%): 94.4444
+    - Acurácia com rejeição (%): 98.0392
+    - Taxa de rejeição (%): 5.5556
+    - Explicação (positivas): n=33, mean=2.00
+    - Explicação (negativas): n=18, mean=3.22
+    - Explicação (rejeitadas): n=3, mean=3.00
+    - Tempo médio/instância (s): 0.2884
+    - Top features: proline(52), flavanoids(30), alcohol(14), color_intensity(10), ash(9)
+
+
+-- Destaques por Dataset (maior acurácia com rejeição) --
+breast_cancer: PEAB (97.99%)
+mnist: PEAB (97.32%)
+pima_indians_diabetes: PEAB (82.76%)
+sonar: PEAB (95.65%)
+vertebral_column: MinExp (86.57%)
+wine: PEAB (98.04%)

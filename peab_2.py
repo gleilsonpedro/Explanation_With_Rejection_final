@@ -18,9 +18,20 @@ from utils.results_handler import update_method_results
 # CONSTANTES E CONFIGURAÇÕES GLOBAIS
 #==============================================================================
 RANDOM_STATE: int = 42
+
+# Configurações específicas de MNIST (aplicadas automaticamente quando mnist é selecionado)
+MNIST_CONFIG = {
+    'feature_mode': 'raw',           # 'raw' (784 features) ou 'pool2x2' (196 features)
+    'digit_pair': (3, 8),            # Par de dígitos para comparação (classe A vs classe B)
+    'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
+    'test_size': 0.3,                # Proporção do conjunto de teste
+    'rejection_cost': 0.15,          # Custo de rejeição
+    'subsample_size': 0.03           # Proporção de subamostragem do dataset completo
+}
+
 DATASET_CONFIG = {
     # "iris":                 {'test_size': 0.3, 'rejection_cost': 0.24},  # substituído por MNIST no menu
-    "mnist":               {'test_size': 0.3, 'rejection_cost': 0.24, 'subsample_size': 0.02},  # 2% do dataset (~280 instâncias, ~196 treino, ~84 teste)
+    "mnist":                MNIST_CONFIG,  # Configuração automática do MNIST
     "wine":                 {'test_size': 0.3, 'rejection_cost': 0.24},
     "breast_cancer":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},
@@ -92,7 +103,7 @@ def _get_lr(modelo: Pipeline):
 
 
 #==============================================================================
-# [SEÇÃO ATUALIZADA] LÓGICA FORMAL DE EXPLICAÇÃO (Motor do 'peab_comparation')
+#  LÓGICA FORMAL DE EXPLICAÇÃO 
 #==============================================================================
 def carregar_hiperparametros(caminho_arquivo: str = HIPERPARAMETROS_FILE) -> dict:
     try:
@@ -179,7 +190,7 @@ def perturbar_e_validar(modelo: Pipeline, instance_df: pd.DataFrame, explicacao:
     pert_rejeitada = t_minus <= score_pert <= t_plus
    
     score_original = modelo.decision_function(instance_df)[0]
-    # verificando se a instancia original é rejeitada (retornaboelano)
+    # verificando se a instancia original é rejeitada (retorna boelano)
     is_original_rejected = t_minus <= score_original <= t_plus
     if is_original_rejected: # se a boleana for True
         return pert_rejeitada, score_pert
@@ -201,8 +212,8 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
     while True: #para as rejeitadas testa as duas direções
         if is_rejected:
-            valido1, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 1) # direção para diminuir score
-            valido2, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 0) # direção para aumentar score
+            valido1, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 0) # direção para diminuir score, o nuemro 1 so indica a direçao do override
+            valido2, _ = perturbar_e_validar(modelo, instance_df, expl_robusta, X_train, t_plus, t_minus, 1) # direção para aumentar score
             if valido1 and valido2: break # se for valido nas duas direções sai do loop
         else: # para as classificadas testa a direção da predição
             direcao = 1 if modelo.predict(instance_df)[0] == 1 else 0 # direção baseada na predição
@@ -284,6 +295,8 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
 
 def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_train: pd.DataFrame, t_plus: float, t_minus: float) -> Tuple[List[str], List[str], int, int]:
     """Gera explicação da instância e monta log técnico conciso (sem alterar JSON)."""
+        # REJEITADAS 01
+    # Verificando se a instância é rejeitada
     is_rejected = t_minus <= modelo.decision_function(instancia_df)[0] <= t_plus
     log_formatado: List[str] = []
 
@@ -297,7 +310,7 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             log_formatado.append(LOG_TEMPLATES['rejeitada_prova_header'])
 
         # Dois caminhos (premissas opostas). Coletar passos para o melhor caminho.
-        # Caminho 1 (premisa 1)
+        # Caminho 1 (premisa 1) chama one explanations para o calculo inicial usando premiss_cvlasse 1
         expl_inicial_p1 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 1)
         expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_p1, X_train, t_plus, t_minus, True, 1)
         passos_p1: List[Dict[str, Any]] = []
@@ -381,7 +394,7 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
     return [f.split(' = ')[0] for f in expl_final], log_formatado, adicoes, remocoes
 
 #==============================================================================
-# EXECUÇÃO PRINCIPAL
+# EXECUÇÃO PRINCIPAL 1 a ser chamada
 #==============================================================================
 def executar_experimento_para_dataset(dataset_name: str):
     print(f"\n==================== EXECUTANDO PARA DATASET: {dataset_name.upper()} ====================")
@@ -400,13 +413,44 @@ def executar_experimento_para_dataset(dataset_name: str):
     else:
         print(f"[AVISO] Parâmetros para '{dataset_name}' não encontrados. Usando modelo padrão: {parametros_para_modelo}")
 
-    # 2. Treinar Modelo
+    # 2. Aplicar redução de features (top-k) ANTES do treino, se configurado
+    cfg = DATASET_CONFIG.get(dataset_name, {})
+    top_k = cfg.get('top_k_features', None)
+    
+    if top_k and top_k > 0 and top_k < X.shape[1]:
+        # Treinar modelo temporário para obter importâncias
+        print(f"\n[INFO] Treinando modelo temporário para seleção de features...")
+        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X, y, test_size_atual, rejection_cost_atual, parametros_para_modelo)
+        X_train_temp, X_test_temp, _, _ = train_test_split(X, y, test_size=test_size_atual, random_state=RANDOM_STATE, stratify=y)
+        
+        # Selecionar top-k features
+        X_train_temp, X_test_temp, selected_features = aplicar_selecao_top_k_features(X_train_temp, X_test_temp, modelo_temp, top_k)
+        
+        # Reduzir X completo para apenas as features selecionadas
+        X = X[selected_features]
+        print(f"[INFO] Dataset reduzido de {len(X.columns)} para {top_k} features.")
+    
+    # 3. Treinar Modelo FINAL (com features reduzidas ou completas)
     modelo, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(X, y, test_size_atual, rejection_cost_atual, parametros_para_modelo)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size_atual, random_state=RANDOM_STATE, stratify=y)
     
     print(f"\n[INFO] Modelo treinado. Acurácia no teste (sem rejeição): {modelo.score(X_test, y_test):.2%}")
     print(f"[INFO] Custo de Rejeição (WR) definido como: {rejection_cost_atual:.2f}")
     print(f"[INFO] Thresholds de rejeição calculados: t+ = {t_plus:.4f}, t- = {t_minus:.4f}")
+    
+    # Aviso se zona de rejeição muito pequena testando MNIST
+    zona_rejeicao = abs(t_plus - t_minus)
+    if zona_rejeicao < 0.001:
+        print(f"\n⚠️  AVISO: Zona de rejeição MÍNIMA (|t+ - t-| = {zona_rejeicao:.6f})")
+        print(f"   Isso significa que o modelo está rejeitando muito pouco.")
+        print(f"   Causas possíveis:")
+        print(f"   • Modelo muito confiante (acurácia alta: {modelo.score(X_test, y_test):.2%})")
+        print(f"   • Custo de rejeição alto demais (WR = {rejection_cost_atual:.2f})")
+        print(f"   • Classes bem separadas (pouca ambiguidade)")
+        print(f"   Recomendações:")
+        print(f"   • Diminuir rejection_cost: {rejection_cost_atual:.2f} → {rejection_cost_atual/2:.2f}")
+        print(f"   • Aumentar subsample_size para ter mais dados")
+        print(f"   • Escolher par de classes mais ambíguo\n")
 
     # 3. Gerar Predições
     decision_scores_test = modelo.decision_function(X_test)
@@ -419,53 +463,63 @@ def executar_experimento_para_dataset(dataset_name: str):
 
     # 4. Gerar Explicações e Coletar Dados
     print(f"\n[INFO] Gerando explicações para {len(X_test)} instâncias de teste...")
+    
+    # Importar barra de progresso
+    from utils.progress_bar import ProgressBar
+    
     start_time_total = time.perf_counter()
     resultados_instancias = []
     times_pos, times_neg, times_rej = [], [], []
     adicoes_pos, adicoes_neg, adicoes_rej = [], [], []
     remocoes_pos, remocoes_neg, remocoes_rej = [], [], []
 
-    for i in range(len(X_test)):
-        inst_start_time = time.perf_counter()
-        
-        instancia_df = X_test.iloc[[i]]
-        pred_class_code = y_pred_test_final[i]
-        
-        expl_final_nomes, log_formatado, adicoes, remocoes = gerar_explicacao_instancia(instancia_df, modelo, X_train, t_plus, t_minus)
-        
-        inst_end_time = time.perf_counter()
-        inst_duration = inst_end_time - inst_start_time
+    # Criar barra de progresso
+    with ProgressBar(total=len(X_test), description=f"PEAB Explicando {dataset_name}") as pbar:
+        for i in range(len(X_test)):
+            inst_start_time = time.perf_counter() # contagem do tempo por instância
+            
+            instancia_df = X_test.iloc[[i]]
+            pred_class_code = y_pred_test_final[i]
+            
+            expl_final_nomes, log_formatado, adicoes, remocoes = gerar_explicacao_instancia(instancia_df, modelo, X_train, t_plus, t_minus)
+            
+            inst_end_time = time.perf_counter()
+            inst_duration = inst_end_time - inst_start_time
 
-        # [MODIFICAÇÃO] Adiciona o cabeçalho ao log formatado
-        header = f"--- INSTÂNCIA #{i} | CLASSE REAL: {nomes_classes[y_test.iloc[i]]} | PREDIÇÃO: {'REJEITADA' if pred_class_code == 2 else 'CLASSE ' + str(pred_class_code)} | SCORE: {decision_scores_test[i]:.4f} ---"
-        log_final_com_header = [header] + log_formatado
+            # [MODIFICAÇÃO] Adiciona o cabeçalho ao log formatado
+            header = f"--- INSTÂNCIA #{i} | CLASSE REAL: {nomes_classes[y_test.iloc[i]]} | PREDIÇÃO: {'REJEITADA' if pred_class_code == 2 else 'CLASSE ' + str(pred_class_code)} | SCORE: {decision_scores_test[i]:.4f} ---"
+            log_final_com_header = [header] + log_formatado
 
-        resultados_instancias.append({
-            'id': i, # [MODIFICAÇÃO] ID sequencial
-            'classe_real': nomes_classes[y_test.iloc[i]],
-            'predicao': 'REJEITADA' if pred_class_code == 2 else nomes_classes[pred_class_code],
-            'pred_code': int(pred_class_code),
-            'score': decision_scores_test[i],
-            'explicacao': sorted(expl_final_nomes),
-            'tamanho_explicacao': len(expl_final_nomes),
-            'log_detalhado': log_final_com_header
-        })
+            resultados_instancias.append({
+                'id': i, # [MODIFICAÇÃO] ID sequencial
+                'classe_real': nomes_classes[y_test.iloc[i]],
+                'predicao': 'REJEITADA' if pred_class_code == 2 else nomes_classes[pred_class_code],
+                'pred_code': int(pred_class_code),
+                'score': decision_scores_test[i],
+                'explicacao': sorted(expl_final_nomes),
+                'tamanho_explicacao': len(expl_final_nomes),
+                'log_detalhado': log_final_com_header
+            })
 
-        if pred_class_code == 2:
-            times_rej.append(inst_duration)
-            adicoes_rej.append(adicoes)
-            remocoes_rej.append(remocoes)
-        elif pred_class_code == 1:
-            times_pos.append(inst_duration)
-            adicoes_pos.append(adicoes)
-            remocoes_pos.append(remocoes)
-        else:
-            times_neg.append(inst_duration)
-            adicoes_neg.append(adicoes)
-            remocoes_neg.append(remocoes)
-
+            if pred_class_code == 2:
+                times_rej.append(inst_duration)
+                adicoes_rej.append(adicoes)
+                remocoes_rej.append(remocoes)
+            elif pred_class_code == 1:
+                times_pos.append(inst_duration)
+                adicoes_pos.append(adicoes)
+                remocoes_pos.append(remocoes)
+            else:
+                times_neg.append(inst_duration)
+                adicoes_neg.append(adicoes)
+                remocoes_neg.append(remocoes)
+            
+            # Atualizar barra de progresso
+            pbar.update()
+    
+    # Barra de progresso já foi fechada automaticamente pelo context manager
     tempo_total_explicacoes = time.perf_counter() - start_time_total
-    print(f"[INFO] Geração de explicações concluída em {tempo_total_explicacoes:.2f} segundos.")
+    print(f"\n[INFO] Geração de explicações concluída em {tempo_total_explicacoes:.2f} segundos.")
 
     # 5. Coletar Métricas
     metricas_dict = coletar_metricas(
@@ -584,7 +638,39 @@ def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, 
 
     Se 'subsample_size' existir na configuração do dataset, aplica uma
     subamostragem estratificada (útil para datasets grandes, como 'creditcard').
+    
+    Para MNIST, aplica configurações automáticas de par de dígitos e modo de features.
     """
+    # Aplicar configurações específicas de MNIST ANTES de carregar
+    if dataset_name == 'mnist':
+        from data import datasets as ds_module
+        cfg = DATASET_CONFIG.get(dataset_name, {})
+        
+        # Definir modo de features e par de dígitos
+        feature_mode = cfg.get('feature_mode', 'raw')
+        digit_pair = cfg.get('digit_pair', None)
+        
+        # Configurar opções globais de MNIST
+        ds_module.set_mnist_options(feature_mode, digit_pair)
+        
+        # Log informativo
+        print(f"\n{'='*80}")
+        print(f"  CONFIGURAÇÃO AUTOMÁTICA DO MNIST")
+        print(f"{'='*80}")
+        print(f"  • Modo de Features: {feature_mode.upper()} ({'784 features (28x28)' if feature_mode == 'raw' else '196 features (14x14 pooled)'})")
+        print(f"  • Par de Dígitos: {digit_pair[0]} vs {digit_pair[1]}")
+        print(f"  • Subsample Size: {cfg.get('subsample_size', 'N/A'):.1%}" if cfg.get('subsample_size') else f"  • Subsample Size: Dataset completo")
+        print(f"  • Test Size: {cfg.get('test_size', 0.3):.1%}")
+        print(f"  • Rejection Cost: {cfg.get('rejection_cost', 0.24):.2f}")
+        
+        # Top-K Features
+        top_k = cfg.get('top_k_features', None)
+        if top_k and top_k > 0:
+            print(f"  • Top-K Features: SIM (usando as {top_k} features mais importantes)")
+        else:
+            print(f"  • Top-K Features: NÃO (usando todas as features)")
+        print(f"{'='*80}\n")
+    
     X, y, nomes_classes = carregar_dataset(dataset_name)
     if X is None or y is None or nomes_classes is None:
         raise ValueError(f"Falha ao carregar dataset '{dataset_name}'")
@@ -607,6 +693,43 @@ def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, 
     return X, y, nomes_classes, cfg['rejection_cost'], cfg['test_size']
 
 
+def aplicar_selecao_top_k_features(X_train: pd.DataFrame, X_test: pd.DataFrame, pipeline: Pipeline, top_k: int) -> Tuple[pd.DataFrame, pd.DataFrame, List[str]]:
+    """
+    Seleciona as top-k features mais importantes baseado nos pesos absolutos do modelo treinado.
+    
+    Args:
+        X_train: Conjunto de treino completo
+        X_test: Conjunto de teste completo
+        pipeline: Pipeline treinado com todas as features
+        top_k: Número de features a manter
+    
+    Returns:
+        X_train_reduced, X_test_reduced, selected_features
+    """
+    # Obter coeficientes do modelo
+    logreg = _get_lr(pipeline)
+    coefs = logreg.coef_[0]
+    feature_names = list(X_train.columns)
+    
+    # Ordenar features por importância (valor absoluto do peso)
+    importances = [(name, abs(coefs[i])) for i, name in enumerate(feature_names)]
+    importances_sorted = sorted(importances, key=lambda x: x[1], reverse=True)
+    
+    # Selecionar top-k
+    selected_features = [name for name, _ in importances_sorted[:top_k]]
+    
+    print(f"\n[INFO] Redução de Features Aplicada:")
+    print(f"  • Features originais: {len(feature_names)}")
+    print(f"  • Features selecionadas (top-{top_k}): {len(selected_features)}")
+    print(f"  • Features mais importantes: {selected_features[:10]}...")
+    
+    # Retornar subconjuntos
+    X_train_reduced = X_train[selected_features]
+    X_test_reduced = X_test[selected_features]
+    
+    return X_train_reduced, X_test_reduced, selected_features
+
+
 def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, rejection_cost: float, logreg_params: Dict[str, Any]) -> Tuple[Pipeline, float, float, Dict[str, Any]]:
     """Treina o modelo com os hiperparâmetros fornecidos, otimiza os limiares e retorna (modelo, t+, t-, params)."""
     # Split
@@ -626,6 +749,10 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
     best_risk, best_t_plus, best_t_minus = float('inf'), 0.0, 0.0
     for i in range(len(search_space)):
         for j in range(i, len(search_space)):
+            # CORREÇÃO: t- deve ser <= t+ (t- é o threshold INFERIOR, t+ é o SUPERIOR)
+            # decision_scores <= t- → classe 0 (negativa)
+            # decision_scores >= t+ → classe 1 (positiva)
+            # t- < decision_scores < t+ → REJEITADA
             t_minus, t_plus = float(search_space[i]), float(search_space[j])
             y_pred = np.full(y_train.shape, -1)
             accepted = (decision_scores >= t_plus) | (decision_scores <= t_minus)

@@ -382,26 +382,40 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
         if opcao.isdigit() and 0 <= int(opcao) < len(nomes_datasets):
             nome_dataset_selecionado = nomes_datasets[int(opcao)]
             print(f"\nCarregando {nome_dataset_selecionado}...")
-            # Para MNIST, perguntamos antes o modo de features e o par de classes
+            # Para MNIST, as configurações são automáticas (definidas em peab_2.MNIST_CONFIG)
+            # Não há menu interativo - tudo é configurado via código
             if nome_dataset_selecionado == 'mnist':
-                print("\nSelecione o modo de features para MNIST:")
-                print("  [0] 784 (normal)")
-                print("  [1] 196 (pooling 2x2)")
-                escolha = input("Opção: ").strip()
-                feature_mode = 'pool2x2' if escolha == '1' else 'raw'
-
-                # Carregar multiclasse para exibir classes
-                X_multi, y_multi, classes_multi = carregar_dataset('mnist')
-                print("\nDigite duas classes (0-9) para comparar, separadas por espaço. Ex: 8 5")
-                entrada = input("Par de classes: ").strip()
-                digitos = [int(x) for x in re.findall(r"\d", entrada)]
-                if len(digitos) < 2 or digitos[0] == digitos[1]:
-                    print("Par inválido. Cancelando.")
-                    return None, None, None, None, None
-                dA, dB = digitos[0], digitos[1]
-
-                # Definir opções globais e recarregar já filtrado e no modo escolhido
-                set_mnist_options(feature_mode, (dA, dB))
+                # Importar e aplicar configurações de MNIST_CONFIG
+                try:
+                    import sys
+                    import os
+                    # Adicionar diretório raiz ao path se necessário
+                    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                    if root_dir not in sys.path:
+                        sys.path.insert(0, root_dir)
+                    
+                    from peab_2 import MNIST_CONFIG
+                    
+                    # Aplicar configurações ANTES de carregar
+                    feature_mode = MNIST_CONFIG.get('feature_mode', 'raw')
+                    digit_pair = MNIST_CONFIG.get('digit_pair', None)
+                    
+                    if digit_pair is None:
+                        print("[ERRO] MNIST_CONFIG['digit_pair'] não está definido em peab_2.py!")
+                        return None, None, None, None, None
+                    
+                    print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab_2.MNIST_CONFIG")
+                    print(f"[INFO] Configurações: feature_mode='{feature_mode}', digit_pair={digit_pair}")
+                    
+                    # Configurar opções globais ANTES de carregar
+                    set_mnist_options(feature_mode, digit_pair)
+                    
+                except ImportError as e:
+                    print(f"[ERRO] Não foi possível importar MNIST_CONFIG de peab_2.py: {e}")
+                    print("[INFO] Usando configuração padrão: raw, (3, 8)")
+                    set_mnist_options('raw', (3, 8))
+                
+                # Agora carregar o dataset com as opções já configuradas
                 X_original_completo, y_original_completo, classes_originais_nomes = carregar_dataset('mnist')
             else:
                 X_original_completo, y_original_completo, classes_originais_nomes = carregar_dataset(nome_dataset_selecionado)
@@ -411,6 +425,15 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
                 continue
 
             print(f"Dataset carregado! (Total Amostras: {X_original_completo.shape[0]}, Features: {X_original_completo.shape[1]})")
+            
+            # Para MNIST, se as opções globais já estão configuradas (par selecionado), NÃO pedir menu
+            if nome_dataset_selecionado == 'mnist' and MNIST_SELECTED_PAIR is not None:
+                print(f"\n[INFO] Par de classes já configurado automaticamente: {MNIST_SELECTED_PAIR[0]} vs {MNIST_SELECTED_PAIR[1]}")
+                print("[INFO] Dataset MNIST já filtrado para classificação binária.")
+                # O dataset já foi carregado filtrado em carregar_dataset()
+                # Retornar diretamente
+                return nome_dataset_selecionado, str(MNIST_SELECTED_PAIR[0]), X_original_completo, y_original_completo, classes_originais_nomes
+            
             print("\nClasses disponíveis no dataset original:")
             for i, nome_classe in enumerate(classes_originais_nomes):
                 print(f"   [{i}] - {nome_classe} (Total: {sum(y_original_completo == i)})")

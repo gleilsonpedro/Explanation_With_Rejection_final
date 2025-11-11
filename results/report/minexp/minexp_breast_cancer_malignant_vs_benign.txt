@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: breast_cancer_malignant_vs_benign
+  - Classificador: SVM (kernel='linear')
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 171
+  - Número de Features do Modelo: 30
+  - Acurácia do Modelo (teste, sem rejeição): 92.40%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 200.6928 segundos
+  - Tempo Médio por Instância (Geral): 1.1736 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 12.87% (22 de 171 instâncias)
+  - Acurácia com Opção de Rejeição (nas 149 instâncias aceitas): 97.99%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (96 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 22.61 ± 2.48 (Min: 16, Max: 29)
+  - Classe Negativa (53 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 21.94 ± 3.12 (Min: 16, Max: 29)
+  - Classe REJEITADA (22 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 27.05 ± 0.82 (Min: 25, Max: 29)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - worst radius: 171 vezes
+    - worst perimeter: 171 vezes
+    - worst area: 171 vezes
+    - worst compactness: 171 vezes
+    - worst concavity: 171 vezes
+    - worst concave points: 171 vezes
+    - worst texture: 170 vezes
+    - area error: 169 vezes
+    - worst smoothness: 167 vezes
+    - symmetry error: 164 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 1.1219 segundos
+  - Negativas: 1.1174 segundos
+  - Rejeitadas: 1.5350 segundos

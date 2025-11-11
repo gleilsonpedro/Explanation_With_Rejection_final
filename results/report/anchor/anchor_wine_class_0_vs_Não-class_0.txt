@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: wine_class_0_vs_Não-class_0
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 54
+  - Número de Features do Modelo: 13
+  - Acurácia do Modelo (teste, sem rejeição): 94.44%
+  - Thresholds de Rejeição (Score): t+ = 0.4840, t- = -0.2842
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 8.9531 segundos
+  - Tempo Médio por Instância (Geral): 0.1658 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 5.56% (3 de 54 instâncias)
+  - Acurácia com Opção de Rejeição (nas 51 instâncias aceitas): 98.04%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (33 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.00 ± 0.00  (Min: 2, Max: 2)
+  - Classe Negativa (Aceitas): (18 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.22 ± 0.53  (Min: 3, Max: 5)
+  - Classe REJEITADA: (3 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.00 ± 0.00  (Min: 3, Max: 3)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - proline: 52 vezes
+    - flavanoids: 27 vezes
+    - alcohol: 12 vezes
+    - nonflavanoid_phenols: 11 vezes
+    - color_intensity: 10 vezes
+    - ash: 8 vezes
+    - alcalinity_of_ash: 8 vezes
+    - total_phenols: 5 vezes
+    - od280/od315_of_diluted_wines: 4 vezes
+    - malic_acid: 2 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.1241 segundos
+  - Tempo Médio (Negativas Aceitas): 0.2350 segundos
+  - Tempo Médio (Rejeitadas): 0.2091 segundos

@@ -126,21 +126,26 @@ if __name__ == '__main__':
         X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
         lower_bound, upper_bound = 0.0, 1.0
 
-        # 5.1) Redução de dimensionalidade apenas para o SOLVER (não altera o classificador nem thresholds)
-        hi_dim = len(nomes_features) >= 500
-        topk_idx = None
+        # 5.1) O solver MinExp usará o conjunto completo de features fornecido.
+        # A seleção de features (Top-K) agora é controlada centralmente pelo `get_shared_pipeline`.
         X_test_solver = X_test_scaled
         w_solver = w
-        if hi_dim:
-            # Seleciona top-K por |w| para acelerar o MILP
-            K = min(200, len(nomes_features))
-            abs_w = np.abs(w)
-            topk_idx = np.argsort(abs_w)[-K:][::-1]
-            X_test_solver = X_test_scaled[:, topk_idx]
-            w_solver = w[topk_idx]
+        topk_idx = None  # Garantir que o remapeamento não ocorra
+        hi_dim = len(nomes_features) >= 500 # Mantido para controle de time_limit
 
+
+        print(f"\n[INFO] Gerando explicações para {len(y_test)} instâncias de teste...")
+        
+        # Importar barra de progresso e suprimir warnings
+        from utils.progress_bar import ProgressBar, suppress_library_warnings
+        suppress_library_warnings()
+        
         all_explanations = {}
         tempo_total_explicacoes = 0.0
+        
+        # Criar barra de progresso global
+        total_instances = len(neg_idx) + len(pos_idx) + len(rej_idx)
+        pbar = ProgressBar(total=total_instances, description=f"MinExp Explicando {nome_relatorio}")
         
         # Helper: explicar em chunks para reduzir uso de memória
         def explain_in_chunks(idx_array, classified_label):
@@ -173,8 +178,11 @@ if __name__ == '__main__':
                             remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                         explanations_local = remapped
                     all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
-                except Exception as e:
-                    print(f"[MinExp] Solver falhou para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+                    # Atualizar progresso
+                    pbar.update(len(sel_idx))
+                except Exception:
+                    # Silenciar erros e atualizar progresso
+                    pbar.update(len(sel_idx))
 
         start_time_neg = time.time()
         if len(neg_idx) > 0:
@@ -218,9 +226,15 @@ if __name__ == '__main__':
                             remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                         explanations_local = remapped
                     all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
-                except Exception as e:
-                    print(f"[MinExp] Solver falhou para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+                    # Atualizar progresso
+                    pbar.update(len(sel_idx))
+                except Exception:
+                    # Silenciar erros e atualizar progresso
+                    pbar.update(len(sel_idx))
         runtime_rej = time.time() - start_time_rej
+        
+        # Fechar barra de progresso
+        pbar.close()
         tempo_total_explicacoes += runtime_rej
         metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
 
@@ -410,17 +424,13 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
     lower_bound, upper_bound = 0.0, 1.0
 
-    # Redução de dimensionalidade apenas para o SOLVER em alta dimensionalidade (ex.: MNIST)
+    # Alta dimensionalidade: manter MESMAS features do PEAB (sem redução aqui).
+    # Nota: get_shared_pipeline já aplica top_k_features quando configurado no PEAB.
+    # Portanto, para 1:1, não reduzimos novamente nesta função.
     hi_dim = len(nomes_features) >= 500
     topk_idx = None
     X_test_solver = X_test_scaled
     w_solver = w
-    if hi_dim:
-        K = min(200, len(nomes_features))
-        abs_w = np.abs(w)
-        topk_idx = np.argsort(abs_w)[-K:][::-1]
-        X_test_solver = X_test_scaled[:, topk_idx]
-        w_solver = w[topk_idx]
 
     all_explanations = {}
     tempo_total_explicacoes = 0.0

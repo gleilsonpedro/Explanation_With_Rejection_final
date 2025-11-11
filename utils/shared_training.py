@@ -18,6 +18,9 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
     """
     Treina um Pipeline(MinMaxScaler + LogisticRegression) e encontra t+ / t- exatamente
     como o PEAB, retornando também splits consistentes e metadados.
+    
+    IMPORTANTE: Se top_k_features estiver configurado, aplica redução de features
+    idêntica ao PEAB, garantindo comparação justa entre PEAB, MinExp e Anchor.
 
     Retorna:
       - pipeline: Pipeline treinado
@@ -38,6 +41,27 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         params_carregados = {k: v for k, v in cfg_dataset['params'].items() if k in valid_keys}
         params_modelo.update(params_carregados)
 
+    # 2.5) Aplicar redução de features (top-k) ANTES do treino, se configurado
+    # [NOVO] Esta é a mesma lógica do PEAB para garantir comparação justa
+    cfg = DATASET_CONFIG.get(dataset_name, {})
+    top_k = cfg.get('top_k_features', None)
+    
+    if top_k and top_k > 0 and top_k < X.shape[1]:
+        # Importar função de seleção do PEAB
+        from peab_2 import aplicar_selecao_top_k_features
+        
+        # Treinar modelo temporário para obter importâncias
+        print(f"\n[INFO] [Shared Training] Aplicando seleção de top-{top_k} features...")
+        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X, y, test_size, rejection_cost, params_modelo)
+        X_train_temp, X_test_temp, _, _ = train_test_split(X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y)
+        
+        # Selecionar top-k features
+        X_train_temp, X_test_temp, selected_features = aplicar_selecao_top_k_features(X_train_temp, X_test_temp, modelo_temp, top_k)
+        
+        # Reduzir X completo para apenas as features selecionadas
+        X = X[selected_features]
+        print(f"[INFO] [Shared Training] Dataset reduzido para {top_k} features (mesmo do PEAB).")
+
     # 3) Treinar e otimizar thresholds com a mesma função do PEAB
     pipeline, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(
         X=X, y=y, test_size=test_size, rejection_cost=rejection_cost, logreg_params=params_modelo
@@ -55,7 +79,8 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         'params_modelo': params_modelo,
         'nomes_classes': nomes_classes,
         'model_params': model_params,
-        'subsample_size': DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', None)
+        'subsample_size': DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', None),
+        'top_k_features': top_k  # [NOVO] Informar se houve redução de features
     }
 
     return pipeline, X_train, X_test, y_train, y_test, float(t_plus), float(t_minus), meta
