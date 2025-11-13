@@ -276,8 +276,8 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     im0 = axes[0].imshow(img_neg, cmap=cmap, vmin=-vmax, vmax=vmax)
     axes[0].set_title(
         f'CLASSE NEGATIVA: {class_names[0]}\n'
-        f'({count_neg} instâncias)\n\n'
-        f'Vermelho = Evidência de que é {class_names[0]}',
+        f'({count_neg} instâncias)\n\n',
+       # f'Azul = Evidência de que é {class_names[0]}',
         fontsize=11, fontweight='bold', pad=10
     )
     axes[0].axis('off')
@@ -293,8 +293,8 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     im1 = axes[1].imshow(img_pos, cmap=cmap, vmin=-vmax, vmax=vmax)
     axes[1].set_title(
         f'CLASSE POSITIVA: {class_names[1]}\n'
-        f'({count_pos} instâncias)\n\n'
-        f'Azul = Evidência de que é {class_names[1]}',
+        f'({count_pos} instâncias)\n\n',
+      #  f'Vermelho = Evidência de que é {class_names[1]}',
         fontsize=11, fontweight='bold', pad=10
     )
     axes[1].axis('off')
@@ -323,9 +323,9 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     cbar_ax = fig.add_axes([0.89, 0.15, 0.02, 0.7])
     cbar = fig.colorbar(im1, cax=cbar_ax)
     cbar.set_label(
-        'Contribuição (δ)\n\n'
-        f'AZUL (+):\nEvidência para\n{class_names[1]}\n\n'
-        f'VERMELHO (-):\nEvidência para\n{class_names[0]}\n\n'
+        'Explicação:\n\n'
+        f'VERMELHO (+):\nEvidência para\n{class_names[1]}\n\n'
+        f'AZUL (-):\nEvidência para\n{class_names[0]}\n\n'
         'BRANCO (0):\nNeutro',
         fontsize=10,
         rotation=0,
@@ -336,7 +336,7 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     # Título principal
     fig.suptitle(
         f'Explicações Abdutivas do PEAB - {experiment_name}\n'
-        f'Mapa de Calor de Evidências Médias por Classe',
+        f'Mapa de Calor das Explicações Médias por Classe\n',
         fontsize=14,
         fontweight='bold',
         y=0.98
@@ -495,9 +495,9 @@ def criar_visualizacao_arquetipos_deltas(mean_neg: np.ndarray,
     cbar = fig.colorbar(im1, cax=cbar_ax)
     cbar.set_label(
         f"Intensidade da evidência (δ)\n\n"
-        f"Vermelho: favorece {class_names[1]}\n"
-        f"Azul: favorece {class_names[0]}\n"
-        f"Branco: neutro",
+        f"Vermelho (+): favorece {class_names[1]}\n"
+        f"Azul (-): favorece {class_names[0]}\n"
+        f"Branco (0): neutro",
         fontsize=10,
         rotation=0,
         labelpad=15,
