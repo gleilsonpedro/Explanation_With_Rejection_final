@@ -1,17 +1,3 @@
-"""
-Visualizador de Explicações Abdutivas do PEAB para MNIST
-
-Este script analisa o arquivo comparative_results.json e gera visualizações
-autoexplicativas mostrando como o método PEAB explica suas classificações.
-
-Para cada experimento MNIST encontrado, gera 3 imagens que mostram:
-- POSITIVA (AZUL): Pixels importantes para classificar como classe positiva
-- NEGATIVA (VERMELHO): Pixels importantes para classificar como classe negativa
-- REJEITADAS (MISTO): Pixels com evidências conflitantes
-
-Autor: Sistema especialista em visualização de explicações abdutivas
-"""
-
 import json
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,7 +12,7 @@ OUTPUT_DIR = 'analysis_output/plots'
 SAVE_PLOTS = True
 SHOW_PLOTS = False  # Evita travar execução em lote (use True para visualizar interativamente)
 # Limite de instâncias MNIST a plotar (por experimento). None = todas
-MAX_PER_INSTANCE = 50
+MAX_PER_INSTANCE = 5
 PER_INSTANCE_PLOTS = False  # Desativado por padrão para execução rápida
 USE_ARCHETYPES_DELTAS = True  # Gera figura 3x1 com arquétipos de deltas (médio 0, médio 1 e 1 rejeitada)
 
@@ -273,11 +259,15 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     else:
         img_neg = np.zeros(img_shape)
     
-    im0 = axes[0].imshow(img_neg, cmap=cmap, vmin=-vmax, vmax=vmax)
+    # Usar apenas valores negativos (favoráveis à classe 0) e colormap azul
+    img_neg_only = np.where(img_neg < 0, -img_neg, 0)  # Inverte valores negativos para positivos
+    vmax_neg = np.max(img_neg_only) if np.max(img_neg_only) > 0 else 1.0
+    
+    im0 = axes[0].imshow(img_neg_only, cmap='Blues', vmin=0, vmax=vmax_neg)
     axes[0].set_title(
         f'CLASSE NEGATIVA: {class_names[0]}\n'
-        f'({count_neg} instâncias)\n\n',
-       # f'Azul = Evidência de que é {class_names[0]}',
+        f'({count_neg} instâncias)\n\n'
+        f'Azul = Evidência para {class_names[0]}',
         fontsize=11, fontweight='bold', pad=10
     )
     axes[0].axis('off')
@@ -290,11 +280,15 @@ def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
     else:
         img_pos = np.zeros(img_shape)
     
-    im1 = axes[1].imshow(img_pos, cmap=cmap, vmin=-vmax, vmax=vmax)
+    # Usar apenas valores positivos (favoráveis à classe 1) e colormap vermelho
+    img_pos_only = np.where(img_pos > 0, img_pos, 0)
+    vmax_pos = np.max(img_pos_only) if np.max(img_pos_only) > 0 else 1.0
+    
+    im1 = axes[1].imshow(img_pos_only, cmap='Reds', vmin=0, vmax=vmax_pos)
     axes[1].set_title(
         f'CLASSE POSITIVA: {class_names[1]}\n'
-        f'({count_pos} instâncias)\n\n',
-      #  f'Vermelho = Evidência de que é {class_names[1]}',
+        f'({count_pos} instâncias)\n\n'
+        f'Vermelho = Evidência para {class_names[1]}',
         fontsize=11, fontweight='bold', pad=10
     )
     axes[1].axis('off')
