@@ -101,6 +101,7 @@ def _get_instance_vector(X_test, inst_idx: int, num_features: int) -> np.ndarray
 
 def criar_imagem_individual(inst: dict, inst_idx: int, X_test, 
                             class_names: list, experiment_name: str,
+                            t_plus: float, t_minus: float,
                             img_shape=(28, 28), output_suffix: str = ""):
     """
     Cria uma imagem mostrando:
@@ -113,6 +114,8 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
         X_test: Dados de teste
         class_names: Nomes das classes
         experiment_name: Nome do experimento
+        t_plus: Threshold superior (aceitar como positiva)
+        t_minus: Threshold inferior (aceitar como negativa)
         img_shape: Formato da imagem (28, 28)
         output_suffix: Sufixo para o nome do arquivo (ex: "positiva", "negativa", "rejeitada")
     """
@@ -163,32 +166,60 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
         categoria = f'NEGATIVA (Classe {class_names[0]})'
         cor_titulo = 'red'
     
-    # Criar figura com 2 painéis lado a lado
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    # Criar figura com 2 painéis lado a lado + espaço para colorbar
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5.5))
     
     # Painel 1: Imagem original
     axes[0].imshow(img_original, cmap='gray', vmin=0, vmax=1)
-    axes[0].set_title(f'Dígito Original\nClasse Verdadeira: {y_true}', fontsize=11, fontweight='bold')
+    axes[0].set_title(
+        f'Dígito Original\n'
+        f'Classe Verdadeira: {class_names[y_true]} (y={y_true})',
+        fontsize=11, fontweight='bold'
+    )
     axes[0].axis('off')
     
     # Painel 2: Overlay com explicação
     axes[1].imshow(img_original, cmap='gray', vmin=0, vmax=1)
-    axes[1].imshow(mask_img, cmap=cmap, alpha=0.7, vmin=0, vmax=np.max(mask_img) if np.max(mask_img) > 0 else 1)
+    vmax_mask = np.max(mask_img) if np.max(mask_img) > 0 else 1
+    im = axes[1].imshow(mask_img, cmap=cmap, alpha=0.7, vmin=0, vmax=vmax_mask)
+    
+    # Determinar posição do score em relação aos thresholds
+    if decision_score >= t_plus:
+        pos_score = f'> t+ ({t_plus:.3f})'
+    elif decision_score <= t_minus:
+        pos_score = f'< t- ({t_minus:.3f})'
+    else:
+        pos_score = f'entre t- ({t_minus:.3f}) e t+ ({t_plus:.3f})'
+    
     axes[1].set_title(
         f'Explicação PEAB\n'
-        f'Predito: {y_pred} | Score: {decision_score:.3f}\n'
+        f'Predito: {class_names[y_pred] if y_pred in [0,1] else "REJEITADA"} (y={y_pred})\n'
+        f'Score: {decision_score:.3f} ({pos_score})\n'
         f'Pixels na explicação: {len(explanation)}',
-        fontsize=11, fontweight='bold'
+        fontsize=10, fontweight='bold'
     )
     axes[1].axis('off')
     
-    # Título principal
-    fig.suptitle(
-        f'Exemplo de Instância {categoria}\n{experiment_name}',
-        fontsize=14, fontweight='bold', color=cor_titulo, y=0.98
+    # Adicionar colorbar (legenda) à direita
+    fig.subplots_adjust(right=0.88)
+    cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
+    cbar = fig.colorbar(im, cax=cbar_ax)
+    cbar.set_label(
+        'Intensidade\ndos pixels\nda explicação',
+        fontsize=9,
+        rotation=0,
+        labelpad=15,
+        ha='left'
     )
     
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    # Título principal
+    fig.suptitle(
+        f'Exemplo de Instância {categoria}\n'
+        f'{experiment_name} | Thresholds: t- = {t_minus:.3f}, t+ = {t_plus:.3f}',
+        fontsize=13, fontweight='bold', color=cor_titulo, y=0.98
+    )
+    
+    plt.tight_layout(rect=[0, 0, 0.88, 0.95])
     
     # Salvar
     if SAVE_PLOTS:
@@ -253,12 +284,18 @@ def processar_experimento(data: dict, exp_key: str):
         class_names = exp_data['data']['class_names']
         X_test = exp_data['data']['X_test']
         
+        # Obter thresholds
+        thresholds = exp_data.get('thresholds', {})
+        t_plus = thresholds.get('t_plus', 0.0)
+        t_minus = thresholds.get('t_minus', 0.0)
+        
         if len(per_instance) == 0:
             print("⚠ Nenhuma instância encontrada.")
             return
         
         print(f"✓ Classes: {class_names[0]} vs {class_names[1]}")
         print(f"✓ Total de instâncias: {len(per_instance)}")
+        print(f"✓ Thresholds: t- = {t_minus:.4f}, t+ = {t_plus:.4f}")
         
         # Coletar TODOS os exemplos de cada categoria
         candidatos_positiva = []
@@ -349,7 +386,7 @@ def processar_experimento(data: dict, exp_key: str):
             print(f"  • Positiva (idx={idx_positiva}, id={exemplo_positiva.get('id')})")
             criar_imagem_individual(
                 exemplo_positiva, idx_positiva, X_test, 
-                class_names, exp_key, 
+                class_names, exp_key, t_plus, t_minus,
                 img_shape=(28, 28), 
                 output_suffix="exemplo_positiva"
             )
@@ -360,7 +397,7 @@ def processar_experimento(data: dict, exp_key: str):
             print(f"  • Negativa (idx={idx_negativa}, id={exemplo_negativa.get('id')})")
             criar_imagem_individual(
                 exemplo_negativa, idx_negativa, X_test, 
-                class_names, exp_key, 
+                class_names, exp_key, t_plus, t_minus,
                 img_shape=(28, 28), 
                 output_suffix="exemplo_negativa"
             )
@@ -371,7 +408,7 @@ def processar_experimento(data: dict, exp_key: str):
             print(f"  • Rejeitada (idx={idx_rejeitada}, id={exemplo_rejeitada.get('id')})")
             criar_imagem_individual(
                 exemplo_rejeitada, idx_rejeitada, X_test, 
-                class_names, exp_key, 
+                class_names, exp_key, t_plus, t_minus,
                 img_shape=(28, 28), 
                 output_suffix="exemplo_rejeitada"
             )
