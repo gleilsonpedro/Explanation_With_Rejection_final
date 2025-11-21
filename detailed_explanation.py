@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Script para análise detalhada de instâncias específicas usando cache cumulativo.
+Script para análise detalhada de instâncias específicas usando cache cumulativo(JSON).
 """
 
 import os

@@ -119,6 +119,7 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
         img_shape: Formato da imagem (28, 28)
         output_suffix: Sufixo para o nome do arquivo (ex: "positiva", "negativa", "rejeitada")
     """
+    
     num_features = img_shape[0] * img_shape[1]
     
     # Obter vetor de features usando índice sequencial
@@ -149,7 +150,7 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
         
         if idx is not None and 0 <= idx < num_features:
             mask_binary[idx] = 1.0  # Marcar pixel como parte da explicação
-    
+
     mask_img = mask_binary.reshape(img_shape)
     
     # Determinar categoria e cor
@@ -244,7 +245,10 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
     )
     
     plt.tight_layout(rect=[0, 0, 0.88, 0.95])
-    
+
+    # ... no final da função criar_imagem_individual, antes do plt.close() etc...
+
+  
     # Salvar
     if SAVE_PLOTS:
         output_path = Path(OUTPUT_DIR)
@@ -254,6 +258,7 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
         filename = output_path / f'{safe_exp}_{output_suffix}.png'
         plt.savefig(filename, dpi=150, bbox_inches='tight')
         print(f"  💾 Salvo: {filename}")
+    
     
     if SHOW_PLOTS:
         plt.show()
@@ -460,8 +465,8 @@ def main():
     )
     parser.add_argument('--results', type=str, default=RESULTS_FILE, 
                        help='Caminho para o JSON de resultados')
-    parser.add_argument('--experiment', type=str, default='mnist', 
-                       help='Chave do experimento (ex: mnist ou mnist_3_vs_8)')
+    parser.add_argument('--experiment', type=str, default='auto', 
+                       help="Chave do experimento em 'peab' (ex: mnist_8_vs_3). Use 'auto' para listar e escolher interativamente.")
     parser.add_argument('--show', action='store_true', 
                        help='Mostrar janelas do Matplotlib')
     parser.add_argument('--seed', type=int, default=None,
@@ -514,13 +519,39 @@ def main():
             print("❌ ERRO: Chave 'peab' não encontrada no JSON!")
             return
         
-        if args.experiment not in data['peab']:
-            print(f"❌ ERRO: Experimento '{args.experiment}' não encontrado!")
-            print(f"Experimentos disponíveis: {list(data['peab'].keys())}")
-            return
-        
-        # Processar
-        processar_experimento(data, args.experiment)
+        # Seleção interativa se experiment == 'auto'
+        chosen_experiment = args.experiment
+        if args.experiment == 'auto':
+            available = list(data['peab'].keys())
+            if not available:
+                print("❌ ERRO: Nenhum experimento disponível na chave 'peab'.")
+                return
+            print("\n📋 Experimentos disponíveis em 'peab':")
+            for idx, key in enumerate(available):
+                print(f"  [{idx}] {key}")
+            while True:
+                try:
+                    sel = input("Digite o número do experimento desejado: ").strip()
+                    if sel == '':
+                        print("⚠️ Entrada vazia. Digite um índice.")
+                        continue
+                    sel_i = int(sel)
+                    if 0 <= sel_i < len(available):
+                        chosen_experiment = available[sel_i]
+                        print(f"\n✅ Selecionado: {chosen_experiment}")
+                        break
+                    else:
+                        print("⚠️ Índice fora do intervalo.")
+                except ValueError:
+                    print("⚠️ Digite um número válido.")
+        else:
+            if args.experiment not in data['peab']:
+                print(f"❌ ERRO: Experimento '{args.experiment}' não encontrado!")
+                print(f"Experimentos disponíveis: {list(data['peab'].keys())}")
+                return
+
+        # Processar experimento escolhido
+        processar_experimento(data, chosen_experiment)
         
         print(f"\n{'='*80}")
         print("✅ PROCESSAMENTO CONCLUÍDO!")

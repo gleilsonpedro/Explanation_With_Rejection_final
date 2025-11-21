@@ -34,13 +34,13 @@ LEGENDA DOS SÍMBOLOS
 
 [ DESEMPENHO COMPUTACIONAL ]
 
-  - Tempo Total de Geração das Explicações: 9.09 segundos
-  - Tempo Médio por Instância: 0.0393 segundos
+  - Tempo Total de Geração das Explicações: 7.35 segundos
+  - Tempo Médio por Instância: 0.0318 segundos
 
   - Custo Computacional por Classe:
-    - Tempo Médio (Positivas): 0.0276 segundos
-    - Tempo Médio (Negativas): 0.0269 segundos
-    - Tempo Médio (Rejeitadas): 0.0764 segundos
+    - Tempo Médio (Positivas): 0.0187 segundos
+    - Tempo Médio (Negativas): 0.0200 segundos
+    - Tempo Médio (Rejeitadas): 0.0685 segundos
 
 **********  PROCESSAMENTO POR INSTÂNCIA  **********
 
@@ -2300,6 +2300,7 @@ LEGENDA DOS SÍMBOLOS
 --------------------------------------------------------------------------------
 --- INSTÂNCIA #0 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.1498 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.142): s' = 2.078 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2314,6 +2315,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #1 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.8161 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 7 features.
 ├── Iniciando processo de minimização com 7 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade', 'espessura_pele']
 ├─ ● glicose (δ: -3.020): s' = 2.252 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2329,6 +2331,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #2 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.8933 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'insulina', 'idade', 'pressao_sangue']
 ├─ ● glicose (δ: +4.852): s' = -4.128 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2343,6 +2346,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #5 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2923 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.451): s' = 2.247 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2355,6 +2359,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #6 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.8966 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'insulina', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: +5.497): s' = -4.789 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2369,6 +2374,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #7 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8218 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.507): s' = 2.218 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2382,6 +2388,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #8 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.9387 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.698): s' = 1.995 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2394,6 +2401,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #10 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.7659 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.732): s' = 2.239 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2406,6 +2414,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #11 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.3983 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.540): s' = 2.651 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2418,6 +2427,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #12 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.5173 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.532): s' = 2.171 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2430,6 +2440,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #14 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.3140 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +6.243): s' = -5.410 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2442,6 +2453,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #15 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.6144 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: +6.582): s' = -5.521 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2453,6 +2465,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #18 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.1353 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue']
 ├─ ● glicose (δ: +5.598): s' = -4.797 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2464,6 +2477,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #19 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.0364 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -2.752): s' = 1.794 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2478,6 +2492,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #20 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.1067 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'num_gravidezes', 'imc', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -2.850): s' = 1.953 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2492,6 +2507,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #21 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.0188 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.743): s' = 2.724 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2506,6 +2522,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #22 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4270 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.631): s' = 2.299 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2518,6 +2535,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #23 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.6777 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.678): s' = 2.136 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2530,6 +2548,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #24 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.0105 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue']
 ├─ ● glicose (δ: +5.598): s' = -5.024 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2541,6 +2560,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #26 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.9876 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -2.882): s' = 1.895 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2555,6 +2575,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #27 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.8058 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 8 features.
 ├── Iniciando processo de minimização com 8 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade', 'insulina', 'espessura_pele']
 ├─ ● imc (δ: -2.817): s' = 2.012 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2571,6 +2592,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #28 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.9286 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'diabetes_pedigree', 'num_gravidezes']
 ├─ ● imc (δ: -3.832): s' = 2.226 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2583,6 +2605,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #29 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.6412 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.337): s' = 2.144 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2596,6 +2619,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #30 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.2452 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'diabetes_pedigree']
 ├─ ● glicose (δ: +4.920): s' = -4.251 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2608,6 +2632,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #32 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4490 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.325): s' = 2.429 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2621,6 +2646,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #33 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4456 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -4.004): s' = 2.586 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2633,6 +2659,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #34 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8427 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.524): s' = 2.441 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2646,6 +2673,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #35 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.9450 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: +5.259): s' = -4.364 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2658,6 +2686,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #36 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9577 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.631): s' = 2.334 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2671,6 +2700,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #37 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.3193 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +4.614): s' = -3.904 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2683,6 +2713,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #38 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.2891 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.155): s' = 2.086 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2697,6 +2728,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #40 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.5455 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.529): s' = 2.218 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2709,6 +2741,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #41 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.3074 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: +6.243): s' = -4.984 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2721,6 +2754,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #42 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2062 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.418): s' = 1.731 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2733,6 +2767,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #43 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4283 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.902): s' = 2.678 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2745,6 +2780,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #44 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.3970 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.296): s' = 2.072 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2757,6 +2793,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #47 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.7332 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'insulina', 'idade', 'num_gravidezes']
 ├─ ● glicose (δ: +5.870): s' = -5.262 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2771,6 +2808,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #48 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7298 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'num_gravidezes']
 ├─ ● glicose (δ: -3.631): s' = 2.736 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2783,6 +2821,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #49 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.5069 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.563): s' = 2.281 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2795,6 +2834,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #50 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.8403 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 7 features.
 ├── Iniciando processo de minimização com 7 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade', 'espessura_pele']
 ├─ ● glicose (δ: -2.647): s' = 1.858 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2810,6 +2850,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #51 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.5351 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.345): s' = 2.407 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2823,6 +2864,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #52 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.4513 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +5.123): s' = -4.413 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2835,6 +2877,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #53 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.9612 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.766): s' = 1.928 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2847,6 +2890,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #54 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.0369 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue', 'insulina']
 ├─ ● glicose (δ: +4.377): s' = -3.778 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2860,6 +2904,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #55 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.3682 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.304): s' = 2.518 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2873,6 +2918,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #56 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8302 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'idade']
 ├─ ● glicose (δ: -3.936): s' = 3.114 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2885,6 +2931,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #57 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.8780 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue']
 ├─ ● glicose (δ: +6.684): s' = -6.040 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -2896,6 +2943,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #58 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.7657 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.223): s' = 2.458 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2910,6 +2958,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #60 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.1033 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.743): s' = 1.798 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2922,6 +2971,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #61 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9694 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.868): s' = 2.466 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2935,6 +2985,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #64 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.6555 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -5.225): s' = 3.710 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2946,6 +2997,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #65 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.6006 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.155): s' = 2.175 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2959,6 +3011,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #66 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.5766 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.735): s' = 2.387 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2972,6 +3025,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #67 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4664 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'num_gravidezes', 'imc', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.155): s' = 2.362 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2985,6 +3039,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #68 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.1308 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.325): s' = 2.329 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -2999,6 +3054,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #69 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.8951 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -2.817): s' = 1.976 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3013,6 +3069,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #70 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.4430 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: +5.768): s' = -4.604 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3024,6 +3081,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #72 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.3190 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -4.241): s' = 2.746 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3035,6 +3093,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #73 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -4.5453 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
 ├── Iniciando processo de minimização com 2 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose']
 ├─ ● imc (δ: -5.448): s' = 4.678 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3045,6 +3104,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #74 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.0660 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.629): s' = 2.518 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3057,6 +3117,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #75 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.8845 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -6.718): s' = 4.976 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3068,6 +3129,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #76 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.8978 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 7 features.
 ├── Iniciando processo de minimização com 7 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue', 'idade', 'insulina']
 ├─ ● imc (δ: -3.175): s' = 2.355 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3083,6 +3145,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #77 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9281 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'pressao_sangue', 'num_gravidezes']
 ├─ ● glicose (δ: -4.411): s' = 2.853 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3096,6 +3159,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #78 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.6887 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.664): s' = 2.537 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3109,6 +3173,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #79 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7013 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -2.952): s' = 1.567 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3122,6 +3187,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #80 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.5199 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.732): s' = 2.330 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3134,6 +3200,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #82 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.6119 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.529): s' = 2.095 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3146,6 +3213,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #83 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.9391 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.631): s' = 1.804 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3158,6 +3226,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #84 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2038 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.495): s' = 2.657 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3170,6 +3239,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #85 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.4875 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'insulina']
 ├─ ● glicose (δ: +6.073): s' = -5.293 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3182,6 +3252,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #87 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.0769 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: +5.123): s' = -4.395 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3193,6 +3264,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #88 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.4616 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: +5.802): s' = -4.491 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3204,6 +3276,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #89 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8408 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.902): s' = 2.545 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3217,6 +3290,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #90 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.7227 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree']
 ├─ ● glicose (δ: +6.650): s' = -5.848 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3228,6 +3302,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #91 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.3438 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue']
 ├─ ● glicose (δ: +6.107): s' = -4.690 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3239,6 +3314,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #92 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.0982 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.824): s' = 1.923 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3251,6 +3327,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #93 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.7919 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'idade', 'diabetes_pedigree']
 ├─ ● glicose (δ: +6.413): s' = -5.776 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3264,6 +3341,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #95 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4618 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: -3.155): s' = 2.180 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3277,6 +3355,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #97 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.7065 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.410): s' = 1.715 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3289,6 +3368,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #99 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.2235 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.597): s' = 2.830 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3302,6 +3382,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #100 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.1200 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -2.986): s' = 1.866 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3316,6 +3397,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #101 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.9217 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 7 features.
 ├── Iniciando processo de minimização com 7 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'idade', 'pressao_sangue', 'insulina']
 ├─ ● imc (δ: -2.655): s' = 1.776 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3331,6 +3413,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #103 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4583 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue']
 ├─ ● imc (δ: -3.296): s' = 2.344 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3344,6 +3427,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #105 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.8442 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.451): s' = 1.788 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3356,6 +3440,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #106 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.9968 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -4.411): s' = 2.924 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3367,6 +3452,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #107 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.1912 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'num_gravidezes', 'insulina']
 ├─ ● glicose (δ: +6.481): s' = -5.640 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3380,6 +3466,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #108 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.7871 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.732): s' = 2.053 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3392,6 +3479,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #110 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.9186 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.516): s' = 2.597 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3406,6 +3494,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #111 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.0254 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'insulina']
 ├─ ● glicose (δ: +4.072): s' = -3.331 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3420,6 +3509,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #114 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.9924 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'idade']
 ├─ ● glicose (δ: +6.582): s' = -5.783 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3432,6 +3522,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #115 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9264 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue']
 ├─ ● imc (δ: -3.605): s' = 2.006 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3445,6 +3536,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #116 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8435 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.223): s' = 2.022 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3458,6 +3550,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #117 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4124 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -4.072): s' = 2.680 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3470,6 +3563,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #118 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.3640 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.122): s' = 1.906 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3484,6 +3578,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #119 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.3167 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: +6.684): s' = -5.461 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3496,6 +3591,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #120 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -6.0239 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
 ├── Iniciando processo de minimização com 2 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc']
 ├─ ● glicose (δ: -6.718): s' = 5.239 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3506,6 +3602,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #122 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.6798 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'insulina', 'pressao_sangue', 'diabetes_pedigree', 'num_gravidezes']
 ├─ ● glicose (δ: +4.988): s' = -4.400 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3520,6 +3617,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #123 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.0421 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.257): s' = 2.295 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3534,6 +3632,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #125 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9872 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.313): s' = 1.909 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3547,6 +3646,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #126 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.8720 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'insulina', 'diabetes_pedigree', 'idade']
 ├─ ● glicose (δ: +6.413): s' = -5.780 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3560,6 +3660,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #127 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1203 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.868): s' = 2.913 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3572,6 +3673,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #128 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.6406 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree']
 ├─ ● glicose (δ: +6.141): s' = -5.307 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3583,6 +3685,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #129 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.7718 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.359): s' = 2.587 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3597,6 +3700,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #130 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1100 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.134): s' = 2.177 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3609,6 +3713,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #131 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4539 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.325): s' = 2.441 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3622,6 +3727,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #132 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.1075 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -4.309): s' = 2.580 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3634,6 +3740,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #134 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.5947 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.020): s' = 1.865 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3647,6 +3754,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #135 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 3.9515 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
 ├── Iniciando processo de minimização com 2 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc']
 ├─ ● glicose (δ: +6.107): s' = -4.519 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3657,6 +3765,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #136 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.0871 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.664): s' = 1.879 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3669,6 +3778,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #137 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -4.9266 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
 ├── Iniciando processo de minimização com 2 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose']
 ├─ ● imc (δ: -5.448): s' = 4.474 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3679,6 +3789,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #138 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2660 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.613): s' = 2.452 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3691,6 +3802,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #139 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.1568 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'diabetes_pedigree']
 ├─ ● glicose (δ: +5.666): s' = -5.077 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3703,6 +3815,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #140 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.7869 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -2.850): s' = 2.063 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3717,6 +3830,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #142 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7069 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.495): s' = 2.355 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3730,6 +3844,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #146 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.3988 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.483): s' = 2.299 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3742,6 +3857,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #147 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.8853 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.670): s' = 1.854 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3754,6 +3870,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #148 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.2644 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: -3.088): s' = 2.263 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3767,6 +3884,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #149 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1727 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.353): s' = 2.326 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3779,6 +3897,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #151 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.1001 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -2.663): s' = 1.645 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3793,6 +3912,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #152 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.7403 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.698): s' = 2.263 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3805,6 +3925,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #154 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.9020 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.207): s' = 2.305 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3819,6 +3940,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #155 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7759 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.427): s' = 2.266 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3832,6 +3954,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #156 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.7617 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 8 features.
 ├── Iniciando processo de minimização com 8 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade', 'insulina', 'espessura_pele']
 ├─ ● imc (δ: -2.777): s' = 2.015 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3848,6 +3971,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #158 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.9951 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.792): s' = 1.977 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3860,6 +3984,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #159 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4350 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -2.590): s' = 1.688 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3873,6 +3998,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #161 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7394 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -2.884): s' = 1.655 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3886,6 +4012,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #162 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9311 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.394): s' = 2.138 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3899,6 +4026,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #164 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2631 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.645): s' = 1.892 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3911,6 +4039,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #165 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4041 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -2.744): s' = 1.970 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3924,6 +4053,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #169 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.2358 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.369): s' = 2.591 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3937,6 +4067,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #170 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8394 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.654): s' = 2.480 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3950,6 +4081,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #173 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.0102 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.868): s' = 3.060 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3962,6 +4094,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #174 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4149 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue']
 ├─ ● imc (δ: -3.572): s' = 2.414 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -3975,6 +4108,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #175 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.6244 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 8 features.
 ├── Iniciando processo de minimização com 8 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'insulina', 'pressao_sangue', 'idade', 'espessura_pele']
 ├─ ● glicose (δ: +4.750): s' = -4.126 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -3991,6 +4125,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #177 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1066 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.325): s' = 2.389 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4003,6 +4138,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #178 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1800 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'num_gravidezes', 'imc', 'diabetes_pedigree']
 ├─ ● glicose (δ: -4.445): s' = 3.280 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4015,6 +4151,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #179 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.0839 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.529): s' = 2.732 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4027,6 +4164,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #182 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.7916 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 8 features.
 ├── Iniciando processo de minimização com 8 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'diabetes_pedigree', 'num_gravidezes', 'pressao_sangue', 'idade', 'espessura_pele', 'insulina']
 ├─ ● glicose (δ: -3.291): s' = 2.500 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4043,6 +4181,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #183 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.4783 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'num_gravidezes']
 ├─ ● glicose (δ: +6.548): s' = -5.636 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4055,6 +4194,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #184 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.7839 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +6.073): s' = -5.186 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4067,6 +4207,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #185 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.0779 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.427): s' = 2.544 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4079,6 +4220,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #186 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.9140 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.223): s' = 1.920 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4092,6 +4234,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #188 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.3737 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -3.732): s' = 2.533 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4104,6 +4247,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #191 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.8745 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -4.309): s' = 2.819 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4115,6 +4259,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #192 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7083 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.088): s' = 1.982 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4128,6 +4273,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #193 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4410 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.800): s' = 2.955 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4141,6 +4287,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #194 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.5122 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes']
 ├─ ● imc (δ: -3.970): s' = 2.709 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4152,6 +4299,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #195 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.0468 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'insulina', 'pressao_sangue']
 ├─ ● glicose (δ: +4.750): s' = -4.042 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4165,6 +4313,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #196 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 0.7901 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'pressao_sangue', 'diabetes_pedigree', 'insulina', 'num_gravidezes']
 ├─ ● glicose (δ: +6.548): s' = -5.875 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4179,6 +4328,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #197 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 2.7385 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
 ├── Iniciando processo de minimização com 2 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc']
 ├─ ● glicose (δ: +6.752): s' = -5.859 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4189,6 +4339,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #198 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.6480 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.359): s' = 2.207 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4202,6 +4353,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #199 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4123 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'num_gravidezes', 'imc', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -3.257): s' = 1.978 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4216,6 +4368,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #200 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7502 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.434): s' = 2.313 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4229,6 +4382,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #201 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.0660 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'idade']
 ├─ ● glicose (δ: -3.631): s' = 2.565 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4242,6 +4396,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #202 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.1018 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.556): s' = 2.399 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4254,6 +4409,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #203 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.5999 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● glicose (δ: -3.155): s' = 2.199 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4267,6 +4423,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #207 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4633 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.516): s' = 2.581 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4280,6 +4437,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #208 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4243 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -5.448): s' = 3.893 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4292,6 +4450,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #209 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -4.0193 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -4.818): s' = 3.257 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4303,6 +4462,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #210 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.5715 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.304): s' = 2.444 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4316,6 +4476,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #211 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -0.9539 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -2.579): s' = 1.778 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4330,6 +4491,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #212 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.2852 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'insulina']
 ├─ ● glicose (δ: +5.565): s' = -4.810 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4343,6 +4505,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #214 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.7845 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.670): s' = 2.877 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4355,6 +4518,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #215 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -3.7392 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
 ├── Iniciando processo de minimização com 3 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes']
 ├─ ● glicose (δ: -4.784): s' = 2.795 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4366,6 +4530,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #216 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.7809 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +5.802): s' = -4.818 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4378,6 +4543,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #217 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.4121 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue']
 ├─ ● imc (δ: -3.272): s' = 2.335 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4391,6 +4557,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #218 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.2647 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.369): s' = 2.276 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4403,6 +4570,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #221 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.0874 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'insulina', 'pressao_sangue']
 ├─ ● glicose (δ: +5.598): s' = -5.026 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4416,6 +4584,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #222 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.8134 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
 ├── Iniciando processo de minimização com 5 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'idade']
 ├─ ● glicose (δ: -3.563): s' = 2.308 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4429,6 +4598,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #223 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.4236 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'glicose', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● imc (δ: -3.621): s' = 2.619 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4441,6 +4611,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #224 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -2.5859 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree']
 ├─ ● glicose (δ: -4.072): s' = 2.544 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4453,6 +4624,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #225 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 1 | SCORE: 1.5277 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
 ├── Iniciando processo de minimização com 4 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'pressao_sangue']
 ├─ ● glicose (δ: +5.225): s' = -4.412 (> t+ (0.5516)) → FALHA. ESSENCIAL.
@@ -4465,6 +4637,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #226 | CLASSE REAL: Não Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.0128 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['imc', 'num_gravidezes', 'glicose', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● imc (δ: -3.442): s' = 2.498 (< t- (-0.7566)) → FALHA. ESSENCIAL.
@@ -4479,6 +4652,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #230 | CLASSE REAL: Diabético | PREDIÇÃO: CLASSE 0 | SCORE: -1.2420 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
 ├── Iniciando processo de minimização com 6 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['glicose', 'imc', 'num_gravidezes', 'diabetes_pedigree', 'pressao_sangue', 'idade']
 ├─ ● glicose (δ: -2.816): s' = 1.683 (< t- (-0.7566)) → FALHA. ESSENCIAL.
