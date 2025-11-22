@@ -1,20 +1,60 @@
+"""
+Visualizador de Instâncias Individuais do PEAB - Pares MNIST
+
+Este script gera 3 imagens individuais mostrando exemplos de explicações para
+diferentes pares de classes MNIST (ex: 9 vs 4, 5 vs 6, etc).
+
+Gera os seguintes exemplos:
+1. Uma instância POSITIVA (classe positiva) corretamente classificada
+2. Uma instância NEGATIVA (classe negativa) corretamente classificada  
+3. Uma instância REJEITADA (com evidências conflitantes)
+
+Cada imagem mostra:
+- Dígito original (28x28 em escala de cinza)
+- Overlay colorido dos pixels que compõem a explicação mínima do PEAB
+- Informações sobre a classe verdadeira, predita e score de decisão
+
+O script permite escolher interativamente qual par MNIST deseja visualizar.
+"""
+
 import json
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 import argparse
+import random
 
 # ==============================================================================
-# CONSTANTES
+# CONFIGURAÇÕES
 # ==============================================================================
 RESULTS_FILE = 'json/comparative_results.json'
-OUTPUT_DIR = 'analysis_output/plots'
+OUTPUT_DIR = 'analysis_output/plots/individual_examples'
 SAVE_PLOTS = True
-SHOW_PLOTS = False  # Evita travar execução em lote (use True para visualizar interativamente)
-# Limite de instâncias MNIST a plotar (por experimento). None = todas
-MAX_PER_INSTANCE = 5
-PER_INSTANCE_PLOTS = False  # Desativado por padrão para execução rápida
-USE_ARCHETYPES_DELTAS = True  # Gera figura 3x1 com arquétipos de deltas (médio 0, médio 1 e 1 rejeitada)
+SHOW_PLOTS = False
+
+# ==============================================================================
+# 🎯 CONTROLE DE ÍNDICES - EDITE AQUI PARA FIXAR EXEMPLOS ESPECÍFICOS
+# ==============================================================================
+# Deixe como None para seleção aleatória
+# Ou defina o número do índice para fixar um exemplo específico
+#
+# Como descobrir os índices:
+# 1. Rode o script com valores None (aleatório)
+# 2. Olhe os índices (idx) que aparecem no console
+# 3. Anote os que você gostou e coloque aqui embaixo
+# 4. Execute novamente - sempre usará os mesmos exemplos!
+
+IDX_POSITIVA = 58    # Ex: 104 para fixar um dígito 8 específico
+IDX_NEGATIVA = 35    # Ex: 14 para fixar um dígito 3 específico  
+IDX_REJEITADA = 38   # Ex: 13 para fixar uma instância rejeitada específica
+
+# Exemplos de uso:
+# IDX_POSITIVA = 104   # ← Descomente e use o índice que você gostou
+# IDX_NEGATIVA = 14
+# IDX_REJEITADA = 13
+
+# Variável global para índices específicos (será preenchida no main)
+INDICES_ESPECIFICOS = None
 
 # ==============================================================================
 # FUNÇÕES
@@ -30,599 +70,201 @@ def carregar_json(filepath: str) -> dict:
         return json.load(f)
 
 
-def encontrar_experimentos_mnist(data: dict) -> list:
-    """Encontra todos os experimentos MNIST no JSON"""
-    if 'peab' not in data:
-        return []
-    
-    mnist_exp = [k for k in data['peab'].keys() if 'mnist' in k.lower()]
-    return sorted(mnist_exp)
-
-
-def calcular_deltas_da_explicacao(per_instance: list, model_coefs: list, 
-                                   X_test, num_features: int) -> tuple:
+def _get_instance_vector(X_test, inst_idx: int, num_features: int) -> np.ndarray:
     """
-    Calcula os deltas (contribuições) a partir das explicações e do modelo.
+    Retorna vetor de features da instância usando índice sequencial.
     
-    X_test pode vir em dois formatos:
-    1. Lista de listas: [[feat1, feat2, ...], [feat1, feat2, ...], ...]
-    2. Dict de listas: {'pixel1': [inst1, inst2, ...], 'pixel2': [...], ...}
+    IMPORTANTE: Usa inst_idx (posição no array) e NÃO inst['id'] porque:
+    - inst['id'] = ID original do MNIST completo (ex: 45336, 67200)
+    - X_test contém apenas subset de teste (ex: 126 instâncias)
+    - A ordem em per_instance corresponde exatamente à ordem em X_test
+    - Logo: enumerate(per_instance) dá o índice correto para X_test
     
-    Returns:
-        (heatmap_pos, heatmap_neg, heatmap_rej, count_pos, count_neg, count_rej)
+    X_test pode ser:
+    - Dict: {'pixel1': [val1, val2, ...], 'pixel2': [...], ...}
+    - Array/lista: [[feat1, feat2, ...], [feat1, feat2, ...], ...]
     """
-    heatmap_pos = np.zeros(num_features, dtype=float)
-    heatmap_neg = np.zeros(num_features, dtype=float)
-    heatmap_rej = np.zeros(num_features, dtype=float)
-    
-    count_pos = 0
-    count_neg = 0
-    count_rej = 0
-    
-    # Converter coefs para numpy array
-    coefs_arr = np.array(model_coefs)
-    
-    # Converter X_test para formato [instâncias x features]
     if isinstance(X_test, dict):
-        # X_test é dict: {'pixel1': [inst1, inst2, ...], 'pixel2': [...], ...}
-        # Precisamos transpor para [[inst1_feat1, inst1_feat2, ...], [inst2_feat1, ...], ...]
-        
         # Ordenar chaves por número do pixel
         pixel_keys = sorted(X_test.keys(), key=lambda x: int(x.replace('pixel', '')))
-        
-        # Criar matriz transposta
         num_instances = len(X_test[pixel_keys[0]])
-        X_test_arr = np.zeros((num_instances, num_features))
         
-        for feat_idx, pixel_key in enumerate(pixel_keys):
-            X_test_arr[:, feat_idx] = X_test[pixel_key]
-    else:
-        # X_test já é lista de listas
-        X_test_arr = np.array(X_test)
-    
-    print(f"  📐 Dimensões: X_test={X_test_arr.shape}, coefs={coefs_arr.shape}")
-    
-    for idx, inst in enumerate(per_instance):
-        # Usar índice sequencial em vez do ID original
-        if idx < len(X_test_arr):
-            x_vals = X_test_arr[idx]
-        else:
-            x_vals = np.zeros(num_features)
-        
-        # Calcular deltas: delta_i = x_i * w_i
-        deltas = x_vals * coefs_arr
-        
-        # Agregar por classe
-        if inst['rejected']:
-            heatmap_rej += deltas
-            count_rej += 1
-        elif inst['y_pred'] == 0:
-            heatmap_neg += deltas
-            count_neg += 1
-        elif inst['y_pred'] == 1:
-            heatmap_pos += deltas
-            count_pos += 1
-    
-    # Normalizar (calcular médias)
-    if count_pos > 0:
-        heatmap_pos /= count_pos
-    if count_neg > 0:
-        heatmap_neg /= count_neg
-    if count_rej > 0:
-        heatmap_rej /= count_rej
-    
-    return heatmap_pos, heatmap_neg, heatmap_rej, count_pos, count_neg, count_rej
-
-
-def agregar_minimas_explicacoes(per_instance: list, feature_names: list, num_features: int) -> tuple:
-    """
-    Agrega máscaras de explicações mínimas por categoria (positiva/negativa/rejeição).
-
-    Em vez de contribuições (coeficientes), aqui contamos com que frequência cada
-    pixel/feature aparece na explicação mínima das instâncias daquela categoria.
-
-    Retorna três heatmaps de frequência normalizada por categoria (valores em [0,1])
-    e as contagens de instâncias por categoria.
-    """
-    name_to_idx = {name: i for i, name in enumerate(feature_names)}
-
-    freq_pos = np.zeros(num_features, dtype=float)
-    freq_neg = np.zeros(num_features, dtype=float)
-    freq_rej = np.zeros(num_features, dtype=float)
-
-    c_pos = c_neg = c_rej = 0
-
-    for inst in per_instance:
-        exp_feats = inst.get('explanation', []) or []
-        mask = np.zeros(num_features, dtype=float)
-
-        for feat in exp_feats:
-            idx = None
-            # Preferência: mapear pelo nome exato (está em feature_names)
-            if isinstance(feat, str) and feat in name_to_idx:
-                idx = name_to_idx[feat]
-            else:
-                # fallback para formatos como 'pixel123'
-                try:
-                    if isinstance(feat, str) and feat.startswith('pixel'):
-                        idx = int(feat.replace('pixel', '')) - 1
-                    elif isinstance(feat, (int, np.integer)):
-                        # assumir 1-based
-                        idx = int(feat) - 1
-                except Exception:
-                    idx = None
-
-            if idx is not None and 0 <= idx < num_features:
-                mask[idx] = 1.0
-
-        if inst.get('rejected', False):
-            freq_rej += mask
-            c_rej += 1
-        elif inst.get('y_pred', None) == 0:
-            freq_neg += mask
-            c_neg += 1
-        elif inst.get('y_pred', None) == 1:
-            freq_pos += mask
-            c_pos += 1
-
-    # Normalizar por quantidade de instâncias em cada categoria (frequência relativa)
-    if c_pos > 0:
-        freq_pos /= c_pos
-    if c_neg > 0:
-        freq_neg /= c_neg
-    if c_rej > 0:
-        freq_rej /= c_rej
-
-    return freq_pos, freq_neg, freq_rej, c_pos, c_neg, c_rej
-
-
-def agregar_deltas_por_classe(per_instance: list, num_features: int = 784) -> tuple:
-    """
-    Agrega os deltas (contribuições) por categoria de predição.
-    
-    Returns:
-        (heatmap_pos, heatmap_neg, heatmap_rej, count_pos, count_neg, count_rej)
-    """
-    heatmap_pos = np.zeros(num_features, dtype=float)
-    heatmap_neg = np.zeros(num_features, dtype=float)
-    heatmap_rej = np.zeros(num_features, dtype=float)
-    
-    count_pos = 0
-    count_neg = 0
-    count_rej = 0
-    
-    for inst in per_instance:
-        deltas = np.array(inst['deltas'], dtype=float)
-        
-        if inst['rejected']:
-            heatmap_rej += deltas
-            count_rej += 1
-        elif inst['y_pred'] == 0:
-            heatmap_neg += deltas
-            count_neg += 1
-        elif inst['y_pred'] == 1:
-            heatmap_pos += deltas
-            count_pos += 1
-    
-    # Normalizar (calcular médias)
-    if count_pos > 0:
-        heatmap_pos /= count_pos
-    if count_neg > 0:
-        heatmap_neg /= count_neg
-    if count_rej > 0:
-        heatmap_rej /= count_rej
-    
-    return heatmap_pos, heatmap_neg, heatmap_rej, count_pos, count_neg, count_rej
-
-
-def criar_visualizacao(heatmap_pos, heatmap_neg, heatmap_rej,
-                       class_names: list, counts: tuple,
-                       experiment_name: str, img_shape=(28, 28)):
-    """
-    Cria visualização com 3 imagens lado a lado mostrando as explicações.
-    
-    INTERPRETAÇÃO:
-    - AZUL (+): Evidência PARA a classe positiva (ex: "É um 7")
-    - VERMELHO (-): Evidência CONTRA a classe positiva (ex: "NÃO é um 7")
-    - BRANCO (0): Neutro, não contribui
-    """
-    count_pos, count_neg, count_rej = counts
-    
-    # Criar figura 1x3
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5.5))
-    
-    # Calcular escala global para cores uniformes
-    all_values = []
-    if count_neg > 0:
-        all_values.extend(heatmap_neg.flatten())
-    if count_pos > 0:
-        all_values.extend(heatmap_pos.flatten())
-    if count_rej > 0:
-        all_values.extend(heatmap_rej.flatten())
-    
-    if len(all_values) > 0:
-        vmax = np.max(np.abs(all_values))
-    else:
-        vmax = 1.0
-    
-    if vmax == 0:
-        vmax = 1.0
-    
-    # Colormap: Vermelho (negativo) → Branco (zero) → Azul (positivo)
-    cmap = 'RdBu_r'
-    
-    # ========================================
-    # PLOT 1: CLASSE NEGATIVA (Classe 0)
-    # ========================================
-    if count_neg > 0:
-        img_neg = heatmap_neg.reshape(img_shape)
-    else:
-        img_neg = np.zeros(img_shape)
-    
-    # Usar apenas valores negativos (favoráveis à classe 0) e colormap azul
-    img_neg_only = np.where(img_neg < 0, -img_neg, 0)  # Inverte valores negativos para positivos
-    vmax_neg = np.max(img_neg_only) if np.max(img_neg_only) > 0 else 1.0
-    
-    im0 = axes[0].imshow(img_neg_only, cmap='Blues', vmin=0, vmax=vmax_neg)
-    axes[0].set_title(
-        f'CLASSE NEGATIVA: {class_names[0]}\n'
-        f'({count_neg} instâncias)\n\n'
-        f'Azul = Evidência para {class_names[0]}',
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[0].axis('off')
-    
-    # ========================================
-    # PLOT 2: CLASSE POSITIVA (Classe 1)
-    # ========================================
-    if count_pos > 0:
-        img_pos = heatmap_pos.reshape(img_shape)
-    else:
-        img_pos = np.zeros(img_shape)
-    
-    # Usar apenas valores positivos (favoráveis à classe 1) e colormap vermelho
-    img_pos_only = np.where(img_pos > 0, img_pos, 0)
-    vmax_pos = np.max(img_pos_only) if np.max(img_pos_only) > 0 else 1.0
-    
-    im1 = axes[1].imshow(img_pos_only, cmap='Reds', vmin=0, vmax=vmax_pos)
-    axes[1].set_title(
-        f'CLASSE POSITIVA: {class_names[1]}\n'
-        f'({count_pos} instâncias)\n\n'
-        f'Vermelho = Evidência para {class_names[1]}',
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[1].axis('off')
-    
-    # ========================================
-    # PLOT 3: REJEITADAS
-    # ========================================
-    if count_rej > 0:
-        img_rej = heatmap_rej.reshape(img_shape)
-    else:
-        img_rej = np.zeros(img_shape)
-    
-    im2 = axes[2].imshow(img_rej, cmap=cmap, vmin=-vmax, vmax=vmax)
-    axes[2].set_title(
-        f'REJEITADAS\n'
-        f'({count_rej} instâncias)\n\n'
-        f'Cores mistas = Evidências conflitantes',
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[2].axis('off')
-    
-    # ========================================
-    # COLORBAR (Legenda)
-    # ========================================
-    fig.subplots_adjust(right=0.87, wspace=0.3)
-    cbar_ax = fig.add_axes([0.89, 0.15, 0.02, 0.7])
-    cbar = fig.colorbar(im1, cax=cbar_ax)
-    cbar.set_label(
-        'Explicação:\n\n'
-        f'VERMELHO (+):\nEvidência para\n{class_names[1]}\n\n'
-        f'AZUL (-):\nEvidência para\n{class_names[0]}\n\n'
-        'BRANCO (0):\nNeutro',
-        fontsize=10,
-        rotation=0,
-        labelpad=15,
-        ha='left'
-    )
-    
-    # Título principal
-    fig.suptitle(
-        f'Explicações Abdutivas do PEAB - {experiment_name}\n'
-        f'Mapa de Calor das Explicações Médias por Classe\n',
-        fontsize=14,
-        fontweight='bold',
-        y=0.98
-    )
-    
-    plt.tight_layout(rect=[0, 0, 0.87, 0.95])
-    
-    # Salvar se configurado
-    if SAVE_PLOTS:
-        output_path = Path(OUTPUT_DIR)
-        output_path.mkdir(parents=True, exist_ok=True)
-        filename = output_path / f'explicacao_peab_{experiment_name}.png'
-        plt.savefig(filename, dpi=150, bbox_inches='tight')
-        print(f"  💾 Imagem salva: {filename}")
-    
-    if SHOW_PLOTS:
-        plt.show()
-    else:
-        plt.close(fig)
-
-
-def criar_visualizacao_minimas(freq_pos, freq_neg, freq_rej,
-                               class_names: list, counts: tuple,
-                               experiment_name: str, img_shape=(28, 28)):
-    """
-    Cria visualização 3x1 das FREQUÊNCIAS com que cada pixel aparece na
-    explicação mínima por categoria (0..1). Ideal para MNIST.
-    """
-    c_pos, c_neg, c_rej = counts
-
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5.5))
-
-    vmax = 1.0  # frequência relativa
-    cmap = 'magma'  # contrastante para densidade
-
-    img_neg = freq_neg.reshape(img_shape) if c_neg > 0 else np.zeros(img_shape)
-    img_pos = freq_pos.reshape(img_shape) if c_pos > 0 else np.zeros(img_shape)
-    img_rej = freq_rej.reshape(img_shape) if c_rej > 0 else np.zeros(img_shape)
-
-    im0 = axes[0].imshow(img_neg, cmap=cmap, vmin=0.0, vmax=vmax)
-    axes[0].set_title(
-        f"CLASSE NEGATIVA: {class_names[0]}\n"
-        f"({c_neg} instâncias)\n\n"
-        f"Intensidade = frequência em explicações mínimas",
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[0].axis('off')
-
-    im1 = axes[1].imshow(img_pos, cmap=cmap, vmin=0.0, vmax=vmax)
-    axes[1].set_title(
-        f"CLASSE POSITIVA: {class_names[1]}\n"
-        f"({c_pos} instâncias)\n\n"
-        f"Intensidade = frequência em explicações mínimas",
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[1].axis('off')
-
-    im2 = axes[2].imshow(img_rej, cmap=cmap, vmin=0.0, vmax=vmax)
-    axes[2].set_title(
-        f"REJEITADAS\n"
-        f"({c_rej} instâncias)\n\n"
-        f"Intensidade = frequência em explicações mínimas",
-        fontsize=11, fontweight='bold', pad=10
-    )
-    axes[2].axis('off')
-
-    fig.subplots_adjust(right=0.87, wspace=0.3)
-    cbar_ax = fig.add_axes([0.89, 0.15, 0.02, 0.7])
-    cbar = fig.colorbar(im1, cax=cbar_ax)
-    cbar.set_label(
-        'Frequência relativa (0..1)\n\n'
-        'Mais claro = pixel mais recorrente\n'
-        'nas explicações mínimas',
-        fontsize=10,
-        rotation=0,
-        labelpad=15,
-        ha='left'
-    )
-
-    fig.suptitle(
-        f'Explicações Mínimas (Frequência por pixel) - {experiment_name}',
-        fontsize=14,
-        fontweight='bold',
-        y=0.98
-    )
-
-    plt.tight_layout(rect=[0, 0, 0.87, 0.95])
-
-    if SAVE_PLOTS:
-        output_path = Path(OUTPUT_DIR)
-        output_path.mkdir(parents=True, exist_ok=True)
-        filename = output_path / f'explicacao_minimas_{experiment_name}.png'
-        plt.savefig(filename, dpi=150, bbox_inches='tight')
-        print(f"  💾 Imagem (frequências) salva: {filename}")
-
-    if SHOW_PLOTS:
-        plt.show()
-    else:
-        plt.close(fig)
-
-
-def _get_instance_deltas(inst: dict, X_test, coefs: np.ndarray, num_features: int) -> np.ndarray:
-    """Obtém o vetor de deltas (784) de uma instância a partir do JSON.
-
-    Se 'deltas' não estiver presente em per_instance, calcula como x * w.
-    DEPRECATED: Use cálculo direto com índice sequencial em vez do ID original.
-    """
-    deltas = inst.get('deltas', None)
-    if deltas is not None and isinstance(deltas, (list, tuple)) and len(deltas) == num_features:
-        return np.array(deltas, dtype=float)
-    # fallback: calcular
-    inst_id = int(inst.get('id', 0))
-    x_vals = _get_instance_vector(X_test, inst_id, num_features)
-    result = x_vals * coefs
-    return result
-
-
-def criar_visualizacao_arquetipos_deltas(mean_neg: np.ndarray,
-                                         mean_pos: np.ndarray,
-                                         deltas_rej: np.ndarray,
-                                         class_names: list,
-                                         experiment_name: str,
-                                         img_shape=(28, 28),
-                                         cmap: str = 'seismic') -> None:
-    """Cria figura 1x3 com escalas iguais e uma única colorbar.
-
-    - Plot 1: média dos deltas das negativas (y_pred==0, sem rejeição)
-    - Plot 2: média dos deltas das positivas (y_pred==1, sem rejeição)
-    - Plot 3: deltas de UMA instância rejeitada (sem média)
-    """
-    # Preparar dados e escala comum
-    a0 = mean_neg.reshape(img_shape)
-    a1 = mean_pos.reshape(img_shape)
-    a2 = deltas_rej.reshape(img_shape)
-
-    vmax = np.max(np.abs([mean_neg, mean_pos, deltas_rej]))
-    if vmax == 0:
-        vmax = 1.0
-
-    fig, axes = plt.subplots(1, 3, figsize=(18, 5.5))
-    im0 = axes[0].imshow(a0, cmap=cmap, vmin=-vmax, vmax=vmax)
-    axes[0].set_title(f"Evidência Média (Classe {class_names[0]})", fontsize=12, fontweight='bold')
-    axes[0].axis('off')
-
-    im1 = axes[1].imshow(a1, cmap=cmap, vmin=-vmax, vmax=vmax)
-    axes[1].set_title(f"Evidência Média (Classe {class_names[1]})", fontsize=12, fontweight='bold')
-    axes[1].axis('off')
-
-    im2 = axes[2].imshow(a2, cmap=cmap, vmin=-vmax, vmax=vmax)
-    axes[2].set_title("Instância Rejeitada (Conflito)", fontsize=12, fontweight='bold')
-    axes[2].axis('off')
-
-    # Colorbar única
-    fig.subplots_adjust(right=0.88, wspace=0.25)
-    cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
-    cbar = fig.colorbar(im1, cax=cbar_ax)
-    cbar.set_label(
-        f"Intensidade da evidência (δ)\n\n"
-        f"Vermelho (+): favorece {class_names[1]}\n"
-        f"Azul (-): favorece {class_names[0]}\n"
-        f"Branco (0): neutro",
-        fontsize=10,
-        rotation=0,
-        labelpad=15,
-        ha='left'
-    )
-
-    fig.suptitle(f"Mapa de Calor de Evidência (Deltas) — {experiment_name}", fontsize=14, fontweight='bold', y=0.98)
-    plt.tight_layout(rect=[0, 0, 0.88, 0.95])
-
-    if SAVE_PLOTS:
-        output_path = Path(OUTPUT_DIR)
-        output_path.mkdir(parents=True, exist_ok=True)
-        filename = output_path / f'arquetipos_deltas_{experiment_name}.png'
-        plt.savefig(filename, dpi=150, bbox_inches='tight')
-        print(f"  💾 Imagem (arquétipos de deltas) salva: {filename}")
-
-    if SHOW_PLOTS:
-        plt.show()
-    else:
-        plt.close(fig)
-
-
-def _get_instance_vector(X_test, inst_id, num_features):
-    """Retorna vetor de features da instância inst_id a partir de X_test.
-
-    X_test pode ser dict de pixels {'pixel1': [...]} ou lista/array.
-    """
-    if isinstance(X_test, dict):
-        # ordenar chaves por número do pixel (pixel1 -> 1)
-        pixel_keys = sorted(X_test.keys(), key=lambda x: int(x.replace('pixel', '')))
-        num_instances = len(X_test[pixel_keys[0]])
-        if inst_id >= num_instances:
+        if inst_idx >= num_instances:
             return np.zeros(num_features)
-
+        
         x_vals = np.zeros(num_features)
         for feat_idx, pixel_key in enumerate(pixel_keys):
-            x_vals[feat_idx] = X_test[pixel_key][inst_id]
+            x_vals[feat_idx] = X_test[pixel_key][inst_idx]
         return x_vals
     else:
+        # X_test é array/lista
         X_arr = np.array(X_test)
-        if inst_id < X_arr.shape[0]:
-            return X_arr[inst_id]
+        if inst_idx < X_arr.shape[0]:
+            return X_arr[inst_idx]
         return np.zeros(num_features)
 
 
-def criar_visualizacao_por_instancia(inst: dict, X_test, num_features: int,
-                                     class_names: list, experiment_name: str,
-                                     img_shape=(28, 28)):
-    """Gera visualização por instância: imagem original + overlay da
-    explicação mínima (heatmap) colorido conforme a categoria da predição.
-
-    - Positiva (y_pred==1): overlay em azul (Blues)
-    - Negativa (y_pred==0): overlay em vermelho (Reds)
-    - Rejeitada (rejected=True): overlay em púrpura (Purples)
+def criar_imagem_individual(inst: dict, inst_idx: int, X_test, 
+                            class_names: list, experiment_name: str,
+                            t_plus: float, t_minus: float,
+                            img_shape=(28, 28), output_suffix: str = ""):
     """
-    inst_id = int(inst.get('id', 0))
+    Cria uma imagem mostrando:
+    1. Dígito original
+    2. Overlay com os pixels da explicação mínima destacados
+    
+    Args:
+        inst: Dicionário com dados da instância (do per_instance)
+        inst_idx: Índice sequencial da instância no X_test
+        X_test: Dados de teste
+        class_names: Nomes das classes
+        experiment_name: Nome do experimento
+        t_plus: Threshold superior (aceitar como positiva)
+        t_minus: Threshold inferior (aceitar como negativa)
+        img_shape: Formato da imagem (28, 28)
+        output_suffix: Sufixo para o nome do arquivo (ex: "positiva", "negativa", "rejeitada")
+    """
+    
+    num_features = img_shape[0] * img_shape[1]
+    
+    # Obter vetor de features usando índice sequencial
+    x_vals = _get_instance_vector(X_test, inst_idx, num_features)
+    
+    # IMPORTANTE: Normalizar para [0, 1] se ainda não estiver
+    # Muitos datasets MNIST vêm em [0, 255] ou outros ranges
+    if x_vals.max() > 1.0:
+        x_vals = x_vals / 255.0
+    
+    img_original = x_vals.reshape(img_shape)
+    
+    # Criar máscara binária da explicação (1 = faz parte da explicação, 0 = não faz parte)
     explanation = inst.get('explanation', [])
-    rejected = bool(inst.get('rejected', False))
-    y_pred = inst.get('y_pred', None)
-
-    # Reconstruir imagem
-    x_vals = _get_instance_vector(X_test, inst_id, num_features)
-    img = x_vals.reshape(img_shape)
-
-    # Criar máscara de explicação (valores originais dos pixels quando selecionados)
-    mask = np.zeros(num_features, dtype=float)
-
-    # Se feature names forem conhecidos no X_test (dict), tentar resolver índices
-    # Aceitar nomes como 'pixel123' ou nomes presentes em feature_names
+    mask_binary = np.zeros(num_features, dtype=float)
+    
+    # Mapear features da explicação para índices
     for feat in explanation:
         try:
             if isinstance(feat, str) and feat.startswith('pixel'):
                 idx = int(feat.replace('pixel', '')) - 1
+            elif isinstance(feat, (int, np.integer)):
+                idx = int(feat) - 1
             else:
-                idx = int(feat) - 1 if isinstance(feat, (str, int)) else None
+                idx = None
         except Exception:
             idx = None
-
-        if idx is None:
-            # tentar encontrar pelo nome nas chaves de X_test (se dict)
-            if isinstance(X_test, dict) and feat in X_test:
-                # extrair número do pixel
-                try:
-                    idx = int(feat.replace('pixel', '')) - 1
-                except Exception:
-                    idx = None
-
+        
         if idx is not None and 0 <= idx < num_features:
-            mask[idx] = x_vals[idx]
+            mask_binary[idx] = 1.0  # Marcar pixel como parte da explicação
 
-    mask_img = mask.reshape(img_shape)
-
-    # Escolher layout e colormap por categoria
+    mask_img = mask_binary.reshape(img_shape)
+    
+    # Determinar categoria e cor
+    rejected = inst.get('rejected', False)
+    y_pred = inst.get('y_pred', -1)
+    y_true = inst.get('y_true', -1)
+    decision_score = inst.get('decision_score', 0.0)
+    
+    # Usar SEMPRE vermelho para destacar pixels da explicação (como no experimento original)
+    # A cor do título muda conforme a categoria
+    cmap_overlay = 'Reds'  # Sempre vermelho para overlay
+    
     if rejected:
-        cols = 2
-        cm = 'Purples'
-        title_overlay = 'Rejeitada'
-    elif y_pred == 0:
-        cols = 2
-        cm = 'Reds'
-        title_overlay = f'Negativa: {class_names[0]}'
-    else:
-        cols = 2
-        cm = 'Blues'
-        title_overlay = f'Positiva: {class_names[1]}'
-
-    fig, axes = plt.subplots(1, cols, figsize=(10, 4))
-    if cols == 1:
-        axes = [axes]
-
-    axes[0].imshow(img, cmap='gray')
-    axes[0].set_title(f'Original (id={inst_id})\nClasse verdadeira: {inst.get("y_true", "-")}', fontsize=10)
+        categoria = 'REJEITADA'
+        cor_titulo = 'purple'
+    elif y_pred == 1:  # POSITIVA - normalmente classe 8 no MNIST 3vs8
+        categoria = f'POSITIVA (Classe {class_names[1]})'
+        cor_titulo = 'blue'
+    else:  # y_pred == 0 - NEGATIVA - normalmente classe 3 no MNIST 3vs8
+        categoria = f'NEGATIVA (Classe {class_names[0]})'
+        cor_titulo = 'red'
+    
+    # Criar figura com 2 painéis lado a lado + espaço para colorbar
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5.5))
+    
+    # Painel 1: Imagem original
+    axes[0].imshow(img_original, cmap='gray', vmin=0, vmax=1)
+    axes[0].set_title(
+        f'Dígito Original\n'
+        f'Classe Verdadeira: {class_names[y_true]} (y={y_true})',
+        fontsize=11, fontweight='bold'
+    )
     axes[0].axis('off')
-
-    axes[1].imshow(img, cmap='gray')
-    axes[1].imshow(mask_img, cmap=cm, alpha=0.65)
-    axes[1].set_title(f'{title_overlay}  (y_pred={y_pred})', fontsize=10)
+    
+    # Painel 2: Overlay com explicação
+    # Estratégia: criar uma imagem RGB que mostre vermelho BRILHANTE mesmo sobre fundo preto
+    # Isso resolve o problema de overlay vermelho invisível sobre pixels pretos
+    
+    # Converter imagem cinza para RGB (3 canais)
+    img_rgb = np.stack([img_original, img_original, img_original], axis=-1)
+    
+    # Para pixels da explicação, aplicar overlay vermelho VISÍVEL
+    # IMPORTANTE: O vermelho precisa ser adicionado, não multiplicado, para ser visível em preto
+    for i in range(img_shape[0]):
+        for j in range(img_shape[1]):
+            if mask_img[i, j] > 0:  # Se pixel faz parte da explicação
+                # Alpha blending com vermelho PURO: mesmo pixel preto (0,0,0) fica vermelho
+                alpha = 0.7  # Intensidade do overlay
+                
+                # Canal R (vermelho): ADICIONAR vermelho independente do valor original
+                img_rgb[i, j, 0] = min(1.0, img_rgb[i, j, 0] + alpha)
+                
+                # Canais G e B: manter ou escurecer para realçar o vermelho
+                img_rgb[i, j, 1] = img_rgb[i, j, 1] * 0.3  # Reduzir verde
+                img_rgb[i, j, 2] = img_rgb[i, j, 2] * 0.3  # Reduzir azul
+    
+    # Mostrar imagem RGB resultante
+    axes[1].imshow(img_rgb, interpolation='nearest')
+    
+    # Determinar posição do score em relação aos thresholds
+    if decision_score >= t_plus:
+        pos_score = f'> t+ ({t_plus:.3f})'
+    elif decision_score <= t_minus:
+        pos_score = f'< t- ({t_minus:.3f})'
+    else:
+        pos_score = f'entre t- ({t_minus:.3f}) e t+ ({t_plus:.3f})'
+    
+    axes[1].set_title(
+        f'Explicação PEAB\n'
+        f'Predito: {class_names[y_pred] if y_pred in [0,1] else "REJEITADA"} (y={y_pred})\n'
+        f'Score: {decision_score:.3f} ({pos_score})\n'
+        f'Pixels na explicação: {len(explanation)}',
+        fontsize=10, fontweight='bold'
+    )
     axes[1].axis('off')
+    
+    # Adicionar legenda explicativa (sem colorbar, pois é binário)
+    fig.subplots_adjust(right=0.88)
+    fig.text(0.91, 0.5, 
+             'Legenda:\n\n'
+             'Vermelho:\nPixels da\nexplicação\nmínima\n(total: {})\n\n'
+             'Cinza:\nDígito\noriginal\n(escala\nde cinza)'.format(len(explanation)),
+             fontsize=9,
+             verticalalignment='center',
+             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.3))
+    
+    # Título principal
+    fig.suptitle(
+        f'Exemplo de Instância {categoria}\n'
+        f'{experiment_name} | Thresholds: t- = {t_minus:.3f}, t+ = {t_plus:.3f}',
+        fontsize=13, fontweight='bold', color=cor_titulo, y=0.98
+    )
+    
+    plt.tight_layout(rect=[0, 0, 0.88, 0.95])
 
-    fig.suptitle(f'Instância {inst_id} - Explicação mínima ({experiment_name})', fontsize=12)
+    # ... no final da função criar_imagem_individual, antes do plt.close() etc...
 
-    plt.tight_layout()
-
+  
+    # Salvar
     if SAVE_PLOTS:
         output_path = Path(OUTPUT_DIR)
         output_path.mkdir(parents=True, exist_ok=True)
-        safe_exp = experiment_name.replace('/', '_')
-        filename = output_path / f'explicacao_peab_{safe_exp}_inst_{inst_id}.png'
-        plt.savefig(filename, dpi=140, bbox_inches='tight')
-        print(f"  💾 Imagem por instância salva: {filename}")
-
+        
+        safe_exp = experiment_name.replace('/', '_').replace(' ', '_')
+        filename = output_path / f'{safe_exp}_{output_suffix}.png'
+        plt.savefig(filename, dpi=150, bbox_inches='tight')
+        print(f"  💾 Salvo: {filename}")
+    
+    
     if SHOW_PLOTS:
         plt.show()
     else:
@@ -630,180 +272,246 @@ def criar_visualizacao_por_instancia(inst: dict, X_test, num_features: int,
 
 
 def processar_experimento(data: dict, exp_key: str):
-    """Processa um experimento e gera a visualização"""
+    """
+    Processa um experimento e gera as 3 imagens individuais:
+    - 1 exemplo de instância positiva (y_pred=1, não rejeitada)
+    - 1 exemplo de instância negativa (y_pred=0, não rejeitada)
+    - 1 exemplo de instância rejeitada
+    """
     print(f"\n{'='*80}")
     print(f"Processando: {exp_key}")
     print(f"{'='*80}")
     
     try:
+        # Validar estrutura principal do JSON
+        if 'peab' not in data:
+            print("❌ ERRO: Estrutura 'peab' não encontrada no JSON!")
+            return
+        
         exp_data = data['peab'][exp_key]
         
-        # Verificar se tem estrutura necessária
+        # Validar estrutura do experimento
         if 'per_instance' not in exp_data:
-            print("\n❌ ERRO: Chave 'per_instance' não encontrada!")
+            print("❌ ERRO: 'per_instance' não encontrado!")
             return
         
         if 'data' not in exp_data or 'model' not in exp_data:
-            print("\n❌ ERRO: Estrutura incompleta no JSON!")
+            print("❌ ERRO: Estrutura incompleta no JSON!")
             return
         
-        # Obter informações
-        class_names = exp_data['data']['class_names']
+        # Verificar se experimento usa rejeição (opcional - apenas informativo)
+        config = exp_data.get('config', {})
+        has_rejection_cost = 'rejection_cost' in config
+        
+        if not has_rejection_cost:
+            print("⚠️  AVISO: Experimento sem custo de rejeição configurado (pode não ser peab_2)")
+        
+        # Verificar se há instâncias rejeitadas (sample das primeiras 20)
         per_instance = exp_data['per_instance']
+        sample_size = min(20, len(per_instance))
+        has_rejected_instances = any(inst.get('rejected', False) for inst in per_instance[:sample_size])
+        
+        if not has_rejected_instances and len(per_instance) > 0:
+            print("ℹ️  INFO: Nenhuma instância rejeitada encontrada (nas primeiras 20)")
+        
+        # Obter dados (já temos per_instance definido acima na validação)
+        class_names = exp_data['data']['class_names']
         X_test = exp_data['data']['X_test']
-        model_coefs = exp_data['model']['coefs']
-        feature_names = exp_data['data'].get('feature_names', [])
+        
+        # Obter thresholds
+        thresholds = exp_data.get('thresholds', {})
+        t_plus = thresholds.get('t_plus', 0.0)
+        t_minus = thresholds.get('t_minus', 0.0)
         
         if len(per_instance) == 0:
-            print("⚠ Nenhuma instância encontrada. Pulando...")
+            print("⚠ Nenhuma instância encontrada.")
             return
         
-        # Determinar número de features
-        num_features = len(model_coefs)
-        
-        print(f"\n✓ Classes: {class_names[0]} vs {class_names[1]}")
+        print(f"✓ Classes: {class_names[0]} vs {class_names[1]}")
         print(f"✓ Total de instâncias: {len(per_instance)}")
-        print(f"✓ Features: {num_features}")
+        print(f"✓ Thresholds: t- = {t_minus:.4f}, t+ = {t_plus:.4f}")
         
-        # Determinar shape da imagem
-        if num_features == 784:
-            img_shape = (28, 28)
-            print("✓ Formato: 28x28 (MNIST raw)")
-        elif num_features == 196:
-            img_shape = (14, 14)
-            print("✓ Formato: 14x14 (MNIST pooling)")
+        # Coletar TODOS os exemplos de cada categoria
+        candidatos_positiva = []
+        candidatos_negativa = []
+        candidatos_rejeitada = []
+        
+        for idx, inst in enumerate(per_instance):
+            rejected = inst.get('rejected', False)
+            y_pred = inst.get('y_pred', -1)
+            explanation = inst.get('explanation', [])
+            
+            # Garantir que a instância tem explicação
+            if len(explanation) == 0:
+                continue
+            
+            if rejected:
+                candidatos_rejeitada.append((idx, inst))
+            elif y_pred == 1:
+                candidatos_positiva.append((idx, inst))
+            elif y_pred == 0:
+                candidatos_negativa.append((idx, inst))
+        
+        # Selecionar exemplos (manualmente se especificado, ou aleatoriamente)
+        exemplo_positiva = None
+        exemplo_negativa = None
+        exemplo_rejeitada = None
+        
+        idx_positiva = None
+        idx_negativa = None
+        idx_rejeitada = None
+        
+        # Verificar se há índices específicos solicitados
+        indices_manual = INDICES_ESPECIFICOS if INDICES_ESPECIFICOS else {}
+        
+        # POSITIVA
+        if indices_manual.get('positiva') is not None:
+            idx_manual = indices_manual['positiva']
+            # Buscar nos candidatos pelo índice
+            encontrado = [cand for cand in candidatos_positiva if cand[0] == idx_manual]
+            if encontrado:
+                idx_positiva, exemplo_positiva = encontrado[0]
+                print(f"  ✓ Usando índice manual para positiva: {idx_manual}")
+            else:
+                print(f"  ⚠️  Índice {idx_manual} não encontrado em positivas, escolhendo aleatório")
+                if candidatos_positiva:
+                    idx_positiva, exemplo_positiva = random.choice(candidatos_positiva)
+        elif candidatos_positiva:
+            idx_positiva, exemplo_positiva = random.choice(candidatos_positiva)
+        
+        # NEGATIVA
+        if indices_manual.get('negativa') is not None:
+            idx_manual = indices_manual['negativa']
+            encontrado = [cand for cand in candidatos_negativa if cand[0] == idx_manual]
+            if encontrado:
+                idx_negativa, exemplo_negativa = encontrado[0]
+                print(f"  ✓ Usando índice manual para negativa: {idx_manual}")
+            else:
+                print(f"  ⚠️  Índice {idx_manual} não encontrado em negativas, escolhendo aleatório")
+                if candidatos_negativa:
+                    idx_negativa, exemplo_negativa = random.choice(candidatos_negativa)
+        elif candidatos_negativa:
+            idx_negativa, exemplo_negativa = random.choice(candidatos_negativa)
+        
+        # REJEITADA
+        if indices_manual.get('rejeitada') is not None:
+            idx_manual = indices_manual['rejeitada']
+            encontrado = [cand for cand in candidatos_rejeitada if cand[0] == idx_manual]
+            if encontrado:
+                idx_rejeitada, exemplo_rejeitada = encontrado[0]
+                print(f"  ✓ Usando índice manual para rejeitada: {idx_manual}")
+            else:
+                print(f"  ⚠️  Índice {idx_manual} não encontrado em rejeitadas, escolhendo aleatório")
+                if candidatos_rejeitada:
+                    idx_rejeitada, exemplo_rejeitada = random.choice(candidatos_rejeitada)
+        elif candidatos_rejeitada:
+            idx_rejeitada, exemplo_rejeitada = random.choice(candidatos_rejeitada)
+        
+        # Mostrar estatísticas
+        print(f"\n📊 Candidatos disponíveis:")
+        print(f"  • Positivas: {len(candidatos_positiva)} instâncias")
+        print(f"  • Negativas: {len(candidatos_negativa)} instâncias")
+        print(f"  • Rejeitadas: {len(candidatos_rejeitada)} instâncias")
+        
+        # Gerar imagens
+        print("\n🎨 Gerando imagens individuais...")
+        
+        if exemplo_positiva:
+            print(f"  • Positiva (idx={idx_positiva}, id={exemplo_positiva.get('id')})")
+            criar_imagem_individual(
+                exemplo_positiva, idx_positiva, X_test, 
+                class_names, exp_key, t_plus, t_minus,
+                img_shape=(28, 28), 
+                output_suffix="exemplo_positiva"
+            )
         else:
-            lado = int(np.sqrt(num_features))
-            if lado * lado == num_features:
-                img_shape = (lado, lado)
-            else:
-                img_shape = (28, 28)  # fallback
-            print(f"✓ Formato: {img_shape}")
+            print("  ⚠ Nenhum exemplo de instância positiva encontrado")
         
-        # Para MNIST, criar mapas com base nas EXPLICAÇÕES MÍNIMAS (frequências)
-        is_mnist = (exp_key.lower().startswith('mnist') or exp_data['config'].get('dataset_name', '').lower() == 'mnist')
-
-        # Se solicitado, gera painel de arquétipos baseado em deltas
-        if is_mnist and USE_ARCHETYPES_DELTAS:
-            print("\n🧬 Construindo arquétipos de evidência (deltas)...")
-            coefs_arr = np.array(model_coefs, dtype=float)
-            neg_deltas_sum = np.zeros(num_features, dtype=float)
-            pos_deltas_sum = np.zeros(num_features, dtype=float)
-            count_neg = count_pos = 0
-            rejected_sample = None
-
-            for idx, inst in enumerate(per_instance):
-                y_pred = inst.get('y_pred', None)
-                rejected_flag = inst.get('rejected', False)
-                # Usar índice sequencial (idx) em vez do ID original
-                x_vals = _get_instance_vector(X_test, idx, num_features)
-                deltas_vec = x_vals * coefs_arr
-
-                if rejected_flag and rejected_sample is None:
-                    rejected_sample = deltas_vec
-                if not rejected_flag:
-                    if y_pred == 0:
-                        neg_deltas_sum += deltas_vec
-                        count_neg += 1
-                    elif y_pred == 1:
-                        pos_deltas_sum += deltas_vec
-                        count_pos += 1
-
-            if count_neg > 0:
-                mean_neg = neg_deltas_sum / count_neg
-            else:
-                mean_neg = np.zeros(num_features)
-            if count_pos > 0:
-                mean_pos = pos_deltas_sum / count_pos
-            else:
-                mean_pos = np.zeros(num_features)
-            if rejected_sample is None:
-                rejected_sample = np.zeros(num_features)
-
-            print(f"  • Arquétipo negativo média de {count_neg} instâncias")
-            print(f"  • Arquétipo positivo média de {count_pos} instâncias")
-            print("  • Instância rejeitada usada para conflito")
-
-            criar_visualizacao_arquetipos_deltas(mean_neg, mean_pos, rejected_sample,
-                                                 class_names, exp_key, img_shape, cmap='seismic')
-
-        if is_mnist and feature_names and not USE_ARCHETYPES_DELTAS:
-            print("\n📊 Agregando explicações MÍNIMAS por classe (frequência de pixels)...")
-            freq_pos, freq_neg, freq_rej, c_pos, c_neg, c_rej = agregar_minimas_explicacoes(
-                per_instance, feature_names, num_features
-            )
-            print(f"  • Negativas ({class_names[0]}): {c_neg} instâncias")
-            print(f"  • Positivas ({class_names[1]}): {c_pos} instâncias")
-            print(f"  • Rejeitadas: {c_rej} instâncias")
-
-            print("\n🎨 Gerando visualização (frequências de pixels em explicações mínimas)...")
-            criar_visualizacao_minimas(
-                freq_pos, freq_neg, freq_rej,
-                class_names,
-                (c_pos, c_neg, c_rej),
-                exp_key,
-                img_shape
+        if exemplo_negativa:
+            print(f"  • Negativa (idx={idx_negativa}, id={exemplo_negativa.get('id')})")
+            criar_imagem_individual(
+                exemplo_negativa, idx_negativa, X_test, 
+                class_names, exp_key, t_plus, t_minus,
+                img_shape=(28, 28), 
+                output_suffix="exemplo_negativa"
             )
         else:
-            # Caso geral (não-MNIST): usar deltas/contribuições
-            print("\n📊 Calculando e agregando evidências por classe (contribuições)...")
-            heatmap_pos, heatmap_neg, heatmap_rej, count_pos, count_neg, count_rej = \
-                calcular_deltas_da_explicacao(per_instance, model_coefs, X_test, num_features)
-
-            print(f"  • Negativas ({class_names[0]}): {count_neg} instâncias")
-            print(f"  • Positivas ({class_names[1]}): {count_pos} instâncias")
-            print(f"  • Rejeitadas: {count_rej} instâncias")
-
-            print("\n🎨 Gerando visualização (contribuições)...")
-            criar_visualizacao(
-                heatmap_pos, heatmap_neg, heatmap_rej,
-                class_names,
-                (count_pos, count_neg, count_rej),
-                exp_key,
-                img_shape
-            )
-
-        # Visualizações por instância (MNIST): imagem do dígito + heatmap dos pixels mínimos
-        if is_mnist and PER_INSTANCE_PLOTS:
-            print("\n🖼️  Gerando visualizações por instância (limitado)...")
-            n_total = len(per_instance)
-            n_plot = n_total if (MAX_PER_INSTANCE is None) else min(MAX_PER_INSTANCE, n_total)
-            for i, inst in enumerate(per_instance[:n_plot]):
-                try:
-                    criar_visualizacao_por_instancia(inst, X_test, num_features, class_names, exp_key, img_shape)
-                except Exception as e:
-                    print(f"    ⚠️  Falha ao plotar instância {i} (id={inst.get('id')}): {e}")
+            print("  ⚠ Nenhum exemplo de instância negativa encontrado")
         
-        print(f"\n✅ Visualização concluída para {exp_key}!")
+        if exemplo_rejeitada:
+            print(f"  • Rejeitada (idx={idx_rejeitada}, id={exemplo_rejeitada.get('id')})")
+            criar_imagem_individual(
+                exemplo_rejeitada, idx_rejeitada, X_test, 
+                class_names, exp_key, t_plus, t_minus,
+                img_shape=(28, 28), 
+                output_suffix="exemplo_rejeitada"
+            )
+        else:
+            print("  ⚠ Nenhum exemplo de instância rejeitada encontrado")
+        
+        print(f"\n✅ Visualizações concluídas para {exp_key}!")
         
     except KeyError as e:
-        print(f"\n❌ ERRO: Chave não encontrada no JSON: {e}")
-        print("\n💡 Dica: Verifique se o experimento foi executado corretamente")
-        print("         e se o JSON foi gerado com todas as informações necessárias.")
+        print(f"❌ ERRO: Chave não encontrada: {e}")
     except Exception as e:
-        print(f"\n❌ ERRO ao processar {exp_key}: {type(e).__name__}: {e}")
+        print(f"❌ ERRO: {type(e).__name__}: {e}")
         import traceback
         traceback.print_exc()
 
 
-# ==============================================================================
-# MAIN
-# ==============================================================================
-
 def main():
+    """Função principal"""
     print("="*80)
-    print("VISUALIZADOR DE EXPLICAÇÕES ABDUTIVAS DO PEAB")
+    print("VISUALIZADOR DE INSTÂNCIAS INDIVIDUAIS DO PEAB - MNIST")
     print("="*80)
-    parser = argparse.ArgumentParser(description='Visualizador de evidências (deltas) e explicações mínimas para MNIST.')
-    parser.add_argument('--results', type=str, default=RESULTS_FILE, help='Caminho para o JSON de resultados')
-    parser.add_argument('--experiment', type=str, default=None, help='Chave do experimento (ex: mnist ou mnist_3_vs_8)')
-    parser.add_argument('--show', action='store_true', help='Mostrar janelas interativas do Matplotlib')
+    
+    parser = argparse.ArgumentParser(
+        description='Gera imagens individuais de exemplos positivos, negativos e rejeitados do MNIST'
+    )
+    parser.add_argument('--results', type=str, default=RESULTS_FILE, 
+                       help='Caminho para o JSON de resultados')
+    parser.add_argument('--pair', type=str, default='auto', 
+                       help="Par de classes MNIST (ex: 9_vs_4, 5_vs_6). Use 'auto' para listar e escolher interativamente.")
+    parser.add_argument('--show', action='store_true', 
+                       help='Mostrar janelas do Matplotlib')
+    parser.add_argument('--seed', type=int, default=None,
+                       help='Seed aleatória para reproduzir os mesmos exemplos (ex: --seed 42)')
+    parser.add_argument('--idx-positiva', type=int, default=None,
+                       help='Índice específico para instância positiva (ex: --idx-positiva 104)')
+    parser.add_argument('--idx-negativa', type=int, default=None,
+                       help='Índice específico para instância negativa (ex: --idx-negativa 14)')
+    parser.add_argument('--idx-rejeitada', type=int, default=None,
+                       help='Índice específico para instância rejeitada (ex: --idx-rejeitada 13)')
     args = parser.parse_args()
-
+    
+    # Configurar seed aleatória se fornecida
+    if args.seed is not None:
+        random.seed(args.seed)
+        np.random.seed(args.seed)
+        print(f"🎲 Seed aleatória definida: {args.seed}")
+    
+    # Armazenar índices específicos (prioridade: linha de comando > constantes no código)
+    global INDICES_ESPECIFICOS
+    INDICES_ESPECIFICOS = {
+        'positiva': args.idx_positiva if args.idx_positiva is not None else IDX_POSITIVA,
+        'negativa': args.idx_negativa if args.idx_negativa is not None else IDX_NEGATIVA,
+        'rejeitada': args.idx_rejeitada if args.idx_rejeitada is not None else IDX_REJEITADA
+    }
+    
+    # Informar se está usando índices fixos do código
+    if IDX_POSITIVA is not None or IDX_NEGATIVA is not None or IDX_REJEITADA is not None:
+        print("📌 Usando índices fixos definidos no código:")
+        if IDX_POSITIVA is not None:
+            print(f"   • Positiva: {IDX_POSITIVA}")
+        if IDX_NEGATIVA is not None:
+            print(f"   • Negativa: {IDX_NEGATIVA}")
+        if IDX_REJEITADA is not None:
+            print(f"   • Rejeitada: {IDX_REJEITADA}")
+    
     global SHOW_PLOTS
     if args.show:
         SHOW_PLOTS = True
-
+    
     print(f"\n📂 Arquivo: {args.results}")
     
     try:
@@ -811,41 +519,81 @@ def main():
         data = carregar_json(args.results)
         print("✓ JSON carregado com sucesso")
         
-        # Encontrar experimentos MNIST
-        if args.experiment:
-            mnist_exp = [args.experiment]
-        else:
-            mnist_exp = encontrar_experimentos_mnist(data)
-        
-        if len(mnist_exp) == 0:
-            print("\n❌ Nenhum experimento MNIST encontrado no JSON!")
-            print(f"Experimentos disponíveis: {list(data.get('peab', {}).keys())}")
+        # Verificar se o experimento existe
+        if 'peab' not in data:
+            print("❌ ERRO: Chave 'peab' não encontrada no JSON!")
             return
         
-        print(f"\n✓ Encontrado(s) {len(mnist_exp)} experimento(s) MNIST:")
-        for exp in mnist_exp:
-            print(f"  • {exp}")
+        # Filtrar apenas experimentos MNIST
+        mnist_experiments = {k: v for k, v in data['peab'].items() 
+                            if k == 'mnist' or k.startswith('mnist_')}
         
-        # Processar cada experimento automaticamente
-        for exp_key in mnist_exp:
-            if exp_key not in data.get('peab', {}):
-                print(f"⚠ Experimento '{exp_key}' não encontrado no JSON. Pulando.")
-                continue
-            processar_experimento(data, exp_key)
+        if not mnist_experiments:
+            print("❌ ERRO: Nenhum experimento MNIST encontrado no JSON!")
+            return
+        
+        # Seleção interativa se pair == 'auto'
+        chosen_experiment = None
+        if args.pair == 'auto':
+            available = sorted(mnist_experiments.keys())
+            print("\n📋 Pares MNIST disponíveis:")
+            for idx, key in enumerate(available):
+                # Extrair informações do par de classes
+                if key == 'mnist':
+                    # Para experimento "mnist", verificar mnist_digit_pair no config
+                    config = mnist_experiments[key].get('config', {})
+                    digit_pair = config.get('mnist_digit_pair', [])
+                    if len(digit_pair) == 2:
+                        pair_name = f"{digit_pair[1]} vs {digit_pair[0]}"
+                    else:
+                        pair_name = "desconhecido"
+                else:
+                    # Para experimentos mnist_X_vs_Y, extrair do nome
+                    pair_name = key.replace('mnist_', '').replace('_vs_', ' vs ')
+                print(f"  [{idx}] {pair_name} (chave: {key})")
+            
+            while True:
+                try:
+                    sel = input("\nDigite o número do par desejado: ").strip()
+                    if sel == '':
+                        print("⚠️ Entrada vazia. Digite um índice.")
+                        continue
+                    sel_i = int(sel)
+                    if 0 <= sel_i < len(available):
+                        chosen_experiment = available[sel_i]
+                        pair_display = chosen_experiment.replace('mnist_', '').replace('_vs_', ' vs ')
+                        print(f"\n✅ Selecionado: MNIST {pair_display}")
+                        break
+                    else:
+                        print("⚠️ Índice fora do intervalo.")
+                except ValueError:
+                    print("⚠️ Digite um número válido.")
+        else:
+            # Tentar encontrar o experimento pela string do par
+            if args.pair.startswith('mnist_'):
+                chosen_experiment = args.pair
+            else:
+                chosen_experiment = f'mnist_{args.pair}'
+            
+            if chosen_experiment not in mnist_experiments:
+                print(f"❌ ERRO: Par MNIST '{args.pair}' não encontrado!")
+                print(f"Pares disponíveis: {[k.replace('mnist_', '') for k in sorted(mnist_experiments.keys())]}")
+                return
+
+        # Processar experimento escolhido
+        processar_experimento(data, chosen_experiment)
         
         print(f"\n{'='*80}")
-        print(f"✅ TODOS OS EXPERIMENTOS PROCESSADOS COM SUCESSO!")
+        print("✅ PROCESSAMENTO CONCLUÍDO!")
         print(f"{'='*80}")
         
         if SAVE_PLOTS:
             print(f"\n💾 Imagens salvas em: {OUTPUT_DIR}/")
         
     except FileNotFoundError as e:
-        print(f"\n❌ ERRO: {e}")
-    except KeyError as e:
-        print(f"\n❌ ERRO: Chave não encontrada no JSON: {e}")
+        print(f"❌ ERRO: {e}")
     except Exception as e:
-        print(f"\n❌ ERRO INESPERADO: {type(e).__name__}: {e}")
+        print(f"❌ ERRO: {type(e).__name__}: {e}")
         import traceback
         traceback.print_exc()
 
