@@ -22,11 +22,11 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST (aplicadas automaticamente quando mnist é selecionado)
 MNIST_CONFIG = {
     'feature_mode': 'raw',           # 'raw' (784 features) ou 'pool2x2' (196 features)
-    'digit_pair': (5, 6),            # Par de dígitos para comparação (classe A vs classe B)
+    'digit_pair': (9, 4),            # Par de dígitos para comparação (classe A vs classe B)
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
-    'rejection_cost': 0.15,          # Custo de rejeição
-    'subsample_size': 0.03           # Proporção de subamostragem do dataset completo
+    'rejection_cost': 0.24,          # Custo de rejeição
+    'subsample_size': 0.2           # Proporção de subamostragem do dataset completo
 }
 
 DATASET_CONFIG = {
@@ -96,6 +96,9 @@ LOG_TEMPLATES = {
 # Quando True, para classificadas usa diretamente a explicação inicial (one_explanation_formal)
 # e segue para a fase de minimização; rejeitadas continuam com reforço bidirecional.
 DISABLE_REFORCO_CLASSIFICADAS: bool = True
+# Largura mínima opcional da zona de rejeição. Se > 0 força t_plus - t_minus >= MIN_REJECTION_WIDTH.
+# Ajuste se desejar garantir rejeição em pares ambíguos. Coloque 0 para comportamento antigo.
+MIN_REJECTION_WIDTH: float = 0.0
 # coisas do antigo com o novo _ remover depois de testes de funcionamento
 def _get_lr(modelo: Pipeline):
     """Retorna a etapa de Regressão Logística independente do nome do passo ('model' ou 'modelo')."""
@@ -771,11 +774,10 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
     best_risk, best_t_plus, best_t_minus = float('inf'), 0.0, 0.0
     for i in range(len(search_space)):
         for j in range(i, len(search_space)):
-            # CORREÇÃO: t- deve ser <= t+ (t- é o threshold INFERIOR, t+ é o SUPERIOR)
-            # decision_scores <= t- → classe 0 (negativa)
-            # decision_scores >= t+ → classe 1 (positiva)
-            # t- < decision_scores < t+ → REJEITADA
             t_minus, t_plus = float(search_space[i]), float(search_space[j])
+            # Skip se largura mínima for exigida e não atendida
+            if MIN_REJECTION_WIDTH > 0.0 and (t_plus - t_minus) < MIN_REJECTION_WIDTH:
+                continue
             y_pred = np.full(y_train.shape, -1)
             accepted = (decision_scores >= t_plus) | (decision_scores <= t_minus)
             y_pred[decision_scores >= t_plus] = 1
@@ -785,6 +787,21 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
             risk = float(error_rate + rejection_cost * rejection_rate)
             if risk < best_risk:
                 best_risk, best_t_plus, best_t_minus = risk, t_plus, t_minus
+
+    # Fallback: se não encontrou (caso MIN_REJECTION_WIDTH muito grande) refaz sem restrição
+    if best_risk == float('inf'):
+        for i in range(len(search_space)):
+            for j in range(i, len(search_space)):
+                t_minus, t_plus = float(search_space[i]), float(search_space[j])
+                y_pred = np.full(y_train.shape, -1)
+                accepted = (decision_scores >= t_plus) | (decision_scores <= t_minus)
+                y_pred[decision_scores >= t_plus] = 1
+                y_pred[decision_scores <= t_minus] = 0
+                error_rate = np.mean(y_pred[accepted] != y_train[accepted]) if np.any(accepted) else 0.0
+                rejection_rate = 1.0 - np.mean(accepted)
+                risk = float(error_rate + rejection_cost * rejection_rate)
+                if risk < best_risk:
+                    best_risk, best_t_plus, best_t_minus = risk, t_plus, t_minus
 
     # Parâmetros do modelo para logs/JSON
     coefs = pipeline.named_steps['model'].coef_[0]
@@ -949,6 +966,7 @@ def montar_dataset_cache(dataset_name: str,
             'test_size': float(test_size_atual),
             'random_state': RANDOM_STATE,
             'rejection_cost': float(WR_REJECTION_COST),
+            'min_rejection_width': float(MIN_REJECTION_WIDTH),
             **mnist_meta
         },
         'thresholds': {

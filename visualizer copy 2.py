@@ -1,15 +1,20 @@
 """
-Visualizador de Instâncias Individuais do PEAB (MNIST 3 vs 8)
+Visualizador de Instâncias Individuais do PEAB - Pares MNIST
 
-Este script gera 3 imagens individuais mostrando exemplos de explicações:
-1. Uma instância POSITIVA (classe 8) corretamente classificada
-2. Uma instância NEGATIVA (classe 3) corretamente classificada  
+Este script gera 3 imagens individuais mostrando exemplos de explicações para
+diferentes pares de classes MNIST (ex: 9 vs 4, 5 vs 6, etc).
+
+Gera os seguintes exemplos:
+1. Uma instância POSITIVA (classe positiva) corretamente classificada
+2. Uma instância NEGATIVA (classe negativa) corretamente classificada  
 3. Uma instância REJEITADA (com evidências conflitantes)
 
 Cada imagem mostra:
 - Dígito original (28x28 em escala de cinza)
 - Overlay colorido dos pixels que compõem a explicação mínima do PEAB
 - Informações sobre a classe verdadeira, predita e score de decisão
+
+O script permite escolher interativamente qual par MNIST deseja visualizar.
 """
 
 import json
@@ -457,16 +462,16 @@ def processar_experimento(data: dict, exp_key: str):
 def main():
     """Função principal"""
     print("="*80)
-    print("VISUALIZADOR DE INSTÂNCIAS INDIVIDUAIS DO PEAB")
+    print("VISUALIZADOR DE INSTÂNCIAS INDIVIDUAIS DO PEAB - MNIST")
     print("="*80)
     
     parser = argparse.ArgumentParser(
-        description='Gera imagens individuais de exemplos positivos, negativos e rejeitados'
+        description='Gera imagens individuais de exemplos positivos, negativos e rejeitados do MNIST'
     )
     parser.add_argument('--results', type=str, default=RESULTS_FILE, 
                        help='Caminho para o JSON de resultados')
-    parser.add_argument('--experiment', type=str, default='auto', 
-                       help="Chave do experimento em 'peab' (ex: mnist_8_vs_3). Use 'auto' para listar e escolher interativamente.")
+    parser.add_argument('--pair', type=str, default='auto', 
+                       help="Par de classes MNIST (ex: 9_vs_4, 5_vs_6). Use 'auto' para listar e escolher interativamente.")
     parser.add_argument('--show', action='store_true', 
                        help='Mostrar janelas do Matplotlib')
     parser.add_argument('--seed', type=int, default=None,
@@ -519,35 +524,60 @@ def main():
             print("❌ ERRO: Chave 'peab' não encontrada no JSON!")
             return
         
-        # Seleção interativa se experiment == 'auto'
-        chosen_experiment = args.experiment
-        if args.experiment == 'auto':
-            available = list(data['peab'].keys())
-            if not available:
-                print("❌ ERRO: Nenhum experimento disponível na chave 'peab'.")
-                return
-            print("\n📋 Experimentos disponíveis em 'peab':")
+        # Filtrar apenas experimentos MNIST
+        mnist_experiments = {k: v for k, v in data['peab'].items() 
+                            if k == 'mnist' or k.startswith('mnist_')}
+        
+        if not mnist_experiments:
+            print("❌ ERRO: Nenhum experimento MNIST encontrado no JSON!")
+            return
+        
+        # Seleção interativa se pair == 'auto'
+        chosen_experiment = None
+        if args.pair == 'auto':
+            available = sorted(mnist_experiments.keys())
+            print("\n📋 Pares MNIST disponíveis:")
             for idx, key in enumerate(available):
-                print(f"  [{idx}] {key}")
+                # Extrair informações do par de classes
+                if key == 'mnist':
+                    # Para experimento "mnist", verificar mnist_digit_pair no config
+                    config = mnist_experiments[key].get('config', {})
+                    digit_pair = config.get('mnist_digit_pair', [])
+                    if len(digit_pair) == 2:
+                        pair_name = f"{digit_pair[1]} vs {digit_pair[0]}"
+                    else:
+                        pair_name = "desconhecido"
+                else:
+                    # Para experimentos mnist_X_vs_Y, extrair do nome
+                    pair_name = key.replace('mnist_', '').replace('_vs_', ' vs ')
+                print(f"  [{idx}] {pair_name} (chave: {key})")
+            
             while True:
                 try:
-                    sel = input("Digite o número do experimento desejado: ").strip()
+                    sel = input("\nDigite o número do par desejado: ").strip()
                     if sel == '':
                         print("⚠️ Entrada vazia. Digite um índice.")
                         continue
                     sel_i = int(sel)
                     if 0 <= sel_i < len(available):
                         chosen_experiment = available[sel_i]
-                        print(f"\n✅ Selecionado: {chosen_experiment}")
+                        pair_display = chosen_experiment.replace('mnist_', '').replace('_vs_', ' vs ')
+                        print(f"\n✅ Selecionado: MNIST {pair_display}")
                         break
                     else:
                         print("⚠️ Índice fora do intervalo.")
                 except ValueError:
                     print("⚠️ Digite um número válido.")
         else:
-            if args.experiment not in data['peab']:
-                print(f"❌ ERRO: Experimento '{args.experiment}' não encontrado!")
-                print(f"Experimentos disponíveis: {list(data['peab'].keys())}")
+            # Tentar encontrar o experimento pela string do par
+            if args.pair.startswith('mnist_'):
+                chosen_experiment = args.pair
+            else:
+                chosen_experiment = f'mnist_{args.pair}'
+            
+            if chosen_experiment not in mnist_experiments:
+                print(f"❌ ERRO: Par MNIST '{args.pair}' não encontrado!")
+                print(f"Pares disponíveis: {[k.replace('mnist_', '') for k in sorted(mnist_experiments.keys())]}")
                 return
 
         # Processar experimento escolhido

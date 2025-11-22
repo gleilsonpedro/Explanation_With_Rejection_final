@@ -22,10 +22,10 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST (aplicadas automaticamente quando mnist é selecionado)
 MNIST_CONFIG = {
     'feature_mode': 'raw',           # 'raw' (784 features) ou 'pool2x2' (196 features)
-    'digit_pair': (3, 8),            # Par de dígitos para comparação (classe A vs classe B)
+    'digit_pair': (9, 4),            # Par de dígitos para comparação (classe A vs classe B)
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
-    'rejection_cost': 0.15,          # Custo de rejeição
+    'rejection_cost': 0.07,          # Custo de rejeição
     'subsample_size': 0.03           # Proporção de subamostragem do dataset completo
 }
 
@@ -92,6 +92,13 @@ LOG_TEMPLATES = {
     'rejeitada_feat_footer_sucesso': "│   └─> SUCESSO. Feature DESAFIXADA.",
     'rejeitada_feat_footer_falha': "│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).",
 }
+# Flag para permitir desativar a fase 1 de reforço para INSTÂNCIAS CLASSIFICADAS (positivas/negativas).
+# Quando True, para classificadas usa diretamente a explicação inicial (one_explanation_formal)
+# e segue para a fase de minimização; rejeitadas continuam com reforço bidirecional.
+DISABLE_REFORCO_CLASSIFICADAS: bool = True
+# Largura mínima opcional da zona de rejeição. Se > 0 força t_plus - t_minus >= MIN_REJECTION_WIDTH.
+# Ajuste se desejar garantir rejeição em pares ambíguos. Coloque 0 para comportamento antigo.
+MIN_REJECTION_WIDTH: float = 0.0
 # coisas do antigo com o novo _ remover depois de testes de funcionamento
 def _get_lr(modelo: Pipeline):
     """Retorna a etapa de Regressão Logística independente do nome do passo ('model' ou 'modelo')."""
@@ -316,7 +323,7 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
         passos_p1: List[Dict[str, Any]] = []
         expl_final_p1, remocoes1 = fase_2_minimizacao(modelo, instancia_df, expl_robusta_p1, X_train, t_plus, t_minus, True, 1, passos_p1)
 
-        # Caminho 2 (premisa 0)
+        # Caminho 2 (premisa 0) usada no expl_robusta_p2 e expl_final_p2
         expl_inicial_p2 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 0)
         expl_robusta_p2, adicoes2 = fase_1_reforco(modelo, instancia_df, expl_inicial_p2, X_train, t_plus, t_minus, True, 0)
         passos_p2: List[Dict[str, Any]] = []
@@ -362,7 +369,14 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             log_formatado.append(LOG_TEMPLATES['classificada_analise'].format(posicao=posicao))
 
         expl_inicial = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, pred_class)
-        expl_robusta, adicoes = fase_1_reforco(modelo, instancia_df, expl_inicial, X_train, t_plus, t_minus, False, pred_class)
+        if DISABLE_REFORCO_CLASSIFICADAS:
+            # Pula fase de reforço: usa explicação inicial diretamente
+            expl_robusta = expl_inicial
+            adicoes = 0
+            if emit_tech_logs:
+                log_formatado.append(f"├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com {len(expl_robusta)} features.")
+        else:
+            expl_robusta, adicoes = fase_1_reforco(modelo, instancia_df, expl_inicial, X_train, t_plus, t_minus, False, pred_class)
 
         # Ordem por maior |δ| (nas features da explicação robusta)
         deltas = calculate_deltas(modelo, instancia_df, X_train, premis_class=pred_class)
@@ -531,8 +545,19 @@ def executar_experimento_para_dataset(dataset_name: str):
     )
 
     # 6. Persistir no JSON cumulativo
+    # Para MNIST, usar chave única por par de dígitos, ex: mnist_8_vs_3
+    dataset_json_key = dataset_name
+    if dataset_name == 'mnist':
+        cfg_mnist = DATASET_CONFIG.get('mnist', {})
+        digit_pair = cfg_mnist.get('digit_pair')
+        if digit_pair and len(digit_pair) == 2:
+            dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
+            print(f"\n[INFO] Salvando resultados MNIST sob chave única: '{dataset_json_key}' (evita sobrescrever outros pares).")
+        else:
+            print("\n[AVISO] Par de dígitos MNIST não definido corretamente. Usando chave padrão 'mnist'.")
+
     dataset_cache_para_json = montar_dataset_cache(
-        dataset_name=dataset_name,
+        dataset_name=dataset_name,  # Mantém nome base interno para metadados
         X_train=X_train,
         X_test=X_test,
         y_train=y_train,
@@ -549,7 +574,7 @@ def executar_experimento_para_dataset(dataset_name: str):
         rejected_mask=rejected_mask,
         resultados_instancias=resultados_instancias
     )
-    update_method_results('peab', dataset_name, dataset_cache_para_json)
+    update_method_results('peab', dataset_json_key, dataset_cache_para_json)
 
     # 7. Gerar Relatório
     gerar_relatorio_texto(dataset_name, test_size_atual, rejection_cost_atual, modelo, t_plus, t_minus, len(X_test), metricas_dict, resultados_instancias)
@@ -749,11 +774,10 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
     best_risk, best_t_plus, best_t_minus = float('inf'), 0.0, 0.0
     for i in range(len(search_space)):
         for j in range(i, len(search_space)):
-            # CORREÇÃO: t- deve ser <= t+ (t- é o threshold INFERIOR, t+ é o SUPERIOR)
-            # decision_scores <= t- → classe 0 (negativa)
-            # decision_scores >= t+ → classe 1 (positiva)
-            # t- < decision_scores < t+ → REJEITADA
             t_minus, t_plus = float(search_space[i]), float(search_space[j])
+            # Skip se largura mínima for exigida e não atendida
+            if MIN_REJECTION_WIDTH > 0.0 and (t_plus - t_minus) < MIN_REJECTION_WIDTH:
+                continue
             y_pred = np.full(y_train.shape, -1)
             accepted = (decision_scores >= t_plus) | (decision_scores <= t_minus)
             y_pred[decision_scores >= t_plus] = 1
@@ -763,6 +787,21 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
             risk = float(error_rate + rejection_cost * rejection_rate)
             if risk < best_risk:
                 best_risk, best_t_plus, best_t_minus = risk, t_plus, t_minus
+
+    # Fallback: se não encontrou (caso MIN_REJECTION_WIDTH muito grande) refaz sem restrição
+    if best_risk == float('inf'):
+        for i in range(len(search_space)):
+            for j in range(i, len(search_space)):
+                t_minus, t_plus = float(search_space[i]), float(search_space[j])
+                y_pred = np.full(y_train.shape, -1)
+                accepted = (decision_scores >= t_plus) | (decision_scores <= t_minus)
+                y_pred[decision_scores >= t_plus] = 1
+                y_pred[decision_scores <= t_minus] = 0
+                error_rate = np.mean(y_pred[accepted] != y_train[accepted]) if np.any(accepted) else 0.0
+                rejection_rate = 1.0 - np.mean(accepted)
+                risk = float(error_rate + rejection_cost * rejection_rate)
+                if risk < best_risk:
+                    best_risk, best_t_plus, best_t_minus = risk, t_plus, t_minus
 
     # Parâmetros do modelo para logs/JSON
     coefs = pipeline.named_steps['model'].coef_[0]
