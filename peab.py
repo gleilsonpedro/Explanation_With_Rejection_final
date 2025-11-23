@@ -22,7 +22,7 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST (aplicadas automaticamente quando mnist é selecionado)
 MNIST_CONFIG = {
     'feature_mode': 'raw',           # 'raw' (784 features) ou 'pool2x2' (196 features)
-    'digit_pair': (2, 7),            # Par de dígitos para comparação (classe A vs classe B)
+    'digit_pair': (8, 3),            # Par de dígitos para comparação (classe A vs classe B)
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
     'rejection_cost': 0.24,          # Custo de rejeição
@@ -46,7 +46,7 @@ DATASET_CONFIG = {
 OUTPUT_BASE_DIR: str = 'results/report/peab'
 HIPERPARAMETROS_FILE: str = 'json/hiperparametros.json'
 DEFAULT_LOGREG_PARAMS: Dict[str, Any] = {
-    'penalty': 'l2', 'C': 1.0, 'solver': 'liblinear', 'max_iter': 1000
+    'penalty': 'l2', 'C': 0.01, 'solver': 'liblinear', 'max_iter': 1000
 }
 
 #==============================================================================
@@ -812,7 +812,8 @@ def treinar_e_avaliar_modelo(X: pd.DataFrame, y: pd.Series, test_size: float, re
         'scaler_params': {
             'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
             'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_],
-        }
+        },
+        **logreg_params
     }
 
     return pipeline, float(best_t_plus), float(best_t_minus), model_params
@@ -966,7 +967,11 @@ def montar_dataset_cache(dataset_name: str,
             'test_size': float(test_size_atual),
             'random_state': RANDOM_STATE,
             'rejection_cost': float(WR_REJECTION_COST),
+            'subsample_size': float(DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', 0.0)) if DATASET_CONFIG.get(dataset_name, {}).get('subsample_size') else None,
             **mnist_meta
+        },
+        'model': {
+            'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
         },
         'thresholds': {
             't_plus': float(t_plus),
@@ -1018,6 +1023,7 @@ def montar_dataset_cache(dataset_name: str,
             'y_test': y_test_list
         },
         'model': {
+            'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
             'coefs': coefs_ordered,
             'intercept': intercepto,
             'scaler_params': scaler_params

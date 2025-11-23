@@ -1,0 +1,78 @@
+================================================================================
+RELATÓRIO DE ANÁLISE DE SOBREPOSIÇÃO - mnist_8_vs_3
+================================================================================
+
+[ESTATÍSTICAS DESCRITIVAS]
+  Classe Positiva (1): 107 instâncias
+  Classe Negativa (0): 103 instâncias
+  Total: 210 instâncias
+
+[MÉDIAS E DESVIOS]
+  Classe Positiva: μ = 1.410022, σ = 1.031818
+  Classe Negativa: μ = -1.589887, σ = 0.832437
+
+[THRESHOLDS PEAB]
+  t_minus: -0.326828
+  t_plus:  0.280114
+  Largura da Zona de Rejeição: 0.606942
+
+[MÉTRICAS DE SEPARAÇÃO]
+  Cohen's d: 3.1784
+    Interpretação: Grande efeito (alta separabilidade)
+
+  KS Statistic: 0.9148 (p-value = 1.2118e-47)
+    Interpretação: Distância máxima entre CDFs = 91.48%
+
+  AUC (ROC): 0.9808
+    Interpretação: Excelente discriminação
+
+  Sobreposição Estimada: 8.48%
+    Interpretação: Percentual de scores na região de interseção
+
+[PERCENTIS DOS SCORES]
+  Classe Positiva:
+    p0: -2.854618
+    p25: 0.806346
+    p50: 1.613536
+    p75: 2.088780
+    p100: 3.459697
+
+  Classe Negativa:
+    p0: -3.231524
+    p25: -2.108685
+    p50: -1.522912
+    p75: -1.106509
+    p100: 1.554552
+
+[TOP-20 CASOS BORDERLINE]
+  (Instâncias mais próximas da zona de rejeição)
+
+  Index    Score        True   Pred   Dist      
+  --------------------------------------------------
+  8773     0.274577     1      -1     0.005536  
+  50660    -0.320115    0      -1     0.006713  
+  40192    -0.340162    0      0      0.013334  
+  5140     -0.340750    0      0      0.013922  
+  52747    0.297294     1      1      0.017180  
+  1964     -0.347340    0      0      0.020512  
+  19386    -0.272380    1      -1     0.054448  
+  63662    0.339979     0      1      0.059865  
+  31968    -0.405223    0      0      0.078395  
+  54530    0.195030     1      -1     0.085083  
+  62770    0.187634     1      -1     0.092480  
+  44848    -0.429285    1      0      0.102457  
+  28749    -0.432516    0      0      0.105688  
+  13293    0.170205     1      -1     0.109909  
+  41850    0.402689     1      1      0.122575  
+  59423    -0.452188    0      0      0.125360  
+  55190    -0.199254    1      -1     0.127574  
+  8012     -0.169031    1      -1     0.157797  
+  44456    -0.496642    1      0      0.169814  
+  38998    0.109367     1      -1     0.170746  
+
+================================================================================
+INTERPRETAÇÃO GERAL:
+================================================================================
+✓ Separação forte com zona de rejeição ativa.
+✓ Configuração adequada para capturar casos borderline.
+

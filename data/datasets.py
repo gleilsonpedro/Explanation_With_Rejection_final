@@ -394,24 +394,31 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
                     if root_dir not in sys.path:
                         sys.path.insert(0, root_dir)
                     
-                    from peab_2 import MNIST_CONFIG
+                    try:
+                        from peab import MNIST_CONFIG
+                        print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab.MNIST_CONFIG")
+                    except ImportError:
+                        try:
+                            from peab_2 import MNIST_CONFIG
+                            print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab_2.MNIST_CONFIG")
+                        except ImportError:
+                            raise ImportError("Não foi possível importar MNIST_CONFIG de peab.py nem de peab_2.py")
                     
                     # Aplicar configurações ANTES de carregar
                     feature_mode = MNIST_CONFIG.get('feature_mode', 'raw')
                     digit_pair = MNIST_CONFIG.get('digit_pair', None)
                     
                     if digit_pair is None:
-                        print("[ERRO] MNIST_CONFIG['digit_pair'] não está definido em peab_2.py!")
+                        print("[ERRO] MNIST_CONFIG['digit_pair'] não está definido!")
                         return None, None, None, None, None
                     
-                    print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab_2.MNIST_CONFIG")
                     print(f"[INFO] Configurações: feature_mode='{feature_mode}', digit_pair={digit_pair}")
                     
                     # Configurar opções globais ANTES de carregar
                     set_mnist_options(feature_mode, digit_pair)
                     
                 except ImportError as e:
-                    print(f"[ERRO] Não foi possível importar MNIST_CONFIG de peab_2.py: {e}")
+                    print(f"[ERRO] Falha na importação de configuração MNIST: {e}")
                     print("[INFO] Usando configuração padrão: raw, (3, 8)")
                     set_mnist_options('raw', (3, 8))
                 

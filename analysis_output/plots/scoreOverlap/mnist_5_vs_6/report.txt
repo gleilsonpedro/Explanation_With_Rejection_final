@@ -1,0 +1,80 @@
+================================================================================
+RELATÓRIO DE ANÁLISE DE SOBREPOSIÇÃO - mnist_5_vs_6
+================================================================================
+
+[ESTATÍSTICAS DESCRITIVAS]
+  Classe Positiva (1): 103 instâncias
+  Classe Negativa (0): 95 instâncias
+  Total: 198 instâncias
+
+[MÉDIAS E DESVIOS]
+  Classe Positiva: μ = 6.053789, σ = 3.121740
+  Classe Negativa: μ = -7.120483, σ = 4.468745
+
+[THRESHOLDS PEAB]
+  t_minus: -0.960533
+  t_plus:  -0.960533
+  Largura da Zona de Rejeição: 0.000000
+  ⚠️  ZONA DE REJEIÇÃO COLAPSADA (largura zero)!
+
+[MÉTRICAS DE SEPARAÇÃO]
+  Cohen's d: 3.4244
+    Interpretação: Grande efeito (alta separabilidade)
+
+  KS Statistic: 0.9515 (p-value = 1.3782e-50)
+    Interpretação: Distância máxima entre CDFs = 95.15%
+
+  AUC (ROC): 0.9911
+    Interpretação: Excelente discriminação
+
+  Sobreposição Estimada: 5.91%
+    Interpretação: Percentual de scores na região de interseção
+
+[PERCENTIS DOS SCORES]
+  Classe Positiva:
+    p0: -5.230397
+    p25: 4.403054
+    p50: 6.299161
+    p75: 8.084216
+    p100: 12.841594
+
+  Classe Negativa:
+    p0: -21.851052
+    p25: -10.173395
+    p50: -6.508612
+    p75: -4.007574
+    p100: 0.630928
+
+[TOP-20 CASOS BORDERLINE]
+  (Instâncias mais próximas da zona de rejeição)
+
+  Index    Score        True   Pred   Dist      
+  --------------------------------------------------
+  50366    -1.005881    0      0      0.045348  
+  29264    -1.307892    0      0      0.347359  
+  38577    -0.547898    0      1      0.412636  
+  48006    -1.415247    1      0      0.454714  
+  5440     -1.553221    0      0      0.592687  
+  10275    -0.282160    1      1      0.678373  
+  51130    -0.225385    0      1      0.735148  
+  10665    -0.214251    0      1      0.746283  
+  899      -1.790473    0      0      0.829940  
+  6352     -0.118327    0      1      0.842206  
+  16832    -1.877340    0      0      0.916807  
+  32026    -1.919269    0      0      0.958736  
+  57852    0.004286     0      1      0.964819  
+  19236    -2.167864    0      0      1.207331  
+  33511    -2.208159    0      0      1.247626  
+  40492    0.319195     1      1      1.279728  
+  37114    -2.329964    0      0      1.369431  
+  11882    0.630928     0      1      1.591462  
+  3453     -2.591471    0      0      1.630937  
+  14632    0.944411     1      1      1.904944  
+
+================================================================================
+INTERPRETAÇÃO GERAL:
+================================================================================
+✓ Separação forte detectada (Cohen's d alto, AUC elevada).
+✓ Zona de rejeição zero é coerente: não há ambiguidade no subsample.
+⚠️  Possíveis causas: subsample limpo, features discriminativas, regularização adequada.
+
