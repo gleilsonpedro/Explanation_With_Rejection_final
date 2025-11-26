@@ -22,7 +22,7 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST (aplicadas automaticamente quando mnist é selecionado)
 MNIST_CONFIG = {
     'feature_mode': 'raw',           # 'raw' (784 features) ou 'pool2x2' (196 features)
-    'digit_pair': (8, 3),            # Par de dígitos para comparação (classe A vs classe B)
+    'digit_pair': (9, 4),            # Par de dígitos para comparação (classe A vs classe B)
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
     'rejection_cost': 0.24,          # Custo de rejeição
