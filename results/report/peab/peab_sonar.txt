@@ -34,13 +34,13 @@ LEGENDA DOS SÍMBOLOS
 
 [ DESEMPENHO COMPUTACIONAL ]
 
-  - Tempo Total de Geração das Explicações: 21.81 segundos
-  - Tempo Médio por Instância: 0.3462 segundos
+  - Tempo Total de Geração das Explicações: 19.69 segundos
+  - Tempo Médio por Instância: 0.3126 segundos
 
   - Custo Computacional por Classe:
-    - Tempo Médio (Positivas): 0.1565 segundos
-    - Tempo Médio (Negativas): 0.1609 segundos
-    - Tempo Médio (Rejeitadas): 0.4537 segundos
+    - Tempo Médio (Positivas): 0.1358 segundos
+    - Tempo Médio (Negativas): 0.1414 segundos
+    - Tempo Médio (Rejeitadas): 0.4123 segundos
 
 **********  PROCESSAMENTO POR INSTÂNCIA  **********
 
@@ -9916,6 +9916,7 @@ LEGENDA DOS SÍMBOLOS
 --------------------------------------------------------------------------------
 --- INSTÂNCIA #0 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2635 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 44 features.
 ├── Iniciando processo de minimização com 44 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_34', 'feature_35', 'feature_10', 'feature_20', 'feature_12', 'feature_21', 'feature_9', 'feature_19', 'feature_36', 'feature_44', 'feature_33', 'feature_8', 'feature_26', 'feature_27', 'feature_43', 'feature_22', 'feature_25', 'feature_32', 'feature_45', 'feature_5', 'feature_18', 'feature_42', 'feature_24', 'feature_6', 'feature_23', 'feature_28', 'feature_46', 'feature_37', 'feature_13', 'feature_39', 'feature_0', 'feature_30', 'feature_47', 'feature_7', 'feature_29', 'feature_56', 'feature_31', 'feature_41', 'feature_53', 'feature_48', 'feature_16', 'feature_4', 'feature_14']
 ├─ ● feature_11 (δ: +0.054): s' = 0.198 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -9968,6 +9969,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #1 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.3349 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 34 features.
 ├── Iniciando processo de minimização com 34 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_35', 'feature_12', 'feature_20', 'feature_10', 'feature_36', 'feature_19', 'feature_34', 'feature_0', 'feature_21', 'feature_18', 'feature_33', 'feature_9', 'feature_5', 'feature_32', 'feature_22', 'feature_7', 'feature_53', 'feature_6', 'feature_27', 'feature_13', 'feature_48', 'feature_1', 'feature_8', 'feature_42', 'feature_28', 'feature_4', 'feature_2', 'feature_37', 'feature_26', 'feature_30', 'feature_39', 'feature_47', 'feature_23']
 ├─ ● feature_11 (δ: +0.059): s' = 0.194 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10010,6 +10012,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #2 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0238 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 41 features.
 ├── Iniciando processo de minimização com 41 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_8', 'feature_12', 'feature_35', 'feature_20', 'feature_19', 'feature_0', 'feature_44', 'feature_48', 'feature_46', 'feature_47', 'feature_45', 'feature_34', 'feature_36', 'feature_7', 'feature_21', 'feature_5', 'feature_51', 'feature_33', 'feature_1', 'feature_4', 'feature_43', 'feature_2', 'feature_50', 'feature_18', 'feature_3', 'feature_6', 'feature_13', 'feature_42', 'feature_32', 'feature_22', 'feature_57', 'feature_41', 'feature_49', 'feature_53', 'feature_55', 'feature_30', 'feature_25', 'feature_58']
 ├─ ● feature_11 (δ: -0.056): s' = 0.081 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10059,6 +10062,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #5 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2580 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 50 features.
 ├── Iniciando processo de minimização com 50 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_35', 'feature_20', 'feature_36', 'feature_34', 'feature_11', 'feature_19', 'feature_21', 'feature_10', 'feature_33', 'feature_12', 'feature_27', 'feature_18', 'feature_5', 'feature_9', 'feature_22', 'feature_26', 'feature_32', 'feature_28', 'feature_25', 'feature_8', 'feature_24', 'feature_23', 'feature_7', 'feature_29', 'feature_6', 'feature_37', 'feature_44', 'feature_39', 'feature_48', 'feature_47', 'feature_51', 'feature_4', 'feature_30', 'feature_31', 'feature_42', 'feature_13', 'feature_0', 'feature_43', 'feature_53', 'feature_41', 'feature_56', 'feature_55', 'feature_3', 'feature_49', 'feature_50', 'feature_14', 'feature_46', 'feature_1', 'feature_17', 'feature_45']
 ├─ ● feature_35 (δ: +0.056): s' = 0.196 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10117,6 +10121,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #11 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 1 | SCORE: 0.3545 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 27 features.
 ├── Iniciando processo de minimização com 27 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_20', 'feature_19', 'feature_35', 'feature_12', 'feature_8', 'feature_34', 'feature_5', 'feature_21', 'feature_18', 'feature_33', 'feature_7', 'feature_27', 'feature_32', 'feature_36', 'feature_6', 'feature_29', 'feature_44', 'feature_28', 'feature_47', 'feature_13', 'feature_26', 'feature_46', 'feature_43', 'feature_22']
 ├─ ● feature_11 (δ: +0.077): s' = 0.178 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10152,6 +10157,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #12 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0868 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 34 features.
 ├── Iniciando processo de minimização com 34 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_10', 'feature_9', 'feature_11', 'feature_8', 'feature_48', 'feature_47', 'feature_44', 'feature_19', 'feature_12', 'feature_35', 'feature_20', 'feature_34', 'feature_46', 'feature_45', 'feature_0', 'feature_5', 'feature_7', 'feature_36', 'feature_43', 'feature_18', 'feature_51', 'feature_21', 'feature_33', 'feature_6', 'feature_1', 'feature_42', 'feature_50', 'feature_4', 'feature_2', 'feature_3', 'feature_57', 'feature_41', 'feature_13', 'feature_32']
 ├─ ● feature_10 (δ: -0.054): s' = 0.079 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10194,6 +10200,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #13 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2761 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 43 features.
 ├── Iniciando processo de minimização com 43 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_35', 'feature_10', 'feature_34', 'feature_20', 'feature_21', 'feature_36', 'feature_12', 'feature_9', 'feature_44', 'feature_19', 'feature_33', 'feature_22', 'feature_45', 'feature_8', 'feature_26', 'feature_27', 'feature_48', 'feature_46', 'feature_32', 'feature_25', 'feature_43', 'feature_47', 'feature_24', 'feature_23', 'feature_18', 'feature_42', 'feature_28', 'feature_30', 'feature_37', 'feature_5', 'feature_7', 'feature_13', 'feature_29', 'feature_31', 'feature_53', 'feature_49', 'feature_39', 'feature_57', 'feature_0', 'feature_6', 'feature_55', 'feature_56']
 ├─ ● feature_11 (δ: +0.056): s' = 0.198 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10245,6 +10252,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #16 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0152 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 40 features.
 ├── Iniciando processo de minimização com 40 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_44', 'feature_12', 'feature_9', 'feature_48', 'feature_47', 'feature_8', 'feature_45', 'feature_46', 'feature_35', 'feature_34', 'feature_19', 'feature_0', 'feature_43', 'feature_7', 'feature_20', 'feature_5', 'feature_36', 'feature_51', 'feature_42', 'feature_1', 'feature_18', 'feature_33', 'feature_50', 'feature_2', 'feature_4', 'feature_6', 'feature_3', 'feature_13', 'feature_41', 'feature_57', 'feature_49', 'feature_32', 'feature_21', 'feature_53', 'feature_55', 'feature_58', 'feature_30', 'feature_54']
 ├─ ● feature_11 (δ: -0.053): s' = 0.075 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10293,6 +10301,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #18 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2557 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 52 features.
 ├── Iniciando processo de minimização com 52 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_35', 'feature_10', 'feature_12', 'feature_36', 'feature_19', 'feature_9', 'feature_20', 'feature_34', 'feature_18', 'feature_33', 'feature_8', 'feature_32', 'feature_5', 'feature_6', 'feature_57', 'feature_13', 'feature_21', 'feature_37', 'feature_7', 'feature_27', 'feature_26', 'feature_39', 'feature_48', 'feature_51', 'feature_0', 'feature_47', 'feature_30', 'feature_50', 'feature_25', 'feature_31', 'feature_28', 'feature_44', 'feature_55', 'feature_3', 'feature_14', 'feature_56', 'feature_2', 'feature_42', 'feature_53', 'feature_49', 'feature_43', 'feature_58', 'feature_17', 'feature_46', 'feature_24', 'feature_45', 'feature_54', 'feature_29', 'feature_59', 'feature_41', 'feature_4']
 ├─ ● feature_11 (δ: +0.062): s' = 0.190 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10353,6 +10362,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #25 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0302 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 41 features.
 ├── Iniciando processo de minimização com 41 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_8', 'feature_12', 'feature_48', 'feature_44', 'feature_47', 'feature_35', 'feature_45', 'feature_0', 'feature_46', 'feature_5', 'feature_19', 'feature_34', 'feature_20', 'feature_43', 'feature_51', 'feature_7', 'feature_36', 'feature_6', 'feature_1', 'feature_42', 'feature_50', 'feature_4', 'feature_2', 'feature_33', 'feature_3', 'feature_13', 'feature_18', 'feature_57', 'feature_21', 'feature_41', 'feature_53', 'feature_32', 'feature_49', 'feature_55', 'feature_30', 'feature_22', 'feature_25', 'feature_58']
 ├─ ● feature_11 (δ: -0.053): s' = 0.074 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10402,6 +10412,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #29 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0263 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 39 features.
 ├── Iniciando processo de minimização com 39 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_12', 'feature_48', 'feature_44', 'feature_47', 'feature_8', 'feature_45', 'feature_46', 'feature_0', 'feature_35', 'feature_19', 'feature_5', 'feature_43', 'feature_7', 'feature_34', 'feature_20', 'feature_51', 'feature_36', 'feature_42', 'feature_18', 'feature_1', 'feature_50', 'feature_4', 'feature_6', 'feature_2', 'feature_3', 'feature_33', 'feature_13', 'feature_41', 'feature_57', 'feature_49', 'feature_53', 'feature_21', 'feature_32', 'feature_55', 'feature_29', 'feature_58']
 ├─ ● feature_11 (δ: -0.058): s' = 0.079 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10449,6 +10460,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #31 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: 0.0134 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 60 features.
 ├── Iniciando processo de minimização com 60 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_12', 'feature_19', 'feature_0', 'feature_20', 'feature_9', 'feature_8', 'feature_18', 'feature_47', 'feature_42', 'feature_28', 'feature_43', 'feature_48', 'feature_29', 'feature_34', 'feature_41', 'feature_35', 'feature_27', 'feature_44', 'feature_33', 'feature_5', 'feature_46', 'feature_32', 'feature_21', 'feature_7', 'feature_45', 'feature_57', 'feature_6', 'feature_1', 'feature_2', 'feature_51', 'feature_26', 'feature_56', 'feature_49', 'feature_36', 'feature_13', 'feature_22', 'feature_50', 'feature_24', 'feature_58', 'feature_39', 'feature_17', 'feature_30', 'feature_4', 'feature_25', 'feature_14', 'feature_16', 'feature_38', 'feature_23', 'feature_3', 'feature_31', 'feature_53', 'feature_52', 'feature_59', 'feature_37', 'feature_55', 'feature_15', 'feature_54', 'feature_40']
 ├─ ● feature_11 (δ: +0.044): s' = -0.030 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10517,6 +10529,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #34 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2601 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 49 features.
 ├── Iniciando processo de minimização com 49 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_10', 'feature_9', 'feature_11', 'feature_20', 'feature_35', 'feature_21', 'feature_36', 'feature_8', 'feature_47', 'feature_48', 'feature_19', 'feature_12', 'feature_22', 'feature_34', 'feature_42', 'feature_32', 'feature_7', 'feature_23', 'feature_33', 'feature_0', 'feature_44', 'feature_41', 'feature_1', 'feature_28', 'feature_37', 'feature_18', 'feature_31', 'feature_53', 'feature_46', 'feature_24', 'feature_27', 'feature_29', 'feature_26', 'feature_43', 'feature_25', 'feature_30', 'feature_51', 'feature_57', 'feature_39', 'feature_2', 'feature_56', 'feature_50', 'feature_6', 'feature_49', 'feature_3', 'feature_13', 'feature_16', 'feature_5', 'feature_54']
 ├─ ● feature_10 (δ: +0.070): s' = 0.181 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10574,6 +10587,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #36 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.3164 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 37 features.
 ├── Iniciando processo de minimização com 37 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_35', 'feature_48', 'feature_47', 'feature_36', 'feature_44', 'feature_11', 'feature_20', 'feature_34', 'feature_45', 'feature_46', 'feature_33', 'feature_12', 'feature_27', 'feature_19', 'feature_8', 'feature_9', 'feature_21', 'feature_42', 'feature_32', 'feature_28', 'feature_29', 'feature_50', 'feature_43', 'feature_7', 'feature_26', 'feature_10', 'feature_5', 'feature_41', 'feature_51', 'feature_6', 'feature_49', 'feature_18', 'feature_1', 'feature_0', 'feature_53', 'feature_39', 'feature_22']
 ├─ ● feature_35 (δ: +0.041): s' = 0.212 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10619,6 +10633,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #50 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.4338 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 23 features.
 ├── Iniciando processo de minimização com 23 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_10', 'feature_11', 'feature_9', 'feature_20', 'feature_35', 'feature_36', 'feature_34', 'feature_19', 'feature_12', 'feature_21', 'feature_5', 'feature_8', 'feature_48', 'feature_47', 'feature_44', 'feature_33', 'feature_27', 'feature_43', 'feature_26', 'feature_32', 'feature_6', 'feature_28', 'feature_18']
 ├─ ● feature_10 (δ: +0.064): s' = 0.192 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10650,6 +10665,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #52 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0421 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 38 features.
 ├── Iniciando processo de minimização com 38 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_35', 'feature_48', 'feature_8', 'feature_47', 'feature_12', 'feature_44', 'feature_19', 'feature_46', 'feature_45', 'feature_36', 'feature_34', 'feature_0', 'feature_20', 'feature_7', 'feature_51', 'feature_5', 'feature_43', 'feature_1', 'feature_33', 'feature_18', 'feature_42', 'feature_50', 'feature_2', 'feature_4', 'feature_3', 'feature_13', 'feature_6', 'feature_21', 'feature_57', 'feature_41', 'feature_32', 'feature_49', 'feature_53', 'feature_58', 'feature_55']
 ├─ ● feature_11 (δ: -0.054): s' = 0.078 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10696,6 +10712,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #53 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0325 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 37 features.
 ├── Iniciando processo de minimização com 37 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_10', 'feature_9', 'feature_19', 'feature_48', 'feature_8', 'feature_44', 'feature_12', 'feature_20', 'feature_47', 'feature_45', 'feature_34', 'feature_35', 'feature_46', 'feature_18', 'feature_0', 'feature_51', 'feature_5', 'feature_33', 'feature_43', 'feature_7', 'feature_1', 'feature_50', 'feature_6', 'feature_2', 'feature_4', 'feature_13', 'feature_42', 'feature_21', 'feature_3', 'feature_36', 'feature_41', 'feature_49', 'feature_32', 'feature_53', 'feature_57', 'feature_55']
 ├─ ● feature_11 (δ: -0.057): s' = 0.081 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10741,6 +10758,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #55 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: 0.0026 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 60 features.
 ├── Iniciando processo de minimização com 60 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_20', 'feature_21', 'feature_35', 'feature_19', 'feature_36', 'feature_34', 'feature_27', 'feature_26', 'feature_22', 'feature_28', 'feature_33', 'feature_25', 'feature_10', 'feature_9', 'feature_29', 'feature_8', 'feature_32', 'feature_11', 'feature_24', 'feature_23', 'feature_18', 'feature_5', 'feature_39', 'feature_37', 'feature_6', 'feature_7', 'feature_12', 'feature_30', 'feature_56', 'feature_31', 'feature_44', 'feature_16', 'feature_51', 'feature_0', 'feature_4', 'feature_42', 'feature_49', 'feature_50', 'feature_13', 'feature_48', 'feature_3', 'feature_47', 'feature_45', 'feature_43', 'feature_41', 'feature_46', 'feature_55', 'feature_17', 'feature_15', 'feature_14', 'feature_57', 'feature_40', 'feature_58', 'feature_2', 'feature_38', 'feature_52', 'feature_59', 'feature_53', 'feature_1', 'feature_54']
 ├─ ● feature_20 (δ: +0.034): s' = -0.031 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10809,6 +10827,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #56 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2951 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 38 features.
 ├── Iniciando processo de minimização com 38 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_35', 'feature_12', 'feature_34', 'feature_19', 'feature_20', 'feature_10', 'feature_36', 'feature_5', 'feature_21', 'feature_33', 'feature_9', 'feature_18', 'feature_32', 'feature_6', 'feature_13', 'feature_44', 'feature_22', 'feature_8', 'feature_48', 'feature_4', 'feature_0', 'feature_7', 'feature_30', 'feature_51', 'feature_37', 'feature_39', 'feature_47', 'feature_49', 'feature_42', 'feature_31', 'feature_45', 'feature_41', 'feature_27', 'feature_26', 'feature_14', 'feature_53', 'feature_50']
 ├─ ● feature_11 (δ: +0.058): s' = 0.195 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10855,6 +10874,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #58 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0044 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 42 features.
 ├── Iniciando processo de minimização com 42 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_10', 'feature_11', 'feature_9', 'feature_19', 'feature_20', 'feature_44', 'feature_8', 'feature_47', 'feature_48', 'feature_12', 'feature_0', 'feature_46', 'feature_21', 'feature_45', 'feature_18', 'feature_43', 'feature_7', 'feature_1', 'feature_51', 'feature_5', 'feature_50', 'feature_2', 'feature_42', 'feature_4', 'feature_3', 'feature_13', 'feature_6', 'feature_22', 'feature_34', 'feature_57', 'feature_35', 'feature_49', 'feature_53', 'feature_29', 'feature_41', 'feature_55', 'feature_28', 'feature_27', 'feature_58', 'feature_33', 'feature_54', 'feature_14']
 ├─ ● feature_10 (δ: -0.053): s' = 0.078 (< t- (0.0266)) → FALHA. ESSENCIAL.
@@ -10905,6 +10925,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #59 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.2799 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 43 features.
 ├── Iniciando processo de minimização com 43 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_35', 'feature_36', 'feature_11', 'feature_34', 'feature_20', 'feature_10', 'feature_19', 'feature_21', 'feature_33', 'feature_12', 'feature_9', 'feature_18', 'feature_8', 'feature_32', 'feature_22', 'feature_5', 'feature_26', 'feature_27', 'feature_7', 'feature_6', 'feature_25', 'feature_28', 'feature_37', 'feature_23', 'feature_53', 'feature_0', 'feature_29', 'feature_24', 'feature_44', 'feature_51', 'feature_13', 'feature_39', 'feature_45', 'feature_4', 'feature_30', 'feature_31', 'feature_41', 'feature_42', 'feature_43', 'feature_2', 'feature_46', 'feature_3', 'feature_56']
 ├─ ● feature_35 (δ: +0.049): s' = 0.204 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10956,6 +10977,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #60 | CLASSE REAL: Mina (Metal) | PREDIÇÃO: CLASSE 1 | SCORE: 0.3129 ---
 ├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 35 features.
 ├── Iniciando processo de minimização com 35 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_11', 'feature_34', 'feature_20', 'feature_10', 'feature_35', 'feature_12', 'feature_9', 'feature_19', 'feature_44', 'feature_36', 'feature_47', 'feature_21', 'feature_48', 'feature_33', 'feature_27', 'feature_26', 'feature_8', 'feature_43', 'feature_28', 'feature_42', 'feature_5', 'feature_25', 'feature_22', 'feature_29', 'feature_18', 'feature_46', 'feature_45', 'feature_32', 'feature_41', 'feature_7', 'feature_37', 'feature_13', 'feature_24', 'feature_6', 'feature_50']
 ├─ ● feature_11 (δ: +0.048): s' = 0.210 (> t+ (0.2513)) → FALHA. ESSENCIAL.
@@ -10999,6 +11021,7 @@ LEGENDA DOS SÍMBOLOS
 
 --- INSTÂNCIA #61 | CLASSE REAL: Rocha | PREDIÇÃO: CLASSE 0 | SCORE: -0.0807 ---
 ├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 36 features.
 ├── Iniciando processo de minimização com 36 features.
 ├── Tentativas de desafixação (ordem de maior impacto |δ|): ['feature_10', 'feature_11', 'feature_9', 'feature_44', 'feature_8', 'feature_47', 'feature_48', 'feature_12', 'feature_19', 'feature_20', 'feature_45', 'feature_46', 'feature_35', 'feature_0', 'feature_5', 'feature_43', 'feature_7', 'feature_34', 'feature_36', 'feature_21', 'feature_51', 'feature_1', 'feature_18', 'feature_4', 'feature_6', 'feature_50', 'feature_42', 'feature_2', 'feature_3', 'feature_13', 'feature_57', 'feature_33', 'feature_28', 'feature_29', 'feature_49', 'feature_53']
 ├─ ● feature_10 (δ: -0.055): s' = 0.073 (< t- (0.0266)) → FALHA. ESSENCIAL.
