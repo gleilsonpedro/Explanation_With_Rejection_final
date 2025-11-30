@@ -9,8 +9,8 @@ import numpy as np
 sns.set_theme(style="whitegrid")
 plt.rcParams.update({'figure.figsize': (10, 6)})
 
-BASE_DIR = 'results/benchmark'
-OUTPUT_DIR = 'results/plots'
+BASE_DIR = 'results/benchmark/bench_csv'
+OUTPUT_DIR = 'results/benchmark/plots'
 
 def carregar_arquivos():
     """Lista todos os benchmarks disponíveis."""
