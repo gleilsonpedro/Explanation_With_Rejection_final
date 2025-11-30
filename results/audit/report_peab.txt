@@ -1,5 +1,5 @@
 ==== RELATÓRIO PEAB ====
-Gerado em: 2025-11-23T21:00:22.834607
+Gerado em: 2025-11-29T17:39:50.192073
 
 == Dataset: banknote ==
 [Config]
@@ -296,42 +296,44 @@ Gerado em: 2025-11-23T21:00:22.834607
   - Par MNIST: [9, 4]
   - Test Size: 0.30
   - Rejection Cost (wr): 0.24
-  - Total Instâncias Teste: 827
+  - Hiperparâmetros Modelo: {'penalty': 'l2', 'C': 0.01, 'solver': 'liblinear', 'max_iter': 1000}
+  - Subsample Size: 0.05
+  - Total Instâncias Teste: 207
 [Thresholds]
-  - t_minus: -0.5529
-  - t_plus : 0.8277
-  - Largura: 1.3806
+  - t_minus: -0.3607
+  - t_plus : -0.0048
+  - Largura: 0.3559
 [Performance]
-  - Acurácia sem rejeição: 95.0423%
-  - Acurácia com rejeição: 95.8955%
-  - Taxa de rejeição: 2.7811%
+  - Acurácia sem rejeição: 91.3043%
+  - Acurácia com rejeição: 95.8115%
+  - Taxa de rejeição: 7.7295%
 [Explicações]
-  - Positive: count=388 mean=212.5412 std=32.4955 min=152 max=339
-  - Negative: count=416 mean=200.2428 std=26.7257 min=146 max=358
-  - Rejected: count=23 mean=626.5217 std=4.4611 min=618 max=635
+  - Positive: count=90 mean=123.8556 std=36.7863 min=82 max=256
+  - Negative: count=101 mean=166.0594 std=41.2665 min=96 max=297
+  - Rejected: count=16 mean=579.2500 std=5.3444 min=570 max=588
 [Distribuição de Instâncias]
-  - Positivas (aceitas): 388
-  - Negativas (aceitas): 416
-  - Rejeitadas: 23
+  - Positivas (aceitas): 90
+  - Negativas (aceitas): 101
+  - Rejeitadas: 16
 [Tempo Computacional]
-  - Total: 8799.4965 s
-  - Média/Instância: 10.6403 s
-  - Positivas: 9.1048 s | Negativas: 8.6165 s | Rejeitadas: 73.1364 s
+  - Total: 1936.3357 s
+  - Média/Instância: 9.3543 s
+  - Positivas: 4.8670 s | Negativas: 6.2489 s | Rejeitadas: 54.1941 s
 [Top Features]
-  - pixel211 (freq=776)
-  - pixel212 (freq=772)
-  - pixel240 (freq=753)
-  - pixel238 (freq=749)
-  - pixel213 (freq=748)
-  - pixel239 (freq=742)
-  - pixel210 (freq=738)
-  - pixel241 (freq=731)
-  - pixel214 (freq=665)
-  - pixel242 (freq=665)
+  - pixel211 (freq=203)
+  - pixel212 (freq=200)
+  - pixel240 (freq=195)
+  - pixel213 (freq=193)
+  - pixel239 (freq=191)
+  - pixel241 (freq=191)
+  - pixel210 (freq=189)
+  - pixel238 (freq=189)
+  - pixel242 (freq=178)
+  - pixel214 (freq=177)
 [Exemplos de Instâncias]
-  - positive: score=2.7710 y_true=1 y_pred=1 tamanho_exp=252
-  - negative: score=-4.5565 y_true=0 y_pred=0 tamanho_exp=209
-  - rejected: score=0.6099 y_true=0 y_pred=-1 tamanho_exp=629
+  - positive: score=1.4213 y_true=1 y_pred=1 tamanho_exp=109
+  - negative: score=-0.7953 y_true=0 y_pred=0 tamanho_exp=217
+  - rejected: score=-0.0271 y_true=1 y_pred=-1 tamanho_exp=577
 
 == Dataset: pima_indians_diabetes ==
 [Config]
@@ -378,6 +380,8 @@ Gerado em: 2025-11-23T21:00:22.834607
   - Nome: sonar
   - Test Size: 0.30
   - Rejection Cost (wr): 0.24
+  - Hiperparâmetros Modelo: {'penalty': 'l2', 'C': 0.01, 'solver': 'saga', 'max_iter': 200}
+  - Subsample Size: N/A
   - Total Instâncias Teste: 63
 [Thresholds]
   - t_minus: 0.0266
@@ -396,9 +400,9 @@ Gerado em: 2025-11-23T21:00:22.834607
   - Negativas (aceitas): 11
   - Rejeitadas: 40
 [Tempo Computacional]
-  - Total: 21.8132 s
-  - Média/Instância: 0.3462 s
-  - Positivas: 0.1565 s | Negativas: 0.1609 s | Rejeitadas: 0.4537 s
+  - Total: 19.6910 s
+  - Média/Instância: 0.3126 s
+  - Positivas: 0.1358 s | Negativas: 0.1414 s | Rejeitadas: 0.4123 s
 [Top Features]
   - feature_5 (freq=62)
   - feature_6 (freq=62)

@@ -8,13 +8,12 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
 # --- IMPORTANDO AS FUNÇÕES DO SEU SCRIPT ORIGINAL ---
-# Certifique-se que o arquivo peab.py está na mesma pasta
 from peab import (
     carregar_hiperparametros,
     configurar_experimento,
     treinar_e_avaliar_modelo,
     aplicar_selecao_top_k_features,
-    gerar_explicacao_instancia, # SEU MÉTODO PEAB
+    gerar_explicacao_instancia,
     selecionar_dataset_e_classe,
     DATASET_CONFIG,
     DEFAULT_LOGREG_PARAMS,
@@ -27,9 +26,7 @@ from utils.progress_bar import ProgressBar
 #  PARTE 1: O "JUIZ" (Cálculo do Mínimo Matemático com PuLP)
 # =============================================================================
 def calcular_minimo_exato_pulp(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, t_plus: float, t_minus: float) -> int:
-    """
-    Calcula APENAS o tamanho mínimo necessário (cardinalidade) usando Otimização Inteira.
-    """
+    """Calcula APENAS o tamanho mínimo necessário (cardinalidade) usando Otimização Inteira."""
     logreg = _get_lr(modelo)
     scaler = modelo.named_steps['scaler']
     
@@ -47,14 +44,9 @@ def calcular_minimo_exato_pulp(modelo: Pipeline, instance_df: pd.DataFrame, X_tr
     else: estado = 2 # Rejeição
 
     prob = pulp.LpProblem("JuizMinimalidade", pulp.LpMinimize)
-    
-    # Variáveis: z_i = 1 (Fixa feature), z_i = 0 (Livre)
     z = [pulp.LpVariable(f"z_{i}", cat='Binary') for i in range(len(coefs))]
-    
-    # Objetivo: Menor número de features
     prob += pulp.lpSum(z)
     
-    # Restrições de Robustez (Pior Caso)
     base_worst_min = intercept
     base_worst_max = intercept
     termos_min = []
@@ -90,7 +82,91 @@ def calcular_minimo_exato_pulp(modelo: Pipeline, instance_df: pd.DataFrame, X_tr
         return -1 
 
 # =============================================================================
-#  PARTE 2: O ORGANIZADOR DO EXPERIMENTO
+#  PARTE 2: GERADOR DE RELATÓRIO (TABELAS)
+# =============================================================================
+def gerar_relatorio_tabela(df: pd.DataFrame, dataset_name: str, t_plus: float, t_minus: float):
+    """Gera um arquivo de texto com tabelas formatadas comparando os métodos."""
+    
+    output_path = f"results/benchmark/relatorio_bench_{dataset_name}.txt"
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write("="*80 + "\n")
+        f.write(f"RELATÓRIO DE BENCHMARK CIENTÍFICO: {dataset_name.upper()}\n")
+        f.write("="*80 + "\n\n")
+        
+        f.write(f"Parâmetros do Experimento:\n")
+        f.write(f" - Instâncias de Teste: {len(df)}\n")
+        f.write(f" - Thresholds: t+ = {t_plus:.4f}, t- = {t_minus:.4f}\n\n")
+
+        # --- TABELA 1: RESUMO GERAL ---
+        f.write("-" * 80 + "\n")
+        f.write("1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)\n")
+        f.write("-" * 80 + "\n")
+        
+        geral = pd.DataFrame({
+            'Métrica': [
+                'Taxa de Otimalidade (Gap=0)', 
+                'Gap Médio (Features Excedentes)', 
+                'Tempo Médio PEAB (s)', 
+                'Tempo Médio OTIMIZAÇÃO (s)', 
+                'Speedup (x vezes mais rápido)'
+            ],
+            'Valor': [
+                f"{df['is_optimal'].mean()*100:.2f}%",
+                f"{df['GAP'].mean():.4f}",
+                f"{df['tempo_PEAB'].mean():.6f}",
+                f"{df['tempo_OPTIMO'].mean():.6f}",
+                f"{df['tempo_OPTIMO'].mean() / df['tempo_PEAB'].mean():.2f}x"
+            ]
+        })
+        f.write(geral.to_string(index=False))
+        f.write("\n\n")
+
+        # --- TABELA 2: ANÁLISE DETALHADA POR TIPO (POSITIVA / NEGATIVA / REJEITADA) ---
+        f.write("-" * 80 + "\n")
+        f.write("2. DETALHAMENTO POR CLASSE DE PREDIÇÃO\n")
+        f.write("-" * 80 + "\n")
+        f.write("Esta tabela permite identificar se o gargalo está nas Rejeitadas.\n\n")
+
+        # Agrupamento
+        grupo = df.groupby('tipo_predicao').agg({
+            'id': 'count',
+            'is_optimal': 'mean',
+            'GAP': 'mean',
+            'tamanho_PEAB': 'mean',
+            'tamanho_OPTIMO': 'mean',
+            'tempo_PEAB': 'mean'
+        }).reset_index()
+
+        # Renomeando colunas para ficar bonito
+        grupo.columns = ['Tipo', 'Qtd', '% Ótimo', 'Gap Médio', 'Tam. PEAB', 'Tam. Ótimo', 'Tempo PEAB']
+        
+        # Formatação
+        grupo['% Ótimo'] = (grupo['% Ótimo'] * 100).map('{:.2f}%'.format)
+        grupo['Gap Médio'] = grupo['Gap Médio'].map('{:.4f}'.format)
+        grupo['Tam. PEAB'] = grupo['Tam. PEAB'].map('{:.2f}'.format)
+        grupo['Tam. Ótimo'] = grupo['Tam. Ótimo'].map('{:.2f}'.format)
+        grupo['Tempo PEAB'] = grupo['Tempo PEAB'].map('{:.5f}s'.format)
+        
+        f.write(grupo.to_string(index=False))
+        f.write("\n\n")
+
+        # --- TABELA 3: OS 10 PIORES CASOS ---
+        f.write("-" * 80 + "\n")
+        f.write("3. TOP 10 MAIORES ERROS (GAPS)\n")
+        f.write("-" * 80 + "\n")
+        f.write("Instâncias onde o PEAB ficou mais longe da solução matemática ideal.\n\n")
+        
+        piores = df.sort_values(by='GAP', ascending=False).head(10)
+        cols_show = ['id', 'tipo_predicao', 'tamanho_PEAB', 'tamanho_OPTIMO', 'GAP']
+        f.write(piores[cols_show].to_string(index=False))
+        f.write("\n\n")
+
+    print(f"\n[RELATÓRIO] Relatório detalhado salvo em: {output_path}")
+    print(f"            (Abra este arquivo para ver as tabelas formatadas)")
+
+# =============================================================================
+#  PARTE 3: O ORGANIZADOR DO EXPERIMENTO
 # =============================================================================
 def executar_benchmark():
     dataset_name, _, _, _, _ = selecionar_dataset_e_classe()
@@ -131,12 +207,15 @@ def executar_benchmark():
         for i in range(len(X_test)):
             instancia = X_test.iloc[[i]]
             
-            # --- [NOVO] Identifica se é REJEIÇÃO ou CLASSIFICAÇÃO ---
+            # --- [ATUALIZADO] Classificação Granular: POS / NEG / REJ ---
             score = modelo.decision_function(instancia)[0]
-            if t_minus <= score <= t_plus:
-                tipo_predicao = "REJEITADA"
+            
+            if score >= t_plus:
+                tipo_predicao = "POSITIVA"
+            elif score <= t_minus:
+                tipo_predicao = "NEGATIVA"
             else:
-                tipo_predicao = "CLASSIFICADA"
+                tipo_predicao = "REJEITADA"
             
             # --- PEAB ---
             start_peab = time.perf_counter()
@@ -156,7 +235,7 @@ def executar_benchmark():
             resultados.append({
                 'id': i,
                 'classe_real': nomes_classes[y_test.iloc[i]],
-                'tipo_predicao': tipo_predicao, # <--- COLUNA NOVA
+                'tipo_predicao': tipo_predicao, 
                 'tamanho_PEAB': len(expl_peab),
                 'tamanho_OPTIMO': tamanho_optimo,
                 'GAP': gap,
@@ -168,22 +247,14 @@ def executar_benchmark():
 
     df = pd.DataFrame(resultados)
     
-    # Resumo Rápido no Terminal
-    print(f"\n{'='*60}")
-    print(f"RESUMO POR TIPO DE PREDIÇÃO ({dataset_name})")
-    print(f"{'='*60}")
-    # Agrupa por tipo para mostrar onde o PEAB é melhor/pior
-    print(df.groupby('tipo_predicao').agg({
-        'GAP': 'mean',
-        'is_optimal': lambda x: f"{x.mean()*100:.1f}%",
-        'tempo_PEAB': lambda x: f"{x.mean():.4f}s"
-    }).rename(columns={'is_optimal': 'Taxa Otimalidade', 'tempo_PEAB': 'Tempo Médio'}).to_string())
-    print(f"{'='*60}")
+    # 1. Salvar CSV (Dados Brutos)
+    csv_filename = f"results/benchmark/bench_{dataset_name}.csv"
+    os.makedirs(os.path.dirname(csv_filename), exist_ok=True)
+    df.to_csv(csv_filename, index=False)
+    print(f"\n[ARQUIVO] CSV bruto salvo em: {csv_filename}")
     
-    filename = f"results/benchmark/bench_{dataset_name}.csv"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    df.to_csv(filename, index=False)
-    print(f"[ARQUIVO] CSV salvo em: {filename}")
+    # 2. Gerar Relatório de Tabela (Dados Formatados)
+    gerar_relatorio_tabela(df, dataset_name, t_plus, t_minus)
 
 if __name__ == "__main__":
     executar_benchmark()
