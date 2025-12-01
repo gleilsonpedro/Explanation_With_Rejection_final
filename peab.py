@@ -26,7 +26,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
     'rejection_cost': 0.24,          # Custo de rejeição
-    'subsample_size': 0.04           # Proporção de subamostragem do dataset completo
+    'subsample_size': 0.1           # Proporção de subamostragem do dataset completo
 }
 
 DATASET_CONFIG = {
