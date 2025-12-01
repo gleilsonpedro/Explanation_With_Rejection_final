@@ -727,18 +727,27 @@ def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, 
         cfg = {'test_size': 0.3, 'rejection_cost': 0.24}
 
     # Subamostragem estratificada opcional
-    if 'subsample_size' in cfg and cfg['subsample_size'] is not None:
+    if 'subsample_size' in cfg and cfg['subsample_size']:
         frac = cfg['subsample_size']
-        if not (0 < frac <= 1):
-            raise ValueError(f"subsample_size inválido ({frac}) para dataset '{dataset_name}'. Esperado 0 < frac <= 1.")
-        idx = np.arange(len(y))
-        sample_idx, _ = train_test_split(idx, test_size=(1 - frac), random_state=RANDOM_STATE, stratify=y)
-        # Aplicar seleção
-        X = X.iloc[sample_idx] if isinstance(X, pd.DataFrame) else X[sample_idx]
-        y = y.iloc[sample_idx] if isinstance(y, pd.Series) else y[sample_idx]
+        
+        # Validação simples (opcional, mas boa prática)
+        if frac <= 0:
+             raise ValueError(f"subsample_size deve ser maior que 0. Valor recebido: {frac}")
+
+        # A Lógica que você pediu:
+        if frac >= 1.0:
+            pass # Não faz nada, mantém o X e y inteiros (100%)
+        else:
+            # Só corta se for MENOR que 1.0 (ex: 0.05, 0.5)
+            idx = np.arange(len(y))
+            # O 'test_size' aqui funciona como 'o que eu vou jogar fora'
+            # Se frac=0.05, test_size=0.95 (Joga 95% fora, guarda 5% em sample_idx)
+            sample_idx, _ = train_test_split(idx, test_size=(1 - frac), random_state=RANDOM_STATE, stratify=y)
+            
+            X = X.iloc[sample_idx] if isinstance(X, pd.DataFrame) else X[sample_idx]
+            y = y.iloc[sample_idx] if isinstance(y, pd.Series) else y[sample_idx]
 
     return X, y, nomes_classes, cfg['rejection_cost'], cfg['test_size']
-
 
 def aplicar_selecao_top_k_features(X_train: pd.DataFrame, X_test: pd.DataFrame, pipeline: Pipeline, top_k: int) -> Tuple[pd.DataFrame, pd.DataFrame, List[str]]:
     """
