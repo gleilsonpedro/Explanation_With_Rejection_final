@@ -26,7 +26,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          # Número de features mais importantes (None = usar todas) ou  o numero com a quantidade de features mais importantes, ex 200
     'test_size': 0.3,                # Proporção do conjunto de teste
     'rejection_cost': 0.24,          # Custo de rejeição
-    'subsample_size': 0.1           # Proporção de subamostragem do dataset completo
+    'subsample_size': 1.0           # Proporção de subamostragem do dataset completo
 }
 
 DATASET_CONFIG = {
@@ -146,30 +146,52 @@ def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.Da
 
 def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, t_plus: float, t_minus: float, premis_class: int) -> List[str]:
     score = modelo.decision_function(instance_df)[0]
-    deltas = calculate_deltas(modelo, instance_df, X_train, premis_class)
-    indices_ordenados = np.argsort(-np.abs(deltas)) #ordena indices dos deltas em ordem decrescente de valor absoluto
     explicacao = []
-    #aqui começa a heuristica inicial para as classes
+    
+    # Calcula os deltas (contribuição de cada feature no pior caso)
+    deltas = calculate_deltas(modelo, instance_df, X_train, premis_class)
+    
+    # Ordena pelo maior impacto absoluto (Lógica Original do PEAB)
+    indices_ordenados = np.argsort(-np.abs(deltas))
+    
     score_base = score - np.sum(deltas)
     soma_deltas_cumulativa = score_base 
     target_score = t_plus if premis_class == 1 else t_minus
-    for i in indices_ordenados: # percorrendo as feat pela ordem de importancia
+    
+    # [NOVO] Margem de tolerância para erros numéricos (float)
+    # Isso impede que o algoritmo adicione uma feature extra se o score for exatamente igual ao limiar.
+    EPSILON = 1e-6 
+
+    for i in indices_ordenados:
         feature_nome = X_train.columns[i]
         valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)]
-        if abs(deltas[i]) > 1e-9: #so considera as features com valores significativos
-             soma_deltas_cumulativa += deltas[i] # adiciona a contrib da feature
+        
+        # Só adiciona se o delta for relevante (evita sujeira numérica)
+        if abs(deltas[i]) > 1e-9:
+             soma_deltas_cumulativa += deltas[i]
              explicacao.append(f"{feature_nome} = {valor_original_feature:.4f}")
-             # condição de parada ao chegar nos limites 
-             # classe 1 = Σδ > t_plus e classe 0 = Σδ < t_minus
-        if (premis_class == 1 and soma_deltas_cumulativa > target_score and explicacao) or \
-           (premis_class == 0 and soma_deltas_cumulativa < target_score and explicacao):
-            break
-    # segurança para garantir que sempre retorna pelo menos uma feature    
-    if not explicacao and len(deltas) > 0:
-         idx_maior_delta = indices_ordenados[0]
-         feat_nome = X_train.columns[idx_maior_delta]
+        
+        # [ALTERAÇÃO AQUI] melhorando as classificadas
+        # Antes: > (maior estrito). 
+        # Agora: >= (maior ou igual) COM tolerância EPSILON.
+        
+        if premis_class == 1:
+            # Se já ultrapassou t_plus OU está "colado" nele (diferença menor que epsilon)
+            if soma_deltas_cumulativa >= (target_score - EPSILON) and explicacao:
+                break
+        else: # premis_class == 0
+            # Se já desceu abaixo de t_minus OU está "colado" nele
+            if soma_deltas_cumulativa <= (target_score + EPSILON) and explicacao:
+                break
+                
+    # Fallback de segurança (caso lista vazia)
+    if not explicacao and len(X_train.columns) > 0:
+         logreg = _get_lr(modelo)
+         idx_max = np.argmax(np.abs(logreg.coef_[0]))
+         feat_nome = X_train.columns[idx_max]
          valor_feat = instance_df.iloc[0, X_train.columns.get_loc(feat_nome)]
          explicacao.append(f"{feat_nome} = {valor_feat:.4f}")
+
     return explicacao
 
 def perturbar_e_validar(modelo: Pipeline, instance_df: pd.DataFrame, explicacao: List[str], X_train: pd.DataFrame, t_plus: float, t_minus: float, direcao_override: int) -> Tuple[bool, float]:

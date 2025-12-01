@@ -1,0 +1,1805 @@
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)
+================================================================================
+
+LEGENDA DOS SÍMBOLOS
+   δ = Contribuição individual (w_i × x_i)
+   Σδ = Soma acumulada (intercepto + Σδ_i)
+   ● = Feature mantida (essencial)
+   ○ = Feature removida (não essencial)
+   ↑ = Feature aumenta score (favorável à classe 1)
+   ↓ = Feature diminui score (favorável à classe 0)
+   s'= Valor da feature no pior cenário(wrost case)
+
+[ PARÂMETROS DO EXPERIMENTO ]
+
+  - Dataset: vertebral_column
+  - Proporção de Teste: 30%
+  - Total de Instâncias de Teste: 93
+  - Custo de Rejeição (wr): 0.24
+
+[ PARÂMETROS DO MODELO DE REGRESSÃO LOGÍSTICA ]
+
+  - Número de Features: 6
+  - Acurácia (sem rejeição): 76.34%
+  - Limiar Superior (t+): 0.8424
+  - Limiar Inferior (t-): -0.0945
+  - Intercepto (w0): 0.4913
+
+[ MÉTRICAS DE DESEMPENHO DO MODELO ]
+
+  - Acurácia Geral (sem rejeição): 76.34%
+  - Taxa de Rejeição no Teste: 27.96% (26 de 93 instâncias)
+  - Acurácia com Opção de Rejeição (nas 67 instâncias aceitas): 86.57%
+
+[ DESEMPENHO COMPUTACIONAL ]
+
+  - Tempo Total de Geração das Explicações: 2.27 segundos
+  - Tempo Médio por Instância: 0.0244 segundos
+
+  - Custo Computacional por Classe:
+    - Tempo Médio (Positivas): 0.0143 segundos
+    - Tempo Médio (Negativas): 0.0184 segundos
+    - Tempo Médio (Rejeitadas): 0.0476 segundos
+
+**********  PROCESSAMENTO POR INSTÂNCIA  **********
+
+--------------------------------------------------------------------------------
+                         SEÇÃO A: INSTÂNCIAS REJEITADAS
+--------------------------------------------------------------------------------
+--- INSTÂNCIA #1 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.6984 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.161):
+│   ├─ Teste vs Lado Negativo: s' = -0.463 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.937 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.614):
+│   ├─ Teste vs Lado Negativo: s' = 0.084 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.717 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.362):
+│   ├─ Teste vs Lado Negativo: s' = 0.337 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.394 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.347):
+│   ├─ Teste vs Lado Negativo: s' = 0.351 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.416 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.079):
+│   ├─ Teste vs Lado Negativo: s' = 0.619 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.613 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.044):
+│   ├─ Teste vs Lado Negativo: s' = 0.654 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.785 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #1):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #4 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.4612 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.007):
+│   ├─ Teste vs Lado Negativo: s' = -0.545 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.855 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.616):
+│   ├─ Teste vs Lado Negativo: s' = -0.155 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.478 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.338):
+│   ├─ Teste vs Lado Negativo: s' = 0.124 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.188 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.308):
+│   ├─ Teste vs Lado Negativo: s' = 0.153 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.211 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.064):
+│   ├─ Teste vs Lado Negativo: s' = 0.397 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.391 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.038):
+│   ├─ Teste vs Lado Negativo: s' = 0.423 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.554 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #4):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #10 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.4034 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.122):
+│   ├─ Teste vs Lado Negativo: s' = -0.719 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.681 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.738):
+│   ├─ Teste vs Lado Negativo: s' = -0.335 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.298 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.206):
+│   ├─ Teste vs Lado Negativo: s' = 0.198 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.262 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.164):
+│   ├─ Teste vs Lado Negativo: s' = 0.240 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.297 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.066):
+│   ├─ Teste vs Lado Negativo: s' = 0.338 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.331 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.016):
+│   ├─ Teste vs Lado Negativo: s' = 0.387 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.518 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #10):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #11 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.6941 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.204):
+│   ├─ Teste vs Lado Negativo: s' = -0.510 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.890 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.672):
+│   ├─ Teste vs Lado Negativo: s' = 0.022 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.655 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.333):
+│   ├─ Teste vs Lado Negativo: s' = 0.362 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.426 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.286):
+│   ├─ Teste vs Lado Negativo: s' = 0.408 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.465 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.075):
+│   ├─ Teste vs Lado Negativo: s' = 0.619 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.613 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.033):
+│   ├─ Teste vs Lado Negativo: s' = 0.661 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.792 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #11):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #12 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.3108 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.219):
+│   ├─ Teste vs Lado Negativo: s' = -0.908 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.492 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.675):
+│   ├─ Teste vs Lado Negativo: s' = -0.364 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.269 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.163):
+│   ├─ Teste vs Lado Negativo: s' = 0.148 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.212 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.119):
+│   ├─ Teste vs Lado Negativo: s' = 0.192 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.249 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.030):
+│   ├─ Teste vs Lado Negativo: s' = 0.280 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.274 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.014):
+│   ├─ Teste vs Lado Negativo: s' = 0.297 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.427 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #12):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #23 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.2351 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.950):
+│   ├─ Teste vs Lado Negativo: s' = -0.715 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.685 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.466):
+│   ├─ Teste vs Lado Negativo: s' = -0.230 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.402 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.391):
+│   ├─ Teste vs Lado Negativo: s' = -0.155 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.909 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.241):
+│   ├─ Teste vs Lado Negativo: s' = -0.006 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.052 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.060):
+│   ├─ Teste vs Lado Negativo: s' = 0.175 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.169 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.036):
+│   ├─ Teste vs Lado Negativo: s' = 0.199 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.329 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #23):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #26 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.2310 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.858):
+│   ├─ Teste vs Lado Negativo: s' = -0.627 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.773 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.531):
+│   ├─ Teste vs Lado Negativo: s' = -0.300 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.765 (< t+ (0.8424)) OK.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.450):
+│   ├─ Teste vs Lado Negativo: s' = -0.219 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.414 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.224):
+│   ├─ Teste vs Lado Negativo: s' = 0.007 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.064 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.041):
+│   ├─ Teste vs Lado Negativo: s' = 0.190 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.184 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.035):
+│   ├─ Teste vs Lado Negativo: s' = 0.196 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.326 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #26):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #27 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.7351 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.328):
+│   ├─ Teste vs Lado Negativo: s' = -0.593 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.807 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.673):
+│   ├─ Teste vs Lado Negativo: s' = 0.062 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.695 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.391):
+│   ├─ Teste vs Lado Negativo: s' = 0.344 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.409 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.142):
+│   ├─ Teste vs Lado Negativo: s' = 0.593 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.650 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.093):
+│   ├─ Teste vs Lado Negativo: s' = 0.642 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.636 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● sacral_slope (δ: +0.017):
+│   ├─ Teste vs Lado Negativo: s' = 0.719 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.849 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+
+   --> RESULTADO FINAL (Instância #27):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #29 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.5367 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.279):
+│   ├─ Teste vs Lado Negativo: s' = -0.742 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.658 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.831):
+│   ├─ Teste vs Lado Negativo: s' = -0.294 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.339 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.153):
+│   ├─ Teste vs Lado Negativo: s' = 0.384 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.441 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.108):
+│   ├─ Teste vs Lado Negativo: s' = 0.429 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.493 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.064):
+│   ├─ Teste vs Lado Negativo: s' = 0.473 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.467 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.011):
+│   ├─ Teste vs Lado Negativo: s' = 0.526 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.656 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #29):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #30 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.5164 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.875):
+│   ├─ Teste vs Lado Negativo: s' = -0.359 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 2.041 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.744):
+│   ├─ Teste vs Lado Negativo: s' = -0.228 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.405 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.455):
+│   ├─ Teste vs Lado Negativo: s' = 0.061 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.126 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.263):
+│   ├─ Teste vs Lado Negativo: s' = 0.254 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.311 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.061):
+│   ├─ Teste vs Lado Negativo: s' = 0.456 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.450 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.027):
+│   ├─ Teste vs Lado Negativo: s' = 0.489 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.620 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #30):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #31 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: -0.0325 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.783):
+│   ├─ Teste vs Lado Negativo: s' = -0.815 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.585 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.452):
+│   ├─ Teste vs Lado Negativo: s' = -0.485 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.148 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.389):
+│   ├─ Teste vs Lado Negativo: s' = -0.422 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.643 (< t+ (0.8424)) OK.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.151):
+│   ├─ Teste vs Lado Negativo: s' = -0.183 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.874 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.074):
+│   ├─ Teste vs Lado Negativo: s' = -0.107 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.887 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.027):
+│   ├─ Teste vs Lado Negativo: s' = -0.059 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.071 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #31):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #33 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.2542 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.090):
+│   ├─ Teste vs Lado Negativo: s' = -0.836 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.564 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.700):
+│   ├─ Teste vs Lado Negativo: s' = -0.445 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.187 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.157):
+│   ├─ Teste vs Lado Negativo: s' = 0.097 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.155 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.122):
+│   ├─ Teste vs Lado Negativo: s' = 0.132 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.197 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.077):
+│   ├─ Teste vs Lado Negativo: s' = 0.177 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.171 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.017):
+│   ├─ Teste vs Lado Negativo: s' = 0.237 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.368 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #33):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #39 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.7416 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.590):
+│   ├─ Teste vs Lado Negativo: s' = -0.848 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.552 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.457):
+│   ├─ Teste vs Lado Negativo: s' = 0.285 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.917 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.211):
+│   ├─ Teste vs Lado Negativo: s' = 0.530 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.588 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.183):
+│   ├─ Teste vs Lado Negativo: s' = 0.558 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.623 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.176):
+│   ├─ Teste vs Lado Negativo: s' = 0.566 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.560 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.033):
+│   ├─ Teste vs Lado Negativo: s' = 0.708 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.839 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #39):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #44 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.3795 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.358):
+│   ├─ Teste vs Lado Negativo: s' = -0.979 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.421 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.473):
+│   ├─ Teste vs Lado Negativo: s' = -0.093 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.540 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.207):
+│   ├─ Teste vs Lado Negativo: s' = 0.172 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.229 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.129):
+│   ├─ Teste vs Lado Negativo: s' = 0.250 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.315 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.088):
+│   ├─ Teste vs Lado Negativo: s' = 0.291 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.285 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.032):
+│   ├─ Teste vs Lado Negativo: s' = 0.347 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.478 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #44):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #48 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.1658 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.075):
+│   ├─ Teste vs Lado Negativo: s' = -0.909 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.491 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.445):
+│   ├─ Teste vs Lado Negativo: s' = -0.279 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.354 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.315):
+│   ├─ Teste vs Lado Negativo: s' = -0.149 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.915 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.160):
+│   ├─ Teste vs Lado Negativo: s' = 0.006 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.063 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.052):
+│   ├─ Teste vs Lado Negativo: s' = 0.114 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.107 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.028):
+│   ├─ Teste vs Lado Negativo: s' = 0.138 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.268 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #48):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #51 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.0889 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.159):
+│   ├─ Teste vs Lado Negativo: s' = -1.070 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.330 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.436):
+│   ├─ Teste vs Lado Negativo: s' = -0.347 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.286 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.173):
+│   ├─ Teste vs Lado Negativo: s' = -0.084 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.973 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.139):
+│   ├─ Teste vs Lado Negativo: s' = -0.051 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.014 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.061):
+│   ├─ Teste vs Lado Negativo: s' = 0.028 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.022 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.030):
+│   ├─ Teste vs Lado Negativo: s' = 0.059 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.189 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #51):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #54 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.0527 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_tilt (δ: +0.758):
+│   ├─ Teste vs Lado Negativo: s' = -0.705 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.927 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_radius (δ: +0.510):
+│   ├─ Teste vs Lado Negativo: s' = -0.457 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.942 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.343):
+│   ├─ Teste vs Lado Negativo: s' = -0.290 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.774 (< t+ (0.8424)) OK.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.279):
+│   ├─ Teste vs Lado Negativo: s' = -0.226 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.831 (< t+ (0.8424)) OK.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.043):
+│   ├─ Teste vs Lado Negativo: s' = 0.010 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.004 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.029):
+│   ├─ Teste vs Lado Negativo: s' = 0.024 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.155 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #54):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #67 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.7473 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● lumbar_lordosis_angle (δ: +0.826):
+│   ├─ Teste vs Lado Negativo: s' = -0.078 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.986 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.693):
+│   ├─ Teste vs Lado Negativo: s' = 0.054 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.687 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_radius (δ: +0.571):
+│   ├─ Teste vs Lado Negativo: s' = 0.176 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.576 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.306):
+│   ├─ Teste vs Lado Negativo: s' = 0.441 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.435 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.234):
+│   ├─ Teste vs Lado Negativo: s' = 0.513 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.571 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● sacral_slope (δ: +0.026):
+│   ├─ Teste vs Lado Negativo: s' = 0.721 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.852 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+
+   --> RESULTADO FINAL (Instância #67):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #69 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.3833 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.084):
+│   ├─ Teste vs Lado Negativo: s' = -0.701 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.699 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.568):
+│   ├─ Teste vs Lado Negativo: s' = -0.185 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.448 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.279):
+│   ├─ Teste vs Lado Negativo: s' = 0.104 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.169 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.252):
+│   ├─ Teste vs Lado Negativo: s' = 0.131 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.189 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.075):
+│   ├─ Teste vs Lado Negativo: s' = 0.308 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.302 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.033):
+│   ├─ Teste vs Lado Negativo: s' = 0.350 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.480 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #69):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #72 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.1839 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.996):
+│   ├─ Teste vs Lado Negativo: s' = -0.812 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.588 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.679):
+│   ├─ Teste vs Lado Negativo: s' = -0.495 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.137 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.209):
+│   ├─ Teste vs Lado Negativo: s' = -0.025 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.033 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.125):
+│   ├─ Teste vs Lado Negativo: s' = 0.059 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.123 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.060):
+│   ├─ Teste vs Lado Negativo: s' = 0.124 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.118 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.024):
+│   ├─ Teste vs Lado Negativo: s' = 0.160 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.291 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #72):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #79 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.0715 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.392):
+│   ├─ Teste vs Lado Negativo: s' = -1.321 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.079 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.532):
+│   ├─ Teste vs Lado Negativo: s' = -0.461 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.172 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.057):
+│   ├─ Teste vs Lado Negativo: s' = 0.015 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.072 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: -0.049):
+│   ├─ Teste vs Lado Negativo: s' = 0.120 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.185 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.035):
+│   ├─ Teste vs Lado Negativo: s' = 0.036 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.030 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.013):
+│   ├─ Teste vs Lado Negativo: s' = 0.059 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.189 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #79):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #80 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.5211 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.054):
+│   ├─ Teste vs Lado Negativo: s' = -0.532 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.867 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.773):
+│   ├─ Teste vs Lado Negativo: s' = -0.252 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.381 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.296):
+│   ├─ Teste vs Lado Negativo: s' = 0.225 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.289 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.199):
+│   ├─ Teste vs Lado Negativo: s' = 0.322 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.379 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.089):
+│   ├─ Teste vs Lado Negativo: s' = 0.432 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.426 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.019):
+│   ├─ Teste vs Lado Negativo: s' = 0.502 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.633 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #80):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #83 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.6440 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.285):
+│   ├─ Teste vs Lado Negativo: s' = -0.641 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.759 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.475):
+│   ├─ Teste vs Lado Negativo: s' = 0.169 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.234 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.380):
+│   ├─ Teste vs Lado Negativo: s' = 0.264 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.897 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.208):
+│   ├─ Teste vs Lado Negativo: s' = 0.436 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.493 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.169):
+│   ├─ Teste vs Lado Negativo: s' = 0.475 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.469 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.036):
+│   ├─ Teste vs Lado Negativo: s' = 0.608 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.738 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #83):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #88 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.4612 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.080):
+│   ├─ Teste vs Lado Negativo: s' = -0.619 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.781 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.818):
+│   ├─ Teste vs Lado Negativo: s' = -0.357 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.276 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.259):
+│   ├─ Teste vs Lado Negativo: s' = 0.202 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.259 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.144):
+│   ├─ Teste vs Lado Negativo: s' = 0.317 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.382 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.045):
+│   ├─ Teste vs Lado Negativo: s' = 0.417 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.411 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.024):
+│   ├─ Teste vs Lado Negativo: s' = 0.437 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.568 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #88):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #90 | CLASSE REAL: Anormal | PREDIÇÃO: REJEITADA | SCORE: 0.0161 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +0.633):
+│   ├─ Teste vs Lado Negativo: s' = -0.617 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.783 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.466):
+│   ├─ Teste vs Lado Negativo: s' = -0.450 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.183 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.461):
+│   ├─ Teste vs Lado Negativo: s' = -0.445 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.620 (< t+ (0.8424)) OK.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.186):
+│   ├─ Teste vs Lado Negativo: s' = -0.170 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 1.824 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.153):
+│   ├─ Teste vs Lado Negativo: s' = -0.136 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 0.921 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.026):
+│   ├─ Teste vs Lado Negativo: s' = -0.010 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.120 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #90):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #92 | CLASSE REAL: Normal | PREDIÇÃO: REJEITADA | SCORE: 0.6660 ---
+├── Zona de Rejeição: [-0.0945, 0.8424]
+├── Prova de Minimalidade (partindo de conjunto robusto após heurística; verificação bidirecional):
+├── Conjunto inicial (heurística): 6 features ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.043):
+│   ├─ Teste vs Lado Negativo: s' = -0.377 (< t- (-0.0945)) FALHA.
+│   └─ Teste vs Lado Positivo: s' = 2.022 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_tilt (δ: +0.674):
+│   ├─ Teste vs Lado Negativo: s' = -0.008 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.625 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● pelvic_incidence (δ: +0.399):
+│   ├─ Teste vs Lado Negativo: s' = 0.267 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.324 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● lumbar_lordosis_angle (δ: +0.338):
+│   ├─ Teste vs Lado Negativo: s' = 0.328 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 1.392 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ● spondylolisthesis_grade (δ: +0.074):
+│   ├─ Teste vs Lado Negativo: s' = 0.592 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 2.586 (≥ t+ (0.8424)) FALHA.
+│   └─> FALHA. Feature ESSENCIAL (precisa ser fixada).
+├─ ○ sacral_slope (δ: +0.046):
+│   ├─ Teste vs Lado Negativo: s' = 0.620 (> t- (-0.0945)) OK.
+│   └─ Teste vs Lado Positivo: s' = 0.751 (< t+ (0.8424)) OK.
+│   └─> SUCESSO. Feature DESAFIXADA.
+
+   --> RESULTADO FINAL (Instância #92):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--------------------------------------------------------------------------------
+                       SEÇÃO B: INSTÂNCIAS CLASSIFICADAS
+--------------------------------------------------------------------------------
+--- INSTÂNCIA #0 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.3027 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.139): s' = -0.084 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.779): s' = 0.276 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.613): s' = 0.443 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.433): s' = 0.622 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #0):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #2 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 0 | SCORE: -0.8739 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'spondylolisthesis_grade', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: -2.543): s' = 1.772 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: -1.848): s' = 1.078 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.153): s' = 0.382 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.895): s' = 0.125 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.702): s' = -0.069 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #2):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #3 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.4879 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.132): s' = -0.024 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.687): s' = 0.421 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.664): s' = 0.444 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.533): s' = 0.575 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #3):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #5 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.0393 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius', 'lumbar_lordosis_angle']
+├─ ● pelvic_tilt (δ: +1.395): s' = -0.137 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +1.171): s' = 0.087 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.601): s' = 0.658 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #5):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #6 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.3057 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.118): s' = -0.030 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.743): s' = 0.345 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.685): s' = 0.403 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.451): s' = 0.637 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #6):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #7 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1581 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.940): s' = 1.782 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.584): s' = 1.426 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.145): s' = 0.986 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.949): s' = 0.791 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.800): s' = 0.642 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.110): s' = -0.048 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #7):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #8 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.5453 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_incidence']
+├─ ● pelvic_tilt (δ: +1.166): s' = -0.068 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.800): s' = 0.297 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.528): s' = 0.570 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.512): s' = 0.586 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #8):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #9 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1991 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.959): s' = 1.760 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.685): s' = 1.486 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.028): s' = 0.829 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.906): s' = 0.707 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.880): s' = 0.681 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.110): s' = -0.089 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #9):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #13 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.1258 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.056): s' = -0.189 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.802): s' = 0.065 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.493): s' = 0.374 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.425): s' = 0.441 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #13):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #14 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.5508 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'spondylolisthesis_grade', 'pelvic_incidence']
+├─ ● pelvic_tilt (δ: +1.162): s' = 0.029 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +1.080): s' = 0.111 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.461): s' = 0.730 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.396): s' = 0.794 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #14):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #15 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 0 | SCORE: -0.4613 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.913): s' = 1.568 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.700): s' = 1.355 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.238): s' = 0.893 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -1.037): s' = 0.692 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.828): s' = 0.483 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #15):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #16 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.5249 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.939): s' = 1.514 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.891): s' = 1.466 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.388): s' = 0.963 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.945): s' = 0.520 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.632): s' = 0.206 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #16):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #17 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.3161 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_radius', 'pelvic_incidence']
+├─ ● lumbar_lordosis_angle (δ: +1.006): s' = -0.048 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.864): s' = 0.094 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.550): s' = 0.408 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.446): s' = 0.512 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #17):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #18 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.5476 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
+├── Iniciando processo de minimização com 2 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +1.403): s' = -0.544 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +1.364): s' = -0.505 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #18):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #19 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.5607 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.946): s' = 1.491 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.682): s' = 1.227 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.280): s' = 0.825 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.963): s' = 0.508 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.955): s' = 0.500 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #19):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #20 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.2474 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.292): s' = -0.015 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.076): s' = 0.200 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.817): s' = 0.459 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #20):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #21 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.3879 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
+├── Iniciando processo de minimização com 2 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● lumbar_lordosis_angle (δ: +1.492): s' = -0.621 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.287): s' = -0.416 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #21):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['lumbar_lordosis_angle', 'pelvic_tilt']
+
+--- INSTÂNCIA #22 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.2153 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'spondylolisthesis_grade', 'pelvic_radius', 'lumbar_lordosis_angle']
+├─ ● pelvic_tilt (δ: +1.173): s' = -0.260 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.742): s' = 0.171 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.461): s' = 0.451 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.445): s' = 0.467 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #22):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #24 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.3034 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.489): s' = -0.646 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.931): s' = -0.088 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.332): s' = 0.512 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #24):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #25 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.9747 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.363): s' = -0.183 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.077): s' = 0.103 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.649): s' = 0.531 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #25):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #28 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 3.3575 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
+├── Iniciando processo de minimização com 2 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +2.101): s' = -0.596 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.313): s' = 0.192 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #28):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #32 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.3679 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.950): s' = 1.687 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.554): s' = 1.291 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.409): s' = 1.146 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.997): s' = 0.733 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.723): s' = 0.460 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #32):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #34 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 0.9076 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.198): s' = -0.323 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.666): s' = 0.209 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.604): s' = 0.271 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.275): s' = 0.601 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.041): s' = 0.835 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #34):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #35 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.6958 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +1.712): s' = -0.658 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.694): s' = 0.359 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.556): s' = 0.497 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #35):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #36 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.4319 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.518): s' = -0.308 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.589): s' = 0.620 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.584): s' = 0.626 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.427): s' = 0.782 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #36):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #37 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 0.8995 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.064): s' = -0.216 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.593): s' = 0.255 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.545): s' = 0.303 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.420): s' = 0.428 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.134): s' = 0.714 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #37):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #38 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.6747 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +1.452): s' = -0.460 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.848): s' = 0.144 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.601): s' = 0.392 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #38):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #40 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.7656 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.073): s' = -0.216 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.971): s' = -0.114 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.722): s' = 0.136 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #40):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #41 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1144 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_tilt', 'pelvic_radius', 'pelvic_incidence', 'lumbar_lordosis_angle', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.922): s' = 1.808 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.213): s' = 1.099 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.196): s' = 1.082 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -1.043): s' = 0.929 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.992): s' = 0.877 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.118): s' = 0.004 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #41):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #42 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.0413 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_tilt (δ: +1.124): s' = -0.158 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +1.053): s' = -0.087 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.385): s' = 0.581 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.312): s' = 0.654 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #42):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #43 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1521 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_tilt', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.940): s' = 1.788 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.367): s' = 1.215 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -1.114): s' = 0.962 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -1.046): s' = 0.894 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -0.925): s' = 0.773 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.130): s' = -0.022 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #43):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #45 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 1 | SCORE: 0.9317 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +0.922): s' = -0.058 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.866): s' = -0.002 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.609): s' = 0.256 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.376): s' = 0.488 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #45):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #46 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.4956 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.617): s' = -0.358 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.615): s' = 0.643 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.474): s' = 0.784 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.461): s' = 0.797 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #46):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #47 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.1104 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.213): s' = -0.179 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.917): s' = 0.117 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.423): s' = 0.611 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.390): s' = 0.644 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #47):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #49 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.2155 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● spondylolisthesis_grade (δ: -1.939): s' = 1.836 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.609): s' = 1.506 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.022): s' = 0.919 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.977): s' = 0.874 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.926): s' = 0.823 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #49):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #50 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.0081 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.057): s' = -0.099 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.698): s' = 0.259 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.461): s' = 0.497 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.450): s' = 0.508 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.200): s' = 0.757 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #50):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #52 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.2227 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +1.290): s' = -0.042 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +1.143): s' = 0.106 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.724): s' = 0.524 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #52):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #53 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.3979 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.557): s' = -0.183 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.016): s' = 0.359 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.710): s' = 0.664 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #53):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #55 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 1 | SCORE: 2.2745 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +1.568): s' = -0.057 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +1.000): s' = 0.511 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.851): s' = 0.660 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #55):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #56 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.0440 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.250): s' = -0.124 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +1.080): s' = 0.046 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.705): s' = 0.421 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #56):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #57 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.5377 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'spondylolisthesis_grade', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: -2.128): s' = 1.697 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: -1.984): s' = 1.553 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.083): s' = 0.652 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.899): s' = 0.468 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.708): s' = 0.277 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #57):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #58 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.4202 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius', 'lumbar_lordosis_angle']
+├─ ● pelvic_tilt (δ: +1.353): s' = 0.096 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +1.128): s' = 0.322 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.877): s' = 0.572 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #58):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #59 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.3471 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +1.617): s' = -0.533 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.740): s' = 0.344 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.635): s' = 0.449 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #59):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #60 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.5547 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.051): s' = 0.137 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.778): s' = 0.410 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.720): s' = 0.467 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.547): s' = 0.640 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #60):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #61 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.0171 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.039): s' = -0.063 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.888): s' = 0.088 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.435): s' = 0.541 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.345): s' = 0.632 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.178): s' = 0.798 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #61):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #62 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.3418 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +0.805): s' = 0.094 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.797): s' = 0.102 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.740): s' = 0.159 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.466): s' = 0.433 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #62):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #63 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.1645 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +1.181): s' = -0.103 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.924): s' = 0.154 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.882): s' = 0.196 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #63):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #64 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.2875 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.642): s' = -0.658 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.456): s' = 0.528 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.401): s' = 0.583 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.394): s' = 0.591 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #64):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #65 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.5981 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.954): s' = 1.465 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.888): s' = 1.398 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.175): s' = 0.685 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.946): s' = 0.456 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.897): s' = 0.408 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #65):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #66 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.1735 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.331): s' = -0.208 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.523): s' = 0.600 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.498): s' = 0.625 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.377): s' = 0.746 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.302): s' = 0.821 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #66):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #68 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.0575 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +1.145): s' = -0.250 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.896): s' = -0.001 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.763): s' = 0.132 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #68):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #70 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 1 | SCORE: 1.2204 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.427): s' = -0.322 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.626): s' = 0.479 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.485): s' = 0.620 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.476): s' = 0.630 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #70):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #71 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.0502 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.745): s' = -0.532 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.795): s' = 0.419 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.582): s' = 0.631 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #71):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #73 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.6354 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt']
+├─ ● pelvic_radius (δ: +2.156): s' = -0.933 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.521): s' = 0.703 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.455): s' = 0.768 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #73):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #74 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1329 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.966): s' = 1.833 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.585): s' = 1.452 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.148): s' = 1.015 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.887): s' = 0.754 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.814): s' = 0.681 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.103): s' = -0.030 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #74):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #75 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 0.9128 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.002): s' = -0.121 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.959): s' = -0.078 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.398): s' = 0.483 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.383): s' = 0.497 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.048): s' = 0.833 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #75):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #76 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 0.8908 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_radius (δ: +1.122): s' = -0.255 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.897): s' = -0.030 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.391): s' = 0.476 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.288): s' = 0.579 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.078): s' = 0.789 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #76):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #77 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1483 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.966): s' = 1.817 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.691): s' = 1.543 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -0.969): s' = 0.821 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.957): s' = 0.808 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.818): s' = 0.670 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.118): s' = -0.030 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #77):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #78 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.4417 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 4 features.
+├── Iniciando processo de minimização com 4 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius', 'pelvic_incidence', 'spondylolisthesis_grade']
+├─ ● pelvic_tilt (δ: +1.152): s' = -0.161 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.623): s' = 0.368 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.602): s' = 0.389 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.523): s' = 0.467 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #78):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 4): ['pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #81 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 0 | SCORE: -0.6174 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● spondylolisthesis_grade (δ: -1.989): s' = 1.500 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.507): s' = 1.018 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -1.135): s' = 0.646 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.128): s' = 0.638 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -1.100): s' = 0.610 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #81):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #82 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.5345 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'pelvic_tilt', 'pelvic_incidence', 'lumbar_lordosis_angle']
+├─ ● spondylolisthesis_grade (δ: -1.945): s' = 1.518 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.560): s' = 1.133 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -1.365): s' = 0.938 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -1.009): s' = 0.582 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.919): s' = 0.492 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #82):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #84 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 0 | SCORE: -0.1015 ---
+├── Análise: Score está abaixo de t-. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 6 features.
+├── Iniciando processo de minimização com 6 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['spondylolisthesis_grade', 'pelvic_radius', 'lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_tilt', 'sacral_slope']
+├─ ● spondylolisthesis_grade (δ: -1.908): s' = 1.807 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: -1.502): s' = 1.400 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: -0.996): s' = 0.894 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: -0.983): s' = 0.882 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: -0.961): s' = 0.860 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+├─ ● sacral_slope (δ: -0.122): s' = 0.020 (< t- (-0.0945)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #84):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 6): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'sacral_slope', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #85 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 2.3574 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 2 features.
+├── Iniciando processo de minimização com 2 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +1.593): s' = -0.620 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +1.289): s' = -0.316 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #85):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 2): ['pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #86 | CLASSE REAL: Normal | PREDIÇÃO: CLASSE 1 | SCORE: 1.7734 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'lumbar_lordosis_angle']
+├─ ● pelvic_radius (δ: +1.268): s' = -0.258 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.952): s' = 0.058 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.699): s' = 0.311 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #86):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #87 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 0.9390 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 5 features.
+├── Iniciando processo de minimização com 5 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_tilt', 'lumbar_lordosis_angle', 'pelvic_incidence', 'spondylolisthesis_grade', 'pelvic_radius']
+├─ ● pelvic_tilt (δ: +0.914): s' = -0.027 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● lumbar_lordosis_angle (δ: +0.823): s' = 0.064 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.540): s' = 0.347 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● spondylolisthesis_grade (δ: +0.354): s' = 0.533 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.164): s' = 0.723 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #87):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 5): ['lumbar_lordosis_angle', 'pelvic_incidence', 'pelvic_radius', 'pelvic_tilt', 'spondylolisthesis_grade']
+
+--- INSTÂNCIA #89 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.8245 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+├─ ● lumbar_lordosis_angle (δ: +1.047): s' = -0.112 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_radius (δ: +0.951): s' = -0.017 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.845): s' = 0.089 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #89):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['lumbar_lordosis_angle', 'pelvic_radius', 'pelvic_tilt']
+
+--- INSTÂNCIA #91 | CLASSE REAL: Anormal | PREDIÇÃO: CLASSE 1 | SCORE: 1.2773 ---
+├── Análise: Score está acima de t+. Buscando o menor conjunto que garante a classificação.
+├── Fase de reforço DESATIVADA (DISABLE_REFORCO_CLASSIFICADAS=True). Usando explicação inicial com 3 features.
+├── Iniciando processo de minimização com 3 features.
+├── Tentativas de desafixação (ordem de maior impacto |δ|): ['pelvic_radius', 'pelvic_tilt', 'pelvic_incidence']
+├─ ● pelvic_radius (δ: +1.618): s' = -0.711 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_tilt (δ: +0.849): s' = 0.058 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+├─ ● pelvic_incidence (δ: +0.349): s' = 0.558 (> t+ (0.8424)) → FALHA. ESSENCIAL.
+
+   --> RESULTADO FINAL (Instância #91):
+       - EXPLICAÇÃO ABDUTIVA (Tamanho: 3): ['pelvic_incidence', 'pelvic_radius', 'pelvic_tilt']
+
+================================================================================
+                    SUMÁRIO ESTATÍSTICO DAS EXPLICAÇÕES
+================================================================================
+
+[ ESTATÍSTICAS POR CLASSE PREVISTA ]
+
+  - CLASSE POSITIVA (50 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 3.60 ± 0.85 (Min: 2, Max: 5)
+
+  - CLASSE NEGATIVA (17 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 5.41 ± 0.49 (Min: 5, Max: 6)
+
+  - REJEITADA (26 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 5.08 ± 0.27 (Min: 5, Max: 6)
+
+[ ESTATÍSTICAS DO PROCESSO - Positiva ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
+[ ESTATÍSTICAS DO PROCESSO - Negativa ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 0 (0.00%)
+[ ESTATÍSTICAS DO PROCESSO - Rejeitada ]
+  - Instâncias com adições na Fase 1: 0 (0.00%)
+  - Instâncias com remoção efetiva na Fase 2: 24 (92.31%)
+    - Média de features removidas: 1.00
+
+[ ANÁLISE DE FREQUÊNCIA DAS FEATURES NAS EXPLICAÇÕES ]
+
+  - Features Mais Frequentes (em todas as explicações):
+    - pelvic_tilt: 93 vezes
+    - pelvic_radius: 91 vezes
+    - lumbar_lordosis_angle: 87 vezes
+    - pelvic_incidence: 70 vezes
+    - spondylolisthesis_grade: 54 vezes
+    - sacral_slope: 9 vezes
+
+[ PESOS DO MODELO (COEFICIENTES GLOBAIS) ]
+
+  - Features Mais Influentes (por valor absoluto do peso):
+    - pelvic_radius            : -2.3999
+    - spondylolisthesis_grade  : 1.9939
+    - pelvic_tilt              : 1.6328
+    - lumbar_lordosis_angle    : 1.0645
+    - pelvic_incidence         : 1.0574
+    - sacral_slope             : 0.1304
+

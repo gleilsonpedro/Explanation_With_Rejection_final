@@ -20,9 +20,9 @@ RELATÓRIO DE BENCHMARK CIENTÍFICO: MNIST
 --------------------------------------------------------------------------------
 Métrica                         Valor   
     Taxa de Otimalidade (Gap=0)   95.71%
-Gap Médio (Features Excedentes)   7.5286
-           Tempo Médio PEAB (s) 7.366401
-     Tempo Médio OTIMIZAÇÃO (s) 0.077254
+Gap Médio (Features Excedentes)   2.7810
+           Tempo Médio PEAB (s) 6.050434
+     Tempo Médio OTIMIZAÇÃO (s) 0.077678
   Speedup (x vezes mais rápido)    0.01x
 
 --------------------------------------------------------------------------------
@@ -31,9 +31,9 @@ Gap Médio (Features Excedentes)   7.5286
 Compare aqui onde o PEAB é perfeito e onde ele encontra dificuldades.
 
      Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
- NEGATIVA  109 100.00%    0.0000    131.77     131.77   4.86058s    0.07797s
- POSITIVA   92 100.00%    0.0000    165.01     165.01   5.81996s    0.07542s
-REJEITADA    9   0.00%  175.6667    569.89     394.22  53.52267s    0.08736s
+ NEGATIVA  109 100.00%    0.0000    131.77     131.77   5.01306s    0.07898s
+ POSITIVA   92 100.00%    0.0000    165.01     165.01   6.05519s    0.07495s
+REJEITADA    9   0.00%   64.8889    459.11     394.22  18.56557s    0.08978s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES ERROS (GAPS)
@@ -41,14 +41,14 @@ REJEITADA    9   0.00%  175.6667    569.89     394.22  53.52267s    0.08736s
 Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
 
  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
-133     REJEITADA           575             384  191
- 11     REJEITADA           572             383  189
-103     REJEITADA           568             386  182
- 94     REJEITADA           566             384  182
- 67     REJEITADA           570             390  180
-139     REJEITADA           574             396  178
- 96     REJEITADA           568             401  167
- 51     REJEITADA           570             404  166
-153     REJEITADA           566             420  146
-151      NEGATIVA           104             104    0
+153     REJEITADA           500             420   80
+ 51     REJEITADA           483             404   79
+139     REJEITADA           466             396   70
+ 96     REJEITADA           470             401   69
+ 67     REJEITADA           456             390   66
+103     REJEITADA           444             386   58
+133     REJEITADA           440             384   56
+ 11     REJEITADA           437             383   54
+ 94     REJEITADA           436             384   52
+150      POSITIVA           178             178    0
 
