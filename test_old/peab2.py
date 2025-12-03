@@ -37,11 +37,11 @@ DATASET_CONFIG = {
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},
     "vertebral_column":     {'test_size': 0.3, 'rejection_cost': 0.24},
     "sonar":                {'test_size': 0.3, 'rejection_cost': 0.24},
-    "spambase":             {'test_size': 0.1, 'rejection_cost': 0.24},
-    "banknote_auth":        {'test_size': 0.2, 'rejection_cost': 0.24},
+    "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
+    "banknote_auth":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "wine_quality":         {'test_size': 0.2, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.1, 'test_size': 0.3, 'rejection_cost': 0.24}
+    "wine_quality":         {'test_size': 0.3, 'rejection_cost': 0.24},
+    "creditcard":           {'subsample_size': 1.0, 'test_size': 0.3, 'rejection_cost': 0.24}
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'
 HIPERPARAMETROS_FILE: str = 'json/hiperparametros.json'
@@ -169,45 +169,52 @@ def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train:
 
     return explicacao
 
-# --- NOVA FUNÇÃO DE VALIDAÇÃO OTIMIZADA (USANDO ÍNDICES) ---
 def perturbar_e_validar(modelo: Pipeline, vals_s: np.ndarray, feats_fixas_indices: Set[int], 
-                        coefs: np.ndarray, score_orig: float, 
+                        coefs: np.ndarray, intercept: float, # <--- Mudou aqui: pede intercept
                         t_plus: float, t_minus: float, direcao_override: int,
-                        validar_rejeicao: bool = False) -> Tuple[bool, float]: # <--- Novo Parâmetro
-    
+                        validar_rejeicao: bool = False) -> Tuple[bool, float]:
+    """
+    Versão ROBUSTA: Recalcula o score do pior caso diretamente, evitando erros de delta.
+    """
     MIN_VAL, MAX_VAL = 0.0, 1.0
-    delta_total = 0.0
     perturbar_para_diminuir = (direcao_override == 1)
     
+    # 1. Base do Score = Intercepto
+    score_pert = intercept
+    
+    # 2. Somatório Vetorial (Simulado)
+    # Se a feature está fixa, usa o valor real (vals_s).
+    # Se está livre, usa o pior valor (0 ou 1).
     for i, w in enumerate(coefs):
         if i in feats_fixas_indices:
-            continue
-        val_atual = vals_s[i]
-        if perturbar_para_diminuir:
-            val_pior = MIN_VAL if w > 0 else MAX_VAL
+            score_pert += vals_s[i] * w
         else:
-            val_pior = MAX_VAL if w > 0 else MIN_VAL
-        delta_total += (val_pior - val_atual) * w
-        
-    score_pert = score_orig + delta_total
+            # Feature livre: o adversário escolhe o pior valor
+            if perturbar_para_diminuir:
+                # Queremos diminuir o score -> Adversário joga para baixo
+                val_pior = MIN_VAL if w > 0 else MAX_VAL
+            else:
+                # Queremos aumentar o score -> Adversário joga para cima
+                val_pior = MAX_VAL if w > 0 else MIN_VAL
+            score_pert += val_pior * w
+            
     EPSILON = 1e-6
     
-    # --- CORREÇÃO DO BUG ---
     if validar_rejeicao:
-        # Se é rejeitada, queremos que ela NÃO saia da zona pelo lado oposto
+        # Rejeitada: O pior cenário deve MANTER o score na zona [t_minus, t_plus]
         if perturbar_para_diminuir:
-            # Empurrando pra baixo: Sucesso se NÃO cair abaixo de t_minus
+            # Empurramos para baixo (Worst Case Low). Não pode cair abaixo de t_minus.
             return (score_pert >= t_minus - EPSILON), score_pert
         else:
-            # Empurrando pra cima: Sucesso se NÃO subir acima de t_plus
+            # Empurramos para cima (Worst Case High). Não pode subir acima de t_plus.
             return (score_pert <= t_plus + EPSILON), score_pert
     else:
-        # Lógica original para classificadas
-        if perturbar_para_diminuir: 
+        # Classificada: O pior cenário deve MANTER a classe
+        if perturbar_para_diminuir: # Era classe 1
             return (score_pert >= t_plus - EPSILON), score_pert
-        else: 
+        else: # Era classe 0
             return (score_pert <= t_minus + EPSILON), score_pert
-
+        
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], 
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, 
                    premisa_ordenacao: int, benchmark_mode: bool = False) -> Tuple[List[str], int]:
@@ -215,9 +222,8 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
-    intercept = logreg.intercept_[0]
+    intercept = logreg.intercept_[0] # <--- Pegamos o intercepto
     vals_s = scaler.transform(instance_df)[0]
-    score_orig = np.dot(vals_s, coefs) + intercept
     
     col_to_idx = {name: i for i, name in enumerate(X_train.columns)}
     feats_fixas_indices = {col_to_idx[f.split(' = ')[0]] for f in expl_inicial}
@@ -227,18 +233,17 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
     num_features_total = X_train.shape[1]
-    
     pred_val = modelo.predict(instance_df)[0]
     
     while True:
         if is_rejected:
-            # CORREÇÃO: validar_rejeicao=True
-            valido1, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 0, validar_rejeicao=True)
-            valido2, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 1, validar_rejeicao=True)
+            # Passamos INTERCEPT e removemos score_orig
+            valido1, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, intercept, t_plus, t_minus, 0, validar_rejeicao=True)
+            valido2, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, intercept, t_plus, t_minus, 1, validar_rejeicao=True)
             is_valid = valido1 and valido2
         else:
             direcao = 1 if pred_val == 1 else 0
-            is_valid, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, direcao, validar_rejeicao=False)
+            is_valid, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, intercept, t_plus, t_minus, direcao, validar_rejeicao=False)
             
         if is_valid: break
         if len(expl_robusta_indices) == num_features_total: break
@@ -268,11 +273,10 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
-    intercept = logreg.intercept_[0]
+    intercept = logreg.intercept_[0] # <--- Pegamos o intercepto
     vals_s = scaler.transform(instance_df)[0]
-    score_orig = np.dot(vals_s, coefs) + intercept
-    col_to_idx = {name: i for i, name in enumerate(X_train.columns)}
     
+    col_to_idx = {name: i for i, name in enumerate(X_train.columns)}
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     
     features_para_remover = sorted(
@@ -291,7 +295,6 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
 
     for feat_nome in features_para_remover:
         if len(indices_fixos) <= 1: break
-        
         idx_alvo = col_to_idx[feat_nome]
         indices_fixos.remove(idx_alvo)
         
@@ -300,14 +303,15 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         ok_neg, ok_pos = False, False
         
         if is_rejected:
-            # CORREÇÃO: validar_rejeicao=True
-            valido1, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 1, validar_rejeicao=True)
-            valido2, score_p2 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 0, validar_rejeicao=True)
+            # Passamos INTERCEPT
+            valido1, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, intercept, t_plus, t_minus, 1, validar_rejeicao=True)
+            valido2, score_p2 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, intercept, t_plus, t_minus, 0, validar_rejeicao=True)
             if valido1 and valido2:
                 remocao_bem_sucedida = True
             ok_neg, ok_pos = bool(valido1), bool(valido2)
         else:
-            remocao_bem_sucedida, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, pred_val_cached, validar_rejeicao=False)
+            # Passamos INTERCEPT
+            remocao_bem_sucedida, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, intercept, t_plus, t_minus, pred_val_cached, validar_rejeicao=False)
 
         if remocao_bem_sucedida:
             remocoes += 1

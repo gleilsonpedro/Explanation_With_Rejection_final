@@ -172,73 +172,79 @@ def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train:
 # --- NOVA FUNÇÃO DE VALIDAÇÃO OTIMIZADA (USANDO ÍNDICES) ---
 def perturbar_e_validar(modelo: Pipeline, vals_s: np.ndarray, feats_fixas_indices: Set[int], 
                         coefs: np.ndarray, score_orig: float, 
-                        t_plus: float, t_minus: float, direcao_override: int,
-                        validar_rejeicao: bool = False) -> Tuple[bool, float]: # <--- Novo Parâmetro
-    
+                        t_plus: float, t_minus: float, direcao_override: int) -> Tuple[bool, float]:
+    """
+    Versão OTIMIZADA que usa índices e arrays NumPy ao invés de DataFrames e strings.
+    Isso remove o gargalo de performance no benchmark.
+    """
+    # Limites teóricos do MinMaxScaler (0 e 1)
     MIN_VAL, MAX_VAL = 0.0, 1.0
+    
     delta_total = 0.0
     perturbar_para_diminuir = (direcao_override == 1)
     
+    # Loop vetorizado ou iterativo sobre índices é muito mais rápido
+    # Aqui iteramos, mas apenas operações matemáticas simples
     for i, w in enumerate(coefs):
         if i in feats_fixas_indices:
             continue
+            
         val_atual = vals_s[i]
+        
         if perturbar_para_diminuir:
             val_pior = MIN_VAL if w > 0 else MAX_VAL
         else:
             val_pior = MAX_VAL if w > 0 else MIN_VAL
+            
         delta_total += (val_pior - val_atual) * w
         
     score_pert = score_orig + delta_total
     EPSILON = 1e-6
     
-    # --- CORREÇÃO DO BUG ---
-    if validar_rejeicao:
-        # Se é rejeitada, queremos que ela NÃO saia da zona pelo lado oposto
-        if perturbar_para_diminuir:
-            # Empurrando pra baixo: Sucesso se NÃO cair abaixo de t_minus
-            return (score_pert >= t_minus - EPSILON), score_pert
-        else:
-            # Empurrando pra cima: Sucesso se NÃO subir acima de t_plus
-            return (score_pert <= t_plus + EPSILON), score_pert
-    else:
-        # Lógica original para classificadas
-        if perturbar_para_diminuir: 
-            return (score_pert >= t_plus - EPSILON), score_pert
-        else: 
-            return (score_pert <= t_minus + EPSILON), score_pert
+    # Lógica de validação baseada na direção da perturbação
+    if perturbar_para_diminuir: 
+        # Estamos tentando baixar o score. Sucesso se ele resistir e ficar ALTO (>= t_plus)
+        return (score_pert >= t_plus - EPSILON), score_pert
+    else: 
+        # Estamos tentando subir o score. Sucesso se ele resistir e ficar BAIXO (<= t_minus)
+        return (score_pert <= t_minus + EPSILON), score_pert
 
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], 
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, 
                    premisa_ordenacao: int, benchmark_mode: bool = False) -> Tuple[List[str], int]:
     
+    # Preparação para otimização
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
     intercept = logreg.intercept_[0]
     vals_s = scaler.transform(instance_df)[0]
+    # Score original calculado matematicamente para consistência
     score_orig = np.dot(vals_s, coefs) + intercept
     
     col_to_idx = {name: i for i, name in enumerate(X_train.columns)}
+    
+    # Converte explicação inicial (strings) para set de índices
     feats_fixas_indices = {col_to_idx[f.split(' = ')[0]] for f in expl_inicial}
     expl_robusta_indices = set(feats_fixas_indices)
     
     adicoes = 0
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
+    
     num_features_total = X_train.shape[1]
     
+    # Predição da classe (necessária para classificadas)
     pred_val = modelo.predict(instance_df)[0]
     
     while True:
         if is_rejected:
-            # CORREÇÃO: validar_rejeicao=True
-            valido1, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 0, validar_rejeicao=True)
-            valido2, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 1, validar_rejeicao=True)
+            valido1, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 0)
+            valido2, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, 1)
             is_valid = valido1 and valido2
         else:
             direcao = 1 if pred_val == 1 else 0
-            is_valid, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, direcao, validar_rejeicao=False)
+            is_valid, _ = perturbar_e_validar(modelo, vals_s, expl_robusta_indices, coefs, score_orig, t_plus, t_minus, direcao)
             
         if is_valid: break
         if len(expl_robusta_indices) == num_features_total: break
@@ -252,10 +258,11 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
                 break
         if not adicionou_feature: break
     
+    # Reconstrói a lista de strings para compatibilidade
     expl_robusta_str = []
     for idx in expl_robusta_indices:
         feat_nome = X_train.columns[idx]
-        valor_feat = instance_df.iloc[0, idx]
+        valor_feat = instance_df.iloc[0, idx] # iloc é rápido o suficiente aqui (uma vez por feature)
         expl_robusta_str.append(f"{feat_nome} = {valor_feat:.4f}")
         
     return expl_robusta_str, adicoes
@@ -265,6 +272,7 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
                        is_rejected: bool, premisa_ordenacao: int, 
                        log_passos: List[Dict], benchmark_mode: bool = False) -> Tuple[List[str], int]:
     
+    # Preparação Otimizada
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
@@ -275,16 +283,19 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     
+    # Ordena candidatos a remoção
     features_para_remover = sorted(
         [f.split(' = ')[0] for f in expl_robusta],
         key=lambda nome: abs(deltas_para_ordenar[col_to_idx[nome]]),
         reverse=True
     )
     
+    # Set de trabalho (índices)
     indices_fixos = {col_to_idx[f.split(' = ')[0]] for f in expl_robusta}
     remocoes = 0
-    expl_final_str = list(expl_robusta)
+    expl_final_str = list(expl_robusta) # Cópia para manter sincronia com strings se necessário
     
+    # Predição da classe (cache)
     pred_val_cached = None
     if not is_rejected:
         pred_val_cached = 1 if modelo.predict(instance_df)[0] == 1 else 0
@@ -293,6 +304,8 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         if len(indices_fixos) <= 1: break
         
         idx_alvo = col_to_idx[feat_nome]
+        
+        # Tenta remover (temporariamente)
         indices_fixos.remove(idx_alvo)
         
         remocao_bem_sucedida = False
@@ -300,21 +313,24 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         ok_neg, ok_pos = False, False
         
         if is_rejected:
-            # CORREÇÃO: validar_rejeicao=True
-            valido1, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 1, validar_rejeicao=True)
-            valido2, score_p2 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 0, validar_rejeicao=True)
+            valido1, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 1)
+            valido2, score_p2 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, 0)
             if valido1 and valido2:
                 remocao_bem_sucedida = True
             ok_neg, ok_pos = bool(valido1), bool(valido2)
         else:
-            remocao_bem_sucedida, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, pred_val_cached, validar_rejeicao=False)
+            remocao_bem_sucedida, score_p1 = perturbar_e_validar(modelo, vals_s, indices_fixos, coefs, score_orig, t_plus, t_minus, pred_val_cached)
 
         if remocao_bem_sucedida:
             remocoes += 1
+            # Atualiza lista de strings removendo a feature
             expl_final_str = [f for f in expl_final_str if not f.startswith(feat_nome)]
         else:
+            # Falha: precisa recolocar
             indices_fixos.add(idx_alvo)
         
+        # --- LOGGING (APENAS SE NÃO FOR BENCHMARK) ---
+        # Isso economiza muito tempo em benchmarks massivos
         if not benchmark_mode and log_passos is not None:
              delta_feat = float(deltas_para_ordenar[idx_alvo])
              if is_rejected:

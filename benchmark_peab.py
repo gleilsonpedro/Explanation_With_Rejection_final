@@ -194,6 +194,14 @@ def executar_benchmark():
     params = DEFAULT_LOGREG_PARAMS.copy()
     if dataset_name in todos_params and 'params' in todos_params[dataset_name]:
         params.update(todos_params[dataset_name]['params'])
+   
+    # =============================================
+    print("\n" + "!"*50)
+    print(f"[VERIFICAÇÃO] PARÂMETROS REAIS QUE SERÃO USADOS:")
+    print(json.dumps(params, indent=4))
+    print("!"*50 + "\n")
+    # =============================================
+    
 
     # Redução Top-K (Se houver)
     cfg = DATASET_CONFIG.get(dataset_name, {})
