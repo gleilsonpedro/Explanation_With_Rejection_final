@@ -37,16 +37,17 @@ DATASET_CONFIG = {
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},
     "vertebral_column":     {'test_size': 0.3, 'rejection_cost': 0.24},
     "sonar":                {'test_size': 0.3, 'rejection_cost': 0.24},
-    "spambase":             {'test_size': 0.1, 'rejection_cost': 0.24},
-    "banknote_auth":        {'test_size': 0.2, 'rejection_cost': 0.24},
+    "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
+    "banknote_auth":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "wine_quality":         {'test_size': 0.2, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.1, 'test_size': 0.3, 'rejection_cost': 0.24}
+    "wine_quality":         {'test_size': 0.3, 'rejection_cost': 0.24},
+    "creditcard":           {'subsample_size': 0.3, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "newsgroups":           {'test_size': 0.3, 'rejection_cost': 0.24, 'top_k_features': 2000}
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'
 HIPERPARAMETROS_FILE: str = 'json/hiperparametros.json'
 DEFAULT_LOGREG_PARAMS: Dict[str, Any] = {
-    'penalty': 'l2', 'C': 1.0, 'solver': 'liblinear', 'max_iter': 1000
+    'penalty': 'l2', 'C': 0.01, 'solver': 'liblinear', 'max_iter': 1000
 }
 
 #==============================================================================
