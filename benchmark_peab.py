@@ -228,7 +228,8 @@ def executar_benchmark():
             
             # --- PEAB ---
             start_peab = time.perf_counter()
-            expl_peab, _, _, _ = gerar_explicacao_instancia(instancia, modelo, X_train, t_plus, t_minus)
+            # Passando benchmark_mode=True para desativar logs internos e voar baixo!
+            expl_peab, _, _, _ = gerar_explicacao_instancia(instancia, modelo, X_train, t_plus, t_minus, benchmark_mode=True)
             time_peab = time.perf_counter() - start_peab
             
             # --- OTIMIZAÇÃO ---
