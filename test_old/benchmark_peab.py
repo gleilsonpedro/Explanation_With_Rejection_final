@@ -88,7 +88,7 @@ def calcular_minimo_exato_pulp(modelo: Pipeline, instance_df: pd.DataFrame, X_tr
 def gerar_relatorio_tabela(df: pd.DataFrame, dataset_name: str, t_plus: float, t_minus: float, params_usados: dict):
     """Gera um arquivo de texto com tabelas comparativas limpas."""
     
-    output_path = f"results/benchmark/r_bench_{dataset_name}.txt"
+    output_path = f"results/benchmark/relatorio_bench_{dataset_name}.txt"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     with open(output_path, 'w', encoding='utf-8') as f:
@@ -188,50 +188,34 @@ def executar_benchmark():
     print(f"========================================================\n")
 
     todos_params = carregar_hiperparametros()
-    # Carrega dados completos
-    X_full, y_full, nomes_classes, rejection_cost, test_size = configurar_experimento(dataset_name)
+    X, y, nomes_classes, rejection_cost, test_size = configurar_experimento(dataset_name)
     
     # Hiperparâmetros
     params = DEFAULT_LOGREG_PARAMS.copy()
     if dataset_name in todos_params and 'params' in todos_params[dataset_name]:
         params.update(todos_params[dataset_name]['params'])
-
+   
+    # =============================================
     print("\n" + "!"*50)
     print(f"[VERIFICAÇÃO] PARÂMETROS REAIS QUE SERÃO USADOS:")
     print(json.dumps(params, indent=4))
     print("!"*50 + "\n")
-
-    # [CORREÇÃO CRÍTICA] SPLIT ÚNICO
-    # Garante que X_train usado no fit seja o mesmo usado pelo solver para calcular min/max
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_full, y_full, 
-        test_size=test_size, 
-        random_state=RANDOM_STATE, 
-        stratify=y_full
-    )
+    # =============================================
+    
 
     # Redução Top-K (Se houver)
     cfg = DATASET_CONFIG.get(dataset_name, {})
     top_k = cfg.get('top_k_features', None)
-    if top_k and top_k > 0 and top_k < X_train.shape[1]:
+    if top_k and top_k > 0:
         print(f"[BENCH] Aplicando redução Top-{top_k} features...")
-        
-        # Treino provisório no X_train dividido
-        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params)
-        
-        # Seleção
-        logreg_tmp = _get_lr(modelo_temp)
-        importances = np.abs(logreg_tmp.coef_[0])
-        indices_top = np.argsort(importances)[::-1][:top_k]
-        selected_feats = X_train.columns[indices_top]
-        
-        # Filtra mantendo consistência
-        X_train = X_train[selected_feats]
-        X_test = X_test[selected_feats]
+        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X, y, test_size, rejection_cost, params)
+        X_train_tmp, X_test_tmp, _, _ = train_test_split(X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y)
+        _, _, selected_feats = aplicar_selecao_top_k_features(X_train_tmp, X_test_tmp, modelo_temp, top_k)
+        X = X[selected_feats]
     
     print("[BENCH] Treinando modelo...")
-    # Chama treino com dados já divididos
-    modelo, t_plus, t_minus, _ = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params)
+    modelo, t_plus, t_minus, _ = treinar_e_avaliar_modelo(X, y, test_size, rejection_cost, params)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y)
     
     print(f"[BENCH] T+: {t_plus:.4f}, T-: {t_minus:.4f}")
 
@@ -252,31 +236,25 @@ def executar_benchmark():
             
             # --- PEAB ---
             start_peab = time.perf_counter()
-            # Passa X_train consistente para PEAB usar nos cálculos de limite
+            # Passando benchmark_mode=True para desativar logs internos e voar baixo!
             expl_peab, _, _, _ = gerar_explicacao_instancia(instancia, modelo, X_train, t_plus, t_minus, benchmark_mode=True)
             time_peab = time.perf_counter() - start_peab
             
-            size_peab = len(expl_peab)
-            
             # --- OTIMIZAÇÃO ---
             start_opt = time.perf_counter()
-            # Passa X_train consistente para Solver usar nos cálculos de limite
             tamanho_optimo = calcular_minimo_exato_pulp(modelo, instancia, X_train, t_plus, t_minus)
             time_opt = time.perf_counter() - start_opt
             
-            if tamanho_optimo == -1: 
-                size_opt = size_peab
-            else:
-                size_opt = tamanho_optimo
+            if tamanho_optimo == -1: tamanho_optimo = len(expl_peab)
             
-            gap = size_peab - size_opt
+            gap = len(expl_peab) - tamanho_optimo
             
             resultados.append({
                 'id': i,
                 'classe_real': nomes_classes[y_test.iloc[i]],
                 'tipo_predicao': tipo_predicao, 
-                'tamanho_PEAB': size_peab,
-                'tamanho_OPTIMO': size_opt,
+                'tamanho_PEAB': len(expl_peab),
+                'tamanho_OPTIMO': tamanho_optimo,
                 'GAP': gap,
                 'tempo_PEAB': time_peab,
                 'tempo_OPTIMO': time_opt,
@@ -293,6 +271,7 @@ def executar_benchmark():
     df.to_csv(csv_filename, index=False)
     print(f"\n[ARQUIVO] CSV bruto salvo em: {csv_filename}")
     
+    # Gera relatório sem a métrica de taxa de redução
     gerar_relatorio_tabela(df, dataset_name, t_plus, t_minus, params)
 
 if __name__ == "__main__":

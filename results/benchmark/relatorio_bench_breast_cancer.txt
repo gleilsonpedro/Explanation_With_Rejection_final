@@ -19,11 +19,11 @@ RELATÓRIO DE BENCHMARK CIENTÍFICO: BREAST_CANCER
 1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
 --------------------------------------------------------------------------------
 Métrica                         Valor   
-    Taxa de Otimalidade (Gap=0)   88.30%
-Gap Médio (Features Excedentes)   0.3099
-           Tempo Médio PEAB (s) 0.004891
-     Tempo Médio OTIMIZAÇÃO (s) 0.035362
-  Speedup (x vezes mais rápido)    7.23x
+    Taxa de Otimalidade (Gap=0)   31.58%
+Gap Médio (Features Excedentes)  -1.1754
+           Tempo Médio PEAB (s) 0.005356
+     Tempo Médio OTIMIZAÇÃO (s) 0.016335
+  Speedup (x vezes mais rápido)    3.05x
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
@@ -31,9 +31,9 @@ Gap Médio (Features Excedentes)   0.3099
 Compare aqui onde o PEAB é perfeito e onde ele encontra dificuldades.
 
      Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
- NEGATIVA   53 100.00%    0.0000     16.49      16.49   0.00425s    0.03551s
- POSITIVA   96 100.00%    0.0000     16.94      16.94   0.00419s    0.03498s
-REJEITADA   22   9.09%    2.4091     27.36      24.95   0.00951s    0.03669s
+ NEGATIVA   53 100.00%    0.0000     16.49      16.49   0.00447s    0.01677s
+ POSITIVA   96   1.04%   -3.2500     13.69      16.94   0.00448s    0.01611s
+REJEITADA   22   0.00%    5.0455     30.00      24.95   0.01132s    0.01628s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES ERROS (GAPS)
@@ -41,14 +41,14 @@ REJEITADA   22   9.09%    2.4091     27.36      24.95   0.00951s    0.03669s
 Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
 
  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
-108     REJEITADA            28              24    4
-110     REJEITADA            28              24    4
- 59     REJEITADA            28              24    4
- 96     REJEITADA            28              24    4
- 13     REJEITADA            27              24    3
-148     REJEITADA            27              24    3
-116     REJEITADA            28              25    3
- 17     REJEITADA            28              25    3
-112     REJEITADA            27              24    3
- 15     REJEITADA            28              25    3
+ 13     REJEITADA            30              24    6
+148     REJEITADA            30              24    6
+108     REJEITADA            30              24    6
+ 59     REJEITADA            30              24    6
+110     REJEITADA            30              24    6
+112     REJEITADA            30              24    6
+ 96     REJEITADA            30              24    6
+138     REJEITADA            30              25    5
+162     REJEITADA            30              25    5
+ 58     REJEITADA            30              25    5
 
