@@ -23,10 +23,10 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST
 MNIST_CONFIG = {
     'feature_mode': 'raw',           
-    'digit_pair': (3, 8),            
+    'digit_pair': (1, 8),            
     'top_k_features': None,          
     'test_size': 0.3,                
-    'rejection_cost': 0.24,          
+    'rejection_cost': 0.10,          
     'subsample_size': 1.0           
 }
 
@@ -41,7 +41,7 @@ DATASET_CONFIG = {
     "banknote_auth":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "wine_quality":         {'test_size': 0.3, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.3, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "creditcard":           {'subsample_size': 1.0, 'test_size': 0.3, 'rejection_cost': 0.24},
     "newsgroups":           {'test_size': 0.3, 'rejection_cost': 0.24, 'top_k_features': 2000}
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'
