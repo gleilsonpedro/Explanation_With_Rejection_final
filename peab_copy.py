@@ -27,7 +27,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.24,          
-    'subsample_size': 0.3 
+    'subsample_size': 1.0 
 }
 
 DATASET_CONFIG = {
@@ -86,7 +86,7 @@ LOG_TEMPLATES = {
 }
 
 DISABLE_REFORCO_CLASSIFICADAS: bool = True
-MIN_REJECTION_WIDTH: float = 0.0
+MIN_REJECTION_WIDTH: float = 0.05
 
 def _get_lr(modelo: Pipeline):
     if 'model' in modelo.named_steps: return modelo.named_steps['model']
@@ -96,12 +96,15 @@ def _get_lr(modelo: Pipeline):
 def carregar_hiperparametros(caminho_arquivo: str = HIPERPARAMETROS_FILE) -> dict:
     try:
         with open(caminho_arquivo, 'r') as f:
-            return json.load(f)
+            params = json.load(f)
+        print(f"\n[INFO] Arquivo de hiperparâmetros '{caminho_arquivo}' carregado com sucesso.")
+        return params
     except (FileNotFoundError, json.JSONDecodeError):
+        print(f"\n[AVISO] Arquivo '{caminho_arquivo}' não encontrado ou inválido. Usando padrão.")
         return {}
 
 #==============================================================================
-#  LÓGICA FORMAL (OTIMIZADA E CONSISTENTE)
+#  LÓGICA FORMAL DE EXPLICAÇÃO (OTIMIZADA E CORRIGIDA)
 #==============================================================================
 
 def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, premis_class: int) -> np.ndarray:
@@ -110,16 +113,10 @@ def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.Da
     coefs = logreg.coef_[0]
     
     instance_df_ordered = instance_df[X_train.columns]
+    scaled_instance_vals = scaler.transform(instance_df_ordered)[0]
     
-    # [CORREÇÃO] Usar o feature_range do scaler para definir min/max teóricos
-    if hasattr(scaler, 'feature_range'):
-        f_min, f_max = scaler.feature_range
-        scaled_instance_vals = scaler.transform(instance_df_ordered)[0]
-    else:
-        # Fallback caso não tenha scaler
-        f_min, f_max = 0.0, 1.0
-        scaled_instance_vals = instance_df_ordered.values[0]
-
+    # [CORREÇÃO B] Usar o feature_range do scaler para definir min/max teóricos
+    f_min, f_max = scaler.feature_range
     X_train_scaled_min = np.full_like(coefs, f_min)
     X_train_scaled_max = np.full_like(coefs, f_max)
     
@@ -154,9 +151,11 @@ def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train:
              explicacao.append(f"{feature_nome} = {valor_original_feature:.4f}")
         
         if premis_class == 1:
-            if soma_deltas_cumulativa >= (target_score - EPSILON) and explicacao: break
+            if soma_deltas_cumulativa >= (target_score - EPSILON) and explicacao:
+                break
         else:
-            if soma_deltas_cumulativa <= (target_score + EPSILON) and explicacao: break
+            if soma_deltas_cumulativa <= (target_score + EPSILON) and explicacao:
+                break
                 
     if not explicacao and len(X_train.columns) > 0:
          logreg = _get_lr(modelo)
@@ -173,39 +172,41 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
                                   modelo: Pipeline, 
                                   t_plus: float, t_minus: float, direcao_override: int, 
                                   pred_class_orig: int, is_rejected: bool) -> Tuple[bool, float]:
-    """
-    Valida mantendo features fixas em seus valores originais e empurrando
-    o restante para o pior caso na direção especificada. Suporta rejeição.
-    Permite conjunto vazio (intercepto pode ser suficiente).
-    """
-    # Limites por-feature no espaço escalado do MinMaxScaler
+    
+    if not indices_explicacao:
+        return False, 0.0
+
+    # Obtém limites reais do scaler do modelo para consistência
     if 'scaler' in modelo.named_steps:
-        scaler = modelo.named_steps['scaler']
-        # Para MinMaxScaler, extremos no espaço escalado são 0.0 e 1.0 para todas as features
-        MIN_VEC = np.zeros_like(coefs)
-        MAX_VEC = np.ones_like(coefs)
+        MIN_VAL, MAX_VAL = modelo.named_steps['scaler'].feature_range
     else:
-        MIN_VEC = np.zeros_like(coefs)
-        MAX_VEC = np.ones_like(coefs)
+        MIN_VAL, MAX_VAL = 0.0, 1.0
 
     perturbar_para_diminuir = (direcao_override == 1)
-    X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if perturbar_para_diminuir else np.where(coefs > 0, MAX_VEC, MIN_VEC)
-
+    
+    if perturbar_para_diminuir:
+        # Baixar score: se w>0 -> MIN, se w<0 -> MAX
+        X_teste = np.where(coefs > 0, MIN_VAL, MAX_VAL)
+    else:
+        # Subir score: se w>0 -> MAX, se w<0 -> MIN
+        X_teste = np.where(coefs > 0, MAX_VAL, MIN_VAL)
+    
+    # Restaura valores originais nas features fixas
     if indices_explicacao:
         idx_fixos = list(indices_explicacao)
         X_teste[idx_fixos] = vals_s[idx_fixos]
-
+    
+    # Cálculo Instantâneo do Score
     score_pert = intercept + np.dot(X_teste, coefs)
+    
     EPSILON = 1e-6
-
+    
     if is_rejected:
-        # Rejeição deve se manter dentro da zona em ambas as direções
         if perturbar_para_diminuir:
             return (score_pert >= t_minus - EPSILON), score_pert
         else:
             return (score_pert <= t_plus + EPSILON), score_pert
     else:
-        # Classificadas: manter no lado correto do limiar correspondente
         if pred_class_orig == 1:
             return (score_pert >= t_plus - EPSILON), score_pert
         else:
@@ -215,7 +216,6 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, 
                    premisa_ordenacao: int, benchmark_mode: bool = False) -> Tuple[List[str], int]:
     
-    # Pré-cálculos
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
@@ -298,17 +298,22 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         if is_rejected:
             valido1, score_p1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True)
             valido2, score_p2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
-            if valido1 and valido2: remocao_bem_sucedida = True
+            if valido1 and valido2:
+                remocao_bem_sucedida = True
             
             if not benchmark_mode and log_passos is not None:
-                log_passos.append({'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida})
+                log_passos.append({
+                    'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida,
+                    'score_neg': score_p1, 'score_pos': score_p2
+                })
         else:
             direcao = 1 if pred_class_orig == 1 else 0
             valido, score_p1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, direcao, pred_class_orig, False)
-            if valido: remocao_bem_sucedida = True
+            if valido:
+                remocao_bem_sucedida = True
             
             if not benchmark_mode and log_passos is not None:
-                log_passos.append({'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida})
+                log_passos.append({'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida, 'score_perturbado': score_p1})
 
         if remocao_bem_sucedida:
             remocoes += 1
@@ -318,6 +323,10 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
 
     return expl_minima_str, remocoes
 
+#==============================================================================
+# GERAÇÃO DE LOG E ORQUESTRAÇÃO
+#==============================================================================
+
 def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_train: pd.DataFrame, t_plus: float, t_minus: float, benchmark_mode: bool = False) -> Tuple[List[str], List[str], int, int]:
     is_rejected = t_minus <= modelo.decision_function(instancia_df)[0] <= t_plus
     log_formatado: List[str] = []
@@ -326,6 +335,7 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
     if is_rejected:
         if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['rejeitada_analise'].format(t_minus=t_minus, t_plus=t_plus))
+            log_formatado.append(LOG_TEMPLATES['rejeitada_prova_header'])
 
         expl_inicial_p1 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 1)
         expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_p1, X_train, t_plus, t_minus, True, 1, benchmark_mode)
@@ -344,10 +354,15 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             expl_final, adicoes, remocoes = expl_final_p2, adicoes2, remocoes2
             passos_escolhidos = passos_p2
 
+        # [TRAVA DE SEGURANÇA] Se explicação vazia em rejeição, retornar tudo
+        if len(expl_final) == 0:
+            expl_final = [f"{c} = {instancia_df.iloc[0, X_train.columns.get_loc(c)]:.4f}" for c in X_train.columns]
+            remocoes = 0
+
         if emit_tech_logs:
              for passo in passos_escolhidos[:MAX_LOG_STEPS]:
-                key = 'rejeitada_feat_header_sucesso' if passo.get('sucesso') else 'rejeitada_feat_header_falha'
-                log_formatado.append(LOG_TEMPLATES[key].format(feat=passo['feat_nome'], delta=0.0))
+                key_header = 'rejeitada_feat_header_sucesso' if passo.get('sucesso', False) else 'rejeitada_feat_header_falha'
+                log_formatado.append(LOG_TEMPLATES[key_header].format(feat=passo['feat_nome'], delta=passo.get('delta', 0.0)))
 
     else:
         pred_class = int(modelo.predict(instancia_df)[0])
@@ -368,11 +383,11 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
     return [f.split(' = ')[0] for f in expl_final], log_formatado, adicoes, remocoes
 
 #==============================================================================
-# FUNÇÕES DE SUPORTE (INCLUÍDAS PARA CORRIGIR O ERRO DE IMPORT)
+# FUNÇÕES DE SUPORTE ESSENCIAIS (REINSERIDAS)
 #==============================================================================
 
 def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, List[str], float, float]:
-    """Carrega dataset e configurações."""
+    """Carrega dados e configs. Se MNIST, aplica configs especiais."""
     if dataset_name == 'mnist':
         from data import datasets as ds_module
         cfg = DATASET_CONFIG.get(dataset_name, {})
@@ -400,7 +415,9 @@ def aplicar_selecao_top_k_features(X_train: pd.DataFrame, X_test: pd.DataFrame, 
     return X_train[selected_features], X_test[selected_features], selected_features
 
 def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejection_cost: float, logreg_params: Dict[str, Any]) -> Tuple[Pipeline, float, float, Dict[str, Any]]:
-    """Recebe dados JÁ DIVIDIDOS para consistência."""
+    """
+    [CORREÇÃO A] Recebe X_train e y_train JÁ DIVIDIDOS para garantir consistência.
+    """
     pipeline = Pipeline([
         ('scaler', MinMaxScaler()),
         ('model', LogisticRegression(random_state=RANDOM_STATE, **logreg_params)),
@@ -478,110 +495,6 @@ def coletar_metricas(resultados_instancias, y_test, y_pred_test_final, rejected_
         'processo_stats_rej': get_proc_stats(adicoes_rej, remocoes_rej)
     }
 
-def montar_dataset_cache(dataset_name: str,
-                         X_train: pd.DataFrame,
-                         X_test: pd.DataFrame,
-                         y_train: pd.Series,
-                         y_test: pd.Series,
-                         nomes_classes: List[str],
-                         t_plus: float,
-                         t_minus: float,
-                         WR_REJECTION_COST: float,
-                         test_size_atual: float,
-                         model_params: Dict[str, Any],
-                         metricas_dict: Dict[str, Any],
-                         y_pred_test: np.ndarray,
-                         decision_scores_test: np.ndarray,
-                         rejected_mask: np.ndarray,
-                         resultados_instancias: List[Dict[str, Any]]):
-    
-    scaler_params = {
-        'min': [float(v) for v in model_params['scaler_params']['min']],
-        'scale': [float(v) for v in model_params['scaler_params']['scale']]
-    }
-    feature_names = list(X_train.columns)
-    coefs_ordered = [float(model_params['coefs'][col]) for col in feature_names]
-    intercepto = float(model_params['intercepto'])
-    X_test_dict = {str(col): [float(x) for x in X_test[col].tolist()] for col in X_test.columns}
-    y_test_list = [int(v) for v in y_test.tolist()]
-
-    per_instance = []
-    for i, rid in enumerate(X_test.index):
-        per_instance.append({
-            'id': str(rid),
-            'y_true': int(y_test.iloc[i]),
-            'y_pred': int(y_pred_test[i]) if int(y_pred_test[i]) in (0, 1) else -1,
-            'rejected': bool(rejected_mask[i]),
-            'decision_score': float(decision_scores_test[i]),
-            'explanation': list(resultados_instancias[i]['explicacao']),
-            'explanation_size': int(resultados_instancias[i]['tamanho_explicacao'])
-        })
-
-    mnist_meta = {}
-    if dataset_name == 'mnist':
-        try:
-            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
-            mnist_meta = {
-                'mnist_feature_mode': MNIST_FEATURE_MODE,
-                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
-            }
-        except Exception:
-            mnist_meta = {}
-
-    dataset_cache = {
-        'config': {
-            'dataset_name': dataset_name,
-            'test_size': float(test_size_atual),
-            'random_state': RANDOM_STATE,
-            'rejection_cost': float(WR_REJECTION_COST),
-            'subsample_size': float(DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', 0.0)) if DATASET_CONFIG.get(dataset_name, {}).get('subsample_size') else None,
-            **mnist_meta
-        },
-        'model': {
-            'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
-        },
-        'thresholds': {
-            't_plus': float(t_plus),
-            't_minus': float(t_minus)
-        },
-        'performance': {
-            'accuracy_without_rejection': float(metricas_dict['acuracia_sem_rejeicao']),
-            'accuracy_with_rejection': float(metricas_dict['acuracia_com_rejeicao']),
-            'rejection_rate': float(metricas_dict['taxa_rejeicao'])
-        },
-        'explanation_stats': {
-            'positive': {
-                'count': int(metricas_dict['stats_explicacao_positiva']['instancias']),
-                'mean_length': float(metricas_dict['stats_explicacao_positiva']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_positiva']['std_dev'])
-            },
-            'negative': {
-                'count': int(metricas_dict['stats_explicacao_negativa']['instancias']),
-                'mean_length': float(metricas_dict['stats_explicacao_negativa']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_negativa']['std_dev'])
-            },
-            'rejected': {
-                'count': int(metricas_dict['stats_explicacao_rejeitada']['instancias']),
-                'mean_length': float(metricas_dict['stats_explicacao_rejeitada']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_rejeitada']['std_dev'])
-            }
-        },
-        'data': {
-            'feature_names': feature_names,
-            'class_names': list(nomes_classes),
-            'X_test': X_test_dict,
-            'y_test': y_test_list
-        },
-        'model': {
-            'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
-            'coefs': coefs_ordered,
-            'intercept': intercepto,
-            'scaler_params': scaler_params
-        },
-        'per_instance': per_instance
-    }
-    return dataset_cache
-
 def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, num_test, metricas, resultados_instancias):
     output_path = os.path.join(OUTPUT_BASE_DIR, f"peab_{dataset_name}.txt")
     os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)
@@ -590,14 +503,10 @@ def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, 
         f.write(f"Dataset: {dataset_name}\n")
         f.write(f"Acurácia (sem rejeição): {metricas['acuracia_sem_rejeicao']:.2f}%\n")
         f.write(f"Thresholds: t+={t_plus:.4f}, t-={t_minus:.4f}\n\n")
-        
-        f.write(LOG_TEMPLATES['processamento_header'] + "\n")
-        for r in resultados_instancias:
-            if 'log_detalhado' in r:
-                for log_line in r['log_detalhado']:
-                    f.write(f"{log_line}\n")
-                f.write(f"\n   --> RESULTADO FINAL (Instância #{r['id']}):\n")
-                f.write(f"       - EXPLICAÇÃO: {sorted(r['explicacao'])}\n\n")
+        # Completar com template original se desejar
+
+def montar_dataset_cache(*args, **kwargs):
+    pass
 
 def executar_experimento_para_dataset(dataset_name: str):
     print(f"\n[INFO] Executando PEAB para: {dataset_name.upper()}")
@@ -633,11 +542,11 @@ def executar_experimento_para_dataset(dataset_name: str):
     y_pred_final = y_pred.copy()
     y_pred_final[mask_rej] = 2
 
-    # Loop de Explicação
     print(f"[INFO] Explicando {len(X_test)} instâncias...")
     start_total = time.perf_counter()
     resultados = []
     
+    # Listas auxiliares para estatísticas
     t_pos, t_neg, t_rej = [], [], []
     ad_pos, ad_neg, ad_rej = [], [], []
     rm_pos, rm_neg, rm_rej = [], [], []

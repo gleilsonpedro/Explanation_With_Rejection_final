@@ -5,25 +5,25 @@ RELATÓRIO DE BENCHMARK CIENTÍFICO: MNIST
 --------------------------------------------------------------------------------
 0. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
- - Instâncias de Teste: 4190
- - Thresholds: t+ = 0.5725, t- = -0.4877
+ - Instâncias de Teste: 1257
+ - Thresholds: t+ = 0.6171, t- = -0.9518
  - Parâmetros do Modelo (Regressão Logística):
 {
-    "penalty": "l1",
-    "C": 0.01,
-    "solver": "liblinear",
-    "max_iter": 1000
+    "penalty": "l2",
+    "C": 0.1,
+    "solver": "lbfgs",
+    "max_iter": 200
 }
 
 --------------------------------------------------------------------------------
 1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
 --------------------------------------------------------------------------------
 Métrica                         Valor   
-    Taxa de Otimalidade (Gap=0)   92.10%
-Gap Médio (Features Excedentes)  46.5129
-           Tempo Médio PEAB (s) 0.033051
-     Tempo Médio OTIMIZAÇÃO (s) 0.098271
-  Speedup (x vezes mais rápido)    2.97x
+    Taxa de Otimalidade (Gap=0)   96.50%
+Gap Médio (Features Excedentes) -15.1400
+           Tempo Médio PEAB (s) 0.043802
+     Tempo Médio OTIMIZAÇÃO (s) 0.091887
+  Speedup (x vezes mais rápido)    2.10x
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
@@ -31,24 +31,24 @@ Gap Médio (Features Excedentes)  46.5129
 Compare aqui onde o PEAB é perfeito e onde ele encontra dificuldades.
 
      Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
- NEGATIVA 1995  98.80%   -0.0226     17.95      17.97   0.01616s    0.09793s
- POSITIVA 1887  99.79%   -0.0032     17.07      17.07   0.01618s    0.09886s
-REJEITADA  308   1.62%  632.9221    667.76      34.83   0.24586s    0.09691s
+ NEGATIVA  610 100.00%    0.0000    169.84     169.84   0.02989s    0.09096s
+ POSITIVA  603 100.00%    0.0000    212.90     212.90   0.03200s    0.09269s
+REJEITADA   44   0.00% -432.5227      0.00     432.52   0.39844s    0.09366s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES ERROS (GAPS)
 --------------------------------------------------------------------------------
 Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
 
-  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
-1072     REJEITADA           784              33  751
- 948     REJEITADA           784              33  751
-2879     REJEITADA           784              33  751
-3241     REJEITADA           784              33  751
-3326     REJEITADA           784              33  751
-2128     REJEITADA           784              33  751
-2767     REJEITADA           784              33  751
-3421     REJEITADA           784              33  751
- 953     REJEITADA           784              33  751
- 378     REJEITADA           784              33  751
+ id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+  0      POSITIVA           183             183    0
+827      NEGATIVA           211             211    0
+834      POSITIVA           176             176    0
+833      NEGATIVA           136             136    0
+832      NEGATIVA           162             162    0
+831      POSITIVA           169             169    0
+830      NEGATIVA           252             252    0
+829      NEGATIVA           134             134    0
+828      POSITIVA           197             197    0
+826      POSITIVA           207             207    0
 
