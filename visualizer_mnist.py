@@ -28,7 +28,7 @@ import random
 # CONFIGURAÇÕES
 # ==============================================================================
 RESULTS_FILE = 'json/comparative_results.json'
-OUTPUT_DIR = 'analysis_output/plots/individual_examples'
+OUTPUT_DIR = 'results/plots/mnist/numbers'
 SAVE_PLOTS = True
 SHOW_PLOTS = False
 
@@ -44,9 +44,9 @@ SHOW_PLOTS = False
 # 3. Anote os que você gostou e coloque aqui embaixo
 # 4. Execute novamente - sempre usará os mesmos exemplos!
 
-IDX_POSITIVA = 58    # Ex: 104 para fixar um dígito 8 específico
-IDX_NEGATIVA = 35    # Ex: 14 para fixar um dígito 3 específico  
-IDX_REJEITADA = 38   # Ex: 13 para fixar uma instância rejeitada específica
+IDX_POSITIVA = 165    # Ex: 104 para fixar um dígito 8 específico
+IDX_NEGATIVA = 552    # Ex: 14 para fixar um dígito 3 específico  
+IDX_REJEITADA = 526   # Ex: 13 para fixar uma instância rejeitada específica
 
 # Exemplos de uso:
 # IDX_POSITIVA = 104   # ← Descomente e use o índice que você gostou

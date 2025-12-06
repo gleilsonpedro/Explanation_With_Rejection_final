@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 # Reutiliza a lógica do PEAB para garantir treino e thresholds idênticos
-from peab_2 import (
+from peab import (
     configurar_experimento,
     treinar_e_avaliar_modelo,
     carregar_hiperparametros,
