@@ -383,22 +383,30 @@ if __name__ == '__main__':
             except Exception:
                 mnist_meta = {}
 
+        # Subsample size (se aplicável)
+        subsample = meta.get('subsample_size')
+
         dataset_cache = {
             'config': {
                 'dataset_name': dataset_key,
                 'test_size': float(meta['test_size']),
                 'random_state': RANDOM_STATE,
                 'rejection_cost': float(meta['rejection_cost']),
+                'subsample_size': float(subsample) if subsample else None,
                 **mnist_meta
             },
             'thresholds': {
                 't_plus': float(t_plus),
-                't_minus': float(t_minus)
+                't_minus': float(t_minus),
+                'rejection_zone_width': float(t_plus - t_minus)
             },
             'performance': {
                 'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
                 'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
-                'rejection_rate': float(metricas['taxa_rejeicao_teste'])
+                'rejection_rate': float(metricas['taxa_rejeicao_teste']),
+                'num_test_instances': int(metricas.get('total_instancias_teste', len(y_test))),
+                'num_rejected': int(metricas.get('num_rejeitadas_teste', np.sum(rejected_mask))),
+                'num_accepted': int(metricas.get('num_aceitas_teste', len(y_test) - np.sum(rejected_mask)))
             },
             'explanation_stats': explanation_stats,
             'computation_time': {
@@ -410,20 +418,16 @@ if __name__ == '__main__':
             },
             'top_features': [
                 {"feature": feat, "count": int(count)}
-                for feat, count in metricas['features_frequentes']
+                for feat, count in metricas['features_frequentes'][:20]  # Top 20 em vez de todas
             ],
-            'data': {
-                'feature_names': list(nomes_features),
-                'class_names': list(meta['nomes_classes']),
-                'X_test': X_test_dict,
-                'y_test': y_test_list
-            },
             'model': {
+                'type': 'LogisticRegression',
+                'num_features': len(nomes_features),
+                'class_names': list(meta['nomes_classes']),
                 'coefs': coefs_ordered,
                 'intercept': intercepto,
                 'scaler_params': scaler_params
-            },
-            'per_instance': per_instance
+            }
         }
 
         update_method_results("anchor", dataset_key, dataset_cache)
@@ -653,21 +657,41 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
             'std_length': float(d.get('std_dev', 0.0))
         }
 
+    # Metadados MNIST
+    mnist_meta = {}
+    if dataset_name == 'mnist':
+        try:
+            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+            mnist_meta = {
+                'mnist_feature_mode': MNIST_FEATURE_MODE,
+                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
+            }
+        except Exception:
+            mnist_meta = {}
+
+    subsample = meta.get('subsample_size')
+
     results_data = {
         "config": {
             "dataset_name": dataset_name,
             "test_size": float(meta['test_size']),
             "random_state": RANDOM_STATE,
-            "rejection_cost": float(meta['rejection_cost'])
+            "rejection_cost": float(meta['rejection_cost']),
+            "subsample_size": float(subsample) if subsample else None,
+            **mnist_meta
         },
         "thresholds": {
             "t_plus": float(t_plus),
-            "t_minus": float(t_minus)
+            "t_minus": float(t_minus),
+            "rejection_zone_width": float(t_plus - t_minus)
         },
         "performance": {
             "accuracy_without_rejection": float(metricas['acuracia_sem_rejeicao']),
             "accuracy_with_rejection": float(metricas['acuracia_com_rejeicao']),
-            "rejection_rate": float(metricas['taxa_rejeicao_teste'])
+            "rejection_rate": float(metricas['taxa_rejeicao_teste']),
+            "num_test_instances": int(metricas.get('total_instancias_teste', len(y_test))),
+            "num_rejected": int(metricas.get('num_rejeitadas_teste', 0)),
+            "num_accepted": int(metricas.get('num_aceitas_teste', 0))
         },
         "explanation_stats": {
             "positive": _conv_stats(stats_pos),
@@ -683,8 +707,19 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
         },
         "top_features": [
             {"feature": feat, "count": count}
-            for feat, count in metricas['features_frequentes']
-        ]
+            for feat, count in metricas['features_frequentes'][:20]
+        ],
+        "model": {
+            "type": "LogisticRegression",
+            "num_features": len(nomes_features),
+            "class_names": list(meta['nomes_classes']),
+            "coefs": [float(c) for c in pipeline.named_steps['model'].coef_[0]],
+            "intercept": float(pipeline.named_steps['model'].intercept_[0]),
+            "scaler_params": {
+                "min": [float(v) for v in pipeline.named_steps['scaler'].min_],
+                "scale": [float(v) for v in pipeline.named_steps['scaler'].scale_]
+            }
+        }
     }
     update_method_results("anchor", dataset_name, results_data)
 

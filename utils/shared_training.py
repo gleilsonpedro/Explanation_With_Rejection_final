@@ -48,7 +48,7 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
     
     if top_k and top_k > 0 and top_k < X.shape[1]:
         # Importar função de seleção do PEAB
-        from peab_2 import aplicar_selecao_top_k_features
+        from peab import aplicar_selecao_top_k_features
         
         # Treinar modelo temporário para obter importâncias
         print(f"\n[INFO] [Shared Training] Aplicando seleção de top-{top_k} features...")
@@ -62,14 +62,14 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         X = X[selected_features]
         print(f"[INFO] [Shared Training] Dataset reduzido para {top_k} features (mesmo do PEAB).")
 
-    # 3) Treinar e otimizar thresholds com a mesma função do PEAB
-    pipeline, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(
-        X=X, y=y, test_size=test_size, rejection_cost=rejection_cost, logreg_params=params_modelo
-    )
-
-    # 4) Reproduzir os mesmos splits de forma determinística
+    # 3) Fazer split ANTES do treino (mesma ordem do PEAB)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y
+    )
+
+    # 4) Treinar e otimizar thresholds com a mesma função do PEAB
+    pipeline, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(
+        X_train=X_train, y_train=y_train, rejection_cost=rejection_cost, logreg_params=params_modelo
     )
 
     meta = {

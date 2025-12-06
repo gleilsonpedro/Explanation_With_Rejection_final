@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: wine_quality_Baixa Qualidade_vs_Alta Qualidade
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 480
+  - Número de Features do Modelo: 11
+  - Acurácia do Modelo (teste, sem rejeição): 86.46%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 191.7163 segundos
+  - Tempo Médio por Instância (Geral): 0.3994 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 5.42% (26 de 480 instâncias)
+  - Acurácia com Opção de Rejeição (nas 454 instâncias aceitas): 87.89%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (1 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 9.00 ± 0.00 (Min: 9, Max: 9)
+  - Classe Negativa (453 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 4.98 ± 1.92 (Min: 2, Max: 10)
+  - Classe REJEITADA (26 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 9.62 ± 0.68 (Min: 9, Max: 11)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - density: 477 vezes
+    - pH: 473 vezes
+    - total sulfur dioxide: 417 vezes
+    - free sulfur dioxide: 242 vezes
+    - alcohol: 241 vezes
+    - sulphates: 220 vezes
+    - volatile acidity: 177 vezes
+    - chlorides: 126 vezes
+    - fixed acidity: 62 vezes
+    - citric acid: 48 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 0.3850 segundos
+  - Negativas: 0.3972 segundos
+  - Rejeitadas: 0.4390 segundos

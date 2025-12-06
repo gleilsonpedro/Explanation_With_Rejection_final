@@ -1,0 +1,32 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: wine_class_0_vs_Não-class_0
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 54
+  - Número de Features do Modelo: 13
+  - Acurácia do Modelo (teste, sem rejeição): 66.67%
+  - Thresholds de Rejeição (Score): t+ = 0.2238, t- = 0.1798
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 2.4144 segundos
+  - Tempo Médio por Instância (Geral): 0.0447 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 20.37% (11 de 54 instâncias)
+  - Acurácia com Opção de Rejeição (nas 43 instâncias aceitas): 90.70%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (32 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.00 ± 0.00  (Min: 1, Max: 1)
+  - Classe Negativa (Aceitas): (11 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.00 ± 0.00  (Min: 1, Max: 1)
+  - Classe REJEITADA: (11 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.00 ± 0.00  (Min: 1, Max: 1)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - proline: 54 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.0461 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0422 segundos
+  - Tempo Médio (Rejeitadas): 0.0432 segundos

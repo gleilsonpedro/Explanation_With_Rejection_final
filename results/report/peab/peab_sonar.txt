@@ -5,9 +5,9 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: pima_indians_diabetes
-  Instâncias de teste: 231
-  Features por instância: 8
+  Dataset: sonar
+  Instâncias de teste: 63
+  Features por instância: 60
   Test size: 30.00%
   Custo de rejeição (WR): 0.2400
 
@@ -15,67 +15,69 @@
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
   penalty: l2
-  C: 10
+  C: 0.01
   solver: saga
   max_iter: 200
-  Intercepto: -7.717096
+  Intercepto: -0.184017
 
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.551605
-  t- (limiar inferior): -0.756595
-  Largura da zona de rejeição: 1.308200
+  t+ (limiar superior): 0.251327
+  t- (limiar inferior): 0.026567
+  Largura da zona de rejeição: 0.224760
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 74.46%
-  Acurácia com rejeição: 82.76%
-  Taxa de rejeição: 24.68%
+  Acurácia sem rejeição: 68.25%
+  Acurácia com rejeição: 95.65%
+  Taxa de rejeição: 63.49%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 40
-    Tamanho médio: 4.22 features
-    Desvio padrão: 1.25
-    Mínimo: 2 features
-    Máximo: 8 features
+    Quantidade: 12
+    Tamanho médio: 39.58 features
+    Desvio padrão: 8.61
+    Mínimo: 23 features
+    Máximo: 52 features
 
   NEGATIVAS:
-    Quantidade: 134
-    Tamanho médio: 4.72 features
-    Desvio padrão: 1.10
-    Mínimo: 2 features
-    Máximo: 8 features
+    Quantidade: 11
+    Tamanho médio: 42.55 features
+    Desvio padrão: 8.53
+    Mínimo: 34 features
+    Máximo: 60 features
 
   REJEITADAS:
-    Quantidade: 57
-    Tamanho médio: 6.16 features
-    Desvio padrão: 0.87
-    Mínimo: 5 features
-    Máximo: 8 features
+    Quantidade: 40
+    Tamanho médio: 42.75 features
+    Desvio padrão: 3.87
+    Mínimo: 38 features
+    Máximo: 57 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 1.4739s
-  Tempo médio por instância: 0.006381s
-  Tempo médio POSITIVAS: 0.005041s
-  Tempo médio NEGATIVAS: 0.004870s
-  Tempo médio REJEITADAS: 0.010735s
+  Tempo total: 0.9441s
+  Tempo médio por instância: 0.014985s
+  Tempo médio POSITIVAS: 0.007348s
+  Tempo médio NEGATIVAS: 0.007031s
+  Tempo médio REJEITADAS: 0.019352s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  glicose: 231 ocorrências (100.0%)
-  imc: 231 ocorrências (100.0%)
-  num_gravidezes: 216 ocorrências (93.5%)
-  diabetes_pedigree: 193 ocorrências (83.5%)
-  pressao_sangue: 152 ocorrências (65.8%)
-  idade: 65 ocorrências (28.1%)
-  insulina: 44 ocorrências (19.0%)
-  espessura_pele: 20 ocorrências (8.7%)
+  feature_12: 62 ocorrências (98.4%)
+  feature_34: 62 ocorrências (98.4%)
+  feature_5: 62 ocorrências (98.4%)
+  feature_11: 61 ocorrências (96.8%)
+  feature_35: 61 ocorrências (96.8%)
+  feature_36: 61 ocorrências (96.8%)
+  feature_44: 61 ocorrências (96.8%)
+  feature_8: 61 ocorrências (96.8%)
+  feature_19: 60 ocorrências (95.2%)
+  feature_33: 60 ocorrências (95.2%)
 

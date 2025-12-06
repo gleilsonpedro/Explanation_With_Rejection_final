@@ -27,7 +27,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.24,          
-    'subsample_size': 0.3 
+    'subsample_size': 0.03  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
 }
 
 DATASET_CONFIG = {
@@ -244,8 +244,6 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
             valido1, score1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True)
             valido2, score2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
             is_valid = valido1 and valido2
-            
-
         else:
             direcao = 1 if pred_class_orig == 1 else 0
             is_valid, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, direcao, pred_class_orig, False)
@@ -285,8 +283,6 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     expl_minima_str = list(expl_robusta)
     indices_atuais = {col_to_idx[f.split(' = ')[0]] for f in expl_robusta}
     
-
-    
     remocoes = 0
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     
@@ -309,8 +305,6 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
             valido2, score_p2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
             if valido1 and valido2: remocao_bem_sucedida = True
             
-
-            
             if not benchmark_mode and log_passos is not None:
                 log_passos.append({'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida})
         else:
@@ -323,12 +317,10 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
 
         if remocao_bem_sucedida:
             remocoes += 1
-            # CORREÇÃO: usar split para comparação exata, não startswith
+            # Remove feature da explicação usando comparação exata do nome
             expl_minima_str = [f for f in expl_minima_str if f.split(' = ')[0] != feat_nome]
         else:
             indices_atuais.add(idx_alvo)
-
-
     
     return expl_minima_str, remocoes
 
@@ -551,48 +543,62 @@ def montar_dataset_cache(dataset_name: str,
             'subsample_size': float(DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', 0.0)) if DATASET_CONFIG.get(dataset_name, {}).get('subsample_size') else None,
             **mnist_meta
         },
-        'model': {
-            'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
-        },
         'thresholds': {
             't_plus': float(t_plus),
-            't_minus': float(t_minus)
+            't_minus': float(t_minus),
+            'rejection_zone_width': float(t_plus - t_minus)
         },
         'performance': {
             'accuracy_without_rejection': float(metricas_dict['acuracia_sem_rejeicao']),
             'accuracy_with_rejection': float(metricas_dict['acuracia_com_rejeicao']),
-            'rejection_rate': float(metricas_dict['taxa_rejeicao'])
+            'rejection_rate': float(metricas_dict['taxa_rejeicao']),
+            'num_test_instances': len(y_test),
+            'num_rejected': int(np.sum(rejected_mask)),
+            'num_accepted': int(len(y_test) - np.sum(rejected_mask))
         },
         'explanation_stats': {
             'positive': {
                 'count': int(metricas_dict['stats_explicacao_positiva']['instancias']),
                 'mean_length': float(metricas_dict['stats_explicacao_positiva']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_positiva']['std_dev'])
+                'std_length': float(metricas_dict['stats_explicacao_positiva']['std_dev']),
+                'min_length': int(metricas_dict['stats_explicacao_positiva'].get('min', 0)),
+                'max_length': int(metricas_dict['stats_explicacao_positiva'].get('max', 0))
             },
             'negative': {
                 'count': int(metricas_dict['stats_explicacao_negativa']['instancias']),
                 'mean_length': float(metricas_dict['stats_explicacao_negativa']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_negativa']['std_dev'])
+                'std_length': float(metricas_dict['stats_explicacao_negativa']['std_dev']),
+                'min_length': int(metricas_dict['stats_explicacao_negativa'].get('min', 0)),
+                'max_length': int(metricas_dict['stats_explicacao_negativa'].get('max', 0))
             },
             'rejected': {
                 'count': int(metricas_dict['stats_explicacao_rejeitada']['instancias']),
                 'mean_length': float(metricas_dict['stats_explicacao_rejeitada']['media']),
-                'std_length': float(metricas_dict['stats_explicacao_rejeitada']['std_dev'])
+                'std_length': float(metricas_dict['stats_explicacao_rejeitada']['std_dev']),
+                'min_length': int(metricas_dict['stats_explicacao_rejeitada'].get('min', 0)),
+                'max_length': int(metricas_dict['stats_explicacao_rejeitada'].get('max', 0))
             }
         },
-        'data': {
-            'feature_names': feature_names,
-            'class_names': list(nomes_classes),
-            'X_test': X_test_dict,
-            'y_test': y_test_list
+        'computation_time': {
+            'total': float(metricas_dict.get('tempo_total', 0.0)),
+            'mean_per_instance': float(metricas_dict.get('tempo_medio_geral', 0.0)),
+            'positive': float(metricas_dict.get('tempo_medio_positivas', 0.0)),
+            'negative': float(metricas_dict.get('tempo_medio_negativas', 0.0)),
+            'rejected': float(metricas_dict.get('tempo_medio_rejeitadas', 0.0))
         },
+        'top_features': [
+            {"feature": feat, "count": int(count)}
+            for feat, count in metricas_dict.get('features_frequentes', [])[:20]  # Top 20
+        ],
         'model': {
+            'type': 'LogisticRegression',
+            'num_features': len(feature_names),
+            'class_names': list(nomes_classes),
             'params': {k: v for k, v in model_params.items() if k not in ['coefs', 'intercepto', 'scaler_params']},
             'coefs': coefs_ordered,
             'intercept': intercepto,
             'scaler_params': scaler_params
-        },
-        'per_instance': per_instance
+        }
     }
     return dataset_cache
 
@@ -783,7 +789,11 @@ def executar_experimento_para_dataset(dataset_name: str):
     
     tempo_relatorios = time.perf_counter() - start_relatorios
     print(f"[INFO] Relatórios gerados em {tempo_relatorios:.2f}s (não contabilizado no experimento)")
-    print(f"[SUCESSO] Arquivos salvos: JSON em json/comparative_results.json | TXT em {OUTPUT_BASE_DIR}")
+    print(f"\n{'='*80}")
+    print(f"[SUCESSO] Arquivos salvos:")
+    print(f"  📊 JSON: json/peab_results.json")
+    print(f"  📄 TXT:  {OUTPUT_BASE_DIR}/peab_{dataset_name}.txt")
+    print(f"{'='*80}\n")
 
 if __name__ == '__main__':
     ds, _, _, _, _ = selecionar_dataset_e_classe()

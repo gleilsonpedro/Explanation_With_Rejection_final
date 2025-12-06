@@ -6,6 +6,11 @@ from datetime import datetime
 
 RESULTS_FILE = "json/comparative_results.json"
 
+# Arquivos individuais por método
+PEAB_RESULTS_FILE = "json/peab_results.json"
+ANCHOR_RESULTS_FILE = "json/anchor_results.json"
+MINEXP_RESULTS_FILE = "json/minexp_results.json"
+
 def load_results() -> Dict[str, Any]:
     """Carrega os resultados existentes ou retorna estrutura vazia com tolerância a arquivo corrompido."""
     if os.path.exists(RESULTS_FILE):
@@ -52,14 +57,40 @@ def save_results(data: Dict[str, Any]) -> None:
 
 def update_method_results(method: str, dataset: str, results: Dict[str, Any]) -> None:
     """
-    Atualiza os resultados de um método específico para um dataset
+    Atualiza os resultados de um método específico para um dataset.
+    Agora salva em arquivos separados (peab_results.json, anchor_results.json, minexp_results.json)
     """
-    all_results = load_results()
+    # Mapear método para arquivo específico
+    method_files = {
+        'peab': PEAB_RESULTS_FILE,
+        'anchor': ANCHOR_RESULTS_FILE,
+        'minexp': MINEXP_RESULTS_FILE,
+        'mateus': MINEXP_RESULTS_FILE  # Alias para compatibilidade
+    }
     
-    # Garante que a chave do método exista
-    if method not in all_results:
-        all_results[method] = {}
-        
-    all_results[method][dataset] = results
-    save_results(all_results)
-    print(f"Resultados salvos com sucesso no JSON para: {method} - {dataset}")
+    results_file = method_files.get(method.lower(), RESULTS_FILE)
+    
+    # Carregar resultados existentes do arquivo específico
+    if os.path.exists(results_file):
+        try:
+            with open(results_file, 'r', encoding='utf-8') as f:
+                method_results = json.load(f)
+        except Exception:
+            method_results = {}
+    else:
+        method_results = {}
+    
+    # Atualizar dataset específico
+    method_results[dataset] = results
+    
+    # Salvar no arquivo específico do método
+    serializable = _to_builtin(method_results)
+    base_dir = os.path.dirname(results_file) or '.'
+    os.makedirs(base_dir, exist_ok=True)
+    tmp_path = os.path.join(base_dir, f'._{method}_results.tmp')
+    
+    with open(tmp_path, 'w', encoding='utf-8') as f:
+        json.dump(serializable, f, indent=2, ensure_ascii=False)
+    os.replace(tmp_path, results_file)
+    
+    print(f"✅ Resultados salvos: {results_file} - {dataset}")

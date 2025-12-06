@@ -1,0 +1,37 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: vertebral_column_Normal_vs_Anormal
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 93
+  - Número de Features do Modelo: 6
+  - Acurácia do Modelo (teste, sem rejeição): 76.34%
+  - Thresholds de Rejeição (Score): t+ = 0.8424, t- = -0.0945
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 4.6902 segundos
+  - Tempo Médio por Instância (Geral): 0.0504 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 27.96% (26 de 93 instâncias)
+  - Acurácia com Opção de Rejeição (nas 67 instâncias aceitas): 86.57%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (50 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.74 ± 0.44  (Min: 1, Max: 2)
+  - Classe Negativa (Aceitas): (17 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.88 ± 0.96  (Min: 3, Max: 6)
+  - Classe REJEITADA: (26 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.38 ± 1.11  (Min: 1, Max: 6)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - pelvic_radius: 58 vezes
+    - pelvic_incidence: 47 vezes
+    - pelvic_tilt: 46 vezes
+    - lumbar_lordosis_angle: 43 vezes
+    - spondylolisthesis_grade: 23 vezes
+    - sacral_slope: 15 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.0335 segundos
+  - Tempo Médio (Negativas Aceitas): 0.1236 segundos
+  - Tempo Médio (Rejeitadas): 0.0351 segundos

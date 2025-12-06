@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: breast_cancer_malignant_vs_benign
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 171
+  - Número de Features do Modelo: 30
+  - Acurácia do Modelo (teste, sem rejeição): 92.40%
+  - Thresholds de Rejeição (Score): t+ = 0.4055, t- = -0.0074
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 157.5483 segundos
+  - Tempo Médio por Instância (Geral): 0.9213 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 12.87% (22 de 171 instâncias)
+  - Acurácia com Opção de Rejeição (nas 149 instâncias aceitas): 97.99%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (96 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.11 ± 0.32  (Min: 2, Max: 3)
+  - Classe Negativa (Aceitas): (53 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.45 ± 0.69  (Min: 2, Max: 4)
+  - Classe REJEITADA: (22 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.09 ± 0.51  (Min: 2, Max: 4)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - worst concave points: 125 vezes
+    - worst perimeter: 56 vezes
+    - mean concave points: 45 vezes
+    - worst radius: 36 vezes
+    - mean perimeter: 18 vezes
+    - mean concavity: 18 vezes
+    - area error: 17 vezes
+    - worst area: 14 vezes
+    - worst concavity: 12 vezes
+    - perimeter error: 11 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.8181 segundos
+  - Tempo Médio (Negativas Aceitas): 1.1410 segundos
+  - Tempo Médio (Rejeitadas): 0.8425 segundos

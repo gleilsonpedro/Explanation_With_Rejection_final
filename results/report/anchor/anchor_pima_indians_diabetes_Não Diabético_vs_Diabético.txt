@@ -1,0 +1,39 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: pima_indians_diabetes_Não Diabético_vs_Diabético
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 231
+  - Número de Features do Modelo: 8
+  - Acurácia do Modelo (teste, sem rejeição): 74.46%
+  - Thresholds de Rejeição (Score): t+ = 0.5516, t- = -0.7566
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 13.5936 segundos
+  - Tempo Médio por Instância (Geral): 0.0588 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 24.68% (57 de 231 instâncias)
+  - Acurácia com Opção de Rejeição (nas 174 instâncias aceitas): 82.76%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (40 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.30 ± 1.49  (Min: 3, Max: 8)
+  - Classe Negativa (Aceitas): (134 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.22 ± 0.75  (Min: 1, Max: 5)
+  - Classe REJEITADA: (57 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.12 ± 1.36  (Min: 2, Max: 8)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - glicose: 224 vezes
+    - imc: 135 vezes
+    - num_gravidezes: 124 vezes
+    - diabetes_pedigree: 59 vezes
+    - idade: 53 vezes
+    - pressao_sangue: 44 vezes
+    - espessura_pele: 34 vezes
+    - insulina: 32 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.0782 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0406 segundos
+  - Tempo Médio (Rejeitadas): 0.0881 segundos
