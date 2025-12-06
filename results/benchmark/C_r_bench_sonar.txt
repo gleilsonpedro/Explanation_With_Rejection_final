@@ -19,11 +19,11 @@ RELATÓRIO DE BENCHMARK CIENTÍFICO: SONAR
 1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
 --------------------------------------------------------------------------------
 Métrica                         Valor   
-    Taxa de Otimalidade (Gap=0)   34.92%
-Gap Médio (Features Excedentes)   7.8571
-           Tempo Médio PEAB (s) 0.015526
-     Tempo Médio OTIMIZAÇÃO (s) 0.042971
-  Speedup (x vezes mais rápido)    2.77x
+    Taxa de Otimalidade (Gap=0)   52.38%
+Gap Médio (Features Excedentes)   2.8889
+           Tempo Médio PEAB (s) 0.014452
+     Tempo Médio OTIMIZAÇÃO (s) 0.044273
+  Speedup (x vezes mais rápido)    3.06x
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
@@ -31,9 +31,9 @@ Gap Médio (Features Excedentes)   7.8571
 Compare aqui onde o PEAB é perfeito e onde ele encontra dificuldades.
 
      Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
- NEGATIVA   11  81.82%    2.3636     42.55      40.18   0.00692s    0.04338s
- POSITIVA   12 100.00%    0.0000     39.58      39.58   0.00677s    0.04258s
-REJEITADA   40   2.50%   11.7250     50.58      38.85   0.02052s    0.04298s
+ NEGATIVA   11  81.82%    2.3636     42.55      40.18   0.00651s    0.04453s
+ POSITIVA   12 100.00%    0.0000     39.58      39.58   0.00663s    0.04420s
+REJEITADA   40  30.00%    3.9000     42.75      38.85   0.01898s    0.04422s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES ERROS (GAPS)
@@ -41,14 +41,14 @@ REJEITADA   40   2.50%   11.7250     50.58      38.85   0.02052s    0.04298s
 Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
 
  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
- 22     REJEITADA            56              34   22
- 39     REJEITADA            56              35   21
- 32     REJEITADA            55              34   21
- 37     REJEITADA            56              36   20
-  8     REJEITADA            54              34   20
-  9     REJEITADA            55              35   20
-  3     REJEITADA            53              34   19
-  4     REJEITADA            54              35   19
- 38     REJEITADA            54              35   19
- 27     REJEITADA            55              37   18
+ 55      NEGATIVA            60              43   17
+ 38     REJEITADA            48              35   13
+ 31      NEGATIVA            60              51    9
+  3     REJEITADA            43              34    9
+ 22     REJEITADA            43              34    9
+ 32     REJEITADA            42              34    8
+ 21     REJEITADA            43              35    8
+  8     REJEITADA            41              34    7
+  9     REJEITADA            42              35    7
+ 43     REJEITADA            42              35    7
 

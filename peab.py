@@ -177,6 +177,9 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
     Valida mantendo features fixas em seus valores originais e empurrando
     o restante para o pior caso na direção especificada. Suporta rejeição.
     Permite conjunto vazio (intercepto pode ser suficiente).
+    
+    direcao_override: 0 = empurrar para CIMA (tentar sair por cima)
+                      1 = empurrar para BAIXO (tentar sair por baixo)
     """
     # Limites por-feature no espaço escalado do MinMaxScaler
     if 'scaler' in modelo.named_steps:
@@ -188,8 +191,8 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
         MIN_VEC = np.zeros_like(coefs)
         MAX_VEC = np.ones_like(coefs)
 
-    perturbar_para_diminuir = (direcao_override == 1)
-    X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if perturbar_para_diminuir else np.where(coefs > 0, MAX_VEC, MIN_VEC)
+    empurrar_para_baixo = (direcao_override == 1)
+    X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if empurrar_para_baixo else np.where(coefs > 0, MAX_VEC, MIN_VEC)
 
     if indices_explicacao:
         idx_fixos = list(indices_explicacao)
@@ -200,7 +203,9 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
 
     if is_rejected:
         # Rejeição deve se manter dentro da zona em ambas as direções
-        if perturbar_para_diminuir:
+        # Se empurramos para baixo, o score deve permanecer >= t_minus (não cair abaixo)
+        # Se empurramos para cima, o score deve permanecer <= t_plus (não subir acima)
+        if empurrar_para_baixo:
             return (score_pert >= t_minus - EPSILON), score_pert
         else:
             return (score_pert <= t_plus + EPSILON), score_pert
@@ -236,9 +241,11 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     
     while True:
         if is_rejected:
-            valido1, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
-            valido2, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True)
+            valido1, score1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True)
+            valido2, score2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
             is_valid = valido1 and valido2
+            
+
         else:
             direcao = 1 if pred_class_orig == 1 else 0
             is_valid, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, direcao, pred_class_orig, False)
@@ -278,6 +285,8 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     expl_minima_str = list(expl_robusta)
     indices_atuais = {col_to_idx[f.split(' = ')[0]] for f in expl_robusta}
     
+
+    
     remocoes = 0
     deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
     
@@ -300,6 +309,8 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
             valido2, score_p2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
             if valido1 and valido2: remocao_bem_sucedida = True
             
+
+            
             if not benchmark_mode and log_passos is not None:
                 log_passos.append({'feat_nome': feat_nome, 'sucesso': remocao_bem_sucedida})
         else:
@@ -312,10 +323,13 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
 
         if remocao_bem_sucedida:
             remocoes += 1
-            expl_minima_str = [f for f in expl_minima_str if not f.startswith(feat_nome)]
+            # CORREÇÃO: usar split para comparação exata, não startswith
+            expl_minima_str = [f for f in expl_minima_str if f.split(' = ')[0] != feat_nome]
         else:
             indices_atuais.add(idx_alvo)
 
+
+    
     return expl_minima_str, remocoes
 
 def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_train: pd.DataFrame, t_plus: float, t_minus: float, benchmark_mode: bool = False) -> Tuple[List[str], List[str], int, int]:
@@ -327,13 +341,13 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
         if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['rejeitada_analise'].format(t_minus=t_minus, t_plus=t_plus))
 
-        expl_inicial_p1 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 1)
-        expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_p1, X_train, t_plus, t_minus, True, 1, benchmark_mode)
+        # Para rejeitadas, começar com conjunto vazio e usar fase 1 para adicionar features
+        expl_inicial_vazia = []
+        expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_vazia, X_train, t_plus, t_minus, True, 1, benchmark_mode)
         passos_p1: List[Dict[str, Any]] = []
         expl_final_p1, remocoes1 = fase_2_minimizacao(modelo, instancia_df, expl_robusta_p1, X_train, t_plus, t_minus, True, 1, passos_p1, benchmark_mode)
 
-        expl_inicial_p2 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 0)
-        expl_robusta_p2, adicoes2 = fase_1_reforco(modelo, instancia_df, expl_inicial_p2, X_train, t_plus, t_minus, True, 0, benchmark_mode)
+        expl_robusta_p2, adicoes2 = fase_1_reforco(modelo, instancia_df, expl_inicial_vazia, X_train, t_plus, t_minus, True, 0, benchmark_mode)
         passos_p2: List[Dict[str, Any]] = []
         expl_final_p2, remocoes2 = fase_2_minimizacao(modelo, instancia_df, expl_robusta_p2, X_train, t_plus, t_minus, True, 0, passos_p2, benchmark_mode)
 
@@ -582,22 +596,96 @@ def montar_dataset_cache(dataset_name: str,
     }
     return dataset_cache
 
-def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, num_test, metricas, resultados_instancias):
+def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, num_test, num_features, metricas, resultados_instancias, model_params):
+    """Gera relatório TXT completo (tempo não contabilizado no experimento)."""
     output_path = os.path.join(OUTPUT_BASE_DIR, f"peab_{dataset_name}.txt")
     os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)
     with open(output_path, 'w', encoding='utf-8') as f:
-        f.write("RELATÓRIO DE ANÁLISE - MÉTODO PEAB\n")
-        f.write(f"Dataset: {dataset_name}\n")
-        f.write(f"Acurácia (sem rejeição): {metricas['acuracia_sem_rejeicao']:.2f}%\n")
-        f.write(f"Thresholds: t+={t_plus:.4f}, t-={t_minus:.4f}\n\n")
+        f.write("="*80 + "\n")
+        f.write("          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)\n")
+        f.write("="*80 + "\n\n")
         
-        f.write(LOG_TEMPLATES['processamento_header'] + "\n")
-        for r in resultados_instancias:
-            if 'log_detalhado' in r:
-                for log_line in r['log_detalhado']:
-                    f.write(f"{log_line}\n")
-                f.write(f"\n   --> RESULTADO FINAL (Instância #{r['id']}):\n")
-                f.write(f"       - EXPLICAÇÃO: {sorted(r['explicacao'])}\n\n")
+        # SEÇÃO 1: CONFIGURAÇÃO DO EXPERIMENTO
+        f.write("-"*80 + "\n")
+        f.write("1. CONFIGURAÇÃO DO EXPERIMENTO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Dataset: {dataset_name}\n")
+        f.write(f"  Instâncias de teste: {num_test}\n")
+        f.write(f"  Features por instância: {num_features}\n")
+        f.write(f"  Test size: {test_size:.2%}\n")
+        f.write(f"  Custo de rejeição (WR): {wr:.4f}\n\n")
+        
+        # SEÇÃO 2: HIPERPARÂMETROS DO MODELO
+        f.write("-"*80 + "\n")
+        f.write("2. HIPERPARÂMETROS DO MODELO (Regressão Logística)\n")
+        f.write("-"*80 + "\n")
+        for k, v in model_params.items():
+            if k not in ['coefs', 'intercepto', 'scaler_params']:
+                f.write(f"  {k}: {v}\n")
+        f.write(f"  Intercepto: {model_params.get('intercepto', 0.0):.6f}\n\n")
+        
+        # SEÇÃO 3: THRESHOLDS DE REJEIÇÃO
+        f.write("-"*80 + "\n")
+        f.write("3. THRESHOLDS DE REJEIÇÃO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  t+ (limiar superior): {t_plus:.6f}\n")
+        f.write(f"  t- (limiar inferior): {t_minus:.6f}\n")
+        f.write(f"  Largura da zona de rejeição: {t_plus - t_minus:.6f}\n\n")
+        
+        # SEÇÃO 4: DESEMPENHO DO MODELO
+        f.write("-"*80 + "\n")
+        f.write("4. DESEMPENHO DO MODELO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Acurácia sem rejeição: {metricas['acuracia_sem_rejeicao']:.2f}%\n")
+        f.write(f"  Acurácia com rejeição: {metricas['acuracia_com_rejeicao']:.2f}%\n")
+        f.write(f"  Taxa de rejeição: {metricas['taxa_rejeicao']:.2f}%\n\n")
+        
+        # SEÇÃO 5: ESTATÍSTICAS DAS EXPLICAÇÕES
+        f.write("-"*80 + "\n")
+        f.write("5. ESTATÍSTICAS DAS EXPLICAÇÕES\n")
+        f.write("-"*80 + "\n")
+        for tipo_label, tipo_key in [('POSITIVAS', 'stats_explicacao_positiva'), 
+                                      ('NEGATIVAS', 'stats_explicacao_negativa'), 
+                                      ('REJEITADAS', 'stats_explicacao_rejeitada')]:
+            stats = metricas[tipo_key]
+            f.write(f"  {tipo_label}:\n")
+            f.write(f"    Quantidade: {stats['instancias']}\n")
+            f.write(f"    Tamanho médio: {stats['media']:.2f} features\n")
+            f.write(f"    Desvio padrão: {stats['std_dev']:.2f}\n")
+            f.write(f"    Mínimo: {stats['min']} features\n")
+            f.write(f"    Máximo: {stats['max']} features\n\n")
+        
+        # SEÇÃO 6: TEMPOS DE EXECUÇÃO
+        f.write("-"*80 + "\n")
+        f.write("6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Tempo total: {metricas['tempo_total']:.4f}s\n")
+        f.write(f"  Tempo médio por instância: {metricas['tempo_medio_instancia']:.6f}s\n")
+        f.write(f"  Tempo médio POSITIVAS: {metricas['tempo_medio_positivas']:.6f}s\n")
+        f.write(f"  Tempo médio NEGATIVAS: {metricas['tempo_medio_negativas']:.6f}s\n")
+        f.write(f"  Tempo médio REJEITADAS: {metricas['tempo_medio_rejeitadas']:.6f}s\n\n")
+        
+        # SEÇÃO 7: TOP 10 FEATURES MAIS FREQUENTES
+        f.write("-"*80 + "\n")
+        f.write("7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES\n")
+        f.write("-"*80 + "\n")
+        top_feats = metricas['features_frequentes'][:10]
+        for feat, count in top_feats:
+            freq_pct = (count / num_test * 100)
+            f.write(f"  {feat}: {count} ocorrências ({freq_pct:.1f}%)\n")
+        f.write("\n")
+        
+        # SEÇÃO 8: LOGS DETALHADOS (opcional, apenas para datasets pequenos)
+        if num_test <= 50 and TECHNICAL_LOGS:
+            f.write("-"*80 + "\n")
+            f.write("8. LOGS DETALHADOS POR INSTÂNCIA\n")
+            f.write("-"*80 + "\n\n")
+            for r in resultados_instancias:
+                if 'log_detalhado' in r:
+                    for log_line in r['log_detalhado']:
+                        f.write(f"{log_line}\n")
+                    f.write(f"\n   --> RESULTADO FINAL (Instância #{r['id']}):\n")
+                    f.write(f"       - EXPLICAÇÃO: {sorted(r['explicacao'])}\n\n")
 
 def executar_experimento_para_dataset(dataset_name: str):
     print(f"\n[INFO] Executando PEAB para: {dataset_name.upper()}")
@@ -666,12 +754,36 @@ def executar_experimento_para_dataset(dataset_name: str):
                 t_neg.append(duracao); ad_neg.append(ad); rm_neg.append(rm)
             pbar.update()
 
-    total_time = time.perf_counter() - start_total
+    total_time_experimento = time.perf_counter() - start_total
+    print(f"[INFO] Tempo de experimento (explicações): {total_time_experimento:.2f}s")
     
-    metricas = coletar_metricas(resultados, y_test, y_pred_final, mask_rej, total_time, model_params, modelo, X_test, X_train.columns, t_pos, t_neg, t_rej, ad_pos, ad_neg, ad_rej, rm_pos, rm_neg, rm_rej)
+    # ========== GERAÇÃO DE RELATÓRIOS (TEMPO NÃO CONTABILIZADO) ==========
+    print("[INFO] Gerando relatórios (JSON + TXT)...")
+    start_relatorios = time.perf_counter()
     
-    gerar_relatorio_texto(dataset_name, test_size, rejection_cost, modelo, t_plus, t_minus, len(X_test), metricas, resultados)
-    print(f"[SUCESSO] Relatório gerado em {OUTPUT_BASE_DIR}")
+    metricas = coletar_metricas(resultados, y_test, y_pred_final, mask_rej, total_time_experimento, model_params, modelo, X_test, X_train.columns, t_pos, t_neg, t_rej, ad_pos, ad_neg, ad_rej, rm_pos, rm_neg, rm_rej)
+    
+    # Monta e salva JSON
+    dataset_json_key = dataset_name
+    if dataset_name == 'mnist':
+        cfg_mnist = DATASET_CONFIG.get('mnist', {})
+        digit_pair = cfg_mnist.get('digit_pair')
+        if digit_pair and len(digit_pair) == 2:
+            dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
+    
+    dataset_cache = montar_dataset_cache(
+        dataset_name, X_train, X_test, y_train, y_test, nomes_classes,
+        t_plus, t_minus, rejection_cost, test_size, model_params, metricas,
+        y_pred_final, decision_scores, mask_rej, resultados
+    )
+    update_method_results('peab', dataset_json_key, dataset_cache)
+    
+    # Gera relatório TXT completo
+    gerar_relatorio_texto(dataset_name, test_size, rejection_cost, modelo, t_plus, t_minus, len(X_test), X_test.shape[1], metricas, resultados, model_params)
+    
+    tempo_relatorios = time.perf_counter() - start_relatorios
+    print(f"[INFO] Relatórios gerados em {tempo_relatorios:.2f}s (não contabilizado no experimento)")
+    print(f"[SUCESSO] Arquivos salvos: JSON em json/comparative_results.json | TXT em {OUTPUT_BASE_DIR}")
 
 if __name__ == '__main__':
     ds, _, _, _, _ = selecionar_dataset_e_classe()

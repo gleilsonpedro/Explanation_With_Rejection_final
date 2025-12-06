@@ -335,36 +335,61 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
     if is_rejected:
         if emit_tech_logs:
             log_formatado.append(LOG_TEMPLATES['rejeitada_analise'].format(t_minus=t_minus, t_plus=t_plus))
-            log_formatado.append(LOG_TEMPLATES['rejeitada_prova_header'])
 
+        # Caminho 1 (Tentando provar Classe 1)
         expl_inicial_p1 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 1)
         expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_p1, X_train, t_plus, t_minus, True, 1, benchmark_mode)
         passos_p1: List[Dict[str, Any]] = []
         expl_final_p1, remocoes1 = fase_2_minimizacao(modelo, instancia_df, expl_robusta_p1, X_train, t_plus, t_minus, True, 1, passos_p1, benchmark_mode)
 
+        # Caminho 2 (Tentando provar Classe 0)
         expl_inicial_p2 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 0)
         expl_robusta_p2, adicoes2 = fase_1_reforco(modelo, instancia_df, expl_inicial_p2, X_train, t_plus, t_minus, True, 0, benchmark_mode)
         passos_p2: List[Dict[str, Any]] = []
         expl_final_p2, remocoes2 = fase_2_minimizacao(modelo, instancia_df, expl_robusta_p2, X_train, t_plus, t_minus, True, 0, passos_p2, benchmark_mode)
 
+        # Seleção do melhor resultado da minimização
         if len(expl_final_p1) <= len(expl_final_p2):
-            expl_final, adicoes, remocoes = expl_final_p1, adicoes1, remocoes1
+            expl_final = expl_final_p1
+            adicoes, remocoes = adicoes1, remocoes1
             passos_escolhidos = passos_p1
         else:
-            expl_final, adicoes, remocoes = expl_final_p2, adicoes2, remocoes2
+            expl_final = expl_final_p2
+            adicoes, remocoes = adicoes2, remocoes2
             passos_escolhidos = passos_p2
 
-        # [TRAVA DE SEGURANÇA] Se explicação vazia em rejeição, retornar tudo
+        # =====================================================================
+        # [NOVA TRAVA INTELIGENTE]
+        # Se a explicação final for vazia (0 features), não devolvemos tudo.
+        # Em vez disso, pegamos a "Explicação Formal Inicial" mais curta.
+        # Isso garante que mostramos pelo menos as features que empurram o score
+        # para a borda, sem precisar mostrar a imagem inteira.
+        # =====================================================================
         if len(expl_final) == 0:
-            expl_final = [f"{c} = {instancia_df.iloc[0, X_train.columns.get_loc(c)]:.4f}" for c in X_train.columns]
-            remocoes = 0
+            # Recalcula a explicação base (one_explanation) para os dois lados
+            base_p1 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 1)
+            base_p0 = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, 0)
+            
+            # Escolhe a menor não-vazia
+            if len(base_p1) > 0 and (len(base_p1) <= len(base_p0) or len(base_p0) == 0):
+                expl_final = base_p1
+            elif len(base_p0) > 0:
+                expl_final = base_p0
+            else:
+                # Se até a base for vazia (raríssimo), aí sim fallback total
+                expl_final = [f"{c} = {instancia_df.iloc[0, X_train.columns.get_loc(c)]:.4f}" for c in X_train.columns]
+            
+            # Zera contadores de processo pois foi um fallback
+            remocoes = 0 
+        # =====================================================================
 
         if emit_tech_logs:
              for passo in passos_escolhidos[:MAX_LOG_STEPS]:
-                key_header = 'rejeitada_feat_header_sucesso' if passo.get('sucesso', False) else 'rejeitada_feat_header_falha'
-                log_formatado.append(LOG_TEMPLATES[key_header].format(feat=passo['feat_nome'], delta=passo.get('delta', 0.0)))
+                key = 'rejeitada_feat_header_sucesso' if passo.get('sucesso') else 'rejeitada_feat_header_falha'
+                log_formatado.append(LOG_TEMPLATES[key].format(feat=passo['feat_nome'], delta=0.0))
 
     else:
+        # Lógica das Classificadas (Mantida igual)
         pred_class = int(modelo.predict(instancia_df)[0])
         if emit_tech_logs:
             posicao = 'acima de t+' if pred_class == 1 else 'abaixo de t-'
