@@ -18,17 +18,17 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# Configurações de estilo
+# Configurações de estilo - OTIMIZADO PARA A4
 plt.style.use('seaborn-v0_8-darkgrid')
 sns.set_palette("husl")
-plt.rcParams['figure.dpi'] = 300
-plt.rcParams['savefig.dpi'] = 300
-plt.rcParams['font.size'] = 10
-plt.rcParams['axes.labelsize'] = 11
-plt.rcParams['axes.titlesize'] = 12
-plt.rcParams['xtick.labelsize'] = 10
-plt.rcParams['ytick.labelsize'] = 10
-plt.rcParams['legend.fontsize'] = 10
+plt.rcParams['figure.dpi'] = 150  # DPI reduzido (era 300)
+plt.rcParams['savefig.dpi'] = 150  # DPI reduzido para arquivos menores
+plt.rcParams['font.size'] = 9
+plt.rcParams['axes.labelsize'] = 10
+plt.rcParams['axes.titlesize'] = 11
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['legend.fontsize'] = 9
 
 # Cores consistentes para cada método
 COLORS = {
@@ -183,7 +183,7 @@ def plot_computational_efficiency(df: pd.DataFrame):
     x = np.arange(len(datasets))
     width = 0.25
     
-    fig, ax = plt.subplots(figsize=(14, 8))
+    fig, ax = plt.subplots(figsize=(10, 6))  # Reduzido de 14x8
     
     for i, method in enumerate(methods):
         times = [df[(df['Dataset'] == d) & (df['Método'] == method)]['Tempo Médio por Instância'].values[0] 
@@ -213,13 +213,13 @@ def plot_computational_efficiency(df: pd.DataFrame):
     ax.set_yscale('log')  # ESCALA LOG para visualizar PEAB
     ax.grid(axis='y', alpha=0.3, linestyle='--', which='both')
     
-    # Adicionar linha de referência
-    ax.axhline(y=0.01, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='10ms')
-    ax.axhline(y=0.1, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='100ms')
-    ax.axhline(y=1.0, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='1s')
+    # Adicionar linhas de referência (sem labels duplicados)
+    ax.axhline(y=0.01, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)
+    ax.axhline(y=0.1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)
+    ax.axhline(y=1.0, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot1_computational_efficiency.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot1_computational_efficiency.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot1_computational_efficiency.png'}")
 
@@ -232,7 +232,7 @@ def plot_speedup_comparison(speedup_df: pd.DataFrame):
         print("   ⚠️  Sem dados de speedup disponíveis. Pulando plot...")
         return
     
-    fig, ax = plt.subplots(figsize=(14, max(8, len(speedup_df)*0.6)))
+    fig, ax = plt.subplots(figsize=(10, max(6, len(speedup_df)*0.5)))  # Reduzido de 14x8
     
     datasets = speedup_df['Dataset'].values
     y_pos = np.arange(len(datasets))
@@ -268,7 +268,7 @@ def plot_speedup_comparison(speedup_df: pd.DataFrame):
             ax.axvline(x=ref_val, color='gray', linestyle=':', linewidth=0.8, alpha=0.4)
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot2_speedup_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot2_speedup_comparison.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot2_speedup_comparison.png'}")
 
@@ -288,7 +288,7 @@ def plot_explanation_size_distribution(df: pd.DataFrame):
         print("   ⚠️  Nenhum dataset com dados completos. Pulando plot...")
         return
     
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(12, 5), sharey=True)  # Reduzido de 18x6
     
     classes = [
         ('Positivos', 'positive'),
@@ -337,9 +337,9 @@ def plot_explanation_size_distribution(df: pd.DataFrame):
             axes[idx].legend(fontsize=10, loc='upper left')
     
     plt.suptitle('Distribuição do Tamanho das Explicações por Classe', 
-                 fontsize=14, fontweight='bold', y=1.00)
+                 fontsize=11, fontweight='bold', y=1.00)
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot3_explanation_size_distribution.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot3_explanation_size_distribution.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot3_explanation_size_distribution.png'}")
 
@@ -348,7 +348,7 @@ def plot_rejection_impact(df: pd.DataFrame):
     """Plot 4: Impacto da rejeição na acurácia (scatter plot)."""
     print("\n📊 Gerando Plot 4: Impacto da Rejeição na Acurácia...")
     
-    fig, ax = plt.subplots(figsize=(11, 11))
+    fig, ax = plt.subplots(figsize=(8, 8))  # Reduzido de 11x11
     
     # Pegar apenas PEAB (todos têm mesma acurácia por dataset)
     df_peab = df[df['Método'] == 'PEAB']
@@ -388,10 +388,10 @@ def plot_rejection_impact(df: pd.DataFrame):
     
     # Colorbar
     cbar = plt.colorbar(scatter, ax=ax)
-    cbar.set_label('Taxa de Rejeição (%)', fontsize=11, fontweight='bold')
+    cbar.set_label('Taxa de Rejeição (%)', fontsize=10, fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot4_rejection_impact.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot4_rejection_impact.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot4_rejection_impact.png'}")
 
@@ -403,51 +403,53 @@ def plot_feature_importance_heatmap():
 
 
 def plot_time_vs_size_tradeoff(df: pd.DataFrame):
-    """Plot 6: Trade-off entre tempo e tamanho (scatter)."""
+    """Plot 6: Trade-off entre tempo e tamanho (scatter) - POR DATASET."""
     print("\n📊 Gerando Plot 6: Trade-off Tempo vs Tamanho...")
     
-    fig, ax = plt.subplots(figsize=(12, 8))
-    
-    # Calcular médias por método (agregado de todos datasets)
-    summary = df.groupby('Método').agg({
-        'Tempo Médio por Instância': 'mean',
-        'Positivos Média': 'mean',
-        'Negativos Média': 'mean',
-        'Rejeitados Média': 'mean'
-    }).reset_index()
-    
-    summary['Tamanho Médio Geral'] = (summary['Positivos Média'] + 
-                                       summary['Negativos Média'] + 
-                                       summary['Rejeitados Média']) / 3
-    
-    methods = summary['Método'].values
-    avg_time = summary['Tempo Médio por Instância'].values
-    avg_size = summary['Tamanho Médio Geral'].values
+    fig, ax = plt.subplots(figsize=(10, 7))
     
     markers = {'PEAB': 'o', 'Anchor': '^', 'MinExp': 's'}
     
-    for i, method in enumerate(methods):
-        ax.scatter(avg_time[i], avg_size[i], s=600, 
-                  c=COLORS[method], marker=markers[method],
-                  alpha=0.7, edgecolors='black', linewidths=2.5,
-                  label=method, zorder=3)
+    # Plotar cada método com todos os seus datasets
+    for method in ['PEAB', 'Anchor', 'MinExp']:
+        df_method = df[df['Método'] == method]
         
-        ax.annotate(method, (avg_time[i], avg_size[i]),
-                   xytext=(15, 15), textcoords='offset points',
-                   fontsize=13, fontweight='bold',
-                   bbox=dict(boxstyle='round,pad=0.5', 
-                            facecolor=COLORS[method], alpha=0.3))
+        times = df_method['Tempo Médio por Instância'].values
+        # Tamanho médio = média dos positivos e negativos (ignorar rejeitados pois são classe intermediária)
+        sizes = (df_method['Positivos Média'].values + df_method['Negativos Média'].values) / 2
+        
+        ax.scatter(times, sizes, s=150, 
+                  c=COLORS[method], marker=markers[method],
+                  alpha=0.7, edgecolors='black', linewidths=1.5,
+                  label=method, zorder=3)
     
-    ax.set_xlabel('Tempo Médio por Instância (segundos)', fontsize=12, fontweight='bold')
-    ax.set_ylabel('Tamanho Médio das Explicações', fontsize=12, fontweight='bold')
-    ax.set_title('Trade-off entre Tempo Computacional e Tamanho das Explicações',
-                fontsize=14, fontweight='bold', pad=20)
+    # Adicionar anotações para pontos extremos
+    for method in ['PEAB', 'Anchor', 'MinExp']:
+        df_method = df[df['Método'] == method]
+        if not df_method.empty:
+            # Anotar o ponto com maior tempo
+            idx_max = df_method['Tempo Médio por Instância'].idxmax()
+            max_time = df_method.loc[idx_max, 'Tempo Médio por Instância']
+            max_size = (df_method.loc[idx_max, 'Positivos Média'] + df_method.loc[idx_max, 'Negativos Média']) / 2
+            dataset_name = df_method.loc[idx_max, 'Dataset']
+            
+            ax.annotate(f"{method}\n(máx)", (max_time, max_size),
+                       xytext=(10, 10), textcoords='offset points',
+                       fontsize=8, fontweight='bold',
+                       bbox=dict(boxstyle='round,pad=0.3', 
+                                facecolor=COLORS[method], alpha=0.5),
+                       arrowprops=dict(arrowstyle='->', lw=1))
+    
+    ax.set_xlabel('Tempo por Instância (segundos) - Escala Log', fontsize=11, fontweight='bold')
+    ax.set_ylabel('Tamanho Médio das Explicações (features)', fontsize=11, fontweight='bold')
+    ax.set_title('Trade-off Tempo vs Tamanho das Explicações\n(cada ponto = um dataset)',
+                fontsize=12, fontweight='bold', pad=15)
     ax.set_xscale('log')
-    ax.legend(fontsize=12, loc='upper right')
+    ax.legend(fontsize=11, loc='best')
     ax.grid(alpha=0.3, linestyle='--', which='both')
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png'}")
 
@@ -467,9 +469,9 @@ def plot_rejection_thresholds(df: pd.DataFrame):
     t_plus = df_peab['t_plus'].values
     t_minus = df_peab['t_minus'].values
     
-    # Ajustar altura da figura dinamicamente
-    fig_height = max(8, len(datasets) * 0.5)
-    fig, ax = plt.subplots(figsize=(16, fig_height))
+    # Ajustar altura da figura dinamicamente - AUMENTADO para evitar corte
+    fig_height = max(8, len(datasets) * 0.6)  # Aumentado: 0.6 por dataset (era 0.4)
+    fig, ax = plt.subplots(figsize=(12, fig_height))  # Aumentado largura também
     
     x = np.arange(len(datasets))
     width = 0.7
@@ -492,30 +494,30 @@ def plot_rejection_thresholds(df: pd.DataFrame):
     # Adicionar valores dos thresholds COM MAIS ESPAÇO
     for i, (tp, tm, rej_h) in enumerate(zip(t_plus, t_minus, rejection_height)):
         # t+ no topo da zona de rejeição
-        ax.text(i, tp + 0.015, f't+={tp:.3f}', ha='center', va='bottom', 
-               fontsize=9, fontweight='bold', bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.7))
+        ax.text(i, tp + 0.02, f't+={tp:.3f}', ha='center', va='bottom', 
+               fontsize=8, fontweight='bold', bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.8))
         
         # t- na base da zona de rejeição
-        ax.text(i, tm - 0.015, f't-={tm:.3f}', ha='center', va='top',
-               fontsize=9, fontweight='bold', bbox=dict(boxstyle='round,pad=0.3', facecolor='lightblue', alpha=0.7))
+        ax.text(i, tm - 0.02, f't-={tm:.3f}', ha='center', va='top',
+               fontsize=8, fontweight='bold', bbox=dict(boxstyle='round,pad=0.3', facecolor='lightblue', alpha=0.8))
         
-        # Largura da zona de rejeição
-        ax.text(i, tm + rej_h/2, f'Δ={rej_h:.3f}', ha='center', va='center',
+        # Largura da zona de rejeição (dentro da barra)
+        ax.text(i, tm + rej_h/2, f'{rej_h:.2f}', ha='center', va='center',
                fontsize=8, fontweight='bold', color='white')
     
-    ax.set_ylabel('Score de Predição', fontsize=13, fontweight='bold')
-    ax.set_xlabel('Dataset', fontsize=13, fontweight='bold')
-    ax.set_title('Thresholds de Rejeição Otimizados por Dataset\n(Thresholds IGUAIS para PEAB, Anchor e MinExp - Pipeline Compartilhado)',
-                fontsize=14, fontweight='bold', pad=25)
+    ax.set_ylabel('Score de Predição', fontsize=12, fontweight='bold')
+    ax.set_xlabel('Dataset', fontsize=12, fontweight='bold')
+    ax.set_title('Thresholds de Rejeição Otimizados por Dataset\n(Iguais para PEAB, Anchor e MinExp)',
+                fontsize=11, fontweight='bold', pad=20)
     ax.set_xticks(x)
-    ax.set_xticklabels(datasets, rotation=45, ha='right', fontsize=10)
-    ax.legend(fontsize=12, loc='upper left', framealpha=0.9)
-    ax.axhline(0, color='black', linestyle='--', linewidth=1.2, alpha=0.8, label='Score = 0')
+    ax.set_xticklabels(datasets, rotation=45, ha='right', fontsize=9)
+    ax.legend(fontsize=10, loc='upper left', framealpha=0.9)
+    ax.axhline(0, color='black', linestyle='--', linewidth=1, alpha=0.6)
     ax.grid(axis='y', alpha=0.3, linestyle='--')
-    ax.set_ylim(-0.15, 1.05)
+    ax.set_ylim(-0.2, 1.1)  # Aumentado margem vertical
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot7_rejection_thresholds.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot7_rejection_thresholds.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot7_rejection_thresholds.png'}")
 
@@ -536,7 +538,7 @@ def plot_class_distribution(df: pd.DataFrame):
     negativos = df_peab['Negativos Count'].values
     rejeitados = df_peab['Rejeitados Count'].values
     
-    fig, ax = plt.subplots(figsize=(14, 7))
+    fig, ax = plt.subplots(figsize=(10, 5))  # Reduzido de 14x7
     
     x = np.arange(len(datasets))
     width = 0.25
@@ -565,7 +567,7 @@ def plot_class_distribution(df: pd.DataFrame):
     ax.grid(axis='y', alpha=0.3, linestyle='--')
     
     plt.tight_layout()
-    plt.savefig(PLOTS_DIR / 'plot8_class_distribution.png', dpi=300, bbox_inches='tight')
+    plt.savefig(PLOTS_DIR / 'plot8_class_distribution.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
     print(f"   ✅ Salvo: {PLOTS_DIR / 'plot8_class_distribution.png'}")
 

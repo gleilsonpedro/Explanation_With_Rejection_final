@@ -19,22 +19,22 @@ DATASETS ANALISADOS: 13
 
 PERFORMANCE COMPUTACIONAL:
 --------------------------------------------------------------------------------
-  PEAB      : 0.000000s por instância (média)
+  PEAB      : 0.000ms (milissegundos) por instância (média)
   Anchor    : 0.348568s por instância (média)
-  MinExp    : 7.210639s por instância (média)
+  MinExp    : 7.211s por instância (média)
 
 SPEEDUPS DO PEAB:
 --------------------------------------------------------------------------------
-  breast_cancer            : 0.0x vs Anchor, 0.0x vs MinExp
-  pima_indians_diabetes    : 0.0x vs Anchor, 0.0x vs MinExp
-  sonar                    : 0.0x vs Anchor, 0.0x vs MinExp
-  vertebral_column         : 0.0x vs Anchor, 0.0x vs MinExp
-  wine                     : 0.0x vs Anchor, 0.0x vs MinExp
-  banknote                 : 0.0x vs Anchor, 0.0x vs MinExp
-  heart_disease            : 0.0x vs Anchor, 0.0x vs MinExp
-  wine_quality             : 0.0x vs Anchor, 0.0x vs MinExp
+  breast_cancer            : 0.00x vs Anchor, 0.00x vs MinExp
+  pima_indians_diabetes    : 0.00x vs Anchor, 0.00x vs MinExp
+  sonar                    : 0.00x vs Anchor, 0.00x vs MinExp
+  vertebral_column         : 0.00x vs Anchor, 0.00x vs MinExp
+  wine                     : 0.00x vs Anchor, 0.00x vs MinExp
+  banknote                 : 0.00x vs Anchor, 0.00x vs MinExp
+  heart_disease            : 0.00x vs Anchor, 0.00x vs MinExp
+  wine_quality             : 0.00x vs Anchor, 0.00x vs MinExp
 
-  MÉDIA GERAL: 0.0x vs Anchor, 0.0x vs MinExp
+  MÉDIA GERAL: 0.00x vs Anchor, 0.00x vs MinExp
 
 TAMANHO DAS EXPLICAÇÕES (média geral):
 --------------------------------------------------------------------------------
@@ -61,11 +61,11 @@ IMPACTO DA REJEIÇÃO:
 
 PRINCIPAIS CONCLUSÕES:
 --------------------------------------------------------------------------------
-  ✅ PEAB é em média 0x mais rápido que Anchor
-  ✅ PEAB é em média 0x mais rápido que MinExp
-  ✅ Anchor gera explicações mais concisas (~2-3 features)
-  ✅ PEAB gera explicações balanceadas (~15-20 features)
-  ✅ MinExp gera explicações mais completas (~20-25 features)
+  ✅ PEAB é em média 0.00x mais rápido que Anchor
+  ✅ PEAB é em média 0.00x mais rápido que MinExp
+  ✅ Anchor gera explicações mais concisas (média: 2.3 features)
+  ✅ PEAB gera explicações balanceadas (média: 112.2 features)
+  ✅ MinExp gera explicações mais completas (média: 45.1 features)
   ✅ Rejeição melhora acurácia em média 11.3%
   ✅ Todos os métodos usam pipeline idêntico (comparação justa)
 
