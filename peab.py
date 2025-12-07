@@ -41,7 +41,7 @@ DATASET_CONFIG = {
     "banknote_auth":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "wine_quality":         {'test_size': 0.3, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "creditcard":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.05},
     "newsgroups":           {'test_size': 0.3, 'rejection_cost': 0.24, 'top_k_features': 2000}
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'

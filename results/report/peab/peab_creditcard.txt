@@ -9,30 +9,31 @@
   Instâncias de teste: 42721
   Features por instância: 29
   Test size: 30.00%
-  Custo de rejeição (WR): 0.2400
+  Custo de rejeição (WR): 0.0500
 
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
   penalty: l2
-  C: 0.01
+  C: 0.001
   solver: liblinear
   max_iter: 1000
-  Intercepto: -0.393632
+  class_weight: balanced
+  Intercepto: 0.564258
 
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): -3.134564
-  t- (limiar inferior): -3.134564
-  Largura da zona de rejeição: 0.000000
+  t+ (limiar superior): 4.645840
+  t- (limiar inferior): -0.565219
+  Largura da zona de rejeição: 5.211059
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 99.83%
-  Acurácia com rejeição: 99.83%
-  Taxa de rejeição: 0.00%
+  Acurácia sem rejeição: 99.93%
+  Acurácia com rejeição: 99.98%
+  Taxa de rejeição: 1.02%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
@@ -45,39 +46,39 @@
     Máximo: 0 features
 
   NEGATIVAS:
-    Quantidade: 42721
-    Tamanho médio: 7.06 features
-    Desvio padrão: 0.40
-    Mínimo: 7 features
-    Máximo: 24 features
+    Quantidade: 42284
+    Tamanho médio: 21.85 features
+    Desvio padrão: 1.67
+    Mínimo: 13 features
+    Máximo: 29 features
 
   REJEITADAS:
-    Quantidade: 0
-    Tamanho médio: 0.00 features
-    Desvio padrão: 0.00
-    Mínimo: 0 features
-    Máximo: 0 features
+    Quantidade: 437
+    Tamanho médio: 22.64 features
+    Desvio padrão: 4.61
+    Mínimo: 9 features
+    Máximo: 29 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 212.7621s
-  Tempo médio por instância: 0.004980s
+  Tempo total: 273.4014s
+  Tempo médio por instância: 0.006400s
   Tempo médio POSITIVAS: 0.000000s
-  Tempo médio NEGATIVAS: 0.004953s
-  Tempo médio REJEITADAS: 0.000000s
+  Tempo médio NEGATIVAS: 0.006270s
+  Tempo médio REJEITADAS: 0.015573s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  V17: 42718 ocorrências (100.0%)
-  V12: 42717 ocorrências (100.0%)
-  V3: 42714 ocorrências (100.0%)
-  V1: 42698 ocorrências (99.9%)
-  V16: 42684 ocorrências (99.9%)
-  V14: 42683 ocorrências (99.9%)
-  V18: 41104 ocorrências (96.2%)
-  V10: 3678 ocorrências (8.6%)
-  V9: 118 ocorrências (0.3%)
-  V8: 66 ocorrências (0.2%)
+  V11: 42721 ocorrências (100.0%)
+  V14: 42721 ocorrências (100.0%)
+  V4: 42721 ocorrências (100.0%)
+  V12: 42719 ocorrências (100.0%)
+  V10: 42718 ocorrências (100.0%)
+  V16: 42714 ocorrências (100.0%)
+  V17: 42701 ocorrências (100.0%)
+  V9: 42696 ocorrências (99.9%)
+  V27: 42681 ocorrências (99.9%)
+  V21: 42675 ocorrências (99.9%)
 
