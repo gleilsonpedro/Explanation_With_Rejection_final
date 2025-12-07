@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: spambase_Não Spam_vs_Spam
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 1381
+  - Número de Features do Modelo: 57
+  - Acurácia do Modelo (teste, sem rejeição): 62.27%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 3616.0152 segundos
+  - Tempo Médio por Instância (Geral): 2.6184 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 9.70% (134 de 1381 instâncias)
+  - Acurácia com Opção de Rejeição (nas 1247 instâncias aceitas): 87.17%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (454 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 33.19 ± 3.98 (Min: 25, Max: 47)
+  - Classe Negativa (793 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 28.14 ± 3.57 (Min: 24, Max: 47)
+  - Classe REJEITADA (134 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 55.23 ± 0.49 (Min: 54, Max: 57)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - word_freq_your: 1352 vezes
+    - word_freq_you: 1300 vezes
+    - capital_run_length_total: 1156 vezes
+    - char_freq_dollar: 1128 vezes
+    - word_freq_000: 1073 vezes
+    - word_freq_email: 1055 vezes
+    - word_freq_business: 1046 vezes
+    - word_freq_money: 1039 vezes
+    - capital_run_length_longest: 1034 vezes
+    - word_freq_mail: 1005 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 2.5369 segundos
+  - Negativas: 2.5068 segundos
+  - Rejeitadas: 3.5548 segundos

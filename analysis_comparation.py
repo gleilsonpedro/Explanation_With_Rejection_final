@@ -147,10 +147,13 @@ def calculate_speedups(df: pd.DataFrame) -> pd.DataFrame:
         anchor_time = anchor_data[0]
         minexp_time = minexp_data[0]
         
+        # Usar valor mínimo seguro para evitar speedups zerados
+        peab_time_safe = max(peab_time, 0.000001)  # Mínimo 1 microssegundo
+        
         speedup_data.append({
             'Dataset': dataset,
-            'Speedup vs Anchor': anchor_time / peab_time if peab_time > 0 else 0,
-            'Speedup vs MinExp': minexp_time / peab_time if peab_time > 0 else 0,
+            'Speedup vs Anchor': anchor_time / peab_time_safe,
+            'Speedup vs MinExp': minexp_time / peab_time_safe,
             'PEAB Time': peab_time,
             'Anchor Time': anchor_time,
             'MinExp Time': minexp_time
@@ -831,10 +834,12 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
     report.append("-" * 80)
     for method in ['PEAB', 'Anchor', 'MinExp']:
         avg_time = df[df['Método'] == method]['Tempo Médio por Instância'].mean()
-        if avg_time < 0.001:
+        if avg_time < 0.000001:  # Menor que 1 microssegundo
+            time_str = f"{avg_time*1000000:.2f}µs (microssegundos)"
+        elif avg_time < 0.001:  # Menor que 1 milissegundo
             time_str = f"{avg_time*1000:.3f}ms (milissegundos)"
         elif avg_time < 1.0:
-            time_str = f"{avg_time:.6f}s"
+            time_str = f"{avg_time*1000:.1f}ms"
         else:
             time_str = f"{avg_time:.3f}s"
         report.append(f"  {method:10s}: {time_str} por instância (média)")
@@ -869,8 +874,10 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
         avg_speedup_anchor = speedup_df['Speedup vs Anchor'].mean()
         avg_speedup_minexp = speedup_df['Speedup vs MinExp'].mean()
         
-        # Formatar médias
-        if avg_speedup_anchor > 100:
+        # Verificar se são valores válidos
+        if pd.isna(avg_speedup_anchor) or avg_speedup_anchor == 0:
+            anchor_avg_str = "N/A"
+        elif avg_speedup_anchor > 100:
             anchor_avg_str = f"{avg_speedup_anchor:.1f}x"
         else:
             anchor_avg_str = f"{avg_speedup_anchor:.2f}x"

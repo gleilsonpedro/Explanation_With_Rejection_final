@@ -27,7 +27,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.24,          
-    'subsample_size': 0.03  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
+    'subsample_size': 0.05  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
 }
 
 DATASET_CONFIG = {
@@ -289,7 +289,7 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     features_para_remover = sorted(
         [f.split(' = ')[0] for f in expl_minima_str],
         key=lambda nome: abs(deltas_para_ordenar[col_to_idx[nome]]),
-        reverse=True
+        reverse=False # se True remove as do maior delta se False as de menro delta(menor impacto)
     )
 
     for feat_nome in features_para_remover:
@@ -581,7 +581,7 @@ def montar_dataset_cache(dataset_name: str,
         },
         'computation_time': {
             'total': float(metricas_dict.get('tempo_total', 0.0)),
-            'mean_per_instance': float(metricas_dict.get('tempo_medio_geral', 0.0)),
+            'mean_per_instance': float(metricas_dict.get('tempo_medio_instancia', 0.0)),
             'positive': float(metricas_dict.get('tempo_medio_positivas', 0.0)),
             'negative': float(metricas_dict.get('tempo_medio_negativas', 0.0)),
             'rejected': float(metricas_dict.get('tempo_medio_rejeitadas', 0.0))
@@ -717,7 +717,14 @@ def executar_experimento_para_dataset(dataset_name: str):
 
     # Treino Final com dados consistentes
     modelo, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params)
-    
+
+    print(f"\n{'='*40}")
+    print(f"THRESHOLDS CALCULADOS:")
+    print(f" T+ (Plus):     {t_plus:.4f}")
+    print(f" T- (Minus):    {t_minus:.4f}")
+    print(f" Rejection Zone: {t_plus - t_minus:.4f}")
+    print(f"{'='*40}\n")
+
     # Previsões
     decision_scores = modelo.decision_function(X_test)
     y_pred = np.full(y_test.shape, -1, dtype=int)

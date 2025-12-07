@@ -4,7 +4,7 @@ RELATÓRIO DE ANÁLISE COMPARATIVA: PEAB vs Anchor vs MinExp
 
 DATASETS ANALISADOS: 13
   • breast_cancer: 171 instâncias de teste
-  • mnist_3_vs_8: 2095 instâncias de teste
+  • mnist_3_vs_8: 126 instâncias de teste
   • pima_indians_diabetes: 231 instâncias de teste
   • sonar: 63 instâncias de teste
   • vertebral_column: 93 instâncias de teste
@@ -19,33 +19,34 @@ DATASETS ANALISADOS: 13
 
 PERFORMANCE COMPUTACIONAL:
 --------------------------------------------------------------------------------
-  PEAB      : 0.000ms (milissegundos) por instância (média)
-  Anchor    : 0.348568s por instância (média)
-  MinExp    : 7.211s por instância (média)
+  PEAB      : 41.2ms por instância (média)
+  Anchor    : 21.677s por instância (média)
+  MinExp    : 6.751s por instância (média)
 
 SPEEDUPS DO PEAB:
 --------------------------------------------------------------------------------
-  breast_cancer            : 0.00x vs Anchor, 0.00x vs MinExp
-  pima_indians_diabetes    : 0.00x vs Anchor, 0.00x vs MinExp
-  sonar                    : 0.00x vs Anchor, 0.00x vs MinExp
-  vertebral_column         : 0.00x vs Anchor, 0.00x vs MinExp
-  wine                     : 0.00x vs Anchor, 0.00x vs MinExp
-  banknote                 : 0.00x vs Anchor, 0.00x vs MinExp
-  heart_disease            : 0.00x vs Anchor, 0.00x vs MinExp
-  wine_quality             : 0.00x vs Anchor, 0.00x vs MinExp
+  breast_cancer            : 135.5x vs Anchor, 182.1x vs MinExp
+  pima_indians_diabetes    : 8.15x vs Anchor, 43.36x vs MinExp
+  sonar                    : 86.07x vs Anchor, 203.9x vs MinExp
+  vertebral_column         : 7.83x vs Anchor, 38.10x vs MinExp
+  wine                     : 6.79x vs Anchor, 77.59x vs MinExp
+  banknote                 : 5.01x vs Anchor, 26.27x vs MinExp
+  heart_disease            : 16.74x vs Anchor, 82.87x vs MinExp
+  wine_quality             : 6.87x vs Anchor, 75.23x vs MinExp
+  spambase                 : 51.05x vs Anchor, 287.1x vs MinExp
 
-  MÉDIA GERAL: 0.00x vs Anchor, 0.00x vs MinExp
+  MÉDIA GERAL: 36.00x vs Anchor, 113.0x vs MinExp
 
 TAMANHO DAS EXPLICAÇÕES (média geral):
 --------------------------------------------------------------------------------
-  PEAB      : Pos=112.2, Neg=98.7, Rej=227.7 features
-  Anchor    : Pos=2.3, Neg=2.4, Rej=2.1 features
-  MinExp    : Pos=45.1, Neg=37.6, Rej=13.8 features
+  PEAB      : Pos=106.0, Neg=96.4, Rej=180.1 features
+  Anchor    : Pos=2.3, Neg=2.3, Rej=1.9 features
+  MinExp    : Pos=43.9, Neg=36.7, Rej=17.9 features
 
 IMPACTO DA REJEIÇÃO:
 --------------------------------------------------------------------------------
   breast_cancer            : +5.59% ganho de acurácia (rejeitando 12.9%)
-  mnist_3_vs_8             : +1.21% ganho de acurácia (rejeitando 4.8%)
+  mnist_3_vs_8             : +0.00% ganho de acurácia (rejeitando 0.0%)
   pima_indians_diabetes    : +8.30% ganho de acurácia (rejeitando 24.7%)
   sonar                    : +27.40% ganho de acurácia (rejeitando 63.5%)
   vertebral_column         : +10.22% ganho de acurácia (rejeitando 28.0%)
@@ -57,16 +58,16 @@ IMPACTO DA REJEIÇÃO:
   creditcard               : +0.00% ganho de acurácia (rejeitando 0.0%)
   newsgroups               : +4.31% ganho de acurácia (rejeitando 11.7%)
 
-  MÉDIA GERAL: +11.31% ganho com 16.6% de rejeição
+  MÉDIA GERAL: +11.21% ganho com 16.2% de rejeição
 
 PRINCIPAIS CONCLUSÕES:
 --------------------------------------------------------------------------------
-  ✅ PEAB é em média 0.00x mais rápido que Anchor
-  ✅ PEAB é em média 0.00x mais rápido que MinExp
+  ✅ PEAB é em média 36.00x mais rápido que Anchor
+  ✅ PEAB é em média 113.0x mais rápido que MinExp
   ✅ Anchor gera explicações mais concisas (média: 2.3 features)
-  ✅ PEAB gera explicações balanceadas (média: 112.2 features)
-  ✅ MinExp gera explicações mais completas (média: 45.1 features)
-  ✅ Rejeição melhora acurácia em média 11.3%
+  ✅ PEAB gera explicações balanceadas (média: 106.0 features)
+  ✅ MinExp gera explicações mais completas (média: 43.9 features)
+  ✅ Rejeição melhora acurácia em média 11.2%
   ✅ Todos os métodos usam pipeline idêntico (comparação justa)
 
 ================================================================================
