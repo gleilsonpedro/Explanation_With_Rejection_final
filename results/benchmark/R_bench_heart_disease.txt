@@ -1,0 +1,55 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: HEART_DISEASE
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 90
+ - Thresholds: t+ = 0.0886, t- = 0.0595
+ - Zona de Rejeição: 0.0291
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 0.01,
+    "solver": "liblinear",
+    "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)   92.22%
+Gap Médio (Features Excedentes)   0.2000
+           Tempo Médio PEAB (s) 0.005185
+     Tempo Médio OTIMIZAÇÃO (s) 0.042193
+  Speedup (x vezes mais rápido)    8.14x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA   52  86.54%    0.3462      4.88       4.54   0.00474s    0.04240s
+ POSITIVA   32 100.00%    0.0000      5.00       5.00   0.00476s    0.04198s
+REJEITADA    6 100.00%    0.0000     11.83      11.83   0.01127s    0.04152s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+ id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+ 73      NEGATIVA            10               5    5
+  0      NEGATIVA             9               5    4
+ 14      NEGATIVA            10               6    4
+ 78      NEGATIVA             8               6    2
+ 42      NEGATIVA             8               7    1
+ 80      NEGATIVA             8               7    1
+ 24      NEGATIVA             8               7    1
+ 53      POSITIVA             6               6    0
+ 54      POSITIVA             3               3    0
+ 65      POSITIVA             3               3    0
+

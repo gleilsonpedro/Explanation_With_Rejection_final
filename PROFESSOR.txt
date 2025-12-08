@@ -1,0 +1,55 @@
+rodar separado peab do solver
+validar solver
+validar peab (rodar datset e verificar se remover as features ainda mantem a classe)
+debugar nos datasets com menos features problema nas negativas e positivas na comparação do peab com solver
+
+datasets com problema, sonar,  wine, banknote, 
+
+
+
+thresholds são calculados como?
+    Os thresholds são calculados sobre o decision_function da Regressão Logística
+O decision_function retorna: score = intercepto + Σ(coeficientes × features)
+📊 ANÁLISE DATASET POR DATASET
+1. BANKNOTE (ambos negativos)
+Por que ambos negativos?
+
+O intercepto é POSITIVO (+0.134)
+Mas as features contribuem NEGATIVAMENTE em média
+Score médio = 0.134 + (soma_negativa) = negativo
+O modelo está calibrado para scores negativos
+t- < t+ é respeitado ✅ (-0.300 < -0.255)
+2. HEART_DISEASE (ambos positivos)
+Por que ambos positivos?
+
+O intercepto é NEGATIVO (-0.106)
+Mas as features contribuem POSITIVAMENTE em média
+Score médio = -0.106 + (soma_positiva) = positivo
+O modelo está calibrado para scores positivos
+t- < t+ é respeitado ✅ (0.059 < 0.088)
+3. SONAR (ambos positivos)
+Explicação: Intercepto negativo + features positivas = scores positivos ✅
+
+4. WINE (ambos positivos)
+Explicação: Intercepto positivo + features positivas = scores positivos ✅
+
+5. WINE_QUALITY (ambos negativos)
+Explicação: Intercepto muito negativo + features negativas = scores muito negativos ✅
+
+6. SPAMBASE (ambos negativos)
+Explicação: Intercepto negativo + features negativas = scores negativos ✅
+
+7. BREAST_CANCER ("correto" - t+ positivo, t- negativo)
+Por que este parece "normal"?
+
+Intercepto MUITO POSITIVO (+1.914)
+Features têm contribuições mistas (positivas e negativas)
+Distribuição de scores cruza o zero
+Por coincidência, os thresholds ótimos ficaram em lados opostos do zero
+🎯 EXPLICAÇÃO MATEMÁTICA
+O que é o decision_function?
+Onde:
+
+intercept pode ser qualquer valor (positivo, negativo, grande, pequeno)
+wi são os pesos (podem ser positivos ou negativos)
+xi são as features escaladas (geralmente entre 0 e 1)

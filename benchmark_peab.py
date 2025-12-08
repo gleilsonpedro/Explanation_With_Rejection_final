@@ -1,3 +1,4 @@
+# faz a análise de benchmark comparando o PEAB com solver PULP
 import time
 import pulp
 import pandas as pd
@@ -88,7 +89,7 @@ def calcular_minimo_exato_pulp(modelo: Pipeline, instance_df: pd.DataFrame, X_tr
 def gerar_relatorio_tabela(df: pd.DataFrame, dataset_name: str, t_plus: float, t_minus: float, params_usados: dict):
     """Gera um arquivo de texto com tabelas comparativas limpas."""
     
-    output_path = f"results/benchmark/C_r_bench_{dataset_name}.txt"
+    output_path = f"results/benchmark/R_bench_{dataset_name}.txt"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     with open(output_path, 'w', encoding='utf-8') as f:
@@ -102,6 +103,7 @@ def gerar_relatorio_tabela(df: pd.DataFrame, dataset_name: str, t_plus: float, t
         f.write("-" * 80 + "\n")
         f.write(f" - Instâncias de Teste: {len(df)}\n")
         f.write(f" - Thresholds: t+ = {t_plus:.4f}, t- = {t_minus:.4f}\n")
+        f.write(f" - Zona de Rejeição: {t_plus - t_minus:.4f}\n")
         f.write(f" - Parâmetros do Modelo (Regressão Logística):\n")
         f.write(json.dumps(params_usados, indent=4))
         f.write("\n\n")
@@ -136,7 +138,7 @@ def gerar_relatorio_tabela(df: pd.DataFrame, dataset_name: str, t_plus: float, t
         f.write("-" * 80 + "\n")
         f.write("2. DETALHAMENTO POR CLASSE DE PREDIÇÃO\n")
         f.write("-" * 80 + "\n")
-        f.write("Compare aqui onde o PEAB é perfeito e onde ele encontra dificuldades.\n\n")
+        f.write("onde o PEAB é perfeito e onde ele encontra dificuldades.\n\n")
 
         grupo = df.groupby('tipo_predicao').agg({
             'id': 'count',

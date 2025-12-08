@@ -1,0 +1,55 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: SPAMBASE
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 1381
+ - Thresholds: t+ = -0.3111, t- = -0.3655
+ - Zona de Rejeição: 0.0544
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 0.01,
+    "solver": "liblinear",
+    "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)   72.77%
+Gap Médio (Features Excedentes)   0.1028
+           Tempo Médio PEAB (s) 0.008191
+     Tempo Médio OTIMIZAÇÃO (s) 0.046987
+  Speedup (x vezes mais rápido)    5.74x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA  793 100.00%    0.0000     25.50      25.50   0.00657s    0.04679s
+ POSITIVA  454  17.18%    0.3128     30.28      29.96   0.00698s    0.04714s
+REJEITADA  134 100.00%    0.0000     54.84      54.84   0.02188s    0.04762s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+ 618      POSITIVA            34              26    8
+ 238      POSITIVA            36              29    7
+ 524      POSITIVA            36              29    7
+ 175      POSITIVA            35              28    7
+ 326      POSITIVA            34              27    7
+ 789      POSITIVA            36              29    7
+1049      POSITIVA            30              24    6
+ 994      POSITIVA            31              25    6
+ 698      POSITIVA            36              30    6
+1303      POSITIVA            35              29    6
+

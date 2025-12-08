@@ -1,0 +1,55 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: WINE_QUALITY
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 480
+ - Thresholds: t+ = -1.1031, t- = -1.2008
+ - Zona de Rejeição: 0.0977
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 0.01,
+    "solver": "liblinear",
+    "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)   99.79%
+Gap Médio (Features Excedentes)   0.0042
+           Tempo Médio PEAB (s) 0.004941
+     Tempo Médio OTIMIZAÇÃO (s) 0.041407
+  Speedup (x vezes mais rápido)    8.38x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA  453 100.00%    0.0000      3.95       3.95   0.00462s    0.04142s
+ POSITIVA    1   0.00%    2.0000     11.00       9.00   0.00483s    0.04112s
+REJEITADA   26 100.00%    0.0000      9.58       9.58   0.01054s    0.04121s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+ id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+383      POSITIVA            11               9    2
+  0      NEGATIVA             3               3    0
+329     REJEITADA            10              10    0
+327      NEGATIVA             4               4    0
+326      NEGATIVA             6               6    0
+325      NEGATIVA             4               4    0
+324      NEGATIVA             5               5    0
+323      NEGATIVA             3               3    0
+322      NEGATIVA             5               5    0
+321      NEGATIVA             3               3    0
+

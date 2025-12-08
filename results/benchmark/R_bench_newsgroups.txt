@@ -1,0 +1,55 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: NEWSGROUPS
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 596
+ - Thresholds: t+ = 0.0359, t- = -0.2957
+ - Zona de Rejeição: 0.3316
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 1.0,
+    "solver": "liblinear",
+    "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)   70.64%
+Gap Médio (Features Excedentes)   1.9446
+           Tempo Médio PEAB (s) 0.368029
+     Tempo Médio OTIMIZAÇÃO (s) 0.132666
+  Speedup (x vezes mais rápido)    0.36x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA  243  83.13%    0.9835    894.96     893.98   0.12433s    0.13211s
+ POSITIVA  283  77.39%    1.1413    973.44     972.30   0.13493s    0.13156s
+REJEITADA   70   0.00%    8.5286   1962.27    1953.74   2.15638s    0.13906s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+ id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+ 71      NEGATIVA           957             920   37
+ 83      POSITIVA          1024            1000   24
+ 64      POSITIVA          1021             999   22
+161      NEGATIVA           932             911   21
+376     REJEITADA          1970            1950   20
+150      NEGATIVA           914             894   20
+555     REJEITADA          1969            1950   19
+440      POSITIVA          1011             993   18
+445      NEGATIVA           942             924   18
+298     REJEITADA          1967            1950   17
+

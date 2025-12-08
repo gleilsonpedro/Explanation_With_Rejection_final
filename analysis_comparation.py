@@ -1,10 +1,11 @@
 """
-Script de Análise Comparativa entre PEAB, Anchor e MinExp
-Gera plots e tabelas para dissertação de mestrado a partir dos JSONs de resultados.
+ teste de Script de Análise Comparativa entre PEAB, Anchor e MinExp
+Gera plots e tabelas a partir do JSON dos resultados.
 
-Autor: Análise Automatizada
-Data: Dezembro 2025
 """
+# algusn plots ainda com problema gerando tamanho errados 
+# plot 1 e 3
+
 
 import json
 import os

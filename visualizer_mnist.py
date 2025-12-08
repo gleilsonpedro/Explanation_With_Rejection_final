@@ -1,3 +1,6 @@
+# falta configurar novo json pean_results e nova estrutura do json para obter os resultados
+
+
 """
 Visualizador de Instâncias Individuais do PEAB - Pares MNIST
 
@@ -27,7 +30,7 @@ import random
 # ==============================================================================
 # CONFIGURAÇÕES
 # ==============================================================================
-RESULTS_FILE = 'json/comparative_results.json'
+RESULTS_FILE = 'json/peab_results.json'
 OUTPUT_DIR = 'results/plots/mnist/numbers'
 SAVE_PLOTS = True
 SHOW_PLOTS = False

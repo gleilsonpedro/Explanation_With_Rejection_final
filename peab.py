@@ -27,7 +27,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.24,          
-    'subsample_size': 0.05  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
+    'subsample_size': 1.0  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
 }
 
 DATASET_CONFIG = {
@@ -106,59 +106,62 @@ def carregar_hiperparametros(caminho_arquivo: str = HIPERPARAMETROS_FILE) -> dic
 
 def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, premis_class: int) -> np.ndarray:
     scaler = modelo.named_steps['scaler']
-    logreg = _get_lr(modelo)
-    coefs = logreg.coef_[0]
+    logreg = _get_lr(modelo) #acesssa o pipeline e pega o modelo
+    coefs = logreg.coef_[0] # pega os coeficientes do modelo
     
-    instance_df_ordered = instance_df[X_train.columns]
+    instance_df_ordered = instance_df[X_train.columns] 
     
-    # [CORREÇÃO] Usar o feature_range do scaler para definir min/max teóricos
+    # Transforma a instância para o espaço escalado
     if hasattr(scaler, 'feature_range'):
         f_min, f_max = scaler.feature_range
         scaled_instance_vals = scaler.transform(instance_df_ordered)[0]
     else:
         # Fallback caso não tenha scaler
+        # Assume MinMaxScaler com range [0, 1]
         f_min, f_max = 0.0, 1.0
         scaled_instance_vals = instance_df_ordered.values[0]
-
+    # Cria vetores para os valores mínimos e máximos no espaço escalado
     X_train_scaled_min = np.full_like(coefs, f_min)
     X_train_scaled_max = np.full_like(coefs, f_max)
     
-    deltas = np.zeros_like(coefs)
-    
+    deltas = np.zeros_like(coefs) # Inicializa o array de deltas
+    # Define o pior valor para cada feature com base na classe alvo
     if premis_class == 1:
-        pior_valor = np.where(coefs > 0, X_train_scaled_min, X_train_scaled_max)
+        pior_valor = np.where(coefs > 0, X_train_scaled_min, X_train_scaled_max) # se coeficiente positivo pega o minimo senao o maximo
     else:
-        pior_valor = np.where(coefs > 0, X_train_scaled_max, X_train_scaled_min)
+        pior_valor = np.where(coefs > 0, X_train_scaled_max, X_train_scaled_min) # se coeficiente positivo pega o maximo senao o minimo
         
-    deltas = (scaled_instance_vals - pior_valor) * coefs
+    deltas = (scaled_instance_vals - pior_valor) * coefs # Calcula os deltas
     return deltas
 
 def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, t_plus: float, t_minus: float, premis_class: int) -> List[str]:
-    score = modelo.decision_function(instance_df)[0]
-    explicacao = []
+    score = modelo.decision_function(instance_df)[0] # pega o score da instancia
+    explicacao = [] # lsita de explicação vazia que sera preenchida
     
-    deltas = calculate_deltas(modelo, instance_df, X_train, premis_class)
-    indices_ordenados = np.argsort(-np.abs(deltas))
+    deltas = calculate_deltas(modelo, instance_df, X_train, premis_class) # calcula os deltas 
+    indices_ordenados = np.argsort(-np.abs(deltas)) # indices ordenados por impacto absoluto decrescente (negativo para ordem do maior p menor)
     
-    score_base = score - np.sum(deltas)
+    score_base = score - np.sum(deltas) # score base é o score original menos a soma dos deltas
     soma_deltas_cumulativa = score_base 
-    target_score = t_plus if premis_class == 1 else t_minus
-    EPSILON = 1e-6 
-
+    target_score = t_plus if premis_class == 1 else t_minus # define o score alvo de com a classe da premissa
+    EPSILON = 1e-6 # margem de tolerancia para comparações de ponto flutuante
+    # 1e-6 é 0.000001um milionésimo se fosse 1e-3 seria 0.001 milésimo
+    
     for i in indices_ordenados:
         feature_nome = X_train.columns[i]
-        valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)]
+        valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)] # pega o valor original da feature na instancia
         
-        if abs(deltas[i]) > 1e-9:
+        if abs(deltas[i]) > 0:
              soma_deltas_cumulativa += deltas[i]
              explicacao.append(f"{feature_nome} = {valor_original_feature:.4f}")
-        
+        # Verifica se a condição de score alvo foi atingida
         if premis_class == 1:
-            if soma_deltas_cumulativa >= (target_score - EPSILON) and explicacao: break
+            if soma_deltas_cumulativa >= (target_score) and explicacao: break # para quando a soma  atinge ou ultrapassa o t_plus
         else:
-            if soma_deltas_cumulativa <= (target_score + EPSILON) and explicacao: break
-                
-    if not explicacao and len(X_train.columns) > 0:
+            if soma_deltas_cumulativa <= (target_score) and explicacao: break # para quando a soma atinge ou fica abaixo do t_minus
+    
+    # se sair do loop sem explicação, adiciona a feature de maior coeficiente            
+    if not explicacao and len(X_train.columns) > 0: 
          logreg = _get_lr(modelo)
          idx_max = np.argmax(np.abs(logreg.coef_[0]))
          feat_nome = X_train.columns[idx_max]
@@ -185,15 +188,16 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
     if 'scaler' in modelo.named_steps:
         scaler = modelo.named_steps['scaler']
         # Para MinMaxScaler, extremos no espaço escalado são 0.0 e 1.0 para todas as features
-        MIN_VEC = np.zeros_like(coefs)
-        MAX_VEC = np.ones_like(coefs)
+        MIN_VEC = np.zeros_like(coefs) # vetor de mínimos
+        MAX_VEC = np.ones_like(coefs) # vetor de máximos
     else:
-        MIN_VEC = np.zeros_like(coefs)
+        MIN_VEC = np.zeros_like(coefs) 
         MAX_VEC = np.ones_like(coefs)
 
-    empurrar_para_baixo = (direcao_override == 1)
+    empurrar_para_baixo = (direcao_override == 1) # True se for 1 empurrar para baixo
+    # Cria a instância perturbada com base na direção
     X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if empurrar_para_baixo else np.where(coefs > 0, MAX_VEC, MIN_VEC)
-
+    # Mantém os valores originais para as features na explicação
     if indices_explicacao:
         idx_fixos = list(indices_explicacao)
         X_teste[idx_fixos] = vals_s[idx_fixos]
@@ -201,7 +205,7 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
     score_pert = intercept + np.dot(X_teste, coefs)
     EPSILON = 1e-6
 
-    if is_rejected:
+    if is_rejected: # se for true
         # Rejeição deve se manter dentro da zona em ambas as direções
         # Se empurramos para baixo, o score deve permanecer >= t_minus (não cair abaixo)
         # Se empurramos para cima, o score deve permanecer <= t_plus (não subir acima)
@@ -212,9 +216,9 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
     else:
         # Classificadas: manter no lado correto do limiar correspondente
         if pred_class_orig == 1:
-            return (score_pert >= t_plus - EPSILON), score_pert
+            return (score_pert >= t_plus - EPSILON), score_pert # classe 1 deve estar acima de t_plus
         else:
-            return (score_pert <= t_minus + EPSILON), score_pert
+            return (score_pert <= t_minus + EPSILON), score_pert # classe 0 deve estar abaixo de t_minus
 
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], 
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, is_rejected: bool, 
@@ -227,23 +231,24 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     intercept = logreg.intercept_[0]
     vals_s = scaler.transform(instance_df)[0]
     score_orig = modelo.decision_function(instance_df)[0]
-    
+
+    # Classe predita original
     pred_class_orig = int(modelo.predict(instance_df)[0])
-    col_to_idx = {c: i for i, c in enumerate(X_train.columns)}
+    col_to_idx = {c: i for i, c in enumerate(X_train.columns)} # mapeia nome da coluna para índice
     
-    expl_robusta_indices = {col_to_idx[f.split(' = ')[0]] for f in expl_inicial}
-    expl_robusta_str = list(expl_inicial)
+    expl_robusta_indices = {col_to_idx[f.split(' = ')[0]] for f in expl_inicial} # índices das features na explicação inicial
+    expl_robusta_str = list(expl_inicial) 
     
     adicoes = 0
-    deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao)
-    indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar))
+    deltas_para_ordenar = calculate_deltas(modelo, instance_df, X_train, premis_class=premisa_ordenacao) # calcula os deltas
+    indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar)) # ordena os índices por impacto absoluto decrescente
     num_features_total = X_train.shape[1]
     
     while True:
-        if is_rejected:
-            valido1, score1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True)
-            valido2, score2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True)
-            is_valid = valido1 and valido2
+        if is_rejected: 
+            valido1, score1 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 1, pred_class_orig, True) # testa empurrar para baixo
+            valido2, score2 = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, 0, pred_class_orig, True) # testa empurrar para cima
+            is_valid = valido1 and valido2 # ambos os lados devem ser válidos
         else:
             direcao = 1 if pred_class_orig == 1 else 0
             is_valid, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, direcao, pred_class_orig, False)

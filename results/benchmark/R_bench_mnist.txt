@@ -1,0 +1,55 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: MNIST
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 4190
+ - Thresholds: t+ = 0.8029, t- = -0.6709
+ - Zona de Rejeição: 1.4738
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 0.1,
+    "solver": "lbfgs",
+    "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)   96.63%
+Gap Médio (Features Excedentes)   1.5644
+           Tempo Médio PEAB (s) 0.042357
+     Tempo Médio OTIMIZAÇÃO (s) 0.121669
+  Speedup (x vezes mais rápido)    2.87x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA 2084 100.00%    0.0000    166.10     166.10   0.02715s    0.12090s
+ POSITIVA 1964 100.00%    0.0000    246.50     246.50   0.03156s    0.12211s
+REJEITADA  142   0.70%   46.1620    518.08     471.92   0.41481s    0.12698s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+  id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+2016     REJEITADA           537             465   72
+2588     REJEITADA           535             464   71
+3535     REJEITADA           533             466   67
+ 231     REJEITADA           529             463   66
+3720     REJEITADA           530             464   66
+ 162     REJEITADA           537             471   66
+2562     REJEITADA           530             465   65
+1198     REJEITADA           530             465   65
+ 285     REJEITADA           528             464   64
+1363     REJEITADA           531             468   63
+
