@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 5.935880946880589}
   penalty: l2
   C: 10
   solver: saga
@@ -23,59 +24,59 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.551605
-  t- (limiar inferior): -0.756595
-  Largura da zona de rejeição: 1.308200
+  t+ (limiar superior): 0.077868
+  t- (limiar inferior): -0.109588
+  Largura da zona de rejeição: 0.187455
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 74.46%
-  Acurácia com rejeição: 82.76%
-  Taxa de rejeição: 24.68%
+  Acurácia com rejeição: 81.82%
+  Taxa de rejeição: 19.05%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 40
-    Tamanho médio: 4.22 features
-    Desvio padrão: 1.25
+    Quantidade: 44
+    Tamanho médio: 3.34 features
+    Desvio padrão: 1.04
     Mínimo: 2 features
-    Máximo: 8 features
+    Máximo: 6 features
 
   NEGATIVAS:
-    Quantidade: 134
-    Tamanho médio: 4.72 features
-    Desvio padrão: 1.10
+    Quantidade: 143
+    Tamanho médio: 4.02 features
+    Desvio padrão: 0.78
     Mínimo: 2 features
-    Máximo: 8 features
+    Máximo: 6 features
 
   REJEITADAS:
-    Quantidade: 57
-    Tamanho médio: 6.16 features
-    Desvio padrão: 0.87
+    Quantidade: 44
+    Tamanho médio: 6.39 features
+    Desvio padrão: 0.75
     Mínimo: 5 features
     Máximo: 8 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 1.4485s
-  Tempo médio por instância: 0.006270s
-  Tempo médio POSITIVAS: 0.004880s
-  Tempo médio NEGATIVAS: 0.004834s
-  Tempo médio REJEITADAS: 0.010508s
+  Tempo total: 1.7711s
+  Tempo médio por instância: 0.007667s
+  Tempo médio POSITIVAS: 0.006011s
+  Tempo médio NEGATIVAS: 0.006178s
+  Tempo médio REJEITADAS: 0.013952s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   glicose: 231 ocorrências (100.0%)
   imc: 231 ocorrências (100.0%)
-  num_gravidezes: 216 ocorrências (93.5%)
-  diabetes_pedigree: 193 ocorrências (83.5%)
-  pressao_sangue: 152 ocorrências (65.8%)
-  idade: 67 ocorrências (29.0%)
-  insulina: 48 ocorrências (20.8%)
-  espessura_pele: 14 ocorrências (6.1%)
+  num_gravidezes: 205 ocorrências (88.7%)
+  diabetes_pedigree: 162 ocorrências (70.1%)
+  pressao_sangue: 96 ocorrências (41.6%)
+  insulina: 40 ocorrências (17.3%)
+  idade: 31 ocorrências (13.4%)
+  espessura_pele: 7 ocorrências (3.0%)
 

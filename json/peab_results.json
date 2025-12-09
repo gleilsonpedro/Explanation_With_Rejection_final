@@ -8,9 +8,13 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.4054554346173663,
-      "t_minus": -0.007367973668067373,
-      "rejection_zone_width": 0.4128234082854336
+      "t_plus": 0.09965766636200546,
+      "t_minus": -0.0018491951483334823,
+      "rejection_zone_width": 0.10150686151033894,
+      "normalization": {
+        "max_abs": 3.8936245794001563,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 92.39766081871345,
@@ -23,32 +27,32 @@
     "explanation_stats": {
       "positive": {
         "count": 96,
-        "mean_length": 16.9375,
-        "std_length": 3.2042045944872704,
-        "min_length": 12,
-        "max_length": 29
+        "mean_length": 14.625,
+        "std_length": 1.8666480653835098,
+        "min_length": 11,
+        "max_length": 20
       },
       "negative": {
         "count": 53,
-        "mean_length": 16.49056603773585,
-        "std_length": 4.768697624938264,
+        "mean_length": 16.433962264150942,
+        "std_length": 4.68844196658631,
         "min_length": 6,
-        "max_length": 29
+        "max_length": 28
       },
       "rejected": {
         "count": 22,
-        "mean_length": 24.954545454545453,
-        "std_length": 0.8778730870830895,
+        "mean_length": 25.318181818181817,
+        "std_length": 1.0174104220726994,
         "min_length": 24,
-        "max_length": 27
+        "max_length": 28
       }
     },
     "computation_time": {
-      "total": 1.0551064000464976,
-      "mean_per_instance": 0.006170212865768992,
-      "positive": 0.005040770821021094,
-      "negative": 0.005069660361118193,
-      "rejected": 0.013511240895075554
+      "total": 1.0857305000536144,
+      "mean_per_instance": 0.0063493011699041774,
+      "positive": 0.0051394333349890076,
+      "negative": 0.005233456595923822,
+      "rejected": 0.014063763633285735
     },
     "top_features": [
       {
@@ -81,11 +85,7 @@
       },
       {
         "feature": "radius error",
-        "count": 161
-      },
-      {
-        "feature": "mean perimeter",
-        "count": 157
+        "count": 159
       },
       {
         "feature": "worst concavity",
@@ -93,43 +93,47 @@
       },
       {
         "feature": "area error",
-        "count": 147
+        "count": 146
+      },
+      {
+        "feature": "mean perimeter",
+        "count": 143
       },
       {
         "feature": "worst compactness",
         "count": 142
       },
       {
-        "feature": "mean radius",
-        "count": 138
+        "feature": "perimeter error",
+        "count": 128
       },
       {
-        "feature": "perimeter error",
-        "count": 133
+        "feature": "mean radius",
+        "count": 110
       },
       {
         "feature": "mean compactness",
-        "count": 123
+        "count": 106
       },
       {
         "feature": "mean fractal dimension",
-        "count": 116
+        "count": 90
       },
       {
         "feature": "texture error",
-        "count": 102
+        "count": 87
       },
       {
         "feature": "smoothness error",
-        "count": 75
-      },
-      {
-        "feature": "mean symmetry",
         "count": 68
       },
       {
         "feature": "symmetry error",
-        "count": 68
+        "count": 66
+      },
+      {
+        "feature": "fractal dimension error",
+        "count": 51
       }
     ],
     "model": {
@@ -140,6 +144,9 @@
         "benign"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 3.8936245794001563
+        },
         "penalty": "l2",
         "C": 0.1,
         "solver": "liblinear",
@@ -251,7 +258,7 @@
       "dataset_name": "mnist",
       "test_size": 0.3,
       "random_state": 42,
-      "rejection_cost": 0.24,
+      "rejection_cost": 0.1,
       "subsample_size": 1.0,
       "mnist_feature_mode": "raw",
       "mnist_digit_pair": [
@@ -260,128 +267,132 @@
       ]
     },
     "thresholds": {
-      "t_plus": 0.8028830313821284,
-      "t_minus": -0.6708753102653723,
-      "rejection_zone_width": 1.4737583416475006
+      "t_plus": 0.0930862836194074,
+      "t_minus": -0.08829645965671118,
+      "rejection_zone_width": 0.18138274327611859,
+      "normalization": {
+        "max_abs": 17.178785364221138,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 96.87350835322196,
-      "accuracy_with_rejection": 97.9001976284585,
-      "rejection_rate": 3.389021479713604,
+      "accuracy_with_rejection": 98.62694300518135,
+      "rejection_rate": 7.875894988066825,
       "num_test_instances": 4190,
-      "num_rejected": 142,
-      "num_accepted": 4048
+      "num_rejected": 330,
+      "num_accepted": 3860
     },
     "explanation_stats": {
       "positive": {
-        "count": 1964,
-        "mean_length": 246.4959266802444,
-        "std_length": 34.895559678002876,
-        "min_length": 173,
-        "max_length": 425
+        "count": 1865,
+        "mean_length": 230.9254691689008,
+        "std_length": 24.34055343803754,
+        "min_length": 168,
+        "max_length": 296
       },
       "negative": {
-        "count": 2084,
-        "mean_length": 166.09980806142033,
-        "std_length": 28.507055731006027,
-        "min_length": 114,
-        "max_length": 335
+        "count": 1995,
+        "mean_length": 154.97393483709274,
+        "std_length": 19.58057249812042,
+        "min_length": 111,
+        "max_length": 216
       },
       "rejected": {
-        "count": 142,
-        "mean_length": 518.0845070422536,
-        "std_length": 9.193914825982194,
-        "min_length": 498,
-        "max_length": 539
+        "count": 330,
+        "mean_length": 492.5121212121212,
+        "std_length": 11.501047582740414,
+        "min_length": 466,
+        "max_length": 516
       }
     },
     "computation_time": {
-      "total": 179.22454590001144,
-      "mean_per_instance": 0.04277435463007433,
-      "positive": 0.0316916498990517,
-      "negative": 0.027265643522088844,
-      "rejected": 0.4206762373411346
+      "total": 254.40895800013095,
+      "mean_per_instance": 0.06071812840098591,
+      "positive": 0.031773259142793255,
+      "negative": 0.027547074938519742,
+      "rejected": 0.4233933530352784
     },
     "top_features": [
       {
         "feature": "pixel489",
-        "count": 3802
+        "count": 3841
       },
       {
         "feature": "pixel488",
-        "count": 3775
+        "count": 3815
       },
       {
         "feature": "pixel461",
-        "count": 3752
+        "count": 3771
       },
       {
         "feature": "pixel462",
-        "count": 3720
+        "count": 3757
       },
       {
         "feature": "pixel516",
-        "count": 3700
+        "count": 3742
       },
       {
         "feature": "pixel515",
-        "count": 3647
+        "count": 3691
       },
       {
         "feature": "pixel490",
-        "count": 3608
+        "count": 3656
       },
       {
         "feature": "pixel543",
-        "count": 3551
+        "count": 3590
       },
       {
         "feature": "pixel517",
-        "count": 3545
+        "count": 3583
       },
       {
         "feature": "pixel463",
-        "count": 3544
+        "count": 3564
       },
       {
         "feature": "pixel487",
-        "count": 3510
+        "count": 3545
       },
       {
         "feature": "pixel291",
-        "count": 3472
+        "count": 3511
       },
       {
         "feature": "pixel292",
-        "count": 3437
-      },
-      {
-        "feature": "pixel434",
-        "count": 3436
+        "count": 3481
       },
       {
         "feature": "pixel435",
-        "count": 3435
+        "count": 3463
+      },
+      {
+        "feature": "pixel434",
+        "count": 3458
       },
       {
         "feature": "pixel319",
-        "count": 3407
+        "count": 3438
       },
       {
         "feature": "pixel491",
-        "count": 3356
-      },
-      {
-        "feature": "pixel544",
-        "count": 3324
+        "count": 3399
       },
       {
         "feature": "pixel514",
-        "count": 3322
+        "count": 3362
       },
       {
-        "feature": "pixel320",
-        "count": 3317
+        "feature": "pixel544",
+        "count": 3357
+      },
+      {
+        "feature": "pixel468",
+        "count": 3354
       }
     ],
     "model": {
@@ -392,6 +403,9 @@
         "8"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 17.178785364221138
+        },
         "penalty": "l2",
         "C": 0.1,
         "solver": "lbfgs",
@@ -2769,47 +2783,51 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.5516045515975501,
-      "t_minus": -0.7565949890605769,
-      "rejection_zone_width": 1.3081995406581268
+      "t_plus": 0.07786762315773399,
+      "t_minus": -0.10958761565230668,
+      "rejection_zone_width": 0.18745523881004067,
+      "normalization": {
+        "max_abs": 5.935880946880589,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 74.45887445887446,
-      "accuracy_with_rejection": 82.75862068965517,
-      "rejection_rate": 24.675324675324674,
+      "accuracy_with_rejection": 81.81818181818183,
+      "rejection_rate": 19.047619047619047,
       "num_test_instances": 231,
-      "num_rejected": 57,
-      "num_accepted": 174
+      "num_rejected": 44,
+      "num_accepted": 187
     },
     "explanation_stats": {
       "positive": {
-        "count": 40,
-        "mean_length": 4.225,
-        "std_length": 1.2547410091329605,
+        "count": 44,
+        "mean_length": 3.340909090909091,
+        "std_length": 1.0432288561389549,
         "min_length": 2,
-        "max_length": 8
+        "max_length": 6
       },
       "negative": {
-        "count": 134,
-        "mean_length": 4.7164179104477615,
-        "std_length": 1.1036705401394717,
+        "count": 143,
+        "mean_length": 4.020979020979021,
+        "std_length": 0.7797124399869289,
         "min_length": 2,
-        "max_length": 8
+        "max_length": 6
       },
       "rejected": {
-        "count": 57,
-        "mean_length": 6.157894736842105,
-        "std_length": 0.8743814592545343,
+        "count": 44,
+        "mean_length": 6.386363636363637,
+        "std_length": 0.7451634686706818,
         "min_length": 5,
         "max_length": 8
       }
     },
     "computation_time": {
-      "total": 1.4484544000588357,
-      "mean_per_instance": 0.006270365368220068,
-      "positive": 0.004879987490130589,
-      "negative": 0.004833834330940536,
-      "rejected": 0.010508456144874034
+      "total": 1.7711330000311136,
+      "mean_per_instance": 0.007667242424377115,
+      "positive": 0.0060105977463535964,
+      "negative": 0.006177643343311298,
+      "rejected": 0.013951999966097488
     },
     "top_features": [
       {
@@ -2822,27 +2840,27 @@
       },
       {
         "feature": "num_gravidezes",
-        "count": 216
+        "count": 205
       },
       {
         "feature": "diabetes_pedigree",
-        "count": 193
+        "count": 162
       },
       {
         "feature": "pressao_sangue",
-        "count": 152
-      },
-      {
-        "feature": "idade",
-        "count": 67
+        "count": 96
       },
       {
         "feature": "insulina",
-        "count": 48
+        "count": 40
+      },
+      {
+        "feature": "idade",
+        "count": 31
       },
       {
         "feature": "espessura_pele",
-        "count": 14
+        "count": 7
       }
     ],
     "model": {
@@ -2853,6 +2871,9 @@
         "Diabético"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 5.935880946880589
+        },
         "penalty": "l2",
         "C": 10,
         "solver": "saga",
@@ -2902,49 +2923,57 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.25132746141483725,
-      "t_minus": 0.02656748972854773,
-      "rejection_zone_width": 0.22475997168628953
+      "t_plus": 0.6750478881851463,
+      "t_minus": -0.036751975790247526,
+      "rejection_zone_width": 0.7117998639753937,
+      "normalization": {
+        "max_abs": 0.3756831879089612,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 68.25396825396825,
-      "accuracy_with_rejection": 95.65217391304348,
-      "rejection_rate": 63.49206349206349,
+      "accuracy_with_rejection": 95.0,
+      "rejection_rate": 68.25396825396825,
       "num_test_instances": 63,
-      "num_rejected": 40,
-      "num_accepted": 23
+      "num_rejected": 43,
+      "num_accepted": 20
     },
     "explanation_stats": {
       "positive": {
         "count": 12,
-        "mean_length": 39.583333333333336,
-        "std_length": 8.606764135776517,
+        "mean_length": 40.416666666666664,
+        "std_length": 9.10547759440559,
         "min_length": 23,
-        "max_length": 52
+        "max_length": 53
       },
       "negative": {
-        "count": 11,
-        "mean_length": 42.54545454545455,
-        "std_length": 8.531904150290957,
-        "min_length": 34,
-        "max_length": 60
+        "count": 8,
+        "mean_length": 46.0,
+        "std_length": 4.527692569068709,
+        "min_length": 39,
+        "max_length": 54
       },
       "rejected": {
-        "count": 40,
-        "mean_length": 41.575,
-        "std_length": 4.679142549655866,
-        "min_length": 36,
-        "max_length": 58
+        "count": 43,
+        "mean_length": 39.04651162790697,
+        "std_length": 4.387898200956561,
+        "min_length": 33,
+        "max_length": 54
       }
     },
     "computation_time": {
-      "total": 0.8970563998445868,
-      "mean_per_instance": 0.0142389904737236,
-      "positive": 0.006627608323469758,
-      "negative": 0.00654924544505775,
-      "rejected": 0.01853728502173908
+      "total": 1.065053700003773,
+      "mean_per_instance": 0.016905614285774175,
+      "positive": 0.00853345001814887,
+      "negative": 0.008324087510118261,
+      "rejected": 0.02073900697774492
     },
     "top_features": [
+      {
+        "feature": "feature_10",
+        "count": 63
+      },
       {
         "feature": "feature_8",
         "count": 63
@@ -2959,30 +2988,10 @@
       },
       {
         "feature": "feature_33",
-        "count": 62
-      },
-      {
-        "feature": "feature_34",
-        "count": 62
+        "count": 61
       },
       {
         "feature": "feature_35",
-        "count": 62
-      },
-      {
-        "feature": "feature_5",
-        "count": 62
-      },
-      {
-        "feature": "feature_10",
-        "count": 61
-      },
-      {
-        "feature": "feature_19",
-        "count": 61
-      },
-      {
-        "feature": "feature_36",
         "count": 61
       },
       {
@@ -2994,36 +3003,52 @@
         "count": 61
       },
       {
+        "feature": "feature_47",
+        "count": 61
+      },
+      {
         "feature": "feature_48",
         "count": 61
       },
       {
-        "feature": "feature_21",
-        "count": 60
-      },
-      {
-        "feature": "feature_47",
-        "count": 60
-      },
-      {
         "feature": "feature_6",
+        "count": 61
+      },
+      {
+        "feature": "feature_19",
         "count": 60
       },
       {
-        "feature": "feature_7",
+        "feature": "feature_36",
         "count": 60
       },
       {
-        "feature": "feature_18",
+        "feature": "feature_5",
+        "count": 60
+      },
+      {
+        "feature": "feature_20",
         "count": 59
       },
       {
-        "feature": "feature_43",
+        "feature": "feature_34",
         "count": 59
       },
       {
         "feature": "feature_46",
         "count": 59
+      },
+      {
+        "feature": "feature_18",
+        "count": 58
+      },
+      {
+        "feature": "feature_43",
+        "count": 58
+      },
+      {
+        "feature": "feature_7",
+        "count": 58
       }
     ],
     "model": {
@@ -3034,6 +3059,9 @@
         "Mina (Metal)"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 0.3756831879089612
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "saga",
@@ -3239,9 +3267,13 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.8423622518918849,
-      "t_minus": -0.09447777057450996,
-      "rejection_zone_width": 0.9368400224663949
+      "t_plus": 0.2543713913687597,
+      "t_minus": -0.016766284497145845,
+      "rejection_zone_width": 0.27113767586590554,
+      "normalization": {
+        "max_abs": 3.490709047269379,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 76.34408602150538,
@@ -3254,57 +3286,57 @@
     "explanation_stats": {
       "positive": {
         "count": 50,
-        "mean_length": 3.6,
-        "std_length": 0.8485281374238571,
+        "mean_length": 2.54,
+        "std_length": 0.49839743177508455,
         "min_length": 2,
-        "max_length": 5
+        "max_length": 3
       },
       "negative": {
         "count": 17,
-        "mean_length": 5.411764705882353,
-        "std_length": 0.49215295678475035,
-        "min_length": 5,
+        "mean_length": 5.0588235294117645,
+        "std_length": 0.4159451654038515,
+        "min_length": 4,
         "max_length": 6
       },
       "rejected": {
         "count": 26,
-        "mean_length": 5.076923076923077,
-        "std_length": 0.2664693550105965,
+        "mean_length": 5.038461538461538,
+        "std_length": 0.1923076923076923,
         "min_length": 5,
         "max_length": 6
       }
     },
     "computation_time": {
-      "total": 0.5174136999994516,
-      "mean_per_instance": 0.005563588172037114,
-      "positive": 0.004161067986860872,
-      "negative": 0.0042340941453243,
-      "rejected": 0.009023157664789604
+      "total": 0.5919381000567228,
+      "mean_per_instance": 0.006364925807061535,
+      "positive": 0.004733013990335167,
+      "negative": 0.004783211768988301,
+      "rejected": 0.010410707712603303
     },
     "top_features": [
       {
-        "feature": "pelvic_tilt",
-        "count": 93
-      },
-      {
         "feature": "pelvic_radius",
-        "count": 91
+        "count": 89
       },
       {
-        "feature": "lumbar_lordosis_angle",
+        "feature": "pelvic_tilt",
         "count": 87
       },
       {
+        "feature": "lumbar_lordosis_angle",
+        "count": 75
+      },
+      {
         "feature": "pelvic_incidence",
-        "count": 70
+        "count": 46
       },
       {
         "feature": "spondylolisthesis_grade",
-        "count": 54
+        "count": 44
       },
       {
         "feature": "sacral_slope",
-        "count": 9
+        "count": 3
       }
     ],
     "model": {
@@ -3315,6 +3347,9 @@
         "Anormal"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 3.490709047269379
+        },
         "penalty": "l2",
         "C": 1,
         "solver": "saga",
@@ -3358,47 +3393,51 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.22375995944695004,
-      "t_minus": 0.17979644738959066,
-      "rejection_zone_width": 0.04396351205735938
+      "t_plus": 0.5656737266768507,
+      "t_minus": -0.5,
+      "rejection_zone_width": 1.0656737266768506,
+      "normalization": {
+        "max_abs": 0.4311442541917919,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 66.66666666666666,
-      "accuracy_with_rejection": 90.69767441860465,
-      "rejection_rate": 20.37037037037037,
+      "accuracy_with_rejection": 100.0,
+      "rejection_rate": 50.0,
       "num_test_instances": 54,
-      "num_rejected": 11,
-      "num_accepted": 43
+      "num_rejected": 27,
+      "num_accepted": 27
     },
     "explanation_stats": {
       "positive": {
-        "count": 32,
-        "mean_length": 5.75,
-        "std_length": 2.0615528128088303,
-        "min_length": 3,
-        "max_length": 11
+        "count": 27,
+        "mean_length": 6.333333333333333,
+        "std_length": 2.1602468994692865,
+        "min_length": 4,
+        "max_length": 12
       },
       "negative": {
-        "count": 11,
-        "mean_length": 13.0,
+        "count": 0,
+        "mean_length": 0.0,
         "std_length": 0.0,
-        "min_length": 13,
-        "max_length": 13
+        "min_length": 0,
+        "max_length": 0
       },
       "rejected": {
-        "count": 11,
-        "mean_length": 11.090909090909092,
-        "std_length": 0.51425947722658,
-        "min_length": 10,
-        "max_length": 12
+        "count": 27,
+        "mean_length": 7.62962962962963,
+        "std_length": 2.5984061802652416,
+        "min_length": 5,
+        "max_length": 13
       }
     },
     "computation_time": {
-      "total": 0.30507300002500415,
-      "mean_per_instance": 0.00564950000046304,
-      "positive": 0.004410643756273203,
-      "negative": 0.004653127271343361,
-      "rejected": 0.010101818183267658
+      "total": 0.4809099000412971,
+      "mean_per_instance": 0.00890573888965365,
+      "positive": 0.005755911115556955,
+      "negative": 0.0,
+      "rejected": 0.01195661854688768
     },
     "top_features": [
       {
@@ -3411,47 +3450,47 @@
       },
       {
         "feature": "proline",
-        "count": 54
+        "count": 51
       },
       {
         "feature": "flavanoids",
         "count": 48
       },
       {
-        "feature": "ash",
-        "count": 41
-      },
-      {
         "feature": "malic_acid",
-        "count": 41
+        "count": 47
       },
       {
-        "feature": "total_phenols",
-        "count": 27
-      },
-      {
-        "feature": "proanthocyanins",
-        "count": 27
-      },
-      {
-        "feature": "alcohol",
-        "count": 25
-      },
-      {
-        "feature": "hue",
-        "count": 25
+        "feature": "ash",
+        "count": 42
       },
       {
         "feature": "color_intensity",
-        "count": 23
-      },
-      {
-        "feature": "magnesium",
         "count": 18
       },
       {
+        "feature": "hue",
+        "count": 15
+      },
+      {
+        "feature": "proanthocyanins",
+        "count": 15
+      },
+      {
+        "feature": "total_phenols",
+        "count": 11
+      },
+      {
+        "feature": "alcohol",
+        "count": 8
+      },
+      {
+        "feature": "magnesium",
+        "count": 8
+      },
+      {
         "feature": "od280/od315_of_diluted_wines",
-        "count": 12
+        "count": 6
       }
     ],
     "model": {
@@ -3462,6 +3501,9 @@
         "Não-class_0"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 0.4311442541917919
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "liblinear",
@@ -3526,64 +3568,68 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": -0.25522843789077243,
-      "t_minus": -0.3005560558632928,
-      "rejection_zone_width": 0.045327617972520384
+      "t_plus": 0.00010236186857182084,
+      "t_minus": -0.5948952458253887,
+      "rejection_zone_width": 0.5949976076939605,
+      "normalization": {
+        "max_abs": 0.6625238272836776,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 61.40776699029126,
-      "accuracy_with_rejection": 89.58904109589041,
-      "rejection_rate": 11.407766990291263,
+      "accuracy_with_rejection": 99.21875,
+      "rejection_rate": 68.93203883495146,
       "num_test_instances": 412,
-      "num_rejected": 47,
-      "num_accepted": 365
+      "num_rejected": 284,
+      "num_accepted": 128
     },
     "explanation_stats": {
       "positive": {
-        "count": 172,
-        "mean_length": 3.7151162790697674,
-        "std_length": 0.7113723131205816,
-        "min_length": 1,
+        "count": 24,
+        "mean_length": 3.4166666666666665,
+        "std_length": 0.5713045500334204,
+        "min_length": 2,
         "max_length": 4
       },
       "negative": {
-        "count": 193,
-        "mean_length": 2.6580310880829017,
-        "std_length": 0.6415252704365282,
+        "count": 104,
+        "mean_length": 3.0384615384615383,
+        "std_length": 0.6639490962166181,
         "min_length": 2,
         "max_length": 4
       },
       "rejected": {
-        "count": 47,
-        "mean_length": 4.0,
-        "std_length": 0.0,
-        "min_length": 4,
+        "count": 284,
+        "mean_length": 2.538732394366197,
+        "std_length": 0.6883690247989938,
+        "min_length": 2,
         "max_length": 4
       }
     },
     "computation_time": {
-      "total": 1.9258401999250054,
-      "mean_per_instance": 0.0046743694172937025,
-      "positive": 0.004116499410714781,
-      "negative": 0.0041079000000470356,
-      "rejected": 0.008838361708764383
+      "total": 3.4393472999799997,
+      "mean_per_instance": 0.008347930339757281,
+      "positive": 0.004617137456079945,
+      "negative": 0.004771400963923393,
+      "rejected": 0.00992050846386045
     },
     "top_features": [
+      {
+        "feature": "skewness",
+        "count": 412
+      },
       {
         "feature": "variance",
         "count": 412
       },
       {
-        "feature": "skewness",
-        "count": 411
-      },
-      {
         "feature": "curtosis",
-        "count": 304
+        "count": 174
       },
       {
         "feature": "entropy",
-        "count": 213
+        "count": 121
       }
     ],
     "model": {
@@ -3594,6 +3640,9 @@
         "Falsificada"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 0.6625238272836776
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "liblinear",
@@ -3631,100 +3680,104 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.08855151724987818,
-      "t_minus": 0.05946731100679318,
-      "rejection_zone_width": 0.029084206243085005
+      "t_plus": 0.22759664262085633,
+      "t_minus": -0.013779406560125995,
+      "rejection_zone_width": 0.24137604918098232,
+      "normalization": {
+        "max_abs": 0.38165171431668377,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 85.55555555555556,
-      "accuracy_with_rejection": 85.71428571428571,
-      "rejection_rate": 6.666666666666667,
+      "accuracy_with_rejection": 90.78947368421053,
+      "rejection_rate": 15.555555555555555,
       "num_test_instances": 90,
-      "num_rejected": 6,
-      "num_accepted": 84
+      "num_rejected": 14,
+      "num_accepted": 76
     },
     "explanation_stats": {
       "positive": {
         "count": 32,
-        "mean_length": 5.0,
-        "std_length": 1.9364916731037085,
+        "mean_length": 4.9375,
+        "std_length": 1.9029171684547912,
         "min_length": 3,
         "max_length": 11
       },
       "negative": {
-        "count": 52,
-        "mean_length": 4.884615384615385,
-        "std_length": 1.6130936135008282,
+        "count": 44,
+        "mean_length": 5.4772727272727275,
+        "std_length": 0.8915929657242287,
         "min_length": 4,
-        "max_length": 10
+        "max_length": 9
       },
       "rejected": {
-        "count": 6,
-        "mean_length": 11.833333333333334,
-        "std_length": 0.3726779962499649,
-        "min_length": 11,
+        "count": 14,
+        "mean_length": 9.642857142857142,
+        "std_length": 0.8112726208286106,
+        "min_length": 9,
         "max_length": 12
       }
     },
     "computation_time": {
-      "total": 0.497472699964419,
-      "mean_per_instance": 0.0055274744440491,
-      "positive": 0.005081531249743421,
-      "negative": 0.005013965365763467,
-      "rejected": 0.011811850010417402
+      "total": 0.5901450000237674,
+      "mean_per_instance": 0.006557166666930748,
+      "positive": 0.00551099372387398,
+      "negative": 0.00529949999393218,
+      "rejected": 0.012655128575196224
     },
     "top_features": [
       {
-        "feature": "thalach",
-        "count": 85
+        "feature": "thal",
+        "count": 87
       },
       {
-        "feature": "thal",
-        "count": 82
+        "feature": "thalach",
+        "count": 87
       },
       {
         "feature": "exang",
-        "count": 71
+        "count": 78
       },
       {
         "feature": "ca",
-        "count": 69
-      },
-      {
-        "feature": "cp",
-        "count": 33
+        "count": 73
       },
       {
         "feature": "slope",
-        "count": 28
+        "count": 53
       },
       {
         "feature": "oldpeak",
+        "count": 40
+      },
+      {
+        "feature": "cp",
+        "count": 36
+      },
+      {
+        "feature": "restecg",
         "count": 24
       },
       {
         "feature": "sex",
-        "count": 22
-      },
-      {
-        "feature": "fbs",
-        "count": 17
-      },
-      {
-        "feature": "restecg",
-        "count": 17
+        "count": 21
       },
       {
         "feature": "chol",
-        "count": 16
+        "count": 14
       },
       {
-        "feature": "trestbps",
+        "feature": "fbs",
         "count": 13
       },
       {
         "feature": "age",
-        "count": 8
+        "count": 4
+      },
+      {
+        "feature": "trestbps",
+        "count": 4
       }
     ],
     "model": {
@@ -3735,6 +3788,9 @@
         "Com Doença"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 0.38165171431668377
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "liblinear",
@@ -3799,92 +3855,96 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": -1.1031079322745811,
-      "t_minus": -1.2008448548101625,
-      "rejection_zone_width": 0.0977369225355813
+      "t_plus": 0.01,
+      "t_minus": -0.6154952951964341,
+      "rejection_zone_width": 0.6254952951964341,
+      "normalization": {
+        "max_abs": 1.8816676932959777,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 86.45833333333334,
-      "accuracy_with_rejection": 87.88546255506607,
-      "rejection_rate": 5.416666666666667,
+      "accuracy_with_rejection": 87.31182795698925,
+      "rejection_rate": 3.125,
       "num_test_instances": 480,
-      "num_rejected": 26,
-      "num_accepted": 454
+      "num_rejected": 15,
+      "num_accepted": 465
     },
     "explanation_stats": {
       "positive": {
-        "count": 1,
-        "mean_length": 11.0,
+        "count": 0,
+        "mean_length": 0.0,
         "std_length": 0.0,
-        "min_length": 11,
-        "max_length": 11
+        "min_length": 0,
+        "max_length": 0
       },
       "negative": {
-        "count": 453,
-        "mean_length": 3.9536423841059603,
-        "std_length": 1.389035024888481,
+        "count": 465,
+        "mean_length": 1.0,
+        "std_length": 0.0,
         "min_length": 1,
-        "max_length": 10
+        "max_length": 1
       },
       "rejected": {
-        "count": 26,
-        "mean_length": 9.576923076923077,
-        "std_length": 0.6890951102757276,
-        "min_length": 9,
+        "count": 15,
+        "mean_length": 9.733333333333333,
+        "std_length": 0.7717224601860151,
+        "min_length": 8,
         "max_length": 11
       }
     },
     "computation_time": {
-      "total": 2.521772800013423,
-      "mean_per_instance": 0.005253693333361298,
-      "positive": 0.005553500028327107,
-      "negative": 0.004869315668911762,
-      "rejected": 0.011466665372539025
+      "total": 2.4186736999545246,
+      "mean_per_instance": 0.005038903541571926,
+      "positive": 0.0,
+      "negative": 0.004796284726089848,
+      "rejected": 0.01166824004612863
     },
     "top_features": [
       {
         "feature": "density",
-        "count": 473
+        "count": 338
       },
       {
         "feature": "pH",
-        "count": 457
-      },
-      {
-        "feature": "volatile acidity",
-        "count": 335
+        "count": 134
       },
       {
         "feature": "total sulfur dioxide",
-        "count": 272
+        "count": 31
       },
       {
-        "feature": "fixed acidity",
-        "count": 208
-      },
-      {
-        "feature": "free sulfur dioxide",
-        "count": 128
+        "feature": "volatile acidity",
+        "count": 22
       },
       {
         "feature": "chlorides",
-        "count": 53
+        "count": 15
+      },
+      {
+        "feature": "fixed acidity",
+        "count": 15
+      },
+      {
+        "feature": "free sulfur dioxide",
+        "count": 15
       },
       {
         "feature": "sulphates",
-        "count": 47
-      },
-      {
-        "feature": "citric acid",
-        "count": 42
+        "count": 15
       },
       {
         "feature": "residual sugar",
-        "count": 21
+        "count": 14
+      },
+      {
+        "feature": "citric acid",
+        "count": 10
       },
       {
         "feature": "alcohol",
-        "count": 15
+        "count": 2
       }
     ],
     "model": {
@@ -3895,6 +3955,9 @@
         "Alta Qualidade"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 1.8816676932959777
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "liblinear",
@@ -3953,128 +4016,132 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": -0.3111303233514004,
-      "t_minus": -0.36548599016110267,
-      "rejection_zone_width": 0.054355666809702274
+      "t_plus": 0.2477465244477015,
+      "t_minus": -0.32187688888711863,
+      "rejection_zone_width": 0.5696234133348201,
+      "normalization": {
+        "max_abs": 1.2791651500749546,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 62.27371469949312,
-      "accuracy_with_rejection": 87.1692060946271,
-      "rejection_rate": 9.703113685734975,
+      "accuracy_with_rejection": 92.54843517138599,
+      "rejection_rate": 51.41202027516293,
       "num_test_instances": 1381,
-      "num_rejected": 134,
-      "num_accepted": 1247
+      "num_rejected": 710,
+      "num_accepted": 671
     },
     "explanation_stats": {
       "positive": {
-        "count": 454,
-        "mean_length": 30.277533039647576,
-        "std_length": 2.776962669430503,
-        "min_length": 13,
-        "max_length": 36
-      },
-      "negative": {
-        "count": 793,
-        "mean_length": 25.49810844892812,
-        "std_length": 1.713475691132687,
-        "min_length": 21,
+        "count": 5,
+        "mean_length": 28.6,
+        "std_length": 4.882622246293481,
+        "min_length": 20,
         "max_length": 35
       },
+      "negative": {
+        "count": 666,
+        "mean_length": 24.274774774774773,
+        "std_length": 1.0271949443888937,
+        "min_length": 20,
+        "max_length": 32
+      },
       "rejected": {
-        "count": 134,
-        "mean_length": 54.83582089552239,
-        "std_length": 0.37043801928330916,
-        "min_length": 54,
-        "max_length": 55
+        "count": 710,
+        "mean_length": 44.55774647887324,
+        "std_length": 1.5110542883985345,
+        "min_length": 40,
+        "max_length": 48
       }
     },
     "computation_time": {
-      "total": 12.68193419999443,
-      "mean_per_instance": 0.009183152932653461,
-      "positive": 0.008075697574198312,
-      "negative": 0.007354699874714881,
-      "rejected": 0.02335862986006732
+      "total": 21.519119800068438,
+      "mean_per_instance": 0.015582273569926457,
+      "positive": 0.0070972200483083725,
+      "negative": 0.007457469663073731,
+      "rejected": 0.023154946479579094
     },
     "top_features": [
       {
         "feature": "word_freq_your",
-        "count": 1380
+        "count": 1381
       },
       {
         "feature": "word_freq_you",
-        "count": 1359
-      },
-      {
-        "feature": "word_freq_addresses",
-        "count": 1357
-      },
-      {
-        "feature": "word_freq_mail",
-        "count": 1357
-      },
-      {
-        "feature": "word_freq_000",
-        "count": 1355
-      },
-      {
-        "feature": "word_freq_business",
-        "count": 1351
-      },
-      {
-        "feature": "word_freq_internet",
-        "count": 1351
+        "count": 1378
       },
       {
         "feature": "word_freq_all",
-        "count": 1350
-      },
-      {
-        "feature": "word_freq_receive",
-        "count": 1350
-      },
-      {
-        "feature": "word_freq_remove",
-        "count": 1348
-      },
-      {
-        "feature": "word_freq_email",
-        "count": 1347
-      },
-      {
-        "feature": "word_freq_order",
-        "count": 1347
+        "count": 1376
       },
       {
         "feature": "word_freq_our",
-        "count": 1347
+        "count": 1376
       },
       {
-        "feature": "capital_run_length_total",
-        "count": 1346
+        "feature": "word_freq_000",
+        "count": 1371
+      },
+      {
+        "feature": "word_freq_addresses",
+        "count": 1370
       },
       {
         "feature": "char_freq_dollar",
-        "count": 1346
+        "count": 1365
       },
       {
-        "feature": "word_freq_free",
-        "count": 1346
+        "feature": "word_freq_internet",
+        "count": 1365
       },
       {
-        "feature": "word_freq_money",
-        "count": 1346
+        "feature": "word_freq_business",
+        "count": 1364
+      },
+      {
+        "feature": "word_freq_remove",
+        "count": 1364
       },
       {
         "feature": "word_freq_over",
-        "count": 1346
+        "count": 1356
+      },
+      {
+        "feature": "word_freq_free",
+        "count": 1354
+      },
+      {
+        "feature": "word_freq_email",
+        "count": 1342
+      },
+      {
+        "feature": "word_freq_order",
+        "count": 1336
+      },
+      {
+        "feature": "word_freq_receive",
+        "count": 1334
+      },
+      {
+        "feature": "word_freq_mail",
+        "count": 1331
+      },
+      {
+        "feature": "capital_run_length_total",
+        "count": 1296
+      },
+      {
+        "feature": "word_freq_money",
+        "count": 1271
       },
       {
         "feature": "word_freq_people",
-        "count": 1346
+        "count": 973
       },
       {
         "feature": "word_freq_make",
-        "count": 1345
+        "count": 963
       }
     ],
     "model": {
@@ -4085,6 +4152,9 @@
         "Spam"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 1.2791651500749546
+        },
         "penalty": "l2",
         "C": 0.01,
         "solver": "liblinear",
@@ -4281,47 +4351,51 @@
       "subsample_size": 0.5
     },
     "thresholds": {
-      "t_plus": 4.6458404890404505,
-      "t_minus": -0.5652187420251291,
-      "rejection_zone_width": 5.21105923106558
+      "t_plus": 0.7699744578823493,
+      "t_minus": -0.027447421458839494,
+      "rejection_zone_width": 0.7974218793411888,
+      "normalization": {
+        "max_abs": 4.6458404890404505,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 99.92509538634395,
-      "accuracy_with_rejection": 99.97635039258348,
-      "rejection_rate": 1.022916130240397,
+      "accuracy_with_rejection": 99.97186071051706,
+      "rejection_rate": 0.1778984574331125,
       "num_test_instances": 42721,
-      "num_rejected": 437,
-      "num_accepted": 42284
+      "num_rejected": 76,
+      "num_accepted": 42645
     },
     "explanation_stats": {
       "positive": {
-        "count": 0,
-        "mean_length": 0.0,
-        "std_length": 0.0,
-        "min_length": 0,
-        "max_length": 0
+        "count": 11,
+        "mean_length": 8.181818181818182,
+        "std_length": 0.5749595745760689,
+        "min_length": 7,
+        "max_length": 9
       },
       "negative": {
-        "count": 42284,
-        "mean_length": 21.85027433544603,
-        "std_length": 1.6650591223844242,
-        "min_length": 13,
-        "max_length": 29
+        "count": 42634,
+        "mean_length": 17.433785241825774,
+        "std_length": 1.0682438838996033,
+        "min_length": 10,
+        "max_length": 27
       },
       "rejected": {
-        "count": 437,
-        "mean_length": 22.640732265446225,
-        "std_length": 4.606381745129806,
-        "min_length": 9,
+        "count": 76,
+        "mean_length": 18.486842105263158,
+        "std_length": 4.222413319208241,
+        "min_length": 12,
         "max_length": 29
       }
     },
     "computation_time": {
-      "total": 261.67116910009645,
-      "mean_per_instance": 0.006125118070740302,
-      "positive": 0.0,
-      "negative": 0.0060060777272911035,
-      "rejected": 0.014613679401337829
+      "total": 268.66161690000445,
+      "mean_per_instance": 0.00628874831815745,
+      "positive": 0.005848690888590433,
+      "negative": 0.006243137927867814,
+      "rejected": 0.014822761852931427
     },
     "top_features": [
       {
@@ -4329,80 +4403,80 @@
         "count": 42721
       },
       {
+        "feature": "V12",
+        "count": 42721
+      },
+      {
         "feature": "V14",
         "count": 42721
       },
       {
-        "feature": "V4",
+        "feature": "V16",
         "count": 42721
       },
       {
-        "feature": "V12",
-        "count": 42719
+        "feature": "V4",
+        "count": 42720
       },
       {
         "feature": "V10",
-        "count": 42718
-      },
-      {
-        "feature": "V16",
-        "count": 42714
+        "count": 42719
       },
       {
         "feature": "V17",
-        "count": 42701
+        "count": 42713
+      },
+      {
+        "feature": "V3",
+        "count": 42706
       },
       {
         "feature": "V9",
         "count": 42696
       },
       {
+        "feature": "V18",
+        "count": 42689
+      },
+      {
         "feature": "V27",
-        "count": 42681
+        "count": 42656
       },
       {
         "feature": "V21",
-        "count": 42675
-      },
-      {
-        "feature": "V3",
-        "count": 42659
-      },
-      {
-        "feature": "V18",
-        "count": 42658
+        "count": 42609
       },
       {
         "feature": "V20",
-        "count": 42648
-      },
-      {
-        "feature": "V28",
-        "count": 42634
+        "count": 42445
       },
       {
         "feature": "V2",
-        "count": 42619
+        "count": 41518
+      },
+      {
+        "feature": "V28",
+        "count": 39607
       },
       {
         "feature": "V19",
-        "count": 42571
-      },
-      {
-        "feature": "V15",
-        "count": 42465
+        "count": 33572
       },
       {
         "feature": "V13",
-        "count": 42380
+        "count": 30655
+      },
+      {
+        "feature": "V15",
+        "count": 25046
       },
       {
         "feature": "V25",
-        "count": 42357
+        "count": 16518
       },
       {
         "feature": "V23",
-        "count": 38145
+        "count": 1669
       }
     ],
     "model": {
@@ -4413,6 +4487,9 @@
         "Fraude"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 4.6458404890404505
+        },
         "penalty": "l2",
         "C": 0.001,
         "solver": "liblinear",
@@ -4526,128 +4603,132 @@
       "subsample_size": null
     },
     "thresholds": {
-      "t_plus": 0.03588050471365961,
-      "t_minus": -0.29570535419940785,
-      "rejection_zone_width": 0.33158585891306747
+      "t_plus": 0.029638528895011063,
+      "t_minus": -0.029771357091008643,
+      "rejection_zone_width": 0.059409885986019706,
+      "normalization": {
+        "max_abs": 6.217302396611877,
+        "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+      }
     },
     "performance": {
       "accuracy_without_rejection": 85.23489932885906,
-      "accuracy_with_rejection": 89.54372623574145,
-      "rejection_rate": 11.74496644295302,
+      "accuracy_with_rejection": 89.84674329501917,
+      "rejection_rate": 12.416107382550337,
       "num_test_instances": 596,
-      "num_rejected": 70,
-      "num_accepted": 526
+      "num_rejected": 74,
+      "num_accepted": 522
     },
     "explanation_stats": {
       "positive": {
-        "count": 283,
-        "mean_length": 973.4381625441696,
-        "std_length": 31.714587822052742,
+        "count": 268,
+        "mean_length": 970.4104477611941,
+        "std_length": 29.29653147585782,
         "min_length": 873,
-        "max_length": 1065
+        "max_length": 1043
       },
       "negative": {
-        "count": 243,
-        "mean_length": 894.9588477366256,
-        "std_length": 31.93406198280563,
-        "min_length": 819,
-        "max_length": 991
+        "count": 254,
+        "mean_length": 888.0157480314961,
+        "std_length": 28.94264876188485,
+        "min_length": 815,
+        "max_length": 964
       },
       "rejected": {
-        "count": 70,
-        "mean_length": 1962.2714285714285,
-        "std_length": 2.6017654916362827,
-        "min_length": 1957,
-        "max_length": 1970
+        "count": 74,
+        "mean_length": 1960.8513513513512,
+        "std_length": 2.264189088372166,
+        "min_length": 1954,
+        "max_length": 1966
       }
     },
     "computation_time": {
-      "total": 219.93273849994875,
-      "mean_per_instance": 0.3690146619126657,
-      "positive": 0.13586400140672528,
-      "negative": 0.12475402057151705,
-      "rejected": 2.156119691427531
+      "total": 230.07224579993635,
+      "mean_per_instance": 0.3860272580535845,
+      "positive": 0.1354080164203865,
+      "negative": 0.12429002126015165,
+      "rejected": 2.188824160823699
     },
     "top_features": [
       {
         "feature": "car",
-        "count": 457
-      },
-      {
-        "feature": "cars",
-        "count": 415
-      },
-      {
-        "feature": "new",
-        "count": 397
+        "count": 448
       },
       {
         "feature": "bike",
-        "count": 394
+        "count": 409
+      },
+      {
+        "feature": "cars",
+        "count": 404
+      },
+      {
+        "feature": "new",
+        "count": 385
       },
       {
         "feature": "engine",
-        "count": 389
-      },
-      {
-        "feature": "time",
-        "count": 389
-      },
-      {
-        "feature": "does",
-        "count": 384
-      },
-      {
-        "feature": "power",
-        "count": 381
-      },
-      {
-        "feature": "speed",
-        "count": 381
-      },
-      {
-        "feature": "problem",
-        "count": 379
-      },
-      {
-        "feature": "year",
         "count": 378
       },
       {
-        "feature": "better",
+        "feature": "time",
+        "count": 377
+      },
+      {
+        "feature": "don",
         "count": 375
       },
       {
-        "feature": "dealer",
-        "count": 375
+        "feature": "does",
+        "count": 373
+      },
+      {
+        "feature": "dod",
+        "count": 370
+      },
+      {
+        "feature": "power",
+        "count": 370
+      },
+      {
+        "feature": "speed",
+        "count": 370
+      },
+      {
+        "feature": "problem",
+        "count": 368
+      },
+      {
+        "feature": "better",
+        "count": 366
+      },
+      {
+        "feature": "year",
+        "count": 366
       },
       {
         "feature": "price",
-        "count": 375
+        "count": 365
       },
       {
-        "feature": "ford",
-        "count": 373
+        "feature": "dealer",
+        "count": 364
       },
       {
         "feature": "heard",
-        "count": 373
+        "count": 364
       },
       {
-        "feature": "thanks",
-        "count": 373
+        "feature": "ride",
+        "count": 364
       },
       {
-        "feature": "want",
-        "count": 373
+        "feature": "ve",
+        "count": 364
       },
       {
         "feature": "people",
-        "count": 372
-      },
-      {
-        "feature": "used",
-        "count": 372
+        "count": 362
       }
     ],
     "model": {
@@ -4658,6 +4739,9 @@
         "rec.motorcycles"
       ],
       "params": {
+        "norm_params": {
+          "max_abs": 6.217302396611877
+        },
         "penalty": "l2",
         "C": 1.0,
         "solver": "liblinear",

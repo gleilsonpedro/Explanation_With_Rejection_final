@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 0.38165171431668377}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -23,61 +24,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.088552
-  t- (limiar inferior): 0.059467
-  Largura da zona de rejeição: 0.029084
+  t+ (limiar superior): 0.227597
+  t- (limiar inferior): -0.013779
+  Largura da zona de rejeição: 0.241376
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 85.56%
-  Acurácia com rejeição: 85.71%
-  Taxa de rejeição: 6.67%
+  Acurácia com rejeição: 90.79%
+  Taxa de rejeição: 15.56%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
     Quantidade: 32
-    Tamanho médio: 5.00 features
-    Desvio padrão: 1.94
+    Tamanho médio: 4.94 features
+    Desvio padrão: 1.90
     Mínimo: 3 features
     Máximo: 11 features
 
   NEGATIVAS:
-    Quantidade: 52
-    Tamanho médio: 4.88 features
-    Desvio padrão: 1.61
+    Quantidade: 44
+    Tamanho médio: 5.48 features
+    Desvio padrão: 0.89
     Mínimo: 4 features
-    Máximo: 10 features
+    Máximo: 9 features
 
   REJEITADAS:
-    Quantidade: 6
-    Tamanho médio: 11.83 features
-    Desvio padrão: 0.37
-    Mínimo: 11 features
+    Quantidade: 14
+    Tamanho médio: 9.64 features
+    Desvio padrão: 0.81
+    Mínimo: 9 features
     Máximo: 12 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 0.4975s
-  Tempo médio por instância: 0.005527s
-  Tempo médio POSITIVAS: 0.005082s
-  Tempo médio NEGATIVAS: 0.005014s
-  Tempo médio REJEITADAS: 0.011812s
+  Tempo total: 0.5901s
+  Tempo médio por instância: 0.006557s
+  Tempo médio POSITIVAS: 0.005511s
+  Tempo médio NEGATIVAS: 0.005299s
+  Tempo médio REJEITADAS: 0.012655s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  thalach: 85 ocorrências (94.4%)
-  thal: 82 ocorrências (91.1%)
-  exang: 71 ocorrências (78.9%)
-  ca: 69 ocorrências (76.7%)
-  cp: 33 ocorrências (36.7%)
-  slope: 28 ocorrências (31.1%)
-  oldpeak: 24 ocorrências (26.7%)
-  sex: 22 ocorrências (24.4%)
-  fbs: 17 ocorrências (18.9%)
-  restecg: 17 ocorrências (18.9%)
+  thal: 87 ocorrências (96.7%)
+  thalach: 87 ocorrências (96.7%)
+  exang: 78 ocorrências (86.7%)
+  ca: 73 ocorrências (81.1%)
+  slope: 53 ocorrências (58.9%)
+  oldpeak: 40 ocorrências (44.4%)
+  cp: 36 ocorrências (40.0%)
+  restecg: 24 ocorrências (26.7%)
+  sex: 21 ocorrências (23.3%)
+  chol: 14 ocorrências (15.6%)
 

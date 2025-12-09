@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 1.8816676932959777}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -23,61 +24,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): -1.103108
-  t- (limiar inferior): -1.200845
-  Largura da zona de rejeição: 0.097737
+  t+ (limiar superior): 0.010000
+  t- (limiar inferior): -0.615495
+  Largura da zona de rejeição: 0.625495
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 86.46%
-  Acurácia com rejeição: 87.89%
-  Taxa de rejeição: 5.42%
+  Acurácia com rejeição: 87.31%
+  Taxa de rejeição: 3.12%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 1
-    Tamanho médio: 11.00 features
+    Quantidade: 0
+    Tamanho médio: 0.00 features
     Desvio padrão: 0.00
-    Mínimo: 11 features
-    Máximo: 11 features
+    Mínimo: 0 features
+    Máximo: 0 features
 
   NEGATIVAS:
-    Quantidade: 453
-    Tamanho médio: 3.95 features
-    Desvio padrão: 1.39
+    Quantidade: 465
+    Tamanho médio: 1.00 features
+    Desvio padrão: 0.00
     Mínimo: 1 features
-    Máximo: 10 features
+    Máximo: 1 features
 
   REJEITADAS:
-    Quantidade: 26
-    Tamanho médio: 9.58 features
-    Desvio padrão: 0.69
-    Mínimo: 9 features
+    Quantidade: 15
+    Tamanho médio: 9.73 features
+    Desvio padrão: 0.77
+    Mínimo: 8 features
     Máximo: 11 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 2.5218s
-  Tempo médio por instância: 0.005254s
-  Tempo médio POSITIVAS: 0.005554s
-  Tempo médio NEGATIVAS: 0.004869s
-  Tempo médio REJEITADAS: 0.011467s
+  Tempo total: 2.4187s
+  Tempo médio por instância: 0.005039s
+  Tempo médio POSITIVAS: 0.000000s
+  Tempo médio NEGATIVAS: 0.004796s
+  Tempo médio REJEITADAS: 0.011668s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  density: 473 ocorrências (98.5%)
-  pH: 457 ocorrências (95.2%)
-  volatile acidity: 335 ocorrências (69.8%)
-  total sulfur dioxide: 272 ocorrências (56.7%)
-  fixed acidity: 208 ocorrências (43.3%)
-  free sulfur dioxide: 128 ocorrências (26.7%)
-  chlorides: 53 ocorrências (11.0%)
-  sulphates: 47 ocorrências (9.8%)
-  citric acid: 42 ocorrências (8.8%)
-  residual sugar: 21 ocorrências (4.4%)
+  density: 338 ocorrências (70.4%)
+  pH: 134 ocorrências (27.9%)
+  total sulfur dioxide: 31 ocorrências (6.5%)
+  volatile acidity: 22 ocorrências (4.6%)
+  chlorides: 15 ocorrências (3.1%)
+  fixed acidity: 15 ocorrências (3.1%)
+  free sulfur dioxide: 15 ocorrências (3.1%)
+  sulphates: 15 ocorrências (3.1%)
+  residual sugar: 14 ocorrências (2.9%)
+  citric acid: 10 ocorrências (2.1%)
 

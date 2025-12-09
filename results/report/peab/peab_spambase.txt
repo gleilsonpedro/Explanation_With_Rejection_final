@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 1.2791651500749546}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -23,61 +24,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): -0.311130
-  t- (limiar inferior): -0.365486
-  Largura da zona de rejeição: 0.054356
+  t+ (limiar superior): 0.247747
+  t- (limiar inferior): -0.321877
+  Largura da zona de rejeição: 0.569623
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 62.27%
-  Acurácia com rejeição: 87.17%
-  Taxa de rejeição: 9.70%
+  Acurácia com rejeição: 92.55%
+  Taxa de rejeição: 51.41%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 454
-    Tamanho médio: 30.28 features
-    Desvio padrão: 2.78
-    Mínimo: 13 features
-    Máximo: 36 features
-
-  NEGATIVAS:
-    Quantidade: 793
-    Tamanho médio: 25.50 features
-    Desvio padrão: 1.71
-    Mínimo: 21 features
+    Quantidade: 5
+    Tamanho médio: 28.60 features
+    Desvio padrão: 4.88
+    Mínimo: 20 features
     Máximo: 35 features
 
+  NEGATIVAS:
+    Quantidade: 666
+    Tamanho médio: 24.27 features
+    Desvio padrão: 1.03
+    Mínimo: 20 features
+    Máximo: 32 features
+
   REJEITADAS:
-    Quantidade: 134
-    Tamanho médio: 54.84 features
-    Desvio padrão: 0.37
-    Mínimo: 54 features
-    Máximo: 55 features
+    Quantidade: 710
+    Tamanho médio: 44.56 features
+    Desvio padrão: 1.51
+    Mínimo: 40 features
+    Máximo: 48 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 12.6819s
-  Tempo médio por instância: 0.009183s
-  Tempo médio POSITIVAS: 0.008076s
-  Tempo médio NEGATIVAS: 0.007355s
-  Tempo médio REJEITADAS: 0.023359s
+  Tempo total: 21.5191s
+  Tempo médio por instância: 0.015582s
+  Tempo médio POSITIVAS: 0.007097s
+  Tempo médio NEGATIVAS: 0.007457s
+  Tempo médio REJEITADAS: 0.023155s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  word_freq_your: 1380 ocorrências (99.9%)
-  word_freq_you: 1359 ocorrências (98.4%)
-  word_freq_addresses: 1357 ocorrências (98.3%)
-  word_freq_mail: 1357 ocorrências (98.3%)
-  word_freq_000: 1355 ocorrências (98.1%)
-  word_freq_business: 1351 ocorrências (97.8%)
-  word_freq_internet: 1351 ocorrências (97.8%)
-  word_freq_all: 1350 ocorrências (97.8%)
-  word_freq_receive: 1350 ocorrências (97.8%)
-  word_freq_remove: 1348 ocorrências (97.6%)
+  word_freq_your: 1381 ocorrências (100.0%)
+  word_freq_you: 1378 ocorrências (99.8%)
+  word_freq_all: 1376 ocorrências (99.6%)
+  word_freq_our: 1376 ocorrências (99.6%)
+  word_freq_000: 1371 ocorrências (99.3%)
+  word_freq_addresses: 1370 ocorrências (99.2%)
+  char_freq_dollar: 1365 ocorrências (98.8%)
+  word_freq_internet: 1365 ocorrências (98.8%)
+  word_freq_business: 1364 ocorrências (98.8%)
+  word_freq_remove: 1364 ocorrências (98.8%)
 

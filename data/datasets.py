@@ -7,8 +7,6 @@ import re
 import requests
 import numpy as np
 import pandas as pd
-from sklearn.datasets import fetch_20newsgroups
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris, fetch_openml, load_breast_cancer, load_wine
@@ -175,29 +173,6 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             X = data_df.drop("target", axis=1)
             y_series = data_df["target"]
             class_names_list = ["Rocha", "Mina (Metal)"]
-
-        elif nome_dataset == 'newsgroups':
-            print("[INFO] Baixando e vetorizando 20 Newsgroups (pode demorar um pouco)...")
-            # Seleciona duas categorias parecidas para dificultar (Carros vs Motos)
-            categories = ['rec.autos', 'rec.motorcycles']
-            
-            # Remove cabeçalhos para o modelo não "roubar" lendo metadados
-            newsgroups = fetch_20newsgroups(subset='all', categories=categories, 
-                                          remove=('headers', 'footers', 'quotes'))
-            
-            # [TESTE DE ALTA DIMENSÃO]
-            # max_features=2000 cria 2000 colunas (quase 3x o MNIST)
-            vectorizer = TfidfVectorizer(max_features=2000, stop_words='english')
-            X_sparse = vectorizer.fit_transform(newsgroups.data)
-            
-            # Converte para DataFrame denso (necessário para o PEAB)
-            feature_names = vectorizer.get_feature_names_out()
-            X = pd.DataFrame(X_sparse.toarray(), columns=feature_names)
-            
-            # Configura classes
-            y_series = pd.Series(newsgroups.target, name='target')
-            class_names_list = newsgroups.target_names # ['rec.autos', 'rec.motorcycles']
-
         elif nome_dataset == 'pima_indians_diabetes':
             # URLs alternativas para reduzir risco de 429 e quedas de serviço
             urls = [
@@ -377,29 +352,28 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
         return None, None, None
 
 def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optional[pd.DataFrame], Optional[pd.Series], Optional[List[str]]]:
-    # [MODIFICAÇÃO IMPORTANTE] Menu atualizado com Newsgroups
+    # [MODIFICAÇÃO IMPORTANTE] Menu atualizado para incluir Iris e reorganizar as opções.
     menu = '''
     | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
     | Datasets Clássicos para Comparação:                                  |
-    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)      |
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
     | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
     | [6] Banknote Auth (1372x4x2)       | [7] Heart Disease (297x13x2)    |
-    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)          |
-    | [10] Creditcard Fraud (Amostra)    | [11] 20 Newsgroups (Text 2k)    |
+    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)             |
+    | [10] Creditcard Fraud (Amostra)                                      |
     |----------------------------------------------------------------------|
     | [Q] SAIR                                                             |
     |----------------------------------------------------------------------|
     '''
     print(menu)
-    
-    # [MODIFICAÇÃO IMPORTANTE] Adicionado 'newsgroups' ao final da lista
+    # [MODIFICAÇÃO IMPORTANTE] Lista de datasets atualizada para corresponder ao menu.
     nomes_datasets = [
         'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
         'vertebral_column', 'wine', 'banknote', 'heart_disease',
-        'wine_quality', 'spambase', 'creditcard', 'newsgroups'
+        'wine_quality', 'spambase', 'creditcard'
     ]
     while True:
         opcao = input("\nDigite o número do dataset ou 'Q' para sair: ").upper().strip()
@@ -425,8 +399,8 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
                         print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab.MNIST_CONFIG")
                     except ImportError:
                         try:
-                            from peab import MNIST_CONFIG
-                            print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab.MNIST_CONFIG")
+                            from peab_2 import MNIST_CONFIG
+                            print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab_2.MNIST_CONFIG")
                         except ImportError:
                             raise ImportError("Não foi possível importar MNIST_CONFIG de peab.py nem de peab_2.py")
                     

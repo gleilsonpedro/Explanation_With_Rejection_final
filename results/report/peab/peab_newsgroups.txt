@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 6.217302396611877}
   penalty: l2
   C: 1.0
   solver: liblinear
@@ -23,61 +24,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.035881
-  t- (limiar inferior): -0.295705
-  Largura da zona de rejeição: 0.331586
+  t+ (limiar superior): 0.029639
+  t- (limiar inferior): -0.029771
+  Largura da zona de rejeição: 0.059410
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 85.23%
-  Acurácia com rejeição: 89.54%
-  Taxa de rejeição: 11.74%
+  Acurácia com rejeição: 89.85%
+  Taxa de rejeição: 12.42%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 283
-    Tamanho médio: 973.44 features
-    Desvio padrão: 31.71
+    Quantidade: 268
+    Tamanho médio: 970.41 features
+    Desvio padrão: 29.30
     Mínimo: 873 features
-    Máximo: 1065 features
+    Máximo: 1043 features
 
   NEGATIVAS:
-    Quantidade: 243
-    Tamanho médio: 894.96 features
-    Desvio padrão: 31.93
-    Mínimo: 819 features
-    Máximo: 991 features
+    Quantidade: 254
+    Tamanho médio: 888.02 features
+    Desvio padrão: 28.94
+    Mínimo: 815 features
+    Máximo: 964 features
 
   REJEITADAS:
-    Quantidade: 70
-    Tamanho médio: 1962.27 features
-    Desvio padrão: 2.60
-    Mínimo: 1957 features
-    Máximo: 1970 features
+    Quantidade: 74
+    Tamanho médio: 1960.85 features
+    Desvio padrão: 2.26
+    Mínimo: 1954 features
+    Máximo: 1966 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 219.9327s
-  Tempo médio por instância: 0.369015s
-  Tempo médio POSITIVAS: 0.135864s
-  Tempo médio NEGATIVAS: 0.124754s
-  Tempo médio REJEITADAS: 2.156120s
+  Tempo total: 230.0722s
+  Tempo médio por instância: 0.386027s
+  Tempo médio POSITIVAS: 0.135408s
+  Tempo médio NEGATIVAS: 0.124290s
+  Tempo médio REJEITADAS: 2.188824s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  car: 457 ocorrências (76.7%)
-  cars: 415 ocorrências (69.6%)
-  new: 397 ocorrências (66.6%)
-  bike: 394 ocorrências (66.1%)
-  engine: 389 ocorrências (65.3%)
-  time: 389 ocorrências (65.3%)
-  does: 384 ocorrências (64.4%)
-  power: 381 ocorrências (63.9%)
-  speed: 381 ocorrências (63.9%)
-  problem: 379 ocorrências (63.6%)
+  car: 448 ocorrências (75.2%)
+  bike: 409 ocorrências (68.6%)
+  cars: 404 ocorrências (67.8%)
+  new: 385 ocorrências (64.6%)
+  engine: 378 ocorrências (63.4%)
+  time: 377 ocorrências (63.3%)
+  don: 375 ocorrências (62.9%)
+  does: 373 ocorrências (62.6%)
+  dod: 370 ocorrências (62.1%)
+  power: 370 ocorrências (62.1%)
 

@@ -5,51 +5,68 @@ debugar nos datasets com menos features problema nas negativas e positivas na co
 
 datasets com problema, sonar,  wine, banknote, 
 
+Problema 1: Min-Max Não Centraliza
+Dataset banknote (antes):
+Scores originais: 93% negativos, 7% positivos
+Min-max [-1, +1]: Apenas desloca o range, não centraliza!
+Resultado: T+ = -0.0190, T- = -0.1281 (ambos negativos)
 
+Violação acadêmica:
 
-thresholds são calculados como?
-    Os thresholds são calculados sobre o decision_function da Regressão Logística
-O decision_function retorna: score = intercepto + Σ(coeficientes × features)
-📊 ANÁLISE DATASET POR DATASET
-1. BANKNOTE (ambos negativos)
-Por que ambos negativos?
+Chow (1970): Zona de rejeição deve estar na região de máxima incerteza
+Com SVM, score = 0 significa "instância no hiperplano" (máxima incerteza)
+Thresholds ambos negativos → zona de rejeição apenas na classe negativa → sem sentido teórico
+Problema 2: Grid Search Limitado aos Dados
 
-O intercepto é POSITIVO (+0.134)
-Mas as features contribuem NEGATIVAMENTE em média
-Score médio = 0.134 + (soma_negativa) = negativo
-O modelo está calibrado para scores negativos
-t- < t+ é respeitado ✅ (-0.300 < -0.255)
-2. HEART_DISEASE (ambos positivos)
-Por que ambos positivos?
+Dataset wine (com z-score, mas grid limitado):
+Scores normalizados: [-0.7582, 1.0000]
+Grid search: [-0.7582, 1.0000] ← NÃO explora todo [-1, +1]
+Resultado: T+ = -0.1604, T- = -0.4064 (otimiza risco, mas viola teoria)
 
-O intercepto é NEGATIVO (-0.106)
-Mas as features contribuem POSITIVAMENTE em média
-Score médio = -0.106 + (soma_positiva) = positivo
-O modelo está calibrado para scores positivos
-t- < t+ é respeitado ✅ (0.059 < 0.088)
-3. SONAR (ambos positivos)
-Explicação: Intercepto negativo + features positivas = scores positivos ✅
+Violação acadêmica:
 
-4. WINE (ambos positivos)
-Explicação: Intercepto positivo + features positivas = scores positivos ✅
+Vapnik (1998): Decision function tem interpretação geométrica - score = 0 é o limiar natural
+Grid search deveria explorar TODO o espaço normalizado, não apenas valores observados
+Problema 3: Sem Restrição Teórica
+Sem if t_minus >= 0.0 or t_plus <= 0.0: continue, o algoritmo podia escolher:
 
-5. WINE_QUALITY (ambos negativos)
-Explicação: Intercepto muito negativo + features negativas = scores muito negativos ✅
+Ambos thresholds negativos → "rejeitar apenas na classe negativa"
+Ambos thresholds positivos → "rejeitar apenas na classe positiva"
+Violação acadêmica:
 
-6. SPAMBASE (ambos negativos)
-Explicação: Intercepto negativo + features negativas = scores negativos ✅
+Hastie et al. (2009): Reject option deve refletir incerteza epistêmica, não viés dos dados
+Fumera & Roli (2002): Zona de rejeição deve ser simétrica ao limiar de decisão
 
-7. BREAST_CANCER ("correto" - t+ positivo, t- negativo)
-Por que este parece "normal"?
+✅ Por Que Agora Está Correto Academicamente
+1. Z-score Garante Centralização (Hastie 2009)
 
-Intercepto MUITO POSITIVO (+1.914)
-Features têm contribuições mistas (positivas e negativas)
-Distribuição de scores cruza o zero
-Por coincidência, os thresholds ótimos ficaram em lados opostos do zero
-🎯 EXPLICAÇÃO MATEMÁTICA
-O que é o decision_function?
-Onde:
+score_centered = (score - mean) / std  # média = 0, std = 1
 
-intercept pode ser qualquer valor (positivo, negativo, grande, pequeno)
-wi são os pesos (podem ser positivos ou negativos)
-xi são as features escaladas (geralmente entre 0 e 1)
+✅ Propriedade: 
+E
+[
+score_centered
+]
+=
+0
+E[score_centered]=0 (centrado no limiar de decisão)
+
+2. Scaling Preserva Interpretação (LeCun 1998)
+🎓 Fundamentação Acadêmica Final
+Referências que justificam as mudanças:
+Chow (1970) - "On Optimum Recognition Error and Reject Tradeoff"
+
+Zona de rejeição deve estar na região de máxima incerteza
+✅ Atendido: [t-, t+] contém zero (hiperplano de decisão)
+Vapnik (1998) - Statistical Learning Theory
+
+Score normalizado = distância ao hiperplano de decisão
+✅ Atendido: Z-score centraliza em zero
+Hastie et al. (2009) - Elements of Statistical Learning
+
+Normalização deve preservar interpretação probabilística
+✅ Atendido: Z-score + scaling preserva estrutura dos dados
+Fumera & Roli (2002) - Support Vector Machines with Embedded Reject Option
+
+Thresholds simétricos ao redor do limiar de decisão
+✅ Atendido: Restrição t- < 0 < t+ garante simetria

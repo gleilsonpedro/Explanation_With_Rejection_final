@@ -14,6 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
+  norm_params: {'max_abs': 3.8936245794001563}
   penalty: l2
   C: 0.1
   solver: liblinear
@@ -23,9 +24,9 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.405455
-  t- (limiar inferior): -0.007368
-  Largura da zona de rejeição: 0.412823
+  t+ (limiar superior): 0.099658
+  t- (limiar inferior): -0.001849
+  Largura da zona de rejeição: 0.101507
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
@@ -39,33 +40,33 @@
 --------------------------------------------------------------------------------
   POSITIVAS:
     Quantidade: 96
-    Tamanho médio: 16.94 features
-    Desvio padrão: 3.20
-    Mínimo: 12 features
-    Máximo: 29 features
+    Tamanho médio: 14.62 features
+    Desvio padrão: 1.87
+    Mínimo: 11 features
+    Máximo: 20 features
 
   NEGATIVAS:
     Quantidade: 53
-    Tamanho médio: 16.49 features
-    Desvio padrão: 4.77
+    Tamanho médio: 16.43 features
+    Desvio padrão: 4.69
     Mínimo: 6 features
-    Máximo: 29 features
+    Máximo: 28 features
 
   REJEITADAS:
     Quantidade: 22
-    Tamanho médio: 24.95 features
-    Desvio padrão: 0.88
+    Tamanho médio: 25.32 features
+    Desvio padrão: 1.02
     Mínimo: 24 features
-    Máximo: 27 features
+    Máximo: 28 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 1.0551s
-  Tempo médio por instância: 0.006170s
-  Tempo médio POSITIVAS: 0.005041s
-  Tempo médio NEGATIVAS: 0.005070s
-  Tempo médio REJEITADAS: 0.013511s
+  Tempo total: 1.0857s
+  Tempo médio por instância: 0.006349s
+  Tempo médio POSITIVAS: 0.005139s
+  Tempo médio NEGATIVAS: 0.005233s
+  Tempo médio REJEITADAS: 0.014064s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
@@ -77,7 +78,7 @@
   worst area: 167 ocorrências (97.7%)
   mean area: 165 ocorrências (96.5%)
   mean concavity: 165 ocorrências (96.5%)
-  radius error: 161 ocorrências (94.2%)
-  mean perimeter: 157 ocorrências (91.8%)
+  radius error: 159 ocorrências (93.0%)
   worst concavity: 155 ocorrências (90.6%)
+  area error: 146 ocorrências (85.4%)
 
