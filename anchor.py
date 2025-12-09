@@ -214,8 +214,11 @@ if __name__ == '__main__':
 
         with ProgressBar(total=max_instances_to_explain, description=f"Anchor Explicando {nome_relatorio}") as pbar:
             for i in range(max_instances_to_explain):
-                start_time = time.time()
+                # [AUDITORIA] Preparar instância ANTES de iniciar timer
                 instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
+                
+                # [AUDITORIA] Iniciar timer APENAS para o algoritmo de explicação
+                start_time = time.perf_counter()
                 
                 try:
                     explanation = explainer.explain(
@@ -250,7 +253,8 @@ if __name__ == '__main__':
                     pbar.update()
                     continue
 
-                runtime = time.time() - start_time
+                # [AUDITORIA] Usar time.perf_counter() para maior precisão
+                runtime = time.perf_counter() - start_time
                 tempos_total.append(runtime)
                 explicacoes[i] = explanation.anchor
                 if i in indices_rejeitados:
@@ -548,8 +552,11 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
         anchor_max_size = None
 
     for i in range(max_instances_to_explain):
-        start_time = time.time()
+        # [AUDITORIA] Preparar instância ANTES de iniciar timer
         instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
+        
+        # [AUDITORIA] Iniciar timer APENAS para o algoritmo de explicação
+        start_time = time.perf_counter()
         try:
             explanation = explainer.explain(
                 instance_arr,
@@ -582,7 +589,8 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
             print(f"Erro ao explicar instância {i} com Anchor: {e}. Pulando esta instância.")
             continue
 
-        runtime = time.time() - start_time
+        # [AUDITORIA] Usar time.perf_counter() para maior precisão
+        runtime = time.perf_counter() - start_time
         tempos_total.append(runtime)
         explicacoes[i] = explanation.anchor
         if i in indices_rejeitados:

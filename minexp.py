@@ -147,6 +147,9 @@ if __name__ == '__main__':
         total_instances = len(neg_idx) + len(pos_idx) + len(rej_idx)
         pbar = ProgressBar(total=total_instances, description=f"MinExp Explicando {nome_relatorio}")
         
+        # [AUDITORIA] Dicionário para armazenar tempo por instância
+        tempos_individuais = {}
+        
         # Helper: explicar em chunks para reduzir uso de memória
         def explain_in_chunks(idx_array, classified_label):
             if len(idx_array) == 0:
@@ -156,6 +159,9 @@ if __name__ == '__main__':
             for start in range(0, len(idx_array), chunk_size):
                 sl = slice(start, start + chunk_size)
                 sel_idx = idx_array[sl]
+                
+                # [AUDITORIA] Medir APENAS o tempo do solver (excluir overhead)
+                start_chunk = time.perf_counter()
                 try:
                     explanations_local = utils.svm_explainer.svm_explanation_binary(
                         dual_coef=dual_coef,
@@ -171,6 +177,10 @@ if __name__ == '__main__':
                         classified=classified_label,
                         time_limit=time_limit
                     )
+                    # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
+                    tempo_chunk = time.perf_counter() - start_chunk
+                    tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                    
                     # Se reduzimos dimensão, remapear índices para espaço original
                     if topk_idx is not None:
                         remapped = []
@@ -178,34 +188,38 @@ if __name__ == '__main__':
                             remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                         explanations_local = remapped
                     all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                    
+                    # [AUDITORIA] Armazenar tempo para cada instância
+                    for idx in sel_idx:
+                        tempos_individuais[idx] = tempo_por_instancia
+                    
                     # Atualizar progresso
                     pbar.update(len(sel_idx))
                 except Exception:
+                    # [AUDITORIA] Em caso de erro, tempo = 0
+                    for idx in sel_idx:
+                        tempos_individuais[idx] = 0.0
                     # Silenciar erros e atualizar progresso
                     pbar.update(len(sel_idx))
 
-        start_time_neg = time.time()
+        # [AUDITORIA] Processar instâncias negativas
         if len(neg_idx) > 0:
             explain_in_chunks(neg_idx, "Negative")
-        runtime_neg = time.time() - start_time_neg
-        tempo_total_explicacoes += runtime_neg
-        metricas['tempo_medio_negativas'] = runtime_neg / len(neg_idx) if len(neg_idx) > 0 else 0
-
-        start_time_pos = time.time()
+        
+        # [AUDITORIA] Processar instâncias positivas
         if len(pos_idx) > 0:
             explain_in_chunks(pos_idx, "Positive")
-        runtime_pos = time.time() - start_time_pos
-        tempo_total_explicacoes += runtime_pos
-        metricas['tempo_medio_positivas'] = runtime_pos / len(pos_idx) if len(pos_idx) > 0 else 0
 
-        start_time_rej = time.time()
+        # [AUDITORIA] Processar instâncias rejeitadas
         if len(rej_idx) > 0:
-            # Rejeitadas também em chunks
             time_limit = 30.0 if hi_dim else None
             chunk_size = 20 if hi_dim else len(rej_idx)
             for start in range(0, len(rej_idx), chunk_size):
                 sl = slice(start, start + chunk_size)
                 sel_idx = rej_idx[sl]
+                
+                # [AUDITORIA] Medir APENAS o tempo do solver
+                start_chunk = time.perf_counter()
                 try:
                     explanations_local = utils.svm_explainer.svm_explanation_rejected(
                         dual_coef=dual_coef,
@@ -220,26 +234,44 @@ if __name__ == '__main__':
                         n_threads=1,
                         time_limit=time_limit
                     )
+                    # [AUDITORIA] Tempo dividido igualmente entre instâncias
+                    tempo_chunk = time.perf_counter() - start_chunk
+                    tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                    
                     if topk_idx is not None:
                         remapped = []
                         for exp in explanations_local:
                             remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                         explanations_local = remapped
                     all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                    
+                    # [AUDITORIA] Armazenar tempo para cada instância
+                    for idx in sel_idx:
+                        tempos_individuais[idx] = tempo_por_instancia
+                    
                     # Atualizar progresso
                     pbar.update(len(sel_idx))
                 except Exception:
+                    # [AUDITORIA] Em caso de erro, tempo = 0
+                    for idx in sel_idx:
+                        tempos_individuais[idx] = 0.0
                     # Silenciar erros e atualizar progresso
                     pbar.update(len(sel_idx))
-        runtime_rej = time.time() - start_time_rej
         
         # Fechar barra de progresso
         pbar.close()
-        tempo_total_explicacoes += runtime_rej
-        metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
-
-        metricas['tempo_total'] = tempo_total_explicacoes
-        metricas['tempo_medio_instancia'] = tempo_total_explicacoes / len(y_test) if len(y_test) > 0 else 0
+        
+        # [AUDITORIA] Calcular métricas de tempo a partir dos tempos individuais
+        tempos_neg = [tempos_individuais.get(i, 0.0) for i in neg_idx]
+        tempos_pos = [tempos_individuais.get(i, 0.0) for i in pos_idx]
+        tempos_rej = [tempos_individuais.get(i, 0.0) for i in rej_idx]
+        todos_tempos = [tempos_individuais.get(i, 0.0) for i in range(len(y_test))]
+        
+        metricas['tempo_medio_negativas'] = float(np.mean(tempos_neg)) if tempos_neg else 0.0
+        metricas['tempo_medio_positivas'] = float(np.mean(tempos_pos)) if tempos_pos else 0.0
+        metricas['tempo_medio_rejeitadas'] = float(np.mean(tempos_rej)) if tempos_rej else 0.0
+        metricas['tempo_total'] = float(sum(todos_tempos))
+        metricas['tempo_medio_instancia'] = float(np.mean(todos_tempos)) if todos_tempos else 0.0
 
         metricas['num_rejeitadas_teste'] = len(rej_idx)
         metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
@@ -329,7 +361,8 @@ if __name__ == '__main__':
                 'rejected': bool(rejected_mask[i]),
                 'decision_score': float(decfun_test[i]),
                 'explanation': feats_list,
-                'explanation_size': int(len(feats_list))
+                'explanation_size': int(len(feats_list)),
+                'tempo_segundos': float(tempos_individuais.get(i, 0.0))  # [AUDITORIA] Tempo por instância
             })
 
         # Metadados MNIST
@@ -449,7 +482,8 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     w_solver = w
 
     all_explanations = {}
-    tempo_total_explicacoes = 0.0
+    # [AUDITORIA] Dicionário para armazenar tempo por instância (run_minexp_for_dataset)
+    tempos_individuais = {}
 
     # Runner: usar mesma estratégia de chunks e time_limit maior para alta dimensionalidade
     def explain_in_chunks(idx_array, classified_label):
@@ -460,6 +494,9 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
         for start in range(0, len(idx_array), chunk_size):
             sl = slice(start, start + chunk_size)
             sel_idx = idx_array[sl]
+            
+            # [AUDITORIA] Medir APENAS o tempo do solver (excluir overhead)
+            start_chunk = time.perf_counter()
             try:
                 explanations_local = utils.svm_explainer.svm_explanation_binary(
                     dual_coef=dual_coef,
@@ -475,37 +512,40 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                     classified=classified_label,
                     time_limit=time_limit
                 )
+                # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
+                tempo_chunk = time.perf_counter() - start_chunk
+                tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                
                 if topk_idx is not None:
                     remapped = []
                     for exp in explanations_local:
                         remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                     explanations_local = remapped
                 all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                
+                # [AUDITORIA] Armazenar tempo para cada instância do chunk
+                for idx in sel_idx:
+                    tempos_individuais[idx] = tempo_por_instancia
+                    
             except Exception as e:
                 print(f"[MinExp] Solver falhou (runner) para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
 
-    start_time_neg = time.time()
+    # [AUDITORIA] Processar cada tipo (não medir aqui, já medido dentro do explain_in_chunks)
     if len(neg_idx) > 0:
         explain_in_chunks(neg_idx, "Negative")
-    runtime_neg = time.time() - start_time_neg
-    tempo_total_explicacoes += runtime_neg
-    metricas['tempo_medio_negativas'] = runtime_neg / len(neg_idx) if len(neg_idx) > 0 else 0
-
-    start_time_pos = time.time()
     if len(pos_idx) > 0:
         explain_in_chunks(pos_idx, "Positive")
-    runtime_pos = time.time() - start_time_pos
-    tempo_total_explicacoes += runtime_pos
-    metricas['tempo_medio_positivas'] = runtime_pos / len(pos_idx) if len(pos_idx) > 0 else 0
-
-    start_time_rej = time.time()
+    
+    # [AUDITORIA] Rejeitadas: mesmo padrão com timer no solver
     if len(rej_idx) > 0:
-        # chunks para rejeitadas também
         time_limit = 30.0 if hi_dim else None
         chunk_size = 20 if hi_dim else len(rej_idx)
         for start in range(0, len(rej_idx), chunk_size):
             sl = slice(start, start + chunk_size)
             sel_idx = rej_idx[sl]
+            
+            # [AUDITORIA] Medir APENAS o tempo do solver
+            start_chunk = time.perf_counter()
             try:
                 explanations_local = utils.svm_explainer.svm_explanation_rejected(
                     dual_coef=dual_coef,
@@ -520,20 +560,35 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                     n_threads=1,
                     time_limit=time_limit
                 )
+                # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
+                tempo_chunk = time.perf_counter() - start_chunk
+                tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                
                 if topk_idx is not None:
                     remapped = []
                     for exp in explanations_local:
                         remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
                     explanations_local = remapped
                 all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                
+                # [AUDITORIA] Armazenar tempo para cada instância do chunk
+                for idx in sel_idx:
+                    tempos_individuais[idx] = tempo_por_instancia
+                    
             except Exception as e:
                 print(f"[MinExp] Solver falhou (runner) para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
-    runtime_rej = time.time() - start_time_rej
-    tempo_total_explicacoes += runtime_rej
-    metricas['tempo_medio_rejeitadas'] = runtime_rej / len(rej_idx) if len(rej_idx) > 0 else 0
 
-    metricas['tempo_total'] = tempo_total_explicacoes
-    metricas['tempo_medio_instancia'] = tempo_total_explicacoes / len(y_test) if len(y_test) > 0 else 0
+    # [AUDITORIA] Calcular métricas a partir dos tempos individuais
+    tempos_neg = [tempos_individuais.get(i, 0.0) for i in neg_idx]
+    tempos_pos = [tempos_individuais.get(i, 0.0) for i in pos_idx]
+    tempos_rej = [tempos_individuais.get(i, 0.0) for i in rej_idx]
+    todos_tempos = [tempos_individuais.get(i, 0.0) for i in range(len(y_test))]
+    
+    metricas['tempo_medio_negativas'] = float(np.mean(tempos_neg)) if tempos_neg else 0.0
+    metricas['tempo_medio_positivas'] = float(np.mean(tempos_pos)) if tempos_pos else 0.0
+    metricas['tempo_medio_rejeitadas'] = float(np.mean(tempos_rej)) if tempos_rej else 0.0
+    metricas['tempo_total'] = float(sum(todos_tempos))
+    metricas['tempo_medio_instancia'] = float(np.mean(todos_tempos)) if todos_tempos else 0.0
     metricas['num_rejeitadas_teste'] = len(rej_idx)
     metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
     metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_test)) * 100 if len(y_test) > 0 else 0

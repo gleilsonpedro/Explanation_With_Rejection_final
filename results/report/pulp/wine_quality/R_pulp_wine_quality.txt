@@ -1,0 +1,76 @@
+================================================================================
+RELATÓRIO PULP - WINE_QUALITY
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: wine_quality
+Instâncias processadas: 480
+Thresholds: t+ = 0.0100, t- = -0.6155
+Zona de rejeição: 0.6255
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 86.46%
+Acurácia (com rejeição): 87.31%
+Taxa de rejeição: 3.12%
+Risco empírico: 0.1344
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 0.00 features
+Tempo total: 15.29s
+Tempo médio/instância: 0.0319s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+NEGATIVA:
+  - Instâncias: 480 (100.0%)
+  - Tamanho médio: 0.00 features
+  - Tempo médio: 0.0319s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância   0 (NEGATIVA  ):   0 features - 0.0533s
+ 2. Instância   1 (NEGATIVA  ):   0 features - 0.0327s
+ 3. Instância   2 (NEGATIVA  ):   0 features - 0.0307s
+ 4. Instância   3 (NEGATIVA  ):   0 features - 0.0356s
+ 5. Instância   4 (NEGATIVA  ):   0 features - 0.0292s
+ 6. Instância   5 (NEGATIVA  ):   0 features - 0.0314s
+ 7. Instância   6 (NEGATIVA  ):   0 features - 0.0315s
+ 8. Instância   7 (NEGATIVA  ):   0 features - 0.0372s
+ 9. Instância   8 (NEGATIVA  ):   0 features - 0.0305s
+10. Instância   9 (NEGATIVA  ):   0 features - 0.0293s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância   0 (NEGATIVA  ):   0 features - 0.0533s
+ 2. Instância   1 (NEGATIVA  ):   0 features - 0.0327s
+ 3. Instância   2 (NEGATIVA  ):   0 features - 0.0307s
+ 4. Instância   3 (NEGATIVA  ):   0 features - 0.0356s
+ 5. Instância   4 (NEGATIVA  ):   0 features - 0.0292s
+ 6. Instância   5 (NEGATIVA  ):   0 features - 0.0314s
+ 7. Instância   6 (NEGATIVA  ):   0 features - 0.0315s
+ 8. Instância   7 (NEGATIVA  ):   0 features - 0.0372s
+ 9. Instância   8 (NEGATIVA  ):   0 features - 0.0305s
+10. Instância   9 (NEGATIVA  ):   0 features - 0.0293s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

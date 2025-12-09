@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - MNIST
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: mnist
+Instâncias processadas: 4190
+Thresholds: t+ = 0.0931, t- = -0.0883
+Zona de rejeição: 0.1814
+Rejection cost: 0.1
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.1,
+  "solver": "lbfgs",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 96.87%
+Acurácia (com rejeição): 98.63%
+Taxa de rejeição: 7.88%
+Risco empírico: 0.0216
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 199.42 features
+Tempo total: 557.83s
+Tempo médio/instância: 0.1331s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 2036 (48.6%)
+  - Tamanho médio: 237.80 features
+  - Tempo médio: 0.1339s
+
+NEGATIVA:
+  - Instâncias: 2139 (51.1%)
+  - Tamanho médio: 160.49 features
+  - Tempo médio: 0.1324s
+
+REJEITADA:
+  - Instâncias: 15 (0.4%)
+  - Tamanho médio: 542.13 features
+  - Tempo médio: 0.1399s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância 2567 (REJEITADA ): 560 features - 0.1365s
+ 2. Instância 1002 (REJEITADA ): 556 features - 0.1279s
+ 3. Instância 231 (REJEITADA ): 547 features - 0.1426s
+ 4. Instância 233 (REJEITADA ): 546 features - 0.1293s
+ 5. Instância 1325 (REJEITADA ): 543 features - 0.1374s
+ 6. Instância 1211 (REJEITADA ): 541 features - 0.1355s
+ 7. Instância 1145 (REJEITADA ): 540 features - 0.1321s
+ 8. Instância 1613 (REJEITADA ): 540 features - 0.1452s
+ 9. Instância 1755 (REJEITADA ): 539 features - 0.1479s
+10. Instância 2704 (REJEITADA ): 538 features - 0.1401s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância 923 (NEGATIVA  ): 111 features - 0.1558s
+ 2. Instância 3476 (NEGATIVA  ): 111 features - 0.1281s
+ 3. Instância 226 (NEGATIVA  ): 115 features - 0.1303s
+ 4. Instância 455 (NEGATIVA  ): 115 features - 0.2492s
+ 5. Instância 704 (NEGATIVA  ): 115 features - 0.1250s
+ 6. Instância 1973 (NEGATIVA  ): 116 features - 0.1316s
+ 7. Instância 2283 (NEGATIVA  ): 116 features - 0.1217s
+ 8. Instância 1089 (NEGATIVA  ): 117 features - 0.1246s
+ 9. Instância 1897 (NEGATIVA  ): 117 features - 0.1215s
+10. Instância 2256 (NEGATIVA  ): 117 features - 0.1310s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

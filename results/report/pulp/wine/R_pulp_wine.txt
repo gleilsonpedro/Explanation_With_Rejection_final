@@ -1,0 +1,76 @@
+================================================================================
+RELATÓRIO PULP - WINE
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: wine
+Instâncias processadas: 54
+Thresholds: t+ = 0.5657, t- = -0.5000
+Zona de rejeição: 1.0657
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 66.67%
+Acurácia (com rejeição): 100.00%
+Taxa de rejeição: 50.00%
+Risco empírico: 0.1200
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 0.00 features
+Tempo total: 1.82s
+Tempo médio/instância: 0.0338s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+REJEITADA:
+  - Instâncias: 54 (100.0%)
+  - Tamanho médio: 0.00 features
+  - Tempo médio: 0.0338s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância   0 (REJEITADA ):   0 features - 0.0533s
+ 2. Instância   1 (REJEITADA ):   0 features - 0.0317s
+ 3. Instância   2 (REJEITADA ):   0 features - 0.0314s
+ 4. Instância   3 (REJEITADA ):   0 features - 0.0366s
+ 5. Instância   4 (REJEITADA ):   0 features - 0.0314s
+ 6. Instância   5 (REJEITADA ):   0 features - 0.0345s
+ 7. Instância   6 (REJEITADA ):   0 features - 0.0370s
+ 8. Instância   7 (REJEITADA ):   0 features - 0.0347s
+ 9. Instância   8 (REJEITADA ):   0 features - 0.0292s
+10. Instância   9 (REJEITADA ):   0 features - 0.0318s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância   0 (REJEITADA ):   0 features - 0.0533s
+ 2. Instância   1 (REJEITADA ):   0 features - 0.0317s
+ 3. Instância   2 (REJEITADA ):   0 features - 0.0314s
+ 4. Instância   3 (REJEITADA ):   0 features - 0.0366s
+ 5. Instância   4 (REJEITADA ):   0 features - 0.0314s
+ 6. Instância   5 (REJEITADA ):   0 features - 0.0345s
+ 7. Instância   6 (REJEITADA ):   0 features - 0.0370s
+ 8. Instância   7 (REJEITADA ):   0 features - 0.0347s
+ 9. Instância   8 (REJEITADA ):   0 features - 0.0292s
+10. Instância   9 (REJEITADA ):   0 features - 0.0318s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

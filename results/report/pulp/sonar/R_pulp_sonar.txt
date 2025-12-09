@@ -1,0 +1,81 @@
+================================================================================
+RELATÓRIO PULP - SONAR
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: sonar
+Instâncias processadas: 63
+Thresholds: t+ = 0.6750, t- = -0.0368
+Zona de rejeição: 0.7118
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "saga",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 68.25%
+Acurácia (com rejeição): 95.00%
+Taxa de rejeição: 68.25%
+Risco empírico: 0.2138
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 22.40 features
+Tempo total: 2.94s
+Tempo médio/instância: 0.0467s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+NEGATIVA:
+  - Instâncias: 3 (4.8%)
+  - Tamanho médio: 46.00 features
+  - Tempo médio: 0.0450s
+
+REJEITADA:
+  - Instâncias: 60 (95.2%)
+  - Tamanho médio: 21.22 features
+  - Tempo médio: 0.0468s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância  52 (NEGATIVA  ):  53 features - 0.0395s
+ 2. Instância  53 (REJEITADA ):  48 features - 0.0482s
+ 3. Instância  25 (REJEITADA ):  45 features - 0.0536s
+ 4. Instância  29 (REJEITADA ):  45 features - 0.0538s
+ 5. Instância   2 (REJEITADA ):  44 features - 0.0458s
+ 6. Instância  61 (NEGATIVA  ):  43 features - 0.0505s
+ 7. Instância  12 (NEGATIVA  ):  42 features - 0.0451s
+ 8. Instância  16 (REJEITADA ):  37 features - 0.0480s
+ 9. Instância  51 (REJEITADA ):  35 features - 0.0441s
+10. Instância  58 (REJEITADA ):  35 features - 0.0468s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância   0 (REJEITADA ):  14 features - 0.0602s
+ 2. Instância   1 (REJEITADA ):  14 features - 0.0500s
+ 3. Instância   5 (REJEITADA ):  14 features - 0.0471s
+ 4. Instância  13 (REJEITADA ):  14 features - 0.0485s
+ 5. Instância  15 (REJEITADA ):  14 features - 0.0487s
+ 6. Instância  18 (REJEITADA ):  14 features - 0.0439s
+ 7. Instância  20 (REJEITADA ):  14 features - 0.0437s
+ 8. Instância  28 (REJEITADA ):  14 features - 0.0510s
+ 9. Instância  34 (REJEITADA ):  14 features - 0.0478s
+10. Instância  41 (REJEITADA ):  14 features - 0.0412s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
