@@ -67,35 +67,107 @@ os.makedirs(VALIDATION_JSON_DIR, exist_ok=True)
 os.makedirs(VALIDATION_RESULTS_DIR, exist_ok=True)
 
 
-def carregar_resultados_metodo(metodo: str, dataset: str) -> Optional[Dict]:
+def encontrar_variacao_mnist(metodo: str) -> Optional[str]:
+    """
+    Busca por variações de MNIST disponíveis (mnist_3_vs_6.json, mnist_1_vs_2.json, etc).
+    
+    Args:
+        metodo: Nome do método ('PEAB', 'PuLP', etc)
+    
+    Returns:
+        Nome do dataset encontrado ou None
+    """
+    metodo_lower = metodo.lower()
+    metodo_dir = os.path.join(JSON_DIR, metodo_lower)
+    
+    if not os.path.exists(metodo_dir):
+        return None
+    
+    # Procura por arquivos que começam com "mnist"
+    mnist_files = [f for f in os.listdir(metodo_dir) if f.startswith('mnist') and f.endswith('.json')]
+    
+    if not mnist_files:
+        return None
+    
+    # Se houver apenas 1, retorna automaticamente
+    if len(mnist_files) == 1:
+        dataset_name = mnist_files[0].replace('.json', '')
+        print(f"\n✓ MNIST encontrado: {dataset_name}")
+        return dataset_name
+    
+    # Se houver múltiplas, mostra menu
+    print("\n🔍 Múltiplas variações de MNIST encontradas:")
+    print("─" * 60)
+    for i, f in enumerate(mnist_files, 1):
+        dataset_name = f.replace('.json', '')
+        print(f"  {i}. {dataset_name}")
+    
+    print("─" * 60)
+    escolha = input("Qual variação deseja usar? (número): ").strip()
+    
+    try:
+        idx = int(escolha) - 1
+        if 0 <= idx < len(mnist_files):
+            dataset_name = mnist_files[idx].replace('.json', '')
+            return dataset_name
+        else:
+            print("❌ Opção inválida")
+            return None
+    except ValueError:
+        print("❌ Digite um número válido")
+        return None
+
+
+def carregar_resultados_metodo(metodo: str, dataset: str) -> Optional[Tuple]:
     """
     Carrega os resultados de execução de um método (PEAB, PuLP, Anchor, MinExp).
+    
+    NOVA ESTRUTURA: Carrega de json/{method}/{dataset}.json
+    
+    Suporta busca automática de variações MNIST se dataset não for encontrado.
     
     Args:
         metodo: Nome do método ('PEAB', 'PuLP', 'Anchor', 'MinExp')
         dataset: Nome do dataset
     
     Returns:
-        Dicionário com os resultados ou None se não encontrado
+        Tupla (dados, dataset_usado) onde dataset_usado pode ser diferente
+        de dataset (ex: mnist_3_vs_6 em vez de mnist)
+        Retorna None se não encontrado
     """
-    json_path = os.path.join(JSON_DIR, f"{metodo.lower()}_results.json")
+    metodo_lower = metodo.lower()
+    if metodo_lower == 'pulp':
+        metodo_lower = 'pulp'  # PuLP usa 'pulp' como nome de pasta
+    
+    # Nova estrutura: json/{method}/{dataset}.json
+    json_path = os.path.join(JSON_DIR, metodo_lower, f"{dataset}.json")
+    dataset_usado = dataset
+    
+    # Se não encontrar e for mnist, procura por variações
+    if not os.path.exists(json_path) and dataset == 'mnist':
+        print(f"\n⚠ {dataset}.json não encontrado em json/{metodo_lower}/")
+        print("  Procurando por variações de MNIST...")
+        dataset_encontrado = encontrar_variacao_mnist(metodo)
+        
+        if dataset_encontrado:
+            json_path = os.path.join(JSON_DIR, metodo_lower, f"{dataset_encontrado}.json")
+            dataset_usado = dataset_encontrado
+        else:
+            print(f"❌ Nenhuma variação de MNIST encontrada em json/{metodo_lower}/")
+            return None
     
     if not os.path.exists(json_path):
         print(f"❌ Arquivo não encontrado: {json_path}")
-        print(f"   Execute primeiro: python {metodo.lower()}.py")
+        print(f"   Execute primeiro: python {metodo_lower}.py")
+        print(f"   E selecione o dataset: {dataset}")
         return None
     
     try:
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
-        # Procurar dataset nos resultados
-        if dataset not in data:
-            print(f"❌ Dataset '{dataset}' não encontrado em {json_path}")
-            print(f"   Datasets disponíveis: {list(data.keys())}")
-            return None
-        
-        return data[dataset]
+        # Retorna tupla com dados e dataset usado
+        return (data, dataset_usado)
     
     except Exception as e:
         print(f"❌ Erro ao carregar {json_path}: {e}")
@@ -105,16 +177,33 @@ def carregar_resultados_metodo(metodo: str, dataset: str) -> Optional[Dict]:
 def carregar_pipeline_dataset(dataset: str):
     """
     Carrega o pipeline treinado e dados do dataset usando shared_training.
+    Detecta variações MNIST (mnist_3_vs_8, mnist_1_vs_2, etc) e configura
+    o par automáticamente.
     
     Args:
-        dataset: Nome do dataset
+        dataset: Nome do dataset (pode ser 'mnist', 'mnist_3_vs_8', etc)
     
     Returns:
         Tupla (pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta)
     """
     try:
         from utils.shared_training import get_shared_pipeline
-        return get_shared_pipeline(dataset)
+        from data.datasets import set_mnist_options
+        import re
+        
+        # Detecta variações MNIST e extrai o par (ex: mnist_3_vs_8 -> (3, 8))
+        if dataset.startswith('mnist_') and '_vs_' in dataset:
+            match = re.match(r'mnist_(\d+)_vs_(\d+)', dataset)
+            if match:
+                digit_a, digit_b = int(match.group(1)), int(match.group(2))
+                set_mnist_options('raw', (digit_a, digit_b))
+                dataset_to_load = 'mnist'
+            else:
+                dataset_to_load = dataset
+        else:
+            dataset_to_load = dataset
+        
+        return get_shared_pipeline(dataset_to_load)
     except Exception as e:
         print(f"❌ Erro ao carregar pipeline: {e}")
         return None
@@ -200,10 +289,23 @@ def validar_fidelity_instancia(
         Dict com métricas: fidelity, sufficiency, perturbations_tested, etc.
     """
     # Obter instância original
-    if hasattr(X_test, 'iloc'):
-        instancia_original = X_test.iloc[instancia_idx].values
-    else:
-        instancia_original = X_test[instancia_idx]
+    # Tentar primeiro usar label-based indexing (.loc), depois position-based (.iloc)
+    try:
+        # Tentar como label do índice (que é o que PEAB salva no JSON)
+        instancia_original = X_test.loc[instancia_idx].values
+    except (KeyError, TypeError):
+        try:
+            # Se falhar, tentar como índice posicional (posição)
+            instancia_original = X_test.iloc[int(instancia_idx)].values
+        except (IndexError, ValueError):
+            # Se ainda falhar, logar erro e retornar None
+            return {
+                'fidelity': -1,
+                'sufficiency': -1,
+                'explanation_size': len(explicacao_features),
+                'perturbations_tested': 0,
+                'error': f"Não foi possível acessar instância {instancia_idx} em X_test"
+            }
     
     # Mapear nomes de features para índices
     features_fixas_idx = [feature_names.index(feat) for feat in explicacao_features if feat in feature_names]
@@ -269,18 +371,20 @@ def validar_metodo(
     Returns:
         Dicionário com todas as métricas de validação
     """
-    if verbose:
-        print(f"\n{'═'*70}")
-        print(f"  VALIDANDO: {metodo.upper()} - Dataset: {dataset}")
-        print(f"{'═'*70}")
-    
-    # Carregar resultados do método
-    resultados = carregar_resultados_metodo(metodo, dataset)
-    if resultados is None:
+    # Carregar resultados do método (retorna tupla com dataset correto)
+    resultado_carga = carregar_resultados_metodo(metodo, dataset)
+    if resultado_carga is None:
         return None
     
-    # Carregar pipeline e dados
-    pipeline_data = carregar_pipeline_dataset(dataset)
+    resultados, dataset_correto = resultado_carga
+    
+    if verbose:
+        print(f"\n{'═'*70}")
+        print(f"  VALIDANDO: {metodo.upper()} - Dataset: {dataset_correto}")
+        print(f"{'═'*70}")
+    
+    # Carregar pipeline e dados (dataset_correto já contém MNIST_X_vs_Y se necessário)
+    pipeline_data = carregar_pipeline_dataset(dataset_correto)
     if pipeline_data is None:
         return None
     
@@ -355,16 +459,22 @@ def validar_metodo(
             
             idx = int(idx)
             
-            # Extrair informações da explicação
-            if 'explicacao' in exp:
+            # Extrair informações da explicação - suporta ambos os formatos
+            # Formato novo: 'explanation' + 'explanation_size'
+            # Formato antigo: 'explicacao' ou 'features'
+            if 'explanation' in exp:
+                explicacao_features = exp['explanation']
+                tamanho = exp.get('explanation_size', len(explicacao_features))
+            elif 'explicacao' in exp:
                 explicacao_features = exp['explicacao']
+                tamanho = len(explicacao_features)
             elif 'features' in exp:
                 explicacao_features = exp['features']
+                tamanho = len(explicacao_features)
             else:
                 pbar.update()
                 continue
             
-            tamanho = len(explicacao_features)
             tamanhos_explicacao.append(tamanho)
             
             # Contar distribuição de tamanhos
@@ -375,15 +485,19 @@ def validar_metodo(
             
             y_true = int(exp.get('y_true', exp.get('classe_real', -1)))
             y_pred = int(exp.get('y_pred', exp.get('predicao', -1)))
-            rejeitada = bool(exp.get('rejeitada', exp.get('rejected', False)))
+            # Suporta ambos os formatos: 'rejected' (booleano) ou 'rejeitada' (booleano)
+            rejeitada = bool(exp.get('rejected', exp.get('rejeitada', False)))
             
-            # Determinar tipo
+            # Determinar tipo: se rejected=True, é rejeitada (mesmo que y_pred seja -1)
             if rejeitada:
                 tipo = 'rejected'
             elif y_pred == 1:
                 tipo = 'positive'
-            else:
+            elif y_pred == 0:
                 tipo = 'negative'
+            else:
+                # Se y_pred for -1 ou outro valor inválido
+                tipo = 'rejected'
             
             # Validar fidelity
             resultado = validar_fidelity_instancia(
@@ -403,6 +517,12 @@ def validar_metodo(
             )
             
             fidelity = resultado['fidelity']
+            
+            # Se houver erro ao processar a instância, pular
+            if 'error' in resultado:
+                pbar.update()
+                continue
+            
             fidelities.append(fidelity)
             
             # Atualizar métricas por tipo
@@ -507,7 +627,7 @@ def salvar_json_validacao(resultado: Dict, metodo: str, dataset: str):
 
 
 def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
-    """Gera relatório TXT com tabelas formatadas."""
+    """Gera relatório TXT profissional adequado para dissertação."""
     
     output_dir = os.path.join(VALIDATION_RESULTS_DIR, dataset, metodo.lower())
     os.makedirs(output_dir, exist_ok=True)
@@ -518,88 +638,183 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
     por_tipo = resultado['per_type_metrics']
     dist_size = resultado['size_distribution']
     
+    # Converter nome do dataset para display
+    dataset_display = dataset.replace('_', ' ').title()
+    metodo_display = metodo.upper()
+    
     with open(report_path, 'w', encoding='utf-8') as f:
-        f.write("═" * 70 + "\n")
-        f.write("        RELATÓRIO DE VALIDAÇÃO DE EXPLICAÇÕES\n")
-        f.write("═" * 70 + "\n\n")
+        # Cabeçalho
+        f.write("╔" + "═" * 78 + "╗\n")
+        f.write("║" + " " * 78 + "║\n")
+        f.write("║" + f"RELATÓRIO DE VALIDAÇÃO DE EXPLICABILIDADE - MÉTODO {metodo_display}".center(78) + "║\n")
+        f.write("║" + f"Dataset: {dataset_display}".center(78) + "║\n")
+        f.write("║" + " " * 78 + "║\n")
+        f.write("╚" + "═" * 78 + "╝\n\n")
         
-        # Seção 1: Configuração
-        f.write("[1] CONFIGURAÇÃO DO EXPERIMENTO\n")
-        f.write("─" * 70 + "\n")
-        f.write(f"Dataset:                 {meta['dataset']}\n")
-        f.write(f"Método:                  {meta['method']}\n")
-        f.write(f"Instâncias Testadas:     {meta['test_instances']}\n")
-        f.write(f"Perturbações/Instância:  {meta['num_perturbations']}\n")
-        f.write(f"Estratégia Perturbação:  {meta['perturbation_strategy']}\n")
-        f.write(f"Número de Features:      {meta['num_features']}\n")
-        f.write(f"Data Execução:           {meta['date']}\n")
-        f.write("─" * 70 + "\n\n")
+        # SEÇÃO 1: Descrição do Método
+        f.write("━" * 80 + "\n")
+        f.write("1. DESCRIÇÃO DO MÉTODO DE VALIDAÇÃO\n")
+        f.write("━" * 80 + "\n\n")
+        f.write("Este relatório apresenta a validação da qualidade das explicações geradas\n")
+        f.write("pelo método de Explainability AI (Explicabilidade em Inteligência Artificial).\n\n")
+        f.write(f"MÉTODO UTILIZADO: {metodo_display}\n")
+        f.write("TÉCNICA DE VALIDAÇÃO: Avaliação de Fidelidade por Perturbação\n\n")
+        f.write("A fidelidade é medida através de perturbações nos dados de entrada:\n")
+        f.write(f"  • {meta['num_perturbations']:,} variações foram aplicadas a cada instância\n")
+        f.write("  • Cada variação altera os valores das features de forma sistemática\n")
+        f.write("  • Verifica-se se a predição do modelo permanece a mesma com as\n")
+        f.write("    features explicativas em seus valores perturbados\n")
+        f.write("  • Uma alta taxa de consistência indica que a explicação é fiel ao\n")
+        f.write("    comportamento real do modelo (alta fidelidade)\n\n")
+        f.write("ESTRATÉGIA DE PERTURBAÇÃO: Uniforme\n")
+        f.write("  • Valores das features são aleatoriamente substituídos dentro de seus\n")
+        f.write("    intervalos observados (mínimo-máximo) no conjunto de treinamento\n")
+        f.write("  • Essa abordagem rigorosa testa o método em cenários variados\n\n")
+        f.write("━" * 80 + "\n\n")
         
-        # Seção 2: Métricas Globais
-        f.write("[2] MÉTRICAS GLOBAIS\n")
-        f.write("─" * 70 + "\n")
-        f.write(f"Fidelity Geral:          {globais['fidelity_overall']:.2f}%\n")
-        f.write(f"  ├─ Positivas:          {globais['fidelity_positive']:.2f}%\n")
-        f.write(f"  ├─ Negativas:          {globais['fidelity_negative']:.2f}%\n")
-        f.write(f"  └─ Rejeitadas:         {globais['fidelity_rejected']:.2f}%\n")
-        f.write(f"\n")
-        f.write(f"Suficiência:             {globais['sufficiency']:.2f}%\n")
-        f.write(f"Cobertura:               {globais['coverage']:.2f}%\n")
-        f.write(f"\n")
-        f.write(f"Tamanho Explicação:\n")
-        f.write(f"  ├─ Média:              {globais['mean_explanation_size']:.2f}\n")
-        f.write(f"  ├─ Mediana:            {globais['median_explanation_size']:.1f}\n")
-        f.write(f"  ├─ Desvio Padrão:      {globais['std_explanation_size']:.2f}\n")
-        f.write(f"  ├─ Mínimo:             {globais['min_explanation_size']}\n")
-        f.write(f"  └─ Máximo:             {globais['max_explanation_size']}\n")
-        f.write(f"\n")
-        f.write(f"Taxa de Redução:         {globais['reduction_rate']:.2f}%\n")
-        f.write(f"Tempo Validação:         {globais['validation_time_seconds']:.2f}s\n")
-        f.write("─" * 70 + "\n\n")
+        # SEÇÃO 2: Configuração do Experimento
+        f.write("━" * 80 + "\n")
+        f.write("2. CONFIGURAÇÃO DO EXPERIMENTO\n")
+        f.write("━" * 80 + "\n\n")
+        f.write(f"  Base de Dados:                    {dataset_display}\n")
+        f.write(f"  Instâncias Validadas:             {meta['test_instances']} amostras\n")
+        f.write(f"  Número de Variáveis (Features):   {meta['num_features']}\n")
+        f.write(f"  Perturbações por Instância:       {meta['num_perturbations']:,}\n")
+        f.write(f"  Total de Avaliações:              {meta['test_instances'] * meta['num_perturbations']:,}\n")
+        f.write(f"  Data de Execução:                 {meta['date']}\n\n")
+        f.write("━" * 80 + "\n\n")
         
-        # Seção 3: Fidelity por Tipo
-        f.write("[3] FIDELITY POR TIPO DE PREDIÇÃO\n")
-        f.write("─" * 70 + "\n")
-        for tipo_nome, tipo_label in [('positive', 'POSITIVA'), ('negative', 'NEGATIVA'), ('rejected', 'REJEITADA')]:
+        # SEÇÃO 3: Resultados Principais
+        f.write("━" * 80 + "\n")
+        f.write("3. RESULTADOS PRINCIPAIS\n")
+        f.write("━" * 80 + "\n\n")
+        
+        f.write("3.1 FIDELIDADE DAS EXPLICAÇÕES\n")
+        f.write("─" * 80 + "\n\n")
+        f.write(f"  Fidelidade Geral:                 {globais['fidelity_overall']:.2f}%\n\n")
+        
+        f.write("  Fidelidade por Tipo de Predição:\n")
+        for tipo_nome, tipo_label, emoji in [('positive', 'Predições Positivas', '○'), 
+                                               ('negative', 'Predições Negativas', '●'), 
+                                               ('rejected', 'Predições Rejeitadas', '◆')]:
             dados = por_tipo[tipo_nome]
-            f.write(f"\nClasse {tipo_label} ({dados['count']} instâncias):\n")
-            f.write(f"  - Fidelity: {dados['fidelity']:.2f}%\n")
-            f.write(f"  - Tamanho Médio: {dados['mean_size']:.2f} ± {dados['std_size']:.2f}\n")
-        f.write("─" * 70 + "\n\n")
+            f.write(f"    {emoji} {tipo_label:.<40} {dados['fidelity']:>6.2f}% ({dados['count']:>3} instâncias)\n")
         
-        # Seção 4: Distribuição de Tamanhos
-        f.write("[4] DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES\n")
-        f.write("─" * 70 + "\n")
-        f.write("Size │ Count │ Percentage │ Histogram\n")
-        f.write("─────┼───────┼────────────┼" + "─" * 40 + "\n")
+        f.write(f"\n  Taxa de Cobertura (sem erros):    {globais['coverage']:.2f}%\n")
+        f.write(f"  Instâncias Processadas com Sucesso: {int(globais['coverage'] / 100 * meta['test_instances'])} / {meta['test_instances']}\n")
+        f.write("\n")
+        
+        f.write("3.2 CARACTERÍSTICAS DAS EXPLICAÇÕES\n")
+        f.write("─" * 80 + "\n\n")
+        f.write("  Tamanho das Explicações (número de variáveis selecionadas):\n")
+        f.write(f"    • Média:                        {globais['mean_explanation_size']:.2f} variáveis\n")
+        f.write(f"    • Mediana:                      {globais['median_explanation_size']:.0f} variáveis\n")
+        f.write(f"    • Desvio Padrão:                {globais['std_explanation_size']:.2f}\n")
+        f.write(f"    • Intervalo:                    {globais['min_explanation_size']} a {globais['max_explanation_size']} variáveis\n")
+        f.write(f"    • Taxa de Compactação:          {globais['reduction_rate']:.1f}%\n")
+        f.write(f"      (redução em relação ao total de {meta['num_features']} variáveis)\n")
+        f.write("\n")
+        
+        f.write("3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES\n")
+        f.write("─" * 80 + "\n\n")
+        f.write("  Variáveis │ Quantidade │ Porcentagem │ Visualização\n")
+        f.write("  ───────────┼────────────┼─────────────┼" + "─" * 42 + "\n")
         
         total = meta['test_instances']
         for size in sorted(dist_size.keys(), key=lambda x: int(x.replace('+', '')) if x != '6+' else 6):
             count = dist_size[size]
             pct = (count / total) * 100
-            bar = "█" * int(pct / 2)
-            f.write(f" {size:>3} │ {count:>5} │   {pct:>5.1f}%   │ {bar}\n")
-        f.write("─" * 70 + "\n\n")
+            bar_len = int(pct / 2)
+            bar = "█" * bar_len
+            f.write(f"     {size:>4}    │    {count:>4}    │    {pct:>5.1f}%   │ {bar:<40}\n")
+        f.write("\n")
         
-        # Seção 5: Interpretação
-        f.write("[5] INTERPRETAÇÃO DOS RESULTADOS\n")
-        f.write("─" * 70 + "\n")
+        # SEÇÃO 4: Análise Detalhada
+        f.write("━" * 80 + "\n")
+        f.write("4. ANÁLISE DETALHADA POR TIPO DE PREDIÇÃO\n")
+        f.write("━" * 80 + "\n\n")
         
-        if globais['fidelity_overall'] == 100.0:
-            f.write("✓ EXCELENTE: Fidelity de 100% indica que o método é ÓTIMO.\n")
-            f.write("  Todas as explicações mantêm a predição original.\n")
+        tipos_info = [
+            ('positive', 'Predições Positivas', 'Instâncias classificadas como positivas pelo modelo', 'A'),
+            ('negative', 'Predições Negativas', 'Instâncias classificadas como negativas pelo modelo', 'B'),
+            ('rejected', 'Predições Rejeitadas', 'Instâncias onde o modelo aplicou mecanismo de rejeição', 'C')
+        ]
+        
+        for tipo_nome, tipo_label, descricao, idx in tipos_info:
+            dados = por_tipo[tipo_nome]
+            f.write(f"4.{idx} {tipo_label.upper()}\n")
+            f.write("─" * 80 + "\n")
+            f.write(f"    Descrição: {descricao}\n\n")
+            f.write(f"    Quantidade de Instâncias:       {dados['count']} ({dados['count']/total*100:.1f}%)\n")
+            f.write(f"    Fidelidade Médio:               {dados['fidelity']:.2f}%\n")
+            f.write(f"    Tamanho Médio da Explicação:    {dados['mean_size']:.2f} variáveis\n")
+            f.write(f"    Desvio Padrão do Tamanho:       {dados['std_size']:.2f}\n\n")
+        
+        f.write("━" * 80 + "\n\n")
+        
+        # SEÇÃO 5: Interpretação dos Resultados
+        f.write("━" * 80 + "\n")
+        f.write("5. INTERPRETAÇÃO E CONCLUSÕES\n")
+        f.write("━" * 80 + "\n\n")
+        
+        # Análise de Fidelidade
+        if globais['fidelity_overall'] >= 99.0:
+            conclusao_fidelidade = "Excelente"
+            texto_fidelidade = "O método produz explicações de qualidade excepcional."
         elif globais['fidelity_overall'] >= 95.0:
-            f.write("✓ BOM: Fidelity acima de 95% indica alta qualidade.\n")
-            f.write(f"  {100 - globais['fidelity_overall']:.2f}% das perturbações falharam.\n")
+            conclusao_fidelidade = "Muito Boa"
+            texto_fidelidade = "As explicações apresentam alta fidelidade ao comportamento do modelo."
+        elif globais['fidelity_overall'] >= 85.0:
+            conclusao_fidelidade = "Boa"
+            texto_fidelidade = "As explicações são geralmente confiáveis."
+        elif globais['fidelity_overall'] >= 75.0:
+            conclusao_fidelidade = "Aceitável"
+            texto_fidelidade = "As explicações apresentam qualidade aceitável."
         else:
-            f.write("⚠ ATENÇÃO: Fidelity abaixo de 95% indica problemas.\n")
-            f.write("  Revisar explicações que falharam.\n")
+            conclusao_fidelidade = "Requer Revisão"
+            texto_fidelidade = "As explicações devem ser analisadas criticamente."
         
-        f.write(f"\n")
-        f.write(f"Taxa de Redução de {globais['reduction_rate']:.1f}% significa que as\n")
-        f.write(f"explicações usam apenas {100 - globais['reduction_rate']:.1f}% das features originais,\n")
-        f.write(f"tornando-as muito mais interpretáveis.\n")
-        f.write("─" * 70 + "\n")
+        f.write(f"FIDELIDADE: {conclusao_fidelidade}\n")
+        f.write(f"  {texto_fidelidade}\n")
+        f.write(f"  Com uma fidelidade de {globais['fidelity_overall']:.2f}%, as explicações geradas\n")
+        f.write(f"  mantêm consistência em {globais['fidelity_overall']:.2f}% dos cenários testados quando\n")
+        f.write(f"  as features não selecionadas são aleatoriamente perturbadas.\n\n")
+        
+        # Análise de Compactação
+        f.write(f"COMPACTAÇÃO: {100 - globais['reduction_rate']:.1f}% das Features Necessárias\n")
+        f.write(f"  As explicações utilizam em média apenas {globais['mean_explanation_size']:.2f} de {meta['num_features']} variáveis,\n")
+        f.write(f"  representando uma redução de {globais['reduction_rate']:.1f}%.\n")
+        f.write(f"  Isso torna as explicações bastante compactas e fáceis de interpretar.\n\n")
+        
+        # Análise de Cobertura
+        if globais['coverage'] == 100.0:
+            f.write(f"COBERTURA: Completa (100%)\n")
+            f.write(f"  Todas as {meta['test_instances']} instâncias foram processadas com sucesso,\n")
+            f.write(f"  sem erros ou timeouts durante a validação.\n\n")
+        else:
+            f.write(f"COBERTURA: {globais['coverage']:.2f}%\n")
+            f.write(f"  {int(globais['coverage'] / 100 * meta['test_instances'])} de {meta['test_instances']} instâncias foram processadas com sucesso.\n")
+            f.write(f"  {100 - globais['coverage']:.2f}% das instâncias apresentaram erros ou timeouts.\n\n")
+        
+        f.write("━" * 80 + "\n\n")
+        
+        # SEÇÃO 6: Recomendações
+        f.write("━" * 80 + "\n")
+        f.write("6. RECOMENDAÇÕES\n")
+        f.write("━" * 80 + "\n\n")
+        
+        if globais['fidelity_overall'] >= 95.0:
+            f.write("  ✓ O método está validado e pronto para uso.\n")
+            f.write("  ✓ As explicações podem ser confiáveis e utilizadas em aplicações práticas.\n")
+        else:
+            f.write("  • Verificar configurações de hiperparâmetros do método.\n")
+            f.write("  • Revisar instâncias com baixa fidelidade para identificar padrões.\n")
+            f.write("  • Considerar ajustes na estratégia de seleção de features.\n")
+        
+        f.write("\n")
+        f.write("━" * 80 + "\n")
+        f.write(f"Relatório gerado em: {meta['date']}\n")
+        f.write("━" * 80 + "\n")
     
     print(f"✓ Relatório salvo: {report_path}")
     return report_path

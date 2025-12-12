@@ -27,7 +27,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.10,          
-    'subsample_size': 1.0  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
+    'subsample_size': 0.3  # REDUZIDO para MinExp conseguir processar (5% = ~210 instâncias)
 }
 
 DATASET_CONFIG = {
@@ -692,7 +692,8 @@ def montar_dataset_cache(dataset_name: str,
             'coefs': coefs_ordered,
             'intercept': intercepto,
             'scaler_params': scaler_params
-        }
+        },
+        'per_instance': per_instance  # Adiciona detalhes de cada instância
     }
     return dataset_cache
 
@@ -905,6 +906,40 @@ def executar_experimento_para_dataset(dataset_name: str):
     print(f"{'='*80}\n")
 
 if __name__ == '__main__':
-    ds, _, _, _, _ = selecionar_dataset_e_classe()
-    if ds:
-        executar_experimento_para_dataset(ds)
+    resultado = selecionar_dataset_e_classe()
+    
+    # Verificar se é seleção múltipla
+    if resultado[0] == '__MULTIPLE__':
+        datasets_lista = resultado[4]  # Lista de datasets está na 5ª posição
+        
+        print(f"\n{'='*80}")
+        print(f"  EXECUÇÃO EM SEQUÊNCIA: {len(datasets_lista)} DATASETS")
+        print(f"{'='*80}\n")
+        
+        for i, dataset_name in enumerate(datasets_lista, 1):
+            print(f"\n{'─'*80}")
+            print(f"  [{i}/{len(datasets_lista)}] Executando: {dataset_name.upper()}")
+            print(f"{'─'*80}\n")
+            
+            try:
+                executar_experimento_para_dataset(dataset_name)
+                print(f"\n✅ [{i}/{len(datasets_lista)}] {dataset_name} concluído com sucesso!")
+            
+            except KeyboardInterrupt:
+                print(f"\n\n⚠️  Execução interrompida pelo usuário.")
+                print(f"   Datasets concluídos: {i-1}/{len(datasets_lista)}")
+                break
+            
+            except Exception as e:
+                print(f"\n❌ [{i}/{len(datasets_lista)}] Erro em {dataset_name}: {e}")
+                print(f"   Continuando com próximo dataset...\n")
+                continue
+        
+        print(f"\n{'='*80}")
+        print(f"  EXECUÇÃO EM SEQUÊNCIA FINALIZADA")
+        print(f"  Datasets processados: {i}/{len(datasets_lista)}")
+        print(f"{'='*80}\n")
+    
+    # Seleção única tradicional
+    elif resultado[0]:
+        executar_experimento_para_dataset(resultado[0])

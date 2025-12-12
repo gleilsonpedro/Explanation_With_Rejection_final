@@ -6,7 +6,31 @@ from datetime import datetime
 
 RESULTS_FILE = "json/comparative_results.json"
 
-# Arquivos individuais por método
+# ═══════════════════════════════════════════════════════════════════════════
+# NOVA ESTRUTURA: JSONs separados por experimento e dataset
+# ═══════════════════════════════════════════════════════════════════════════
+# Estrutura:
+#   json/
+#   ├── peab/
+#   │   ├── breast_cancer.json
+#   │   ├── mnist_3_vs_8.json
+#   │   └── wine.json
+#   ├── pulp/
+#   │   ├── breast_cancer.json
+#   │   └── ...
+#   ├── anchor/
+#   └── minexp/
+#
+# Vantagens:
+#   - Arquivos menores (1 dataset por arquivo)
+#   - Fácil deletar resultados antigos
+#   - Git ignora arquivos grandes individualmente
+#   - Carrega apenas dados necessários
+# ═══════════════════════════════════════════════════════════════════════════
+
+JSON_BASE_DIR = "json"
+
+# Arquivos antigos (manter para compatibilidade temporária)
 PEAB_RESULTS_FILE = "json/peab_results.json"
 ANCHOR_RESULTS_FILE = "json/anchor_results.json"
 MINEXP_RESULTS_FILE = "json/minexp_results.json"
@@ -58,39 +82,107 @@ def save_results(data: Dict[str, Any]) -> None:
 def update_method_results(method: str, dataset: str, results: Dict[str, Any]) -> None:
     """
     Atualiza os resultados de um método específico para um dataset.
-    Agora salva em arquivos separados (peab_results.json, anchor_results.json, minexp_results.json)
+    
+    NOVA ESTRUTURA: Salva em json/{method}/{dataset}.json
+    
+    Exemplos:
+        update_method_results('peab', 'breast_cancer', {...})
+        → Salva em: json/peab/breast_cancer.json
+        
+        update_method_results('anchor', 'mnist_3_vs_8', {...})
+        → Salva em: json/anchor/mnist_3_vs_8.json
+    
+    Args:
+        method: Nome do método ('peab', 'pulp', 'anchor', 'minexp')
+        dataset: Nome do dataset
+        results: Dicionário com resultados do experimento
     """
-    # Mapear método para arquivo específico
-    method_files = {
-        'peab': PEAB_RESULTS_FILE,
-        'anchor': ANCHOR_RESULTS_FILE,
-        'minexp': MINEXP_RESULTS_FILE,
-        'mateus': MINEXP_RESULTS_FILE  # Alias para compatibilidade
-    }
+    # Normalizar nome do método
+    method_normalized = method.lower()
+    if method_normalized == 'mateus':
+        method_normalized = 'minexp'  # Alias para compatibilidade
     
-    results_file = method_files.get(method.lower(), RESULTS_FILE)
+    # Criar diretório do método se não existir
+    method_dir = os.path.join(JSON_BASE_DIR, method_normalized)
+    os.makedirs(method_dir, exist_ok=True)
     
-    # Carregar resultados existentes do arquivo específico
-    if os.path.exists(results_file):
+    # Caminho do arquivo JSON para este dataset específico
+    json_file = os.path.join(method_dir, f"{dataset}.json")
+    
+    # Converter para tipos serializáveis
+    serializable = _to_builtin(results)
+    
+    # Salvar com gravação atômica (via arquivo temporário)
+    tmp_file = os.path.join(method_dir, f".{dataset}.tmp")
+    
+    try:
+        with open(tmp_file, 'w', encoding='utf-8') as f:
+            json.dump(serializable, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_file, json_file)
+        
+        print(f"✅ Resultados salvos: {json_file}")
+    
+    except Exception as e:
+        print(f"❌ Erro ao salvar resultados: {e}")
+        # Limpar arquivo temporário se existir
+        if os.path.exists(tmp_file):
+            try:
+                os.remove(tmp_file)
+            except:
+                pass
+
+
+def load_method_results(method: str, dataset: str) -> Dict[str, Any]:
+    """
+    Carrega os resultados de um método específico para um dataset.
+    
+    Args:
+        method: Nome do método ('peab', 'pulp', 'anchor', 'minexp')
+        dataset: Nome do dataset
+    
+    Returns:
+        Dicionário com os resultados ou {} se não encontrado
+    """
+    method_normalized = method.lower()
+    if method_normalized == 'mateus':
+        method_normalized = 'minexp'
+    
+    json_file = os.path.join(JSON_BASE_DIR, method_normalized, f"{dataset}.json")
+    
+    if os.path.exists(json_file):
         try:
-            with open(results_file, 'r', encoding='utf-8') as f:
-                method_results = json.load(f)
-        except Exception:
-            method_results = {}
-    else:
-        method_results = {}
+            with open(json_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"⚠️  Erro ao carregar {json_file}: {e}")
+            return {}
     
-    # Atualizar dataset específico
-    method_results[dataset] = results
+    return {}
+
+
+def list_available_datasets(method: str) -> list:
+    """
+    Lista todos os datasets disponíveis para um método.
     
-    # Salvar no arquivo específico do método
-    serializable = _to_builtin(method_results)
-    base_dir = os.path.dirname(results_file) or '.'
-    os.makedirs(base_dir, exist_ok=True)
-    tmp_path = os.path.join(base_dir, f'._{method}_results.tmp')
+    Args:
+        method: Nome do método ('peab', 'pulp', 'anchor', 'minexp')
     
-    with open(tmp_path, 'w', encoding='utf-8') as f:
-        json.dump(serializable, f, indent=2, ensure_ascii=False)
-    os.replace(tmp_path, results_file)
+    Returns:
+        Lista de nomes de datasets
+    """
+    method_normalized = method.lower()
+    if method_normalized == 'mateus':
+        method_normalized = 'minexp'
     
-    print(f"✅ Resultados salvos: {results_file} - {dataset}")
+    method_dir = os.path.join(JSON_BASE_DIR, method_normalized)
+    
+    if not os.path.exists(method_dir):
+        return []
+    
+    datasets = []
+    for filename in os.listdir(method_dir):
+        if filename.endswith('.json') and not filename.startswith('.'):
+            dataset_name = filename[:-5]  # Remove .json
+            datasets.append(dataset_name)
+    
+    return sorted(datasets)

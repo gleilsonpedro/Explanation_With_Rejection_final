@@ -17,6 +17,56 @@ def _ensure_dir(path: str) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
 
+def _parse_dataset_selection(input_str: str, max_index: int) -> List[int]:
+    """
+    Parse string de seleção de datasets.
+    
+    Exemplos:
+        "0,2,3" -> [0, 2, 3]
+        "0-5" -> [0, 1, 2, 3, 4, 5]
+        "0,2-4,7" -> [0, 2, 3, 4, 7]
+    
+    Args:
+        input_str: String com seleção (ex: "0,2,3" ou "0-5")
+        max_index: Índice máximo permitido
+    
+    Returns:
+        Lista de índices válidos
+    """
+    indices = set()
+    parts = input_str.split(',')
+    
+    for part in parts:
+        part = part.strip()
+        
+        # Verifica se é um range (ex: "0-5")
+        if '-' in part:
+            try:
+                start, end = part.split('-')
+                start_idx = int(start.strip())
+                end_idx = int(end.strip())
+                
+                if start_idx > end_idx:
+                    start_idx, end_idx = end_idx, start_idx
+                
+                for i in range(start_idx, end_idx + 1):
+                    if 0 <= i <= max_index:
+                        indices.add(i)
+            except ValueError:
+                continue
+        
+        # Índice simples
+        else:
+            try:
+                idx = int(part)
+                if 0 <= idx <= max_index:
+                    indices.add(idx)
+            except ValueError:
+                continue
+    
+    return sorted(list(indices))
+
+
 def _download_with_retries(url: str, dest_path: str, max_retries: int = 3, timeout: int = 20) -> bool:
     """Tenta baixar um arquivo com cabeçalho User-Agent e backoff exponencial.
     Retorna True se salvou em dest_path, False caso contrário.
@@ -351,20 +401,92 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
         print(f"\nErro ao carregar o dataset '{nome_dataset}': {str(e)}")
         return None, None, None
 
-def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optional[pd.DataFrame], Optional[pd.Series], Optional[List[str]]]:
-    # [MODIFICAÇÃO IMPORTANTE] Menu atualizado para incluir Iris e reorganizar as opções.
+def selecionar_datasets_multiplos() -> Optional[List[str]]:
+    """
+    Permite selecionar múltiplos datasets para execução em sequência.
+    
+    Returns:
+        Lista de nomes de datasets ou None se cancelado
+    """
+    nomes_datasets = [
+        'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
+        'vertebral_column', 'wine', 'banknote', 'heart_disease',
+        'wine_quality', 'spambase', 'creditcard'
+    ]
+    
     menu = '''
     | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
     | Datasets Clássicos para Comparação:                                  |
-    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)       |
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
     | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
     | [6] Banknote Auth (1372x4x2)       | [7] Heart Disease (297x13x2)    |
-    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)             |
+    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)          |
     | [10] Creditcard Fraud (Amostra)                                      |
     |----------------------------------------------------------------------|
+    '''
+    print(menu)
+    print("\n SELEÇÃO MÚLTIPLA DE DATASETS")
+    print(" Exemplos:")
+    print("   • Específicos: 0,2,3       (breast_cancer, pima, sonar)")
+    print("   • Range:       0-5         (datasets 0 até 5)")
+    print("   • Misto:       0,2-4,7     (0, 2, 3, 4, 7)")
+    print("   • Todos:       A ou ALL")
+    print("   • Cancelar:    Q\n")
+    
+    while True:
+        seleção = input("Digite sua seleção: ").upper().strip()
+        
+        if seleção == 'Q':
+            return None
+        
+        if seleção in ['A', 'ALL']:
+            print(f"\n✓ Selecionados TODOS os {len(nomes_datasets)} datasets:")
+            for i, nome in enumerate(nomes_datasets):
+                print(f"   [{i}] {nome}")
+            confirmar = input("\nConfirmar execução em sequência? (S/N): ").upper().strip()
+            if confirmar == 'S':
+                return nomes_datasets
+            continue
+        
+        # Parse da seleção
+        indices = _parse_dataset_selection(seleção, len(nomes_datasets) - 1)
+        
+        if not indices:
+            print("❌ Seleção inválida. Tente novamente.")
+            continue
+        
+        datasets_selecionados = [nomes_datasets[i] for i in indices]
+        
+        print(f"\n✓ Selecionados {len(datasets_selecionados)} datasets:")
+        for i, nome in zip(indices, datasets_selecionados):
+            print(f"   [{i}] {nome}")
+        
+        confirmar = input("\nConfirmar execução em sequência? (S/N): ").upper().strip()
+        if confirmar == 'S':
+            return datasets_selecionados
+        else:
+            print("\nTente novamente com nova seleção.\n")
+
+
+def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optional[pd.DataFrame], Optional[pd.Series], Optional[List[str]]]:
+    # [MODIFICAÇÃO IMPORTANTE] Menu atualizado para incluir Iris e reorganizar as opções.
+    menu = '''
+    | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
+    | Datasets Clássicos para Comparação:                                  |
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)       |
+    | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
+    | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
+    |----------------------------------------------------------------------|
+    | Outros Datasets Disponíveis:                                         |
+    | [6] Banknote Auth (1372x4x2)       | [7] Heart Disease (297x13x2)    |
+    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)          |
+    | [10] Creditcard Fraud (Amostra)                                      |
+    |----------------------------------------------------------------------|
+    | [M] MÚLTIPLOS DATASETS (Ex: 0,2,3 ou 0-5)                           |
+    | [A] TODOS OS DATASETS                                                |
     | [Q] SAIR                                                             |
     |----------------------------------------------------------------------|
     '''
@@ -376,8 +498,24 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
         'wine_quality', 'spambase', 'creditcard'
     ]
     while True:
-        opcao = input("\nDigite o número do dataset ou 'Q' para sair: ").upper().strip()
+        opcao = input("\nDigite o número do dataset, 'M' para múltiplos, 'A' para todos, ou 'Q' para sair: ").upper().strip()
         if opcao == 'Q': return None, None, None, None, None
+        
+        # Seleção múltipla
+        if opcao == 'M':
+            datasets_selecionados = selecionar_datasets_multiplos()
+            if datasets_selecionados:
+                # Retorna lista de datasets como string especial para indicar múltiplos
+                return ('__MULTIPLE__', None, None, None, datasets_selecionados)
+            continue
+        
+        # Todos os datasets
+        if opcao == 'A':
+            print(f"\n✓ Selecionados TODOS os {len(nomes_datasets)} datasets")
+            confirmar = input("Confirmar execução em sequência? (S/N): ").upper().strip()
+            if confirmar == 'S':
+                return ('__MULTIPLE__', None, None, None, nomes_datasets)
+            continue
 
         if opcao.isdigit() and 0 <= int(opcao) < len(nomes_datasets):
             nome_dataset_selecionado = nomes_datasets[int(opcao)]

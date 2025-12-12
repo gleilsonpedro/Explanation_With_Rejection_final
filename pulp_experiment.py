@@ -10,7 +10,7 @@ Entrada:
 - Instâncias de teste
 
 Saída:
-- json/pulp_results.json (formato consistente com anchor/minexp/peab)
+- json/pulp/{dataset}.json (formato consistente com anchor/minexp/peab)
 - results/report/pulp/R_*.txt (relatórios por dataset)
 
 Características:
@@ -40,13 +40,12 @@ from peab import (
 )
 from data.datasets import selecionar_dataset_e_classe, carregar_dataset
 from utils.progress_bar import ProgressBar
-from utils.results_handler import _to_builtin
+from utils.results_handler import _to_builtin, update_method_results
 
 #==============================================================================
 # CONSTANTES
 #==============================================================================
 OUTPUT_BASE_DIR = 'results/report/pulp'
-PULP_RESULTS_FILE = 'json/pulp_results.json'
 
 #==============================================================================
 # SOLVER DE OTIMIZAÇÃO INTEIRA (GROUND TRUTH)
@@ -145,26 +144,27 @@ def calcular_explicacao_otima_pulp(
 #==============================================================================
 # EXECUÇÃO DO EXPERIMENTO
 #==============================================================================
-def executar_experimento_pulp():
+def executar_experimento_pulp_para_dataset(dataset_name):
     """
-    Executa o experimento PuLP completo e salva resultados.
+    Executa o experimento PuLP para um dataset específico.
+    
+    Args:
+        dataset_name: Nome do dataset a ser processado
     """
-    print("\n" + "="*80)
-    print("   PULP EXPERIMENT - Solver de Otimização Inteira (Ground Truth)")
-    print("="*80 + "\n")
-    
-    # Seleção do dataset
-    dataset_name, _, _, _, _ = selecionar_dataset_e_classe()
-    if not dataset_name:
-        print("❌ Nenhum dataset selecionado. Encerrando.")
-        return
-    
     print(f"\n🎯 Dataset selecionado: {dataset_name}")
     print("⚠️  AVISO: PuLP é lento mas garante soluções ÓTIMAS.\n")
     
+    # Normalizar nome do dataset para MNIST (adicionar par de dígitos)
+    dataset_json_key = dataset_name
+    cfg = DATASET_CONFIG.get(dataset_name, {})
+    if dataset_name == 'mnist':
+        digit_pair = cfg.get('digit_pair')
+        if digit_pair and len(digit_pair) == 2:
+            dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
+            print(f"   Salvando como: {dataset_json_key}\n")
+    
     # Carrega configurações
     todos_params = carregar_hiperparametros()
-    cfg = DATASET_CONFIG.get(dataset_name, {})
     rejection_cost = cfg.get('rejection_cost', 0.24)
     test_size = cfg.get('test_size', 0.3)
     
@@ -180,7 +180,6 @@ def executar_experimento_pulp():
     print(json.dumps(params, indent=2))
     print(f"💰 Rejection cost: {rejection_cost}")
     print(f"🔀 Test size: {test_size}\n")
-    
     # Split único (consistência com PEAB)
     X_train, X_test, y_train, y_test = train_test_split(
         X_full, y_full, 
@@ -307,16 +306,13 @@ def executar_experimento_pulp():
     
     results_data['explicacoes'] = explicacoes
     
-    # Salva em JSON
-    os.makedirs(os.path.dirname(PULP_RESULTS_FILE), exist_ok=True)
-    serializable = _to_builtin(results_data)
-    with open(PULP_RESULTS_FILE, 'w', encoding='utf-8') as f:
-        json.dump({dataset_name: serializable}, f, indent=2, ensure_ascii=False)
+    # Salva em JSON (estrutura: json/pulp/{dataset_json_key}.json)
+    update_method_results('pulp', dataset_json_key, results_data)
     
-    print(f"\n✅ JSON salvo: {PULP_RESULTS_FILE}")
+    print(f"\n✅ JSON salvo: json/pulp/{dataset_json_key}.json")
     
     # Gera relatório em TXT
-    gerar_relatorio_pulp(results_data, dataset_name)
+    gerar_relatorio_pulp(results_data, dataset_json_key)
     
     # Resumo final
     print("\n" + "="*80)
@@ -434,4 +430,51 @@ def gerar_relatorio_pulp(results_data: Dict, dataset_name: str):
 # PONTO DE ENTRADA
 #==============================================================================
 if __name__ == "__main__":
-    executar_experimento_pulp()
+    print("\n" + "="*80)
+    print("   PULP EXPERIMENT - Solver de Otimização Inteira (Ground Truth)")
+    print("="*80 + "\n")
+    print("⚠️  AVISO: PuLP é lento mas garante soluções ÓTIMAS.\n")
+    
+    # Seleção do dataset
+    resultado = selecionar_dataset_e_classe()
+    
+    # Verifica se foram selecionados múltiplos datasets
+    if resultado[0] == '__MULTIPLE__':
+        datasets_lista = resultado[4]
+        
+        print(f"\n📋 Executando {len(datasets_lista)} datasets em sequência...")
+        print("="*80 + "\n")
+        
+        for i, dataset_name in enumerate(datasets_lista, 1):
+            print(f"\n{'='*80}")
+            print(f"   [{i}/{len(datasets_lista)}] Executando: {dataset_name.upper()}")
+            print(f"{'='*80}\n")
+            
+            try:
+                executar_experimento_pulp_para_dataset(dataset_name)
+                print(f"\n✅ [{i}/{len(datasets_lista)}] {dataset_name} concluído com sucesso!")
+                
+            except KeyboardInterrupt:
+                print(f"\n\n⚠️  Execução interrompida pelo usuário.")
+                print(f"📊 Datasets concluídos: {i-1}/{len(datasets_lista)}")
+                break
+                
+            except Exception as e:
+                print(f"\n❌ Erro ao processar {dataset_name}: {e}")
+                import traceback
+                traceback.print_exc()
+                print(f"\n⏭️  Continuando para o próximo dataset...\n")
+                continue
+        
+        print(f"\n{'='*80}")
+        print(f"   ✅ Execução em lote concluída!")
+        print(f"{'='*80}\n")
+    
+    else:
+        # Execução de dataset único
+        dataset_name = resultado[0]
+        
+        if not dataset_name:
+            print("❌ Nenhum dataset selecionado. Encerrando.")
+        else:
+            executar_experimento_pulp_para_dataset(dataset_name)

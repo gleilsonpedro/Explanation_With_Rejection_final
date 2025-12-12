@@ -7,8 +7,8 @@ Compara a heurística PEAB com o solver ótimo PuLP para avaliar:
 - Speedup (quanto mais rápido o PEAB é)
 
 Este script LÊ os resultados já salvos em:
-- json/peab_results.json
-- json/pulp_results.json
+- json/peab/{dataset}.json
+- json/pulp/{dataset}.json
 
 E gera:
 - results/benchmark/peab_vs_pulp/relatorio_comparativo_{dataset}.txt
@@ -22,36 +22,71 @@ import numpy as np
 from pathlib import Path
 from typing import Dict, Any, Tuple, List
 
+# Importação do handler de resultados
+from utils.results_handler import load_method_results, list_available_datasets
+
 #==============================================================================
 # CONSTANTES
 #==============================================================================
-PEAB_RESULTS_FILE = "json/peab_results.json"
-PULP_RESULTS_FILE = "json/pulp_results.json"
 OUTPUT_DIR = "results/benchmark/peab_vs_pulp"
 
 #==============================================================================
 # CARREGAMENTO DE DADOS
 #==============================================================================
-def carregar_resultados(caminho: str) -> Dict[str, Any]:
-    """Carrega resultados de um arquivo JSON."""
-    if not os.path.exists(caminho):
-        raise FileNotFoundError(f"❌ Arquivo não encontrado: {caminho}")
+
+def extrair_explicacoes_estruturado(peab_data: Dict, pulp_data: Dict) -> Tuple[Dict, Dict]:
+    """
+    Extrai explicações de ambos os formatos.
     
-    with open(caminho, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    PEAB pode ter dois formatos:
+    1. Formato antigo (novo): per_instance com detalhes por instância
+    2. Formato sem instâncias individuais: apenas statistics agregadas
+    
+    PULP sempre tem: explicacoes com detalhes por instância
+    """
+    # Extrair explicações do PEAB
+    explicacoes_peab = {}
+    
+    if 'per_instance' in peab_data:  
+        # Formato com instâncias individuais (ideal)
+        for exp in peab_data['per_instance']:
+            explicacoes_peab[exp['id']] = {
+                'indice': exp['id'],
+                'tamanho': exp['explanation_size'],
+                'y_true': exp['y_true'],
+                'y_pred': exp['y_pred'],
+                'rejected': exp['rejected'],
+                'decision_score': exp['decision_score']
+            }
+    else:
+        # Formato agregado sem instâncias - não podemos comparar instância por instância
+        raise ValueError(
+            f"❌ Formato PEAB não suporta comparação instância por instância.\n"
+            f"   PEAB só possui estatísticas agregadas, não dados individuais.\n"
+            f"   Para comparar com PULP, PEAB precisa ser re-executado com novo código\n"
+            f"   que salve explicações individuais (per_instance)."
+        )
+    
+    # Extrair explicações do PULP
+    explicacoes_pulp = {}
+    if 'explicacoes' in pulp_data:
+        for exp in pulp_data['explicacoes']:
+            idx_str = str(exp['indice'])
+            explicacoes_pulp[idx_str] = {
+                'indice': idx_str,
+                'tamanho': exp['tamanho'],
+                'tipo_predicao': exp['tipo_predicao'],
+                'tempo_segundos': exp['tempo_segundos']
+            }
+    else:
+        raise ValueError("Formato PULP não reconhecido: não encontrado 'explicacoes'")
+    
+    return explicacoes_peab, explicacoes_pulp
 
 def listar_datasets_disponiveis() -> Tuple[List[str], List[str], List[str]]:
     """Lista datasets disponíveis em ambos os JSONs."""
-    datasets_peab = set()
-    datasets_pulp = set()
-    
-    if os.path.exists(PEAB_RESULTS_FILE):
-        peab_data = carregar_resultados(PEAB_RESULTS_FILE)
-        datasets_peab = set(peab_data.keys())
-    
-    if os.path.exists(PULP_RESULTS_FILE):
-        pulp_data = carregar_resultados(PULP_RESULTS_FILE)
-        datasets_pulp = set(pulp_data.keys())
+    datasets_peab = set(list_available_datasets('peab'))
+    datasets_pulp = set(list_available_datasets('pulp'))
     
     datasets_comuns = sorted(datasets_peab & datasets_pulp)
     apenas_peab = sorted(datasets_peab - datasets_pulp)
@@ -65,12 +100,10 @@ def listar_datasets_disponiveis() -> Tuple[List[str], List[str], List[str]]:
 def comparar_explicacoes(peab_data: Dict, pulp_data: Dict, dataset_name: str) -> pd.DataFrame:
     """
     Compara explicação por explicação entre PEAB e PuLP.
-    Retorna DataFrame com colunas: indice, classe_real, tipo_predicao, 
-                                   tamanho_PEAB, tamanho_PuLP, GAP, 
-                                   tempo_PEAB, tempo_PuLP, is_optimal
+    Retorna DataFrame com colunas: indice, tamanho_PEAB, tamanho_PuLP, GAP, is_optimal
     """
-    explicacoes_peab = {exp['indice']: exp for exp in peab_data['explicacoes']}
-    explicacoes_pulp = {exp['indice']: exp for exp in pulp_data['explicacoes']}
+    # Extrai explicações em formato unificado
+    explicacoes_peab, explicacoes_pulp = extrair_explicacoes_estruturado(peab_data, pulp_data)
     
     # Índices comuns (instâncias presentes em ambos)
     indices_comuns = sorted(set(explicacoes_peab.keys()) & set(explicacoes_pulp.keys()))
@@ -87,15 +120,22 @@ def comparar_explicacoes(peab_data: Dict, pulp_data: Dict, dataset_name: str) ->
         tamanho_pulp = pulp_exp['tamanho']
         gap = tamanho_peab - tamanho_pulp
         
+        # Determinar tipo de predição baseado no PEAB
+        if peab_exp['rejected']:
+            tipo_pred = 'REJEITADA'
+        elif peab_exp['y_pred'] == 1:
+            tipo_pred = 'POSITIVA'
+        else:
+            tipo_pred = 'NEGATIVA'
+        
         comparacoes.append({
             'indice': idx,
-            'classe_real': peab_exp['classe_real'],
-            'tipo_predicao': peab_exp['tipo_predicao'],
+            'tipo_predicao': tipo_pred,
             'tamanho_PEAB': tamanho_peab,
             'tamanho_PuLP': tamanho_pulp,
             'GAP': gap,
-            'tempo_PEAB': peab_exp['tempo_segundos'],
-            'tempo_PuLP': pulp_exp['tempo_segundos'],
+            'tempo_PEAB': 0.0,  # PEAB não salva tempo individual
+            'tempo_PuLP': pulp_exp.get('tempo_segundos', 0.0),
             'is_optimal': (gap == 0)
         })
     
@@ -117,10 +157,9 @@ def calcular_metricas_agregadas(df: pd.DataFrame) -> Dict[str, Any]:
     gap_max = df['GAP'].max()
     gap_min = df['GAP'].min()
     
-    # Tempo
-    tempo_medio_peab = df['tempo_PEAB'].mean()
+    # Tempo (apenas PuLP, PEAB não salva tempo individual)
     tempo_medio_pulp = df['tempo_PuLP'].mean()
-    speedup = tempo_medio_pulp / tempo_medio_peab if tempo_medio_peab > 0 else 0
+    speedup = 1.0  # Não é calculado porque PEAB não tem tempo individual
     
     # Por tipo de predição
     stats_por_tipo = {}
@@ -132,7 +171,6 @@ def calcular_metricas_agregadas(df: pd.DataFrame) -> Dict[str, Any]:
             'gap_medio': df_tipo['GAP'].mean(),
             'tamanho_medio_peab': df_tipo['tamanho_PEAB'].mean(),
             'tamanho_medio_pulp': df_tipo['tamanho_PuLP'].mean(),
-            'tempo_medio_peab': df_tipo['tempo_PEAB'].mean(),
             'tempo_medio_pulp': df_tipo['tempo_PuLP'].mean()
         }
     
@@ -143,7 +181,6 @@ def calcular_metricas_agregadas(df: pd.DataFrame) -> Dict[str, Any]:
         'gap_std': gap_std,
         'gap_max': gap_max,
         'gap_min': gap_min,
-        'tempo_medio_peab': tempo_medio_peab,
         'tempo_medio_pulp': tempo_medio_pulp,
         'speedup': speedup,
         'stats_por_tipo': stats_por_tipo
@@ -170,11 +207,19 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("-" * 80 + "\n")
         f.write(f"Dataset: {dataset_name}\n")
         f.write(f"Instâncias comparadas: {metricas['total_instancias']}\n")
-        f.write(f"Thresholds: t+ = {peab_data['t_plus']:.4f}, t- = {peab_data['t_minus']:.4f}\n")
-        f.write(f"Zona de rejeição: {peab_data['t_plus'] - peab_data['t_minus']:.4f}\n")
-        f.write(f"Rejection cost: {peab_data['rejection_cost']}\n")
+        
+        # Acessar thresholds corretamente
+        t_plus = peab_data.get('thresholds', {}).get('t_plus', peab_data.get('t_plus', 0))
+        t_minus = peab_data.get('thresholds', {}).get('t_minus', peab_data.get('t_minus', 0))
+        
+        f.write(f"Thresholds: t+ = {t_plus:.4f}, t- = {t_minus:.4f}\n")
+        f.write(f"Zona de rejeição: {t_plus - t_minus:.4f}\n")
+        f.write(f"Rejection cost: {peab_data.get('rejection_cost', peab_data.get('config', {}).get('rejection_cost', 0))}\n")
         f.write(f"\nHiperparâmetros:\n")
-        f.write(json.dumps(peab_data['params'], indent=2))
+        
+        # Acessar params corretamente
+        params = peab_data.get('params', peab_data.get('model', {}).get('params', {}))
+        f.write(json.dumps(params, indent=2))
         f.write("\n\n")
         
         # Seção 1: Resumo Geral
@@ -189,9 +234,7 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
                 'GAP Máximo',
                 'GAP Mínimo',
                 'Desvio Padrão do GAP',
-                'Tempo Médio PEAB (s)',
-                'Tempo Médio PuLP (s)',
-                'Speedup (x vezes mais rápido)'
+                'Tempo Médio PuLP (s)'
             ],
             'Valor': [
                 f"{metricas['taxa_otimalidade']:.2f}%",
@@ -199,9 +242,7 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
                 f"{metricas['gap_max']}",
                 f"{metricas['gap_min']}",
                 f"{metricas['gap_std']:.4f}",
-                f"{metricas['tempo_medio_peab']:.6f}",
-                f"{metricas['tempo_medio_pulp']:.6f}",
-                f"{metricas['speedup']:.2f}x"
+                f"{metricas['tempo_medio_pulp']:.6f}"
             ]
         })
         
@@ -236,7 +277,6 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
                 'GAP Médio': f"{stats['gap_medio']:.4f}",
                 'Tam. PEAB': f"{stats['tamanho_medio_peab']:.2f}",
                 'Tam. PuLP': f"{stats['tamanho_medio_pulp']:.2f}",
-                'Tempo PEAB': f"{stats['tempo_medio_peab']:.5f}s",
                 'Tempo PuLP': f"{stats['tempo_medio_pulp']:.5f}s"
             })
         
@@ -250,7 +290,7 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("-" * 80 + "\n")
         f.write("Instâncias onde PEAB ficou mais longe da solução ótima.\n\n")
         
-        piores = df.nlargest(10, 'GAP')[['indice', 'tipo_predicao', 'classe_real', 
+        piores = df.nlargest(10, 'GAP')[['indice', 'tipo_predicao', 
                                           'tamanho_PEAB', 'tamanho_PuLP', 'GAP']]
         f.write(piores.to_string(index=False))
         f.write("\n\n")
@@ -342,6 +382,9 @@ def exibir_menu():
         if apenas_pulp:
             print(f"  Apenas PuLP: {', '.join(apenas_pulp)}")
         print("\n💡 Execute os métodos faltantes antes de comparar.")
+        print("\n⚠️  NOTA: Comparação instância-por-instância requer que PEAB salve")
+        print("   dados individuais (per_instance). Datasets com PEAB antigos não podem")
+        print("   ser comparados com PuLP neste momento.")
         return None
     
     print(f"📊 Datasets disponíveis para comparação ({len(datasets_comuns)}):\n")
@@ -356,6 +399,10 @@ def exibir_menu():
     if apenas_pulp:
         print(f"⚠️  Datasets apenas com PuLP: {', '.join(apenas_pulp)}")
     
+    print("\n⚠️  NOTA: Nem todos os datasets de PEAB suportam comparação.")
+    print("   Se receber erro de 'per_instance', o dataset precisa ser re-executado")
+    print("   com uma versão mais recente do PEAB que salva dados individuais.")
+    
     return datasets_comuns
 
 def processar_dataset(dataset_name: str):
@@ -367,8 +414,11 @@ def processar_dataset(dataset_name: str):
     try:
         # Carrega dados
         print("📂 Carregando resultados...")
-        peab_data = carregar_resultados(PEAB_RESULTS_FILE)[dataset_name]
-        pulp_data = carregar_resultados(PULP_RESULTS_FILE)[dataset_name]
+        peab_data = load_method_results('peab', dataset_name)
+        pulp_data = load_method_results('pulp', dataset_name)
+        
+        if not peab_data or not pulp_data:
+            raise ValueError(f"Dados incompletos para {dataset_name}")
         
         # Compara explicações
         print("🔍 Comparando explicações...")
@@ -404,8 +454,18 @@ def processar_dataset(dataset_name: str):
         
     except Exception as e:
         print(f"❌ ERRO ao processar {dataset_name}: {e}")
-        import traceback
-        traceback.print_exc()
+        
+        # Se for erro de per_instance, dar dica específica
+        if "per_instance" in str(e) or "Formato PEAB" in str(e):
+            print(f"\n💡 SOLUÇÃO:")
+            print(f"   Este dataset de PEAB foi gerado com versão antiga que não salva dados individuais.")
+            print(f"   Para comparar com PuLP instância-por-instância, você precisa:")
+            print(f"   1. Re-executar PEAB para este dataset com código mais recente")
+            print(f"   2. Ou ignorar esta comparação por enquanto")
+        else:
+            import traceback
+            traceback.print_exc()
+        
         return False
 
 def main():

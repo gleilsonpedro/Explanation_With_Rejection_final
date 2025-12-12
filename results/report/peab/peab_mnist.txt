@@ -6,7 +6,7 @@
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
   Dataset: mnist
-  Instâncias de teste: 4190
+  Instâncias de teste: 1257
   Features por instância: 784
   Test size: 30.00%
   Custo de rejeição (WR): 0.1000
@@ -14,71 +14,71 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 17.178785364221138}
+  norm_params: {'max_abs': 14.642367041483203}
   penalty: l2
   C: 0.1
   solver: lbfgs
   max_iter: 200
-  Intercepto: -1.823514
+  Intercepto: -1.489442
 
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.093086
-  t- (limiar inferior): -0.088296
-  Largura da zona de rejeição: 0.181383
+  t+ (limiar superior): 0.067116
+  t- (limiar inferior): -0.090976
+  Largura da zona de rejeição: 0.158091
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 96.87%
-  Acurácia com rejeição: 98.63%
-  Taxa de rejeição: 7.88%
+  Acurácia sem rejeição: 96.50%
+  Acurácia com rejeição: 98.47%
+  Taxa de rejeição: 6.52%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 1865
-    Tamanho médio: 230.93 features
-    Desvio padrão: 24.34
-    Mínimo: 168 features
-    Máximo: 296 features
+    Quantidade: 579
+    Tamanho médio: 199.56 features
+    Desvio padrão: 24.43
+    Mínimo: 148 features
+    Máximo: 283 features
 
   NEGATIVAS:
-    Quantidade: 1995
-    Tamanho médio: 154.97 features
-    Desvio padrão: 19.58
-    Mínimo: 111 features
-    Máximo: 216 features
+    Quantidade: 596
+    Tamanho médio: 153.86 features
+    Desvio padrão: 18.99
+    Mínimo: 114 features
+    Máximo: 224 features
 
   REJEITADAS:
-    Quantidade: 330
-    Tamanho médio: 492.51 features
-    Desvio padrão: 11.50
-    Mínimo: 466 features
-    Máximo: 516 features
+    Quantidade: 82
+    Tamanho médio: 463.10 features
+    Desvio padrão: 7.35
+    Mínimo: 449 features
+    Máximo: 480 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 254.4090s
-  Tempo médio por instância: 0.060718s
-  Tempo médio POSITIVAS: 0.031773s
-  Tempo médio NEGATIVAS: 0.027547s
-  Tempo médio REJEITADAS: 0.423393s
+  Tempo total: 64.8697s
+  Tempo médio por instância: 0.051607s
+  Tempo médio POSITIVAS: 0.027840s
+  Tempo médio NEGATIVAS: 0.025572s
+  Tempo médio REJEITADAS: 0.407147s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel489: 3841 ocorrências (91.7%)
-  pixel488: 3815 ocorrências (91.1%)
-  pixel461: 3771 ocorrências (90.0%)
-  pixel462: 3757 ocorrências (89.7%)
-  pixel516: 3742 ocorrências (89.3%)
-  pixel515: 3691 ocorrências (88.1%)
-  pixel490: 3656 ocorrências (87.3%)
-  pixel543: 3590 ocorrências (85.7%)
-  pixel517: 3583 ocorrências (85.5%)
-  pixel463: 3564 ocorrências (85.1%)
+  pixel461: 1163 ocorrências (92.5%)
+  pixel489: 1153 ocorrências (91.7%)
+  pixel462: 1151 ocorrências (91.6%)
+  pixel488: 1151 ocorrências (91.6%)
+  pixel516: 1128 ocorrências (89.7%)
+  pixel515: 1104 ocorrências (87.8%)
+  pixel490: 1087 ocorrências (86.5%)
+  pixel292: 1077 ocorrências (85.7%)
+  pixel434: 1075 ocorrências (85.5%)
+  pixel291: 1071 ocorrências (85.2%)
 
