@@ -585,6 +585,7 @@ def montar_dataset_cache(dataset_name: str,
                          metricas_dict: Dict[str, Any],
                          y_pred_test: np.ndarray,
                          decision_scores_test: np.ndarray,
+                         decision_scores_norm: np.ndarray,
                          rejected_mask: np.ndarray,
                          resultados_instancias: List[Dict[str, Any]]):
     
@@ -606,6 +607,7 @@ def montar_dataset_cache(dataset_name: str,
             'y_pred': int(y_pred_test[i]) if int(y_pred_test[i]) in (0, 1) else -1,
             'rejected': bool(rejected_mask[i]),
             'decision_score': float(decision_scores_test[i]),
+            'decision_score_normalized': float(decision_scores_norm[i]),
             'explanation': list(resultados_instancias[i]['explicacao']),
             'explanation_size': int(resultados_instancias[i]['tamanho_explicacao'])
         })
@@ -890,7 +892,7 @@ def executar_experimento_para_dataset(dataset_name: str):
     dataset_cache = montar_dataset_cache(
         dataset_name, X_train, X_test, y_train, y_test, nomes_classes,
         t_plus, t_minus, rejection_cost, test_size, model_params, metricas,
-        y_pred_final, decision_scores, mask_rej, resultados
+        y_pred_final, decision_scores, decision_scores_norm, mask_rej, resultados
     )
     update_method_results('peab', dataset_json_key, dataset_cache)
     

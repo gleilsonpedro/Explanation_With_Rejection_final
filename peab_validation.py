@@ -280,7 +280,8 @@ def validar_fidelity_instancia(
     t_plus: float,
     t_minus: float,
     n_perturbacoes: int = 1000,
-    estrategia: str = "uniform"
+    estrategia: str = "uniform",
+    max_abs: float = None
 ) -> Dict:
     """
     Valida fidelity de uma instância usando perturbações.
@@ -323,6 +324,13 @@ def validar_fidelity_instancia(
     try:
         predicoes = pipeline.predict(perturbacoes)
         scores = pipeline.decision_function(perturbacoes)
+        
+        # [BUGFIX] Normalizar scores se max_abs foi fornecido (PEAB/PuLP)
+        # PEAB normaliza com: score_norm = score_raw / max_abs
+        # Os thresholds t_plus e t_minus já estão em espaço normalizado
+        if max_abs is not None and max_abs > 0:
+            scores = scores / max_abs
+        
     except Exception as e:
         print(f"⚠️  Erro ao reclassificar instância {instancia_idx}: {e}")
         return {
@@ -336,6 +344,7 @@ def validar_fidelity_instancia(
     # Contar acertos baseado no tipo de predição original
     if rejeitada:
         # Instância rejeitada: todas as perturbações devem cair na zona de rejeição
+        # Se a explicação está correta, fixar as features essenciais deve manter a rejeição
         acertos = np.sum((scores >= t_minus) & (scores <= t_plus))
     else:
         # Instância aceita: perturbações devem ter mesma classe
@@ -377,6 +386,11 @@ def validar_metodo(
         return None
     
     resultados, dataset_correto = resultado_carga
+    
+    # [BUGFIX] Extrair max_abs do JSON se disponível (PEAB/PuLP usam normalização)
+    max_abs = None
+    if 'thresholds' in resultados and 'normalization' in resultados['thresholds']:
+        max_abs = resultados['thresholds']['normalization'].get('max_abs', None)
     
     if verbose:
         print(f"\n{'═'*70}")
@@ -459,12 +473,16 @@ def validar_metodo(
             
             idx = int(idx)
             
-            # Extrair informações da explicação - suporta ambos os formatos
-            # Formato novo: 'explanation' + 'explanation_size'
+            # Extrair informações da explicação - suporta múltiplos formatos
+            # Formato PEAB: 'explanation' + 'explanation_size'
+            # Formato PuLP: 'features_selecionadas' + 'tamanho'
             # Formato antigo: 'explicacao' ou 'features'
             if 'explanation' in exp:
                 explicacao_features = exp['explanation']
                 tamanho = exp.get('explanation_size', len(explicacao_features))
+            elif 'features_selecionadas' in exp:
+                explicacao_features = exp['features_selecionadas']
+                tamanho = exp.get('tamanho', len(explicacao_features))
             elif 'explicacao' in exp:
                 explicacao_features = exp['explicacao']
                 tamanho = len(explicacao_features)
@@ -483,20 +501,44 @@ def validar_metodo(
             else:
                 size_distribution[str(tamanho)] += 1
             
-            y_true = int(exp.get('y_true', exp.get('classe_real', -1)))
-            y_pred = int(exp.get('y_pred', exp.get('predicao', -1)))
-            # Suporta ambos os formatos: 'rejected' (booleano) ou 'rejeitada' (booleano)
-            rejeitada = bool(exp.get('rejected', exp.get('rejeitada', False)))
+            # Extrair y_true e y_pred com suporte a múltiplos formatos
+            # Formato PEAB: 'y_true', 'y_pred', 'rejected' (bool)
+            # Formato PuLP: 'classe_real', 'tipo_predicao' (string)
+            y_true = exp.get('y_true', -1)
+            if y_true == -1 and 'classe_real' in exp:
+                # PuLP usa string, converter para int
+                y_true = 1 if 'Diabético' in str(exp['classe_real']) else 0
+            y_true = int(y_true)
             
-            # Determinar tipo: se rejected=True, é rejeitada (mesmo que y_pred seja -1)
+            y_pred = int(exp.get('y_pred', exp.get('predicao', -1)))
+            
+            # Detectar se é rejeitada
+            # Formato PEAB: 'rejected' (bool)
+            # Formato PuLP: 'tipo_predicao' == 'REJEITADA'
+            rejeitada = bool(exp.get('rejected', exp.get('rejeitada', False)))
+            if not rejeitada and 'tipo_predicao' in exp:
+                rejeitada = ('REJEIT' in exp['tipo_predicao'].upper())
+            
+            # Determinar tipo
             if rejeitada:
                 tipo = 'rejected'
+            elif 'tipo_predicao' in exp:
+                # PuLP usa string
+                tipo_pred = exp['tipo_predicao'].upper()
+                if 'POSIT' in tipo_pred:
+                    tipo = 'positive'
+                    y_pred = 1
+                elif 'NEGAT' in tipo_pred:
+                    tipo = 'negative'
+                    y_pred = 0
+                else:
+                    tipo = 'rejected'
+                    y_pred = -1
             elif y_pred == 1:
                 tipo = 'positive'
             elif y_pred == 0:
                 tipo = 'negative'
             else:
-                # Se y_pred for -1 ou outro valor inválido
                 tipo = 'rejected'
             
             # Validar fidelity
@@ -513,7 +555,8 @@ def validar_metodo(
                 t_plus,
                 t_minus,
                 n_perturbacoes,
-                estrategia
+                estrategia,
+                max_abs
             )
             
             fidelity = resultado['fidelity']
@@ -572,8 +615,22 @@ def validar_metodo(
     
     # Calcular reduction rate
     num_features = len(feature_names)
-    mean_size = np.mean(tamanhos_explicacao)
-    reduction_rate = ((num_features - mean_size) / num_features) * 100.0
+    
+    # [BUGFIX] Verificar se há explicações antes de calcular estatísticas
+    if len(tamanhos_explicacao) > 0:
+        mean_size = np.mean(tamanhos_explicacao)
+        median_size = np.median(tamanhos_explicacao)
+        std_size = np.std(tamanhos_explicacao)
+        min_size = int(np.min(tamanhos_explicacao))
+        max_size = int(np.max(tamanhos_explicacao))
+        reduction_rate = ((num_features - mean_size) / num_features) * 100.0
+    else:
+        mean_size = 0.0
+        median_size = 0.0
+        std_size = 0.0
+        min_size = 0
+        max_size = 0
+        reduction_rate = 0.0
     
     # Montar resultado final
     resultado_validacao = {
@@ -594,10 +651,10 @@ def validar_metodo(
             'sufficiency': float(fidelity_overall),  # Para métodos ótimos
             'coverage': 100.0,  # % instâncias sem erro
             'mean_explanation_size': float(mean_size),
-            'median_explanation_size': float(np.median(tamanhos_explicacao)),
-            'std_explanation_size': float(np.std(tamanhos_explicacao)),
-            'min_explanation_size': int(np.min(tamanhos_explicacao)),
-            'max_explanation_size': int(np.max(tamanhos_explicacao)),
+            'median_explanation_size': float(median_size),
+            'std_explanation_size': float(std_size),
+            'min_explanation_size': min_size,
+            'max_explanation_size': max_size,
             'reduction_rate': float(reduction_rate),
             'validation_time_seconds': float(validation_time)
         },
@@ -629,7 +686,8 @@ def salvar_json_validacao(resultado: Dict, metodo: str, dataset: str):
 def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
     """Gera relatório TXT profissional adequado para dissertação."""
     
-    output_dir = os.path.join(VALIDATION_RESULTS_DIR, dataset, metodo.lower())
+    # [ORGANIZAÇÃO] Estrutura: results/validation/{dataset}/{metodo}/
+    output_dir = os.path.join(VALIDATION_RESULTS_DIR, metodo.lower(), dataset,)
     os.makedirs(output_dir, exist_ok=True)
     report_path = os.path.join(output_dir, "validation_report.txt")
     
@@ -823,7 +881,8 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
 def gerar_plots(resultado: Dict, metodo: str, dataset: str):
     """Gera os 6 plots de validação."""
     
-    output_dir = os.path.join(VALIDATION_RESULTS_DIR, dataset, metodo.lower())
+    # [ORGANIZAÇÃO] Estrutura: results/validation/{dataset}/{metodo}/
+    output_dir = os.path.join(VALIDATION_RESULTS_DIR, metodo.lower(), dataset)
     os.makedirs(output_dir, exist_ok=True)
     
     globais = resultado['global_metrics']
