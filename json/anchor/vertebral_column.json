@@ -1,0 +1,113 @@
+{
+  "config": {
+    "dataset_name": "vertebral_column",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.2543713913687597,
+    "t_minus": -0.016766284497145845,
+    "rejection_zone_width": 0.27113767586590554
+  },
+  "performance": {
+    "accuracy_without_rejection": 76.34408602150538,
+    "accuracy_with_rejection": 79.76190476190477,
+    "rejection_rate": 9.67741935483871,
+    "num_test_instances": 93,
+    "num_rejected": 9,
+    "num_accepted": 84
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 66,
+      "min_length": 1,
+      "mean_length": 1.8636363636363635,
+      "max_length": 3,
+      "std_length": 0.4568125282327677
+    },
+    "negative": {
+      "count": 18,
+      "min_length": 3,
+      "mean_length": 4.944444444444445,
+      "max_length": 6,
+      "std_length": 0.9702360664762767
+    },
+    "rejected": {
+      "count": 9,
+      "min_length": 1,
+      "mean_length": 2.5555555555555554,
+      "max_length": 4,
+      "std_length": 0.9558139185602919
+    }
+  },
+  "computation_time": {
+    "total": 4.586845499987248,
+    "mean_per_instance": 0.04932091935470159,
+    "positive": 0.030363924241762354,
+    "negative": 0.126712777777963,
+    "rejected": 0.033555166669733204
+  },
+  "top_features": [
+    {
+      "feature": "pelvic_radius",
+      "count": 55
+    },
+    {
+      "feature": "pelvic_incidence",
+      "count": 55
+    },
+    {
+      "feature": "pelvic_tilt",
+      "count": 50
+    },
+    {
+      "feature": "lumbar_lordosis_angle",
+      "count": 37
+    },
+    {
+      "feature": "sacral_slope",
+      "count": 20
+    },
+    {
+      "feature": "spondylolisthesis_grade",
+      "count": 18
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 6,
+    "class_names": [
+      "Normal",
+      "Anormal"
+    ],
+    "coefs": [
+      1.0574128129954865,
+      1.6327629424535322,
+      1.064472065527399,
+      0.13041777994318474,
+      -2.39991297465762,
+      1.9938925269526753
+    ],
+    "intercept": 0.491282203148571,
+    "scaler_params": {
+      "min": [
+        -0.30246789727126805,
+        0.11700607359771348,
+        -0.25062426074385596,
+        -0.12372755876364983,
+        -0.7984504956135354,
+        0.025744878957169457
+      ],
+      "scale": [
+        0.010032102728731942,
+        0.017863522686673815,
+        0.013142331449599158,
+        0.009254118082546734,
+        0.011393414606357526,
+        0.002327746741154562
+      ]
+    }
+  }
+}

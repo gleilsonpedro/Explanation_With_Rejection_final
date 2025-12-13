@@ -1,0 +1,3686 @@
+{
+  "config": {
+    "dataset_name": "pima_indians_diabetes",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.07786762315773399,
+    "t_minus": -0.10958761565230668,
+    "rejection_zone_width": 0.18745523881004067,
+    "normalization": {
+      "max_abs": 5.935880946880589,
+      "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+    }
+  },
+  "performance": {
+    "accuracy_without_rejection": 74.45887445887446,
+    "accuracy_with_rejection": 81.81818181818183,
+    "rejection_rate": 19.047619047619047,
+    "num_test_instances": 231,
+    "num_rejected": 44,
+    "num_accepted": 187
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 44,
+      "mean_length": 3.340909090909091,
+      "std_length": 1.0432288561389549,
+      "min_length": 2,
+      "max_length": 6
+    },
+    "negative": {
+      "count": 143,
+      "mean_length": 4.020979020979021,
+      "std_length": 0.7797124399869289,
+      "min_length": 2,
+      "max_length": 6
+    },
+    "rejected": {
+      "count": 44,
+      "mean_length": 6.386363636363637,
+      "std_length": 0.7451634686706818,
+      "min_length": 5,
+      "max_length": 8
+    }
+  },
+  "computation_time": {
+    "total": 1.4766910999896936,
+    "mean_per_instance": 0.006392602164457548,
+    "positive": 0.004825104543256616,
+    "negative": 0.005171004196155126,
+    "rejected": 0.011756477274254641
+  },
+  "top_features": [
+    {
+      "feature": "glicose",
+      "count": 231
+    },
+    {
+      "feature": "imc",
+      "count": 231
+    },
+    {
+      "feature": "num_gravidezes",
+      "count": 205
+    },
+    {
+      "feature": "diabetes_pedigree",
+      "count": 162
+    },
+    {
+      "feature": "pressao_sangue",
+      "count": 96
+    },
+    {
+      "feature": "insulina",
+      "count": 40
+    },
+    {
+      "feature": "idade",
+      "count": 31
+    },
+    {
+      "feature": "espessura_pele",
+      "count": 7
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 8,
+    "class_names": [
+      "Não Diabético",
+      "Diabético"
+    ],
+    "params": {
+      "norm_params": {
+        "max_abs": 5.935880946880589
+      },
+      "penalty": "l2",
+      "C": 10,
+      "solver": "saga",
+      "max_iter": 200
+    },
+    "coefs": [
+      2.2004444513454193,
+      6.718124384308161,
+      -1.1358834066505783,
+      -0.12306452312434635,
+      -0.3656140014914121,
+      5.447884922193201,
+      1.5046948693588431,
+      0.5274457499762587
+    ],
+    "intercept": -7.717096315457622,
+    "scaler_params": {
+      "min": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.037416481069042315,
+        -0.35
+      ],
+      "scale": [
+        0.058823529411764705,
+        0.005050505050505051,
+        0.00819672131147541,
+        0.016666666666666666,
+        0.0013440860215053765,
+        0.01490312965722802,
+        0.4454342984409799,
+        0.016666666666666666
+      ]
+    }
+  },
+  "per_instance": [
+    {
+      "id": "730",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.149830908184553,
+      "decision_score_normalized": -0.19370855286253838,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "198",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8161004036656969,
+      "decision_score_normalized": -0.13748597907688365,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "24",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8933159573299658,
+      "decision_score_normalized": 0.1504942510343674,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "417",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.4389688151018838,
+      "decision_score_normalized": 0.0739517552710638,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "387",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.2934259120015179,
+      "decision_score_normalized": -0.049432580374732485,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "156",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.292333244197714,
+      "decision_score_normalized": -0.3861824832255734,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "660",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8966031167668014,
+      "decision_score_normalized": 0.15104802889249022,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "205",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8217862931380067,
+      "decision_score_normalized": -0.3069108544192396,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "3",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9386734405947657,
+      "decision_score_normalized": -0.49506947105114885,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "531",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.686404606963805,
+      "decision_score_normalized": -0.11563651850607327,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "158",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.765879933746537,
+      "decision_score_normalized": -0.46595946894791684,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "347",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.398317633079058,
+      "decision_score_normalized": -0.2355703636229259,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "224",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5173143591845903,
+      "decision_score_normalized": -0.4240843746213414,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "756",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.12257725786855023,
+      "decision_score_normalized": -0.020650221755705318,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "425",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3140270323610093,
+      "decision_score_normalized": 0.22137017977955806,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "185",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.614414190616978,
+      "decision_score_normalized": 0.44044249101574373,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "78",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.40377343555145906,
+      "decision_score_normalized": 0.06802249559328664,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "428",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7030126129766634,
+      "decision_score_normalized": -0.11843441929981918,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "247",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1352848449202266,
+      "decision_score_normalized": 0.19125802135853803,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "471",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.036416957041335,
+      "decision_score_normalized": -0.1746020458152872,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "162",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1067208161218076,
+      "decision_score_normalized": -0.18644592538592086,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "304",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0188006231047302,
+      "decision_score_normalized": -0.17163427505063558,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "513",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4269804877300114,
+      "decision_score_normalized": -0.4088660991432843,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "348",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.6777030750735618,
+      "decision_score_normalized": -0.45110457892197825,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "335",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0105066091815296,
+      "decision_score_normalized": 0.17023700748455353,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "351",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.6081668019805679,
+      "decision_score_normalized": -0.10245603094519111,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 8
+    },
+    {
+      "id": "164",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9875931367358053,
+      "decision_score_normalized": -0.16637684373619438,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "541",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8057753781774313,
+      "decision_score_normalized": -0.1357465531044521,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "33",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9285517004808144,
+      "decision_score_normalized": -0.49336429195397197,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "496",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.641249523735179,
+      "decision_score_normalized": -0.2764963681755923,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "484",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2452240525229712,
+      "decision_score_normalized": 0.20977914881823204,
+      "explanation": [
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "722",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5460035875019464,
+      "decision_score_normalized": -0.09198358127261314,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "389",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4489691077178612,
+      "decision_score_normalized": -0.2441034651275006,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "310",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.445608879587697,
+      "decision_score_normalized": -0.4120043682602677,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "392",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8427252611122977,
+      "decision_score_normalized": -0.310438379341264,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "259",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9450220407382535,
+      "decision_score_normalized": 0.3276720099584203,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "452",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9576932530053446,
+      "decision_score_normalized": -0.32980669095699217,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "88",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.319327348533749,
+      "decision_score_normalized": 0.222263108094693,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "139",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2890797810169934,
+      "decision_score_normalized": -0.21716739142054858,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "330",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.35894193077911485,
+      "decision_score_normalized": -0.06046986689780987,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "421",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5455305875802026,
+      "decision_score_normalized": -0.4288378777067495,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "245",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.307351468402759,
+      "decision_score_normalized": 0.3887125582623609,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "697",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2062089600847656,
+      "decision_score_normalized": -0.37167338425885504,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "441",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.428340675465252,
+      "decision_score_normalized": -0.40909524587776447,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "89",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3970314857328345,
+      "decision_score_normalized": -0.4038206809037363,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "480",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3372894234321109,
+      "decision_score_normalized": 0.056822134144951554,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "217",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.665739648228465,
+      "decision_score_normalized": -0.11215515509594629,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "598",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7331751239612707,
+      "decision_score_normalized": 0.12351580675595714,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "512",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7298303320177322,
+      "decision_score_normalized": -0.29141931037663227,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "767",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5068955947685794,
+      "decision_score_normalized": -0.42232915673384547,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "305",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.840325852729789,
+      "decision_score_normalized": -0.14156716757794732,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "340",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5350879732645586,
+      "decision_score_normalized": -0.258611651244669,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "424",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.451252847449295,
+      "decision_score_normalized": 0.2444881998874917,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "525",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9611889467680523,
+      "decision_score_normalized": -0.49886259061920873,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "712",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0369213269735447,
+      "decision_score_normalized": 0.1746870154999428,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "419",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.368241892396898,
+      "decision_score_normalized": -0.23050359409851934,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "593",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8302152922032784,
+      "decision_score_normalized": -0.30833086252598935,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "579",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.878003128157994,
+      "decision_score_normalized": 0.31638153543913616,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "630",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7656753534587573,
+      "decision_score_normalized": -0.12899102261495546,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "678",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7205663984972439,
+      "decision_score_normalized": -0.12139165272105303,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "367",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.103313808491661,
+      "decision_score_normalized": -0.5228059383708678,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "543",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9694147481852635,
+      "decision_score_normalized": -0.3317813759759157,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "560",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.3476939822065148,
+      "decision_score_normalized": -0.05857495885075562,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "293",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.21001931504075788,
+      "decision_score_normalized": -0.0353813219840817,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "62",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.6554855629675016,
+      "decision_score_normalized": -0.6158286521714227,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "373",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6006081501023761,
+      "decision_score_normalized": -0.2696496382636387,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "140",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5766423440394224,
+      "decision_score_normalized": -0.2656121910376211,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "59",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4663535364995743,
+      "decision_score_normalized": -0.24703216752859053,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "275",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1307977804108384,
+      "decision_score_normalized": -0.19050209910377208,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "727",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8951102413198306,
+      "decision_score_normalized": -0.15079652865851814,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "761",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.44295741347951,
+      "decision_score_normalized": 0.41155768374420104,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "298",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.03129069527970696,
+      "decision_score_normalized": 0.005271449269236233,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "589",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.3190061093061063,
+      "decision_score_normalized": -0.5591429711962641,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "494",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.545276292305389,
+      "decision_score_normalized": -0.7657290186545963,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.066036002912827,
+      "decision_score_normalized": -0.3480588679930593,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "502",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.8844661071410447,
+      "decision_score_normalized": -0.6544043153666013,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "296",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8978067646161216,
+      "decision_score_normalized": -0.15125080382347209,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "672",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9281092176207926,
+      "decision_score_normalized": -0.3248227575443622,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "38",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6887333850399582,
+      "decision_score_normalized": -0.2844958313942293,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "724",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.701284226205095,
+      "decision_score_normalized": -0.2866102338354933,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "52",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5198546370679136,
+      "decision_score_normalized": -0.42451232759176916,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "652",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7512595370912454,
+      "decision_score_normalized": -0.12656243341370343,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "629",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.611937777822316,
+      "decision_score_normalized": -0.44002529720461053,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "650",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9391027787823862,
+      "decision_score_normalized": -0.49514180036359,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "447",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2038160538801375,
+      "decision_score_normalized": -0.37127025855164464,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "212",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.487517681506688,
+      "decision_score_normalized": 0.2505976273476989,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "535",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.11426795717126303,
+      "decision_score_normalized": 0.019250378872796105,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "215",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0768504081028727,
+      "decision_score_normalized": 0.3498807382911368,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "43",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.461628468373112,
+      "decision_score_normalized": 0.4147031401744574,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "82",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8407666914543128,
+      "decision_score_normalized": -0.3101084250049975,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "359",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7227477907428348,
+      "decision_score_normalized": 0.2902261359618692,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "332",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.343800883436117,
+      "decision_score_normalized": 0.39485308152412085,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "381",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.0982152359032966,
+      "decision_score_normalized": -0.5219469971902762,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "13",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7918925664110752,
+      "decision_score_normalized": 0.13340775758436138,
+      "explanation": [
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "749",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.2697910741293148,
+      "decision_score_normalized": 0.04545089036381277,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "329",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4618243581557504,
+      "decision_score_normalized": -0.24626915048287232,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "25",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.1611140760078893,
+      "decision_score_normalized": -0.027142403537011233,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "268",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7065304045485465,
+      "decision_score_normalized": -0.4559610323672136,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "635",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.23809898667902551,
+      "decision_score_normalized": -0.040111819763526554,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "350",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.223519688221101,
+      "decision_score_normalized": -0.20612267988024294,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "10",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1200242090348755,
+      "decision_score_normalized": -0.18868710795547006,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "707",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9216940809334737,
+      "decision_score_normalized": -0.15527502811825097,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "64",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5932364434677382,
+      "decision_score_normalized": -0.09994075837715284,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 8
+    },
+    {
+      "id": "276",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4583495659069508,
+      "decision_score_normalized": -0.24568376268957,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "580",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.0845067267493409,
+      "decision_score_normalized": 0.014236593945461572,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "83",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8441631082395036,
+      "decision_score_normalized": -0.4791475997735706,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "617",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.99681004040725,
+      "decision_score_normalized": -0.6733305597221664,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "260",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1912363446666827,
+      "decision_score_normalized": 0.20068400214338844,
+      "explanation": [
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "32",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7870875485529947,
+      "decision_score_normalized": -0.469532251993305,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "412",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3988729805986235,
+      "decision_score_normalized": 0.0671969306945481,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "93",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9185613476967642,
+      "decision_score_normalized": -0.1547472659773415,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "740",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0254177188033644,
+      "decision_score_normalized": 0.17274903724985247,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "402",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.26473147309663947,
+      "decision_score_normalized": -0.044598514603929273,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "696",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.25482739652498765,
+      "decision_score_normalized": 0.04293000462869862,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "489",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9924214676414707,
+      "decision_score_normalized": 0.3356572487675184,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "42",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.926364096609971,
+      "decision_score_normalized": -0.3245287622593424,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "736",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.843484710970186,
+      "decision_score_normalized": -0.3105663215733749,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "570",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4123938544310395,
+      "decision_score_normalized": -0.4064087329276365,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "311",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3639862085262315,
+      "decision_score_normalized": -0.2297866518436544,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "408",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.316650222580785,
+      "decision_score_normalized": 0.3902790913955621,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "75",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.023854284024704,
+      "decision_score_normalized": -1.0148206033664382,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "618",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.21723642704700374,
+      "decision_score_normalized": -0.036597167124985105,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "746",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6798415235354458,
+      "decision_score_normalized": 0.114530855591488,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "410",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0420749772493405,
+      "decision_score_normalized": -0.1755552354527881,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "243",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.3671150715433136,
+      "decision_score_normalized": -0.06184677132654405,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "527",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9871561286340427,
+      "decision_score_normalized": -0.3347702129501651,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "440",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.871993643980808,
+      "decision_score_normalized": 0.14690214507065816,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "554",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.120255926379204,
+      "decision_score_normalized": -0.35719313533291736,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "606",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6405836402418927,
+      "decision_score_normalized": 0.2763841887873524,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "21",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7717836632677226,
+      "decision_score_normalized": -0.13002007118645273,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "742",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1100270526850853,
+      "decision_score_normalized": -0.3554699077638917,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "87",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.453863521455304,
+      "decision_score_normalized": -0.24492801228086206,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "273",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.1074542566537326,
+      "decision_score_normalized": -0.5235034672126898,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "745",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7459540150081505,
+      "decision_score_normalized": -0.12566862807451734,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "66",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5947004236136229,
+      "decision_score_normalized": -0.2686543813604729,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "445",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.951539172488813,
+      "decision_score_normalized": 0.6657039128396631,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "252",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.087100749806029,
+      "decision_score_normalized": -0.5200745731648064,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "81",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.92655120265732,
+      "decision_score_normalized": -0.8299612554133705,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "190",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2660333902698664,
+      "decision_score_normalized": -0.3817518259797153,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "300",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1568049092761967,
+      "decision_score_normalized": 0.19488344183926368,
+      "explanation": [
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "264",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7868743333650823,
+      "decision_score_normalized": -0.13256235096470367,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "199",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.3246474109855555,
+      "decision_score_normalized": -0.054692372352272915,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "262",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.706896345640673,
+      "decision_score_normalized": -0.28755569070799464,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "584",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5191197811052248,
+      "decision_score_normalized": -0.08745454731163897,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "415",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.4823082265446299,
+      "decision_score_normalized": 0.08125301549352863,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "345",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.19693084598056565,
+      "decision_score_normalized": 0.03317634698924619,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "679",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3987811927279825,
+      "decision_score_normalized": -0.40411544877573474,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "407",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8852895685762157,
+      "decision_score_normalized": -0.4860760507827379,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "17",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2644191206505564,
+      "decision_score_normalized": -0.21301288418108033,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "615",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1726681293455608,
+      "decision_score_normalized": -0.3660228614401939,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "658",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5301050556521236,
+      "decision_score_normalized": 0.08930520345606043,
+      "explanation": [
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "397",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1001206565233588,
+      "decision_score_normalized": -0.18533401636053562,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "112",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.740301464805066,
+      "decision_score_normalized": -0.4616503412598164,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "517",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.09344489101330566,
+      "decision_score_normalized": 0.01574237958098075,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "366",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9019822583475055,
+      "decision_score_normalized": -0.15195423668689198,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "467",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7759276228173242,
+      "decision_score_normalized": -0.29918518223493107,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "309",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7617486923747316,
+      "decision_score_normalized": -0.1283295098388124,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "153",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.23374826924271375,
+      "decision_score_normalized": 0.03937886748984624,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "203",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9950960815217975,
+      "decision_score_normalized": -0.5045748235728639,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "481",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4349611713977435,
+      "decision_score_normalized": -0.24174359025038078,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "645",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.20332377831573822,
+      "decision_score_normalized": 0.034253345061205864,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "124",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7393612899316695,
+      "decision_score_normalized": -0.29302496217444096,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "279",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9310710844758887,
+      "decision_score_normalized": -0.3253217343401574,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "44",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5203493683847356,
+      "decision_score_normalized": 0.08766169218036429,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "430",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.263061070776092,
+      "decision_score_normalized": -0.3812510882593376,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "127",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4041104269742721,
+      "decision_score_normalized": -0.23654625817793012,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "674",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.716751862817274,
+      "decision_score_normalized": -0.12074902937430708,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "219",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5207994611624089,
+      "decision_score_normalized": -0.08773751795613392,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "99",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.2142655919173091,
+      "decision_score_normalized": -0.036096679470956954,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "433",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2358164902549067,
+      "decision_score_normalized": -0.2081942851135433,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "511",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8394045991794084,
+      "decision_score_normalized": -0.3098789574184516,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "116",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5505008380652558,
+      "decision_score_normalized": -0.09274121954122982,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 8
+    },
+    {
+      "id": "578",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.11123808987962036,
+      "decision_score_normalized": -0.018739946248092786,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "501",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.010183378866661,
+      "decision_score_normalized": -0.3386495444998856,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "717",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4149093415652167,
+      "decision_score_normalized": -0.23836551882139362,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "743",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6244115322759658,
+      "decision_score_normalized": 0.10519273177203885,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "187",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7369791868185613,
+      "decision_score_normalized": -0.12415666577778266,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "163",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.106568552953558,
+      "decision_score_normalized": -0.35488726472194443,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "596",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1799640874095836,
+      "decision_score_normalized": -0.36725198953917587,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "637",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0838706978220056,
+      "decision_score_normalized": -0.3510634253736367,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "115",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08759162379451091,
+      "decision_score_normalized": 0.014756297267138058,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "486",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.16122119304830385,
+      "decision_score_normalized": -0.02716044922245761,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "763",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7916095567913217,
+      "decision_score_normalized": -0.13336007980539547,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "399",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.478313310352842,
+      "decision_score_normalized": 0.24904699463855015,
+      "explanation": [
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "175",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7838721453781208,
+      "decision_score_normalized": 0.3005235720429294,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "416",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0778552838288213,
+      "decision_score_normalized": -0.35005002668066837,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "644",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9140055903779745,
+      "decision_score_normalized": -0.3224467619054621,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "558",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.45010314168136567,
+      "decision_score_normalized": 0.07582752176286535,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "463",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.373693305343747,
+      "decision_score_normalized": -0.399888967886252,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "71",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.5049344804423423,
+      "decision_score_normalized": -0.08506479239744429,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "346",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.6584438242051442,
+      "decision_score_normalized": -0.110926049578398,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "97",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.874540286916906,
+      "decision_score_normalized": -0.6527321423036703,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "380",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7083330451951824,
+      "decision_score_normalized": -0.28779772715841645,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "532",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4409701124954344,
+      "decision_score_normalized": -0.24275589847412452,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "418",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.512246915624159,
+      "decision_score_normalized": -0.5916976683081737,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "436",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0468479902512602,
+      "decision_score_normalized": 0.1763593305895728,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "258",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7901076656814663,
+      "decision_score_normalized": 0.13310706072982847,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "pressao_sangue"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "661",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.738482828822182,
+      "decision_score_normalized": 0.46134396112868525,
+      "explanation": [
+        "glicose",
+        "imc"
+      ],
+      "explanation_size": 2
+    },
+    {
+      "id": "563",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6480107608772538,
+      "decision_score_normalized": -0.27763541345001413,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "422",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.412321861116955,
+      "decision_score_normalized": -0.2379296137768995,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "307",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7501875877618387,
+      "decision_score_normalized": -0.294848835989811,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "533",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0659692530722094,
+      "decision_score_normalized": -0.17958063219451784,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "734",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.101788357618368,
+      "decision_score_normalized": -0.3540819595990878,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "476",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5998900164007006,
+      "decision_score_normalized": -0.2695286564400304,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "698",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.6011882880221107,
+      "decision_score_normalized": -0.1012803816993745,
+      "explanation": [
+        "diabetes_pedigree",
+        "espessura_pele",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 8
+    },
+    {
+      "id": "699",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3591812855481695,
+      "decision_score_normalized": 0.06051019027545114,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "539",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.340534430746505,
+      "decision_score_normalized": -0.05736881076185699,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "477",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4632684791853636,
+      "decision_score_normalized": -0.24651243720687108,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "684",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.424288571331487,
+      "decision_score_normalized": -0.40841260008853336,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "680",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.019255971272383,
+      "decision_score_normalized": -0.6771119581474377,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "713",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5714656082298397,
+      "decision_score_normalized": -0.26474008193437115,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "700",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9539111174362045,
+      "decision_score_normalized": -0.16070253530564857,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "238",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2852338662115592,
+      "decision_score_normalized": 0.2165194817269663,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "244",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.043159970846697426,
+      "decision_score_normalized": -0.007271030405247389,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "151",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7845480678868473,
+      "decision_score_normalized": -0.3006374426738897,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "537",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.7391843023596865,
+      "decision_score_normalized": -0.6299291269183379,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "235",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7809214353314182,
+      "decision_score_normalized": 0.3000264748010696,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "653",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.412087061487215,
+      "decision_score_normalized": -0.23789005778987057,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "488",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2647441792913376,
+      "decision_score_normalized": -0.3815346364858448,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "628",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.41133305865059544,
+      "decision_score_normalized": -0.06929604254727485,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 7
+    },
+    {
+      "id": "144",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02864349892939355,
+      "decision_score_normalized": 0.0048254840664293,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "355",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0874026497315885,
+      "decision_score_normalized": 0.18319145202921192,
+      "explanation": [
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "98",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8134392063886438,
+      "decision_score_normalized": -0.3055046458338485,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "102",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4235758209388463,
+      "decision_score_normalized": -0.4082925251747979,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 4
+    },
+    {
+      "id": "6",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5858735940757374,
+      "decision_score_normalized": -0.4356343426049776,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "469",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5276624807069208,
+      "decision_score_normalized": 0.25736070085936186,
+      "explanation": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "explanation_size": 3
+    },
+    {
+      "id": "94",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.012843804610343,
+      "decision_score_normalized": -0.17063074776501547,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "437",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.05678005313053802,
+      "decision_score_normalized": -0.009565564680062687,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "86",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02660735727411634,
+      "decision_score_normalized": 0.0044824614092199705,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    },
+    {
+      "id": "221",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5092104848073102,
+      "decision_score_normalized": 0.0857851579848328,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "pressao_sangue"
+      ],
+      "explanation_size": 6
+    },
+    {
+      "id": "19",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.242013205123885,
+      "decision_score_normalized": -0.20923822701945952,
+      "explanation": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "explanation_size": 5
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+================================================================================
+RELATÓRIO DE BENCHMARK CIENTÍFICO: SONAR
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+ - Instâncias de Teste: 63
+ - Thresholds: t+ = 0.6750, t- = -0.0368
+ - Zona de Rejeição: 0.7118
+ - Parâmetros do Modelo (Regressão Logística):
+{
+    "penalty": "l2",
+    "C": 0.01,
+    "solver": "saga",
+    "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO (PEAB vs OTIMIZAÇÃO)
+--------------------------------------------------------------------------------
+Métrica                         Valor   
+    Taxa de Otimalidade (Gap=0)    0.00%
+Gap Médio (Features Excedentes)  17.7937
+           Tempo Médio PEAB (s) 0.015541
+     Tempo Médio OTIMIZAÇÃO (s) 0.042971
+  Speedup (x vezes mais rápido)    2.77x
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR CLASSE DE PREDIÇÃO
+--------------------------------------------------------------------------------
+onde o PEAB é perfeito e onde ele encontra dificuldades.
+
+     Tipo  Qtd % Ótimo Gap Médio Tam. PEAB Tam. Ótimo Tempo PEAB Tempo Ótimo
+ NEGATIVA    3   0.00%   -4.6667     41.33      46.00   0.00682s    0.04023s
+REJEITADA   60   0.00%   18.9167     40.13      21.22   0.01598s    0.04311s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES ERROS (GAPS)
+--------------------------------------------------------------------------------
+Instâncias onde o PEAB ficou mais longe da solução matemática ideal.
+
+ id tipo_predicao  tamanho_PEAB  tamanho_OPTIMO  GAP
+ 18     REJEITADA            53              14   39
+ 62     REJEITADA            54              16   38
+ 41     REJEITADA            52              14   38
+  5     REJEITADA            52              14   38
+ 34     REJEITADA            51              14   37
+ 42     REJEITADA            48              14   34
+ 28     REJEITADA            45              14   31
+  0     REJEITADA            45              14   31
+ 59     REJEITADA            44              14   30
+ 38     REJEITADA            46              17   29
+

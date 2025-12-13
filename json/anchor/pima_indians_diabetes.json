@@ -1,0 +1,127 @@
+{
+  "config": {
+    "dataset_name": "pima_indians_diabetes",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.07786762315773399,
+    "t_minus": -0.10958761565230668,
+    "rejection_zone_width": 0.18745523881004067
+  },
+  "performance": {
+    "accuracy_without_rejection": 74.45887445887446,
+    "accuracy_with_rejection": 74.77876106194691,
+    "rejection_rate": 2.1645021645021645,
+    "num_test_instances": 231,
+    "num_rejected": 5,
+    "num_accepted": 226
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 59,
+      "min_length": 3,
+      "mean_length": 4.440677966101695,
+      "max_length": 8,
+      "std_length": 1.343801670706088
+    },
+    "negative": {
+      "count": 167,
+      "min_length": 1,
+      "mean_length": 2.467065868263473,
+      "max_length": 5,
+      "std_length": 0.9336326011792461
+    },
+    "rejected": {
+      "count": 5,
+      "min_length": 4,
+      "mean_length": 5.0,
+      "max_length": 8,
+      "std_length": 1.5491933384829668
+    }
+  },
+  "computation_time": {
+    "total": 13.336391599761555,
+    "mean_per_instance": 0.05773329696866474,
+    "positive": 0.084859635591136,
+    "negative": 0.043396006586116566,
+    "rejected": 0.21650800000061282
+  },
+  "top_features": [
+    {
+      "feature": "glicose",
+      "count": 224
+    },
+    {
+      "feature": "imc",
+      "count": 130
+    },
+    {
+      "feature": "num_gravidezes",
+      "count": 113
+    },
+    {
+      "feature": "diabetes_pedigree",
+      "count": 62
+    },
+    {
+      "feature": "idade",
+      "count": 53
+    },
+    {
+      "feature": "pressao_sangue",
+      "count": 42
+    },
+    {
+      "feature": "insulina",
+      "count": 40
+    },
+    {
+      "feature": "espessura_pele",
+      "count": 35
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 8,
+    "class_names": [
+      "Não Diabético",
+      "Diabético"
+    ],
+    "coefs": [
+      2.2004444513454193,
+      6.718124384308161,
+      -1.1358834066505783,
+      -0.12306452312434635,
+      -0.3656140014914121,
+      5.447884922193201,
+      1.5046948693588431,
+      0.5274457499762587
+    ],
+    "intercept": -7.717096315457622,
+    "scaler_params": {
+      "min": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.037416481069042315,
+        -0.35
+      ],
+      "scale": [
+        0.058823529411764705,
+        0.005050505050505051,
+        0.00819672131147541,
+        0.016666666666666666,
+        0.0013440860215053765,
+        0.01490312965722802,
+        0.4454342984409799,
+        0.016666666666666666
+      ]
+    }
+  }
+}
