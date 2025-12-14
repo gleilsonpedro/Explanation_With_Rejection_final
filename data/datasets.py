@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_iris, fetch_openml, load_breast_cancer, load_wine
+from sklearn.datasets import load_iris, fetch_openml, load_breast_cancer, fetch_covtype
 from typing import List, Tuple, Dict, Any, Optional
 
 # ------------------------ Utilitários de download/cache ------------------------
@@ -277,16 +277,6 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             X = data_df.drop("target", axis=1).astype(float)
             y_series = data_df["target"]
             class_names_list = ["Sem Doença", "Com Doença"]
-        elif nome_dataset == 'wine_quality':
-            urls = [
-                "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
-            ]
-            local_path = os.path.join('data', 'winequality-red.csv')
-            data_df = _read_csv_with_cache(urls, local_path, sep=";")
-            data_df["target"] = data_df["quality"].apply(lambda x: 1 if x >= 7 else 0)
-            X = data_df.drop(["quality", "target"], axis=1)
-            y_series = data_df["target"]
-            class_names_list = ["Baixa Qualidade", "Alta Qualidade"]
         elif nome_dataset == 'creditcard':
             # Apenas carrega o dataset completo e o retorna.
             # A amostragem será feita no script principal.
@@ -294,15 +284,67 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             X = data_openml.data
             y_series = data_openml.target.astype(int)
             class_names_list = ['Normal', 'Fraude']
-        elif nome_dataset == 'wine':
-            data = load_wine()
-            X = pd.DataFrame(data.data, columns=data.feature_names)
-            y_series = pd.Series(data.target, name='target')
-            class_names_list = list(data.target_names)
+        elif nome_dataset == 'covertype':
+            # Covertype: 581k instances, 54 features, 7 classes
+            # Binarization: 2 most frequent classes (Spruce/Fir=1 vs Lodgepole Pine=2)
+            print("Carregando Covertype (581k instances, 54 features)...")
+            data = fetch_covtype()
+            X = pd.DataFrame(data.data, columns=[f"feature_{i}" for i in range(data.data.shape[1])])
+            y_all = pd.Series(data.target, name='target')
             
-            # Binarização OvR (classe 0 vs resto)
-            y_series = np.where(y_series == 0, 0, 1)  # class_0 (0) vs class_1 + class_2        (1)
-            class_names_list = [class_names_list[0], "Não-class_0"]  # ["class_0",      "Não-class_0"]
+            # Convert to binary: class 1 vs class 2 (most common classes)
+            mask = (y_all == 1) | (y_all == 2)
+            X = X[mask].copy()
+            y_series = pd.Series(np.where(y_all[mask] == 1, 0, 1), index=X.index, name='target')
+            class_names_list = ['Spruce/Fir', 'Lodgepole Pine']
+            print(f"Covertype binário: {X.shape[0]} amostras ({sum(y_series==0)} classe 0, {sum(y_series==1)} classe 1)")
+        elif nome_dataset == 'gas_sensor':
+            # Gas Sensor Array Drift: 13.9k instances, 128 features, 6 classes
+            # Binarization: 2 most frequent classes
+            print("Carregando Gas Sensor (13.9k instances, 128 features)...")
+            urls = [
+                "https://archive.ics.uci.edu/ml/machine-learning-databases/00224/Dataset.zip"
+            ]
+            local_path = os.path.join('data', 'gas_sensor.zip')
+            extracted_dir = os.path.join('data', 'gas_sensor_data')
+            
+            # Download and extract if not exists
+            if not os.path.exists(extracted_dir):
+                ok = _download_with_retries(urls[0], local_path)
+                if not ok:
+                    raise RuntimeError("Falha ao baixar gas_sensor. Faça o download manual e coloque em 'data/gas_sensor.zip'")
+                with zipfile.ZipFile(local_path, 'r') as zf:
+                    zf.extractall(extracted_dir)
+            
+            # Load all batch files and concatenate
+            batch_files = []
+            for i in range(1, 11):  # 10 batches
+                batch_path = os.path.join(extracted_dir, f"batch{i}.dat")
+                if os.path.exists(batch_path):
+                    batch_files.append(batch_path)
+            
+            if not batch_files:
+                raise RuntimeError(f"Nenhum arquivo batch encontrado em {extracted_dir}")
+            
+            # Read and concatenate all batches
+            all_data = []
+            for batch_file in batch_files:
+                df = pd.read_csv(batch_file, sep=r'\s+', header=None)
+                all_data.append(df)
+            
+            data_df = pd.concat(all_data, ignore_index=True)
+            
+            # Last column is class (1-6), rest are features
+            y_all = data_df.iloc[:, -1].astype(int)
+            X_all = data_df.iloc[:, :-1]
+            
+            # Binarize: class 1 vs class 3 (2 most common)
+            mask = (y_all == 1) | (y_all == 3)
+            X = X_all[mask].copy()
+            X.columns = [f"feature_{i}" for i in range(X.shape[1])]
+            y_series = pd.Series(np.where(y_all[mask] == 1, 0, 1), index=X.index, name='target')
+            class_names_list = ['Ethanol', 'Ammonia']
+            print(f"Gas Sensor binário: {X.shape[0]} amostras ({sum(y_series==0)} classe 0, {sum(y_series==1)} classe 1)")
         elif nome_dataset == 'vertebral_column':
             url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00212/vertebral_column_data.zip"
             col_names = ["pelvic_incidence", "pelvic_tilt", "lumbar_lordosis_angle", 
@@ -410,8 +452,8 @@ def selecionar_datasets_multiplos() -> Optional[List[str]]:
     """
     nomes_datasets = [
         'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
-        'vertebral_column', 'wine', 'banknote', 'heart_disease',
-        'wine_quality', 'spambase', 'creditcard'
+        'vertebral_column', 'banknote', 'heart_disease',
+        'spambase', 'creditcard', 'covertype', 'gas_sensor'
     ]
     
     menu = '''
@@ -419,12 +461,12 @@ def selecionar_datasets_multiplos() -> Optional[List[str]]:
     | Datasets Clássicos para Comparação:                                  |
     | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)       |
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
-    | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
+    | [4] Vertebral Column (310x6x2)     | [5] Banknote Auth (1372x4x2)    |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
-    | [6] Banknote Auth (1372x4x2)       | [7] Heart Disease (297x13x2)    |
-    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)          |
-    | [10] Creditcard Fraud (Amostra)                                      |
+    | [6] Heart Disease (297x13x2)       | [7] Spambase (210x7x3)          |
+    | [8] Creditcard Fraud (Amostra)     | [9] Covertype (581k x 54 x 2)   |
+    | [10] Gas Sensor (13.9k x 128 x 2)                                    |
     |----------------------------------------------------------------------|
     '''
     print(menu)
@@ -478,12 +520,12 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     | Datasets Clássicos para Comparação:                                  |
     | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)       |
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
-    | [4] Vertebral Column (310x6x2)     | [5] Wine (178x13x3)             |
+    | [4] Vertebral Column (310x6x2)     | [5] Banknote Auth (1372x4x2)    |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
-    | [6] Banknote Auth (1372x4x2)       | [7] Heart Disease (297x13x2)    |
-    | [8] Wine Quality (Red) (1599x11x2) | [9] Spambase (210x7x3)          |
-    | [10] Creditcard Fraud (Amostra)                                      |
+    | [6] Heart Disease (297x13x2)       | [7] Spambase (210x7x3)          |
+    | [8] Creditcard Fraud (Amostra)     | [9] Covertype (581k x 54 x 2)   |
+    | [10] Gas Sensor (13.9k x 128 x 2)                                    |
     |----------------------------------------------------------------------|
     | [M] MÚLTIPLOS DATASETS (Ex: 0,2,3 ou 0-5)                           |
     | [A] TODOS OS DATASETS                                                |
@@ -494,8 +536,8 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     # [MODIFICAÇÃO IMPORTANTE] Lista de datasets atualizada para corresponder ao menu.
     nomes_datasets = [
         'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
-        'vertebral_column', 'wine', 'banknote', 'heart_disease',
-        'wine_quality', 'spambase', 'creditcard'
+        'vertebral_column', 'banknote', 'heart_disease',
+        'spambase', 'creditcard', 'covertype', 'gas_sensor'
     ]
     while True:
         opcao = input("\nDigite o número do dataset, 'M' para múltiplos, 'A' para todos, ou 'Q' para sair: ").upper().strip()
@@ -537,7 +579,7 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
                         print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab.MNIST_CONFIG")
                     except ImportError:
                         try:
-                            from peab_2 import MNIST_CONFIG
+                            from peab import MNIST_CONFIG
                             print("\n[INFO] MNIST detectado. Usando configurações automáticas de peab_2.MNIST_CONFIG")
                         except ImportError:
                             raise ImportError("Não foi possível importar MNIST_CONFIG de peab.py nem de peab_2.py")

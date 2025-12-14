@@ -1,0 +1,6054 @@
+{
+  "config": {
+    "dataset_name": "wine_quality",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.01,
+    "t_minus": -0.6154952951964341,
+    "rejection_zone_width": 0.6254952951964341,
+    "normalization": {
+      "max_abs": 1.8816676932959777,
+      "note": "Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs"
+    }
+  },
+  "performance": {
+    "accuracy_without_rejection": 86.45833333333334,
+    "accuracy_with_rejection": 87.31182795698925,
+    "rejection_rate": 3.125,
+    "num_test_instances": 480,
+    "num_rejected": 15,
+    "num_accepted": 465
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 0,
+      "mean_length": 0.0,
+      "std_length": 0.0,
+      "min_length": 0,
+      "max_length": 0
+    },
+    "negative": {
+      "count": 465,
+      "mean_length": 1.0,
+      "std_length": 0.0,
+      "min_length": 1,
+      "max_length": 1
+    },
+    "rejected": {
+      "count": 15,
+      "mean_length": 9.733333333333333,
+      "std_length": 0.7717224601860151,
+      "min_length": 8,
+      "max_length": 11
+    }
+  },
+  "computation_time": {
+    "total": 2.1202856000163592,
+    "mean_per_instance": 0.004417261666700748,
+    "positive": 0.0,
+    "negative": 0.004209728172469523,
+    "rejected": 0.010072306667764982
+  },
+  "top_features": [
+    {
+      "feature": "density",
+      "count": 338
+    },
+    {
+      "feature": "pH",
+      "count": 134
+    },
+    {
+      "feature": "total sulfur dioxide",
+      "count": 31
+    },
+    {
+      "feature": "volatile acidity",
+      "count": 22
+    },
+    {
+      "feature": "chlorides",
+      "count": 15
+    },
+    {
+      "feature": "fixed acidity",
+      "count": 15
+    },
+    {
+      "feature": "free sulfur dioxide",
+      "count": 15
+    },
+    {
+      "feature": "sulphates",
+      "count": 15
+    },
+    {
+      "feature": "residual sugar",
+      "count": 14
+    },
+    {
+      "feature": "citric acid",
+      "count": 10
+    },
+    {
+      "feature": "alcohol",
+      "count": 2
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 11,
+    "class_names": [
+      "Baixa Qualidade",
+      "Alta Qualidade"
+    ],
+    "params": {
+      "norm_params": {
+        "max_abs": 1.8816676932959777
+      },
+      "penalty": "l2",
+      "C": 0.01,
+      "solver": "liblinear",
+      "max_iter": 1000
+    },
+    "coefs": [
+      -0.1682008147879117,
+      -0.315181929554446,
+      -0.042571113602547936,
+      -0.03971888502951,
+      -0.1140226706697899,
+      -0.18518216620406314,
+      -0.28049403082994,
+      -0.41569179959742164,
+      -0.35174761785620773,
+      -0.07188146418746294,
+      0.015302984707435458
+    ],
+    "intercept": -0.7304902182117659,
+    "scaler_params": {
+      "min": [
+        -0.4070796460176991,
+        -0.0821917808219178,
+        0.0,
+        -0.0839160839160839,
+        -0.02003338898163606,
+        -0.014084507042253521,
+        -0.03773584905660378,
+        -73.40252038547071,
+        -2.157480314960631,
+        -0.1976047904191617,
+        -1.2923076923076924
+      ],
+      "scale": [
+        0.08849557522123894,
+        0.684931506849315,
+        1.0,
+        0.06993006993006992,
+        1.669449081803005,
+        0.014084507042253521,
+        0.006289308176100629,
+        74.12898443291326,
+        0.7874015748031499,
+        0.5988023952095809,
+        0.15384615384615385
+      ]
+    }
+  },
+  "per_instance": [
+    {
+      "id": "743",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5948421022140755,
+      "decision_score_normalized": -0.847568413857661,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1577",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3877210610152901,
+      "decision_score_normalized": -0.7374952899279055,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "691",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6887345408155845,
+      "decision_score_normalized": -0.8974669368200469,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "73",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4166308571757933,
+      "decision_score_normalized": -0.7528592121887293,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "152",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.444578121987535,
+      "decision_score_normalized": -0.7677116034538356,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "596",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3608032427401917,
+      "decision_score_normalized": -0.723189991297865,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "578",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5404168821861188,
+      "decision_score_normalized": -0.818644486310909,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1559",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5270647423073782,
+      "decision_score_normalized": -0.8115485788208077,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "39",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4678652262394989,
+      "decision_score_normalized": -0.7800873828408821,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1197",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1645571080607775,
+      "decision_score_normalized": -0.6188962653766507,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1215",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2447097290486344,
+      "decision_score_normalized": -0.6614928520499647,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "316",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6330764448209232,
+      "decision_score_normalized": -0.8678878053969159,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "877",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3574766391373019,
+      "decision_score_normalized": -0.7214220895505257,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1586",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.353827581440206,
+      "decision_score_normalized": -0.7194828216818703,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "261",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4514502362284607,
+      "decision_score_normalized": -0.7713637436619125,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1306",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5639624967447068,
+      "decision_score_normalized": -0.8311576493111967,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1107",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2382986578235209,
+      "decision_score_normalized": -0.6580857301399935,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1127",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3846667224786389,
+      "decision_score_normalized": -0.7358720816709251,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "167",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3284888672047588,
+      "decision_score_normalized": -0.7060167275751774,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "37",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.29030001482535,
+      "decision_score_normalized": -0.6857215115200428,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "159",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.521698850925777,
+      "decision_score_normalized": -0.8086969109090298,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "902",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4537649326485098,
+      "decision_score_normalized": -0.772593873949155,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "366",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5675801475737732,
+      "decision_score_normalized": -0.8330802262050635,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "893",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5317777518001696,
+      "decision_score_normalized": -0.8140532769189804,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "672",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7757070571893616,
+      "decision_score_normalized": -0.9436879123321649,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1324",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2810793136791325,
+      "decision_score_normalized": -0.6808212301477956,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "861",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.520092769147878,
+      "decision_score_normalized": -0.8078433692429742,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "888",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3981397880370925,
+      "decision_score_normalized": -0.743032254323331,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "814",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4906647559867534,
+      "decision_score_normalized": -0.7922040439434163,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "44",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3064075691365926,
+      "decision_score_normalized": -0.6942817660052691,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1459",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1602904046627467,
+      "decision_score_normalized": -0.6166287537361882,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1018",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.121154107022691,
+      "decision_score_normalized": -0.5958300240882854,
+      "explanation": [
+        "chlorides",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 9
+    },
+    {
+      "id": "1287",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1131744406230966,
+      "decision_score_normalized": -0.5915892825226922,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "540",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.47613937602155,
+      "decision_score_normalized": -0.7844846256758047,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1131",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4168936002524073,
+      "decision_score_normalized": -0.7529988452799229,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1019",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3378678199276246,
+      "decision_score_normalized": -0.7110011107137524,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "653",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2866322798162648,
+      "decision_score_normalized": -0.6837723177159759,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1341",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2846311946024351,
+      "decision_score_normalized": -0.6827088540550122,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "789",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5235098364022228,
+      "decision_score_normalized": -0.8096593473067519,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "327",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3598731766818877,
+      "decision_score_normalized": -0.7226957137686191,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1488",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.267344687210561,
+      "decision_score_normalized": -0.6735220526588557,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1207",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.545455676192288,
+      "decision_score_normalized": -0.8213223204599043,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1563",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2861021640950439,
+      "decision_score_normalized": -0.6834905911799305,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1070",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.262883036861441,
+      "decision_score_normalized": -0.6711509377351016,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "133",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2740401038488196,
+      "decision_score_normalized": -0.6770802880806112,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1424",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2715145666190426,
+      "decision_score_normalized": -0.6757381078227606,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "377",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.244480421364555,
+      "decision_score_normalized": -0.6613709879796528,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "660",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3032715656797196,
+      "decision_score_normalized": -0.6926151574600696,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1404",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4501412580827375,
+      "decision_score_normalized": -0.7706680957797775,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1346",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2465169926755357,
+      "decision_score_normalized": -0.6624533104950664,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "507",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4478764093864944,
+      "decision_score_normalized": -0.7694644567396258,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1145",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.428744892887082,
+      "decision_score_normalized": -0.7592971373093278,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "69",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3372650160804567,
+      "decision_score_normalized": -0.7106807545481469,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1348",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.267319795912079,
+      "decision_score_normalized": -0.6735088243409275,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.475207766319536,
+      "decision_score_normalized": -0.783989527787196,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1253",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3065713202872309,
+      "decision_score_normalized": -0.6943687904842575,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "616",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6412252303132986,
+      "decision_score_normalized": -0.872218424199273,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "870",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3574766391373019,
+      "decision_score_normalized": -0.7214220895505257,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1330",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4371458051931263,
+      "decision_score_normalized": -0.7637617472593073,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1146",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2862676196955136,
+      "decision_score_normalized": -0.6835785214776442,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "136",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3967852887070085,
+      "decision_score_normalized": -0.7423124145052219,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1388",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3989739668103773,
+      "decision_score_normalized": -0.7434755731815209,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1250",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.343424505853664,
+      "decision_score_normalized": -0.7139541751394408,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "728",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.305492953860636,
+      "decision_score_normalized": -0.69379569969334,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "192",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5185261743603153,
+      "decision_score_normalized": -0.8070108126799083,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1344",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3334159909986996,
+      "decision_score_normalized": -0.7086352153195837,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "535",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3586593370899989,
+      "decision_score_normalized": -0.7220506266492444,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "486",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.340951818678655,
+      "decision_score_normalized": -0.7126400816978524,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1508",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3487137691802267,
+      "decision_score_normalized": -0.7167651195720881,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "61",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5261584911375898,
+      "decision_score_normalized": -0.8110669575584472,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1354",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2818864375647403,
+      "decision_score_normalized": -0.6812501708627174,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "725",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3450718683084413,
+      "decision_score_normalized": -0.7148296551514782,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1556",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4074661794381125,
+      "decision_score_normalized": -0.7479887040908687,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1511",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.408063410571231,
+      "decision_score_normalized": -0.748306098674007,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1478",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4075314341505618,
+      "decision_score_normalized": -0.7480233832813983,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "686",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4071572098760492,
+      "decision_score_normalized": -0.7478245042360462,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "909",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1096819068349604,
+      "decision_score_normalized": -0.5897331982626608,
+      "explanation": [
+        "chlorides",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 9
+    },
+    {
+      "id": "776",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.417134672882657,
+      "decision_score_normalized": -0.753126961754,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1274",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2671688096920886,
+      "decision_score_normalized": -0.6734285837009206,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "19",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3586757552661843,
+      "decision_score_normalized": -0.7220593519816949,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1120",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1375878842339868,
+      "decision_score_normalized": -0.6045636476020686,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "910",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2274952086022246,
+      "decision_score_normalized": -0.6523443076455824,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "16",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4983093266656642,
+      "decision_score_normalized": -0.7962667010779075,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "843",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4415025648889985,
+      "decision_score_normalized": -0.7660771187307922,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "396",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.807099038642102,
+      "decision_score_normalized": -0.9603709757469134,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "763",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3703690406133764,
+      "decision_score_normalized": -0.7282736720706527,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1125",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1421290887010134,
+      "decision_score_normalized": -0.6069770410419443,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "339",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4275121855333515,
+      "decision_score_normalized": -0.7586420230412121,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1524",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3158174492184842,
+      "decision_score_normalized": -0.6992825852867062,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "835",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4437543073230872,
+      "decision_score_normalized": -0.7672737925335636,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "542",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2979068916738172,
+      "decision_score_normalized": -0.6897641365146521,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "727",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.305492953860636,
+      "decision_score_normalized": -0.69379569969334,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "528",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5031484739789394,
+      "decision_score_normalized": -0.7988384342965392,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "126",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4864696368439692,
+      "decision_score_normalized": -0.7899745752876431,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1211",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3285805841048417,
+      "decision_score_normalized": -0.7060654699224099,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1046",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4308212730887941,
+      "decision_score_normalized": -0.7604006159995927,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "213",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4097562819975404,
+      "decision_score_normalized": -0.7492057641315906,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "20",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4085094045114799,
+      "decision_score_normalized": -0.7485431192392417,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "41",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.42044676424334,
+      "decision_score_normalized": -0.7548871510650474,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "705",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5756854023754743,
+      "decision_score_normalized": -0.8373877109063094,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1398",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3828393369470349,
+      "decision_score_normalized": -0.7349009295710539,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "38",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3693560153992328,
+      "decision_score_normalized": -0.7277353064401257,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1071",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.590365926954115,
+      "decision_score_normalized": -0.8451895797649526,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "424",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4410337062070666,
+      "decision_score_normalized": -0.7658279468479978,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1462",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3093772404505273,
+      "decision_score_normalized": -0.6958599784199878,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1347",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.267319795912079,
+      "decision_score_normalized": -0.6735088243409275,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "490",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.538553430709615,
+      "decision_score_normalized": -0.8176541672002908,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1512",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3641134253111005,
+      "decision_score_normalized": -0.7249491661950598,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "382",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2818789302418916,
+      "decision_score_normalized": -0.6812461811450455,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1445",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4950066038069134,
+      "decision_score_normalized": -0.7945114905959942,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "149",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4245687554140947,
+      "decision_score_normalized": -0.7570777563379341,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1374",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3455777670799765,
+      "decision_score_normalized": -0.7150985117478569,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "269",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.393731445571189,
+      "decision_score_normalized": -0.7406894695257764,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "811",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.434552785394458,
+      "decision_score_normalized": -0.7623837038311787,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1236",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2703519202628435,
+      "decision_score_normalized": -0.6751202270139752,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "642",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.497003966456019,
+      "decision_score_normalized": -0.7955729759242601,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1546",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.305423363762077,
+      "decision_score_normalized": -0.6937587164901915,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "57",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6400174116528494,
+      "decision_score_normalized": -0.8715765368645686,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "347",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3789115941544838,
+      "decision_score_normalized": -0.7328135563294637,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1571",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2506501117020656,
+      "decision_score_normalized": -0.6646498295941908,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "873",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1683836908597334,
+      "decision_score_normalized": -0.6209298778006664,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "928",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2493843329441092,
+      "decision_score_normalized": -0.6639771397444016,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "582",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4085521703319204,
+      "decision_score_normalized": -0.748565846855065,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "216",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3335521159942183,
+      "decision_score_normalized": -0.7087075580589546,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "595",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.655355241441371,
+      "decision_score_normalized": -0.8797277262818962,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "950",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2370179975951123,
+      "decision_score_normalized": -0.6574051316299743,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "959",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3764573627974293,
+      "decision_score_normalized": -0.731509271111729,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "250",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.393623201592058,
+      "decision_score_normalized": -0.7406319439703786,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1438",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.251270916030708,
+      "decision_score_normalized": -0.6649797519980531,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1206",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3393585932856067,
+      "decision_score_normalized": -0.7117933724735166,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "163",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.634541884765019,
+      "decision_score_normalized": -0.8686666038794094,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "302",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.513360025063914,
+      "decision_score_normalized": -0.8042652963941117,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1242",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.23838689380745,
+      "decision_score_normalized": -0.6581326225770819,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "344",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4733786619268476,
+      "decision_score_normalized": -0.7830174622098334,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "635",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3786531412690057,
+      "decision_score_normalized": -0.7326762032323153,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1024",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2768180862947354,
+      "decision_score_normalized": -0.6785566286989961,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "717",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3145315261291666,
+      "decision_score_normalized": -0.6985991898636466,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1010",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1307475742256987,
+      "decision_score_normalized": -0.6009284095456048,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "1370",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4604455911934449,
+      "decision_score_normalized": -0.7761442662786492,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1016",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2471699112200931,
+      "decision_score_normalized": -0.6628002997891291,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1262",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4425453850823,
+      "decision_score_normalized": -0.7666313187082998,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "23",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.347064553122384,
+      "decision_score_normalized": -0.7158886544748138,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "939",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2398713445351701,
+      "decision_score_normalized": -0.6589215242163081,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1416",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3428509743655952,
+      "decision_score_normalized": -0.7136493755778007,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "243",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.408445825226592,
+      "decision_score_normalized": -0.7485093304437416,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "278",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3014501002552992,
+      "decision_score_normalized": -0.6916471515624768,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "766",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4088835564950912,
+      "decision_score_normalized": -0.7487419598660667,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "997",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2745690700140573,
+      "decision_score_normalized": -0.677361403692641,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1081",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.633373387569697,
+      "decision_score_normalized": -0.8680456136804039,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "935",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3735856419849515,
+      "decision_score_normalized": -0.7299831138509603,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "24",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.364841371868001,
+      "decision_score_normalized": -0.7253360286360179,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1555",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3042891602103723,
+      "decision_score_normalized": -0.6931559514239976,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "255",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.500349591348992,
+      "decision_score_normalized": -0.797350986411921,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "292",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4823891381468761,
+      "decision_score_normalized": -0.7878060209187548,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1251",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4025740086837821,
+      "decision_score_normalized": -0.7453887919109655,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "842",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4993136793149322,
+      "decision_score_normalized": -0.7968004577305017,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "982",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4268268986929207,
+      "decision_score_normalized": -0.7582778318278154,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "524",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5300923514233147,
+      "decision_score_normalized": -0.8131575819018104,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "906",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.425969954109767,
+      "decision_score_normalized": -0.757822414228732,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "231",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3241241536949384,
+      "decision_score_normalized": -0.7036971291012434,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "736",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.375871490872578,
+      "decision_score_normalized": -0.7311979133055986,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1490",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1367342240174634,
+      "decision_score_normalized": -0.6041099754581695,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "521",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4367000670924666,
+      "decision_score_normalized": -0.7635248626583505,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "227",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4647869134068539,
+      "decision_score_normalized": -0.7784514336009539,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "244",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.408445825226592,
+      "decision_score_normalized": -0.7485093304437416,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1392",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1560471824417902,
+      "decision_score_normalized": -0.614373721013846,
+      "explanation": [
+        "alcohol",
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 11
+    },
+    {
+      "id": "423",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2879617499775935,
+      "decision_score_normalized": -0.6844788559459011,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "431",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4295761206197257,
+      "decision_score_normalized": -0.7597388878562523,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1485",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3160703507287916,
+      "decision_score_normalized": -0.699416988141795,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1528",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3839572868832768,
+      "decision_score_normalized": -0.7354950567595182,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "765",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.476564750031565,
+      "decision_score_normalized": -0.7847106879138559,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1255",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3212622156690088,
+      "decision_score_normalized": -0.7021761708384607,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1441",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4950850806515668,
+      "decision_score_normalized": -0.7945531966022849,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "103",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.396315894451598,
+      "decision_score_normalized": -0.742062957995402,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "995",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4036015808527782,
+      "decision_score_normalized": -0.7459348884255931,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1369",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1656416919729344,
+      "decision_score_normalized": -0.6194726604096424,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1452",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3379725900383808,
+      "decision_score_normalized": -0.7110567901045022,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1560",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5270647423073782,
+      "decision_score_normalized": -0.8115485788208077,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "166",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4445971787157963,
+      "decision_score_normalized": -0.7677217310275454,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "599",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4301700115832494,
+      "decision_score_normalized": -0.7600545073280854,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1329",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4371458051931263,
+      "decision_score_normalized": -0.7637617472593073,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "850",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3194824965690972,
+      "decision_score_normalized": -0.7012303507522402,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1184",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4660475531888064,
+      "decision_score_normalized": -0.779121392375526,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1218",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2505249364800695,
+      "decision_score_normalized": -0.664583306040408,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "172",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2793477238639483,
+      "decision_score_normalized": -0.6799009880554466,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1442",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3876792412233792,
+      "decision_score_normalized": -0.7374730650727623,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "992",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.326218439458934,
+      "decision_score_normalized": -0.7048101235855815,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "543",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.47477525220786,
+      "decision_score_normalized": -0.7837596709887736,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "342",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.36796119718342,
+      "decision_score_normalized": -0.7269940394136565,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "117",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.337216416068861,
+      "decision_score_normalized": -0.7106549263895573,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "439",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2401012112571392,
+      "decision_score_normalized": -0.6590436853836534,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "882",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2523687510814276,
+      "decision_score_normalized": -0.6655631892620456,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1059",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2388325378373026,
+      "decision_score_normalized": -0.658369457184723,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1185",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1945045919121178,
+      "decision_score_normalized": -0.6348116599800854,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1224",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.373577365009182,
+      "decision_score_normalized": -0.7299787151062728,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1355",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1879581497644542,
+      "decision_score_normalized": -0.6313325960778952,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1597",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4347850203975643,
+      "decision_score_normalized": -0.7625071236060591,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "632",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.337500983312756,
+      "decision_score_normalized": -0.7108061577918441,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "390",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3906812992325905,
+      "decision_score_normalized": -0.7390684891850575,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "350",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5510832733485804,
+      "decision_score_normalized": -0.8243130701955471,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "739",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.489856735744854,
+      "decision_score_normalized": -0.7917746268658004,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "319",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5881099085720516,
+      "decision_score_normalized": -0.8439906335375708,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "472",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5313575661146062,
+      "decision_score_normalized": -0.8138299719820563,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "929",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2168717458754408,
+      "decision_score_normalized": -0.6466985377975729,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1134",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.197667255483366,
+      "decision_score_normalized": -0.6364924368688614,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "452",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3764941049896136,
+      "decision_score_normalized": -0.7315287975096766,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "456",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.409695533960071,
+      "decision_score_normalized": -0.7491734799840305,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "897",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3756776013214231,
+      "decision_score_normalized": -0.7310948719705926,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "680",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4694975758378614,
+      "decision_score_normalized": -0.7809548843684783,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "160",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3231414643142299,
+      "decision_score_normalized": -0.7031748852511684,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "17",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4306050759808704,
+      "decision_score_normalized": -0.7602857194593088,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "720",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3138721255446306,
+      "decision_score_normalized": -0.6982487557317936,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "4",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.441984134133454,
+      "decision_score_normalized": -0.7663330455589836,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "726",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5393252375743378,
+      "decision_score_normalized": -0.8180643389152396,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1247",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3875056675754984,
+      "decision_score_normalized": -0.7373808204917988,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "783",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4211210560196428,
+      "decision_score_normalized": -0.7552454990234596,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1327",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2810793136791325,
+      "decision_score_normalized": -0.6808212301477956,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "282",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3867014424792758,
+      "decision_score_normalized": -0.7369534203195538,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1403",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2006711207228453,
+      "decision_score_normalized": -0.6380888214218733,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "557",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5662138789015563,
+      "decision_score_normalized": -0.8323541316469837,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "108",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4624525530143955,
+      "decision_score_normalized": -0.7772108530240671,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "989",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2118401547512268,
+      "decision_score_normalized": -0.6440245315731261,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "984",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2761607479388934,
+      "decision_score_normalized": -0.6782072905251072,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "890",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3691068788405727,
+      "decision_score_normalized": -0.727602904443988,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "127",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4877884818949219,
+      "decision_score_normalized": -0.7906754668720879,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "641",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5865184612003826,
+      "decision_score_normalized": -0.8431448692310787,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "515",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8247291942158386,
+      "decision_score_normalized": -0.9697404067237801,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1035",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2598606441369542,
+      "decision_score_normalized": -0.6695447068712488,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "29",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3191092629733583,
+      "decision_score_normalized": -0.7010319981966489,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "157",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5798571416762084,
+      "decision_score_normalized": -0.8396047544977986,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "853",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4816768530400521,
+      "decision_score_normalized": -0.7874274816531014,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "291",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3666862630487135,
+      "decision_score_normalized": -0.7263164839987185,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1315",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4378104627038972,
+      "decision_score_normalized": -0.764114975150257,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1009",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4255266549785786,
+      "decision_score_normalized": -0.7575868258021634,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1279",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1403351124559002,
+      "decision_score_normalized": -0.6060236440890686,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "1515",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5790473875065294,
+      "decision_score_normalized": -0.8391744159355945,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "960",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2728943434687916,
+      "decision_score_normalized": -0.6764713812135218,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1092",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.253625658071941,
+      "decision_score_normalized": -0.666231164268999,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "953",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1767708027975878,
+      "decision_score_normalized": -0.6253871536351489,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "703",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4475374653930204,
+      "decision_score_normalized": -0.7692843271690957,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1269",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2830015925851264,
+      "decision_score_normalized": -0.6818428127114132,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "921",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4348519494873595,
+      "decision_score_normalized": -0.7625426926334882,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1288",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5979603571659835,
+      "decision_score_normalized": -0.849225590075873,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "692",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.462135145864007,
+      "decision_score_normalized": -0.777042169068064,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1316",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4180757888668571,
+      "decision_score_normalized": -0.7536271116941584,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "640",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.497003966456019,
+      "decision_score_normalized": -0.7955729759242601,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1322",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.154206605924323,
+      "decision_score_normalized": -0.6133955586507334,
+      "explanation": [
+        "alcohol",
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 11
+    },
+    {
+      "id": "206",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4264616442881488,
+      "decision_score_normalized": -0.7580837197611241,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "259",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4494220987953348,
+      "decision_score_normalized": -0.7702859032757743,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "195",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5200704295826921,
+      "decision_score_normalized": -0.8078314970270322,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "558",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4078137934365964,
+      "decision_score_normalized": -0.748173441278908,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1136",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3396207053409688,
+      "decision_score_normalized": -0.7119326702125892,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "100",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4303406135828434,
+      "decision_score_normalized": -0.760145172645985,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "54",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.381569486373813,
+      "decision_score_normalized": -0.7342260757816489,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "228",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4069368017371224,
+      "decision_score_normalized": -0.7477073697708524,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "956",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2411573054294192,
+      "decision_score_normalized": -0.6596049397305515,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "546",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.416796975372907,
+      "decision_score_normalized": -0.7529474946190998,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1080",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1425628127146727,
+      "decision_score_normalized": -0.6072075408348698,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "306",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3878940377732198,
+      "decision_score_normalized": -0.7375872172956048,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1200",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1645571080607775,
+      "decision_score_normalized": -0.6188962653766507,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1017",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.121154107022691,
+      "decision_score_normalized": -0.5958300240882854,
+      "explanation": [
+        "chlorides",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 9
+    },
+    {
+      "id": "194",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2924035987310512,
+      "decision_score_normalized": -0.6868394474410323,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1396",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3405367293224772,
+      "decision_score_normalized": -0.7124194851718788,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1495",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2540782297531567,
+      "decision_score_normalized": -0.6664716805316888,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "267",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.359465856054261,
+      "decision_score_normalized": -0.7224792458826699,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1519",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3807652530967491,
+      "decision_score_normalized": -0.7337986712617492,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "513",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3020075901818247,
+      "decision_score_normalized": -0.6919434259410568,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "782",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.610900844119541,
+      "decision_score_normalized": -0.8561027273087978,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "241",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.383452312357071,
+      "decision_score_normalized": -0.7352266913472805,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1562",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2861021640950439,
+      "decision_score_normalized": -0.6834905911799305,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "217",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4044214638379453,
+      "decision_score_normalized": -0.7463706098806024,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1159",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3404374942991744,
+      "decision_score_normalized": -0.7123667473671875,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "454",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3487082527853627,
+      "decision_score_normalized": -0.7167621879200841,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "96",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3702808050802804,
+      "decision_score_normalized": -0.7282267798731566,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "121",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.353594503887162,
+      "decision_score_normalized": -0.719358954139331,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1094",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.332759655498175,
+      "decision_score_normalized": -0.7082864101066001,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1389",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.393119463968453,
+      "decision_score_normalized": -0.7403642359019456,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1195",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3991542976316045,
+      "decision_score_normalized": -0.7435714088181052,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "218",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3217454500414139,
+      "decision_score_normalized": -0.7024329825880203,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "639",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3823423014136504,
+      "decision_score_normalized": -0.7346367832846744,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "566",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4427031976260873,
+      "decision_score_normalized": -0.7667151871534825,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "15",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.730895205961632,
+      "decision_score_normalized": -0.9198729468165292,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "830",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.296129080253257,
+      "decision_score_normalized": -0.6888193302521572,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1505",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3509503151381383,
+      "decision_score_normalized": -0.7179537173068954,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1417",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2858338013254385,
+      "decision_score_normalized": -0.683347971539618,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1148",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2605464464369058,
+      "decision_score_normalized": -0.6699091720222395,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1356",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.182230347227788,
+      "decision_score_normalized": -0.6282885928476365,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1173",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4473630445610894,
+      "decision_score_normalized": -0.7691916323577045,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1531",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4074871465288745,
+      "decision_score_normalized": -0.7479998469142464,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "954",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2520386586481742,
+      "decision_score_normalized": -0.6653877637953548,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "688",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2856368560899805,
+      "decision_score_normalized": -0.6832433062811563,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "764",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4682517147249288,
+      "decision_score_normalized": -0.7802927796209868,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "140",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4201634427110825,
+      "decision_score_normalized": -0.7547365816880703,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1574",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4597625037759951,
+      "decision_score_normalized": -0.7757812439342239,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1302",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2412346981568516,
+      "decision_score_normalized": -0.6596460695898291,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "841",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.390455549529284,
+      "decision_score_normalized": -0.7389485159803781,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "505",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3248605811447796,
+      "decision_score_normalized": -0.704088498657337,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "613",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2754414400274272,
+      "decision_score_normalized": -0.6778250190358166,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "124",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4659686922233928,
+      "decision_score_normalized": -0.7790794822307674,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1001",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3974533705468355,
+      "decision_score_normalized": -0.7426674622334724,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1065",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.292349484970143,
+      "decision_score_normalized": -0.6868106890363995,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "572",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2905438812749281,
+      "decision_score_normalized": -0.6858511127511459,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "376",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5452658938704826,
+      "decision_score_normalized": -0.8212214618850978,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "592",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5177110876697804,
+      "decision_score_normalized": -0.8065776401843401,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1151",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3294836178902716,
+      "decision_score_normalized": -0.7065453813268769,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "839",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3145363042027238,
+      "decision_score_normalized": -0.6986017291396166,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "778",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3646521021787654,
+      "decision_score_normalized": -0.7252354424964408,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "712",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4646228575887532,
+      "decision_score_normalized": -0.7783642472084334,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "242",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4168185521631897,
+      "decision_score_normalized": -0.7529589614633038,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "855",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3426622512224007,
+      "decision_score_normalized": -0.7135490798965458,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "158",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3765126362620483,
+      "decision_score_normalized": -0.731538645833321,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "22",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2913241616597118,
+      "decision_score_normalized": -0.6862657876629613,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1267",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2675922586472679,
+      "decision_score_normalized": -0.6736536228811585,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1565",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3610728432403925,
+      "decision_score_normalized": -0.7233332687220144,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1075",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5190903505588444,
+      "decision_score_normalized": -0.8073106404340538,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1180",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.301452569559955,
+      "decision_score_normalized": -0.6916484638583007,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "559",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.586556589205009,
+      "decision_score_normalized": -0.8431651321099931,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1039",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.398744297374082,
+      "decision_score_normalized": -0.7433535168603578,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "707",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3458222737038166,
+      "decision_score_normalized": -0.7152284531953883,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "894",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5323520863678932,
+      "decision_score_normalized": -0.8143585032720553,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "372",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.386670868413239,
+      "decision_score_normalized": -0.7369371719319422,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "438",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4838176133930103,
+      "decision_score_normalized": -0.7885651747540593,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1029",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2768180862947354,
+      "decision_score_normalized": -0.6785566286989961,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "626",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3963978279812124,
+      "decision_score_normalized": -0.7421065010343276,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1051",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4041260764375254,
+      "decision_score_normalized": -0.7462136281768339,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1510",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3823584609156483,
+      "decision_score_normalized": -0.7346453711464183,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1547",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2471196964512614,
+      "decision_score_normalized": -0.6627736134783578,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "713",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3734121651164874,
+      "decision_score_normalized": -0.7298909207027853,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "50",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3135978882334534,
+      "decision_score_normalized": -0.6981030141047495,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1432",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1887709159384536,
+      "decision_score_normalized": -0.6317645353501137,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1480",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3043427792595306,
+      "decision_score_normalized": -0.6931844469173035,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "810",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2144972646080119,
+      "decision_score_normalized": -0.6454366352438496,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1340",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2846311946024351,
+      "decision_score_normalized": -0.6827088540550122,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1172",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2822089455176213,
+      "decision_score_normalized": -0.6814215656068745,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "656",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2944905910413924,
+      "decision_score_normalized": -0.6879485658670843,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "761",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3703690406133764,
+      "decision_score_normalized": -0.7282736720706527,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "211",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4421471058290978,
+      "decision_score_normalized": -0.7664196558017083,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1045",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2758530049248127,
+      "decision_score_normalized": -0.6780437425111953,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1319",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4696116560201034,
+      "decision_score_normalized": -0.7810155115358831,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "155",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5798571416762084,
+      "decision_score_normalized": -0.8396047544977986,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1210",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2517199386261477,
+      "decision_score_normalized": -0.6652183821222986,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1128",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5255721315396449,
+      "decision_score_normalized": -0.8107553405816377,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1516",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.369636691961097,
+      "decision_score_normalized": -0.7278844701648706,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "207",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5125460833003452,
+      "decision_score_normalized": -0.8038327323624983,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "294",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5244851737178788,
+      "decision_score_normalized": -0.8101776839498962,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "733",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.49870417428893,
+      "decision_score_normalized": -0.7964765402671931,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1494",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2240647364617185,
+      "decision_score_normalized": -0.6505212056426474,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1472",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3769407363045572,
+      "decision_score_normalized": -0.731766156803528,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1079",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6139681401537893,
+      "decision_score_normalized": -0.8577328217432064,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "544",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3696440276315798,
+      "decision_score_normalized": -0.7278883686590143,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "307",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3825916137287448,
+      "decision_score_normalized": -0.7347692786854206,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1229",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4303385533733783,
+      "decision_score_normalized": -0.7601440777611271,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1430",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3222664877851478,
+      "decision_score_normalized": -0.7027098846922496,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1461",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3770458887445316,
+      "decision_score_normalized": -0.7318220393806424,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1058",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4459270110192972,
+      "decision_score_normalized": -0.7684284617155616,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1275",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4483424559043043,
+      "decision_score_normalized": -0.7697121341161735,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1135",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2879458110289896,
+      "decision_score_normalized": -0.6844703852958173,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "265",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2663485888381207,
+      "decision_score_normalized": -0.6729926826877448,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "284",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6101262084470862,
+      "decision_score_normalized": -0.8556910522424646,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1453",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4962984409126516,
+      "decision_score_normalized": -0.7951980289844359,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "451",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.353408876195441,
+      "decision_score_normalized": -0.7192603035155347,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1440",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2086185600713752,
+      "decision_score_normalized": -0.6423124361317634,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1365",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3177335384593212,
+      "decision_score_normalized": -0.7003008783932221,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "735",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.375871490872578,
+      "decision_score_normalized": -0.7311979133055986,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "951",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.1487329694341573,
+      "decision_score_normalized": -0.6104866303050603,
+      "explanation": [
+        "chlorides",
+        "citric acid",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 10
+    },
+    {
+      "id": "1317",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3206340913383492,
+      "decision_score_normalized": -0.7018423582673583,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "554",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5647253761158226,
+      "decision_score_normalized": -0.831563076568004,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2332618918601463,
+      "decision_score_normalized": -0.6554089737810893,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "122",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3823532141318182,
+      "decision_score_normalized": -0.7346425827774364,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1278",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4483424559043043,
+      "decision_score_normalized": -0.7697121341161735,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "721",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5206627712367526,
+      "decision_score_normalized": -0.808146293128475,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "10",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3552644945759371,
+      "decision_score_normalized": -0.7202464597784644,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "581",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4246716522230911,
+      "decision_score_normalized": -0.7571324401747045,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1260",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4407179985355834,
+      "decision_score_normalized": -0.7656601660689537,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "889",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7965551483050386,
+      "decision_score_normalized": -0.9547674941254618,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "722",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3127701420475608,
+      "decision_score_normalized": -0.697663113803096,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1176",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4822751765547346,
+      "decision_score_normalized": -0.7877454567752838,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "868",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2754294312397967,
+      "decision_score_normalized": -0.6778186370441008,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "875",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2599574501456066,
+      "decision_score_normalized": -0.6695961537919762,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1350",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.492182736196874,
+      "decision_score_normalized": -0.7930107646069685,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1158",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3877165224488972,
+      "decision_score_normalized": -0.7374928779364528,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "434",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4838176133930103,
+      "decision_score_normalized": -0.7885651747540593,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "738",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4994755563125661,
+      "decision_score_normalized": -0.7968864862031223,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1126",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.0383734442497368,
+      "decision_score_normalized": -0.5518367817810036,
+      "explanation": [
+        "chlorides",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 8
+    },
+    {
+      "id": "1378",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.261933594473835,
+      "decision_score_normalized": -0.6706463627822613,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "410",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.549346929935548,
+      "decision_score_normalized": -0.8233903018346836,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1367",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4710629715287622,
+      "decision_score_normalized": -0.7817868036794585,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "260",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3120542886047337,
+      "decision_score_normalized": -0.6972826781685907,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1455",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3314166175937636,
+      "decision_score_normalized": -0.7075726613882709,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "849",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4146444505035936,
+      "decision_score_normalized": -0.7518035493427991,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "25",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2277442302660817,
+      "decision_score_normalized": -0.6524766485816277,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "442",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6177874151597673,
+      "decision_score_normalized": -0.8597625504883963,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "856",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4816768530400521,
+      "decision_score_normalized": -0.7874274816531014,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "715",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3096399785440043,
+      "decision_score_normalized": -0.6959996088629258,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "432",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2465464809621696,
+      "decision_score_normalized": -0.6624689818523092,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1407",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.424212335929408,
+      "decision_score_normalized": -0.7568883395317911,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "450",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4295519757832227,
+      "decision_score_normalized": -0.7597260562406651,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "214",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3914823955318425,
+      "decision_score_normalized": -0.7394942265785974,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1473",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2530006332944943,
+      "decision_score_normalized": -0.6658989989351978,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1235",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3803802776634195,
+      "decision_score_normalized": -0.7335940785832964,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "905",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5383872601368236,
+      "decision_score_normalized": -0.8175658569352088,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1357",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4759602116192083,
+      "decision_score_normalized": -0.7843894099249152,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "90",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5682706847996704,
+      "decision_score_normalized": -0.833447207701508,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1297",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2188084668629333,
+      "decision_score_normalized": -0.6477277955110325,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "362",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4186382825803878,
+      "decision_score_normalized": -0.7539260453026455,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "827",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.314203090052227,
+      "decision_score_normalized": -0.6984246446566954,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "237",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3805854951838792,
+      "decision_score_normalized": -0.7337031400935677,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1469",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4710645631241221,
+      "decision_score_normalized": -0.7817876495224124,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "448",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2929378392885655,
+      "decision_score_normalized": -0.6871233660943725,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "330",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3844019029874652,
+      "decision_score_normalized": -0.7357313450827819,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "562",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5664953532992456,
+      "decision_score_normalized": -0.8325037193763645,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "779",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5175077061535744,
+      "decision_score_normalized": -0.8064695544065322,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "972",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2671673960807885,
+      "decision_score_normalized": -0.6734278324464323,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "981",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.42225904096018,
+      "decision_score_normalized": -0.7558502736840396,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "481",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2367048662734956,
+      "decision_score_normalized": -0.6572387200352319,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1436",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5327491440647605,
+      "decision_score_normalized": -0.8145695169905147,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1413",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4036074741851166,
+      "decision_score_normalized": -0.7459380203985548,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1204",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3393585932856067,
+      "decision_score_normalized": -0.7117933724735166,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1596",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3647770464463285,
+      "decision_score_normalized": -0.7253018433109991,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "212",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3496948330651852,
+      "decision_score_normalized": -0.7172864995630684,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "964",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2728943434687916,
+      "decision_score_normalized": -0.6764713812135218,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1011",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.212519091851051,
+      "decision_score_normalized": -0.6443853482583692,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1095",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2856755754462195,
+      "decision_score_normalized": -0.683263883430021,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "586",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.408958429850773,
+      "decision_score_normalized": -0.74878175082169,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1507",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2504092258936215,
+      "decision_score_normalized": -0.6645218124053416,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1496",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5430654781774407,
+      "decision_score_normalized": -0.8200520653434653,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "186",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3974235234327166,
+      "decision_score_normalized": -0.7426516001797073,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1102",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2518013864207038,
+      "decision_score_normalized": -0.6652616670205015,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "510",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3866972524370185,
+      "decision_score_normalized": -0.7369511935489755,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1449",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2128811924257061,
+      "decision_score_normalized": -0.6445777842426534,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "311",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4353461270959689,
+      "decision_score_normalized": -0.7628053200944209,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "719",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4502890082299658,
+      "decision_score_normalized": -0.7707466166300608,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "422",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4410337062070666,
+      "decision_score_normalized": -0.7658279468479978,
+      "explanation": [
+        "volatile acidity"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1263",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.422023301537237,
+      "decision_score_normalized": -0.7557249915081362,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "580",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4246716522230911,
+      "decision_score_normalized": -0.7571324401747045,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1476",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.751112878953341,
+      "decision_score_normalized": -0.9306174970172584,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "496",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4367028347649562,
+      "decision_score_normalized": -0.76352633351981,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1132",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.237118822412658,
+      "decision_score_normalized": -0.6574587143204275,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "92",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5101695650922358,
+      "decision_score_normalized": -0.8025697472899606,
+      "explanation": [
+        "total sulfur dioxide"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1021",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2627759198150144,
+      "decision_score_normalized": -0.6710940110807256,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "806",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -1.120621717162025,
+      "decision_score_normalized": -0.5955470889756921,
+      "explanation": [
+        "chlorides",
+        "density",
+        "fixed acidity",
+        "free sulfur dioxide",
+        "pH",
+        "residual sugar",
+        "sulphates",
+        "total sulfur dioxide",
+        "volatile acidity"
+      ],
+      "explanation_size": 9
+    },
+    {
+      "id": "622",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3379231802342917,
+      "decision_score_normalized": -0.7110305315869833,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1130",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2904647903008608,
+      "decision_score_normalized": -0.6858090803697912,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1384",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4240092867551193,
+      "decision_score_normalized": -0.7567804303749234,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1121",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2409221266309203,
+      "decision_score_normalized": -0.6594799554948456,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "539",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4283218281246566,
+      "decision_score_normalized": -0.7590723023058185,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "380",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2818789302418916,
+      "decision_score_normalized": -0.6812461811450455,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "196",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4305935401632137,
+      "decision_score_normalized": -0.760279588824395,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1192",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2701125454751638,
+      "decision_score_normalized": -0.6749930128472376,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "818",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3787970998870676,
+      "decision_score_normalized": -0.7327527090991985,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "828",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.376388749825531,
+      "decision_score_normalized": -0.7314728071961595,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "579",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.341749884130189,
+      "decision_score_normalized": -0.7130642083671773,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "270",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4358786843897327,
+      "decision_score_normalized": -0.76308834418824,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "98",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3668666767445956,
+      "decision_score_normalized": -0.7264123636784966,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "425",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.45474460201649,
+      "decision_score_normalized": -0.7731145128331994,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "871",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4164050923019103,
+      "decision_score_normalized": -0.7527392309217461,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1447",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4170803397191358,
+      "decision_score_normalized": -0.7530980867492821,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1199",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4601383708254088,
+      "decision_score_normalized": -0.7759809960215625,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "961",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2525586539371216,
+      "decision_score_normalized": -0.6656641118937997,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "461",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.356403996726138,
+      "decision_score_normalized": -0.7208520407502059,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1337",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.22046355689546,
+      "decision_score_normalized": -0.6486073822937697,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1025",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4880086994035886,
+      "decision_score_normalized": -0.7907925000280757,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "460",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3706912852004605,
+      "decision_score_normalized": -0.7284449268507779,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "193",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2924035987310512,
+      "decision_score_normalized": -0.6868394474410323,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1026",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2248861926984906,
+      "decision_score_normalized": -0.6509577631919419,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "930",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4322370972011975,
+      "decision_score_normalized": -0.7611530464725438,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "156",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5844695274880671,
+      "decision_score_normalized": -0.8420559767982567,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1124",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3087984586149903,
+      "decision_score_normalized": -0.6955523885954938,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1437",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.456100722707578,
+      "decision_score_normalized": -0.7738352143130195,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "666",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3243411719986096,
+      "decision_score_normalized": -0.7038124620606412,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "864",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5155328026890449,
+      "decision_score_normalized": -0.8054200048651515,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "800",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4826301024803936,
+      "decision_score_normalized": -0.7879340798392411,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "299",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4954472748647278,
+      "decision_score_normalized": -0.7947456823501411,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "647",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3464423690703042,
+      "decision_score_normalized": -0.7155579988259463,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1377",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4549569048833897,
+      "decision_score_normalized": -0.7732273398045377,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1205",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3393585932856067,
+      "decision_score_normalized": -0.7117933724735166,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "502",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5678071988251654,
+      "decision_score_normalized": -0.8332008911089682,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "767",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5954054089364256,
+      "decision_score_normalized": -0.8478677795343726,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "1552",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4619627439927678,
+      "decision_score_normalized": -0.7769505472201397,
+      "explanation": [
+        "pH"
+      ],
+      "explanation_size": 1
+    },
+    {
+      "id": "532",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4670900409062606,
+      "decision_score_normalized": -0.7796754156609171,
+      "explanation": [
+        "density"
+      ],
+      "explanation_size": 1
+    }
+  ]
+}

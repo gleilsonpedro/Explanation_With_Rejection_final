@@ -1,0 +1,1435 @@
+{
+  "dataset": "heart_disease",
+  "metodo": "pulp",
+  "num_instancias": 90,
+  "params": {
+    "penalty": "l2",
+    "C": 0.01,
+    "solver": "liblinear",
+    "max_iter": 1000
+  },
+  "t_plus": 0.22759664262085633,
+  "t_minus": -0.013779406560125995,
+  "rejection_cost": 0.24,
+  "metricas_modelo": {
+    "acuracia_sem_rejeicao": 0.8555555555555555,
+    "acuracia_com_rejeicao": 0.9078947368421053,
+    "taxa_rejeicao": 0.15555555555555556,
+    "risco_empirico": 0.12943859649122802
+  },
+  "estatisticas_gerais": {
+    "tamanho_medio": 6.455555555555556,
+    "tempo_total_segundos": 3.6741948003182188,
+    "tempo_medio_segundos": 0.04082438667020243
+  },
+  "estatisticas_por_tipo": {
+    "positiva": {
+      "instancias": 17,
+      "tamanho_medio": 7.647058823529412,
+      "tempo_medio": 0.04034514117794221
+    },
+    "negativa": {
+      "instancias": 44,
+      "tamanho_medio": 5.636363636363637,
+      "tempo_medio": 0.03973375000086063
+    },
+    "rejeitada": {
+      "instancias": 29,
+      "tamanho_medio": 7.0,
+      "tempo_medio": 0.042760082767425295
+    }
+  },
+  "explicacoes": [
+    {
+      "indice": 0,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.046223799989093095
+    },
+    {
+      "indice": 1,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.040941900049801916
+    },
+    {
+      "indice": 2,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.038291199947707355
+    },
+    {
+      "indice": 3,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04420399997616187
+    },
+    {
+      "indice": 4,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.0390194000210613
+    },
+    {
+      "indice": 5,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.0397452000179328
+    },
+    {
+      "indice": 6,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.0452246000058949
+    },
+    {
+      "indice": 7,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03898989997105673
+    },
+    {
+      "indice": 8,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04190149996429682
+    },
+    {
+      "indice": 9,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.045186700008343905
+    },
+    {
+      "indice": 10,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.03923919994849712
+    },
+    {
+      "indice": 11,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.0349593999562785
+    },
+    {
+      "indice": 12,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.04280789999756962
+    },
+    {
+      "indice": 13,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "chol",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03610399999888614
+    },
+    {
+      "indice": 14,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.038978700002189726
+    },
+    {
+      "indice": 15,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.045546800014562905
+    },
+    {
+      "indice": 16,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.037140199972782284
+    },
+    {
+      "indice": 17,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.04752439999720082
+    },
+    {
+      "indice": 18,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04411610000533983
+    },
+    {
+      "indice": 19,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03810559998964891
+    },
+    {
+      "indice": 20,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.041196600010152906
+    },
+    {
+      "indice": 21,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "trestbps",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "tamanho": 9,
+      "tempo_segundos": 0.043721500027459115
+    },
+    {
+      "indice": 22,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 10,
+      "tempo_segundos": 0.0376784999971278
+    },
+    {
+      "indice": 23,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.042629899980966
+    },
+    {
+      "indice": 24,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.04363670002203435
+    },
+    {
+      "indice": 25,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "tamanho": 9,
+      "tempo_segundos": 0.03793079999741167
+    },
+    {
+      "indice": 26,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04281579999951646
+    },
+    {
+      "indice": 27,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.047361600038129836
+    },
+    {
+      "indice": 28,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03521440003532916
+    },
+    {
+      "indice": 29,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.041230999981053174
+    },
+    {
+      "indice": 30,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.044777799979783595
+    },
+    {
+      "indice": 31,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03872030001366511
+    },
+    {
+      "indice": 32,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04230720002669841
+    },
+    {
+      "indice": 33,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04249050002545118
+    },
+    {
+      "indice": 34,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.040485499950591475
+    },
+    {
+      "indice": 35,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04029319999972358
+    },
+    {
+      "indice": 36,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04437690001213923
+    },
+    {
+      "indice": 37,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "trestbps",
+        "fbs",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 9,
+      "tempo_segundos": 0.04005690000485629
+    },
+    {
+      "indice": 38,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 9,
+      "tempo_segundos": 0.04264749999856576
+    },
+    {
+      "indice": 39,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.041842700040433556
+    },
+    {
+      "indice": 40,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03909030003705993
+    },
+    {
+      "indice": 41,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "chol",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03729330003261566
+    },
+    {
+      "indice": 42,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "chol",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.04379329999210313
+    },
+    {
+      "indice": 43,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03670090000377968
+    },
+    {
+      "indice": 44,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.03759000002173707
+    },
+    {
+      "indice": 45,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.043930300045758486
+    },
+    {
+      "indice": 46,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.038820299960207194
+    },
+    {
+      "indice": 47,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.048055100021883845
+    },
+    {
+      "indice": 48,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.043294499977491796
+    },
+    {
+      "indice": 49,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03910100000211969
+    },
+    {
+      "indice": 50,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03778509999392554
+    },
+    {
+      "indice": 51,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "age",
+        "sex",
+        "cp",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "tamanho": 10,
+      "tempo_segundos": 0.04155269998591393
+    },
+    {
+      "indice": 52,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "chol",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03842279996024445
+    },
+    {
+      "indice": 53,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04032510000979528
+    },
+    {
+      "indice": 54,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.044394100026693195
+    },
+    {
+      "indice": 55,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04282620002049953
+    },
+    {
+      "indice": 56,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.04027599998516962
+    },
+    {
+      "indice": 57,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04280369996558875
+    },
+    {
+      "indice": 58,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03772309998748824
+    },
+    {
+      "indice": 59,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04177040001377463
+    },
+    {
+      "indice": 60,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04006890003802255
+    },
+    {
+      "indice": 61,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03836589999264106
+    },
+    {
+      "indice": 62,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.03225290001137182
+    },
+    {
+      "indice": 63,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.04149130004225299
+    },
+    {
+      "indice": 64,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03806709998752922
+    },
+    {
+      "indice": 65,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04163330001756549
+    },
+    {
+      "indice": 66,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.044530300016049296
+    },
+    {
+      "indice": 67,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.036507600045297295
+    },
+    {
+      "indice": 68,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.042659100028686225
+    },
+    {
+      "indice": 69,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04568129999097437
+    },
+    {
+      "indice": 70,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03808420000132173
+    },
+    {
+      "indice": 71,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "fbs",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.038562700035981834
+    },
+    {
+      "indice": 72,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "trestbps",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.046966099995188415
+    },
+    {
+      "indice": 73,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 8,
+      "tempo_segundos": 0.038593800039961934
+    },
+    {
+      "indice": 74,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.038966900028754026
+    },
+    {
+      "indice": 75,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04151199996704236
+    },
+    {
+      "indice": 76,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03725189995020628
+    },
+    {
+      "indice": 77,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.03684940002858639
+    },
+    {
+      "indice": 78,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "chol",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.0456152000115253
+    },
+    {
+      "indice": 79,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.031449100002646446
+    },
+    {
+      "indice": 80,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "cp",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.04575350001687184
+    },
+    {
+      "indice": 81,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.03592709999065846
+    },
+    {
+      "indice": 82,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.037772700015921146
+    },
+    {
+      "indice": 83,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.03936269995756447
+    },
+    {
+      "indice": 84,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.038629400019999593
+    },
+    {
+      "indice": 85,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.040586200018879026
+    },
+    {
+      "indice": 86,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 7,
+      "tempo_segundos": 0.04179640003712848
+    },
+    {
+      "indice": 87,
+      "classe_real": "Com Doença",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "age",
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca"
+      ],
+      "tamanho": 12,
+      "tempo_segundos": 0.04114839999238029
+    },
+    {
+      "indice": 88,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04178460000548512
+    },
+    {
+      "indice": 89,
+      "classe_real": "Sem Doença",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.04511080001248047
+    }
+  ]
+}

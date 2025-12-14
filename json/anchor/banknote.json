@@ -1,0 +1,99 @@
+{
+  "config": {
+    "dataset_name": "banknote",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.00010236186857182084,
+    "t_minus": -0.5948952458253887,
+    "rejection_zone_width": 0.5949976076939605
+  },
+  "performance": {
+    "accuracy_without_rejection": 61.40776699029126,
+    "accuracy_with_rejection": 100.0,
+    "rejection_rate": 93.93203883495146,
+    "num_test_instances": 412,
+    "num_rejected": 387,
+    "num_accepted": 25
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 24,
+      "min_length": 4,
+      "mean_length": 4.0,
+      "max_length": 4,
+      "std_length": 0.0
+    },
+    "negative": {
+      "count": 1,
+      "min_length": 1,
+      "mean_length": 1.0,
+      "max_length": 1,
+      "std_length": 0.0
+    },
+    "rejected": {
+      "count": 387,
+      "min_length": 1,
+      "mean_length": 1.1291989664082687,
+      "max_length": 4,
+      "std_length": 0.39223750807125746
+    }
+  },
+  "computation_time": {
+    "total": 10.102471900288947,
+    "mean_per_instance": 0.024520562864778998,
+    "positive": 0.0955588041615556,
+    "negative": 0.019698299991432577,
+    "rejected": 0.020127551163876434
+  },
+  "top_features": [
+    {
+      "feature": "skewness",
+      "count": 294
+    },
+    {
+      "feature": "variance",
+      "count": 105
+    },
+    {
+      "feature": "entropy",
+      "count": 69
+    },
+    {
+      "feature": "curtosis",
+      "count": 66
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 4,
+    "class_names": [
+      "Autêntica",
+      "Falsificada"
+    ],
+    "coefs": [
+      -0.5656688370935852,
+      -0.31683395872938175,
+      0.1125288068112902,
+      0.06876666326225822
+    ],
+    "intercept": 0.13399869808979759,
+    "scaler_params": {
+      "min": [
+        0.5078352046960749,
+        0.5153696767409924,
+        0.22537408234780695,
+        0.8001310431974541
+      ],
+      "scale": [
+        0.07211417115577383,
+        0.037418567841734425,
+        0.043209049703369876,
+        0.09360228389572707
+      ]
+    }
+  }
+}

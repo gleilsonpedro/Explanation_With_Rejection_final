@@ -267,6 +267,95 @@ def gerar_perturbacoes(
     return perturbacoes
 
 
+def validar_necessidade_features(
+    instancia_idx: int,
+    explicacao_features: List[str],
+    feature_names: List[str],
+    y_pred: int,
+    rejeitada: bool,
+    pipeline,
+    X_test: pd.DataFrame,
+    X_train: pd.DataFrame,
+    t_plus: float,
+    t_minus: float,
+    n_perturbacoes: int = 200,
+    max_abs: float = None
+) -> Dict:
+    """
+    Testa se cada feature na explicação é NECESSÁRIA (teste de minimalidade).
+    
+    Para cada feature na explicação:
+        1. Remove APENAS essa feature
+        2. Fixa as outras features da explicação
+        3. Perturba as features não explicativas
+        4. Se a predição se mantém > 95%, a feature é REDUNDANTE
+    
+    Returns:
+        Dict com: necessary_count, redundant_features, necessity_score
+    """
+    # Obter instância original
+    try:
+        instancia_original = X_test.loc[instancia_idx].values
+    except (KeyError, TypeError):
+        try:
+            instancia_original = X_test.iloc[int(instancia_idx)].values
+        except (IndexError, ValueError):
+            return {'necessary_count': len(explicacao_features), 'redundant_features': [], 'necessity_score': 100.0}
+    
+    if len(explicacao_features) <= 1:
+        # Se tem apenas 1 feature, assumir que é necessária
+        return {'necessary_count': 1, 'redundant_features': [], 'necessity_score': 100.0}
+    
+    features_redundantes = []
+    
+    for feat_teste in explicacao_features:
+        # Criar explicação sem essa feature
+        expl_sem_feat = [f for f in explicacao_features if f != feat_teste]
+        features_fixas_idx = [feature_names.index(f) for f in expl_sem_feat if f in feature_names]
+        
+        # Gerar perturbações mantendo expl_sem_feat fixas
+        perturbacoes = gerar_perturbacoes(
+            instancia_original,
+            features_fixas_idx,
+            X_train,
+            n_perturbacoes,
+            "uniform"
+        )
+        
+        # Reclassificar
+        try:
+            predicoes = pipeline.predict(perturbacoes)
+            scores = pipeline.decision_function(perturbacoes)
+            
+            if max_abs is not None and max_abs > 0:
+                scores = scores / max_abs
+            
+            # Contar acertos
+            if rejeitada:
+                acertos = np.sum((scores >= t_minus) & (scores <= t_plus))
+            else:
+                acertos = np.sum(predicoes == y_pred)
+            
+            fidelity = (acertos / n_perturbacoes)
+            
+            # Se fidelity > 95% sem essa feature, ela é redundante
+            if fidelity > 0.95:
+                features_redundantes.append(feat_teste)
+        
+        except Exception:
+            # Em caso de erro, assumir que a feature é necessária
+            pass
+    
+    necessary_count = len(explicacao_features) - len(features_redundantes)
+    necessity_score = (necessary_count / len(explicacao_features)) * 100.0
+    
+    return {
+        'necessary_count': necessary_count,
+        'redundant_features': features_redundantes,
+        'necessity_score': float(necessity_score)
+    }
+
+
 def validar_fidelity_instancia(
     instancia_idx: int,
     explicacao_features: List[str],
@@ -450,9 +539,9 @@ def validar_metodo(
     
     # Métricas por tipo
     metricas_por_tipo = {
-        'positive': {'fidelities': [], 'sizes': [], 'count': 0},
-        'negative': {'fidelities': [], 'sizes': [], 'count': 0},
-        'rejected': {'fidelities': [], 'sizes': [], 'count': 0}
+        'positive': {'fidelities': [], 'sizes': [], 'necessities': [], 'count': 0},
+        'negative': {'fidelities': [], 'sizes': [], 'necessities': [], 'count': 0},
+        'rejected': {'fidelities': [], 'sizes': [], 'necessities': [], 'count': 0}
     }
     
     # Distribuição de tamanhos
@@ -566,11 +655,30 @@ def validar_metodo(
                 pbar.update()
                 continue
             
+            # Validar necessidade (minimalidade) - apenas para explicações com 2+ features
+            resultado_necessidade = {'necessary_count': tamanho, 'redundant_features': [], 'necessity_score': 100.0}
+            if tamanho >= 2:
+                resultado_necessidade = validar_necessidade_features(
+                    idx,
+                    explicacao_features,
+                    feature_names,
+                    y_pred,
+                    rejeitada,
+                    pipeline,
+                    X_test,
+                    X_train,
+                    t_plus,
+                    t_minus,
+                    n_perturbacoes=200,  # Menos perturbações para ser mais rápido
+                    max_abs=max_abs
+                )
+            
             fidelities.append(fidelity)
             
             # Atualizar métricas por tipo
             metricas_por_tipo[tipo]['fidelities'].append(fidelity)
             metricas_por_tipo[tipo]['sizes'].append(tamanho)
+            metricas_por_tipo[tipo]['necessities'].append(resultado_necessidade['necessity_score'])
             metricas_por_tipo[tipo]['count'] += 1
             
             # Armazenar resultado
@@ -584,7 +692,10 @@ def validar_metodo(
                 'fidelity': fidelity,
                 'sufficiency': resultado['sufficiency'],
                 'perturbations_tested': resultado['perturbations_tested'],
-                'perturbations_correct': resultado['perturbations_correct']
+                'perturbations_correct': resultado['perturbations_correct'],
+                'necessary_features': resultado_necessidade['necessary_count'],
+                'redundant_features': resultado_necessidade['redundant_features'],
+                'necessity_score': resultado_necessidade['necessity_score']
             })
             
             pbar.update()
@@ -597,11 +708,14 @@ def validar_metodo(
     
     # Calcular métricas por tipo
     per_type_metrics = {}
+    necessities_all = []
     for tipo, dados in metricas_por_tipo.items():
         if dados['count'] > 0:
+            necessities_all.extend(dados['necessities'])
             per_type_metrics[tipo] = {
                 'count': dados['count'],
                 'fidelity': float(np.mean(dados['fidelities'])),
+                'necessity': float(np.mean(dados['necessities'])),
                 'mean_size': float(np.mean(dados['sizes'])),
                 'std_size': float(np.std(dados['sizes']))
             }
@@ -609,9 +723,13 @@ def validar_metodo(
             per_type_metrics[tipo] = {
                 'count': 0,
                 'fidelity': 0.0,
+                'necessity': 0.0,
                 'mean_size': 0.0,
                 'std_size': 0.0
             }
+    
+    # Necessity geral
+    necessity_overall = float(np.mean(necessities_all)) if necessities_all else 0.0
     
     # Calcular reduction rate
     num_features = len(feature_names)
@@ -645,9 +763,13 @@ def validar_metodo(
         },
         'global_metrics': {
             'fidelity_overall': float(fidelity_overall),
+            'necessity_overall': float(necessity_overall),
             'fidelity_positive': float(per_type_metrics['positive']['fidelity']),
             'fidelity_negative': float(per_type_metrics['negative']['fidelity']),
             'fidelity_rejected': float(per_type_metrics['rejected']['fidelity']),
+            'necessity_positive': float(per_type_metrics['positive']['necessity']),
+            'necessity_negative': float(per_type_metrics['negative']['necessity']),
+            'necessity_rejected': float(per_type_metrics['rejected']['necessity']),
             'sufficiency': float(fidelity_overall),  # Para métodos ótimos
             'coverage': 100.0,  # % instâncias sem erro
             'mean_explanation_size': float(mean_size),
@@ -666,6 +788,7 @@ def validar_metodo(
     if verbose:
         print(f"\n✓ Validação completa!")
         print(f"  - Fidelity Geral: {fidelity_overall:.2f}%")
+        print(f"  - Minimalidade Geral: {necessity_overall:.2f}%")
         print(f"  - Tamanho Médio: {mean_size:.2f}")
         print(f"  - Taxa de Redução: {reduction_rate:.2f}%")
         print(f"  - Tempo: {validation_time:.2f}s")
@@ -749,7 +872,8 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         
         f.write("3.1 FIDELIDADE DAS EXPLICAÇÕES\n")
         f.write("─" * 80 + "\n\n")
-        f.write(f"  Fidelidade Geral:                 {globais['fidelity_overall']:.2f}%\n\n")
+        f.write(f"  Fidelidade Geral:                 {globais['fidelity_overall']:.2f}%\n")
+        f.write(f"  Minimalidade Geral:               {globais['necessity_overall']:.2f}%\n\n")
         
         f.write("  Fidelidade por Tipo de Predição:\n")
         for tipo_nome, tipo_label, emoji in [('positive', 'Predições Positivas', '○'), 
@@ -757,6 +881,13 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
                                                ('rejected', 'Predições Rejeitadas', '◆')]:
             dados = por_tipo[tipo_nome]
             f.write(f"    {emoji} {tipo_label:.<40} {dados['fidelity']:>6.2f}% ({dados['count']:>3} instâncias)\n")
+        
+        f.write("\n  Minimalidade por Tipo de Predição:\n")
+        for tipo_nome, tipo_label, emoji in [('positive', 'Predições Positivas', '○'), 
+                                               ('negative', 'Predições Negativas', '●'), 
+                                               ('rejected', 'Predições Rejeitadas', '◆')]:
+            dados = por_tipo[tipo_nome]
+            f.write(f"    {emoji} {tipo_label:.<40} {dados['necessity']:>6.2f}%\n")
         
         f.write(f"\n  Taxa de Cobertura (sem erros):    {globais['coverage']:.2f}%\n")
         f.write(f"  Instâncias Processadas com Sucesso: {int(globais['coverage'] / 100 * meta['test_instances'])} / {meta['test_instances']}\n")
@@ -837,6 +968,30 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         f.write(f"  Com uma fidelidade de {globais['fidelity_overall']:.2f}%, as explicações geradas\n")
         f.write(f"  mantêm consistência em {globais['fidelity_overall']:.2f}% dos cenários testados quando\n")
         f.write(f"  as features não selecionadas são aleatoriamente perturbadas.\n\n")
+        
+        # Análise de Minimalidade
+        if globais['necessity_overall'] >= 99.0:
+            conclusao_necessity = "Perfeita"
+            texto_necessity = "As explicações são MINIMAIS: cada feature é necessária."
+        elif globais['necessity_overall'] >= 95.0:
+            conclusao_necessity = "Excelente"
+            texto_necessity = "As explicações são quase minimais com < 5% de redundância."
+        elif globais['necessity_overall'] >= 90.0:
+            conclusao_necessity = "Boa"
+            texto_necessity = "As explicações têm ~10% de features redundantes."
+        elif globais['necessity_overall'] >= 80.0:
+            conclusao_necessity = "Moderada"
+            texto_necessity = "As explicações contêm algumas features redundantes (~20%)."
+        else:
+            conclusao_necessity = "Baixa"
+            texto_necessity = "As explicações contêm muitas features redundantes (>20%)."
+        
+        f.write(f"MINIMALIDADE: {conclusao_necessity}\n")
+        f.write(f"  {texto_necessity}\n")
+        redundancia_pct = 100.0 - globais['necessity_overall']
+        f.write(f"  Com uma minimalidade de {globais['necessity_overall']:.2f}%, em média {redundancia_pct:.1f}% das features\n")
+        f.write(f"  em cada explicação são redundantes (podem ser removidas sem\n")
+        f.write(f"  alterar a predição em >95% das perturbações).\n\n")
         
         # Análise de Compactação
         f.write(f"COMPACTAÇÃO: {100 - globais['reduction_rate']:.1f}% das Features Necessárias\n")

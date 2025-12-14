@@ -1,0 +1,84 @@
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: heart_disease
+  Instâncias de teste: 90
+  Features por instância: 13
+  Test size: 30.00%
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
+--------------------------------------------------------------------------------
+  norm_params: {'max_abs': 0.38165171431668377}
+  penalty: l2
+  C: 0.01
+  solver: liblinear
+  max_iter: 1000
+  Intercepto: -0.106479
+
+--------------------------------------------------------------------------------
+3. THRESHOLDS DE REJEIÇÃO
+--------------------------------------------------------------------------------
+  t+ (limiar superior): 0.227597
+  t- (limiar inferior): -0.013779
+  Largura da zona de rejeição: 0.241376
+
+--------------------------------------------------------------------------------
+4. DESEMPENHO DO MODELO
+--------------------------------------------------------------------------------
+  Acurácia sem rejeição: 85.56%
+  Acurácia com rejeição: 90.79%
+  Taxa de rejeição: 15.56%
+
+--------------------------------------------------------------------------------
+5. ESTATÍSTICAS DAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  POSITIVAS:
+    Quantidade: 32
+    Tamanho médio: 4.94 features
+    Desvio padrão: 1.90
+    Mínimo: 3 features
+    Máximo: 11 features
+
+  NEGATIVAS:
+    Quantidade: 44
+    Tamanho médio: 5.48 features
+    Desvio padrão: 0.89
+    Mínimo: 4 features
+    Máximo: 9 features
+
+  REJEITADAS:
+    Quantidade: 14
+    Tamanho médio: 9.64 features
+    Desvio padrão: 0.81
+    Mínimo: 9 features
+    Máximo: 12 features
+
+--------------------------------------------------------------------------------
+6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
+--------------------------------------------------------------------------------
+  Tempo total: 0.5638s
+  Tempo médio por instância: 0.006264s
+  Tempo médio POSITIVAS: 0.005278s
+  Tempo médio NEGATIVAS: 0.005087s
+  Tempo médio REJEITADAS: 0.011995s
+
+--------------------------------------------------------------------------------
+7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  thal: 87 ocorrências (96.7%)
+  thalach: 87 ocorrências (96.7%)
+  exang: 78 ocorrências (86.7%)
+  ca: 73 ocorrências (81.1%)
+  slope: 53 ocorrências (58.9%)
+  oldpeak: 40 ocorrências (44.4%)
+  cp: 36 ocorrências (40.0%)
+  restecg: 24 ocorrências (26.7%)
+  sex: 21 ocorrências (23.3%)
+  chol: 14 ocorrências (15.6%)
+

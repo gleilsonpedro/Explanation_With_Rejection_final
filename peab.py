@@ -32,16 +32,16 @@ MNIST_CONFIG = {
 
 DATASET_CONFIG = {
     "mnist":                MNIST_CONFIG,
-    "wine":                 {'test_size': 0.3, 'rejection_cost': 0.24},
     "breast_cancer":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "pima_indians_diabetes":{'test_size': 0.3, 'rejection_cost': 0.24},
     "vertebral_column":     {'test_size': 0.3, 'rejection_cost': 0.24},
     "sonar":                {'test_size': 0.3, 'rejection_cost': 0.24},
     "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
-    "banknote_auth":        {'test_size': 0.3, 'rejection_cost': 0.24},
+    "banknote":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "wine_quality":         {'test_size': 0.3, 'rejection_cost': 0.24},
     "creditcard":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.05},
+    "covertype":            {'subsample_size': 0.3, 'test_size': 0.3, 'rejection_cost': 0.10},
+    "gas_sensor":           {'test_size': 0.3, 'rejection_cost': 0.24},
     "newsgroups":           {'test_size': 0.3, 'rejection_cost': 0.24, 'top_k_features': 2000}
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'
@@ -124,14 +124,18 @@ def calculate_deltas(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.Da
     X_train_scaled_min = np.full_like(coefs, f_min)
     X_train_scaled_max = np.full_like(coefs, f_max)
     
-    deltas = np.zeros_like(coefs) # Inicializa o array de deltas
     # Define o pior valor para cada feature com base na classe alvo
+    # Classe 1: adversário empurra para BAIXO (quer fazer score < t_plus)
+    # Classe 0: adversário empurra para CIMA (quer fazer score > t_minus)
     if premis_class == 1:
-        pior_valor = np.where(coefs > 0, X_train_scaled_min, X_train_scaled_max) # se coeficiente positivo pega o minimo senao o maximo
+        # Pior caso: valores que DIMINUEM o score
+        pior_valor = np.where(coefs > 0, X_train_scaled_min, X_train_scaled_max)
     else:
-        pior_valor = np.where(coefs > 0, X_train_scaled_max, X_train_scaled_min) # se coeficiente positivo pega o maximo senao o minimo
-        
-    deltas = (scaled_instance_vals - pior_valor) * coefs # Calcula os deltas
+        # Pior caso: valores que AUMENTAM o score (invertido!)
+        pior_valor = np.where(coefs > 0, X_train_scaled_max, X_train_scaled_min)
+    
+    # Calcula os deltas (contribuição de cada feature)
+    deltas = (scaled_instance_vals - pior_valor) * coefs
     return deltas
 
 def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train: pd.DataFrame, t_plus: float, t_minus: float, premis_class: int) -> List[str]:
@@ -141,24 +145,29 @@ def one_explanation_formal(modelo: Pipeline, instance_df: pd.DataFrame, X_train:
     deltas = calculate_deltas(modelo, instance_df, X_train, premis_class) # calcula os deltas 
     indices_ordenados = np.argsort(-np.abs(deltas)) # indices ordenados por impacto absoluto decrescente (negativo para ordem do maior p menor)
     
-    score_base = score - np.sum(deltas) # score base é o score original menos a soma dos deltas
+    # score_base = score no pior caso (todas features no pior valor)
+    score_base = score - np.sum(deltas)
     soma_deltas_cumulativa = score_base 
-    target_score = t_plus if premis_class == 1 else t_minus # define o score alvo de com a classe da premissa
+    target_score = t_plus if premis_class == 1 else t_minus
     EPSILON = 1e-6 # margem de tolerancia para comparações de ponto flutuante
-    # 1e-6 é 0.000001um milionésimo se fosse 1e-3 seria 0.001 milésimo
     
     for i in indices_ordenados:
         feature_nome = X_train.columns[i]
-        valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)] # pega o valor original da feature na instancia
+        valor_original_feature = instance_df.iloc[0, X_train.columns.get_loc(feature_nome)]
         
         if abs(deltas[i]) > 0:
              soma_deltas_cumulativa += deltas[i]
              explicacao.append(f"{feature_nome} = {valor_original_feature:.4f}")
+        
         # Verifica se a condição de score alvo foi atingida
+        # Classe 1: deltas positivos, acumula até SUBIR e atingir t_plus
+        # Classe 0: deltas negativos, acumula até DESCER e atingir t_minus
         if premis_class == 1:
-            if soma_deltas_cumulativa >= (target_score) and explicacao: break # para quando a soma  atinge ou ultrapassa o t_plus
+            if soma_deltas_cumulativa >= target_score and explicacao:
+                break
         else:
-            if soma_deltas_cumulativa <= (target_score) and explicacao: break # para quando a soma atinge ou fica abaixo do t_minus
+            if soma_deltas_cumulativa <= target_score and explicacao:
+                break
     
     # se sair do loop sem explicação, adiciona a feature de maior coeficiente            
     if not explicacao and len(X_train.columns) > 0: 

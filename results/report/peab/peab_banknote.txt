@@ -1,0 +1,78 @@
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: banknote
+  Instâncias de teste: 412
+  Features por instância: 4
+  Test size: 30.00%
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
+--------------------------------------------------------------------------------
+  norm_params: {'max_abs': 0.6625238272836776}
+  penalty: l2
+  C: 0.01
+  solver: liblinear
+  max_iter: 1000
+  Intercepto: 0.133999
+
+--------------------------------------------------------------------------------
+3. THRESHOLDS DE REJEIÇÃO
+--------------------------------------------------------------------------------
+  t+ (limiar superior): 0.000102
+  t- (limiar inferior): -0.594895
+  Largura da zona de rejeição: 0.594998
+
+--------------------------------------------------------------------------------
+4. DESEMPENHO DO MODELO
+--------------------------------------------------------------------------------
+  Acurácia sem rejeição: 61.41%
+  Acurácia com rejeição: 99.22%
+  Taxa de rejeição: 68.93%
+
+--------------------------------------------------------------------------------
+5. ESTATÍSTICAS DAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  POSITIVAS:
+    Quantidade: 24
+    Tamanho médio: 3.42 features
+    Desvio padrão: 0.57
+    Mínimo: 2 features
+    Máximo: 4 features
+
+  NEGATIVAS:
+    Quantidade: 104
+    Tamanho médio: 3.04 features
+    Desvio padrão: 0.66
+    Mínimo: 2 features
+    Máximo: 4 features
+
+  REJEITADAS:
+    Quantidade: 284
+    Tamanho médio: 2.54 features
+    Desvio padrão: 0.69
+    Mínimo: 2 features
+    Máximo: 4 features
+
+--------------------------------------------------------------------------------
+6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
+--------------------------------------------------------------------------------
+  Tempo total: 3.5076s
+  Tempo médio por instância: 0.008514s
+  Tempo médio POSITIVAS: 0.004870s
+  Tempo médio NEGATIVAS: 0.004839s
+  Tempo médio REJEITADAS: 0.010114s
+
+--------------------------------------------------------------------------------
+7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  skewness: 412 ocorrências (100.0%)
+  variance: 412 ocorrências (100.0%)
+  curtosis: 174 ocorrências (42.2%)
+  entropy: 121 ocorrências (29.4%)
+
