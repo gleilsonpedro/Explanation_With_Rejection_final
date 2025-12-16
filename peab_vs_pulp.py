@@ -268,17 +268,22 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("-" * 80 + "\n")
         f.write("Onde o PEAB é perfeito e onde encontra dificuldades.\n\n")
         
+        # Definir ordem desejada: POSITIVA → NEGATIVA → REJEITADA
+        ordem_tipos = ['POSITIVA', 'NEGATIVA', 'REJEITADA']
         tabela_tipos = []
-        for tipo, stats in metricas['stats_por_tipo'].items():
-            tabela_tipos.append({
-                'Tipo': tipo,
-                'Qtd': stats['instancias'],
-                '% Ótimo': f"{stats['taxa_otimalidade']:.2f}%",
-                'GAP Médio': f"{stats['gap_medio']:.4f}",
-                'Tam. PEAB': f"{stats['tamanho_medio_peab']:.2f}",
-                'Tam. PuLP': f"{stats['tamanho_medio_pulp']:.2f}",
-                'Tempo PuLP': f"{stats['tempo_medio_pulp']:.5f}s"
-            })
+        
+        for tipo in ordem_tipos:
+            if tipo in metricas['stats_por_tipo']:
+                stats = metricas['stats_por_tipo'][tipo]
+                tabela_tipos.append({
+                    'Tipo': tipo,
+                    'Qtd': stats['instancias'],
+                    '% Ótimo': f"{stats['taxa_otimalidade']:.2f}%",
+                    'GAP Médio': f"{stats['gap_medio']:.4f}",
+                    'Tam. PEAB': f"{stats['tamanho_medio_peab']:.2f}",
+                    'Tam. PuLP': f"{stats['tamanho_medio_pulp']:.2f}",
+                    'Tempo PuLP': f"{stats['tempo_medio_pulp']:.5f}s"
+                })
         
         df_tipos = pd.DataFrame(tabela_tipos)
         f.write(df_tipos.to_string(index=False))

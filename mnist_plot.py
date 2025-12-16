@@ -30,7 +30,7 @@ import random
 # ==============================================================================
 # CONFIGURAÇÕES
 # ==============================================================================
-RESULTS_FILE = 'json/peab_results.json'
+RESULTS_FILE = 'json/peab/mnist_3_vs_8.json'
 OUTPUT_DIR = 'results/plots/mnist/numbers'
 SAVE_PLOTS = True
 SHOW_PLOTS = False
@@ -286,20 +286,12 @@ def processar_experimento(data: dict, exp_key: str):
     print(f"{'='*80}")
     
     try:
-        # Validar estrutura principal do JSON
-        if 'peab' not in data:
-            print("❌ ERRO: Estrutura 'peab' não encontrada no JSON!")
-            return
-        
-        exp_data = data['peab'][exp_key]
+        # Novo formato JSON: dados diretos na raiz (sem wrapper 'peab')
+        exp_data = data
         
         # Validar estrutura do experimento
         if 'per_instance' not in exp_data:
             print("❌ ERRO: 'per_instance' não encontrado!")
-            return
-        
-        if 'data' not in exp_data or 'model' not in exp_data:
-            print("❌ ERRO: Estrutura incompleta no JSON!")
             return
         
         # Verificar se experimento usa rejeição (opcional - apenas informativo)
@@ -307,24 +299,53 @@ def processar_experimento(data: dict, exp_key: str):
         has_rejection_cost = 'rejection_cost' in config
         
         if not has_rejection_cost:
-            print("⚠️  AVISO: Experimento sem custo de rejeição configurado (pode não ser peab_2)")
+            print("⚠️  AVISO: Experimento sem custo de rejeição configurado")
         
         # Verificar se há instâncias rejeitadas (sample das primeiras 20)
-        per_instance = exp_data['per_instance']
+        per_instance = exp_data.get('per_instance', [])
+        if not per_instance:
+            print("❌ ERRO: 'per_instance' não encontrado ou vazio!")
+            return
+            
         sample_size = min(20, len(per_instance))
         has_rejected_instances = any(inst.get('rejected', False) for inst in per_instance[:sample_size])
         
         if not has_rejected_instances and len(per_instance) > 0:
             print("ℹ️  INFO: Nenhuma instância rejeitada encontrada (nas primeiras 20)")
         
-        # Obter dados (já temos per_instance definido acima na validação)
-        class_names = exp_data['data']['class_names']
-        X_test = exp_data['data']['X_test']
+        # NOVO FORMATO: Recarregar dados do dataset original
+        # Pois X_test e class_names não estão mais salvos no JSON
+        print("📥 Recarregando dataset original para obter X_test...")
+        from data.datasets import carregar_dataset, set_mnist_options
+        from sklearn.model_selection import train_test_split
+        
+        dataset_name = config.get('dataset_name', 'mnist')
+        mnist_feature_mode = config.get('mnist_feature_mode', 'raw')
+        mnist_digit_pair = config.get('mnist_digit_pair', [3, 8])
+        test_size = config.get('test_size', 0.3)
+        random_state = config.get('random_state', 42)
+        
+        # Configurar MNIST antes de carregar
+        if dataset_name == 'mnist':
+            set_mnist_options(mnist_feature_mode, tuple(mnist_digit_pair))
+        
+        # Carregar dataset
+        X_full, y_full, class_names = carregar_dataset(dataset_name)
+        if X_full is None or y_full is None:
+            print(f"❌ ERRO: Falha ao carregar dataset '{dataset_name}'")
+            return
+        
+        # Fazer split train/test (mesmo split usado no experimento original)
+        _, X_test, _, _ = train_test_split(
+            X_full, y_full, test_size=test_size, 
+            random_state=random_state, stratify=y_full
+        )
+        
+        print(f"✓ Dataset recarregado: {X_test.shape[0]} instâncias de teste")
         
         # Obter thresholds
-        thresholds = exp_data.get('thresholds', {})
-        t_plus = thresholds.get('t_plus', 0.0)
-        t_minus = thresholds.get('t_minus', 0.0)
+        t_plus = exp_data.get('thresholds', {}).get('t_plus', 0.0)
+        t_minus = exp_data.get('thresholds', {}).get('t_minus', 0.0)
         
         if len(per_instance) == 0:
             print("⚠ Nenhuma instância encontrada.")
@@ -472,9 +493,7 @@ def main():
         description='Gera imagens individuais de exemplos positivos, negativos e rejeitados do MNIST'
     )
     parser.add_argument('--results', type=str, default=RESULTS_FILE, 
-                       help='Caminho para o JSON de resultados')
-    parser.add_argument('--pair', type=str, default='auto', 
-                       help="Par de classes MNIST (ex: 9_vs_4, 5_vs_6). Use 'auto' para listar e escolher interativamente.")
+                       help='Caminho para o JSON de resultados (ex: json/peab/mnist_3_vs_8.json)')
     parser.add_argument('--show', action='store_true', 
                        help='Mostrar janelas do Matplotlib')
     parser.add_argument('--seed', type=int, default=None,
@@ -522,69 +541,21 @@ def main():
         data = carregar_json(args.results)
         print("✓ JSON carregado com sucesso")
         
-        # Verificar se o experimento existe
-        if 'peab' not in data:
-            print("❌ ERRO: Chave 'peab' não encontrada no JSON!")
-            return
+        # Novo formato: JSON único por dataset (não há mais múltiplos experimentos)
+        # Extrair nome do experimento do config
+        config = data.get('config', {})
+        dataset_name = config.get('dataset_name', 'mnist')
+        digit_pair = config.get('mnist_digit_pair', [])
         
-        # Filtrar apenas experimentos MNIST
-        mnist_experiments = {k: v for k, v in data['peab'].items() 
-                            if k == 'mnist' or k.startswith('mnist_')}
-        
-        if not mnist_experiments:
-            print("❌ ERRO: Nenhum experimento MNIST encontrado no JSON!")
-            return
-        
-        # Seleção interativa se pair == 'auto'
-        chosen_experiment = None
-        if args.pair == 'auto':
-            available = sorted(mnist_experiments.keys())
-            print("\n📋 Pares MNIST disponíveis:")
-            for idx, key in enumerate(available):
-                # Extrair informações do par de classes
-                if key == 'mnist':
-                    # Para experimento "mnist", verificar mnist_digit_pair no config
-                    config = mnist_experiments[key].get('config', {})
-                    digit_pair = config.get('mnist_digit_pair', [])
-                    if len(digit_pair) == 2:
-                        pair_name = f"{digit_pair[1]} vs {digit_pair[0]}"
-                    else:
-                        pair_name = "desconhecido"
-                else:
-                    # Para experimentos mnist_X_vs_Y, extrair do nome
-                    pair_name = key.replace('mnist_', '').replace('_vs_', ' vs ')
-                print(f"  [{idx}] {pair_name} (chave: {key})")
-            
-            while True:
-                try:
-                    sel = input("\nDigite o número do par desejado: ").strip()
-                    if sel == '':
-                        print("⚠️ Entrada vazia. Digite um índice.")
-                        continue
-                    sel_i = int(sel)
-                    if 0 <= sel_i < len(available):
-                        chosen_experiment = available[sel_i]
-                        pair_display = chosen_experiment.replace('mnist_', '').replace('_vs_', ' vs ')
-                        print(f"\n✅ Selecionado: MNIST {pair_display}")
-                        break
-                    else:
-                        print("⚠️ Índice fora do intervalo.")
-                except ValueError:
-                    print("⚠️ Digite um número válido.")
+        if len(digit_pair) == 2:
+            exp_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
+            print(f"\n✓ Experimento: MNIST {digit_pair[0]} vs {digit_pair[1]}")
         else:
-            # Tentar encontrar o experimento pela string do par
-            if args.pair.startswith('mnist_'):
-                chosen_experiment = args.pair
-            else:
-                chosen_experiment = f'mnist_{args.pair}'
-            
-            if chosen_experiment not in mnist_experiments:
-                print(f"❌ ERRO: Par MNIST '{args.pair}' não encontrado!")
-                print(f"Pares disponíveis: {[k.replace('mnist_', '') for k in sorted(mnist_experiments.keys())]}")
-                return
-
-        # Processar experimento escolhido
-        processar_experimento(data, chosen_experiment)
+            exp_key = dataset_name
+            print(f"\n✓ Experimento: {dataset_name}")
+        
+        # Processar experimento
+        processar_experimento(data, exp_key)
         
         print(f"\n{'='*80}")
         print("✅ PROCESSAMENTO CONCLUÍDO!")

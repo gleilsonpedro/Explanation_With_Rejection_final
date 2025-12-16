@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - VERTEBRAL_COLUMN
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: vertebral_column
+Instâncias processadas: 93
+Thresholds: t+ = 0.2544, t- = -0.0168
+Zona de rejeição: 0.2711
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 1,
+  "solver": "saga",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 76.34%
+Acurácia (com rejeição): 86.57%
+Taxa de rejeição: 27.96%
+Risco empírico: 0.2014
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 3.92 features
+Tempo total: 3.65s
+Tempo médio/instância: 0.0392s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 50 (53.8%)
+  - Tamanho médio: 2.54 features
+  - Tempo médio: 0.0391s
+
+NEGATIVA:
+  - Instâncias: 17 (18.3%)
+  - Tamanho médio: 5.06 features
+  - Tempo médio: 0.0378s
+
+REJEITADA:
+  - Instâncias: 26 (28.0%)
+  - Tamanho médio: 5.85 features
+  - Tempo médio: 0.0405s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      281 (REJEITADA ):   6 features - 0.0390s
+ 2. Instância      284 (REJEITADA ):   6 features - 0.0382s
+ 3. Instância      297 (REJEITADA ):   6 features - 0.0401s
+ 4. Instância      268 (REJEITADA ):   6 features - 0.0414s
+ 5. Instância       47 (REJEITADA ):   6 features - 0.0443s
+ 6. Instância      267 (REJEITADA ):   6 features - 0.0437s
+ 7. Instância      270 (REJEITADA ):   6 features - 0.0413s
+ 8. Instância       27 (REJEITADA ):   6 features - 0.0399s
+ 9. Instância       28 (REJEITADA ):   6 features - 0.0423s
+10. Instância      211 (REJEITADA ):   6 features - 0.0415s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância       65 (POSITIVA  ):   2 features - 0.0309s
+ 2. Instância      201 (POSITIVA  ):   2 features - 0.0435s
+ 3. Instância       51 (POSITIVA  ):   2 features - 0.0421s
+ 4. Instância      135 (POSITIVA  ):   2 features - 0.0432s
+ 5. Instância      197 (POSITIVA  ):   2 features - 0.0444s
+ 6. Instância      174 (POSITIVA  ):   2 features - 0.0449s
+ 7. Instância      100 (POSITIVA  ):   2 features - 0.0420s
+ 8. Instância      162 (POSITIVA  ):   2 features - 0.0425s
+ 9. Instância      159 (POSITIVA  ):   2 features - 0.0446s
+10. Instância      171 (POSITIVA  ):   2 features - 0.0379s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

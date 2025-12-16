@@ -192,6 +192,10 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
     
     direcao_override: 0 = empurrar para CIMA (tentar sair por cima)
                       1 = empurrar para BAIXO (tentar sair por baixo)
+                      
+    [CORREÇÃO CRÍTICA] Para rejeitadas, testa AMBAS as direções simultaneamente
+    garantindo que a explicação mantém a instância na zona de rejeição sob
+    qualquer perturbação adversária (para cima OU para baixo).
     """
     # Limites por-feature no espaço escalado do MinMaxScaler
     if 'scaler' in modelo.named_steps:
@@ -203,39 +207,51 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
         MIN_VEC = np.zeros_like(coefs) 
         MAX_VEC = np.ones_like(coefs)
 
-    empurrar_para_baixo = (direcao_override == 1) # True se for 1 empurrar para baixo
-    # Cria a instância perturbada com base na direção
-    X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if empurrar_para_baixo else np.where(coefs > 0, MAX_VEC, MIN_VEC)
-    # Mantém os valores originais para as features na explicação
-    if indices_explicacao:
-        idx_fixos = list(indices_explicacao)
-        X_teste[idx_fixos] = vals_s[idx_fixos]
-
-    #[NORM_THRESHOLD] ANTES: Comparava score_pert bruto diretamente com thresholds brutos
-    #[NORM_THRESHOLD] DEPOIS: Normaliza score_pert usando z-score + escala para [-1,+1]
-    score_pert = intercept + np.dot(X_teste, coefs)
-    #[NORM_THRESHOLD] Normalização SEM centralização: mantém zero original
-    max_abs = norm_params['max_abs']
-    score_pert_norm = score_pert / max_abs if max_abs > 0 else score_pert
-    
     EPSILON = 1e-6
-
-    #[NORM_THRESHOLD] ANTES: Validava com thresholds brutos
-    #[NORM_THRESHOLD] DEPOIS: Valida com score_pert_norm e thresholds normalizados
-    if is_rejected: # se for true
-        # Rejeição deve se manter dentro da zona em ambas as direções
-        # Se empurramos para baixo, o score deve permanecer >= t_minus (não cair abaixo)
-        # Se empurramos para cima, o score deve permanecer <= t_plus (não subir acima)
-        if empurrar_para_baixo:
-            return (score_pert_norm >= t_minus - EPSILON), score_pert_norm
-        else:
-            return (score_pert_norm <= t_plus + EPSILON), score_pert_norm
+    max_abs = norm_params['max_abs']
+    
+    #[CORREÇÃO CRÍTICA] Para rejeitadas: testar AMBAS as direções
+    if is_rejected:
+        # Perturbação para BAIXO (tentar cair abaixo de t_minus)
+        X_teste_baixo = np.where(coefs > 0, MIN_VEC, MAX_VEC)
+        if indices_explicacao:
+            idx_fixos = list(indices_explicacao)
+            X_teste_baixo[idx_fixos] = vals_s[idx_fixos]
+        score_baixo = intercept + np.dot(X_teste_baixo, coefs)
+        score_baixo_norm = score_baixo / max_abs if max_abs > 0 else score_baixo
+        
+        # Perturbação para CIMA (tentar subir acima de t_plus)
+        X_teste_cima = np.where(coefs > 0, MAX_VEC, MIN_VEC)
+        if indices_explicacao:
+            X_teste_cima[idx_fixos] = vals_s[idx_fixos]
+        score_cima = intercept + np.dot(X_teste_cima, coefs)
+        score_cima_norm = score_cima / max_abs if max_abs > 0 else score_cima
+        
+        # Explicação é suficiente se AMBAS as perturbações ficam na zona de rejeição
+        valido_baixo = (score_baixo_norm >= t_minus - EPSILON)
+        valido_cima = (score_cima_norm <= t_plus + EPSILON)
+        
+        # Retorna média dos scores como referência (para debug)
+        score_medio = (score_baixo_norm + score_cima_norm) / 2.0
+        return (valido_baixo and valido_cima), score_medio
+    
     else:
+        # Classificadas: testar apenas uma direção (comportamento original)
+        empurrar_para_baixo = (direcao_override == 1)
+        X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if empurrar_para_baixo else np.where(coefs > 0, MAX_VEC, MIN_VEC)
+        
+        if indices_explicacao:
+            idx_fixos = list(indices_explicacao)
+            X_teste[idx_fixos] = vals_s[idx_fixos]
+
+        score_pert = intercept + np.dot(X_teste, coefs)
+        score_pert_norm = score_pert / max_abs if max_abs > 0 else score_pert
+        
         # Classificadas: manter no lado correto do limiar correspondente
         if pred_class_orig == 1:
-            return (score_pert_norm >= t_plus - EPSILON), score_pert_norm # classe 1 deve estar acima de t_plus
+            return (score_pert_norm >= t_plus - EPSILON), score_pert_norm
         else:
-            return (score_pert_norm <= t_minus + EPSILON), score_pert_norm # classe 0 deve estar abaixo de t_minus
+            return (score_pert_norm <= t_minus + EPSILON), score_pert_norm
 
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], 
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, norm_params: Dict[str, float], is_rejected: bool, 

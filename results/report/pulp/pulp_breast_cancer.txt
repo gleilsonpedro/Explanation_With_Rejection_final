@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - BREAST_CANCER
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: breast_cancer
+Instâncias processadas: 171
+Thresholds: t+ = 0.0997, t- = -0.0018
+Zona de rejeição: 0.1015
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.1,
+  "solver": "liblinear",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 92.40%
+Acurácia (com rejeição): 97.99%
+Taxa de rejeição: 12.87%
+Risco empírico: 0.0510
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 17.14 features
+Tempo total: 7.22s
+Tempo médio/instância: 0.0422s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 96 (56.1%)
+  - Tamanho médio: 14.62 features
+  - Tempo médio: 0.0422s
+
+NEGATIVA:
+  - Instâncias: 53 (31.0%)
+  - Tamanho médio: 16.43 features
+  - Tempo médio: 0.0416s
+
+REJEITADA:
+  - Instâncias: 22 (12.9%)
+  - Tamanho médio: 29.82 features
+  - Tempo médio: 0.0442s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância       86 (REJEITADA ):  30 features - 0.0450s
+ 2. Instância       73 (REJEITADA ):  30 features - 0.0449s
+ 3. Instância      128 (REJEITADA ):  30 features - 0.0453s
+ 4. Instância      406 (REJEITADA ):  30 features - 0.0403s
+ 5. Instância      375 (REJEITADA ):  30 features - 0.0460s
+ 6. Instância      466 (REJEITADA ):  30 features - 0.0442s
+ 7. Instância      340 (REJEITADA ):  30 features - 0.0397s
+ 8. Instância      423 (REJEITADA ):  30 features - 0.0382s
+ 9. Instância        7 (REJEITADA ):  30 features - 0.0412s
+10. Instância      501 (REJEITADA ):  30 features - 0.0354s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      212 (NEGATIVA  ):   6 features - 0.0436s
+ 2. Instância      461 (NEGATIVA  ):   6 features - 0.0324s
+ 3. Instância      122 (NEGATIVA  ):   8 features - 0.0383s
+ 4. Instância      180 (NEGATIVA  ):   8 features - 0.0379s
+ 5. Instância      567 (NEGATIVA  ):  10 features - 0.0441s
+ 6. Instância      564 (NEGATIVA  ):  11 features - 0.0355s
+ 7. Instância      192 (POSITIVA  ):  11 features - 0.0451s
+ 8. Instância      140 (POSITIVA  ):  12 features - 0.0438s
+ 9. Instância      307 (POSITIVA  ):  12 features - 0.0351s
+10. Instância       23 (NEGATIVA  ):  12 features - 0.0418s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

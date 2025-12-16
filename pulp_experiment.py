@@ -32,13 +32,12 @@ from typing import List, Tuple, Dict, Any
 # Importações do projeto
 from peab import (
     carregar_hiperparametros,
-    treinar_e_avaliar_modelo,
     DATASET_CONFIG,
-    DEFAULT_LOGREG_PARAMS,
     RANDOM_STATE,
     _get_lr
 )
-from data.datasets import selecionar_dataset_e_classe, carregar_dataset
+from data.datasets import selecionar_dataset_e_classe
+from utils.shared_training import get_shared_pipeline  # USAR MESMO PIPELINE QUE ANCHOR/MINEXP
 from utils.progress_bar import ProgressBar
 from utils.results_handler import _to_builtin, update_method_results
 
@@ -55,10 +54,14 @@ def calcular_explicacao_otima_pulp(
     instance_df: pd.DataFrame, 
     X_train: pd.DataFrame, 
     t_plus: float, 
-    t_minus: float
+    t_minus: float,
+    max_abs: float
 ) -> Tuple[List[str], int, str]:
     """
     Calcula a explicação ÓTIMA (cardinalidade mínima) usando PuLP.
+    
+    IMPORTANTE: t_plus e t_minus são thresholds NORMALIZADOS (no espaço [-1, +1]).
+    O score RAW precisa ser normalizado antes da comparação!
     
     Retorna:
         (features_selecionadas, cardinalidade, tipo_predicao)
@@ -71,17 +74,30 @@ def calcular_explicacao_otima_pulp(
     feature_names = instance_df.columns.tolist()
     
     vals_scaled = scaler.transform(instance_df)[0]
-    X_train_scaled = scaler.transform(X_train)
-    min_scaled = X_train_scaled.min(axis=0)
-    max_scaled = X_train_scaled.max(axis=0)
     
-    score_atual = modelo.decision_function(instance_df)[0]
+    # [CORREÇÃO CRÍTICA] Usar os mesmos limites que o PEAB!
+    # PEAB usa intervalo COMPLETO [0, 1] pós-MinMaxScaler
+    # NÃO usar min/max OBSERVADOS no treino (muito conservador!)
+    # X_train_scaled = scaler.transform(X_train)
+    # min_scaled = X_train_scaled.min(axis=0)  # ERRADO: muito conservador
+    # max_scaled = X_train_scaled.max(axis=0)  # ERRADO: muito conservador
     
-    # Determina tipo de predição
-    if score_atual >= t_plus: 
+    # Usar intervalo COMPLETO como o PEAB:
+    min_scaled = np.zeros(len(coefs))  # MinMaxScaler: mínimo teórico = 0
+    max_scaled = np.ones(len(coefs))   # MinMaxScaler: máximo teórico = 1
+    
+    # CRÍTICO: PuLP precisa usar os MESMOS thresholds que o PEAB
+    # Os thresholds vêm NORMALIZADOS do get_shared_pipeline()
+    # Então o score RAW precisa ser normalizado antes da comparação!
+    score_raw = modelo.decision_function(instance_df)[0]
+    score_norm = score_raw / max_abs if max_abs > 0 else score_raw
+    
+    # Determina tipo de predição (thresholds JÁ estão normalizados)
+    # IMPORTANTE: Comparar score NORMALIZADO com thresholds normalizados
+    if score_norm >= t_plus: 
         tipo_predicao = "POSITIVA"
         estado = 1
-    elif score_atual <= t_minus: 
+    elif score_norm <= t_minus: 
         tipo_predicao = "NEGATIVA"
         estado = 0
     else: 
@@ -115,17 +131,42 @@ def calcular_explicacao_otima_pulp(
         termos_min.append(z[i] * (contrib_real - contrib_worst_min))
         termos_max.append(z[i] * (contrib_real - contrib_worst_max))
 
-    # Restrições baseadas no tipo de predição
+    # [INVESTIGAÇÃO] Scores do PuLP vs Thresholds
+    # Os scores (base_worst_min/max) são calculados como: intercept + sum(coefs * vals_scaled)
+    # Os thresholds (t_plus/t_minus) estão NORMALIZADOS (entre -1 e +1)
+    # Precisamos normalizar os scores ANTES da comparação!
+    
+    # Normalizar scores para comparar com thresholds normalizados
+    # HIPÓTESE: Os scores estão em escala RAW, thresholds em escala NORMALIZADA
+    # Então: score_normalized = score_raw / max_abs
+    
+    # [CORREÇÃO] Adicionar EPSILON como o PEAB faz, para evitar conservadorismo excessivo
+    EPSILON = 1e-6
+    
+    # Restrições baseadas no tipo de predição (com tolerância EPSILON)
     if estado == 1:  # POSITIVA
-        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_plus
+        # Dar uma pequena margem de tolerância (como o PEAB)
+        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_plus - EPSILON
     elif estado == 0:  # NEGATIVA
-        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_minus
+        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_minus + EPSILON
     else:  # REJEITADA
-        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_plus
-        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_minus
+        # Para rejeitadas, dar margem nas DUAS direções
+        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_plus + EPSILON
+        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_minus - EPSILON
 
-    # Resolve o problema
-    prob.solve(pulp.PULP_CBC_CMD(msg=False))
+    # Resolve o problema com configurações menos conservadoras
+    # Ajustar tolerâncias do solver CBC para evitar conservadorismo excessivo
+    solver = pulp.PULP_CBC_CMD(
+        msg=False,
+        gapRel=0.0,      # Gap de otimalidade relativo (0 = buscar ótimo exato)
+        gapAbs=0.0,      # Gap de otimalidade absoluto
+        options=[
+            'primalT 1e-7',    # Tolerância primal (menor = menos conservador)
+            'dualT 1e-7',      # Tolerância dual
+            'integerT 1e-6',   # Tolerância para variáveis inteiras
+        ]
+    )
+    prob.solve(solver)
     
     # Extrai solução
     if pulp.LpStatus[prob.status] == 'Optimal':
@@ -163,51 +204,28 @@ def executar_experimento_pulp_para_dataset(dataset_name):
             dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
             print(f"   Salvando como: {dataset_json_key}\n")
     
-    # Carrega configurações
-    todos_params = carregar_hiperparametros()
-    rejection_cost = cfg.get('rejection_cost', 0.24)
-    test_size = cfg.get('test_size', 0.3)
+    # =========================================================================
+    # USAR GET_SHARED_PIPELINE PARA GARANTIR 100% DE CONSISTÊNCIA COM PEAB
+    # =========================================================================
+    print("🔧 Usando get_shared_pipeline() para garantir consistência total com PEAB/Anchor/MinExp...")
+    modelo, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
     
-    # Carrega dataset
-    X_full, y_full, nomes_classes = carregar_dataset(dataset_name)
+    nomes_classes = meta['nomes_classes']
+    rejection_cost = meta['rejection_cost']
+    test_size = meta['test_size']
+    model_params = meta['model_params']
     
-    # Hiperparâmetros
-    params = DEFAULT_LOGREG_PARAMS.copy()
-    if dataset_name in todos_params and 'params' in todos_params[dataset_name]:
-        params.update(todos_params[dataset_name]['params'])
-    
-    print(f"📊 Hiperparâmetros utilizados:")
-    print(json.dumps(params, indent=2))
-    print(f"💰 Rejection cost: {rejection_cost}")
-    print(f"🔀 Test size: {test_size}\n")
-    # Split único (consistência com PEAB)
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_full, y_full, 
-        test_size=test_size, 
-        random_state=RANDOM_STATE, 
-        stratify=y_full
-    )
-    
-    # Redução Top-K (se configurado)
-    top_k = cfg.get('top_k_features', None)
-    if top_k and top_k > 0 and top_k < X_train.shape[1]:
-        print(f"🔍 Aplicando redução Top-{top_k} features...")
-        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params)
-        logreg_tmp = _get_lr(modelo_temp)
-        importances = np.abs(logreg_tmp.coef_[0])
-        indices_top = np.argsort(importances)[::-1][:top_k]
-        selected_feats = X_train.columns[indices_top]
-        X_train = X_train[selected_feats]
-        X_test = X_test[selected_feats]
-    
-    # Treina modelo
-    print("🔧 Treinando modelo...")
-    modelo, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(
-        X_train, y_train, rejection_cost, params, dataset_name
-    )
-    
-    print(f"✅ Thresholds: t+ = {t_plus:.4f}, t- = {t_minus:.4f}")
-    print(f"📏 Zona de rejeição: {t_plus - t_minus:.4f}\n")
+    print(f"✅ Pipeline compartilhado carregado!")
+    print(f"   • Modelo: {type(modelo).__name__}")
+    print(f"   • Features: {len(meta['feature_names'])}")
+    print(f"   • Train: {len(X_train)} | Test: {len(X_test)}")
+    print(f"   • Thresholds: t+ = {t_plus:.4f}, t- = {t_minus:.4f}")
+    print(f"   • Rejection cost: {rejection_cost}")
+    if meta.get('subsample_size'):
+        print(f"   • Subsample: {meta['subsample_size']*100:.1f}%")
+    if meta.get('top_k_features'):
+        print(f"   • Top-K features: {meta['top_k_features']}")
+    print()
     
     # Calcular métricas do modelo
     y_pred = modelo.predict(X_test)
@@ -249,9 +267,13 @@ def executar_experimento_pulp_para_dataset(dataset_name):
             instancia = X_test.iloc[[i]]
             classe_real = nomes_classes[y_test.iloc[i]]
             
+            # IMPORTANTE: Usar índice original do DataFrame (não sequencial i)
+            # Isso garante que PuLP e PEAB usem o mesmo ID de instância
+            instance_id = str(X_test.index[i])
+            
             start_time = time.perf_counter()
             features_otimas, tamanho, tipo_pred = calcular_explicacao_otima_pulp(
-                modelo, instancia, X_train, t_plus, t_minus
+                modelo, instancia, X_train, t_plus, t_minus, max_abs
             )
             tempo_gasto = time.perf_counter() - start_time
             
@@ -262,7 +284,7 @@ def executar_experimento_pulp_para_dataset(dataset_name):
             
             # Armazena explicação
             explicacoes.append({
-                'indice': int(i),
+                'indice': instance_id,  # Usar ID original (compatível com PEAB)
                 'classe_real': classe_real,
                 'tipo_predicao': tipo_pred,
                 'features_selecionadas': features_otimas,
@@ -282,7 +304,7 @@ def executar_experimento_pulp_para_dataset(dataset_name):
         'dataset': dataset_name,
         'metodo': 'pulp',
         'num_instancias': total_instancias,
-        'params': params,
+        'params': meta['params_modelo'],  # Usar parâmetros do pipeline compartilhado
         't_plus': float(t_plus),
         't_minus': float(t_minus),
         'rejection_cost': float(rejection_cost),
@@ -338,9 +360,9 @@ def gerar_relatorio_pulp(results_data: Dict, dataset_name: str):
     """
     Gera relatório detalhado em formato TXT.
     """
-    output_dir = os.path.join(OUTPUT_BASE_DIR, dataset_name)
+    output_dir = os.path.join(OUTPUT_BASE_DIR)
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"R_pulp_{dataset_name}.txt")
+    output_file = os.path.join(output_dir, f"pulp_{dataset_name}.txt")
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("="*80 + "\n")
@@ -404,7 +426,7 @@ def gerar_relatorio_pulp(results_data: Dict, dataset_name: str):
             reverse=True
         )
         for i, exp in enumerate(explicacoes_ordenadas[:10], 1):
-            f.write(f"{i:2d}. Instância {exp['indice']:3d} ({exp['tipo_predicao']:10s}): "
+            f.write(f"{i:2d}. Instância {exp['indice']:>8s} ({exp['tipo_predicao']:10s}): "
                    f"{exp['tamanho']:3d} features - {exp['tempo_segundos']:.4f}s\n")
         f.write("\n")
         
@@ -416,7 +438,7 @@ def gerar_relatorio_pulp(results_data: Dict, dataset_name: str):
             key=lambda x: x['tamanho']
         )
         for i, exp in enumerate(explicacoes_menores[:10], 1):
-            f.write(f"{i:2d}. Instância {exp['indice']:3d} ({exp['tipo_predicao']:10s}): "
+            f.write(f"{i:2d}. Instância {exp['indice']:>8s} ({exp['tipo_predicao']:10s}): "
                    f"{exp['tamanho']:3d} features - {exp['tempo_segundos']:.4f}s\n")
         f.write("\n")
         

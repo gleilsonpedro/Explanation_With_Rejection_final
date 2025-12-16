@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - PIMA_INDIANS_DIABETES
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: pima_indians_diabetes
+Instâncias processadas: 231
+Thresholds: t+ = 0.0779, t- = -0.1096
+Zona de rejeição: 0.1875
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 10,
+  "solver": "saga",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 74.46%
+Acurácia (com rejeição): 81.82%
+Taxa de rejeição: 19.05%
+Risco empírico: 0.2275
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 4.65 features
+Tempo total: 6.76s
+Tempo médio/instância: 0.0293s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 44 (19.0%)
+  - Tamanho médio: 3.34 features
+  - Tempo médio: 0.0300s
+
+NEGATIVA:
+  - Instâncias: 143 (61.9%)
+  - Tamanho médio: 4.02 features
+  - Tempo médio: 0.0292s
+
+REJEITADA:
+  - Instâncias: 44 (19.0%)
+  - Tamanho médio: 7.98 features
+  - Tempo médio: 0.0289s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      417 (REJEITADA ):   8 features - 0.0226s
+ 2. Instância      387 (REJEITADA ):   8 features - 0.0305s
+ 3. Instância      756 (REJEITADA ):   8 features - 0.0270s
+ 4. Instância       78 (REJEITADA ):   8 features - 0.0267s
+ 5. Instância      351 (REJEITADA ):   8 features - 0.0432s
+ 6. Instância      722 (REJEITADA ):   8 features - 0.0218s
+ 7. Instância      330 (REJEITADA ):   8 features - 0.0222s
+ 8. Instância      480 (REJEITADA ):   8 features - 0.0183s
+ 9. Instância      560 (REJEITADA ):   8 features - 0.0227s
+10. Instância      293 (REJEITADA ):   8 features - 0.0196s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      185 (POSITIVA  ):   2 features - 0.0416s
+ 2. Instância      247 (POSITIVA  ):   2 features - 0.0337s
+ 3. Instância      335 (POSITIVA  ):   2 features - 0.0418s
+ 4. Instância      579 (POSITIVA  ):   2 features - 0.0273s
+ 5. Instância      494 (NEGATIVA  ):   2 features - 0.0300s
+ 6. Instância      502 (NEGATIVA  ):   2 features - 0.0331s
+ 7. Instância       43 (POSITIVA  ):   2 features - 0.0219s
+ 8. Instância      359 (POSITIVA  ):   2 features - 0.0189s
+ 9. Instância      332 (POSITIVA  ):   2 features - 0.0383s
+10. Instância       75 (NEGATIVA  ):   2 features - 0.0320s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
