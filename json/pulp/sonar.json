@@ -8,35 +8,35 @@
     "solver": "saga",
     "max_iter": 200
   },
-  "t_plus": 0.6750478881851463,
-  "t_minus": -0.036751975790247526,
+  "t_plus": 0.25964069778992,
+  "t_minus": -0.009734477969248539,
   "rejection_cost": 0.24,
   "metricas_modelo": {
     "acuracia_sem_rejeicao": 0.6825396825396826,
-    "acuracia_com_rejeicao": 0.95,
-    "taxa_rejeicao": 0.6825396825396826,
-    "risco_empirico": 0.21380952380952387
+    "acuracia_com_rejeicao": 0.9444444444444444,
+    "taxa_rejeicao": 0.7142857142857143,
+    "risco_empirico": 0.226984126984127
   },
   "estatisticas_gerais": {
-    "tamanho_medio": 38.07936507936508,
-    "tempo_total_segundos": 2.6237154999398626,
-    "tempo_medio_segundos": 0.04164627777682322
+    "tamanho_medio": 38.15873015873016,
+    "tempo_total_segundos": 3.1817901002941653,
+    "tempo_medio_segundos": 0.050504604766574056
   },
   "estatisticas_por_tipo": {
     "positiva": {
-      "instancias": 12,
-      "tamanho_medio": 40.416666666666664,
-      "tempo_medio": 0.04203094166102043
+      "instancias": 10,
+      "tamanho_medio": 40.4,
+      "tempo_medio": 0.04920538999722339
     },
     "negativa": {
       "instancias": 8,
-      "tamanho_medio": 46.0,
-      "tempo_medio": 0.04388539999490604
+      "tamanho_medio": 44.625,
+      "tempo_medio": 0.04980154999066144
     },
     "rejeitada": {
-      "instancias": 43,
-      "tamanho_medio": 35.95348837209303,
-      "tempo_medio": 0.04112234883833417
+      "instancias": 45,
+      "tamanho_medio": 36.51111111111111,
+      "tempo_medio": 0.05091830667548088
     }
   },
   "explicacoes": [
@@ -46,6 +46,7 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "feature_0",
+        "feature_1",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -58,6 +59,7 @@
         "feature_13",
         "feature_14",
         "feature_16",
+        "feature_17",
         "feature_18",
         "feature_19",
         "feature_20",
@@ -87,12 +89,16 @@
         "feature_46",
         "feature_47",
         "feature_48",
+        "feature_49",
+        "feature_50",
+        "feature_51",
         "feature_53",
+        "feature_55",
         "feature_56",
         "feature_58"
       ],
-      "tamanho": 45,
-      "tempo_segundos": 0.04442619998008013
+      "tamanho": 51,
+      "tempo_segundos": 0.061654900026042014
     },
     {
       "indice": "129",
@@ -123,6 +129,7 @@
         "feature_27",
         "feature_28",
         "feature_30",
+        "feature_31",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -135,8 +142,8 @@
         "feature_48",
         "feature_53"
       ],
-      "tamanho": 35,
-      "tempo_segundos": 0.04168669995851815
+      "tamanho": 36,
+      "tempo_segundos": 0.045482799992896616
     },
     {
       "indice": "23",
@@ -190,11 +197,10 @@
         "feature_54",
         "feature_55",
         "feature_57",
-        "feature_58",
-        "feature_59"
+        "feature_58"
       ],
-      "tamanho": 49,
-      "tempo_segundos": 0.04948290000902489
+      "tamanho": 48,
+      "tempo_segundos": 0.052096900006290525
     },
     {
       "indice": "205",
@@ -213,11 +219,11 @@
         "feature_10",
         "feature_11",
         "feature_12",
-        "feature_13",
         "feature_18",
         "feature_19",
         "feature_20",
         "feature_21",
+        "feature_22",
         "feature_27",
         "feature_32",
         "feature_33",
@@ -235,7 +241,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.039705000002868474
+      "tempo_segundos": 0.043293200025800616
     },
     {
       "indice": "204",
@@ -261,7 +267,6 @@
         "feature_20",
         "feature_21",
         "feature_27",
-        "feature_32",
         "feature_33",
         "feature_34",
         "feature_35",
@@ -276,13 +281,13 @@
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.0366920999949798
+      "tamanho": 32,
+      "tempo_segundos": 0.0430968000437133
     },
     {
       "indice": "119",
       "classe_real": "Mina (Metal)",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "feature_0",
         "feature_1",
@@ -306,8 +311,6 @@
         "feature_20",
         "feature_21",
         "feature_22",
-        "feature_23",
-        "feature_24",
         "feature_25",
         "feature_26",
         "feature_27",
@@ -321,6 +324,7 @@
         "feature_35",
         "feature_36",
         "feature_37",
+        "feature_38",
         "feature_39",
         "feature_41",
         "feature_42",
@@ -333,12 +337,17 @@
         "feature_49",
         "feature_50",
         "feature_51",
+        "feature_52",
         "feature_53",
+        "feature_54",
         "feature_55",
-        "feature_56"
+        "feature_56",
+        "feature_57",
+        "feature_58",
+        "feature_59"
       ],
-      "tamanho": 52,
-      "tempo_segundos": 0.03668279998237267
+      "tamanho": 56,
+      "tempo_segundos": 0.048427200003061444
     },
     {
       "indice": "91",
@@ -360,7 +369,7 @@
         "feature_19",
         "feature_20",
         "feature_21",
-        "feature_22",
+        "feature_26",
         "feature_27",
         "feature_33",
         "feature_34",
@@ -381,7 +390,7 @@
         "feature_57"
       ],
       "tamanho": 34,
-      "tempo_segundos": 0.04502429999411106
+      "tempo_segundos": 0.04697150003630668
     },
     {
       "indice": "111",
@@ -401,7 +410,6 @@
         "feature_11",
         "feature_12",
         "feature_13",
-        "feature_18",
         "feature_20",
         "feature_25",
         "feature_26",
@@ -429,52 +437,11 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 40,
-      "tempo_segundos": 0.039082500035874546
+      "tamanho": 39,
+      "tempo_segundos": 0.04345280001871288
     },
     {
       "indice": "177",
-      "classe_real": "Mina (Metal)",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "feature_0",
-        "feature_1",
-        "feature_2",
-        "feature_3",
-        "feature_4",
-        "feature_5",
-        "feature_6",
-        "feature_7",
-        "feature_8",
-        "feature_9",
-        "feature_10",
-        "feature_11",
-        "feature_12",
-        "feature_18",
-        "feature_19",
-        "feature_20",
-        "feature_21",
-        "feature_22",
-        "feature_27",
-        "feature_33",
-        "feature_34",
-        "feature_35",
-        "feature_36",
-        "feature_42",
-        "feature_43",
-        "feature_44",
-        "feature_45",
-        "feature_46",
-        "feature_47",
-        "feature_48",
-        "feature_50",
-        "feature_51"
-      ],
-      "tamanho": 32,
-      "tempo_segundos": 0.03371649998007342
-    },
-    {
-      "indice": "108",
       "classe_real": "Mina (Metal)",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -512,7 +479,48 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.05004100000951439
+      "tempo_segundos": 0.04962519998662174
+    },
+    {
+      "indice": "108",
+      "classe_real": "Mina (Metal)",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "feature_0",
+        "feature_1",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_26",
+        "feature_27",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_42",
+        "feature_43",
+        "feature_44",
+        "feature_45",
+        "feature_46",
+        "feature_47",
+        "feature_48",
+        "feature_50",
+        "feature_51"
+      ],
+      "tamanho": 32,
+      "tempo_segundos": 0.04526869999244809
     },
     {
       "indice": "99",
@@ -537,6 +545,7 @@
         "feature_27",
         "feature_28",
         "feature_29",
+        "feature_30",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -553,8 +562,8 @@
         "feature_51",
         "feature_57"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.04455059999600053
+      "tamanho": 34,
+      "tempo_segundos": 0.04239580000285059
     },
     {
       "indice": "2",
@@ -587,10 +596,11 @@
         "feature_43",
         "feature_44",
         "feature_46",
-        "feature_47"
+        "feature_47",
+        "feature_51"
       ],
-      "tamanho": 27,
-      "tempo_segundos": 0.044288799981586635
+      "tamanho": 28,
+      "tempo_segundos": 0.04888989997562021
     },
     {
       "indice": "41",
@@ -633,12 +643,11 @@
         "feature_49",
         "feature_50",
         "feature_51",
-        "feature_53",
         "feature_55",
         "feature_57"
       ],
-      "tamanho": 39,
-      "tempo_segundos": 0.03865760000189766
+      "tamanho": 38,
+      "tempo_segundos": 0.042391000024508685
     },
     {
       "indice": "174",
@@ -684,13 +693,16 @@
         "feature_47",
         "feature_48",
         "feature_49",
+        "feature_50",
         "feature_53",
+        "feature_54",
         "feature_55",
         "feature_56",
-        "feature_57"
+        "feature_57",
+        "feature_58"
       ],
-      "tamanho": 43,
-      "tempo_segundos": 0.05020579998381436
+      "tamanho": 46,
+      "tempo_segundos": 0.04383069998584688
     },
     {
       "indice": "103",
@@ -709,13 +721,13 @@
         "feature_10",
         "feature_11",
         "feature_12",
+        "feature_18",
         "feature_19",
         "feature_20",
         "feature_21",
         "feature_26",
         "feature_27",
         "feature_28",
-        "feature_32",
         "feature_33",
         "feature_34",
         "feature_35",
@@ -731,7 +743,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.038070499955210835
+      "tempo_segundos": 0.048578300047665834
     },
     {
       "indice": "104",
@@ -770,12 +782,11 @@
         "feature_46",
         "feature_47",
         "feature_48",
-        "feature_49",
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 35,
-      "tempo_segundos": 0.04879080003593117
+      "tamanho": 34,
+      "tempo_segundos": 0.04330840002512559
     },
     {
       "indice": "58",
@@ -797,14 +808,12 @@
         "feature_12",
         "feature_13",
         "feature_14",
-        "feature_16",
         "feature_17",
         "feature_18",
         "feature_19",
         "feature_20",
         "feature_21",
         "feature_22",
-        "feature_23",
         "feature_27",
         "feature_28",
         "feature_29",
@@ -816,7 +825,6 @@
         "feature_35",
         "feature_36",
         "feature_37",
-        "feature_38",
         "feature_39",
         "feature_41",
         "feature_42",
@@ -829,7 +837,6 @@
         "feature_49",
         "feature_50",
         "feature_51",
-        "feature_52",
         "feature_53",
         "feature_54",
         "feature_55",
@@ -837,8 +844,8 @@
         "feature_58",
         "feature_59"
       ],
-      "tamanho": 54,
-      "tempo_segundos": 0.04892959998687729
+      "tamanho": 50,
+      "tempo_segundos": 0.04076830000849441
     },
     {
       "indice": "169",
@@ -864,6 +871,7 @@
         "feature_27",
         "feature_28",
         "feature_29",
+        "feature_30",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -879,15 +887,16 @@
         "feature_48",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.04238599998643622
+      "tamanho": 34,
+      "tempo_segundos": 0.05209730000933632
     },
     {
       "indice": "101",
       "classe_real": "Mina (Metal)",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "feature_0",
+        "feature_1",
         "feature_2",
         "feature_3",
         "feature_4",
@@ -897,15 +906,14 @@
         "feature_8",
         "feature_9",
         "feature_10",
-        "feature_11",
-        "feature_12",
         "feature_13",
-        "feature_14",
-        "feature_17",
+        "feature_16",
         "feature_18",
         "feature_19",
         "feature_20",
         "feature_21",
+        "feature_22",
+        "feature_23",
         "feature_24",
         "feature_25",
         "feature_26",
@@ -919,8 +927,6 @@
         "feature_34",
         "feature_35",
         "feature_36",
-        "feature_37",
-        "feature_39",
         "feature_41",
         "feature_42",
         "feature_43",
@@ -932,17 +938,14 @@
         "feature_49",
         "feature_50",
         "feature_51",
-        "feature_52",
         "feature_53",
         "feature_54",
         "feature_55",
-        "feature_56",
         "feature_57",
-        "feature_58",
-        "feature_59"
+        "feature_58"
       ],
-      "tamanho": 53,
-      "tempo_segundos": 0.037414400023408234
+      "tamanho": 48,
+      "tempo_segundos": 0.043791300035081804
     },
     {
       "indice": "14",
@@ -951,7 +954,7 @@
       "features_selecionadas": [
         "feature_0",
         "feature_5",
-        "feature_7",
+        "feature_6",
         "feature_8",
         "feature_9",
         "feature_10",
@@ -962,6 +965,7 @@
         "feature_20",
         "feature_21",
         "feature_22",
+        "feature_24",
         "feature_25",
         "feature_26",
         "feature_27",
@@ -984,8 +988,8 @@
         "feature_53",
         "feature_57"
       ],
-      "tamanho": 34,
-      "tempo_segundos": 0.039439800020772964
+      "tamanho": 35,
+      "tempo_segundos": 0.04360680002719164
     },
     {
       "indice": "133",
@@ -1029,14 +1033,13 @@
         "feature_46",
         "feature_47",
         "feature_48",
-        "feature_49",
         "feature_50",
         "feature_51",
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 42,
-      "tempo_segundos": 0.039833799994084984
+      "tamanho": 41,
+      "tempo_segundos": 0.0728201000019908
     },
     {
       "indice": "74",
@@ -1077,7 +1080,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.03985040000407025
+      "tempo_segundos": 0.05281590000959113
     },
     {
       "indice": "144",
@@ -1097,7 +1100,6 @@
         "feature_10",
         "feature_11",
         "feature_12",
-        "feature_13",
         "feature_18",
         "feature_19",
         "feature_20",
@@ -1118,8 +1120,8 @@
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.04188219999196008
+      "tamanho": 32,
+      "tempo_segundos": 0.05253430001903325
     },
     {
       "indice": "203",
@@ -1160,12 +1162,11 @@
         "feature_49",
         "feature_50",
         "feature_51",
-        "feature_54",
         "feature_55",
         "feature_57"
       ],
-      "tamanho": 37,
-      "tempo_segundos": 0.04265830002259463
+      "tamanho": 36,
+      "tempo_segundos": 0.04728840000461787
     },
     {
       "indice": "48",
@@ -1190,6 +1191,7 @@
         "feature_26",
         "feature_27",
         "feature_28",
+        "feature_29",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -1205,8 +1207,8 @@
         "feature_48",
         "feature_51"
       ],
-      "tamanho": 32,
-      "tempo_segundos": 0.040221999981440604
+      "tamanho": 33,
+      "tempo_segundos": 0.0489534999942407
     },
     {
       "indice": "63",
@@ -1244,7 +1246,6 @@
         "feature_34",
         "feature_35",
         "feature_36",
-        "feature_37",
         "feature_41",
         "feature_42",
         "feature_43",
@@ -1262,8 +1263,8 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 48,
-      "tempo_segundos": 0.04666709998855367
+      "tamanho": 47,
+      "tempo_segundos": 0.04956139996647835
     },
     {
       "indice": "123",
@@ -1284,7 +1285,6 @@
         "feature_11",
         "feature_12",
         "feature_13",
-        "feature_14",
         "feature_18",
         "feature_19",
         "feature_20",
@@ -1293,7 +1293,6 @@
         "feature_28",
         "feature_29",
         "feature_30",
-        "feature_32",
         "feature_35",
         "feature_36",
         "feature_41",
@@ -1313,8 +1312,8 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 42,
-      "tempo_segundos": 0.04649830004200339
+      "tamanho": 40,
+      "tempo_segundos": 0.044706800021231174
     },
     {
       "indice": "131",
@@ -1359,7 +1358,7 @@
         "feature_51"
       ],
       "tamanho": 36,
-      "tempo_segundos": 0.04590430000098422
+      "tempo_segundos": 0.050211000023409724
     },
     {
       "indice": "84",
@@ -1389,7 +1388,6 @@
         "feature_27",
         "feature_28",
         "feature_29",
-        "feature_30",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -1412,8 +1410,8 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 45,
-      "tempo_segundos": 0.03859120002016425
+      "tamanho": 44,
+      "tempo_segundos": 0.0503801999730058
     },
     {
       "indice": "59",
@@ -1440,7 +1438,6 @@
         "feature_20",
         "feature_21",
         "feature_22",
-        "feature_27",
         "feature_28",
         "feature_29",
         "feature_30",
@@ -1468,8 +1465,8 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 47,
-      "tempo_segundos": 0.04816850001225248
+      "tamanho": 46,
+      "tempo_segundos": 0.045429799996782094
     },
     {
       "indice": "199",
@@ -1510,13 +1507,12 @@
         "feature_50",
         "feature_51",
         "feature_53",
-        "feature_54",
         "feature_55",
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 38,
-      "tempo_segundos": 0.03937260003294796
+      "tamanho": 37,
+      "tempo_segundos": 0.051538300001993775
     },
     {
       "indice": "21",
@@ -1540,6 +1536,7 @@
         "feature_20",
         "feature_21",
         "feature_22",
+        "feature_24",
         "feature_26",
         "feature_27",
         "feature_28",
@@ -1549,6 +1546,7 @@
         "feature_34",
         "feature_35",
         "feature_36",
+        "feature_39",
         "feature_41",
         "feature_42",
         "feature_43",
@@ -1563,8 +1561,8 @@
         "feature_56",
         "feature_57"
       ],
-      "tamanho": 39,
-      "tempo_segundos": 0.050130799994803965
+      "tamanho": 41,
+      "tempo_segundos": 0.052351600024849176
     },
     {
       "indice": "161",
@@ -1574,7 +1572,6 @@
         "feature_0",
         "feature_1",
         "feature_2",
-        "feature_3",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -1588,6 +1585,7 @@
         "feature_19",
         "feature_20",
         "feature_21",
+        "feature_22",
         "feature_27",
         "feature_32",
         "feature_33",
@@ -1605,7 +1603,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.03685009997570887
+      "tempo_segundos": 0.04851910000434145
     },
     {
       "indice": "168",
@@ -1647,7 +1645,7 @@
         "feature_51"
       ],
       "tamanho": 33,
-      "tempo_segundos": 0.0436424000072293
+      "tempo_segundos": 0.05343379999976605
     },
     {
       "indice": "137",
@@ -1658,6 +1656,7 @@
         "feature_1",
         "feature_2",
         "feature_3",
+        "feature_4",
         "feature_5",
         "feature_6",
         "feature_7",
@@ -1668,7 +1667,9 @@
         "feature_12",
         "feature_13",
         "feature_14",
+        "feature_15",
         "feature_16",
+        "feature_17",
         "feature_18",
         "feature_19",
         "feature_20",
@@ -1689,25 +1690,30 @@
         "feature_35",
         "feature_36",
         "feature_37",
+        "feature_38",
         "feature_39",
+        "feature_40",
         "feature_41",
         "feature_42",
         "feature_43",
         "feature_44",
+        "feature_45",
         "feature_46",
         "feature_47",
         "feature_48",
         "feature_49",
         "feature_50",
         "feature_51",
+        "feature_52",
         "feature_53",
         "feature_54",
+        "feature_55",
         "feature_56",
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 51,
-      "tempo_segundos": 0.03248610004084185
+      "tamanho": 59,
+      "tempo_segundos": 0.04957469995133579
     },
     {
       "indice": "86",
@@ -1748,7 +1754,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.040236700035165995
+      "tempo_segundos": 0.05558980000205338
     },
     {
       "indice": "140",
@@ -1795,7 +1801,7 @@
         "feature_53"
       ],
       "tamanho": 38,
-      "tempo_segundos": 0.03418929997133091
+      "tempo_segundos": 0.05436629999894649
     },
     {
       "indice": "105",
@@ -1806,7 +1812,6 @@
         "feature_1",
         "feature_2",
         "feature_3",
-        "feature_4",
         "feature_5",
         "feature_6",
         "feature_7",
@@ -1815,13 +1820,13 @@
         "feature_10",
         "feature_11",
         "feature_12",
+        "feature_19",
         "feature_20",
         "feature_21",
         "feature_26",
         "feature_27",
         "feature_28",
         "feature_29",
-        "feature_33",
         "feature_34",
         "feature_35",
         "feature_36",
@@ -1838,8 +1843,8 @@
         "feature_51",
         "feature_57"
       ],
-      "tamanho": 35,
-      "tempo_segundos": 0.04575219994876534
+      "tamanho": 34,
+      "tempo_segundos": 0.0618611000245437
     },
     {
       "indice": "77",
@@ -1863,7 +1868,6 @@
         "feature_19",
         "feature_20",
         "feature_21",
-        "feature_27",
         "feature_28",
         "feature_33",
         "feature_34",
@@ -1880,8 +1884,8 @@
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.04077019996475428
+      "tamanho": 32,
+      "tempo_segundos": 0.055438000010326505
     },
     {
       "indice": "110",
@@ -1906,8 +1910,7 @@
         "feature_19",
         "feature_20",
         "feature_21",
-        "feature_22",
-        "feature_29",
+        "feature_27",
         "feature_33",
         "feature_34",
         "feature_35",
@@ -1922,8 +1925,8 @@
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.03550040000118315
+      "tamanho": 32,
+      "tempo_segundos": 0.05326650000642985
     },
     {
       "indice": "92",
@@ -1944,6 +1947,7 @@
         "feature_20",
         "feature_21",
         "feature_22",
+        "feature_24",
         "feature_25",
         "feature_26",
         "feature_27",
@@ -1956,16 +1960,16 @@
         "feature_36",
         "feature_37",
         "feature_39",
+        "feature_42",
         "feature_43",
         "feature_44",
         "feature_45",
         "feature_46",
         "feature_47",
-        "feature_48",
-        "feature_51"
+        "feature_48"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.03739519999362528
+      "tamanho": 34,
+      "tempo_segundos": 0.05079830001341179
     },
     {
       "indice": "1",
@@ -1983,7 +1987,6 @@
         "feature_9",
         "feature_10",
         "feature_13",
-        "feature_16",
         "feature_18",
         "feature_19",
         "feature_20",
@@ -1996,6 +1999,60 @@
         "feature_27",
         "feature_28",
         "feature_29",
+        "feature_30",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_41",
+        "feature_42",
+        "feature_43",
+        "feature_44",
+        "feature_45",
+        "feature_46",
+        "feature_47",
+        "feature_48",
+        "feature_49",
+        "feature_50",
+        "feature_51",
+        "feature_53",
+        "feature_54",
+        "feature_55",
+        "feature_57",
+        "feature_58"
+      ],
+      "tamanho": 44,
+      "tempo_segundos": 0.05450940004084259
+    },
+    {
+      "indice": "82",
+      "classe_real": "Rocha",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24",
+        "feature_25",
+        "feature_26",
+        "feature_27",
         "feature_30",
         "feature_32",
         "feature_33",
@@ -2020,64 +2077,7 @@
         "feature_58"
       ],
       "tamanho": 46,
-      "tempo_segundos": 0.05114930000854656
-    },
-    {
-      "indice": "82",
-      "classe_real": "Rocha",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "feature_0",
-        "feature_1",
-        "feature_2",
-        "feature_3",
-        "feature_4",
-        "feature_5",
-        "feature_6",
-        "feature_7",
-        "feature_8",
-        "feature_9",
-        "feature_10",
-        "feature_11",
-        "feature_12",
-        "feature_13",
-        "feature_16",
-        "feature_18",
-        "feature_19",
-        "feature_20",
-        "feature_21",
-        "feature_22",
-        "feature_23",
-        "feature_24",
-        "feature_25",
-        "feature_26",
-        "feature_27",
-        "feature_29",
-        "feature_30",
-        "feature_32",
-        "feature_33",
-        "feature_34",
-        "feature_35",
-        "feature_36",
-        "feature_41",
-        "feature_42",
-        "feature_43",
-        "feature_44",
-        "feature_45",
-        "feature_46",
-        "feature_47",
-        "feature_48",
-        "feature_49",
-        "feature_50",
-        "feature_51",
-        "feature_53",
-        "feature_54",
-        "feature_55",
-        "feature_57",
-        "feature_58"
-      ],
-      "tamanho": 48,
-      "tempo_segundos": 0.03447939996840432
+      "tempo_segundos": 0.04818060004618019
     },
     {
       "indice": "90",
@@ -2099,7 +2099,7 @@
         "feature_19",
         "feature_20",
         "feature_21",
-        "feature_26",
+        "feature_22",
         "feature_27",
         "feature_28",
         "feature_32",
@@ -2118,7 +2118,7 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.04338420002022758
+      "tempo_segundos": 0.05327679996844381
     },
     {
       "indice": "29",
@@ -2148,7 +2148,6 @@
         "feature_34",
         "feature_35",
         "feature_36",
-        "feature_41",
         "feature_42",
         "feature_43",
         "feature_44",
@@ -2159,53 +2158,12 @@
         "feature_50",
         "feature_51"
       ],
-      "tamanho": 33,
-      "tempo_segundos": 0.040389200032223016
+      "tamanho": 32,
+      "tempo_segundos": 0.05032870004652068
     },
     {
       "indice": "52",
       "classe_real": "Rocha",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "feature_0",
-        "feature_1",
-        "feature_4",
-        "feature_5",
-        "feature_6",
-        "feature_7",
-        "feature_8",
-        "feature_9",
-        "feature_10",
-        "feature_11",
-        "feature_12",
-        "feature_18",
-        "feature_19",
-        "feature_20",
-        "feature_21",
-        "feature_22",
-        "feature_26",
-        "feature_27",
-        "feature_28",
-        "feature_32",
-        "feature_33",
-        "feature_34",
-        "feature_35",
-        "feature_36",
-        "feature_42",
-        "feature_43",
-        "feature_44",
-        "feature_45",
-        "feature_46",
-        "feature_47",
-        "feature_48",
-        "feature_51"
-      ],
-      "tamanho": 32,
-      "tempo_segundos": 0.04288840002845973
-    },
-    {
-      "indice": "158",
-      "classe_real": "Mina (Metal)",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "feature_0",
@@ -2242,7 +2200,48 @@
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.04467350000049919
+      "tempo_segundos": 0.050825899990741163
+    },
+    {
+      "indice": "158",
+      "classe_real": "Mina (Metal)",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "feature_0",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_25",
+        "feature_26",
+        "feature_27",
+        "feature_28",
+        "feature_29",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_42",
+        "feature_43",
+        "feature_44",
+        "feature_45",
+        "feature_46",
+        "feature_47",
+        "feature_48",
+        "feature_51"
+      ],
+      "tamanho": 32,
+      "tempo_segundos": 0.043229599948972464
     },
     {
       "indice": "32",
@@ -2252,7 +2251,6 @@
         "feature_0",
         "feature_5",
         "feature_6",
-        "feature_7",
         "feature_8",
         "feature_9",
         "feature_10",
@@ -2270,6 +2268,7 @@
         "feature_27",
         "feature_28",
         "feature_29",
+        "feature_30",
         "feature_31",
         "feature_32",
         "feature_33",
@@ -2286,7 +2285,7 @@
         "feature_53"
       ],
       "tamanho": 35,
-      "tempo_segundos": 0.04097580001689494
+      "tempo_segundos": 0.04669099999591708
     },
     {
       "indice": "94",
@@ -2317,6 +2316,7 @@
         "feature_34",
         "feature_35",
         "feature_36",
+        "feature_37",
         "feature_42",
         "feature_43",
         "feature_44",
@@ -2326,8 +2326,8 @@
         "feature_48",
         "feature_51"
       ],
-      "tamanho": 32,
-      "tempo_segundos": 0.03337459999602288
+      "tamanho": 33,
+      "tempo_segundos": 0.05261359998257831
     },
     {
       "indice": "88",
@@ -2352,6 +2352,7 @@
         "feature_22",
         "feature_26",
         "feature_27",
+        "feature_28",
         "feature_32",
         "feature_33",
         "feature_34",
@@ -2364,11 +2365,10 @@
         "feature_46",
         "feature_47",
         "feature_48",
-        "feature_50",
         "feature_51"
       ],
       "tamanho": 32,
-      "tempo_segundos": 0.03550040000118315
+      "tempo_segundos": 0.04616110003553331
     },
     {
       "indice": "184",
@@ -2377,6 +2377,7 @@
       "features_selecionadas": [
         "feature_5",
         "feature_6",
+        "feature_7",
         "feature_8",
         "feature_9",
         "feature_10",
@@ -2399,8 +2400,8 @@
         "feature_47",
         "feature_48"
       ],
-      "tamanho": 23,
-      "tempo_segundos": 0.04069090000120923
+      "tamanho": 24,
+      "tempo_segundos": 0.042130000016186386
     },
     {
       "indice": "97",
@@ -2408,6 +2409,7 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "feature_0",
+        "feature_3",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -2448,8 +2450,8 @@
         "feature_58",
         "feature_59"
       ],
-      "tamanho": 40,
-      "tempo_segundos": 0.042481399956159294
+      "tamanho": 41,
+      "tempo_segundos": 0.08839170000283048
     },
     {
       "indice": "57",
@@ -2503,7 +2505,7 @@
         "feature_58"
       ],
       "tamanho": 45,
-      "tempo_segundos": 0.036765499971807
+      "tempo_segundos": 0.06465719995321706
     },
     {
       "indice": "37",
@@ -2530,7 +2532,6 @@
         "feature_20",
         "feature_21",
         "feature_26",
-        "feature_27",
         "feature_29",
         "feature_30",
         "feature_31",
@@ -2539,7 +2540,6 @@
         "feature_34",
         "feature_35",
         "feature_36",
-        "feature_39",
         "feature_41",
         "feature_42",
         "feature_43",
@@ -2557,8 +2557,8 @@
         "feature_57",
         "feature_58"
       ],
-      "tamanho": 46,
-      "tempo_segundos": 0.03655379998963326
+      "tamanho": 44,
+      "tempo_segundos": 0.0559775999863632
     },
     {
       "indice": "20",
@@ -2577,9 +2577,9 @@
         "feature_11",
         "feature_12",
         "feature_13",
-        "feature_18",
         "feature_19",
         "feature_20",
+        "feature_21",
         "feature_25",
         "feature_26",
         "feature_27",
@@ -2602,7 +2602,7 @@
         "feature_57"
       ],
       "tamanho": 35,
-      "tempo_segundos": 0.04343199997674674
+      "tempo_segundos": 0.0510630999924615
     },
     {
       "indice": "60",
@@ -2610,6 +2610,7 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "feature_0",
+        "feature_3",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -2619,6 +2620,7 @@
         "feature_10",
         "feature_11",
         "feature_12",
+        "feature_13",
         "feature_16",
         "feature_18",
         "feature_19",
@@ -2643,14 +2645,14 @@
         "feature_39",
         "feature_42",
         "feature_44",
-        "feature_47",
         "feature_48",
         "feature_49",
+        "feature_50",
         "feature_51",
         "feature_56"
       ],
-      "tamanho": 39,
-      "tempo_segundos": 0.03665040002670139
+      "tamanho": 41,
+      "tempo_segundos": 0.057349100010469556
     },
     {
       "indice": "130",
@@ -2658,6 +2660,7 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "feature_0",
+        "feature_1",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -2695,10 +2698,10 @@
         "feature_50",
         "feature_51",
         "feature_53",
-        "feature_57"
+        "feature_56"
       ],
-      "tamanho": 39,
-      "tempo_segundos": 0.036380000005010515
+      "tamanho": 40,
+      "tempo_segundos": 0.04976460000034422
     },
     {
       "indice": "202",
@@ -2736,20 +2739,20 @@
         "feature_46",
         "feature_47",
         "feature_48",
-        "feature_49",
         "feature_50",
         "feature_51",
         "feature_53",
         "feature_57"
       ],
-      "tamanho": 36,
-      "tempo_segundos": 0.043383800017181784
+      "tamanho": 35,
+      "tempo_segundos": 0.052273099950980395
     },
     {
       "indice": "71",
       "classe_real": "Rocha",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
+        "feature_3",
         "feature_4",
         "feature_5",
         "feature_6",
@@ -2760,6 +2763,7 @@
         "feature_11",
         "feature_12",
         "feature_13",
+        "feature_14",
         "feature_16",
         "feature_18",
         "feature_19",
@@ -2790,12 +2794,14 @@
         "feature_46",
         "feature_47",
         "feature_48",
+        "feature_50",
         "feature_51",
+        "feature_53",
         "feature_56",
         "feature_57"
       ],
-      "tamanho": 43,
-      "tempo_segundos": 0.03735749999759719
+      "tamanho": 47,
+      "tempo_segundos": 0.04626630002167076
     },
     {
       "indice": "124",
@@ -2803,6 +2809,7 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "feature_0",
+        "feature_1",
         "feature_2",
         "feature_3",
         "feature_4",
@@ -2843,12 +2850,13 @@
         "feature_44",
         "feature_45",
         "feature_46",
+        "feature_50",
         "feature_51",
         "feature_53",
         "feature_56"
       ],
-      "tamanho": 44,
-      "tempo_segundos": 0.05196599999908358
+      "tamanho": 46,
+      "tempo_segundos": 0.04421219998039305
     },
     {
       "indice": "182",
@@ -2889,10 +2897,11 @@
         "feature_46",
         "feature_47",
         "feature_48",
-        "feature_50"
+        "feature_50",
+        "feature_51"
       ],
-      "tamanho": 35,
-      "tempo_segundos": 0.05395430000498891
+      "tamanho": 36,
+      "tempo_segundos": 0.05214780004462227
     },
     {
       "indice": "51",
@@ -2918,7 +2927,6 @@
         "feature_20",
         "feature_21",
         "feature_22",
-        "feature_27",
         "feature_28",
         "feature_29",
         "feature_33",
@@ -2940,8 +2948,8 @@
         "feature_55",
         "feature_57"
       ],
-      "tamanho": 40,
-      "tempo_segundos": 0.04585819999920204
+      "tamanho": 39,
+      "tempo_segundos": 0.04753019998315722
     },
     {
       "indice": "143",
@@ -2974,7 +2982,6 @@
         "feature_25",
         "feature_26",
         "feature_27",
-        "feature_28",
         "feature_29",
         "feature_30",
         "feature_31",
@@ -2983,8 +2990,6 @@
         "feature_34",
         "feature_35",
         "feature_36",
-        "feature_37",
-        "feature_38",
         "feature_39",
         "feature_42",
         "feature_43",
@@ -3003,8 +3008,8 @@
         "feature_58",
         "feature_59"
       ],
-      "tamanho": 54,
-      "tempo_segundos": 0.03555089997826144
+      "tamanho": 51,
+      "tempo_segundos": 0.0537437999737449
     }
   ]
 }

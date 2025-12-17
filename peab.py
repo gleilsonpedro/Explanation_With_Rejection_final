@@ -8,6 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.feature_selection import SelectKBest, f_classif
 from typing import List, Tuple, Dict, Any, Set
 
 # Imports do seu projeto
@@ -207,10 +208,10 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
         MIN_VEC = np.zeros_like(coefs) 
         MAX_VEC = np.ones_like(coefs)
 
-    EPSILON = 1e-6
-    max_abs = norm_params['max_abs']
+    EPSILON = 1e-3
     
     #[CORREÇÃO CRÍTICA] Para rejeitadas: testar AMBAS as direções
+    # USAR SCORES BRUTOS (SEM NORMALIZAÇÃO)
     if is_rejected:
         # Perturbação para BAIXO (tentar cair abaixo de t_minus)
         X_teste_baixo = np.where(coefs > 0, MIN_VEC, MAX_VEC)
@@ -218,25 +219,25 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
             idx_fixos = list(indices_explicacao)
             X_teste_baixo[idx_fixos] = vals_s[idx_fixos]
         score_baixo = intercept + np.dot(X_teste_baixo, coefs)
-        score_baixo_norm = score_baixo / max_abs if max_abs > 0 else score_baixo
         
         # Perturbação para CIMA (tentar subir acima de t_plus)
         X_teste_cima = np.where(coefs > 0, MAX_VEC, MIN_VEC)
         if indices_explicacao:
             X_teste_cima[idx_fixos] = vals_s[idx_fixos]
         score_cima = intercept + np.dot(X_teste_cima, coefs)
-        score_cima_norm = score_cima / max_abs if max_abs > 0 else score_cima
         
         # Explicação é suficiente se AMBAS as perturbações ficam na zona de rejeição
-        valido_baixo = (score_baixo_norm >= t_minus - EPSILON)
-        valido_cima = (score_cima_norm <= t_plus + EPSILON)
+        # USAR SCORES BRUTOS diretamente com thresholds brutos
+        valido_baixo = (score_baixo >= t_minus - EPSILON)
+        valido_cima = (score_cima <= t_plus + EPSILON)
         
         # Retorna média dos scores como referência (para debug)
-        score_medio = (score_baixo_norm + score_cima_norm) / 2.0
+        score_medio = (score_baixo + score_cima) / 2.0
         return (valido_baixo and valido_cima), score_medio
     
     else:
         # Classificadas: testar apenas uma direção (comportamento original)
+        # USAR SCORES BRUTOS (SEM NORMALIZAÇÃO)
         empurrar_para_baixo = (direcao_override == 1)
         X_teste = np.where(coefs > 0, MIN_VEC, MAX_VEC) if empurrar_para_baixo else np.where(coefs > 0, MAX_VEC, MIN_VEC)
         
@@ -245,19 +246,19 @@ def perturbar_e_validar_otimizado(vals_s: np.ndarray, coefs: np.ndarray, score_o
             X_teste[idx_fixos] = vals_s[idx_fixos]
 
         score_pert = intercept + np.dot(X_teste, coefs)
-        score_pert_norm = score_pert / max_abs if max_abs > 0 else score_pert
         
         # Classificadas: manter no lado correto do limiar correspondente
+        # USAR SCORES BRUTOS diretamente com thresholds brutos
         if pred_class_orig == 1:
-            return (score_pert_norm >= t_plus - EPSILON), score_pert_norm
+            return (score_pert >= t_plus - EPSILON), score_pert
         else:
-            return (score_pert_norm <= t_minus + EPSILON), score_pert_norm
+            return (score_pert <= t_minus + EPSILON), score_pert
 
 def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: List[str], 
                    X_train: pd.DataFrame, t_plus: float, t_minus: float, norm_params: Dict[str, float], is_rejected: bool, 
                    premisa_ordenacao: int, benchmark_mode: bool = False) -> Tuple[List[str], int]:
     
-    #[NORM_THRESHOLD] Recebe norm_params para passar às validações perturbadas
+    # norm_params mantido para compatibilidade (max_abs=1.0)
     # Pré-cálculos
     scaler = modelo.named_steps['scaler']
     logreg = _get_lr(modelo)
@@ -280,7 +281,6 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     indices_ordenados = np.argsort(-np.abs(deltas_para_ordenar)) # ordena os índices por impacto absoluto decrescente
     num_features_total = X_train.shape[1]
     
-    #[NORM_THRESHOLD] Passa norm_params para perturbar_e_validar_otimizado em fase_1_reforco
     while True:
         if is_rejected: 
             valido1, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, expl_robusta_indices, intercept, modelo, t_plus, t_minus, norm_params, 1, pred_class_orig, True) # testa empurrar para baixo
@@ -316,7 +316,6 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
     intercept = logreg.intercept_[0]
-    #[NORM_THRESHOLD] Recebe norm_params para passar às validações
     # Garantir mesma ordem de colunas do treino antes de transformar
     instance_df_ordered = instance_df[X_train.columns]
     vals_s = scaler.transform(instance_df_ordered)[0]
@@ -344,7 +343,6 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
         
         remocao_bem_sucedida = False
         
-        #[NORM_THRESHOLD] Passa norm_params para perturbar_e_validar_otimizado
         if is_rejected:
             valido1, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, norm_params, 1, pred_class_orig, True)
             valido2, _ = perturbar_e_validar_otimizado(vals_s, coefs, score_orig, indices_atuais, intercept, modelo, t_plus, t_minus, norm_params, 0, pred_class_orig, True)
@@ -370,14 +368,10 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     return expl_minima_str, remocoes
 
 def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_train: pd.DataFrame, t_plus: float, t_minus: float, norm_params: Dict[str, float], benchmark_mode: bool = False) -> Tuple[List[str], List[str], int, int]:
-    #[NORM_THRESHOLD] ANTES: Usava score bruto diretamente com thresholds brutos
-    #[NORM_THRESHOLD] DEPOIS: Normaliza score usando z-score + escala para [-1,+1] centralizado
+    # USAR SCORES BRUTOS (SEM NORMALIZAÇÃO)
     score_raw = modelo.decision_function(instancia_df)[0]
-    #[NORM_THRESHOLD] Normalização SEM centralização: mantém zero original
-    max_abs = norm_params['max_abs']
-    score_norm = score_raw / max_abs if max_abs > 0 else score_raw
     
-    is_rejected = t_minus <= score_norm <= t_plus
+    is_rejected = t_minus <= score_raw <= t_plus
     log_formatado: List[str] = []
     emit_tech_logs = (not benchmark_mode) and TECHNICAL_LOGS and (X_train.shape[1] <= MAX_LOG_FEATURES)
 
@@ -386,7 +380,6 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             log_formatado.append(LOG_TEMPLATES['rejeitada_analise'].format(t_minus=t_minus, t_plus=t_plus))
 
         # Para rejeitadas, começar com conjunto vazio e usar fase 1 para adicionar features
-        #[NORM_THRESHOLD] Passa norm_params para fase 1 e 2 (necessário para validação perturbada)
         expl_inicial_vazia = []
         expl_robusta_p1, adicoes1 = fase_1_reforco(modelo, instancia_df, expl_inicial_vazia, X_train, t_plus, t_minus, norm_params, True, 1, benchmark_mode)
         passos_p1: List[Dict[str, Any]] = []
@@ -414,7 +407,6 @@ def gerar_explicacao_instancia(instancia_df: pd.DataFrame, modelo: Pipeline, X_t
             posicao = 'acima de t+' if pred_class == 1 else 'abaixo de t-'
             log_formatado.append(LOG_TEMPLATES['classificada_analise'].format(posicao=posicao))
 
-        #[NORM_THRESHOLD] Passa norm_params para todas as funções de explicação
         expl_inicial = one_explanation_formal(modelo, instancia_df, X_train, t_plus, t_minus, pred_class)
         if DISABLE_REFORCO_CLASSIFICADAS:
             expl_robusta = expl_inicial
@@ -459,96 +451,133 @@ def aplicar_selecao_top_k_features(X_train: pd.DataFrame, X_test: pd.DataFrame, 
     selected_features = [X_train.columns[i] for i in indices_top]
     return X_train[selected_features], X_test[selected_features], selected_features
 
-def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejection_cost: float, logreg_params: Dict[str, Any], dataset_name: str = "UNKNOWN") -> Tuple[Pipeline, float, float, Dict[str, Any]]:
-    """Recebe dados JÁ DIVIDIDOS para consistência."""
+def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejection_cost: float, logreg_params: Dict[str, Any], dataset_name: str = "UNKNOWN", val_size: float = 0.2) -> Tuple[Pipeline, float, float, Dict[str, Any]]:
+    """
+    [CORREÇÃO CRÍTICA] Otimiza thresholds em conjunto de VALIDAÇÃO separado.
+    
+    Fundamentação:
+    - Fumera & Roli (2002): "threshold optimization should be performed on independent validation set"
+    - Otimizar thresholds no mesmo conjunto usado para treinar causa overfitting
+    - Split treino/validação garante generalização dos thresholds
+    
+    Args:
+        X_train: Features de treino
+        y_train: Labels de treino
+        rejection_cost: Custo de rejeição
+        logreg_params: Hiperparâmetros do LogisticRegression
+        dataset_name: Nome do dataset (para logs)
+        val_size: Fração do treino usada para validação (padrão: 0.2)
+    
+    Returns:
+        pipeline: Modelo treinado com TODO o conjunto de treino
+        t_plus: Threshold positivo otimizado em validação
+        t_minus: Threshold negativo otimizado em validação
+        model_params: Parâmetros do modelo
+    """
+    
+    #==============================================================================
+    # PASSO 1: SPLIT TREINO/VALIDAÇÃO (evitar overfitting dos thresholds)
+    #==============================================================================
+    print(f"\n[VALIDAÇÃO] Dividindo treino em: {int((1-val_size)*100)}% treino + {int(val_size*100)}% validação")
+    X_train_sub, X_val, y_train_sub, y_val = train_test_split(
+        X_train, y_train, 
+        test_size=val_size, 
+        random_state=RANDOM_STATE, 
+        stratify=y_train
+    )
+    print(f"[VALIDAÇÃO] Treino: {len(X_train_sub)} instâncias, Validação: {len(X_val)} instâncias")
+    
+    #==============================================================================
+    # PASSO 2: TREINAR MODELO NO SUBCONJUNTO DE TREINO
+    #==============================================================================
     pipeline = Pipeline([
         ('scaler', MinMaxScaler()),
         ('model', LogisticRegression(random_state=RANDOM_STATE, **logreg_params)),
     ])
-    pipeline.fit(X_train, y_train)
+    pipeline.fit(X_train_sub, y_train_sub)
 
-    #[NORM_THRESHOLD] ANTES: Usava decision_scores brutos (podiam estar em qualquer faixa, ex: [-5, 3])
-    #[NORM_THRESHOLD] DEPOIS: Normaliza para [-1, +1] MANTENDO zero original (hiperplano de decisão)
-    # CRÍTICO: NÃO centralizar pela média! Zero deve permanecer onde score_original=0 (P(y=1)=0.5)
-    # Conforme Chow (1970): zona de rejeição deve estar onde o MODELO está incerto,
-    # não onde os DADOS são típicos (média). Com dados desbalanceados, média ≠ hiperplano!
-    decision_scores = pipeline.decision_function(X_train)
-    
-    # Normalização simétrica: escala mantendo zero no lugar (preserva hiperplano P=0.5)
-    min_score = float(decision_scores.min())
-    max_score = float(decision_scores.max())
-    max_abs_original = max(abs(min_score), abs(max_score))
-    decision_scores_norm = decision_scores / max_abs_original if max_abs_original > 0 else decision_scores
-    
-    # Salva parâmetros para normalização de teste
-    # IMPORTANTE: Apenas max_abs, SEM mean/std (não centralizamos!)
-    norm_params_temp = {
-        'max_abs': max_abs_original
-    }
-    
-    #[GRID_ADAPTATIVO] CORREÇÃO CRÍTICA: Grid search ADAPTATIVO aos dados normalizados
-    # ANTES: Grid fixo [-1, +1] testava valores impossíveis (ex: T-=-1 quando min_norm=0.27)
-    # AGORA: Grid adaptativo ao range real dos dados normalizados
-    # Fundamentação teórica:
-    #   - Chow (1970): otimizar risk nos dados OBSERVADOS
-    #   - Fumera & Roli (2002): thresholds por validação empírica
-    #   - Cortes et al. (2016): "thresholds are DATA-DEPENDENT"
-    
-    min_norm = float(decision_scores_norm.min())
-    max_norm = float(decision_scores_norm.max())
-    
-    # Grid search no range REAL dos dados normalizados
-    search_space = np.linspace(min_norm, max_norm, 100)
-    
-    # Separar valores negativos e positivos para garantir t- < 0 < t+
-    negative_space = search_space[search_space < 0]
-    positive_space = search_space[search_space > 0]
-    
-    # Casos especiais: dados todos positivos ou todos negativos
-    if len(negative_space) == 0:
-        # Dados todos positivos: criar grid negativo artificial
-        # Estratégia: usar range conservador abaixo de zero
-        negative_space = np.linspace(-0.5, -0.01, 25)
-    
-    if len(positive_space) == 0:
-        # Dados todos negativos: criar grid positivo artificial
-        positive_space = np.linspace(0.01, 0.5, 25)
-    
-    best_risk, best_t_plus, best_t_minus = float('inf'), 0.0, 0.0
-    
+    #==============================================================================
+    # PASSO 3: OTIMIZAR THRESHOLDS NO CONJUNTO DE VALIDAÇÃO (NÃO NO TREINO!)
+    #==============================================================================
+    # Usar scores BRUTOS (sem normalização!)
+    decision_scores_val = pipeline.decision_function(X_val)
+    decision_scores_raw = decision_scores_val
+
+    min_raw = float(decision_scores_raw.min())
+    max_raw = float(decision_scores_raw.max())
+
     print(f"\n[GRID_ADAPTATIVO] Dataset: {dataset_name}")
-    print(f"[GRID_ADAPTATIVO] Scores normalizados: [{min_norm:.6f}, {max_norm:.6f}]")
-    print(f"[GRID_ADAPTATIVO] Grid negativo: {len(negative_space)} pontos em [{negative_space.min():.6f}, {negative_space.max():.6f}]")
-    print(f"[GRID_ADAPTATIVO] Grid positivo: {len(positive_space)} pontos em [{positive_space.min():.6f}, {positive_space.max():.6f}]")
-    print(f"[GRID_ADAPTATIVO] Total combinações: {len(negative_space) * len(positive_space)}")
-    
-    # Grid search: t_minus vem dos negativos, t_plus dos positivos
-    for t_minus in negative_space:
-        for t_plus in positive_space:
-            # Garantir t_minus < 0 < t_plus (restrição teórica de Chow 1970)
-            if t_minus >= 0.0 or t_plus <= 0.0: 
+    print(f"[GRID_ADAPTATIVO] Scores brutos (VALIDAÇÃO): [{min_raw:.6f}, {max_raw:.6f}]")
+
+    # ESTRATÉGIA: Garantir que 0 esteja entre t- e t+
+    num_points = 50
+
+    # SEPARA scores negativos e positivos reais
+    scores_neg = decision_scores_raw[decision_scores_raw < 0]
+    scores_pos = decision_scores_raw[decision_scores_raw > 0]
+
+    # CRÍTICO: Garantir que t- seja negativo e t+ positivo
+    if len(scores_neg) == 0:
+        # Não há scores negativos → criar grid negativo artificial
+        t_minus_grid = np.linspace(min_raw - 1.0, -0.01, num_points)
+    else:
+        t_minus_grid = np.linspace(scores_neg.min(), max(scores_neg.max() * 0.9, -0.01), num_points)
+
+    if len(scores_pos) == 0:
+        # Não há scores positivos → criar grid positivo artificial
+        t_plus_grid = np.linspace(0.01, max_raw + 1.0, num_points)
+    else:
+        t_plus_grid = np.linspace(min(scores_pos.min() * 1.1, 0.01), scores_pos.max(), num_points)
+
+    # GARANTIR t- < 0 < t+ (filtra valores incorretos)
+    t_minus_grid = t_minus_grid[t_minus_grid < 0]
+    t_plus_grid = t_plus_grid[t_plus_grid > 0]
+
+    # Fallback se ainda vazio
+    if len(t_minus_grid) == 0:
+        t_minus_grid = np.linspace(-2.0, -0.01, num_points)
+    if len(t_plus_grid) == 0:
+        t_plus_grid = np.linspace(0.01, 2.0, num_points)
+
+    print(f"[GRID_ADAPTATIVO] Grid negativo: {len(t_minus_grid)} pontos em [{t_minus_grid.min():.6f}, {t_minus_grid.max():.6f}]")
+    print(f"[GRID_ADAPTATIVO] Grid positivo: {len(t_plus_grid)} pontos em [{t_plus_grid.min():.6f}, {t_plus_grid.max():.6f}]")
+    print(f"[GRID_ADAPTATIVO] Total combinações: {len(t_minus_grid) * len(t_plus_grid)}")
+
+    best_risk, best_t_plus, best_t_minus = float('inf'), 0.1, -0.1
+
+    # Grid search em scores BRUTOS do conjunto de VALIDAÇÃO
+    for t_minus in t_minus_grid:
+        for t_plus in t_plus_grid:
+            # GARANTIR RESTRIÇÃO TEÓRICA: t- < 0 < t+
+            if not (t_minus < 0 < t_plus):
                 continue
-            if MIN_REJECTION_WIDTH > 0.0 and (t_plus - t_minus) < MIN_REJECTION_WIDTH: 
+                
+            if MIN_REJECTION_WIDTH > 0.0 and (t_plus - t_minus) < MIN_REJECTION_WIDTH:
                 continue
             
-            # Classificar com reject option
-            y_pred = np.full(y_train.shape, -1)
-            accepted = (decision_scores_norm >= t_plus) | (decision_scores_norm <= t_minus)
-            y_pred[decision_scores_norm >= t_plus] = 1
-            y_pred[decision_scores_norm <= t_minus] = 0
+            # Classificar com reject option (usando scores BRUTOS de VALIDAÇÃO)
+            y_pred = np.full(y_val.shape, -1)
+            accepted = (decision_scores_raw >= t_plus) | (decision_scores_raw <= t_minus)
+            y_pred[decision_scores_raw >= t_plus] = 1
+            y_pred[decision_scores_raw <= t_minus] = 0
             
-            error_rate = np.mean(y_pred[accepted] != y_train[accepted]) if np.any(accepted) else 0.0
+            error_rate = np.mean(y_pred[accepted] != y_val[accepted]) if np.any(accepted) else 0.0
             rejection_rate = 1.0 - np.mean(accepted)
             risk = float(error_rate + rejection_cost * rejection_rate)
             
             if risk < best_risk:
                 best_risk, best_t_plus, best_t_minus = risk, t_plus, t_minus
 
-    print(f"[GRID_ADAPTATIVO] Thresholds ótimos: T+={best_t_plus:.6f}, T-={best_t_minus:.6f}, risk={best_risk:.6f}\n")
+    print(f"[GRID_ADAPTATIVO] Thresholds ótimos (validação): T+={best_t_plus:.6f}, T-={best_t_minus:.6f}, risk={best_risk:.6f}")
+    
+    #==============================================================================
+    # PASSO 4: RETREINAR COM TODO O CONJUNTO DE TREINO (usando thresholds ótimos)
+    #==============================================================================
+    print(f"[VALIDAÇÃO] Retreinando com TODO o treino ({len(X_train)} instâncias) usando thresholds ótimos\n")
+    pipeline.fit(X_train, y_train)
 
-    #[NORM_THRESHOLD] ANTES: Retornava apenas pipeline, thresholds e model_params básicos
-    #[NORM_THRESHOLD] DEPOIS: Adiciona norm_params com max_abs para normalizar scores de teste
-    #[NORM_THRESHOLD] Normalização [-1, +1] MANTENDO zero original (hiperplano P=0.5)
+    # REMOVER cálculo de max_abs e normalização
+    norm_params_temp = {'max_abs': 1.0}  # Placeholder para compatibilidade
     coefs = pipeline.named_steps['model'].coef_[0]
     model_params = {
         'coefs': {name: float(w) for name, w in zip(list(X_train.columns), coefs)},
@@ -557,7 +586,7 @@ def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejectio
         'norm_params': norm_params_temp,
         **logreg_params
     }
-    #[NORM_THRESHOLD] Retorna thresholds NORMALIZADOS (no espaço [-1, +1])
+    # Retorna thresholds em scores BRUTOS (RAW)
     return pipeline, float(best_t_plus), float(best_t_minus), model_params
 
 def coletar_metricas(resultados_instancias, y_test, y_pred_test_final, rejected_mask,
@@ -614,7 +643,6 @@ def montar_dataset_cache(dataset_name: str,
                          metricas_dict: Dict[str, Any],
                          y_pred_test: np.ndarray,
                          decision_scores_test: np.ndarray,
-                         decision_scores_norm: np.ndarray,
                          rejected_mask: np.ndarray,
                          resultados_instancias: List[Dict[str, Any]]):
     
@@ -636,7 +664,6 @@ def montar_dataset_cache(dataset_name: str,
             'y_pred': int(y_pred_test[i]) if int(y_pred_test[i]) in (0, 1) else -1,
             'rejected': bool(rejected_mask[i]),
             'decision_score': float(decision_scores_test[i]),
-            'decision_score_normalized': float(decision_scores_norm[i]),
             'explanation': list(resultados_instancias[i]['explicacao']),
             'explanation_size': int(resultados_instancias[i]['tamanho_explicacao'])
         })
@@ -661,17 +688,11 @@ def montar_dataset_cache(dataset_name: str,
             'subsample_size': float(DATASET_CONFIG.get(dataset_name, {}).get('subsample_size', 0.0)) if DATASET_CONFIG.get(dataset_name, {}).get('subsample_size') else None,
             **mnist_meta
         },
-        #[NORM_THRESHOLD] ANTES: Salvava apenas thresholds sem indicar que eram normalizados
-        #[NORM_THRESHOLD] DEPOIS: Deixa explícito que são thresholds NORMALIZADOS e salva parâmetros de normalização
         'thresholds': {
-            't_plus': float(t_plus),  # Threshold normalizado no espaço [-1, +1] centralizado
-            't_minus': float(t_minus),  # Threshold normalizado no espaço [-1, +1] centralizado
+            't_plus': float(t_plus),  # Threshold no espaço de scores brutos (RAW)
+            't_minus': float(t_minus),  # Threshold no espaço de scores brutos (RAW)
             'rejection_zone_width': float(t_plus - t_minus),
-            'normalization': {
-                'max_abs': float(model_params.get('norm_params', {}).get('max_abs', 1.0)),
-                'note': 'Normalization preserves original zero (decision boundary at P=0.5)',
-                'note': 'Thresholds are in normalized space [-1, +1] centered at zero. Transform: z = (score - mean) / std; norm = z / max_abs'
-            }
+            'note': 'Thresholds are in RAW score space (no normalization applied). Guarantees t- < 0 < t+ to preserve probabilistic interpretation.'
         },
         'performance': {
             'accuracy_without_rejection': float(metricas_dict['acuracia_sem_rejeicao']),
@@ -831,38 +852,48 @@ def executar_experimento_para_dataset(dataset_name: str):
     # [CORREÇÃO] Split Único e Consistente
     X_train, X_test, y_train, y_test = train_test_split(X_full, y_full, test_size=test_size, random_state=RANDOM_STATE, stratify=y_full)
 
-    # Redução Top-K
+    # [CORREÇÃO CRÍTICA] Seleção de features sem data leakage
+    # ANTES: Usava modelo treinado com rejection → data leakage!
+    # DEPOIS: Usa teste estatístico (f_classif) independente do modelo final
     cfg = DATASET_CONFIG.get(dataset_name, {})
     top_k = cfg.get('top_k_features', None)
     if top_k and top_k > 0 and top_k < X_train.shape[1]:
-        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params, dataset_name)
-        logreg_tmp = _get_lr(modelo_temp)
-        idx_top = np.argsort(np.abs(logreg_tmp.coef_[0]))[::-1][:top_k]
-        feats = X_train.columns[idx_top]
-        X_train, X_test = X_train[feats], X_test[feats]
+        print(f"\n[FEATURE_SELECTION] Selecionando top-{top_k} features (método: f_classif ANOVA)")
+        print(f"[FEATURE_SELECTION] Features antes: {X_train.shape[1]}")
+        
+        # Seleção usando APENAS dados de treino (sem vazar informação)
+        selector = SelectKBest(score_func=f_classif, k=top_k)
+        selector.fit(X_train, y_train)  # APENAS TREINO!
+        
+        selected_indices = selector.get_support(indices=True)
+        selected_features = X_train.columns[selected_indices]
+        
+        # Aplicar seleção em treino E teste
+        X_train = X_train[selected_features]
+        X_test = X_test[selected_features]
+        
+        print(f"[FEATURE_SELECTION] Features após: {X_train.shape[1]}")
+        print(f"[FEATURE_SELECTION] Features selecionadas: {list(selected_features)[:10]}..." if len(selected_features) > 10 else f"[FEATURE_SELECTION] Features selecionadas: {list(selected_features)}")
+        print()
 
     # Treino Final com dados consistentes
     modelo, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(X_train, y_train, rejection_cost, params, dataset_name)
 
     print(f"\n{'='*40}")
-    print(f"THRESHOLDS CALCULADOS (espaço [-1, +1] centralizado):")
+    print(f"THRESHOLDS CALCULADOS (scores brutos):")
     print(f" T+ (Plus):     {t_plus:.4f}")
     print(f" T- (Minus):    {t_minus:.4f}")
     print(f" Rejection Zone: {t_plus - t_minus:.4f}")
     print(f"{'='*40}\n")
 
-    #[NORM_THRESHOLD] ANTES: Aplicava thresholds normalizados em scores brutos (INCONSISTENTE!)
-    #[NORM_THRESHOLD] DEPOIS: Normaliza scores de teste usando z-score + escala para [-1,+1]
+    # USAR SCORES BRUTOS (SEM NORMALIZAÇÃO)
     # Previsões
     decision_scores = modelo.decision_function(X_test)
-    #[NORM_THRESHOLD] Normalização SEM centralização: mantém zero original (P=0.5)
     norm_params = model_params.get('norm_params', {'max_abs': 1.0})
-    max_abs = norm_params['max_abs']
-    decision_scores_norm = decision_scores / max_abs if max_abs > 0 else decision_scores
     
     y_pred = np.full(y_test.shape, -1, dtype=int)
-    y_pred[decision_scores_norm >= t_plus] = 1
-    y_pred[decision_scores_norm <= t_minus] = 0
+    y_pred[decision_scores >= t_plus] = 1
+    y_pred[decision_scores <= t_minus] = 0
     mask_rej = (y_pred == -1)
     y_pred_final = y_pred.copy()
     y_pred_final[mask_rej] = 2
@@ -876,7 +907,6 @@ def executar_experimento_para_dataset(dataset_name: str):
     ad_pos, ad_neg, ad_rej = [], [], []
     rm_pos, rm_neg, rm_rej = [], [], []
     
-    #[NORM_THRESHOLD] norm_params já foi extraído acima para normalizar scores de teste
     with ProgressBar(total=len(X_test)) as pbar:
         for i in range(len(X_test)):
             start_inst = time.perf_counter()
@@ -921,7 +951,7 @@ def executar_experimento_para_dataset(dataset_name: str):
     dataset_cache = montar_dataset_cache(
         dataset_name, X_train, X_test, y_train, y_test, nomes_classes,
         t_plus, t_minus, rejection_cost, test_size, model_params, metricas,
-        y_pred_final, decision_scores, decision_scores_norm, mask_rej, resultados
+        y_pred_final, decision_scores, mask_rej, resultados
     )
     update_method_results('peab', dataset_json_key, dataset_cache)
     

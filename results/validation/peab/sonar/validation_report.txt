@@ -1,0 +1,166 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║           RELATÓRIO DE VALIDAÇÃO DE EXPLICABILIDADE - MÉTODO PEAB            ║
+║                                Dataset: Sonar                                ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. DESCRIÇÃO DO MÉTODO DE VALIDAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Este relatório apresenta a validação da qualidade das explicações geradas
+pelo método de Explainability AI (Explicabilidade em Inteligência Artificial).
+
+MÉTODO UTILIZADO: PEAB
+TÉCNICA DE VALIDAÇÃO: Avaliação de Fidelidade por Perturbação
+
+A fidelidade é medida através de perturbações nos dados de entrada:
+  • 1,000 variações foram aplicadas a cada instância
+  • Cada variação altera os valores das features de forma sistemática
+  • Verifica-se se a predição do modelo permanece a mesma com as
+    features explicativas em seus valores perturbados
+  • Uma alta taxa de consistência indica que a explicação é fiel ao
+    comportamento real do modelo (alta fidelidade)
+
+ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
+  • Valores das features são aleatoriamente substituídos dentro de seus
+    intervalos observados (mínimo-máximo) no conjunto de treinamento
+  • Essa abordagem rigorosa testa o método em cenários variados
+
+LEGENDA RÁPIDA DAS MÉTRICAS
+  • Fidelidade (%): quanto maior, melhor. Mede se a predição se mantém
+    quando perturbações são aplicadas às features não explicativas.
+  • Necessidade (%): quanto maior, melhor. Mede a fração de features
+    indispensáveis na explicação (minimalidade do conjunto).
+  • Redundância (%): 100 - Necessidade. Apenas informativo; alta
+    redundância indica que várias features podem ser removidas sem
+    mudar a predição sob o critério de 95%.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. CONFIGURAÇÃO DO EXPERIMENTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Base de Dados:                    Sonar
+  Instâncias Validadas:             63 amostras
+  Número de Variáveis (Features):   60
+  Perturbações por Instância:       1,000
+  Total de Avaliações:              63,000
+  Data de Execução:                 2025-12-17 12:17:54
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. RESULTADOS PRINCIPAIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3.1 FIDELIDADE DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Fidelidade Geral:                 100.00%
+  Necessidade Geral (Minimalidade): 0.72%
+  Redundância Geral:                99.28%
+
+  Fidelidade por Tipo de Predição:
+    ○ Predições Positivas..................... 100.00% ( 10 instâncias)
+    ● Predições Negativas..................... 100.00% (  8 instâncias)
+    ◆ Predições Rejeitadas.................... 100.00% ( 45 instâncias)
+
+  Necessidade por Tipo de Predição (quanto maior, menos redundância):
+    ○ Predições Positivas.....................   0.00%  |  Redund.: 100.00%
+    ● Predições Negativas.....................   2.04%  |  Redund.:  97.96%
+    ◆ Predições Rejeitadas....................   0.64%  |  Redund.:  99.36%
+
+  Taxa de Cobertura (sem erros):    100.00%
+  Instâncias Processadas com Sucesso: 63 / 63
+
+3.2 CARACTERÍSTICAS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Tamanho das Explicações (número de variáveis selecionadas):
+    • Média:                        39.92 variáveis
+    • Mediana:                      39 variáveis
+    • Desvio Padrão:                5.86
+    • Intervalo:                    24 a 57 variáveis
+    • Taxa de Compactação:          33.5%
+      (redução em relação ao total de 60 variáveis)
+
+3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Variáveis │ Quantidade │ Porcentagem │ Visualização
+  ───────────┼────────────┼─────────────┼──────────────────────────────────────────
+       6+    │      63    │    100.0%   │ ██████████████████████████████████████████████████
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. ANÁLISE DETALHADA POR TIPO DE PREDIÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4.A PREDIÇÕES POSITIVAS
+────────────────────────────────────────────────────────────────────────────────
+    Descrição: Instâncias classificadas como positivas pelo modelo
+
+    Quantidade de Instâncias:       10 (15.9%)
+    Fidelidade Médio:               100.00%
+    Tamanho Médio da Explicação:    39.80 variáveis
+    Desvio Padrão do Tamanho:       9.40
+
+4.B PREDIÇÕES NEGATIVAS
+────────────────────────────────────────────────────────────────────────────────
+    Descrição: Instâncias classificadas como negativas pelo modelo
+
+    Quantidade de Instâncias:       8 (12.7%)
+    Fidelidade Médio:               100.00%
+    Tamanho Médio da Explicação:    44.50 variáveis
+    Desvio Padrão do Tamanho:       3.94
+
+4.C PREDIÇÕES REJEITADAS
+────────────────────────────────────────────────────────────────────────────────
+    Descrição: Instâncias onde o modelo aplicou mecanismo de rejeição
+
+    Quantidade de Instâncias:       45 (71.4%)
+    Fidelidade Médio:               100.00%
+    Tamanho Médio da Explicação:    39.13 variáveis
+    Desvio Padrão do Tamanho:       4.63
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. INTERPRETAÇÃO E CONCLUSÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FIDELIDADE: Excelente
+  O método produz explicações de qualidade excepcional.
+  Com uma fidelidade de 100.00%, as explicações geradas
+  mantêm consistência em 100.00% dos cenários testados quando
+  as features não selecionadas são aleatoriamente perturbadas.
+
+NECESSIDADE (Minimalidade): Baixa
+  As explicações contêm muitas features redundantes (>20%).
+  Necessidade média: 0.72%  |  Redundância média: 99.3%
+  A redundância indica a fração de features que podem ser removidas
+  sem alterar a predição em >95% das perturbações.
+
+COMPACTAÇÃO: 66.5% das Features Necessárias
+  As explicações utilizam em média apenas 39.92 de 60 variáveis,
+  representando uma redução de 33.5%.
+  Isso torna as explicações bastante compactas e fáceis de interpretar.
+
+COBERTURA: Completa (100%)
+  Todas as 63 instâncias foram processadas com sucesso,
+  sem erros ou timeouts durante a validação.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. RECOMENDAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✓ O método está validado e pronto para uso.
+  ✓ As explicações podem ser confiáveis e utilizadas em aplicações práticas.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relatório gerado em: 2025-12-17 12:17:54
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

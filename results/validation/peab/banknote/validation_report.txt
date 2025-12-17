@@ -39,7 +39,7 @@ ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
   Número de Variáveis (Features):   4
   Perturbações por Instância:       1,000
   Total de Avaliações:              412,000
-  Data de Execução:                 2025-12-16 17:44:07
+  Data de Execução:                 2025-12-17 11:22:03
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -51,17 +51,17 @@ ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
 ────────────────────────────────────────────────────────────────────────────────
 
   Fidelidade Geral:                 100.00%
-  Minimalidade Geral:               61.93%
+  Minimalidade Geral:               57.81%
 
   Fidelidade por Tipo de Predição:
-    ○ Predições Positivas..................... 100.00% ( 24 instâncias)
-    ● Predições Negativas..................... 100.00% (104 instâncias)
-    ◆ Predições Rejeitadas.................... 100.00% (284 instâncias)
+    ○ Predições Positivas..................... 100.00% ( 21 instâncias)
+    ● Predições Negativas..................... 100.00% (150 instâncias)
+    ◆ Predições Rejeitadas.................... 100.00% (241 instâncias)
 
   Minimalidade por Tipo de Predição:
-    ○ Predições Positivas.....................  94.44%
-    ● Predições Negativas.....................   1.36%
-    ◆ Predições Rejeitadas....................  81.37%
+    ○ Predições Positivas.....................  94.05%
+    ● Predições Negativas.....................   4.94%
+    ◆ Predições Rejeitadas....................  87.55%
 
   Taxa de Cobertura (sem erros):    100.00%
   Instâncias Processadas com Sucesso: 412 / 412
@@ -70,11 +70,11 @@ ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
 ────────────────────────────────────────────────────────────────────────────────
 
   Tamanho das Explicações (número de variáveis selecionadas):
-    • Média:                        2.72 variáveis
+    • Média:                        2.70 variáveis
     • Mediana:                      3 variáveis
-    • Desvio Padrão:                0.73
+    • Desvio Padrão:                0.69
     • Intervalo:                    2 a 4 variáveis
-    • Taxa de Compactação:          32.1%
+    • Taxa de Compactação:          32.5%
       (redução em relação ao total de 4 variáveis)
 
 3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
@@ -82,9 +82,9 @@ ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
 
   Variáveis │ Quantidade │ Porcentagem │ Visualização
   ───────────┼────────────┼─────────────┼──────────────────────────────────────────
-        2    │     185    │     44.9%   │ ██████████████████████                  
-        3    │     159    │     38.6%   │ ███████████████████                     
-        4    │      68    │     16.5%   │ ████████                                
+        2    │     178    │     43.2%   │ █████████████████████                   
+        3    │     179    │     43.4%   │ █████████████████████                   
+        4    │      55    │     13.3%   │ ██████                                  
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 4. ANÁLISE DETALHADA POR TIPO DE PREDIÇÃO
@@ -94,28 +94,28 @@ ESTRATÉGIA DE PERTURBAÇÃO: Uniforme
 ────────────────────────────────────────────────────────────────────────────────
     Descrição: Instâncias classificadas como positivas pelo modelo
 
-    Quantidade de Instâncias:       24 (5.8%)
+    Quantidade de Instâncias:       21 (5.1%)
     Fidelidade Médio:               100.00%
-    Tamanho Médio da Explicação:    3.42 variáveis
-    Desvio Padrão do Tamanho:       0.57
+    Tamanho Médio da Explicação:    3.38 variáveis
+    Desvio Padrão do Tamanho:       0.58
 
 4.B PREDIÇÕES NEGATIVAS
 ────────────────────────────────────────────────────────────────────────────────
     Descrição: Instâncias classificadas como negativas pelo modelo
 
-    Quantidade de Instâncias:       104 (25.2%)
+    Quantidade de Instâncias:       150 (36.4%)
     Fidelidade Médio:               100.00%
-    Tamanho Médio da Explicação:    3.04 variáveis
-    Desvio Padrão do Tamanho:       0.66
+    Tamanho Médio da Explicação:    2.79 variáveis
+    Desvio Padrão do Tamanho:       0.62
 
 4.C PREDIÇÕES REJEITADAS
 ────────────────────────────────────────────────────────────────────────────────
     Descrição: Instâncias onde o modelo aplicou mecanismo de rejeição
 
-    Quantidade de Instâncias:       284 (68.9%)
+    Quantidade de Instâncias:       241 (58.5%)
     Fidelidade Médio:               100.00%
-    Tamanho Médio da Explicação:    2.54 variáveis
-    Desvio Padrão do Tamanho:       0.69
+    Tamanho Médio da Explicação:    2.59 variáveis
+    Desvio Padrão do Tamanho:       0.70
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -131,13 +131,13 @@ FIDELIDADE: Excelente
 
 MINIMALIDADE: Baixa
   As explicações contêm muitas features redundantes (>20%).
-  Com uma minimalidade de 61.93%, em média 38.1% das features
+  Com uma minimalidade de 57.81%, em média 42.2% das features
   em cada explicação são redundantes (podem ser removidas sem
   alterar a predição em >95% das perturbações).
 
-COMPACTAÇÃO: 67.9% das Features Necessárias
-  As explicações utilizam em média apenas 2.72 de 4 variáveis,
-  representando uma redução de 32.1%.
+COMPACTAÇÃO: 67.5% das Features Necessárias
+  As explicações utilizam em média apenas 2.70 de 4 variáveis,
+  representando uma redução de 32.5%.
   Isso torna as explicações bastante compactas e fáceis de interpretar.
 
 COBERTURA: Completa (100%)
@@ -154,5 +154,5 @@ COBERTURA: Completa (100%)
   ✓ As explicações podem ser confiáveis e utilizadas em aplicações práticas.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Relatório gerado em: 2025-12-16 17:44:07
+Relatório gerado em: 2025-12-17 11:22:03
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

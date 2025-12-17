@@ -14,7 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 14.642367041483203}
+  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 0.1
   solver: lbfgs
@@ -24,61 +24,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.067116
-  t- (limiar inferior): -0.090976
-  Largura da zona de rejeição: 0.158091
+  t+ (limiar superior): 2.211262
+  t- (limiar inferior): -1.867108
+  Largura da zona de rejeição: 4.078370
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 96.50%
-  Acurácia com rejeição: 98.47%
-  Taxa de rejeição: 6.52%
+  Acurácia com rejeição: 99.00%
+  Taxa de rejeição: 12.73%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 579
-    Tamanho médio: 199.56 features
-    Desvio padrão: 24.43
-    Mínimo: 148 features
-    Máximo: 283 features
+    Quantidade: 527
+    Tamanho médio: 232.55 features
+    Desvio padrão: 35.00
+    Mínimo: 166 features
+    Máximo: 356 features
 
   NEGATIVAS:
-    Quantidade: 596
-    Tamanho médio: 153.86 features
-    Desvio padrão: 18.99
-    Mínimo: 114 features
-    Máximo: 224 features
+    Quantidade: 570
+    Tamanho médio: 181.44 features
+    Desvio padrão: 30.06
+    Mínimo: 127 features
+    Máximo: 326 features
 
   REJEITADAS:
-    Quantidade: 82
-    Tamanho médio: 463.10 features
-    Desvio padrão: 7.35
-    Mínimo: 449 features
-    Máximo: 480 features
+    Quantidade: 160
+    Tamanho médio: 437.91 features
+    Desvio padrão: 8.76
+    Mínimo: 413 features
+    Máximo: 459 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 175.3319s
-  Tempo médio por instância: 0.139484s
-  Tempo médio POSITIVAS: 0.063602s
-  Tempo médio NEGATIVAS: 0.055479s
-  Tempo médio REJEITADAS: 1.274418s
+  Tempo total: 131.4781s
+  Tempo médio por instância: 0.104597s
+  Tempo médio POSITIVAS: 0.031323s
+  Tempo médio NEGATIVAS: 0.028486s
+  Tempo médio REJEITADAS: 0.615994s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel461: 1163 ocorrências (92.5%)
-  pixel489: 1153 ocorrências (91.7%)
-  pixel462: 1151 ocorrências (91.6%)
-  pixel488: 1151 ocorrências (91.6%)
-  pixel516: 1128 ocorrências (89.7%)
-  pixel515: 1104 ocorrências (87.8%)
-  pixel490: 1087 ocorrências (86.5%)
-  pixel292: 1077 ocorrências (85.7%)
-  pixel434: 1075 ocorrências (85.5%)
-  pixel291: 1071 ocorrências (85.2%)
+  pixel461: 1190 ocorrências (94.7%)
+  pixel488: 1185 ocorrências (94.3%)
+  pixel489: 1182 ocorrências (94.0%)
+  pixel462: 1180 ocorrências (93.9%)
+  pixel516: 1167 ocorrências (92.8%)
+  pixel515: 1150 ocorrências (91.5%)
+  pixel490: 1125 ocorrências (89.5%)
+  pixel292: 1110 ocorrências (88.3%)
+  pixel434: 1110 ocorrências (88.3%)
+  pixel291: 1109 ocorrências (88.2%)
 

@@ -8,35 +8,35 @@
     "solver": "saga",
     "max_iter": 200
   },
-  "t_plus": 0.2543713913687597,
-  "t_minus": -0.016766284497145845,
+  "t_plus": 1.0951439757658799,
+  "t_minus": -0.07414164344260536,
   "rejection_cost": 0.24,
   "metricas_modelo": {
     "acuracia_sem_rejeicao": 0.7634408602150538,
-    "acuracia_com_rejeicao": 0.8656716417910447,
-    "taxa_rejeicao": 0.27956989247311825,
-    "risco_empirico": 0.20142513240250365
+    "acuracia_com_rejeicao": 0.8620689655172413,
+    "taxa_rejeicao": 0.3763440860215054,
+    "risco_empirico": 0.22825361512791997
   },
   "estatisticas_gerais": {
-    "tamanho_medio": 4.43010752688172,
-    "tempo_total_segundos": 2.6785816999617964,
-    "tempo_medio_segundos": 0.028801953763030068
+    "tamanho_medio": 4.612903225806452,
+    "tempo_total_segundos": 3.858083800005261,
+    "tempo_medio_segundos": 0.041484772043067324
   },
   "estatisticas_por_tipo": {
     "positiva": {
-      "instancias": 50,
-      "tamanho_medio": 3.82,
-      "tempo_medio": 0.02912667399737984
+      "instancias": 41,
+      "tamanho_medio": 3.926829268292683,
+      "tempo_medio": 0.04149224390786868
     },
     "negativa": {
       "instancias": 17,
-      "tamanho_medio": 5.294117647058823,
-      "tempo_medio": 0.025298035292721847
+      "tamanho_medio": 5.352941176470588,
+      "tempo_medio": 0.04043282940983772
     },
     "rejeitada": {
-      "instancias": 26,
-      "tamanho_medio": 5.038461538461538,
-      "tempo_medio": 0.030468515389097426
+      "instancias": 35,
+      "tamanho_medio": 5.057142857142857,
+      "tempo_medio": 0.041986962851868675
     }
   },
   "explicacoes": [
@@ -48,10 +48,11 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
+        "sacral_slope",
         "pelvic_radius"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03713960002642125
+      "tamanho": 5,
+      "tempo_segundos": 0.05164720001630485
     },
     {
       "indice": "281",
@@ -65,7 +66,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03690690000075847
+      "tempo_segundos": 0.03977390000363812
     },
     {
       "indice": "85",
@@ -74,11 +75,12 @@
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
+        "lumbar_lordosis_angle",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01867550000315532
+      "tamanho": 5,
+      "tempo_segundos": 0.039844100014306605
     },
     {
       "indice": "127",
@@ -91,7 +93,7 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.019000799977220595
+      "tempo_segundos": 0.04424489999655634
     },
     {
       "indice": "284",
@@ -105,7 +107,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.033237700001336634
+      "tempo_segundos": 0.04022379999514669
     },
     {
       "indice": "65",
@@ -117,7 +119,7 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02168609999353066
+      "tempo_segundos": 0.03969549998873845
     },
     {
       "indice": "194",
@@ -127,10 +129,11 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
+        "sacral_slope",
         "pelvic_radius"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03625980002107099
+      "tamanho": 5,
+      "tempo_segundos": 0.04461390001233667
     },
     {
       "indice": "258",
@@ -145,7 +148,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.033570999978110194
+      "tempo_segundos": 0.03905409999424592
     },
     {
       "indice": "107",
@@ -158,7 +161,7 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.033394700032658875
+      "tempo_segundos": 0.037499200028833
     },
     {
       "indice": "289",
@@ -172,7 +175,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.01921040000161156
+      "tempo_segundos": 0.04676220001420006
     },
     {
       "indice": "297",
@@ -186,7 +189,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.018839399970602244
+      "tempo_segundos": 0.0491269999765791
     },
     {
       "indice": "268",
@@ -200,7 +203,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.019497099972795695
+      "tempo_segundos": 0.041833699971903116
     },
     {
       "indice": "47",
@@ -214,7 +217,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.04607450001640245
+      "tempo_segundos": 0.042882999987341464
     },
     {
       "indice": "193",
@@ -225,10 +228,11 @@
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "sacral_slope",
-        "pelvic_radius"
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.021979100012686104
+      "tamanho": 6,
+      "tempo_segundos": 0.03940660000080243
     },
     {
       "indice": "201",
@@ -238,10 +242,10 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "pelvic_radius"
+        "spondylolisthesis_grade"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03021579998312518
+      "tempo_segundos": 0.038926800014451146
     },
     {
       "indice": "36",
@@ -255,7 +259,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.020278500043787062
+      "tempo_segundos": 0.043112299987114966
     },
     {
       "indice": "251",
@@ -269,7 +273,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.021797699970193207
+      "tempo_segundos": 0.03982549998909235
     },
     {
       "indice": "74",
@@ -279,22 +283,23 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "pelvic_radius"
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.04275909997522831
+      "tamanho": 5,
+      "tempo_segundos": 0.040375899989157915
     },
     {
       "indice": "51",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
-        "pelvic_radius",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.019952100003138185
+      "tempo_segundos": 0.047201799985487014
     },
     {
       "indice": "242",
@@ -308,7 +313,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.021749400009866804
+      "tempo_segundos": 0.03908289998071268
     },
     {
       "indice": "135",
@@ -320,7 +325,7 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.036651300033554435
+      "tempo_segundos": 0.03895239997655153
     },
     {
       "indice": "197",
@@ -329,23 +334,24 @@
       "features_selecionadas": [
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03213760000653565
+      "tempo_segundos": 0.04465699999127537
     },
     {
       "indice": "95",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.0339065000298433
+      "tamanho": 5,
+      "tempo_segundos": 0.03943689999869093
     },
     {
       "indice": "267",
@@ -359,7 +365,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.023095900018233806
+      "tempo_segundos": 0.04288179997820407
     },
     {
       "indice": "174",
@@ -372,19 +378,19 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.023135999974329025
+      "tempo_segundos": 0.04293639998650178
     },
     {
       "indice": "100",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
-        "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.024783200002275407
+      "tempo_segundos": 0.037743200024124235
     },
     {
       "indice": "270",
@@ -398,7 +404,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.034950300003401935
+      "tempo_segundos": 0.0404895999818109
     },
     {
       "indice": "27",
@@ -412,7 +418,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.04622849996667355
+      "tempo_segundos": 0.04399649996776134
     },
     {
       "indice": "162",
@@ -423,7 +429,7 @@
         "pelvic_radius"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03600130003178492
+      "tempo_segundos": 0.04447910003364086
     },
     {
       "indice": "28",
@@ -437,7 +443,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.04275309998774901
+      "tempo_segundos": 0.039795099990442395
     },
     {
       "indice": "211",
@@ -451,7 +457,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03657210001256317
+      "tempo_segundos": 0.04269400000339374
     },
     {
       "indice": "212",
@@ -461,12 +467,11 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.04330130002927035
+      "tamanho": 5,
+      "tempo_segundos": 0.041292799985967577
     },
     {
       "indice": "273",
@@ -480,7 +485,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02183270000386983
+      "tempo_segundos": 0.037485499982722104
     },
     {
       "indice": "32",
@@ -494,34 +499,34 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.031999000057112426
+      "tempo_segundos": 0.043334599991794676
     },
     {
       "indice": "44",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.04264489997876808
+      "tamanho": 5,
+      "tempo_segundos": 0.040408700006082654
     },
     {
       "indice": "159",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.023276499996427447
+      "tamanho": 4,
+      "tempo_segundos": 0.040641400031745434
     },
     {
       "indice": "102",
@@ -534,22 +539,21 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.036491300037596375
+      "tempo_segundos": 0.04545110004255548
     },
     {
       "indice": "131",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.04191319999517873
+      "tamanho": 5,
+      "tempo_segundos": 0.04309799999464303
     },
     {
       "indice": "171",
@@ -557,11 +561,12 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "pelvic_incidence",
+        "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03850369999418035
+      "tamanho": 4,
+      "tempo_segundos": 0.04062970000086352
     },
     {
       "indice": "130",
@@ -575,7 +580,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.032969199994113296
+      "tempo_segundos": 0.04581719997804612
     },
     {
       "indice": "156",
@@ -588,7 +593,7 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03270649997284636
+      "tempo_segundos": 0.03942120005376637
     },
     {
       "indice": "35",
@@ -603,20 +608,22 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.035656799969729036
+      "tempo_segundos": 0.03876570001011714
     },
     {
       "indice": "34",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "pelvic_radius"
+        "sacral_slope",
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021464399993419647
+      "tamanho": 6,
+      "tempo_segundos": 0.04217530001187697
     },
     {
       "indice": "11",
@@ -631,7 +638,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.025072499993257225
+      "tempo_segundos": 0.037399399967398494
     },
     {
       "indice": "4",
@@ -645,21 +652,21 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03175930003635585
+      "tempo_segundos": 0.039654299966059625
     },
     {
       "indice": "230",
       "classe_real": "Normal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
-        "pelvic_radius"
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02694569999584928
+      "tempo_segundos": 0.04542430001311004
     },
     {
       "indice": "203",
@@ -672,7 +679,7 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.032941100012976676
+      "tempo_segundos": 0.03885040001478046
     },
     {
       "indice": "29",
@@ -682,10 +689,12 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "pelvic_radius"
+        "sacral_slope",
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.029492999950889498
+      "tamanho": 6,
+      "tempo_segundos": 0.038686899992171675
     },
     {
       "indice": "308",
@@ -699,7 +708,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03042329999152571
+      "tempo_segundos": 0.04886569996597245
     },
     {
       "indice": "262",
@@ -713,12 +722,12 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.026088399987202138
+      "tempo_segundos": 0.037313300010282546
     },
     {
       "indice": "70",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
@@ -727,7 +736,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03328719997080043
+      "tempo_segundos": 0.03869839996332303
     },
     {
       "indice": "41",
@@ -741,31 +750,31 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.031203699996694922
+      "tempo_segundos": 0.04186579998349771
     },
     {
       "indice": "142",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "pelvic_tilt",
+        "pelvic_incidence",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.0219348999671638
+      "tempo_segundos": 0.042106500011868775
     },
     {
       "indice": "128",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
-        "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03072369995061308
+      "tempo_segundos": 0.04157050000503659
     },
     {
       "indice": "239",
@@ -779,7 +788,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.0327646000077948
+      "tempo_segundos": 0.04178870003670454
     },
     {
       "indice": "224",
@@ -791,7 +800,7 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.031696600024588406
+      "tempo_segundos": 0.04181260004406795
     },
     {
       "indice": "80",
@@ -803,7 +812,7 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.023102200007997453
+      "tempo_segundos": 0.03876199998194352
     },
     {
       "indice": "304",
@@ -817,7 +826,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.019900200015399605
+      "tempo_segundos": 0.043874000024516135
     },
     {
       "indice": "136",
@@ -829,19 +838,20 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.032257999991998076
+      "tempo_segundos": 0.04316910001216456
     },
     {
       "indice": "141",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03617429995210841
+      "tamanho": 4,
+      "tempo_segundos": 0.040500399947632104
     },
     {
       "indice": "133",
@@ -854,10 +864,25 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.031027300050482154
+      "tempo_segundos": 0.04557150002801791
     },
     {
       "indice": "89",
+      "classe_real": "Anormal",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "lumbar_lordosis_angle",
+        "sacral_slope",
+        "pelvic_radius",
+        "spondylolisthesis_grade"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03752030001487583
+    },
+    {
+      "indice": "207",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
@@ -868,10 +893,10 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.019689599983394146
+      "tempo_segundos": 0.037005399994086474
     },
     {
-      "indice": "207",
+      "indice": "205",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
@@ -881,19 +906,7 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027447099972050637
-    },
-    {
-      "indice": "205",
-      "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
-      "features_selecionadas": [
-        "pelvic_tilt",
-        "lumbar_lordosis_angle",
-        "pelvic_radius"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03416829998604953
+      "tempo_segundos": 0.042868199991062284
     },
     {
       "indice": "161",
@@ -903,10 +916,11 @@
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "pelvic_radius"
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021248199976980686
+      "tamanho": 5,
+      "tempo_segundos": 0.04020210000453517
     },
     {
       "indice": "233",
@@ -920,7 +934,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.026290700014214963
+      "tempo_segundos": 0.03900150000117719
     },
     {
       "indice": "123",
@@ -934,7 +948,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.019062999985180795
+      "tempo_segundos": 0.04187729995464906
     },
     {
       "indice": "134",
@@ -948,19 +962,20 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02737990004243329
+      "tempo_segundos": 0.04161649994784966
     },
     {
       "indice": "61",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.033500000019557774
+      "tamanho": 4,
+      "tempo_segundos": 0.03919640003005043
     },
     {
       "indice": "231",
@@ -974,7 +989,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.018636099994182587
+      "tempo_segundos": 0.04222260002279654
     },
     {
       "indice": "261",
@@ -987,19 +1002,19 @@
         "pelvic_radius"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.019213099963963032
+      "tempo_segundos": 0.03928169998107478
     },
     {
       "indice": "150",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
-        "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.01917959999991581
+      "tempo_segundos": 0.04244170000310987
     },
     {
       "indice": "247",
@@ -1013,7 +1028,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.018787899985909462
+      "tempo_segundos": 0.0467382000060752
     },
     {
       "indice": "173",
@@ -1025,7 +1040,7 @@
         "pelvic_radius"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02412469999399036
+      "tempo_segundos": 0.04589840001426637
     },
     {
       "indice": "294",
@@ -1040,37 +1055,35 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.02742439997382462
+      "tempo_segundos": 0.03981519996887073
     },
     {
       "indice": "43",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.027129199996124953
+      "tamanho": 5,
+      "tempo_segundos": 0.04381070000817999
     },
     {
       "indice": "14",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.01966240000911057
+      "tamanho": 5,
+      "tempo_segundos": 0.03793099999893457
     },
     {
       "indice": "296",
@@ -1085,7 +1098,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.0325713999918662
+      "tempo_segundos": 0.03863239998463541
     },
     {
       "indice": "71",
@@ -1094,11 +1107,12 @@
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
+        "lumbar_lordosis_angle",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.034859900013543665
+      "tamanho": 5,
+      "tempo_segundos": 0.0447033999953419
     },
     {
       "indice": "40",
@@ -1112,7 +1126,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.018578700022771955
+      "tempo_segundos": 0.03850269998656586
     },
     {
       "indice": "12",
@@ -1126,7 +1140,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.01858799997717142
+      "tempo_segundos": 0.039118000015150756
     },
     {
       "indice": "26",
@@ -1140,7 +1154,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.01853469997877255
+      "tempo_segundos": 0.045186600007582456
     },
     {
       "indice": "292",
@@ -1154,7 +1168,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.026707100041676313
+      "tempo_segundos": 0.04128030000720173
     },
     {
       "indice": "103",
@@ -1168,7 +1182,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.020417299994733185
+      "tempo_segundos": 0.03818420000607148
     },
     {
       "indice": "269",
@@ -1183,7 +1197,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.03470519999973476
+      "tempo_segundos": 0.04092310002306476
     },
     {
       "indice": "122",
@@ -1191,10 +1205,11 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "pelvic_tilt",
-        "pelvic_radius"
+        "pelvic_radius",
+        "spondylolisthesis_grade"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.019947299966588616
+      "tamanho": 3,
+      "tempo_segundos": 0.04041110002435744
     },
     {
       "indice": "301",
@@ -1203,25 +1218,25 @@
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
+        "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.029089500021655113
+      "tamanho": 4,
+      "tempo_segundos": 0.03903570002876222
     },
     {
       "indice": "83",
       "classe_real": "Anormal",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
-        "sacral_slope",
         "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02393840003060177
+      "tamanho": 5,
+      "tempo_segundos": 0.043592600035481155
     },
     {
       "indice": "302",
@@ -1235,19 +1250,20 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03021420002914965
+      "tempo_segundos": 0.04092469997704029
     },
     {
       "indice": "98",
       "classe_real": "Anormal",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "pelvic_incidence",
         "pelvic_tilt",
         "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03887829999439418
+      "tamanho": 4,
+      "tempo_segundos": 0.039733099984005094
     },
     {
       "indice": "62",
@@ -1261,7 +1277,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03955180000048131
+      "tempo_segundos": 0.043750900018494576
     },
     {
       "indice": "0",
@@ -1270,10 +1286,11 @@
       "features_selecionadas": [
         "pelvic_incidence",
         "pelvic_tilt",
+        "lumbar_lordosis_angle",
         "pelvic_radius"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.029607600008603185
+      "tamanho": 4,
+      "tempo_segundos": 0.039537400007247925
     },
     {
       "indice": "285",
@@ -1287,7 +1304,7 @@
         "spondylolisthesis_grade"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.027451600006315857
+      "tempo_segundos": 0.039509100024588406
     }
   ]
 }

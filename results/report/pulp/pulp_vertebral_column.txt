@@ -8,8 +8,8 @@ Solver de Otimização Inteira (Ground Truth)
 --------------------------------------------------------------------------------
 Dataset: vertebral_column
 Instâncias processadas: 93
-Thresholds: t+ = 0.2544, t- = -0.0168
-Zona de rejeição: 0.2711
+Thresholds: t+ = 1.0951, t- = -0.0741
+Zona de rejeição: 1.1693
 Rejection cost: 0.24
 Hiperparâmetros:
 {
@@ -23,63 +23,63 @@ Hiperparâmetros:
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
 Acurácia (sem rejeição): 76.34%
-Acurácia (com rejeição): 86.57%
-Taxa de rejeição: 27.96%
-Risco empírico: 0.2014
+Acurácia (com rejeição): 86.21%
+Taxa de rejeição: 37.63%
+Risco empírico: 0.2283
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 4.43 features
-Tempo total: 2.68s
-Tempo médio/instância: 0.0288s
+Tamanho médio: 4.61 features
+Tempo total: 3.86s
+Tempo médio/instância: 0.0415s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 50 (53.8%)
-  - Tamanho médio: 3.82 features
-  - Tempo médio: 0.0291s
+  - Instâncias: 41 (44.1%)
+  - Tamanho médio: 3.93 features
+  - Tempo médio: 0.0415s
 
 NEGATIVA:
   - Instâncias: 17 (18.3%)
-  - Tamanho médio: 5.29 features
-  - Tempo médio: 0.0253s
+  - Tamanho médio: 5.35 features
+  - Tempo médio: 0.0404s
 
 REJEITADA:
-  - Instâncias: 26 (28.0%)
-  - Tamanho médio: 5.04 features
-  - Tempo médio: 0.0305s
+  - Instâncias: 35 (37.6%)
+  - Tamanho médio: 5.06 features
+  - Tempo médio: 0.0420s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      258 (NEGATIVA  ):   6 features - 0.0336s
- 2. Instância      212 (REJEITADA ):   6 features - 0.0433s
- 3. Instância       44 (POSITIVA  ):   6 features - 0.0426s
- 4. Instância      131 (POSITIVA  ):   6 features - 0.0419s
- 5. Instância       35 (NEGATIVA  ):   6 features - 0.0357s
- 6. Instância       11 (NEGATIVA  ):   6 features - 0.0251s
- 7. Instância      294 (NEGATIVA  ):   6 features - 0.0274s
- 8. Instância       43 (POSITIVA  ):   6 features - 0.0271s
- 9. Instância       14 (POSITIVA  ):   6 features - 0.0197s
-10. Instância      296 (NEGATIVA  ):   6 features - 0.0326s
+ 1. Instância      258 (NEGATIVA  ):   6 features - 0.0391s
+ 2. Instância      193 (POSITIVA  ):   6 features - 0.0394s
+ 3. Instância       35 (NEGATIVA  ):   6 features - 0.0388s
+ 4. Instância       34 (REJEITADA ):   6 features - 0.0422s
+ 5. Instância       11 (NEGATIVA  ):   6 features - 0.0374s
+ 6. Instância       29 (POSITIVA  ):   6 features - 0.0387s
+ 7. Instância       89 (REJEITADA ):   6 features - 0.0375s
+ 8. Instância      294 (NEGATIVA  ):   6 features - 0.0398s
+ 9. Instância      296 (NEGATIVA  ):   6 features - 0.0386s
+10. Instância      269 (NEGATIVA  ):   6 features - 0.0409s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      162 (POSITIVA  ):   2 features - 0.0360s
- 2. Instância      122 (POSITIVA  ):   2 features - 0.0199s
- 3. Instância       65 (POSITIVA  ):   3 features - 0.0217s
- 4. Instância       51 (POSITIVA  ):   3 features - 0.0200s
- 5. Instância      135 (POSITIVA  ):   3 features - 0.0367s
- 6. Instância      197 (POSITIVA  ):   3 features - 0.0321s
- 7. Instância      100 (POSITIVA  ):   3 features - 0.0248s
- 8. Instância      159 (POSITIVA  ):   3 features - 0.0233s
- 9. Instância      171 (POSITIVA  ):   3 features - 0.0385s
-10. Instância      142 (POSITIVA  ):   3 features - 0.0219s
+ 1. Instância      162 (POSITIVA  ):   2 features - 0.0445s
+ 2. Instância       65 (POSITIVA  ):   3 features - 0.0397s
+ 3. Instância       51 (POSITIVA  ):   3 features - 0.0472s
+ 4. Instância      135 (POSITIVA  ):   3 features - 0.0390s
+ 5. Instância      197 (POSITIVA  ):   3 features - 0.0447s
+ 6. Instância      100 (POSITIVA  ):   3 features - 0.0377s
+ 7. Instância      142 (POSITIVA  ):   3 features - 0.0421s
+ 8. Instância      128 (POSITIVA  ):   3 features - 0.0416s
+ 9. Instância      224 (POSITIVA  ):   3 features - 0.0418s
+10. Instância       80 (POSITIVA  ):   3 features - 0.0388s
 
 ================================================================================
 FIM DO RELATÓRIO

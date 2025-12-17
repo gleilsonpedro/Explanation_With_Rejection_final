@@ -2,58 +2,58 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "banknote",
-    "date": "2025-12-16 17:44:07",
+    "date": "2025-12-17 11:22:03",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
     "test_instances": 412,
     "num_features": 4
   },
   "global_metrics": {
-    "fidelity_overall": 100.0,
-    "necessity_overall": 61.9336569579288,
+    "fidelity_overall": 99.99781553398059,
+    "necessity_overall": 57.807443365695775,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
-    "fidelity_rejected": 100.0,
-    "necessity_positive": 94.44444444444444,
-    "necessity_negative": 1.362179487179487,
-    "necessity_rejected": 81.36737089201877,
-    "sufficiency": 100.0,
+    "fidelity_rejected": 99.99626556016597,
+    "necessity_positive": 94.04761904761905,
+    "necessity_negative": 4.944444444444444,
+    "necessity_rejected": 87.55186721991701,
+    "sufficiency": 99.99781553398059,
     "coverage": 100.0,
-    "mean_explanation_size": 2.716019417475728,
+    "mean_explanation_size": 2.7014563106796117,
     "median_explanation_size": 3.0,
-    "std_explanation_size": 0.7303647709549578,
+    "std_explanation_size": 0.6902214471816243,
     "min_explanation_size": 2,
     "max_explanation_size": 4,
-    "reduction_rate": 32.0995145631068,
-    "validation_time_seconds": 0.6660165786743164
+    "reduction_rate": 32.463592233009706,
+    "validation_time_seconds": 0.7694294452667236
   },
   "per_type_metrics": {
     "positive": {
-      "count": 24,
+      "count": 21,
       "fidelity": 100.0,
-      "necessity": 94.44444444444444,
-      "mean_size": 3.4166666666666665,
-      "std_size": 0.5713045500334204
+      "necessity": 94.04761904761905,
+      "mean_size": 3.380952380952381,
+      "std_size": 0.5753831415997415
     },
     "negative": {
-      "count": 104,
+      "count": 150,
       "fidelity": 100.0,
-      "necessity": 1.362179487179487,
-      "mean_size": 3.0384615384615383,
-      "std_size": 0.6639490962166181
+      "necessity": 4.944444444444444,
+      "mean_size": 2.7933333333333334,
+      "std_size": 0.6249977777738271
     },
     "rejected": {
-      "count": 284,
-      "fidelity": 100.0,
-      "necessity": 81.36737089201877,
-      "mean_size": 2.538732394366197,
-      "std_size": 0.6883690247989938
+      "count": 241,
+      "fidelity": 99.99626556016597,
+      "necessity": 87.55186721991701,
+      "mean_size": 2.5850622406639006,
+      "std_size": 0.6952900945851123
     }
   },
   "size_distribution": {
-    "3": 159,
-    "2": 185,
-    "4": 68
+    "2": 178,
+    "3": 179,
+    "4": 55
   },
   "per_instance_results": [
     {
@@ -61,9 +61,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -71,13 +70,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
+        "skewness"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 1367,
@@ -150,11 +147,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 91,
@@ -202,6 +197,25 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 682,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -214,25 +228,6 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 682,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -279,9 +274,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -291,7 +285,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -302,10 +295,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -316,7 +308,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -324,137 +315,6 @@
     },
     {
       "instance_id": 670,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 660,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 75.0
-    },
-    {
-      "instance_id": 1162,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 75.0
-    },
-    {
-      "instance_id": 474,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 0,
-      "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 122,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 677,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 0,
-      "redundant_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 460,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
@@ -472,6 +332,140 @@
       "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
+    },
+    {
+      "instance_id": 660,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 1162,
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 474,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 122,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 677,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 460,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 315,
@@ -487,21 +481,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 276,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -509,9 +500,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1248,
@@ -546,11 +541,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 776,
@@ -598,46 +591,28 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
+      "fidelity": 99.3,
+      "sufficiency": 99.3,
       "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "perturbations_correct": 993,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
     {
       "instance_id": 475,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 13,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
         "skewness",
         "variance"
       ],
@@ -647,9 +622,32 @@
       "perturbations_correct": 1000,
       "necessary_features": 1,
       "redundant_features": [
+        "curtosis",
         "skewness"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 13,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "entropy"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 1004,
@@ -724,17 +722,33 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 981,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 187,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 3,
       "explanation_features": [
         "curtosis",
@@ -745,31 +759,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 187,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1208,
@@ -786,9 +782,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 808,
@@ -811,12 +810,11 @@
     {
       "instance_id": 633,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -824,18 +822,21 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 1339,
       "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 3,
       "explanation_features": [
-        "entropy",
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -843,9 +844,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1258,
@@ -983,9 +988,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -995,7 +999,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1052,24 +1055,6 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 87,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
         "entropy",
@@ -1085,12 +1070,14 @@
       "necessity_score": 100.0
     },
     {
-      "instance_id": 219,
+      "instance_id": 87,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -1098,9 +1085,39 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 219,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 984,
@@ -1116,11 +1133,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 764,
@@ -1137,11 +1152,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis"
+        "curtosis",
+        "skewness"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 989,
@@ -1158,9 +1174,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 906,
@@ -1195,11 +1213,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 614,
@@ -1227,8 +1243,8 @@
     {
       "instance_id": 955,
       "y_true": 1,
-      "y_pred": 1,
-      "rejected": false,
+      "y_pred": -1,
+      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -1293,9 +1309,8 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1304,10 +1319,8 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 560,
@@ -1344,20 +1357,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 64,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1365,13 +1375,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
+        "skewness"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 959,
@@ -1395,32 +1403,11 @@
     {
       "instance_id": 347,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 556,
-      "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1431,7 +1418,29 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 556,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1463,8 +1472,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -1473,8 +1483,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 561,
@@ -1490,11 +1502,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1018,
@@ -1510,19 +1520,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1210,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -1530,11 +1539,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
       "redundant_features": [
-        "skewness"
+        "entropy"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 191,
@@ -1562,9 +1571,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1574,7 +1582,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1585,9 +1592,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1597,7 +1603,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1617,21 +1622,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 565,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1642,7 +1644,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1662,11 +1663,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1198,
@@ -1675,7 +1674,7 @@
       "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
-        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -1685,7 +1684,7 @@
       "perturbations_correct": 1000,
       "necessary_features": 2,
       "redundant_features": [
-        "curtosis"
+        "entropy"
       ],
       "necessity_score": 66.66666666666666
     },
@@ -1712,9 +1711,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1724,7 +1722,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1776,9 +1773,8 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1787,10 +1783,8 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 379,
@@ -1818,46 +1812,6 @@
     {
       "instance_id": 489,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 769,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 376,
-      "y_true": 0,
       "y_pred": 0,
       "rejected": false,
       "explanation_size": 3,
@@ -1879,7 +1833,7 @@
       "necessity_score": 0.0
     },
     {
-      "instance_id": 1034,
+      "instance_id": 769,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
@@ -1897,10 +1851,10 @@
       "necessity_score": 100.0
     },
     {
-      "instance_id": 217,
+      "instance_id": 376,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 2,
       "explanation_features": [
         "skewness",
@@ -1910,35 +1864,16 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 596,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
+      "necessary_features": 0,
+      "redundant_features": [
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "entropy",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
-      "instance_id": 441,
-      "y_true": 0,
+      "instance_id": 1034,
+      "y_true": 1,
       "y_pred": 0,
       "rejected": false,
       "explanation_size": 4,
@@ -1956,6 +1891,70 @@
       "redundant_features": [
         "curtosis",
         "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 217,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 596,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 75.0
+    },
+    {
+      "instance_id": 441,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -1984,10 +1983,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -1998,7 +1996,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2041,55 +2038,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 723,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 844,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 391,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
@@ -2114,49 +2068,8 @@
       "necessity_score": 0.0
     },
     {
-      "instance_id": 577,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 202,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "curtosis",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
-    },
-    {
-      "instance_id": 186,
-      "y_true": 0,
+      "instance_id": 844,
+      "y_true": 1,
       "y_pred": -1,
       "rejected": true,
       "explanation_size": 3,
@@ -2176,13 +2089,81 @@
       "necessity_score": 66.66666666666666
     },
     {
-      "instance_id": 1295,
-      "y_true": 1,
+      "instance_id": 391,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 577,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 202,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 186,
+      "y_true": 0,
       "y_pred": -1,
       "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
-        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -2195,12 +2176,13 @@
       "necessity_score": 100.0
     },
     {
-      "instance_id": 463,
-      "y_true": 0,
+      "instance_id": 1295,
+      "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -2209,8 +2191,31 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 463,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 744,
@@ -2329,11 +2334,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1227,
@@ -2358,9 +2361,10 @@
       "y_true": 1,
       "y_pred": 1,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
         "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -2369,16 +2373,19 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 75.0
     },
     {
       "instance_id": 282,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -2386,7 +2393,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -2405,13 +2412,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "curtosis",
-        "skewness",
-        "variance"
+        "skewness"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 502,
@@ -2436,8 +2442,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -2446,17 +2453,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
     {
       "instance_id": 625,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -2465,9 +2473,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "entropy",
+        "skewness"
+      ],
+      "necessity_score": 25.0
     },
     {
       "instance_id": 1242,
@@ -2494,10 +2506,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2508,7 +2519,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2519,10 +2529,9 @@
       "y_true": 1,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2533,7 +2542,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2544,8 +2552,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -2553,7 +2562,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -2571,11 +2580,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 385,
@@ -2647,8 +2654,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -2657,12 +2665,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "entropy",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 496,
@@ -2679,11 +2684,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 35,
@@ -2733,10 +2736,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2747,7 +2749,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2767,11 +2768,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 410,
@@ -2788,20 +2787,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 755,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -2809,13 +2805,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
+        "skewness"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 34,
@@ -2840,31 +2834,6 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 0,
-      "redundant_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 240,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
       "explanation_size": 3,
       "explanation_features": [
         "curtosis",
@@ -2878,6 +2847,27 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 240,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
         "skewness",
         "variance"
       ],
@@ -2906,10 +2896,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2920,7 +2909,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -2940,19 +2928,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 471,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -2961,12 +2948,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "entropy",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1,
@@ -3012,9 +2996,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -3024,7 +3007,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -3053,10 +3035,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3067,7 +3048,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3094,12 +3074,11 @@
     {
       "instance_id": 665,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3107,9 +3086,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 308,
@@ -3147,11 +3130,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 945,
@@ -3230,10 +3211,11 @@
     {
       "instance_id": 973,
       "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -3242,11 +3224,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
-        "entropy"
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 727,
@@ -3287,12 +3272,11 @@
     {
       "instance_id": 348,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3300,19 +3284,22 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 146,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3320,19 +3307,22 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 71,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3340,9 +3330,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 620,
@@ -3355,15 +3349,13 @@
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
+      "fidelity": 99.9,
+      "sufficiency": 99.9,
       "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "perturbations_correct": 999,
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1299,
@@ -3388,9 +3380,10 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
-        "skewness",
+        "curtosis",
+        "entropy",
         "variance"
       ],
       "fidelity": 100.0,
@@ -3398,8 +3391,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 604,
@@ -3424,27 +3419,6 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 252,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -3459,6 +3433,29 @@
       "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
+    },
+    {
+      "instance_id": 252,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1130,
@@ -3484,10 +3481,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3498,7 +3494,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3547,9 +3542,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -3559,7 +3553,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -3570,8 +3563,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3580,8 +3574,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 1076,
@@ -3597,32 +3593,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 789,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
       "necessary_features": 2,
       "redundant_features": [],
       "necessity_score": 100.0
     },
     {
-      "instance_id": 911,
+      "instance_id": 789,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
@@ -3641,31 +3617,14 @@
       "necessity_score": 100.0
     },
     {
-      "instance_id": 524,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 455,
-      "y_true": 0,
+      "instance_id": 911,
+      "y_true": 1,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
         "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3676,6 +3635,47 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 524,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 455,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
         "skewness",
         "variance"
       ],
@@ -3688,7 +3688,7 @@
       "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
-        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3698,7 +3698,7 @@
       "perturbations_correct": 1000,
       "necessary_features": 1,
       "redundant_features": [
-        "curtosis",
+        "entropy",
         "skewness"
       ],
       "necessity_score": 33.33333333333333
@@ -3727,8 +3727,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -3737,7 +3738,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -3852,11 +3853,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis"
+        "curtosis",
+        "skewness"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 1311,
@@ -3883,8 +3885,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3892,7 +3895,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -3910,21 +3913,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 894,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -3932,7 +3932,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -3941,8 +3941,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3950,7 +3951,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -3977,8 +3978,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -3987,8 +3989,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 1036,
@@ -4087,12 +4091,11 @@
     {
       "instance_id": 387,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4100,17 +4103,21 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 330,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -4118,19 +4125,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
     {
       "instance_id": 339,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4138,19 +4144,22 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 105,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4158,9 +4167,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 575,
@@ -4199,11 +4211,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1085,
@@ -4247,9 +4257,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -4259,7 +4268,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -4290,10 +4298,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4304,7 +4311,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4349,90 +4355,6 @@
     {
       "instance_id": 427,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 1148,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 608,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 0,
-      "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 1098,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 262,
-      "y_true": 0,
       "y_pred": 0,
       "rejected": false,
       "explanation_size": 4,
@@ -4450,6 +4372,89 @@
       "redundant_features": [
         "curtosis",
         "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 1148,
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 608,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 1098,
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 262,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -4498,6 +4503,29 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 216,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -4509,35 +4537,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
+        "curtosis"
       ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 216,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 75.0
     },
     {
       "instance_id": 716,
@@ -4553,11 +4557,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1304,
@@ -4601,10 +4603,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4613,19 +4614,18 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 3,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 75.0
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 200,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
-        "skewness",
+        "curtosis",
+        "entropy",
         "variance"
       ],
       "fidelity": 100.0,
@@ -4633,8 +4633,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 8,
@@ -4662,12 +4664,11 @@
     {
       "instance_id": 540,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4675,9 +4676,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 40,
@@ -4750,19 +4754,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 406,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -4771,20 +4774,24 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "curtosis",
         "entropy",
-        "skewness"
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1285,
       "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -4792,19 +4799,24 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
-        "skewness"
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 134,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -4812,11 +4824,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 230,
@@ -4839,12 +4849,11 @@
     {
       "instance_id": 458,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4852,21 +4861,21 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis"
+        "curtosis",
+        "skewness"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 454,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -4874,11 +4883,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "curtosis"
+        "curtosis",
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 862,
@@ -4928,8 +4939,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -4937,11 +4949,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
       "redundant_features": [
-        "skewness"
+        "entropy"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 418,
@@ -5009,10 +5021,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -5020,13 +5031,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
-        "skewness"
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 25.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 787,
@@ -5053,8 +5064,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -5063,69 +5075,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
     {
       "instance_id": 681,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 224,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 201,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 392,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
@@ -5144,6 +5099,68 @@
         "entropy"
       ],
       "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 224,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "entropy",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 201,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
+    },
+    {
+      "instance_id": 392,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 520,
@@ -5194,26 +5211,6 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 466,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
         "entropy",
@@ -5226,9 +5223,31 @@
       "perturbations_correct": 1000,
       "necessary_features": 2,
       "redundant_features": [
-        "entropy"
+        "skewness"
       ],
       "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 466,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 75.0
     },
     {
       "instance_id": 1272,
@@ -5253,9 +5272,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -5265,7 +5283,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -5299,9 +5316,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -5311,7 +5327,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -5320,8 +5335,8 @@
     {
       "instance_id": 1267,
       "y_true": 1,
-      "y_pred": 1,
-      "rejected": false,
+      "y_pred": -1,
+      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -5378,65 +5393,6 @@
     {
       "instance_id": 650,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
-      "instance_id": 661,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 156,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 435,
-      "y_true": 0,
       "y_pred": 0,
       "rejected": false,
       "explanation_size": 4,
@@ -5460,6 +5416,71 @@
       "necessity_score": 0.0
     },
     {
+      "instance_id": 661,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 156,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 435,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
       "instance_id": 899,
       "y_true": 1,
       "y_pred": -1,
@@ -5473,19 +5494,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 251,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -5496,7 +5518,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -5548,9 +5569,30 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 726,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
         "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -5561,29 +5603,11 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
       "necessity_score": 0.0
-    },
-    {
-      "instance_id": 726,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
     },
     {
       "instance_id": 1196,
@@ -5684,25 +5708,6 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 258,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -5717,6 +5722,29 @@
       "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
+    },
+    {
+      "instance_id": 258,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 847,
@@ -5752,9 +5780,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 21,
@@ -5770,11 +5800,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 99,
@@ -5797,6 +5825,31 @@
     {
       "instance_id": 797,
       "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 1249,
+      "y_true": 1,
       "y_pred": -1,
       "rejected": true,
       "explanation_size": 3,
@@ -5816,34 +5869,12 @@
       "necessity_score": 66.66666666666666
     },
     {
-      "instance_id": 1249,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 66.66666666666666
-    },
-    {
       "instance_id": 160,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -5851,13 +5882,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis",
-        "skewness",
-        "variance"
+        "skewness"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 1038,
@@ -5873,11 +5902,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1207,
@@ -5942,10 +5969,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -5956,7 +5982,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -5987,8 +6012,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -5997,7 +6023,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -6038,9 +6064,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 854,
@@ -6057,9 +6085,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 498,
@@ -6084,28 +6114,6 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "curtosis",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
-    },
-    {
-      "instance_id": 488,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -6120,6 +6128,29 @@
       "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
+    },
+    {
+      "instance_id": 488,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 699,
@@ -6147,6 +6178,27 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 573,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 2,
       "explanation_features": [
         "skewness",
@@ -6156,30 +6208,8 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
-    },
-    {
-      "instance_id": 573,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 3,
-      "explanation_features": [
-        "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6206,12 +6236,11 @@
     {
       "instance_id": 706,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -6219,19 +6248,22 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 129,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -6239,9 +6271,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "curtosis",
+        "skewness"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 1111,
@@ -6258,17 +6293,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 986,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -6276,7 +6314,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -6308,6 +6346,27 @@
       "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 652,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
+      "explanation_features": [
         "curtosis",
         "skewness",
         "variance"
@@ -6324,10 +6383,10 @@
       "necessity_score": 33.33333333333333
     },
     {
-      "instance_id": 652,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
+      "instance_id": 1352,
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -6339,30 +6398,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 1352,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 98,
@@ -6408,8 +6451,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6418,8 +6462,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 58,
@@ -6436,11 +6482,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 831,
@@ -6456,11 +6500,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 927,
@@ -6521,9 +6563,8 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -6532,10 +6573,8 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 804,
@@ -6551,11 +6590,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 566,
@@ -6585,9 +6622,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6597,7 +6633,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6618,17 +6653,36 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "curtosis"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 842,
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
+      "explanation_size": 3,
+      "explanation_features": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 166,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 3,
       "explanation_features": [
         "curtosis",
@@ -6639,33 +6693,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "curtosis",
-        "skewness"
-      ],
-      "necessity_score": 33.33333333333333
-    },
-    {
-      "instance_id": 166,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -6714,8 +6744,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -6724,7 +6755,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -6788,20 +6819,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 14,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6811,7 +6839,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6861,29 +6888,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 964,
-      "y_true": 1,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
-        "entropy",
+        "curtosis",
         "skewness",
         "variance"
       ],
@@ -6893,9 +6900,29 @@
       "perturbations_correct": 1000,
       "necessary_features": 2,
       "redundant_features": [
-        "entropy"
+        "skewness"
       ],
       "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 964,
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 214,
@@ -6912,12 +6939,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "skewness"
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1064,
@@ -7067,19 +7095,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 555,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7087,18 +7116,23 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 303,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
-        "skewness",
+        "curtosis",
+        "entropy",
         "variance"
       ],
       "fidelity": 100.0,
@@ -7106,14 +7140,16 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 1364,
       "y_true": 1,
-      "y_pred": 1,
-      "rejected": false,
+      "y_pred": -1,
+      "rejected": true,
       "explanation_size": 4,
       "explanation_features": [
         "curtosis",
@@ -7157,24 +7193,6 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
-      "explanation_features": [
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 47,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
         "curtosis",
@@ -7185,12 +7203,36 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
+      "redundant_features": [
+        "curtosis"
+      ],
+      "necessity_score": 66.66666666666666
+    },
+    {
+      "instance_id": 47,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "skewness"
+        "entropy",
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 233,
@@ -7251,9 +7293,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -7263,7 +7304,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -7322,19 +7362,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 553,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -7342,7 +7381,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -7369,8 +7408,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -7379,7 +7419,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -7409,9 +7449,8 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7420,10 +7459,8 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1083,
@@ -7439,11 +7476,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 563,
@@ -7473,7 +7508,7 @@
       "rejected": true,
       "explanation_size": 3,
       "explanation_features": [
-        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -7483,7 +7518,7 @@
       "perturbations_correct": 1000,
       "necessary_features": 2,
       "redundant_features": [
-        "curtosis"
+        "entropy"
       ],
       "necessity_score": 66.66666666666666
     },
@@ -7492,9 +7527,8 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -7504,7 +7538,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -7515,8 +7548,9 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -7525,19 +7559,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
-        "entropy"
+        "curtosis"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 75.0
     },
     {
       "instance_id": 686,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -7546,11 +7581,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 401,
@@ -7596,6 +7629,27 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
+      "explanation_size": 2,
+      "explanation_features": [
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 574,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
       "explanation_size": 3,
       "explanation_features": [
         "curtosis",
@@ -7609,31 +7663,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "necessity_score": 0.0
-    },
-    {
-      "instance_id": 574,
-      "y_true": 0,
-      "y_pred": 0,
-      "rejected": false,
-      "explanation_size": 4,
-      "explanation_features": [
-        "curtosis",
-        "entropy",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 0,
-      "redundant_features": [
-        "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7667,8 +7696,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -7677,11 +7707,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1264,
@@ -7707,8 +7735,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -7717,7 +7746,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -7762,9 +7791,8 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7773,10 +7801,8 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 801,
@@ -7801,12 +7827,11 @@
     {
       "instance_id": 452,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7814,9 +7839,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1050,
@@ -7842,29 +7871,11 @@
     {
       "instance_id": 759,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 4,
       "explanation_features": [
         "curtosis",
-        "skewness",
-        "variance"
-      ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
-      "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
-    },
-    {
-      "instance_id": 232,
-      "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 3,
-      "explanation_features": [
         "entropy",
         "skewness",
         "variance"
@@ -7873,11 +7884,34 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
-        "entropy"
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 232,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 4,
+      "explanation_features": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 138,
@@ -7914,21 +7948,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 402,
       "y_true": 0,
-      "y_pred": -1,
-      "rejected": true,
-      "explanation_size": 4,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -7936,9 +7967,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "curtosis",
+        "skewness",
+        "variance"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1014,
@@ -7954,11 +7989,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 389,
@@ -8007,8 +8040,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -8016,7 +8050,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -8034,11 +8068,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1354,
@@ -8063,10 +8095,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -8077,7 +8108,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -8135,19 +8165,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 592,
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
@@ -8155,7 +8184,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -8184,10 +8213,9 @@
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 4,
+      "explanation_size": 3,
       "explanation_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -8198,7 +8226,6 @@
       "necessary_features": 0,
       "redundant_features": [
         "curtosis",
-        "entropy",
         "skewness",
         "variance"
       ],
@@ -8219,20 +8246,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [
-        "entropy"
-      ],
-      "necessity_score": 66.66666666666666
+      "necessary_features": 3,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 358,
       "y_true": 0,
       "y_pred": 0,
       "rejected": false,
-      "explanation_size": 3,
+      "explanation_size": 2,
       "explanation_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -8242,7 +8266,6 @@
       "perturbations_correct": 1000,
       "necessary_features": 0,
       "redundant_features": [
-        "curtosis",
         "skewness",
         "variance"
       ],
@@ -8253,8 +8276,9 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 3,
+      "explanation_size": 4,
       "explanation_features": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
@@ -8263,7 +8287,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [],
       "necessity_score": 100.0
     },
@@ -8282,11 +8306,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
-        "curtosis"
+        "curtosis",
+        "skewness"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 1371,
@@ -8320,9 +8345,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "skewness"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 32,
@@ -8350,9 +8377,10 @@
       "y_true": 0,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
-        "skewness",
+        "curtosis",
+        "entropy",
         "variance"
       ],
       "fidelity": 100.0,
@@ -8360,8 +8388,10 @@
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 325,
@@ -8391,18 +8421,21 @@
       "y_true": 1,
       "y_pred": -1,
       "rejected": true,
-      "explanation_size": 2,
+      "explanation_size": 3,
       "explanation_features": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "fidelity": 100.0,
-      "sufficiency": 100.0,
+      "fidelity": 99.9,
+      "sufficiency": 99.9,
       "perturbations_tested": 1000,
-      "perturbations_correct": 1000,
+      "perturbations_correct": 999,
       "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "redundant_features": [
+        "entropy"
+      ],
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 872,
@@ -8418,11 +8451,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "skewness"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 1042,

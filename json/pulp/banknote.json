@@ -8,35 +8,35 @@
     "solver": "liblinear",
     "max_iter": 1000
   },
-  "t_plus": 0.00010236186857182084,
-  "t_minus": -0.5948952458253887,
+  "t_plus": 0.01,
+  "t_minus": -0.3482220816338796,
   "rejection_cost": 0.24,
   "metricas_modelo": {
     "acuracia_sem_rejeicao": 0.6140776699029126,
-    "acuracia_com_rejeicao": 0.9921875,
-    "taxa_rejeicao": 0.6893203883495146,
-    "risco_empirico": 0.1732493932038835
+    "acuracia_com_rejeicao": 0.9473684210526315,
+    "taxa_rejeicao": 0.5849514563106796,
+    "risco_empirico": 0.19301992846193156
   },
   "estatisticas_gerais": {
     "tamanho_medio": 2.716019417475728,
-    "tempo_total_segundos": 11.769169699284248,
-    "tempo_medio_segundos": 0.028565945872049147
+    "tempo_total_segundos": 13.042582400667015,
+    "tempo_medio_segundos": 0.031656753399677225
   },
   "estatisticas_por_tipo": {
     "positiva": {
-      "instancias": 24,
-      "tamanho_medio": 3.4166666666666665,
-      "tempo_medio": 0.02843844583791603
+      "instancias": 21,
+      "tamanho_medio": 3.380952380952381,
+      "tempo_medio": 0.029682885714074864
     },
     "negativa": {
-      "instancias": 104,
-      "tamanho_medio": 3.0384615384615383,
-      "tempo_medio": 0.028009896152070723
+      "instancias": 150,
+      "tamanho_medio": 2.7933333333333334,
+      "tempo_medio": 0.03188606333724844
     },
     "rejeitada": {
-      "instancias": 284,
-      "tamanho_medio": 2.538732394366197,
-      "tempo_medio": 0.02878034436393982
+      "instancias": 241,
+      "tamanho_medio": 2.6099585062240664,
+      "tempo_medio": 0.031686026141428125
     }
   },
   "explicacoes": [
@@ -46,11 +46,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.037389100005384535
+      "tamanho": 2,
+      "tempo_segundos": 0.029992800031322986
     },
     {
       "indice": "1367",
@@ -58,10 +57,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03530950000276789
+      "tamanho": 3,
+      "tempo_segundos": 0.04013960005249828
     },
     {
       "indice": "711",
@@ -72,7 +72,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029406199988443404
+      "tempo_segundos": 0.03069460002006963
     },
     {
       "indice": "1072",
@@ -83,7 +83,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022950299957301468
+      "tempo_segundos": 0.0381500999792479
     },
     {
       "indice": "130",
@@ -92,10 +92,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03866259998176247
+      "tempo_segundos": 0.022901999996975064
     },
     {
       "indice": "91",
@@ -107,7 +107,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03554829995846376
+      "tempo_segundos": 0.021669599984306842
     },
     {
       "indice": "1287",
@@ -118,7 +118,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021500699978787452
+      "tempo_segundos": 0.02922879997640848
     },
     {
       "indice": "1008",
@@ -127,11 +127,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.032940000004600734
+      "tamanho": 3,
+      "tempo_segundos": 0.02752960001816973
     },
     {
       "indice": "682",
@@ -140,10 +139,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03140600002370775
+      "tamanho": 4,
+      "tempo_segundos": 0.02391150000039488
     },
     {
       "indice": "977",
@@ -154,7 +154,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0302261000033468
+      "tempo_segundos": 0.032945699989795685
     },
     {
       "indice": "1073",
@@ -165,7 +165,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02205649996176362
+      "tempo_segundos": 0.02105670003220439
     },
     {
       "indice": "366",
@@ -173,11 +173,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02163610002025962
+      "tamanho": 2,
+      "tempo_segundos": 0.04539489996386692
     },
     {
       "indice": "459",
@@ -186,11 +185,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03559109999332577
+      "tamanho": 3,
+      "tempo_segundos": 0.035611100029200315
     },
     {
       "indice": "670",
@@ -199,39 +197,14 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.020424400048796088
+      "tamanho": 4,
+      "tempo_segundos": 0.03024430002551526
     },
     {
       "indice": "660",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis",
-        "entropy"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02126100001623854
-    },
-    {
-      "indice": "1162",
-      "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis",
-        "entropy"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03314979997230694
-    },
-    {
-      "indice": "474",
       "classe_real": "Autêntica",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -240,7 +213,30 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.022439099964685738
+      "tempo_segundos": 0.028574700001627207
+    },
+    {
+      "indice": "1162",
+      "classe_real": "Falsificada",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.02541820000624284
+    },
+    {
+      "indice": "474",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness"
+      ],
+      "tamanho": 2,
+      "tempo_segundos": 0.03126489999704063
     },
     {
       "indice": "122",
@@ -248,10 +244,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.04297199996653944
+      "tamanho": 3,
+      "tempo_segundos": 0.0214076999691315
     },
     {
       "indice": "677",
@@ -260,24 +257,22 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.050202100013848394
+      "tamanho": 3,
+      "tempo_segundos": 0.026812000025529414
     },
     {
       "indice": "460",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.046720299986191094
+      "tamanho": 3,
+      "tempo_segundos": 0.021936100034508854
     },
     {
       "indice": "315",
@@ -288,20 +283,19 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.036183100019115955
+      "tempo_segundos": 0.023906000016722828
     },
     {
       "indice": "276",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03841249999823049
+      "tamanho": 3,
+      "tempo_segundos": 0.022232200019061565
     },
     {
       "indice": "1248",
@@ -313,7 +307,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.035872999986168
+      "tempo_segundos": 0.031007599958684295
     },
     {
       "indice": "953",
@@ -324,7 +318,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.048428600013721734
+      "tempo_segundos": 0.03912370000034571
     },
     {
       "indice": "776",
@@ -336,7 +330,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.0248759999522008
+      "tempo_segundos": 0.03572109999367967
     },
     {
       "indice": "664",
@@ -347,22 +341,11 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0267636000062339
+      "tempo_segundos": 0.03084669995587319
     },
     {
       "indice": "803",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.022797100013121963
-    },
-    {
-      "indice": "475",
-      "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
@@ -371,7 +354,19 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03527809999650344
+      "tempo_segundos": 0.02344940003240481
+    },
+    {
+      "indice": "475",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.04034529998898506
     },
     {
       "indice": "13",
@@ -379,10 +374,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.024903700046706945
+      "tamanho": 3,
+      "tempo_segundos": 0.02436090004630387
     },
     {
       "indice": "1004",
@@ -394,7 +390,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03839860000880435
+      "tempo_segundos": 0.021014199999626726
     },
     {
       "indice": "882",
@@ -406,7 +402,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.05073570000240579
+      "tempo_segundos": 0.037563699996098876
     },
     {
       "indice": "62",
@@ -417,7 +413,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04852589999791235
+      "tempo_segundos": 0.03507740003988147
     },
     {
       "indice": "987",
@@ -428,7 +424,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.042528900026809424
+      "tempo_segundos": 0.022051899984944612
     },
     {
       "indice": "981",
@@ -436,24 +432,22 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03813400003127754
+      "tamanho": 2,
+      "tempo_segundos": 0.03574269998352975
     },
     {
       "indice": "187",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.023300400003790855
+      "tamanho": 3,
+      "tempo_segundos": 0.031120800005737692
     },
     {
       "indice": "1208",
@@ -465,7 +459,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02577099995687604
+      "tempo_segundos": 0.03260019997833297
     },
     {
       "indice": "808",
@@ -476,32 +470,31 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03611519996775314
+      "tempo_segundos": 0.02174860000377521
     },
     {
       "indice": "633",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03287389996694401
+      "tamanho": 3,
+      "tempo_segundos": 0.0317602000432089
     },
     {
       "indice": "1339",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "entropy"
+        "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02305499999783933
+      "tempo_segundos": 0.022554999974090606
     },
     {
       "indice": "1258",
@@ -512,7 +505,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.028465199982747436
+      "tempo_segundos": 0.03929769998649135
     },
     {
       "indice": "975",
@@ -523,7 +516,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.033209399960469455
+      "tempo_segundos": 0.021950599970296025
     },
     {
       "indice": "1359",
@@ -531,10 +524,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03602619998855516
+      "tamanho": 3,
+      "tempo_segundos": 0.023088899964932352
     },
     {
       "indice": "870",
@@ -545,7 +539,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030536399979609996
+      "tempo_segundos": 0.02499449998140335
     },
     {
       "indice": "1213",
@@ -557,7 +551,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.04370450001442805
+      "tempo_segundos": 0.024705600051674992
     },
     {
       "indice": "1025",
@@ -568,7 +562,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03321900003356859
+      "tempo_segundos": 0.044050399970728904
     },
     {
       "indice": "795",
@@ -579,7 +573,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030733199964743108
+      "tempo_segundos": 0.02250259998254478
     },
     {
       "indice": "253",
@@ -587,11 +581,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03396169998450205
+      "tamanho": 2,
+      "tempo_segundos": 0.034536899998784065
     },
     {
       "indice": "52",
@@ -603,7 +596,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.022112400038167834
+      "tempo_segundos": 0.02460479998262599
     },
     {
       "indice": "654",
@@ -615,7 +608,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.019996700051706284
+      "tempo_segundos": 0.023170200001914054
     },
     {
       "indice": "1107",
@@ -623,33 +616,37 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.028944300021976233
-    },
-    {
-      "indice": "87",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
         "skewness",
         "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03516779997153208
+      "tempo_segundos": 0.022234100033529103
+    },
+    {
+      "indice": "87",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.040678299963474274
     },
     {
       "indice": "219",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.021049699978902936
+      "tamanho": 4,
+      "tempo_segundos": 0.021482700016349554
     },
     {
       "indice": "984",
@@ -660,7 +657,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04002680000849068
+      "tempo_segundos": 0.022182099986821413
     },
     {
       "indice": "764",
@@ -672,7 +669,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.021365599997807294
+      "tempo_segundos": 0.022820300015155226
     },
     {
       "indice": "989",
@@ -684,7 +681,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.04608280002139509
+      "tempo_segundos": 0.030189900018740445
     },
     {
       "indice": "906",
@@ -695,7 +692,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02752830000827089
+      "tempo_segundos": 0.02358989999629557
     },
     {
       "indice": "293",
@@ -707,7 +704,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02913450001506135
+      "tempo_segundos": 0.027929400035645813
     },
     {
       "indice": "614",
@@ -719,12 +716,12 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.034166500030551106
+      "tempo_segundos": 0.05455980001715943
     },
     {
       "indice": "955",
       "classe_real": "Falsificada",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
         "skewness",
@@ -732,7 +729,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03181270003551617
+      "tempo_segundos": 0.050932499987538904
     },
     {
       "indice": "504",
@@ -744,7 +741,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02944219997152686
+      "tempo_segundos": 0.023352200048975646
     },
     {
       "indice": "1092",
@@ -756,7 +753,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.030354499991517514
+      "tempo_segundos": 0.056781699997372925
     },
     {
       "indice": "990",
@@ -768,7 +765,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.021094300027471036
+      "tempo_segundos": 0.033088100026361644
     },
     {
       "indice": "560",
@@ -779,7 +776,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04072339995764196
+      "tempo_segundos": 0.024462000001221895
     },
     {
       "indice": "1201",
@@ -790,7 +787,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02806159999454394
+      "tempo_segundos": 0.026733500009868294
     },
     {
       "indice": "64",
@@ -798,11 +795,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.033157599973492324
+      "tamanho": 2,
+      "tempo_segundos": 0.02810290001798421
     },
     {
       "indice": "959",
@@ -814,20 +810,19 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.021164199977647513
+      "tempo_segundos": 0.02655650000087917
     },
     {
       "indice": "347",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.038873699959367514
+      "tamanho": 3,
+      "tempo_segundos": 0.028552400006446987
     },
     {
       "indice": "556",
@@ -836,11 +831,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01901649998035282
+      "tamanho": 3,
+      "tempo_segundos": 0.028129299986176193
     },
     {
       "indice": "765",
@@ -852,7 +846,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.0384302000165917
+      "tempo_segundos": 0.04194419999839738
     },
     {
       "indice": "288",
@@ -860,10 +854,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03048830002080649
+      "tamanho": 3,
+      "tempo_segundos": 0.03171820001443848
     },
     {
       "indice": "561",
@@ -874,7 +869,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03785480000078678
+      "tempo_segundos": 0.0318336000200361
     },
     {
       "indice": "1018",
@@ -885,7 +880,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023027599963825196
+      "tempo_segundos": 0.03178499999921769
     },
     {
       "indice": "1210",
@@ -893,10 +888,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.023764200042933226
+      "tamanho": 3,
+      "tempo_segundos": 0.056860500015318394
     },
     {
       "indice": "191",
@@ -907,7 +903,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029035499959718436
+      "tempo_segundos": 0.04172700003255159
     },
     {
       "indice": "472",
@@ -915,11 +911,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03777539997827262
+      "tamanho": 2,
+      "tempo_segundos": 0.028118900023400784
     },
     {
       "indice": "715",
@@ -927,11 +922,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.04005770001094788
+      "tamanho": 2,
+      "tempo_segundos": 0.03921369998715818
     },
     {
       "indice": "830",
@@ -942,7 +936,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02183859999058768
+      "tempo_segundos": 0.02745579998008907
     },
     {
       "indice": "565",
@@ -951,11 +945,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.037188799993600696
+      "tamanho": 3,
+      "tempo_segundos": 0.03735699999378994
     },
     {
       "indice": "994",
@@ -966,7 +959,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023583900008816272
+      "tempo_segundos": 0.04216320003615692
     },
     {
       "indice": "1198",
@@ -978,7 +971,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.032721700030379
+      "tempo_segundos": 0.03131970000686124
     },
     {
       "indice": "1171",
@@ -989,7 +982,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.038372699986211956
+      "tempo_segundos": 0.025134399998933077
     },
     {
       "indice": "205",
@@ -997,11 +990,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.031117699982132763
+      "tamanho": 2,
+      "tempo_segundos": 0.04269979998935014
     },
     {
       "indice": "267",
@@ -1012,7 +1004,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022724100039340556
+      "tempo_segundos": 0.047283200023230165
     },
     {
       "indice": "612",
@@ -1023,7 +1015,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.032945699989795685
+      "tempo_segundos": 0.05513910000445321
     },
     {
       "indice": "807",
@@ -1031,11 +1023,10 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.027669299975968897
+      "tamanho": 2,
+      "tempo_segundos": 0.04705620004097
     },
     {
       "indice": "379",
@@ -1047,20 +1038,19 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03563830000348389
+      "tempo_segundos": 0.0378338000155054
     },
     {
       "indice": "489",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.031403300003148615
+      "tamanho": 3,
+      "tempo_segundos": 0.0311080000246875
     },
     {
       "indice": "769",
@@ -1071,7 +1061,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029775400005746633
+      "tempo_segundos": 0.02849430002970621
     },
     {
       "indice": "376",
@@ -1079,49 +1069,14 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.020539099990855902
+      "tamanho": 2,
+      "tempo_segundos": 0.024869799963198602
     },
     {
       "indice": "1034",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.019154699984937906
-    },
-    {
-      "indice": "217",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02953589998651296
-    },
-    {
-      "indice": "596",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.025643400033004582
-    },
-    {
-      "indice": "441",
-      "classe_real": "Autêntica",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
@@ -1130,7 +1085,44 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.026970500010065734
+      "tempo_segundos": 0.039174199977423996
+    },
+    {
+      "indice": "217",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.028431000013370067
+    },
+    {
+      "indice": "596",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.029681799991521984
+    },
+    {
+      "indice": "441",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.02859040000475943
     },
     {
       "indice": "1204",
@@ -1141,7 +1133,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02600359998177737
+      "tempo_segundos": 0.030334799957927316
     },
     {
       "indice": "295",
@@ -1150,11 +1142,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.0195275999722071
+      "tamanho": 3,
+      "tempo_segundos": 0.04276829998707399
     },
     {
       "indice": "128",
@@ -1166,7 +1157,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03226780000841245
+      "tempo_segundos": 0.06425019999733195
     },
     {
       "indice": "836",
@@ -1177,33 +1168,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02300039998954162
+      "tempo_segundos": 0.11691380001138896
     },
     {
       "indice": "723",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "entropy"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02765549998730421
-    },
-    {
-      "indice": "844",
-      "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.018409699958283454
-    },
-    {
-      "indice": "391",
       "classe_real": "Autêntica",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -1213,7 +1181,31 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02771650004433468
+      "tempo_segundos": 0.028908500040415674
+    },
+    {
+      "indice": "844",
+      "classe_real": "Falsificada",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "entropy"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.03301600000122562
+    },
+    {
+      "indice": "391",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.0375913999741897
     },
     {
       "indice": "577",
@@ -1222,22 +1214,24 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.022268000000622123
+      "tamanho": 4,
+      "tempo_segundos": 0.026042699988465756
     },
     {
       "indice": "202",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.030736499989870936
+      "tamanho": 4,
+      "tempo_segundos": 0.029391499992925674
     },
     {
       "indice": "186",
@@ -1246,10 +1240,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.026378599985037
+      "tempo_segundos": 0.02802179998252541
     },
     {
       "indice": "1295",
@@ -1261,7 +1255,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029014599975198507
+      "tempo_segundos": 0.03347859997302294
     },
     {
       "indice": "463",
@@ -1269,10 +1263,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02468029997544363
+      "tamanho": 3,
+      "tempo_segundos": 0.03786250000121072
     },
     {
       "indice": "744",
@@ -1283,7 +1278,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.028076999995391816
+      "tempo_segundos": 0.04478419997030869
     },
     {
       "indice": "767",
@@ -1294,7 +1289,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019722800003364682
+      "tempo_segundos": 0.02626289997715503
     },
     {
       "indice": "898",
@@ -1305,7 +1300,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030795600032433867
+      "tempo_segundos": 0.05294490000233054
     },
     {
       "indice": "36",
@@ -1317,7 +1312,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02050099999178201
+      "tempo_segundos": 0.030483399983495474
     },
     {
       "indice": "273",
@@ -1329,7 +1324,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.023842399998102337
+      "tempo_segundos": 0.04206440004054457
     },
     {
       "indice": "1079",
@@ -1340,7 +1335,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02037329995073378
+      "tempo_segundos": 0.034330800001043826
     },
     {
       "indice": "1227",
@@ -1351,7 +1346,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.027385599969420582
+      "tempo_segundos": 0.05859179998515174
     },
     {
       "indice": "766",
@@ -1360,10 +1355,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.028878900047857314
+      "tamanho": 4,
+      "tempo_segundos": 0.03028710000216961
     },
     {
       "indice": "282",
@@ -1371,10 +1367,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02008180000120774
+      "tamanho": 3,
+      "tempo_segundos": 0.04705599998123944
     },
     {
       "indice": "508",
@@ -1386,7 +1383,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.024994200037326664
+      "tempo_segundos": 0.04389849997824058
     },
     {
       "indice": "502",
@@ -1397,7 +1394,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03152059996500611
+      "tempo_segundos": 0.030447899946011603
     },
     {
       "indice": "678",
@@ -1406,22 +1403,24 @@
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.031612200022209436
+      "tamanho": 4,
+      "tempo_segundos": 0.04407800000626594
     },
     {
       "indice": "625",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02724809997016564
+      "tamanho": 4,
+      "tempo_segundos": 0.02898460003780201
     },
     {
       "indice": "1242",
@@ -1434,7 +1433,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03187779994914308
+      "tempo_segundos": 0.02637989999493584
     },
     {
       "indice": "738",
@@ -1443,11 +1442,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.029394100012723356
+      "tamanho": 3,
+      "tempo_segundos": 0.04330600000685081
     },
     {
       "indice": "1346",
@@ -1456,11 +1454,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.028276799945160747
+      "tamanho": 3,
+      "tempo_segundos": 0.032650700013618916
     },
     {
       "indice": "672",
@@ -1468,10 +1465,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02959509997162968
+      "tamanho": 3,
+      "tempo_segundos": 0.02949889999581501
     },
     {
       "indice": "1323",
@@ -1482,7 +1480,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.026788600021973252
+      "tempo_segundos": 0.0427664999733679
     },
     {
       "indice": "385",
@@ -1494,7 +1492,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.026959899987559766
+      "tempo_segundos": 0.025668000045698136
     },
     {
       "indice": "1164",
@@ -1506,7 +1504,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.028336099989246577
+      "tempo_segundos": 0.028893899987451732
     },
     {
       "indice": "1185",
@@ -1518,7 +1516,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02848509995965287
+      "tempo_segundos": 0.04391740000573918
     },
     {
       "indice": "509",
@@ -1527,10 +1525,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.033258299983572215
+      "tamanho": 4,
+      "tempo_segundos": 0.041163999994751066
     },
     {
       "indice": "496",
@@ -1539,10 +1538,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03419730003224686
+      "tempo_segundos": 0.026266400003805757
     },
     {
       "indice": "35",
@@ -1554,7 +1553,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.01925060001667589
+      "tempo_segundos": 0.03765940002631396
     },
     {
       "indice": "1153",
@@ -1567,7 +1566,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.029902399983257055
+      "tempo_segundos": 0.024117000051774085
     },
     {
       "indice": "343",
@@ -1576,11 +1575,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.020814300049096346
+      "tamanho": 3,
+      "tempo_segundos": 0.02323140000225976
     },
     {
       "indice": "895",
@@ -1591,7 +1589,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03502940002363175
+      "tempo_segundos": 0.024110699945595115
     },
     {
       "indice": "410",
@@ -1600,10 +1598,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.01911600003950298
+      "tempo_segundos": 0.02825539995683357
     },
     {
       "indice": "755",
@@ -1611,11 +1609,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01930990000255406
+      "tamanho": 2,
+      "tempo_segundos": 0.021812599967233837
     },
     {
       "indice": "34",
@@ -1626,7 +1623,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03268740000203252
+      "tempo_segundos": 0.0248097000294365
     },
     {
       "indice": "372",
@@ -1635,11 +1632,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02022080001188442
+      "tamanho": 3,
+      "tempo_segundos": 0.0211095999693498
     },
     {
       "indice": "240",
@@ -1647,11 +1643,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.018581699987407774
+      "tamanho": 2,
+      "tempo_segundos": 0.021332699980121106
     },
     {
       "indice": "822",
@@ -1662,7 +1657,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03698570001870394
+      "tempo_segundos": 0.0414193999604322
     },
     {
       "indice": "605",
@@ -1671,11 +1666,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.032262699969578534
+      "tamanho": 3,
+      "tempo_segundos": 0.026177400024607778
     },
     {
       "indice": "1231",
@@ -1686,7 +1680,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.020761199994012713
+      "tempo_segundos": 0.028920200013089925
     },
     {
       "indice": "471",
@@ -1695,10 +1689,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03141269995830953
+      "tamanho": 4,
+      "tempo_segundos": 0.026690599974244833
     },
     {
       "indice": "1",
@@ -1709,7 +1704,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021018399973399937
+      "tempo_segundos": 0.03494410001439974
     },
     {
       "indice": "1096",
@@ -1720,7 +1715,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019906300003640354
+      "tempo_segundos": 0.022672699997201562
     },
     {
       "indice": "161",
@@ -1728,11 +1723,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.025504900026135147
+      "tamanho": 2,
+      "tempo_segundos": 0.023640100029297173
     },
     {
       "indice": "1081",
@@ -1743,7 +1737,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.027930799988098443
+      "tempo_segundos": 0.03787719999672845
     },
     {
       "indice": "384",
@@ -1752,11 +1746,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01980449998518452
+      "tamanho": 3,
+      "tempo_segundos": 0.0325165000394918
     },
     {
       "indice": "944",
@@ -1767,20 +1760,19 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030109699990134686
+      "tempo_segundos": 0.02075590001186356
     },
     {
       "indice": "665",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02359460003208369
+      "tamanho": 3,
+      "tempo_segundos": 0.020763700013048947
     },
     {
       "indice": "308",
@@ -1791,7 +1783,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.018491599999833852
+      "tempo_segundos": 0.036845299997366965
     },
     {
       "indice": "491",
@@ -1800,10 +1792,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.0284939999692142
+      "tempo_segundos": 0.024500600004103035
     },
     {
       "indice": "945",
@@ -1814,7 +1806,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02847929997369647
+      "tempo_segundos": 0.02631899999687448
     },
     {
       "indice": "1303",
@@ -1827,7 +1819,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02391769998939708
+      "tempo_segundos": 0.03212829999392852
     },
     {
       "indice": "1239",
@@ -1838,7 +1830,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021779300004709512
+      "tempo_segundos": 0.029257700021844357
     },
     {
       "indice": "4",
@@ -1849,19 +1841,20 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02830450003966689
+      "tempo_segundos": 0.021961099992040545
     },
     {
       "indice": "973",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03329470002790913
+      "tamanho": 4,
+      "tempo_segundos": 0.028441500035114586
     },
     {
       "indice": "727",
@@ -1872,7 +1865,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021166499995160848
+      "tempo_segundos": 0.026994200015906245
     },
     {
       "indice": "476",
@@ -1883,46 +1876,43 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03176270000403747
+      "tempo_segundos": 0.033173999981954694
     },
     {
       "indice": "348",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03673019999405369
+      "tamanho": 3,
+      "tempo_segundos": 0.021419199998490512
     },
     {
       "indice": "146",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.019060600025113672
+      "tamanho": 3,
+      "tempo_segundos": 0.020697600033599883
     },
     {
       "indice": "71",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03436410002177581
+      "tamanho": 3,
+      "tempo_segundos": 0.0201113999937661
     },
     {
       "indice": "620",
@@ -1931,10 +1921,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01963389996672049
+      "tamanho": 4,
+      "tempo_segundos": 0.02147129998775199
     },
     {
       "indice": "1299",
@@ -1945,7 +1936,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.036679300013929605
+      "tempo_segundos": 0.03843860002234578
     },
     {
       "indice": "562",
@@ -1953,10 +1944,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03651599999284372
+      "tamanho": 3,
+      "tempo_segundos": 0.024435300030745566
     },
     {
       "indice": "604",
@@ -1967,22 +1959,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023175899987109005
+      "tempo_segundos": 0.022805500018876046
     },
     {
       "indice": "159",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03166929999133572
-    },
-    {
-      "indice": "252",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -1992,7 +1972,19 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02660949999699369
+      "tempo_segundos": 0.022090100042987615
+    },
+    {
+      "indice": "252",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.03582549997372553
     },
     {
       "indice": "1130",
@@ -2004,7 +1996,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.030358900025021285
+      "tempo_segundos": 0.021255499974358827
     },
     {
       "indice": "696",
@@ -2013,11 +2005,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03606710000894964
+      "tamanho": 3,
+      "tempo_segundos": 0.03330779995303601
     },
     {
       "indice": "123",
@@ -2028,7 +2019,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030505399976391345
+      "tempo_segundos": 0.021344799955841154
     },
     {
       "indice": "1315",
@@ -2041,7 +2032,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.020840600016526878
+      "tempo_segundos": 0.024809800030197948
     },
     {
       "indice": "106",
@@ -2049,11 +2040,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.037119199987500906
+      "tamanho": 2,
+      "tempo_segundos": 0.0305240000016056
     },
     {
       "indice": "1155",
@@ -2061,10 +2051,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.026132199971470982
+      "tamanho": 3,
+      "tempo_segundos": 0.026522799977101386
     },
     {
       "indice": "1076",
@@ -2075,21 +2066,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.035116299986839294
+      "tempo_segundos": 0.04262880003079772
     },
     {
       "indice": "789",
-      "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.01959699997678399
-    },
-    {
-      "indice": "911",
       "classe_real": "Falsificada",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -2098,7 +2078,20 @@
         "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03817820001859218
+      "tempo_segundos": 0.02764089999254793
+    },
+    {
+      "indice": "911",
+      "classe_real": "Falsificada",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.02304780000122264
     },
     {
       "indice": "524",
@@ -2106,10 +2099,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.04257280001183972
+      "tamanho": 3,
+      "tempo_segundos": 0.023940399987623096
     },
     {
       "indice": "455",
@@ -2117,11 +2111,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02818169997772202
+      "tamanho": 2,
+      "tempo_segundos": 0.022076399996876717
     },
     {
       "indice": "1147",
@@ -2133,7 +2126,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.019493900006636977
+      "tempo_segundos": 0.021209499973338097
     },
     {
       "indice": "1281",
@@ -2145,7 +2138,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02281199995195493
+      "tempo_segundos": 0.05172260000836104
     },
     {
       "indice": "741",
@@ -2154,10 +2147,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03133029997115955
+      "tamanho": 4,
+      "tempo_segundos": 0.02094830002170056
     },
     {
       "indice": "823",
@@ -2168,7 +2162,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.026748000003863126
+      "tempo_segundos": 0.023374799988232553
     },
     {
       "indice": "691",
@@ -2179,7 +2173,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02899059996707365
+      "tempo_segundos": 0.021433399990200996
     },
     {
       "indice": "1370",
@@ -2191,7 +2185,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03371579997474328
+      "tempo_segundos": 0.03197859995998442
     },
     {
       "indice": "1061",
@@ -2202,7 +2196,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0344512999872677
+      "tempo_segundos": 0.040190599975176156
     },
     {
       "indice": "243",
@@ -2214,7 +2208,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029997100005857646
+      "tempo_segundos": 0.04489910003030673
     },
     {
       "indice": "1269",
@@ -2226,7 +2220,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.020792499999515712
+      "tempo_segundos": 0.02954610000597313
     },
     {
       "indice": "1311",
@@ -2237,7 +2231,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04372319998219609
+      "tempo_segundos": 0.023897500010207295
     },
     {
       "indice": "147",
@@ -2245,10 +2239,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.030815000005532056
+      "tamanho": 3,
+      "tempo_segundos": 0.04016719997161999
     },
     {
       "indice": "241",
@@ -2259,7 +2254,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03165620000800118
+      "tempo_segundos": 0.021888499963097274
     },
     {
       "indice": "894",
@@ -2268,11 +2263,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.0346253999741748
+      "tamanho": 3,
+      "tempo_segundos": 0.035747300018556416
     },
     {
       "indice": "246",
@@ -2280,10 +2274,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03621649998240173
+      "tamanho": 3,
+      "tempo_segundos": 0.02241100004175678
     },
     {
       "indice": "1279",
@@ -2294,7 +2289,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023981900012586266
+      "tempo_segundos": 0.024168899981305003
     },
     {
       "indice": "1344",
@@ -2302,10 +2297,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.019323699991218746
+      "tamanho": 3,
+      "tempo_segundos": 0.0208862999570556
     },
     {
       "indice": "1036",
@@ -2316,7 +2312,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023528599995188415
+      "tempo_segundos": 0.025979600031860173
     },
     {
       "indice": "1124",
@@ -2328,7 +2324,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029366499977186322
+      "tempo_segundos": 0.021676300035323948
     },
     {
       "indice": "1043",
@@ -2339,7 +2335,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.036468999984208494
+      "tempo_segundos": 0.05031640001107007
     },
     {
       "indice": "1186",
@@ -2350,7 +2346,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023561500012874603
+      "tempo_segundos": 0.051770900026895106
     },
     {
       "indice": "345",
@@ -2361,20 +2357,19 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04400950000854209
+      "tempo_segundos": 0.03480269998544827
     },
     {
       "indice": "387",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03622810001252219
+      "tamanho": 3,
+      "tempo_segundos": 0.022731099976226687
     },
     {
       "indice": "330",
@@ -2382,36 +2377,35 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02013639995129779
+      "tamanho": 3,
+      "tempo_segundos": 0.027413300005719066
     },
     {
       "indice": "339",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.034793399972841144
+      "tamanho": 3,
+      "tempo_segundos": 0.024894999980460852
     },
     {
       "indice": "105",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02062679996015504
+      "tamanho": 3,
+      "tempo_segundos": 0.04713160003302619
     },
     {
       "indice": "575",
@@ -2423,7 +2417,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.028583399951457977
+      "tempo_segundos": 0.0230347000178881
     },
     {
       "indice": "956",
@@ -2434,7 +2428,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.026954400003887713
+      "tempo_segundos": 0.039593499968759716
     },
     {
       "indice": "1085",
@@ -2446,7 +2440,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.020825100014917552
+      "tempo_segundos": 0.030953899957239628
     },
     {
       "indice": "1087",
@@ -2457,7 +2451,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03769299999112263
+      "tempo_segundos": 0.025916900020092726
     },
     {
       "indice": "112",
@@ -2465,11 +2459,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03689510002732277
+      "tamanho": 2,
+      "tempo_segundos": 0.026038299954961985
     },
     {
       "indice": "1202",
@@ -2480,7 +2473,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022098999994341284
+      "tempo_segundos": 0.021725800004787743
     },
     {
       "indice": "313",
@@ -2489,11 +2482,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01883720001205802
+      "tamanho": 3,
+      "tempo_segundos": 0.027349899988621473
     },
     {
       "indice": "828",
@@ -2504,7 +2496,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02000170003157109
+      "tempo_segundos": 0.040851700003258884
     },
     {
       "indice": "1211",
@@ -2515,18 +2507,20 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.026445799972862005
+      "tempo_segundos": 0.039679699984844774
     },
     {
       "indice": "427",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.019443599972873926
+      "tamanho": 4,
+      "tempo_segundos": 0.03445000003557652
     },
     {
       "indice": "1148",
@@ -2537,7 +2531,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03143420000560582
+      "tempo_segundos": 0.03879479999886826
     },
     {
       "indice": "608",
@@ -2545,11 +2539,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.020697600033599883
+      "tamanho": 2,
+      "tempo_segundos": 0.037716499995440245
     },
     {
       "indice": "1098",
@@ -2561,7 +2554,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03021130000706762
+      "tempo_segundos": 0.03661369998008013
     },
     {
       "indice": "262",
@@ -2570,11 +2563,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.019428999978117645
+      "tamanho": 3,
+      "tempo_segundos": 0.03304260002914816
     },
     {
       "indice": "809",
@@ -2585,7 +2577,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03422319999663159
+      "tempo_segundos": 0.03053739998722449
     },
     {
       "indice": "768",
@@ -2596,7 +2588,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019901399966329336
+      "tempo_segundos": 0.055166899983305484
     },
     {
       "indice": "279",
@@ -2605,11 +2597,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.027557299996260554
+      "tamanho": 3,
+      "tempo_segundos": 0.03512010001577437
     },
     {
       "indice": "216",
@@ -2618,10 +2609,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.019768400001339614
+      "tamanho": 4,
+      "tempo_segundos": 0.033838899980764836
     },
     {
       "indice": "716",
@@ -2632,7 +2624,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02339320001192391
+      "tempo_segundos": 0.04984220000915229
     },
     {
       "indice": "1304",
@@ -2644,7 +2636,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02962749998550862
+      "tempo_segundos": 0.03748290002113208
     },
     {
       "indice": "992",
@@ -2655,7 +2647,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.027713100018445402
+      "tempo_segundos": 0.03655009996145964
     },
     {
       "indice": "1274",
@@ -2664,11 +2656,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.030605100037064403
+      "tamanho": 3,
+      "tempo_segundos": 0.03307800000766292
     },
     {
       "indice": "200",
@@ -2676,10 +2667,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.022904599958565086
+      "tamanho": 3,
+      "tempo_segundos": 0.03607520001241937
     },
     {
       "indice": "8",
@@ -2691,20 +2683,19 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.032255400030408055
+      "tempo_segundos": 0.04356090002693236
     },
     {
       "indice": "540",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02997460000915453
+      "tamanho": 3,
+      "tempo_segundos": 0.05886970000574365
     },
     {
       "indice": "40",
@@ -2715,7 +2706,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019247199990786612
+      "tempo_segundos": 0.057637999998405576
     },
     {
       "indice": "1348",
@@ -2726,7 +2717,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0228732000105083
+      "tempo_segundos": 0.06603980000363663
     },
     {
       "indice": "1035",
@@ -2737,7 +2728,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03261769999517128
+      "tempo_segundos": 0.03533510002307594
     },
     {
       "indice": "1215",
@@ -2748,30 +2739,33 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.027724600047804415
+      "tempo_segundos": 0.039580499986186624
     },
     {
       "indice": "406",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.030241799948271364
+      "tamanho": 4,
+      "tempo_segundos": 0.05040369997732341
     },
     {
       "indice": "1285",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.021208500023931265
+      "tamanho": 4,
+      "tempo_segundos": 0.02685249998467043
     },
     {
       "indice": "134",
@@ -2779,10 +2773,12 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.023906000016722828
+      "tamanho": 4,
+      "tempo_segundos": 0.05007250001654029
     },
     {
       "indice": "230",
@@ -2793,33 +2789,31 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029504899983294308
+      "tempo_segundos": 0.036824599956162274
     },
     {
       "indice": "458",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.026856600015889853
+      "tamanho": 3,
+      "tempo_segundos": 0.03291840001475066
     },
     {
       "indice": "454",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02268629998434335
+      "tamanho": 3,
+      "tempo_segundos": 0.03960020001977682
     },
     {
       "indice": "862",
@@ -2830,7 +2824,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019870599964633584
+      "tempo_segundos": 0.07152700005099177
     },
     {
       "indice": "505",
@@ -2842,7 +2836,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02039279998280108
+      "tempo_segundos": 0.03854239999782294
     },
     {
       "indice": "1324",
@@ -2850,10 +2844,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.026832400006242096
+      "tamanho": 3,
+      "tempo_segundos": 0.03159219998633489
     },
     {
       "indice": "418",
@@ -2864,7 +2859,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030548499955330044
+      "tempo_segundos": 0.031078799976967275
     },
     {
       "indice": "183",
@@ -2876,7 +2871,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.023477999959141016
+      "tempo_segundos": 0.06424100004369393
     },
     {
       "indice": "583",
@@ -2887,7 +2882,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03961780003737658
+      "tempo_segundos": 0.07479990000138059
     },
     {
       "indice": "510",
@@ -2896,11 +2891,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02892509999219328
+      "tamanho": 3,
+      "tempo_segundos": 0.061804500001017004
     },
     {
       "indice": "787",
@@ -2913,7 +2907,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.020436500024516135
+      "tempo_segundos": 0.028902399993967265
     },
     {
       "indice": "413",
@@ -2922,47 +2916,14 @@
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02069350000238046
+      "tamanho": 4,
+      "tempo_segundos": 0.03989630000432953
     },
     {
       "indice": "681",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.0345328000257723
-    },
-    {
-      "indice": "224",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03797480004141107
-    },
-    {
-      "indice": "201",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "entropy"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.039650099992286414
-    },
-    {
-      "indice": "392",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -2971,7 +2932,45 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.023802600044291466
+      "tempo_segundos": 0.03987849998520687
+    },
+    {
+      "indice": "224",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.03050749999238178
+    },
+    {
+      "indice": "201",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.0313497000024654
+    },
+    {
+      "indice": "392",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.03965089999837801
     },
     {
       "indice": "520",
@@ -2983,7 +2982,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03825829998822883
+      "tempo_segundos": 0.024873499991372228
     },
     {
       "indice": "20",
@@ -2994,7 +2993,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03748709999490529
+      "tempo_segundos": 0.022393800027202815
     },
     {
       "indice": "687",
@@ -3002,10 +3001,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02827210002578795
+      "tamanho": 3,
+      "tempo_segundos": 0.022622999968007207
     },
     {
       "indice": "466",
@@ -3014,10 +3014,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.024054899986367673
+      "tamanho": 4,
+      "tempo_segundos": 0.027403200045228004
     },
     {
       "indice": "1272",
@@ -3028,7 +3029,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021614300028886646
+      "tempo_segundos": 0.02269949996843934
     },
     {
       "indice": "700",
@@ -3036,11 +3037,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01936590002151206
+      "tamanho": 2,
+      "tempo_segundos": 0.037251200003083795
     },
     {
       "indice": "546",
@@ -3052,7 +3052,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.018790400004945695
+      "tempo_segundos": 0.04419200000120327
     },
     {
       "indice": "438",
@@ -3060,16 +3060,15 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01894239999819547
+      "tamanho": 2,
+      "tempo_segundos": 0.03187120001530275
     },
     {
       "indice": "1267",
       "classe_real": "Falsificada",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
         "skewness",
@@ -3077,7 +3076,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.019137199968099594
+      "tempo_segundos": 0.0462171999970451
     },
     {
       "indice": "1238",
@@ -3088,7 +3087,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.020119099994190037
+      "tempo_segundos": 0.0257825999869965
     },
     {
       "indice": "591",
@@ -3099,44 +3098,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04300070001045242
+      "tempo_segundos": 0.027411399991251528
     },
     {
       "indice": "650",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "entropy"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.029238799994345754
-    },
-    {
-      "indice": "661",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.030869699956383556
-    },
-    {
-      "indice": "156",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.020659100031480193
-    },
-    {
-      "indice": "435",
       "classe_real": "Autêntica",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -3146,7 +3111,43 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03266349999466911
+      "tempo_segundos": 0.03463800001190975
+    },
+    {
+      "indice": "661",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "entropy"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.023650299990549684
+    },
+    {
+      "indice": "156",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.0218610999872908
+    },
+    {
+      "indice": "435",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.022690200014039874
     },
     {
       "indice": "899",
@@ -3157,7 +3158,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02051420003408566
+      "tempo_segundos": 0.026121400005649775
     },
     {
       "indice": "251",
@@ -3166,11 +3167,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.030465699965134263
+      "tamanho": 3,
+      "tempo_segundos": 0.032413499953690916
     },
     {
       "indice": "1126",
@@ -3183,7 +3183,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02342139999382198
+      "tempo_segundos": 0.021242199989501387
     },
     {
       "indice": "941",
@@ -3195,7 +3195,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.020472400006838143
+      "tempo_segundos": 0.0389141000341624
     },
     {
       "indice": "269",
@@ -3203,23 +3203,23 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03588179999496788
+      "tamanho": 2,
+      "tempo_segundos": 0.02036480000242591
     },
     {
       "indice": "726",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.019688199972733855
+      "tamanho": 4,
+      "tempo_segundos": 0.021667500026524067
     },
     {
       "indice": "1196",
@@ -3230,7 +3230,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03379590000258759
+      "tempo_segundos": 0.022340300027281046
     },
     {
       "indice": "1121",
@@ -3242,7 +3242,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.026006799947936088
+      "tempo_segundos": 0.027143699990119785
     },
     {
       "indice": "873",
@@ -3253,7 +3253,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.025980300037190318
+      "tempo_segundos": 0.029704099986702204
     },
     {
       "indice": "580",
@@ -3264,7 +3264,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029699399950914085
+      "tempo_segundos": 0.029474699986167252
     },
     {
       "indice": "1000",
@@ -3275,22 +3275,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03770690003875643
+      "tempo_segundos": 0.024204399960581213
     },
     {
       "indice": "242",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.026972199964802712
-    },
-    {
-      "indice": "258",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -3300,7 +3288,19 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.037579000054392964
+      "tempo_segundos": 0.03085869998903945
+    },
+    {
+      "indice": "258",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.027313900005538017
     },
     {
       "indice": "847",
@@ -3312,7 +3312,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03520599997136742
+      "tempo_segundos": 0.023700500023551285
     },
     {
       "indice": "1307",
@@ -3324,7 +3324,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03651589999208227
+      "tempo_segundos": 0.021996899973601103
     },
     {
       "indice": "21",
@@ -3335,7 +3335,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019231499987654388
+      "tempo_segundos": 0.03153889998793602
     },
     {
       "indice": "99",
@@ -3346,19 +3346,20 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.028752600017469376
+      "tempo_segundos": 0.02500179997878149
     },
     {
       "indice": "797",
       "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.031010799983050674
+      "tamanho": 4,
+      "tempo_segundos": 0.020867399987764657
     },
     {
       "indice": "1249",
@@ -3370,7 +3371,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.04108090000227094
+      "tempo_segundos": 0.021014199999626726
     },
     {
       "indice": "160",
@@ -3378,11 +3379,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.027736399963032454
+      "tamanho": 2,
+      "tempo_segundos": 0.021971000009216368
     },
     {
       "indice": "1038",
@@ -3393,7 +3393,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02766139997402206
+      "tempo_segundos": 0.04245820001233369
     },
     {
       "indice": "1207",
@@ -3405,7 +3405,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.033191700000315905
+      "tempo_segundos": 0.023151200031861663
     },
     {
       "indice": "786",
@@ -3417,7 +3417,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03681139997206628
+      "tempo_segundos": 0.03919120004866272
     },
     {
       "indice": "800",
@@ -3428,7 +3428,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.01965660002315417
+      "tempo_segundos": 0.03120720002334565
     },
     {
       "indice": "695",
@@ -3437,11 +3437,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.035175400029402226
+      "tamanho": 3,
+      "tempo_segundos": 0.025094999989960343
     },
     {
       "indice": "839",
@@ -3452,7 +3451,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.027136599994264543
+      "tempo_segundos": 0.041824899963103235
     },
     {
       "indice": "143",
@@ -3461,10 +3460,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02901850000489503
+      "tamanho": 4,
+      "tempo_segundos": 0.029159200028516352
     },
     {
       "indice": "693",
@@ -3476,7 +3476,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.025745499995537102
+      "tempo_segundos": 0.02511609997600317
     },
     {
       "indice": "1135",
@@ -3487,7 +3487,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.038033499964512885
+      "tempo_segundos": 0.04003999999258667
     },
     {
       "indice": "854",
@@ -3499,7 +3499,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03012389998184517
+      "tempo_segundos": 0.0369666000478901
     },
     {
       "indice": "498",
@@ -3510,22 +3510,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.023983600025530905
+      "tempo_segundos": 0.0322800999856554
     },
     {
       "indice": "27",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "curtosis"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.021965699968859553
-    },
-    {
-      "indice": "488",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -3535,7 +3523,19 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027710800000932068
+      "tempo_segundos": 0.03333269996801391
+    },
+    {
+      "indice": "488",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.03149739996297285
     },
     {
       "indice": "699",
@@ -3546,7 +3546,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030812100041657686
+      "tempo_segundos": 0.036065799999050796
     },
     {
       "indice": "397",
@@ -3554,10 +3554,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.03058919997420162
+      "tamanho": 3,
+      "tempo_segundos": 0.032062800019048154
     },
     {
       "indice": "573",
@@ -3565,11 +3566,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.027810500003397465
+      "tamanho": 2,
+      "tempo_segundos": 0.03953999996883795
     },
     {
       "indice": "997",
@@ -3580,33 +3580,31 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02078999998047948
+      "tempo_segundos": 0.02344359998824075
     },
     {
       "indice": "706",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03327820001868531
+      "tamanho": 3,
+      "tempo_segundos": 0.022946799988858402
     },
     {
       "indice": "129",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.030028600012883544
+      "tamanho": 3,
+      "tempo_segundos": 0.028499900014139712
     },
     {
       "indice": "1111",
@@ -3618,7 +3616,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.028238200000487268
+      "tempo_segundos": 0.02594419999513775
     },
     {
       "indice": "986",
@@ -3626,10 +3624,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.026243200001772493
+      "tamanho": 3,
+      "tempo_segundos": 0.03762700001243502
     },
     {
       "indice": "270",
@@ -3640,7 +3639,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0337767000310123
+      "tempo_segundos": 0.03003959998022765
     },
     {
       "indice": "781",
@@ -3652,12 +3651,24 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.025500499992631376
+      "tempo_segundos": 0.043777799990493804
     },
     {
       "indice": "652",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.032950100023299456
+    },
+    {
+      "indice": "1352",
+      "classe_real": "Falsificada",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
@@ -3665,19 +3676,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.030683499993756413
-    },
-    {
-      "indice": "1352",
-      "classe_real": "Falsificada",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness",
-        "entropy"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.028187999967485666
+      "tempo_segundos": 0.023806800018064678
     },
     {
       "indice": "98",
@@ -3688,7 +3687,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03228879999369383
+      "tempo_segundos": 0.042662099993322045
     },
     {
       "indice": "386",
@@ -3699,21 +3698,10 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03012369998032227
+      "tempo_segundos": 0.039759500010404736
     },
     {
       "indice": "400",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.019884100009221584
-    },
-    {
-      "indice": "58",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -3722,7 +3710,19 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02830760000506416
+      "tempo_segundos": 0.023106499982532114
+    },
+    {
+      "indice": "58",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "REJEITADA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "entropy"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.026398900023195893
     },
     {
       "indice": "831",
@@ -3733,7 +3733,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.033996000012848526
+      "tempo_segundos": 0.04822930000955239
     },
     {
       "indice": "927",
@@ -3744,7 +3744,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030083600024227053
+      "tempo_segundos": 0.042602699948474765
     },
     {
       "indice": "1305",
@@ -3755,7 +3755,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.020903200027532876
+      "tempo_segundos": 0.027484400023240596
     },
     {
       "indice": "1316",
@@ -3766,7 +3766,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029045000032056123
+      "tempo_segundos": 0.023943100008182228
     },
     {
       "indice": "868",
@@ -3774,11 +3774,10 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.021464499994181097
+      "tamanho": 2,
+      "tempo_segundos": 0.026309699984267354
     },
     {
       "indice": "804",
@@ -3789,7 +3788,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.024110900005325675
+      "tempo_segundos": 0.024019500007852912
     },
     {
       "indice": "566",
@@ -3801,7 +3800,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02006669994443655
+      "tempo_segundos": 0.027306900010444224
     },
     {
       "indice": "80",
@@ -3809,11 +3808,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.027574299951083958
+      "tamanho": 2,
+      "tempo_segundos": 0.022639899980276823
     },
     {
       "indice": "887",
@@ -3825,7 +3823,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02310740004759282
+      "tempo_segundos": 0.024797299993224442
     },
     {
       "indice": "842",
@@ -3837,7 +3835,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029926099989097565
+      "tempo_segundos": 0.03220250003505498
     },
     {
       "indice": "166",
@@ -3846,11 +3844,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.019782899995334446
+      "tamanho": 3,
+      "tempo_segundos": 0.028183599992189556
     },
     {
       "indice": "1363",
@@ -3861,7 +3858,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.040679699974134564
+      "tempo_segundos": 0.02604950004024431
     },
     {
       "indice": "934",
@@ -3872,7 +3869,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03993379999883473
+      "tempo_segundos": 0.025882099987939
     },
     {
       "indice": "663",
@@ -3881,10 +3878,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01976890000514686
+      "tamanho": 4,
+      "tempo_segundos": 0.023628900002222508
     },
     {
       "indice": "414",
@@ -3896,7 +3894,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02836080000270158
+      "tempo_segundos": 0.04304360004607588
     },
     {
       "indice": "317",
@@ -3908,7 +3906,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.028250899980776012
+      "tempo_segundos": 0.024728500051423907
     },
     {
       "indice": "907",
@@ -3919,7 +3917,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03401630005100742
+      "tempo_segundos": 0.04713100002845749
     },
     {
       "indice": "14",
@@ -3927,11 +3925,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.025954200013075024
+      "tamanho": 2,
+      "tempo_segundos": 0.050717500038444996
     },
     {
       "indice": "1166",
@@ -3942,7 +3939,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03722109994851053
+      "tempo_segundos": 0.022691199963446707
     },
     {
       "indice": "867",
@@ -3954,7 +3951,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.04244930000277236
+      "tempo_segundos": 0.03244270000141114
     },
     {
       "indice": "901",
@@ -3963,11 +3960,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.04093709995504469
+      "tamanho": 3,
+      "tempo_segundos": 0.02864099998259917
     },
     {
       "indice": "964",
@@ -3975,11 +3971,10 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01968030002899468
+      "tamanho": 2,
+      "tempo_segundos": 0.022676399967167526
     },
     {
       "indice": "214",
@@ -3991,7 +3986,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.036314999975729734
+      "tempo_segundos": 0.03527439996832982
     },
     {
       "indice": "1064",
@@ -4003,7 +3998,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.018934199993964285
+      "tempo_segundos": 0.03312099998584017
     },
     {
       "indice": "646",
@@ -4015,7 +4010,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02955970005132258
+      "tempo_segundos": 0.027010300022084266
     },
     {
       "indice": "647",
@@ -4027,7 +4022,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029622000001836568
+      "tempo_segundos": 0.021399600023869425
     },
     {
       "indice": "85",
@@ -4039,7 +4034,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.018525299965403974
+      "tempo_segundos": 0.029536799993366003
     },
     {
       "indice": "102",
@@ -4051,7 +4046,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.01899880002019927
+      "tempo_segundos": 0.024593900016043335
     },
     {
       "indice": "150",
@@ -4062,7 +4057,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.032602300052531064
+      "tempo_segundos": 0.03043980000074953
     },
     {
       "indice": "1091",
@@ -4074,20 +4069,19 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02016630000434816
+      "tempo_segundos": 0.028008699999190867
     },
     {
       "indice": "555",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.027631100034341216
+      "tamanho": 3,
+      "tempo_segundos": 0.024831100017763674
     },
     {
       "indice": "303",
@@ -4095,15 +4089,16 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.020927300036419183
+      "tamanho": 3,
+      "tempo_segundos": 0.024946599965915084
     },
     {
       "indice": "1364",
       "classe_real": "Falsificada",
-      "tipo_predicao": "POSITIVA",
+      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
         "skewness",
@@ -4111,7 +4106,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027797500020824373
+      "tempo_segundos": 0.030729400052223355
     },
     {
       "indice": "373",
@@ -4123,21 +4118,10 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.022571500041522086
+      "tempo_segundos": 0.030229699972551316
     },
     {
       "indice": "189",
-      "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "variance",
-        "skewness"
-      ],
-      "tamanho": 2,
-      "tempo_segundos": 0.030536699981894344
-    },
-    {
-      "indice": "47",
       "classe_real": "Autêntica",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
@@ -4146,7 +4130,20 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.036836399987805635
+      "tempo_segundos": 0.02345539996167645
+    },
+    {
+      "indice": "47",
+      "classe_real": "Autêntica",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "variance",
+        "skewness",
+        "curtosis",
+        "entropy"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.03286739997565746
     },
     {
       "indice": "233",
@@ -4157,7 +4154,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021969900000840425
+      "tempo_segundos": 0.04157810000469908
     },
     {
       "indice": "812",
@@ -4168,7 +4165,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021872500015888363
+      "tempo_segundos": 0.04003590001957491
     },
     {
       "indice": "874",
@@ -4179,7 +4176,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.031003699987195432
+      "tempo_segundos": 0.022520800004713237
     },
     {
       "indice": "378",
@@ -4187,11 +4184,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02919919998385012
+      "tamanho": 2,
+      "tempo_segundos": 0.039768599963281304
     },
     {
       "indice": "817",
@@ -4202,7 +4198,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022270999965257943
+      "tempo_segundos": 0.02789420000044629
     },
     {
       "indice": "121",
@@ -4213,7 +4209,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022381999995559454
+      "tempo_segundos": 0.033804799953941256
     },
     {
       "indice": "1270",
@@ -4224,7 +4220,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.029325000010430813
+      "tempo_segundos": 0.04789390001678839
     },
     {
       "indice": "553",
@@ -4232,10 +4228,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.039550499990582466
+      "tamanho": 3,
+      "tempo_segundos": 0.02464499999769032
     },
     {
       "indice": "913",
@@ -4246,7 +4243,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021199900016654283
+      "tempo_segundos": 0.02265649999026209
     },
     {
       "indice": "415",
@@ -4255,10 +4252,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.04088149999734014
+      "tamanho": 4,
+      "tempo_segundos": 0.03398950002156198
     },
     {
       "indice": "206",
@@ -4269,7 +4267,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0191556999925524
+      "tempo_segundos": 0.027330000011716038
     },
     {
       "indice": "834",
@@ -4277,11 +4275,10 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02770739997504279
+      "tamanho": 2,
+      "tempo_segundos": 0.02487910003401339
     },
     {
       "indice": "1083",
@@ -4292,7 +4289,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.01915409998036921
+      "tempo_segundos": 0.0249576999922283
     },
     {
       "indice": "563",
@@ -4303,7 +4300,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0242687999852933
+      "tempo_segundos": 0.030473000020720065
     },
     {
       "indice": "855",
@@ -4315,7 +4312,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.025924000015947968
+      "tempo_segundos": 0.030125799996312708
     },
     {
       "indice": "704",
@@ -4323,11 +4320,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.030517200008034706
+      "tamanho": 2,
+      "tempo_segundos": 0.03578689997084439
     },
     {
       "indice": "1169",
@@ -4336,10 +4332,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02396949997637421
+      "tamanho": 4,
+      "tempo_segundos": 0.021110099973157048
     },
     {
       "indice": "686",
@@ -4348,10 +4345,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.028767600015271455
+      "tamanho": 4,
+      "tempo_segundos": 0.021851400029845536
     },
     {
       "indice": "401",
@@ -4362,7 +4360,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.01900440000463277
+      "tempo_segundos": 0.027344800007995218
     },
     {
       "indice": "1246",
@@ -4374,7 +4372,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03801099996780977
+      "tempo_segundos": 0.024564399966038764
     },
     {
       "indice": "461",
@@ -4382,11 +4380,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03788409999106079
+      "tamanho": 2,
+      "tempo_segundos": 0.035439300001598895
     },
     {
       "indice": "574",
@@ -4395,11 +4392,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03413750004256144
+      "tamanho": 3,
+      "tempo_segundos": 0.02244030003203079
     },
     {
       "indice": "645",
@@ -4411,7 +4407,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.019604400033131242
+      "tempo_segundos": 0.027454900031443685
     },
     {
       "indice": "629",
@@ -4420,10 +4416,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.01946550002321601
+      "tamanho": 4,
+      "tempo_segundos": 0.022318399976938963
     },
     {
       "indice": "1264",
@@ -4435,7 +4432,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.018863000033888966
+      "tempo_segundos": 0.02446010004496202
     },
     {
       "indice": "600",
@@ -4444,10 +4441,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
+        "curtosis",
         "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.031220000004395843
+      "tamanho": 4,
+      "tempo_segundos": 0.03668869996909052
     },
     {
       "indice": "792",
@@ -4458,7 +4456,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.021260100009385496
+      "tempo_segundos": 0.030704500037245452
     },
     {
       "indice": "856",
@@ -4469,7 +4467,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02953270002035424
+      "tempo_segundos": 0.023500300012528896
     },
     {
       "indice": "1235",
@@ -4477,11 +4475,10 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.0363999999826774
+      "tamanho": 2,
+      "tempo_segundos": 0.022070300008635968
     },
     {
       "indice": "801",
@@ -4492,20 +4489,19 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019992000015918165
+      "tempo_segundos": 0.022371200029738247
     },
     {
       "indice": "452",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.025149799999780953
+      "tamanho": 3,
+      "tempo_segundos": 0.022405299998354167
     },
     {
       "indice": "1050",
@@ -4517,19 +4513,20 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.032090799999423325
+      "tempo_segundos": 0.027108400012366474
     },
     {
       "indice": "759",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.026164099981542677
+      "tamanho": 4,
+      "tempo_segundos": 0.020974299986846745
     },
     {
       "indice": "232",
@@ -4538,10 +4535,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.030253999982960522
+      "tamanho": 4,
+      "tempo_segundos": 0.024043200013693422
     },
     {
       "indice": "138",
@@ -4552,7 +4550,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03701030003139749
+      "tempo_segundos": 0.029937600018456578
     },
     {
       "indice": "879",
@@ -4563,20 +4561,19 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02776229998562485
+      "tempo_segundos": 0.03855540003860369
     },
     {
       "indice": "402",
       "classe_real": "Autêntica",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.027597600012086332
+      "tamanho": 3,
+      "tempo_segundos": 0.027250500046648085
     },
     {
       "indice": "1014",
@@ -4587,7 +4584,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02046979998704046
+      "tempo_segundos": 0.021592199977021664
     },
     {
       "indice": "389",
@@ -4598,7 +4595,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.035241999954450876
+      "tempo_segundos": 0.022675700020045042
     },
     {
       "indice": "1328",
@@ -4610,7 +4607,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.029638400010298938
+      "tempo_segundos": 0.028084699995815754
     },
     {
       "indice": "337",
@@ -4618,10 +4615,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02871340001001954
+      "tamanho": 3,
+      "tempo_segundos": 0.0253738000174053
     },
     {
       "indice": "721",
@@ -4632,7 +4630,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03390640002908185
+      "tempo_segundos": 0.03264250000938773
     },
     {
       "indice": "1354",
@@ -4643,7 +4641,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04250869998941198
+      "tempo_segundos": 0.020784199994523078
     },
     {
       "indice": "197",
@@ -4652,11 +4650,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03872459998819977
+      "tamanho": 3,
+      "tempo_segundos": 0.035634700034279376
     },
     {
       "indice": "1010",
@@ -4669,7 +4666,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.0334662000532262
+      "tempo_segundos": 0.022479899984318763
     },
     {
       "indice": "170",
@@ -4680,7 +4677,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.022977699991315603
+      "tempo_segundos": 0.02272350003477186
     },
     {
       "indice": "95",
@@ -4691,7 +4688,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03122500004246831
+      "tempo_segundos": 0.021472299995366484
     },
     {
       "indice": "592",
@@ -4699,10 +4696,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.01922959997318685
+      "tamanho": 3,
+      "tempo_segundos": 0.026303399994503707
     },
     {
       "indice": "1138",
@@ -4715,7 +4713,7 @@
         "entropy"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.018626300035975873
+      "tempo_segundos": 0.021064800035674125
     },
     {
       "indice": "297",
@@ -4724,11 +4722,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis",
-        "entropy"
+        "curtosis"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01898529997561127
+      "tamanho": 3,
+      "tempo_segundos": 0.023485800018534064
     },
     {
       "indice": "564",
@@ -4737,10 +4734,10 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.030936900002416223
+      "tempo_segundos": 0.0214772000326775
     },
     {
       "indice": "358",
@@ -4748,11 +4745,10 @@
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "variance",
-        "skewness",
-        "curtosis"
+        "skewness"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.027964600012637675
+      "tamanho": 2,
+      "tempo_segundos": 0.032901099999435246
     },
     {
       "indice": "750",
@@ -4761,10 +4757,11 @@
       "features_selecionadas": [
         "variance",
         "skewness",
-        "curtosis"
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02078839996829629
+      "tamanho": 4,
+      "tempo_segundos": 0.02487149997614324
     },
     {
       "indice": "1069",
@@ -4776,7 +4773,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03099530003964901
+      "tempo_segundos": 0.02164629998151213
     },
     {
       "indice": "1371",
@@ -4787,7 +4784,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04236769996350631
+      "tempo_segundos": 0.022879199997987598
     },
     {
       "indice": "814",
@@ -4798,7 +4795,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03194990003248677
+      "tempo_segundos": 0.022376100008841604
     },
     {
       "indice": "32",
@@ -4809,7 +4806,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.018387199961580336
+      "tempo_segundos": 0.03167180001037195
     },
     {
       "indice": "492",
@@ -4817,10 +4814,11 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02028340002289042
+      "tamanho": 3,
+      "tempo_segundos": 0.03172249998897314
     },
     {
       "indice": "325",
@@ -4832,7 +4830,7 @@
         "curtosis"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.0302827000268735
+      "tempo_segundos": 0.029176499985624105
     },
     {
       "indice": "966",
@@ -4840,10 +4838,12 @@
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis",
+        "entropy"
       ],
-      "tamanho": 2,
-      "tempo_segundos": 0.02007890003733337
+      "tamanho": 4,
+      "tempo_segundos": 0.03882290003821254
     },
     {
       "indice": "872",
@@ -4854,7 +4854,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03198069997597486
+      "tempo_segundos": 0.03284140001051128
     },
     {
       "indice": "1042",
@@ -4865,7 +4865,7 @@
         "skewness"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.019143199955578893
+      "tempo_segundos": 0.05617620004341006
     }
   ]
 }

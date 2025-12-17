@@ -8,8 +8,8 @@ Solver de Otimização Inteira (Ground Truth)
 --------------------------------------------------------------------------------
 Dataset: pima_indians_diabetes
 Instâncias processadas: 231
-Thresholds: t+ = 0.0779, t- = -0.1096
-Zona de rejeição: 0.1875
+Thresholds: t+ = 0.0743, t- = -0.0100
+Zona de rejeição: 0.0843
 Rejection cost: 0.24
 Hiperparâmetros:
 {
@@ -23,63 +23,63 @@ Hiperparâmetros:
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
 Acurácia (sem rejeição): 74.46%
-Acurácia (com rejeição): 81.82%
-Taxa de rejeição: 19.05%
-Risco empírico: 0.2275
+Acurácia (com rejeição): 75.00%
+Taxa de rejeição: 1.30%
+Risco empírico: 0.2531
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 4.97 features
-Tempo total: 5.95s
-Tempo médio/instância: 0.0258s
+Tamanho médio: 4.22 features
+Tempo total: 9.67s
+Tempo médio/instância: 0.0419s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 44 (19.0%)
-  - Tamanho médio: 4.32 features
-  - Tempo médio: 0.0269s
+  - Instâncias: 59 (25.5%)
+  - Tamanho médio: 4.05 features
+  - Tempo médio: 0.0428s
 
 NEGATIVA:
-  - Instâncias: 143 (61.9%)
-  - Tamanho médio: 4.73 features
-  - Tempo médio: 0.0256s
+  - Instâncias: 169 (73.2%)
+  - Tamanho médio: 4.21 features
+  - Tempo médio: 0.0415s
 
 REJEITADA:
-  - Instâncias: 44 (19.0%)
-  - Tamanho médio: 6.39 features
-  - Tempo médio: 0.0251s
+  - Instâncias: 3 (1.3%)
+  - Tamanho médio: 8.00 features
+  - Tempo médio: 0.0446s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      428 (NEGATIVA  ):   8 features - 0.0298s
- 2. Instância      351 (REJEITADA ):   8 features - 0.0251s
- 3. Instância      217 (NEGATIVA  ):   8 features - 0.0216s
- 4. Instância       64 (REJEITADA ):   8 features - 0.0225s
- 5. Instância      658 (POSITIVA  ):   8 features - 0.0195s
- 6. Instância       44 (POSITIVA  ):   8 features - 0.0202s
- 7. Instância      116 (REJEITADA ):   8 features - 0.0287s
- 8. Instância      346 (NEGATIVA  ):   8 features - 0.0269s
- 9. Instância      698 (REJEITADA ):   8 features - 0.0260s
-10. Instância      221 (POSITIVA  ):   8 features - 0.0196s
+ 1. Instância      298 (REJEITADA ):   8 features - 0.0418s
+ 2. Instância      517 (POSITIVA  ):   8 features - 0.0378s
+ 3. Instância      115 (POSITIVA  ):   8 features - 0.0391s
+ 4. Instância      244 (NEGATIVA  ):   8 features - 0.0411s
+ 5. Instância      144 (REJEITADA ):   8 features - 0.0488s
+ 6. Instância       86 (REJEITADA ):   8 features - 0.0432s
+ 7. Instância      535 (POSITIVA  ):   7 features - 0.0399s
+ 8. Instância      345 (POSITIVA  ):   7 features - 0.0420s
+ 9. Instância       99 (NEGATIVA  ):   7 features - 0.0393s
+10. Instância      486 (NEGATIVA  ):   7 features - 0.0426s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      247 (POSITIVA  ):   2 features - 0.0237s
- 2. Instância      494 (NEGATIVA  ):   2 features - 0.0317s
- 3. Instância       75 (NEGATIVA  ):   2 features - 0.0317s
- 4. Instância      445 (POSITIVA  ):   2 features - 0.0260s
- 5. Instância       81 (NEGATIVA  ):   2 features - 0.0253s
- 6. Instância      661 (POSITIVA  ):   2 features - 0.0263s
- 7. Instância      185 (POSITIVA  ):   3 features - 0.0317s
- 8. Instância      335 (POSITIVA  ):   3 features - 0.0309s
- 9. Instância      245 (POSITIVA  ):   3 features - 0.0250s
-10. Instância      579 (POSITIVA  ):   3 features - 0.0226s
+ 1. Instância      185 (POSITIVA  ):   2 features - 0.0426s
+ 2. Instância      247 (POSITIVA  ):   2 features - 0.0430s
+ 3. Instância      335 (POSITIVA  ):   2 features - 0.0414s
+ 4. Instância      579 (POSITIVA  ):   2 features - 0.0418s
+ 5. Instância      494 (NEGATIVA  ):   2 features - 0.0397s
+ 6. Instância      502 (NEGATIVA  ):   2 features - 0.0466s
+ 7. Instância       43 (POSITIVA  ):   2 features - 0.0406s
+ 8. Instância      359 (POSITIVA  ):   2 features - 0.0398s
+ 9. Instância      332 (POSITIVA  ):   2 features - 0.0387s
+10. Instância       75 (NEGATIVA  ):   2 features - 0.0417s
 
 ================================================================================
 FIM DO RELATÓRIO

@@ -8,8 +8,8 @@ Solver de Otimização Inteira (Ground Truth)
 --------------------------------------------------------------------------------
 Dataset: mnist_3_vs_8
 Instâncias processadas: 1257
-Thresholds: t+ = 0.0671, t- = -0.0910
-Zona de rejeição: 0.1581
+Thresholds: t+ = 2.2113, t- = -1.8671
+Zona de rejeição: 4.0784
 Rejection cost: 0.1
 Hiperparâmetros:
 {
@@ -23,63 +23,63 @@ Hiperparâmetros:
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
 Acurácia (sem rejeição): 96.50%
-Acurácia (com rejeição): 98.47%
-Taxa de rejeição: 6.52%
-Risco empírico: 0.0218
+Acurácia (com rejeição): 99.00%
+Taxa de rejeição: 12.73%
+Risco empírico: 0.0228
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 208.97 features
-Tempo total: 91.75s
-Tempo médio/instância: 0.0730s
+Tamanho médio: 227.60 features
+Tempo total: 93.55s
+Tempo médio/instância: 0.0744s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 579 (46.1%)
-  - Tamanho médio: 215.32 features
-  - Tempo médio: 0.0737s
+  - Instâncias: 527 (41.9%)
+  - Tamanho médio: 232.59 features
+  - Tempo médio: 0.0747s
 
 NEGATIVA:
-  - Instâncias: 596 (47.4%)
-  - Tamanho médio: 174.88 features
-  - Tempo médio: 0.0717s
+  - Instâncias: 570 (45.3%)
+  - Tamanho médio: 181.48 features
+  - Tempo médio: 0.0730s
 
 REJEITADA:
-  - Instâncias: 82 (6.5%)
-  - Tamanho médio: 411.98 features
-  - Tempo médio: 0.0776s
+  - Instâncias: 160 (12.7%)
+  - Tamanho médio: 375.45 features
+  - Tempo médio: 0.0789s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância    51058 (REJEITADA ): 443 features - 0.0736s
- 2. Instância    46368 (REJEITADA ): 441 features - 0.0744s
- 3. Instância    50007 (REJEITADA ): 439 features - 0.0790s
- 4. Instância    35958 (REJEITADA ): 439 features - 0.0745s
- 5. Instância    35643 (REJEITADA ): 437 features - 0.0859s
- 6. Instância     7320 (REJEITADA ): 435 features - 0.1082s
- 7. Instância    32479 (REJEITADA ): 434 features - 0.0696s
- 8. Instância    40720 (REJEITADA ): 431 features - 0.0739s
- 9. Instância    69092 (REJEITADA ): 429 features - 0.0727s
-10. Instância    55353 (REJEITADA ): 429 features - 0.0696s
+ 1. Instância    30897 (REJEITADA ): 445 features - 0.0717s
+ 2. Instância    26666 (REJEITADA ): 431 features - 0.0684s
+ 3. Instância    55179 (REJEITADA ): 430 features - 0.0701s
+ 4. Instância     4021 (REJEITADA ): 424 features - 0.0795s
+ 5. Instância    23165 (REJEITADA ): 423 features - 0.0677s
+ 6. Instância    52390 (REJEITADA ): 418 features - 0.0988s
+ 7. Instância    38844 (REJEITADA ): 417 features - 0.0716s
+ 8. Instância     7832 (REJEITADA ): 417 features - 0.0767s
+ 9. Instância    13424 (REJEITADA ): 416 features - 0.0695s
+10. Instância    62511 (REJEITADA ): 415 features - 0.0674s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância    43353 (NEGATIVA  ): 123 features - 0.0765s
- 2. Instância    46937 (NEGATIVA  ): 123 features - 0.0689s
- 3. Instância     4628 (NEGATIVA  ): 126 features - 0.0705s
- 4. Instância    69511 (NEGATIVA  ): 127 features - 0.0684s
- 5. Instância     4263 (NEGATIVA  ): 128 features - 0.0732s
- 6. Instância    61612 (NEGATIVA  ): 129 features - 0.0696s
- 7. Instância     6175 (NEGATIVA  ): 130 features - 0.0730s
- 8. Instância    10000 (NEGATIVA  ): 133 features - 0.0690s
- 9. Instância    46500 (NEGATIVA  ): 133 features - 0.0730s
-10. Instância    68518 (NEGATIVA  ): 133 features - 0.0711s
+ 1. Instância    43353 (NEGATIVA  ): 127 features - 0.0737s
+ 2. Instância    46937 (NEGATIVA  ): 127 features - 0.0691s
+ 3. Instância     4628 (NEGATIVA  ): 131 features - 0.0713s
+ 4. Instância    69511 (NEGATIVA  ): 131 features - 0.0723s
+ 5. Instância     4263 (NEGATIVA  ): 132 features - 0.0774s
+ 6. Instância    61612 (NEGATIVA  ): 133 features - 0.0731s
+ 7. Instância     6175 (NEGATIVA  ): 134 features - 0.0711s
+ 8. Instância    68518 (NEGATIVA  ): 137 features - 0.0784s
+ 9. Instância    10000 (NEGATIVA  ): 138 features - 0.0725s
+10. Instância    46500 (NEGATIVA  ): 138 features - 0.0673s
 
 ================================================================================
 FIM DO RELATÓRIO

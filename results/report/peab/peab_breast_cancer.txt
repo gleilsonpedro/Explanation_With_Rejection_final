@@ -14,71 +14,63 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 3.8936245794001563}
-  penalty: l2
+  norm_params: {'max_abs': 1.0}
+  penalty: l1
   C: 0.1
-  solver: liblinear
-  max_iter: 200
-  Intercepto: 1.914221
+  solver: saga
+  max_iter: 1000
+  Intercepto: 3.452691
 
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.099658
-  t- (limiar inferior): -0.001849
-  Largura da zona de rejeição: 0.101507
+  t+ (limiar superior): 0.965598
+  t- (limiar inferior): -0.010000
+  Largura da zona de rejeição: 0.975598
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 92.40%
-  Acurácia com rejeição: 97.99%
-  Taxa de rejeição: 12.87%
+  Acurácia sem rejeição: 93.57%
+  Acurácia com rejeição: 98.54%
+  Taxa de rejeição: 19.88%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 96
-    Tamanho médio: 14.62 features
-    Desvio padrão: 1.87
-    Mínimo: 11 features
-    Máximo: 20 features
+    Quantidade: 84
+    Tamanho médio: 1.82 features
+    Desvio padrão: 0.38
+    Mínimo: 1 features
+    Máximo: 2 features
 
   NEGATIVAS:
     Quantidade: 53
-    Tamanho médio: 16.43 features
-    Desvio padrão: 4.69
-    Mínimo: 6 features
-    Máximo: 28 features
+    Tamanho médio: 1.49 features
+    Desvio padrão: 0.50
+    Mínimo: 1 features
+    Máximo: 2 features
 
   REJEITADAS:
-    Quantidade: 22
-    Tamanho médio: 25.32 features
-    Desvio padrão: 1.02
-    Mínimo: 24 features
-    Máximo: 28 features
+    Quantidade: 34
+    Tamanho médio: 2.00 features
+    Desvio padrão: 0.00
+    Mínimo: 2 features
+    Máximo: 2 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 2.0449s
-  Tempo médio por instância: 0.011958s
-  Tempo médio POSITIVAS: 0.009755s
-  Tempo médio NEGATIVAS: 0.009611s
-  Tempo médio REJEITADAS: 0.026737s
+  Tempo total: 1.0306s
+  Tempo médio por instância: 0.006027s
+  Tempo médio POSITIVAS: 0.004866s
+  Tempo médio NEGATIVAS: 0.004983s
+  Tempo médio REJEITADAS: 0.010347s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  mean concave points: 171 ocorrências (100.0%)
-  worst concave points: 170 ocorrências (99.4%)
-  worst perimeter: 170 ocorrências (99.4%)
-  worst radius: 169 ocorrências (98.8%)
-  worst area: 167 ocorrências (97.7%)
-  mean area: 165 ocorrências (96.5%)
-  mean concavity: 165 ocorrências (96.5%)
-  radius error: 159 ocorrências (93.0%)
-  worst concavity: 155 ocorrências (90.6%)
-  area error: 146 ocorrências (85.4%)
+  worst concave points: 171 ocorrências (100.0%)
+  worst radius: 129 ocorrências (75.4%)
 

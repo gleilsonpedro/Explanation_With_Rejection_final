@@ -8,35 +8,35 @@
     "solver": "saga",
     "max_iter": 200
   },
-  "t_plus": 0.07786762315773399,
-  "t_minus": -0.10958761565230668,
+  "t_plus": 0.0742754826848647,
+  "t_minus": -0.01,
   "rejection_cost": 0.24,
   "metricas_modelo": {
     "acuracia_sem_rejeicao": 0.7445887445887446,
-    "acuracia_com_rejeicao": 0.8181818181818182,
-    "taxa_rejeicao": 0.19047619047619047,
-    "risco_empirico": 0.22753246753246748
+    "acuracia_com_rejeicao": 0.75,
+    "taxa_rejeicao": 0.012987012987012988,
+    "risco_empirico": 0.25311688311688313
   },
   "estatisticas_gerais": {
-    "tamanho_medio": 4.965367965367966,
-    "tempo_total_segundos": 5.950698800676037,
-    "tempo_medio_segundos": 0.025760600868727432
+    "tamanho_medio": 4.220779220779221,
+    "tempo_total_segundos": 9.66801750054583,
+    "tempo_medio_segundos": 0.041852889612752506
   },
   "estatisticas_por_tipo": {
     "positiva": {
-      "instancias": 44,
-      "tamanho_medio": 4.318181818181818,
-      "tempo_medio": 0.02691222273014401
+      "instancias": 59,
+      "tamanho_medio": 4.0508474576271185,
+      "tempo_medio": 0.04277864237260705
     },
     "negativa": {
-      "instancias": 143,
-      "tamanho_medio": 4.7272727272727275,
-      "tempo_medio": 0.02562254545697291
+      "instancias": 169,
+      "tamanho_medio": 4.21301775147929,
+      "tempo_medio": 0.04148088461862734
     },
     "rejeitada": {
-      "instancias": 44,
-      "tamanho_medio": 6.386363636363637,
-      "tempo_medio": 0.02505765909551304
+      "instancias": 3,
+      "tamanho_medio": 8.0,
+      "tempo_medio": 0.04460270000466456
     }
   },
   "explicacoes": [
@@ -52,7 +52,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.028352399996947497
+      "tempo_segundos": 0.04719680000562221
     },
     {
       "indice": "198",
@@ -63,11 +63,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.023143799975514412
+      "tamanho": 5,
+      "tempo_segundos": 0.04008530004648492
     },
     {
       "indice": "24",
@@ -76,33 +75,16 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "insulina",
         "imc",
         "idade"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.031671400007326156
+      "tamanho": 4,
+      "tempo_segundos": 0.03848149999976158
     },
     {
       "indice": "417",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.019670500012580305
-    },
-    {
-      "indice": "387",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -112,7 +94,22 @@
         "diabetes_pedigree"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.021007300005294383
+      "tempo_segundos": 0.04162460000952706
+    },
+    {
+      "indice": "387",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree",
+        "idade"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03879630001029
     },
     {
       "indice": "156",
@@ -121,11 +118,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.024447600007988513
+      "tamanho": 3,
+      "tempo_segundos": 0.03831979999085888
     },
     {
       "indice": "660",
@@ -136,11 +132,10 @@
         "glicose",
         "pressao_sangue",
         "insulina",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.03206830000272021
+      "tamanho": 5,
+      "tempo_segundos": 0.04221990000223741
     },
     {
       "indice": "205",
@@ -150,11 +145,10 @@
         "num_gravidezes",
         "glicose",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.018794800038449466
+      "tamanho": 4,
+      "tempo_segundos": 0.04069250001339242
     },
     {
       "indice": "3",
@@ -163,11 +157,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03192879998823628
+      "tamanho": 3,
+      "tempo_segundos": 0.03918870002962649
     },
     {
       "indice": "531",
@@ -178,11 +171,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.03413650003494695
+      "tamanho": 5,
+      "tempo_segundos": 0.04286980000324547
     },
     {
       "indice": "158",
@@ -191,11 +183,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02015709999250248
+      "tamanho": 3,
+      "tempo_segundos": 0.041531599999871105
     },
     {
       "indice": "347",
@@ -208,7 +199,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027608799980953336
+      "tempo_segundos": 0.038363899977412075
     },
     {
       "indice": "224",
@@ -217,16 +208,15 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.019459699979051948
+      "tamanho": 3,
+      "tempo_segundos": 0.04343520000111312
     },
     {
       "indice": "756",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -236,20 +226,19 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.019474600034300238
+      "tempo_segundos": 0.03673009999329224
     },
     {
       "indice": "425",
       "classe_real": "Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
-        "pressao_sangue",
+        "insulina",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.035405299975536764
+      "tamanho": 3,
+      "tempo_segundos": 0.04456840001512319
     },
     {
       "indice": "185",
@@ -257,26 +246,23 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03167679999023676
+      "tamanho": 2,
+      "tempo_segundos": 0.0426111999549903
     },
     {
       "indice": "78",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
+        "insulina",
+        "imc"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.020125800045207143
+      "tamanho": 4,
+      "tempo_segundos": 0.04008810000959784
     },
     {
       "indice": "428",
@@ -286,14 +272,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.0298037999891676
+      "tamanho": 5,
+      "tempo_segundos": 0.039636600005906075
     },
     {
       "indice": "247",
@@ -304,7 +287,7 @@
         "imc"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02369819994783029
+      "tempo_segundos": 0.04303790000267327
     },
     {
       "indice": "471",
@@ -315,11 +298,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.028053599991835654
+      "tamanho": 5,
+      "tempo_segundos": 0.03929069999139756
     },
     {
       "indice": "162",
@@ -330,11 +312,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.01946969999698922
+      "tamanho": 5,
+      "tempo_segundos": 0.04046230000676587
     },
     {
       "indice": "304",
@@ -345,11 +326,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02597870002500713
+      "tamanho": 5,
+      "tempo_segundos": 0.044931799988262355
     },
     {
       "indice": "513",
@@ -358,11 +338,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.0212965999962762
+      "tamanho": 3,
+      "tempo_segundos": 0.037971299956552684
     },
     {
       "indice": "348",
@@ -371,11 +350,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03461000003153458
+      "tamanho": 3,
+      "tempo_segundos": 0.039009800006169826
     },
     {
       "indice": "335",
@@ -383,28 +361,24 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.03089900000486523
+      "tamanho": 2,
+      "tempo_segundos": 0.04135489999316633
     },
     {
       "indice": "351",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.025078800041228533
+      "tamanho": 5,
+      "tempo_segundos": 0.03992950002430007
     },
     {
       "indice": "164",
@@ -415,11 +389,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.035211000009439886
+      "tamanho": 5,
+      "tempo_segundos": 0.03888619999634102
     },
     {
       "indice": "541",
@@ -430,11 +403,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.03661320003448054
+      "tamanho": 5,
+      "tempo_segundos": 0.041500599996652454
     },
     {
       "indice": "33",
@@ -443,11 +415,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.026712899969425052
+      "tamanho": 3,
+      "tempo_segundos": 0.047265600005630404
     },
     {
       "indice": "496",
@@ -456,12 +427,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02094130002660677
+      "tamanho": 4,
+      "tempo_segundos": 0.04184660001192242
     },
     {
       "indice": "484",
@@ -470,31 +440,14 @@
       "features_selecionadas": [
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03680020000319928
+      "tamanho": 3,
+      "tempo_segundos": 0.04346319998148829
     },
     {
       "indice": "722",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.025087499991059303
-    },
-    {
-      "indice": "389",
-      "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
@@ -504,7 +457,20 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.023601199965924025
+      "tempo_segundos": 0.038298800005577505
+    },
+    {
+      "indice": "389",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.04373889998532832
     },
     {
       "indice": "310",
@@ -513,11 +479,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.04626149998512119
+      "tamanho": 3,
+      "tempo_segundos": 0.04325520002748817
     },
     {
       "indice": "392",
@@ -527,11 +492,10 @@
         "num_gravidezes",
         "glicose",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.026239800034090877
+      "tamanho": 4,
+      "tempo_segundos": 0.03992190002463758
     },
     {
       "indice": "259",
@@ -544,7 +508,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02499200002057478
+      "tempo_segundos": 0.046764600032474846
     },
     {
       "indice": "452",
@@ -557,7 +521,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.035638000001199543
+      "tempo_segundos": 0.04428169998573139
     },
     {
       "indice": "88",
@@ -566,11 +530,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03614639997249469
+      "tamanho": 3,
+      "tempo_segundos": 0.03822210000362247
     },
     {
       "indice": "139",
@@ -579,29 +542,26 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02501090004807338
+      "tamanho": 5,
+      "tempo_segundos": 0.04365659999893978
     },
     {
       "indice": "330",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.02242829999886453
+      "tamanho": 5,
+      "tempo_segundos": 0.04309400002239272
     },
     {
       "indice": "421",
@@ -610,11 +570,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.04402550001395866
+      "tamanho": 3,
+      "tempo_segundos": 0.03737030003685504
     },
     {
       "indice": "245",
@@ -626,7 +585,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.024971700040623546
+      "tempo_segundos": 0.037183200009167194
     },
     {
       "indice": "697",
@@ -635,11 +594,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03371730004437268
+      "tamanho": 3,
+      "tempo_segundos": 0.042017299972940236
     },
     {
       "indice": "441",
@@ -652,7 +610,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02406249998603016
+      "tempo_segundos": 0.04168510000454262
     },
     {
       "indice": "89",
@@ -665,23 +623,22 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02263299998594448
+      "tempo_segundos": 0.041441200010012835
     },
     {
       "indice": "480",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
         "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.022225900029297918
+      "tamanho": 6,
+      "tempo_segundos": 0.044964700005948544
     },
     {
       "indice": "217",
@@ -691,14 +648,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.021642500010784715
+      "tamanho": 5,
+      "tempo_segundos": 0.04386919998796657
     },
     {
       "indice": "598",
@@ -708,11 +662,10 @@
         "glicose",
         "pressao_sangue",
         "insulina",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.022893200046382844
+      "tamanho": 4,
+      "tempo_segundos": 0.043896200018934906
     },
     {
       "indice": "512",
@@ -725,7 +678,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.0419609000091441
+      "tempo_segundos": 0.0454361000447534
     },
     {
       "indice": "767",
@@ -738,7 +691,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.028221899992786348
+      "tempo_segundos": 0.03787579998606816
     },
     {
       "indice": "305",
@@ -749,11 +702,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02255870000226423
+      "tamanho": 5,
+      "tempo_segundos": 0.03931429999647662
     },
     {
       "indice": "340",
@@ -762,12 +714,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.020535500021651387
+      "tamanho": 4,
+      "tempo_segundos": 0.041618999966885895
     },
     {
       "indice": "424",
@@ -776,11 +727,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02178850001655519
+      "tamanho": 3,
+      "tempo_segundos": 0.04026989999692887
     },
     {
       "indice": "525",
@@ -789,11 +739,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02040480001596734
+      "tamanho": 3,
+      "tempo_segundos": 0.037911900028120726
     },
     {
       "indice": "712",
@@ -803,11 +752,10 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02120640000794083
+      "tamanho": 4,
+      "tempo_segundos": 0.04506550001678988
     },
     {
       "indice": "419",
@@ -816,12 +764,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.020706399984192103
+      "tamanho": 4,
+      "tempo_segundos": 0.04049060004763305
     },
     {
       "indice": "593",
@@ -830,11 +777,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.033495400042738765
+      "tamanho": 3,
+      "tempo_segundos": 0.039384600007906556
     },
     {
       "indice": "579",
@@ -842,11 +788,10 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02262270002393052
+      "tamanho": 2,
+      "tempo_segundos": 0.04182399995625019
     },
     {
       "indice": "630",
@@ -857,11 +802,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.028774900012649596
+      "tamanho": 5,
+      "tempo_segundos": 0.04048800002783537
     },
     {
       "indice": "678",
@@ -872,14 +816,25 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.022704400005750358
+      "tamanho": 5,
+      "tempo_segundos": 0.03940010000951588
     },
     {
       "indice": "367",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.04105800000252202
+    },
+    {
+      "indice": "543",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -889,11 +844,11 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02140309999231249
+      "tempo_segundos": 0.03906520002055913
     },
     {
-      "indice": "543",
-      "classe_real": "Não Diabético",
+      "indice": "560",
+      "classe_real": "Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
@@ -903,28 +858,12 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.020866200036834925
-    },
-    {
-      "indice": "560",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "insulina",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.03054190002148971
+      "tempo_segundos": 0.036972799978684634
     },
     {
       "indice": "293",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -934,7 +873,7 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.02065500000026077
+      "tempo_segundos": 0.046995699987746775
     },
     {
       "indice": "62",
@@ -946,7 +885,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03665660001570359
+      "tempo_segundos": 0.04303320002509281
     },
     {
       "indice": "373",
@@ -955,12 +894,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019919499987736344
+      "tamanho": 4,
+      "tempo_segundos": 0.04166099999565631
     },
     {
       "indice": "140",
@@ -969,12 +907,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.01927689998410642
+      "tamanho": 4,
+      "tempo_segundos": 0.04020629997830838
     },
     {
       "indice": "59",
@@ -983,12 +920,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019189300015568733
+      "tamanho": 4,
+      "tempo_segundos": 0.04108180000912398
     },
     {
       "indice": "275",
@@ -999,11 +935,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.019276699982583523
+      "tamanho": 5,
+      "tempo_segundos": 0.05568059999495745
     },
     {
       "indice": "727",
@@ -1014,23 +949,22 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.03424319997429848
+      "tamanho": 5,
+      "tempo_segundos": 0.0492575999815017
     },
     {
       "indice": "761",
       "classe_real": "Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
-        "imc"
+        "imc",
+        "idade"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02895509998779744
+      "tempo_segundos": 0.037932900013402104
     },
     {
       "indice": "298",
@@ -1040,12 +974,14 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.029761199955828488
+      "tamanho": 8,
+      "tempo_segundos": 0.04181070002960041
     },
     {
       "indice": "589",
@@ -1057,7 +993,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02921270002843812
+      "tempo_segundos": 0.04163039999548346
     },
     {
       "indice": "494",
@@ -1068,7 +1004,7 @@
         "imc"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03174770000623539
+      "tempo_segundos": 0.03965820005396381
     },
     {
       "indice": "80",
@@ -1081,19 +1017,18 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.01964760001283139
+      "tempo_segundos": 0.039427599986083806
     },
     {
       "indice": "502",
       "classe_real": "Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.020349099999293685
+      "tamanho": 2,
+      "tempo_segundos": 0.04657410003710538
     },
     {
       "indice": "296",
@@ -1103,13 +1038,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.030304400017485023
+      "tamanho": 5,
+      "tempo_segundos": 0.03913470002589747
     },
     {
       "indice": "672",
@@ -1122,7 +1055,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.024526200024411082
+      "tempo_segundos": 0.036698299983982
     },
     {
       "indice": "38",
@@ -1131,12 +1064,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.030902300029993057
+      "tamanho": 4,
+      "tempo_segundos": 0.04049370001303032
     },
     {
       "indice": "724",
@@ -1145,12 +1077,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.03328710002824664
+      "tamanho": 4,
+      "tempo_segundos": 0.03934690001187846
     },
     {
       "indice": "52",
@@ -1159,11 +1090,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02410590002546087
+      "tamanho": 3,
+      "tempo_segundos": 0.03802929999073967
     },
     {
       "indice": "652",
@@ -1173,13 +1103,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.03293019998818636
+      "tamanho": 5,
+      "tempo_segundos": 0.0421457999618724
     },
     {
       "indice": "629",
@@ -1192,7 +1120,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.024081700015813112
+      "tempo_segundos": 0.04024010000284761
     },
     {
       "indice": "650",
@@ -1201,11 +1129,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021181999996770173
+      "tamanho": 3,
+      "tempo_segundos": 0.03832589997909963
     },
     {
       "indice": "447",
@@ -1214,11 +1141,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "pressao_sangue",
+        "imc"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02013199997600168
+      "tempo_segundos": 0.04295189998811111
     },
     {
       "indice": "212",
@@ -1227,26 +1154,26 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "insulina",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03973339998628944
+      "tamanho": 3,
+      "tempo_segundos": 0.03962379996664822
     },
     {
       "indice": "535",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.032399100018665195
+      "tamanho": 7,
+      "tempo_segundos": 0.039901999989524484
     },
     {
       "indice": "215",
@@ -1258,19 +1185,18 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.031154199969023466
+      "tempo_segundos": 0.04351319995475933
     },
     {
       "indice": "43",
       "classe_real": "Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.023162500001490116
+      "tamanho": 2,
+      "tempo_segundos": 0.040647100016940385
     },
     {
       "indice": "82",
@@ -1279,12 +1205,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.027107900008559227
+      "tamanho": 4,
+      "tempo_segundos": 0.037925200012978166
     },
     {
       "indice": "359",
@@ -1292,11 +1217,10 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02514109999174252
+      "tamanho": 2,
+      "tempo_segundos": 0.03978669998468831
     },
     {
       "indice": "332",
@@ -1304,11 +1228,10 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 3,
-      "tempo_segundos": 0.019966499996371567
+      "tamanho": 2,
+      "tempo_segundos": 0.03871239995351061
     },
     {
       "indice": "381",
@@ -1317,11 +1240,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03163570002652705
+      "tamanho": 3,
+      "tempo_segundos": 0.03752130002249032
     },
     {
       "indice": "13",
@@ -1330,27 +1252,25 @@
       "features_selecionadas": [
         "glicose",
         "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
+        "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.022702299989759922
+      "tamanho": 3,
+      "tempo_segundos": 0.04326300002867356
     },
     {
       "indice": "749",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "insulina",
         "imc",
-        "diabetes_pedigree",
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.02317390003008768
+      "tempo_segundos": 0.047652200039010495
     },
     {
       "indice": "329",
@@ -1359,17 +1279,16 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.028372999979183078
+      "tamanho": 4,
+      "tempo_segundos": 0.03989040001761168
     },
     {
       "indice": "25",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -1379,7 +1298,7 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.026641400007065386
+      "tempo_segundos": 0.041964300035033375
     },
     {
       "indice": "268",
@@ -1388,26 +1307,25 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.019950199988670647
+      "tamanho": 3,
+      "tempo_segundos": 0.03732930001569912
     },
     {
       "indice": "635",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc",
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.04163599997991696
+      "tempo_segundos": 0.03635549999307841
     },
     {
       "indice": "350",
@@ -1416,12 +1334,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.020808500004932284
+      "tamanho": 4,
+      "tempo_segundos": 0.04186420002952218
     },
     {
       "indice": "10",
@@ -1435,7 +1352,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.01910649996716529
+      "tempo_segundos": 0.039321199990808964
     },
     {
       "indice": "707",
@@ -1446,31 +1363,13 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.028440100024454296
+      "tamanho": 5,
+      "tempo_segundos": 0.038322500011418015
     },
     {
       "indice": "64",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "insulina",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 8,
-      "tempo_segundos": 0.02252210001461208
-    },
-    {
-      "indice": "276",
       "classe_real": "Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -1481,22 +1380,35 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03723680000985041
+      "tempo_segundos": 0.05978100001811981
+    },
+    {
+      "indice": "276",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.045939299976453185
     },
     {
       "indice": "580",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.019881099986378103
+      "tempo_segundos": 0.039266099978704005
     },
     {
       "indice": "83",
@@ -1505,11 +1417,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.026586399995721877
+      "tamanho": 3,
+      "tempo_segundos": 0.03973489999771118
     },
     {
       "indice": "617",
@@ -1521,20 +1432,19 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.022952600033022463
+      "tempo_segundos": 0.037307800026610494
     },
     {
       "indice": "260",
       "classe_real": "Não Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.0344574999762699
+      "tamanho": 3,
+      "tempo_segundos": 0.042170200031250715
     },
     {
       "indice": "32",
@@ -1543,32 +1453,15 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03018910001264885
+      "tamanho": 3,
+      "tempo_segundos": 0.04217079997761175
     },
     {
       "indice": "412",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.03845699998782948
-    },
-    {
-      "indice": "93",
-      "classe_real": "Diabético",
-      "tipo_predicao": "NEGATIVA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -1577,7 +1470,20 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.03238019999116659
+      "tempo_segundos": 0.043414499959908426
+    },
+    {
+      "indice": "93",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.041916700021829456
     },
     {
       "indice": "740",
@@ -1587,32 +1493,16 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02122970001073554
+      "tamanho": 5,
+      "tempo_segundos": 0.0461932000471279
     },
     {
       "indice": "402",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02035860001342371
-    },
-    {
-      "indice": "696",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -1622,7 +1512,22 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.026659200026188046
+      "tempo_segundos": 0.046856499975547194
+    },
+    {
+      "indice": "696",
+      "classe_real": "Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "insulina",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04599210002925247
     },
     {
       "indice": "489",
@@ -1631,41 +1536,13 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "idade"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.032593200041446835
+      "tamanho": 3,
+      "tempo_segundos": 0.05807119997916743
     },
     {
       "indice": "42",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.03790669998852536
-    },
-    {
-      "indice": "736",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.022120899986475706
-    },
-    {
-      "indice": "570",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -1675,7 +1552,32 @@
         "imc"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.0206581000238657
+      "tempo_segundos": 0.0537828000378795
+    },
+    {
+      "indice": "736",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.045699099951889366
+    },
+    {
+      "indice": "570",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.04406839999137446
     },
     {
       "indice": "311",
@@ -1684,12 +1586,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.022557699994649738
+      "tamanho": 4,
+      "tempo_segundos": 0.04535919998306781
     },
     {
       "indice": "408",
@@ -1701,52 +1602,22 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03285749995848164
+      "tempo_segundos": 0.04678039997816086
     },
     {
       "indice": "75",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
-        "glicose",
-        "imc"
+        "num_gravidezes",
+        "glicose"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03168970003025606
+      "tempo_segundos": 0.04174710001097992
     },
     {
       "indice": "618",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.021104699990246445
-    },
-    {
-      "indice": "746",
-      "classe_real": "Diabético",
-      "tipo_predicao": "POSITIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.023156700015533715
-    },
-    {
-      "indice": "410",
-      "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
@@ -1757,22 +1628,49 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.02841859997715801
+      "tempo_segundos": 0.04063450003741309
     },
     {
-      "indice": "243",
+      "indice": "746",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "glicose",
+        "pressao_sangue",
+        "insulina",
+        "imc"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.044865200005006045
+    },
+    {
+      "indice": "410",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc",
         "diabetes_pedigree"
       ],
+      "tamanho": 5,
+      "tempo_segundos": 0.043983499985188246
+    },
+    {
+      "indice": "243",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree",
+        "idade"
+      ],
       "tamanho": 6,
-      "tempo_segundos": 0.019596400030422956
+      "tempo_segundos": 0.04312350001418963
     },
     {
       "indice": "527",
@@ -1785,7 +1683,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.019006800022907555
+      "tempo_segundos": 0.050421199994161725
     },
     {
       "indice": "440",
@@ -1793,13 +1691,11 @@
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "glicose",
-        "pressao_sangue",
         "insulina",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019867299997713417
+      "tamanho": 3,
+      "tempo_segundos": 0.04314269998576492
     },
     {
       "indice": "554",
@@ -1812,7 +1708,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03077579999808222
+      "tempo_segundos": 0.04453730001114309
     },
     {
       "indice": "606",
@@ -1824,7 +1720,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.03759580000769347
+      "tempo_segundos": 0.04276510002091527
     },
     {
       "indice": "21",
@@ -1835,11 +1731,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.01948600000469014
+      "tamanho": 5,
+      "tempo_segundos": 0.04625749995466322
     },
     {
       "indice": "742",
@@ -1852,24 +1747,10 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.030442300019785762
+      "tempo_segundos": 0.044860799971502274
     },
     {
       "indice": "87",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019299699983093888
-    },
-    {
-      "indice": "273",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -1879,7 +1760,19 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.022623700031545013
+      "tempo_segundos": 0.0433700000285171
+    },
+    {
+      "indice": "273",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.04280529997777194
     },
     {
       "indice": "745",
@@ -1889,13 +1782,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.031211800000164658
+      "tamanho": 5,
+      "tempo_segundos": 0.0375915999757126
     },
     {
       "indice": "66",
@@ -1905,11 +1796,10 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.03638390003470704
+      "tamanho": 4,
+      "tempo_segundos": 0.04045850003603846
     },
     {
       "indice": "445",
@@ -1920,7 +1810,7 @@
         "imc"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.025969100010115653
+      "tempo_segundos": 0.07292700000107288
     },
     {
       "indice": "252",
@@ -1929,11 +1819,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.024222999985795468
+      "tamanho": 3,
+      "tempo_segundos": 0.05493370001204312
     },
     {
       "indice": "81",
@@ -1944,7 +1833,7 @@
         "imc"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.025312700017821044
+      "tempo_segundos": 0.05605389998527244
     },
     {
       "indice": "190",
@@ -1957,7 +1846,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027946899994276464
+      "tempo_segundos": 0.044517300033476204
     },
     {
       "indice": "300",
@@ -1966,11 +1855,10 @@
       "features_selecionadas": [
         "glicose",
         "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.027807100035715848
+      "tamanho": 3,
+      "tempo_segundos": 0.040844100003596395
     },
     {
       "indice": "264",
@@ -1981,16 +1869,15 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.040846899966709316
+      "tamanho": 5,
+      "tempo_segundos": 0.038729800027795136
     },
     {
       "indice": "199",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -2000,7 +1887,7 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.03360379999503493
+      "tempo_segundos": 0.03910590003943071
     },
     {
       "indice": "262",
@@ -2009,28 +1896,26 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.01967290003085509
+      "tamanho": 4,
+      "tempo_segundos": 0.044720200006850064
     },
     {
       "indice": "584",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
+        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.023532699968200177
+      "tamanho": 6,
+      "tempo_segundos": 0.04274130001431331
     },
     {
       "indice": "415",
@@ -2040,28 +1925,26 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.03209810005500913
+      "tamanho": 4,
+      "tempo_segundos": 0.03841249999823049
     },
     {
       "indice": "345",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.030154100037179887
+      "tamanho": 7,
+      "tempo_segundos": 0.041956899978686124
     },
     {
       "indice": "679",
@@ -2070,11 +1953,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02872980001848191
+      "tamanho": 3,
+      "tempo_segundos": 0.04025179997552186
     },
     {
       "indice": "407",
@@ -2083,11 +1965,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021664300002157688
+      "tamanho": 3,
+      "tempo_segundos": 0.0378455999889411
     },
     {
       "indice": "17",
@@ -2096,12 +1977,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.026387999998405576
+      "tamanho": 4,
+      "tempo_segundos": 0.04222369997296482
     },
     {
       "indice": "615",
@@ -2114,7 +1994,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.021464399993419647
+      "tempo_segundos": 0.03992750000907108
     },
     {
       "indice": "658",
@@ -2123,15 +2003,12 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "espessura_pele",
         "insulina",
         "imc",
-        "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.019494500011205673
+      "tamanho": 5,
+      "tempo_segundos": 0.0381885000388138
     },
     {
       "indice": "397",
@@ -2142,11 +2019,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.022957200009841472
+      "tamanho": 5,
+      "tempo_segundos": 0.04434449999826029
     },
     {
       "indice": "112",
@@ -2155,160 +2031,14 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02073819999350235
+      "tempo_segundos": 0.038713700021617115
     },
     {
       "indice": "517",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.020860499993432313
-    },
-    {
-      "indice": "366",
-      "classe_real": "Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02648050000425428
-    },
-    {
-      "indice": "467",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02782750001642853
-    },
-    {
-      "indice": "309",
-      "classe_real": "Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.019316299993079156
-    },
-    {
-      "indice": "153",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.02465259999735281
-    },
-    {
-      "indice": "203",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.028130199993029237
-    },
-    {
-      "indice": "481",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019239499990362674
-    },
-    {
-      "indice": "645",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 7,
-      "tempo_segundos": 0.01851259998511523
-    },
-    {
-      "indice": "124",
-      "classe_real": "Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.03485920000821352
-    },
-    {
-      "indice": "279",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021435200003907084
-    },
-    {
-      "indice": "44",
       "classe_real": "Não Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
@@ -2322,24 +2052,11 @@
         "idade"
       ],
       "tamanho": 8,
-      "tempo_segundos": 0.020187899994198233
+      "tempo_segundos": 0.037813000031746924
     },
     {
-      "indice": "430",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.01929070003097877
-    },
-    {
-      "indice": "127",
-      "classe_real": "Não Diabético",
+      "indice": "366",
+      "classe_real": "Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
@@ -2349,7 +2066,154 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02049919997807592
+      "tempo_segundos": 0.03952330001629889
+    },
+    {
+      "indice": "467",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.041945200006011873
+    },
+    {
+      "indice": "309",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.044054600002709776
+    },
+    {
+      "indice": "153",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "insulina",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04349099996034056
+    },
+    {
+      "indice": "203",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.040694400027859956
+    },
+    {
+      "indice": "481",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.04091439995681867
+    },
+    {
+      "indice": "645",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "espessura_pele",
+        "insulina",
+        "imc"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04333950002910569
+    },
+    {
+      "indice": "124",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.04067720001330599
+    },
+    {
+      "indice": "279",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "idade"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.03712880000239238
+    },
+    {
+      "indice": "44",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "insulina",
+        "imc"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.0447033999953419
+    },
+    {
+      "indice": "430",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.0389263000106439
+    },
+    {
+      "indice": "127",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.04284639999968931
     },
     {
       "indice": "674",
@@ -2360,104 +2224,43 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.019159399962518364
+      "tamanho": 5,
+      "tempo_segundos": 0.04405080003198236
     },
     {
       "indice": "219",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.02396620000945404
+      "tamanho": 5,
+      "tempo_segundos": 0.037965400028042495
     },
     {
       "indice": "99",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.029829600010998547
-    },
-    {
-      "indice": "433",
-      "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02033939998364076
-    },
-    {
-      "indice": "511",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.03407489997334778
-    },
-    {
-      "indice": "116",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
         "espessura_pele",
-        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.02872689999639988
+      "tamanho": 7,
+      "tempo_segundos": 0.03926140000112355
     },
     {
-      "indice": "578",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.032039200013969094
-    },
-    {
-      "indice": "501",
+      "indice": "433",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -2467,11 +2270,24 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.019606799993198365
+      "tempo_segundos": 0.03992189996642992
     },
     {
-      "indice": "717",
+      "indice": "511",
       "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.039329699997324497
+    },
+    {
+      "indice": "116",
+      "classe_real": "Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
@@ -2481,7 +2297,48 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02196759998332709
+      "tempo_segundos": 0.036711799970362335
+    },
+    {
+      "indice": "578",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree",
+        "idade"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.04104899999219924
+    },
+    {
+      "indice": "501",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.039409800025168806
+    },
+    {
+      "indice": "717",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.03899260004982352
     },
     {
       "indice": "743",
@@ -2493,11 +2350,10 @@
         "pressao_sangue",
         "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.024209700000938028
+      "tamanho": 6,
+      "tempo_segundos": 0.04240809998009354
     },
     {
       "indice": "187",
@@ -2507,13 +2363,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.030052400019485503
+      "tamanho": 5,
+      "tempo_segundos": 0.03956609999295324
     },
     {
       "indice": "163",
@@ -2526,7 +2380,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.020522599981632084
+      "tempo_segundos": 0.038624600041657686
     },
     {
       "indice": "596",
@@ -2539,7 +2393,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.026921099983155727
+      "tempo_segundos": 0.04165389999980107
     },
     {
       "indice": "637",
@@ -2552,94 +2406,43 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02158249996136874
+      "tempo_segundos": 0.040601000015158206
     },
     {
       "indice": "115",
       "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.020642400020733476
+      "tamanho": 8,
+      "tempo_segundos": 0.0391193000250496
     },
     {
       "indice": "486",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
         "insulina",
         "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.019487300014588982
-    },
-    {
-      "indice": "763",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "imc",
         "diabetes_pedigree",
         "idade"
       ],
       "tamanho": 7,
-      "tempo_segundos": 0.019273200014140457
+      "tempo_segundos": 0.04260530002648011
     },
     {
-      "indice": "399",
-      "classe_real": "Diabético",
-      "tipo_predicao": "POSITIVA",
-      "features_selecionadas": [
-        "glicose",
-        "pressao_sangue",
-        "imc"
-      ],
-      "tamanho": 3,
-      "tempo_segundos": 0.02325540001038462
-    },
-    {
-      "indice": "175",
-      "classe_real": "Diabético",
-      "tipo_predicao": "POSITIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.021817800006829202
-    },
-    {
-      "indice": "416",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "NEGATIVA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc"
-      ],
-      "tamanho": 4,
-      "tempo_segundos": 0.028260499995667487
-    },
-    {
-      "indice": "644",
+      "indice": "763",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -2650,23 +2453,70 @@
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02073669998208061
+      "tempo_segundos": 0.038003599969670177
+    },
+    {
+      "indice": "399",
+      "classe_real": "Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "glicose",
+        "imc",
+        "idade"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.040113900031428784
+    },
+    {
+      "indice": "175",
+      "classe_real": "Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.04644959996221587
+    },
+    {
+      "indice": "416",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc"
+      ],
+      "tamanho": 3,
+      "tempo_segundos": 0.03894210001453757
+    },
+    {
+      "indice": "644",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.03975149994948879
     },
     {
       "indice": "558",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
+        "insulina",
+        "imc"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.020703200018033385
+      "tamanho": 5,
+      "tempo_segundos": 0.04329239996150136
     },
     {
       "indice": "463",
@@ -2679,22 +2529,22 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02484069997444749
+      "tempo_segundos": 0.04173519997857511
     },
     {
       "indice": "71",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "insulina",
         "imc",
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.02541529998416081
+      "tempo_segundos": 0.03860919998260215
     },
     {
       "indice": "346",
@@ -2704,14 +2554,11 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 8,
-      "tempo_segundos": 0.026885900006163865
+      "tamanho": 5,
+      "tempo_segundos": 0.04429079999681562
     },
     {
       "indice": "97",
@@ -2723,7 +2570,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.019071999995503575
+      "tempo_segundos": 0.03917260002344847
     },
     {
       "indice": "380",
@@ -2733,11 +2580,10 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02158369997050613
+      "tamanho": 4,
+      "tempo_segundos": 0.03752290003467351
     },
     {
       "indice": "532",
@@ -2746,12 +2592,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019518300017807633
+      "tamanho": 4,
+      "tempo_segundos": 0.041830700007267296
     },
     {
       "indice": "418",
@@ -2763,7 +2608,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.023739100026432425
+      "tempo_segundos": 0.03953489998821169
     },
     {
       "indice": "436",
@@ -2772,26 +2617,24 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc"
+        "imc",
+        "idade"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02160470001399517
+      "tamanho": 4,
+      "tempo_segundos": 0.037935599975753576
     },
     {
       "indice": "258",
       "classe_real": "Não Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
         "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.01949330000206828
+      "tamanho": 4,
+      "tempo_segundos": 0.04126309999264777
     },
     {
       "indice": "661",
@@ -2802,7 +2645,7 @@
         "imc"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.02631310001015663
+      "tempo_segundos": 0.038682600017637014
     },
     {
       "indice": "563",
@@ -2811,12 +2654,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.024126900010742247
+      "tamanho": 4,
+      "tempo_segundos": 0.0442942000227049
     },
     {
       "indice": "422",
@@ -2825,12 +2667,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.020117000036407262
+      "tamanho": 4,
+      "tempo_segundos": 0.04105499997967854
     },
     {
       "indice": "307",
@@ -2839,12 +2680,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.021593499986920506
+      "tamanho": 4,
+      "tempo_segundos": 0.04084440000588074
     },
     {
       "indice": "533",
@@ -2854,11 +2694,10 @@
         "num_gravidezes",
         "glicose",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.019278299994766712
+      "tamanho": 4,
+      "tempo_segundos": 0.03560150001430884
     },
     {
       "indice": "734",
@@ -2867,11 +2706,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.027115400007460266
+      "tempo_segundos": 0.041854400013107806
     },
     {
       "indice": "476",
@@ -2880,49 +2719,30 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 4,
+      "tempo_segundos": 0.04079040000215173
+    },
+    {
+      "indice": "698",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
         "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
       "tamanho": 5,
-      "tempo_segundos": 0.02069469995331019
-    },
-    {
-      "indice": "698",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "espessura_pele",
-        "insulina",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 8,
-      "tempo_segundos": 0.02599029999691993
+      "tempo_segundos": 0.04317230003653094
     },
     {
       "indice": "699",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree",
-        "idade"
-      ],
-      "tamanho": 6,
-      "tempo_segundos": 0.020608199993148446
-    },
-    {
-      "indice": "539",
-      "classe_real": "Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -2932,7 +2752,22 @@
         "diabetes_pedigree"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.031206400017254055
+      "tempo_segundos": 0.04155590001028031
+    },
+    {
+      "indice": "539",
+      "classe_real": "Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree",
+        "idade"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.03966579999541864
     },
     {
       "indice": "477",
@@ -2941,25 +2776,23 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02500060002785176
+      "tamanho": 4,
+      "tempo_segundos": 0.03844640002353117
     },
     {
       "indice": "684",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.031596599961631
+      "tamanho": 3,
+      "tempo_segundos": 0.04184910003095865
     },
     {
       "indice": "680",
@@ -2971,7 +2804,7 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.020885600009933114
+      "tempo_segundos": 0.041009899985510856
     },
     {
       "indice": "713",
@@ -2980,12 +2813,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.0203291000216268
+      "tamanho": 4,
+      "tempo_segundos": 0.03845599998021498
     },
     {
       "indice": "700",
@@ -2996,11 +2828,10 @@
         "glicose",
         "pressao_sangue",
         "imc",
-        "diabetes_pedigree",
-        "idade"
+        "diabetes_pedigree"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.028722599963657558
+      "tamanho": 5,
+      "tempo_segundos": 0.043269500019960105
     },
     {
       "indice": "238",
@@ -3009,27 +2840,28 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "insulina",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02373549999902025
+      "tamanho": 4,
+      "tempo_segundos": 0.04091739997966215
     },
     {
       "indice": "244",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.02226830000290647
+      "tamanho": 8,
+      "tempo_segundos": 0.041114000021480024
     },
     {
       "indice": "151",
@@ -3038,11 +2870,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "pressao_sangue",
+        "imc"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.02012170001398772
+      "tempo_segundos": 0.04328560002613813
     },
     {
       "indice": "537",
@@ -3054,19 +2886,19 @@
         "imc"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.02029040001798421
+      "tempo_segundos": 0.04058059997623786
     },
     {
       "indice": "235",
       "classe_real": "Diabético",
       "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
-        "num_gravidezes",
         "glicose",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "tamanho": 3,
-      "tempo_segundos": 0.027000000001862645
+      "tempo_segundos": 0.0411352000082843
     },
     {
       "indice": "653",
@@ -3075,12 +2907,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.023581999994348735
+      "tamanho": 4,
+      "tempo_segundos": 0.044721600017510355
     },
     {
       "indice": "488",
@@ -3093,23 +2924,21 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.029877600027248263
+      "tempo_segundos": 0.03975689999060705
     },
     {
       "indice": "628",
       "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
-        "espessura_pele",
-        "insulina",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 7,
-      "tempo_segundos": 0.019055799988564104
+      "tamanho": 5,
+      "tempo_segundos": 0.0396698999684304
     },
     {
       "indice": "144",
@@ -3119,12 +2948,14 @@
         "num_gravidezes",
         "glicose",
         "pressao_sangue",
+        "espessura_pele",
+        "insulina",
         "imc",
         "diabetes_pedigree",
         "idade"
       ],
-      "tamanho": 6,
-      "tempo_segundos": 0.03118170000379905
+      "tamanho": 8,
+      "tempo_segundos": 0.04877880000276491
     },
     {
       "indice": "355",
@@ -3133,12 +2964,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "insulina",
-        "imc"
+        "imc",
+        "idade"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.042035099992062896
+      "tamanho": 4,
+      "tempo_segundos": 0.04468710004584864
     },
     {
       "indice": "98",
@@ -3151,7 +2981,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.03531109995674342
+      "tempo_segundos": 0.04139159998157993
     },
     {
       "indice": "102",
@@ -3164,7 +2994,7 @@
         "diabetes_pedigree"
       ],
       "tamanho": 4,
-      "tempo_segundos": 0.020431999990250915
+      "tempo_segundos": 0.04218719998607412
     },
     {
       "indice": "6",
@@ -3173,11 +3003,10 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "imc",
-        "diabetes_pedigree"
+        "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.020389400015119463
+      "tamanho": 3,
+      "tempo_segundos": 0.03929399995831773
     },
     {
       "indice": "469",
@@ -3186,14 +3015,27 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc"
       ],
-      "tamanho": 4,
-      "tempo_segundos": 0.02014819998294115
+      "tamanho": 3,
+      "tempo_segundos": 0.039291299995966256
     },
     {
       "indice": "94",
+      "classe_real": "Não Diabético",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "num_gravidezes",
+        "glicose",
+        "pressao_sangue",
+        "imc",
+        "diabetes_pedigree"
+      ],
+      "tamanho": 5,
+      "tempo_segundos": 0.044451699999626726
+    },
+    {
+      "indice": "437",
       "classe_real": "Não Diabético",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
@@ -3205,40 +3047,12 @@
         "idade"
       ],
       "tamanho": 6,
-      "tempo_segundos": 0.01989230001345277
-    },
-    {
-      "indice": "437",
-      "classe_real": "Não Diabético",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.024114899977575988
+      "tempo_segundos": 0.041438299987930804
     },
     {
       "indice": "86",
       "classe_real": "Não Diabético",
       "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "num_gravidezes",
-        "glicose",
-        "pressao_sangue",
-        "imc",
-        "diabetes_pedigree"
-      ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02749869995750487
-    },
-    {
-      "indice": "221",
-      "classe_real": "Diabético",
-      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
@@ -3250,7 +3064,22 @@
         "idade"
       ],
       "tamanho": 8,
-      "tempo_segundos": 0.019555400009267032
+      "tempo_segundos": 0.04321859998162836
+    },
+    {
+      "indice": "221",
+      "classe_real": "Diabético",
+      "tipo_predicao": "POSITIVA",
+      "features_selecionadas": [
+        "glicose",
+        "pressao_sangue",
+        "insulina",
+        "imc",
+        "diabetes_pedigree",
+        "idade"
+      ],
+      "tamanho": 6,
+      "tempo_segundos": 0.046078599989414215
     },
     {
       "indice": "19",
@@ -3259,12 +3088,11 @@
       "features_selecionadas": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "imc",
         "diabetes_pedigree"
       ],
-      "tamanho": 5,
-      "tempo_segundos": 0.02000329998554662
+      "tamanho": 4,
+      "tempo_segundos": 0.037050999992061406
     }
   ]
 }

@@ -9,14 +9,14 @@ Dataset: BANKNOTE
 Dataset: banknote
 Instâncias comparadas: 412
 Features por instância: 4
-Thresholds: t+ = 0.0001, t- = -0.5949
-Zona de rejeição: 0.5950
+Thresholds: t+ = 0.0100, t- = -0.3482
+Zona de rejeição: 0.3582
 Rejection cost: 0.24
 
 Hiperparâmetros:
 {
   "norm_params": {
-    "max_abs": 0.6625238272836776
+    "max_abs": 1.0
   },
   "penalty": "l2",
   "C": 0.01,
@@ -34,7 +34,7 @@ GAP Médio (features excedentes)   0.0000
                      GAP Máximo        0
                      GAP Mínimo        0
            Desvio Padrão do GAP   0.0000
-           Tempo Médio PuLP (s) 0.028566
+           Tempo Médio PuLP (s) 0.031657
 
 INTERPRETAÇÃO:
 ✅ EXCELENTE: PEAB encontra a solução ótima em >95% dos casos.
@@ -47,9 +47,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA   24 100.00%    0.0000      3.42      3.42   0.00450s   0.02844s
- NEGATIVA  104 100.00%    0.0000      3.04      3.04   0.00474s   0.02801s
-REJEITADA  284 100.00%    0.0000      2.54      2.54   0.00984s   0.02878s
+ POSITIVA   21 100.00%    0.0000      3.38      3.38   0.00655s   0.02968s
+ NEGATIVA  150 100.00%    0.0000      2.79      2.79   0.00621s   0.03189s
+REJEITADA  241 100.00%    0.0000      2.61      2.61   0.01445s   0.03169s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -60,13 +60,13 @@ indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
      1      NEGATIVA             2             2    0
   1000     REJEITADA             2             2    0
   1004      POSITIVA             3             3    0
-  1008     REJEITADA             4             4    0
+  1008     REJEITADA             3             3    0
   1010      POSITIVA             4             4    0
   1014     REJEITADA             2             2    0
   1018     REJEITADA             2             2    0
    102      NEGATIVA             3             3    0
   1025     REJEITADA             2             2    0
-  1034     REJEITADA             2             2    0
+  1034      NEGATIVA             4             4    0
 
 --------------------------------------------------------------------------------
 4. DISTRIBUIÇÃO DE GAPS
@@ -78,11 +78,11 @@ GAP = 0 (Ótimo): 412 instâncias (100.0%)
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 3.41s
-Tempo total PuLP: 11.77s
-Economia de tempo: 8.36s (71.0%)
+Tempo total PEAB: 4.57s
+Tempo total PuLP: 13.04s
+Economia de tempo: 8.47s (65.0%)
 
-Para 412 instâncias, economia observada: 8.4s
+Para 412 instâncias, economia observada: 8.5s
 
 ================================================================================
 6. CONCLUSÃO

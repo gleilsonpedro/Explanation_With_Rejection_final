@@ -9,14 +9,14 @@ Dataset: VERTEBRAL_COLUMN
 Dataset: vertebral_column
 Instâncias comparadas: 93
 Features por instância: 6
-Thresholds: t+ = 0.2544, t- = -0.0168
-Zona de rejeição: 0.2711
+Thresholds: t+ = 1.0951, t- = -0.0741
+Zona de rejeição: 1.1693
 Rejection cost: 0.24
 
 Hiperparâmetros:
 {
   "norm_params": {
-    "max_abs": 3.490709047269379
+    "max_abs": 1.0
   },
   "penalty": "l2",
   "C": 1,
@@ -29,16 +29,16 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 
 Métrica                         Valor   
-    Taxa de Otimalidade (GAP=0)   47.31%
-GAP Médio (features excedentes)  -0.7312
+    Taxa de Otimalidade (GAP=0)  100.00%
+GAP Médio (features excedentes)   0.0000
                      GAP Máximo        0
-                     GAP Mínimo       -3
-           Desvio Padrão do GAP   0.8488
-           Tempo Médio PuLP (s) 0.028802
+                     GAP Mínimo        0
+           Desvio Padrão do GAP   0.0000
+           Tempo Médio PuLP (s) 0.041485
 
 INTERPRETAÇÃO:
-⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
-- Em média, PEAB usa -0.73 features a mais que o ótimo.
+✅ EXCELENTE: PEAB encontra a solução ótima em >95% dos casos.
+- Em média, PEAB usa 0.00 features a mais que o ótimo.
 - PEAB é 5x mais rápido que PuLP.
 
 --------------------------------------------------------------------------------
@@ -47,9 +47,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA   50  10.00%   -1.2800      2.54      3.82   0.00452s   0.02913s
- NEGATIVA   17  76.47%   -0.2353      5.06      5.29   0.00427s   0.02530s
-REJEITADA   26 100.00%    0.0000      5.04      5.04   0.01045s   0.03047s
+ POSITIVA   41 100.00%    0.0000      3.93      3.93   0.00605s   0.04149s
+ NEGATIVA   17 100.00%    0.0000      5.35      5.35   0.00571s   0.04043s
+REJEITADA   35 100.00%    0.0000      5.06      5.06   0.01333s   0.04199s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -57,40 +57,41 @@ REJEITADA   26 100.00%    0.0000      5.04      5.04   0.01045s   0.03047s
 Instâncias onde PEAB ficou mais longe da solução ótima.
 
 indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
+     0      POSITIVA             4             4    0
+   100      POSITIVA             3             3    0
+   102      POSITIVA             4             4    0
    103     REJEITADA             5             5    0
+   107      POSITIVA             4             4    0
+    11      NEGATIVA             6             6    0
     12     REJEITADA             5             5    0
-   122      POSITIVA             2             2    0
-   130     REJEITADA             5             5    0
-   134     REJEITADA             5             5    0
-   162      POSITIVA             2             2    0
-   205      POSITIVA             3             3    0
-   211     REJEITADA             5             5    0
-   212     REJEITADA             6             6    0
-   231     REJEITADA             5             5    0
+   122      POSITIVA             3             3    0
+   123      POSITIVA             5             5    0
+   127      POSITIVA             4             4    0
 
 --------------------------------------------------------------------------------
 4. DISTRIBUIÇÃO DE GAPS
 --------------------------------------------------------------------------------
 
-GAP = 0 (Ótimo): 44 instâncias (47.3%)
+GAP = 0 (Ótimo): 93 instâncias (100.0%)
 
 --------------------------------------------------------------------------------
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 0.57s
-Tempo total PuLP: 2.68s
-Economia de tempo: 2.10s (78.6%)
+Tempo total PEAB: 0.82s
+Tempo total PuLP: 3.86s
+Economia de tempo: 3.04s (78.8%)
 
-Para 93 instâncias, economia observada: 2.1s
+Para 93 instâncias, economia observada: 3.0s
 
 ================================================================================
 6. CONCLUSÃO
 ================================================================================
 
-⚠ PEAB precisa de melhorias:
-   - Qualidade subótima: 47.3% de otimalidade
-   - Revisar heurística para este dataset
+✓ PEAB demonstra ser uma heurística BOA:
+   - Qualidade aceitável: 100.0% de otimalidade
+   - Velocidade adequada: 1x mais rápido
+   - Adequado para maioria dos casos
 
 ================================================================================
 FIM DO RELATÓRIO

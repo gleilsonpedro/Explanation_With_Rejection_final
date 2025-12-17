@@ -308,6 +308,57 @@ def gerar_perturbacoes(
     return perturbacoes
 
 
+def calcular_baseline_predicao(
+    pipeline,
+    X_train: pd.DataFrame,
+    y_pred: int,
+    rejeitada: bool,
+    t_plus: float,
+    t_minus: float,
+    max_abs: float = None,
+    n_samples: int = 500
+) -> float:
+    """
+    Calcula o baseline: probabilidade de manter a predição por acaso
+    quando TODAS as features são perturbadas uniformemente.
+    
+    NOTA: Este valor é calculado apenas para REPORTAR no artigo.
+    NÃO é usado para ajustar o threshold de 95% (que é fixo).
+    
+    O baseline ajuda a INTERPRETAR os resultados de minimalidade:
+    - Se baseline é alto (ex: 98%) e minimalidade é alta → esperado (fácil manter)
+    - Se baseline é baixo (ex: 2%) e minimalidade é baixa → esperado (difícil manter)
+    
+    Returns:
+        float: Taxa base esperada de manutenção da predição (0-1)
+    """
+    X_train_arr = X_train.values if hasattr(X_train, 'values') else X_train
+    n_features = X_train_arr.shape[1]
+    
+    # Gerar perturbações 100% uniformes (sem fixar nada)
+    perturbacoes = np.zeros((n_samples, n_features))
+    for feat_idx in range(n_features):
+        feat_min = X_train_arr[:, feat_idx].min()
+        feat_max = X_train_arr[:, feat_idx].max()
+        perturbacoes[:, feat_idx] = np.random.uniform(feat_min, feat_max, n_samples)
+    
+    try:
+        predicoes = pipeline.predict(perturbacoes)
+        scores = pipeline.decision_function(perturbacoes)
+        
+        if max_abs is not None and max_abs > 0:
+            scores = scores / max_abs
+        
+        if rejeitada:
+            acertos = np.sum((scores >= t_minus) & (scores <= t_plus))
+        else:
+            acertos = np.sum(predicoes == y_pred)
+        
+        return acertos / n_samples
+    except Exception:
+        return 0.5  # Fallback: assume 50%
+
+
 def validar_necessidade_features(
     instancia_idx: int,
     explicacao_features: List[str],
@@ -320,10 +371,19 @@ def validar_necessidade_features(
     t_plus: float,
     t_minus: float,
     n_perturbacoes: int = 200,
-    max_abs: float = None
+    max_abs: float = None,
+    baseline_cache: Dict = None
 ) -> Dict:
     """
     Testa se cada feature na explicação é NECESSÁRIA (teste de minimalidade).
+    
+    DEFINIÇÃO PADRÃO (threshold fixo de 95%):
+    Uma feature é REDUNDANTE se, ao removê-la da explicação, a predição
+    se mantém em >95% das perturbações.
+    
+    NOTA CIENTÍFICA:
+    O threshold de 95% é FIXO para garantir comparabilidade entre datasets.
+    O baseline é calculado apenas para REPORTAR e ajudar na interpretação.
     
     Para cada feature na explicação:
         1. Remove APENAS essa feature
@@ -332,7 +392,7 @@ def validar_necessidade_features(
         4. Se a predição se mantém > 95%, a feature é REDUNDANTE
     
     Returns:
-        Dict com: necessary_count, redundant_features, necessity_score
+        Dict com: necessary_count, redundant_features, necessity_score, baseline
     """
     # Obter instância original
     try:
@@ -341,11 +401,11 @@ def validar_necessidade_features(
         try:
             instancia_original = X_test.iloc[int(instancia_idx)].values
         except (IndexError, ValueError):
-            return {'necessary_count': len(explicacao_features), 'redundant_features': [], 'necessity_score': 100.0}
+            return {'necessary_count': len(explicacao_features), 'redundant_features': [], 'necessity_score': 100.0, 'baseline': 0.5}
     
     if len(explicacao_features) <= 1:
         # Se tem apenas 1 feature, assumir que é necessária
-        return {'necessary_count': 1, 'redundant_features': [], 'necessity_score': 100.0}
+        return {'necessary_count': 1, 'redundant_features': [], 'necessity_score': 100.0, 'baseline': 0.5}
     
     features_redundantes = []
     
@@ -354,21 +414,32 @@ def validar_necessidade_features(
     if hasattr(pipeline, 'named_steps') and 'scaler' in pipeline.named_steps:
         scaler = pipeline.named_steps['scaler']
     
+    # Calcular baseline (probabilidade de manter predição por acaso)
+    # NOTA: Baseline é calculado apenas para REPORTAR, não para ajustar threshold
+    # Usar cache para evitar recalcular para cada instância
+    cache_key = f"{y_pred}_{rejeitada}"
+    if baseline_cache is not None and cache_key in baseline_cache:
+        baseline = baseline_cache[cache_key]
+    else:
+        baseline = calcular_baseline_predicao(
+            pipeline, X_train, y_pred, rejeitada, t_plus, t_minus, max_abs
+        )
+        if baseline_cache is not None:
+            baseline_cache[cache_key] = baseline
+    
+    # THRESHOLD FIXO DE 95% - Padrão científico para comparabilidade
+    # NÃO ajustamos pelo baseline para manter validade matemática
+    THRESHOLD_FIXO = 0.95
+    
     for feat_teste in explicacao_features:
         # Criar explicação sem essa feature
         expl_sem_feat = [f for f in explicacao_features if f != feat_teste]
         features_fixas_idx = [feature_names.index(f) for f in expl_sem_feat if f in feature_names]
         
-        # Escolher estratégia de perturbação:
-        # - Rejeitadas: uniform (teste padrão, pois validação bidirecional já é rigorosa)
-        # - Classificadas: adversarial_worst_case (simula adversário tentando quebrar explicação)
-        if rejeitada:
-            estrategia = "uniform"
-        else:
-            estrategia = "adversarial_worst_case"
-            # DEBUG
-            if feat_teste == explicacao_features[0]:  # Só printa para primeira feature
-                print(f"  [DEBUG] Usando estratégia adversarial para feature {feat_teste}, y_pred={y_pred}")
+        # [CORREÇÃO] Usar UNIFORM para todos os casos (estratégia acadêmica padrão)
+        # ANTES: Usava adversarial_worst_case que era muito agressivo e causava falsos positivos
+        # DEPOIS: Uniform é mais justo e estatisticamente robusto
+        estrategia = "uniform"
         
         # Gerar perturbações mantendo expl_sem_feat fixas
         perturbacoes = gerar_perturbacoes(
@@ -398,12 +469,13 @@ def validar_necessidade_features(
             
             fidelity = (acertos / n_perturbacoes)
             
-            # DEBUG: Mostrar fidelidade para primeira feature testada
+            # DEBUG: Mostrar fidelidade e baseline para primeira feature testada
             if feat_teste == explicacao_features[0]:
-                print(f"    [FIDELITY] {feat_teste}: {fidelity*100:.1f}% (rejeitada={rejeitada})")
+                print(f"    [MINIMALIDADE] {feat_teste}: fid={fidelity*100:.1f}%, baseline={baseline*100:.1f}%")
             
-            # Se fidelity > 95% sem essa feature, ela é redundante
-            if fidelity > 0.95:
+            # THRESHOLD FIXO de 95% para validade científica
+            # Se fidelidade > 95% sem essa feature → feature é REDUNDANTE
+            if fidelity > THRESHOLD_FIXO:
                 features_redundantes.append(feat_teste)
         
         except Exception:
@@ -416,7 +488,8 @@ def validar_necessidade_features(
     return {
         'necessary_count': necessary_count,
         'redundant_features': features_redundantes,
-        'necessity_score': float(necessity_score)
+        'necessity_score': float(necessity_score),
+        'baseline': float(baseline)  # Reportado para interpretação, não usado no cálculo
     }
 
 
@@ -611,6 +684,9 @@ def validar_metodo(
     # Distribuição de tamanhos
     size_distribution = defaultdict(int)
     
+    # Cache para baseline (evita recalcular para cada instância)
+    baseline_cache = {}
+    
     # Tempo de início
     start_time = time.time()
     
@@ -720,7 +796,7 @@ def validar_metodo(
                 continue
             
             # Validar necessidade (minimalidade) - apenas para explicações com 2+ features
-            resultado_necessidade = {'necessary_count': tamanho, 'redundant_features': [], 'necessity_score': 100.0}
+            resultado_necessidade = {'necessary_count': tamanho, 'redundant_features': [], 'necessity_score': 100.0, 'baseline': 0.5, 'threshold_ajustado': 0.95}
             if tamanho >= 2:
                 resultado_necessidade = validar_necessidade_features(
                     idx,
@@ -734,7 +810,8 @@ def validar_metodo(
                     t_plus,
                     t_minus,
                     n_perturbacoes=200,  # Menos perturbações para ser mais rápido
-                    max_abs=max_abs
+                    max_abs=max_abs,
+                    baseline_cache=baseline_cache  # [NOVO] Cache para baseline
                 )
             
             fidelities.append(fidelity)
@@ -915,6 +992,17 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         f.write("  • Valores das features são aleatoriamente substituídos dentro de seus\n")
         f.write("    intervalos observados (mínimo-máximo) no conjunto de treinamento\n")
         f.write("  • Essa abordagem rigorosa testa o método em cenários variados\n\n")
+
+        # LEGENDA rápida para evitar ambiguidade
+        f.write("LEGENDA RÁPIDA DAS MÉTRICAS\n")
+        f.write("  • Fidelidade (%): quanto maior, melhor. Mede se a predição se mantém\n")
+        f.write("    quando perturbações são aplicadas às features não explicativas.\n")
+        f.write("  • Necessidade (%): quanto maior, melhor. Mede a fração de features\n")
+        f.write("    indispensáveis na explicação (minimalidade do conjunto).\n")
+        f.write("  • Redundância (%): 100 - Necessidade. Apenas informativo; alta\n")
+        f.write("    redundância indica que várias features podem ser removidas sem\n")
+        f.write("    mudar a predição sob o critério de 95%.\n")
+        f.write("\n")
         f.write("━" * 80 + "\n\n")
         
         # SEÇÃO 2: Configuração do Experimento
@@ -937,7 +1025,9 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         f.write("3.1 FIDELIDADE DAS EXPLICAÇÕES\n")
         f.write("─" * 80 + "\n\n")
         f.write(f"  Fidelidade Geral:                 {globais['fidelity_overall']:.2f}%\n")
-        f.write(f"  Minimalidade Geral:               {globais['necessity_overall']:.2f}%\n\n")
+        redundancia_global = 100.0 - globais['necessity_overall']
+        f.write(f"  Necessidade Geral (Minimalidade): {globais['necessity_overall']:.2f}%\n")
+        f.write(f"  Redundância Geral:                {redundancia_global:.2f}%\n\n")
         
         f.write("  Fidelidade por Tipo de Predição:\n")
         for tipo_nome, tipo_label, emoji in [('positive', 'Predições Positivas', '○'), 
@@ -946,12 +1036,13 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
             dados = por_tipo[tipo_nome]
             f.write(f"    {emoji} {tipo_label:.<40} {dados['fidelity']:>6.2f}% ({dados['count']:>3} instâncias)\n")
         
-        f.write("\n  Minimalidade por Tipo de Predição:\n")
+        f.write("\n  Necessidade por Tipo de Predição (quanto maior, menos redundância):\n")
         for tipo_nome, tipo_label, emoji in [('positive', 'Predições Positivas', '○'), 
                                                ('negative', 'Predições Negativas', '●'), 
                                                ('rejected', 'Predições Rejeitadas', '◆')]:
             dados = por_tipo[tipo_nome]
-            f.write(f"    {emoji} {tipo_label:.<40} {dados['necessity']:>6.2f}%\n")
+            redundancia_tipo = 100.0 - dados['necessity']
+            f.write(f"    {emoji} {tipo_label:.<40} {dados['necessity']:>6.2f}%  |  Redund.: {redundancia_tipo:>6.2f}%\n")
         
         f.write(f"\n  Taxa de Cobertura (sem erros):    {globais['coverage']:.2f}%\n")
         f.write(f"  Instâncias Processadas com Sucesso: {int(globais['coverage'] / 100 * meta['test_instances'])} / {meta['test_instances']}\n")
@@ -1033,7 +1124,7 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         f.write(f"  mantêm consistência em {globais['fidelity_overall']:.2f}% dos cenários testados quando\n")
         f.write(f"  as features não selecionadas são aleatoriamente perturbadas.\n\n")
         
-        # Análise de Minimalidade
+        # Análise de Necessidade (Minimalidade)
         if globais['necessity_overall'] >= 99.0:
             conclusao_necessity = "Perfeita"
             texto_necessity = "As explicações são MINIMAIS: cada feature é necessária."
@@ -1049,13 +1140,13 @@ def gerar_relatorio_txt(resultado: Dict, metodo: str, dataset: str):
         else:
             conclusao_necessity = "Baixa"
             texto_necessity = "As explicações contêm muitas features redundantes (>20%)."
-        
-        f.write(f"MINIMALIDADE: {conclusao_necessity}\n")
+
+        f.write(f"NECESSIDADE (Minimalidade): {conclusao_necessity}\n")
         f.write(f"  {texto_necessity}\n")
         redundancia_pct = 100.0 - globais['necessity_overall']
-        f.write(f"  Com uma minimalidade de {globais['necessity_overall']:.2f}%, em média {redundancia_pct:.1f}% das features\n")
-        f.write(f"  em cada explicação são redundantes (podem ser removidas sem\n")
-        f.write(f"  alterar a predição em >95% das perturbações).\n\n")
+        f.write(f"  Necessidade média: {globais['necessity_overall']:.2f}%  |  Redundância média: {redundancia_pct:.1f}%\n")
+        f.write(f"  A redundância indica a fração de features que podem ser removidas\n")
+        f.write(f"  sem alterar a predição em >95% das perturbações.\n\n")
         
         # Análise de Compactação
         f.write(f"COMPACTAÇÃO: {100 - globais['reduction_rate']:.1f}% das Features Necessárias\n")

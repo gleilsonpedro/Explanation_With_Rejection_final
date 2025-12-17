@@ -14,7 +14,7 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 3.490709047269379}
+  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 1
   solver: saga
@@ -24,57 +24,57 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.254371
-  t- (limiar inferior): -0.016766
-  Largura da zona de rejeição: 0.271138
+  t+ (limiar superior): 1.095144
+  t- (limiar inferior): -0.074142
+  Largura da zona de rejeição: 1.169286
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 76.34%
-  Acurácia com rejeição: 86.57%
-  Taxa de rejeição: 27.96%
+  Acurácia com rejeição: 86.21%
+  Taxa de rejeição: 37.63%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 50
-    Tamanho médio: 2.54 features
-    Desvio padrão: 0.50
+    Quantidade: 41
+    Tamanho médio: 3.93 features
+    Desvio padrão: 0.89
     Mínimo: 2 features
-    Máximo: 3 features
+    Máximo: 6 features
 
   NEGATIVAS:
     Quantidade: 17
-    Tamanho médio: 5.06 features
-    Desvio padrão: 0.42
-    Mínimo: 4 features
+    Tamanho médio: 5.35 features
+    Desvio padrão: 0.48
+    Mínimo: 5 features
     Máximo: 6 features
 
   REJEITADAS:
-    Quantidade: 26
-    Tamanho médio: 5.04 features
-    Desvio padrão: 0.19
+    Quantidade: 35
+    Tamanho médio: 5.06 features
+    Desvio padrão: 0.23
     Mínimo: 5 features
     Máximo: 6 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 1.2755s
-  Tempo médio por instância: 0.013715s
-  Tempo médio POSITIVAS: 0.010098s
-  Tempo médio NEGATIVAS: 0.009314s
-  Tempo médio REJEITADAS: 0.023261s
+  Tempo total: 0.6185s
+  Tempo médio por instância: 0.006651s
+  Tempo médio POSITIVAS: 0.004423s
+  Tempo médio NEGATIVAS: 0.004386s
+  Tempo médio REJEITADAS: 0.010255s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pelvic_radius: 89 ocorrências (95.7%)
-  pelvic_tilt: 87 ocorrências (93.5%)
-  lumbar_lordosis_angle: 75 ocorrências (80.6%)
-  pelvic_incidence: 46 ocorrências (49.5%)
-  spondylolisthesis_grade: 44 ocorrências (47.3%)
-  sacral_slope: 3 ocorrências (3.2%)
+  pelvic_tilt: 93 ocorrências (100.0%)
+  pelvic_radius: 92 ocorrências (98.9%)
+  lumbar_lordosis_angle: 90 ocorrências (96.8%)
+  pelvic_incidence: 81 ocorrências (87.1%)
+  spondylolisthesis_grade: 63 ocorrências (67.7%)
+  sacral_slope: 10 ocorrências (10.8%)
 
