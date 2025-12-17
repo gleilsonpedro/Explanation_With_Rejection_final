@@ -193,7 +193,7 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
                                 peab_data: Dict, pulp_data: Dict) -> str:
     """Gera relatório comparativo detalhado em formato TXT."""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    output_file = os.path.join(OUTPUT_DIR, f"relatorio_comparativo_{dataset_name}.txt")
+    output_file = os.path.join(OUTPUT_DIR, f"Peab_x_Pulp_{dataset_name}.txt")
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("="*80 + "\n")
@@ -207,6 +207,17 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("-" * 80 + "\n")
         f.write(f"Dataset: {dataset_name}\n")
         f.write(f"Instâncias comparadas: {metricas['total_instancias']}\n")
+        # Exibir número de features por instância (preferir dado do PEAB JSON)
+        num_features = None
+        try:
+            num_features = peab_data.get('model', {}).get('num_features', None)
+            if num_features is None:
+                coefs_list = peab_data.get('model', {}).get('coefs', [])
+                num_features = len(coefs_list) if isinstance(coefs_list, list) else None
+        except Exception:
+            num_features = None
+        if isinstance(num_features, int):
+            f.write(f"Features por instância: {num_features}\n")
         
         # Acessar thresholds corretamente
         t_plus = peab_data.get('thresholds', {}).get('t_plus', peab_data.get('t_plus', 0))
@@ -227,6 +238,16 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("1. RESUMO GERAL DE DESEMPENHO\n")
         f.write("-" * 80 + "\n\n")
         
+        # Extrair tempos agregados (PEAB) e estimar speedup
+        ct = peab_data.get('computation_time', {}) if isinstance(peab_data, dict) else {}
+        tempo_total_peab = ct.get('total', None)
+        tempo_medio_peab = ct.get('mean_per_instance', None)
+        tempo_total_pulp = float(df['tempo_PuLP'].sum()) if 'tempo_PuLP' in df.columns else None
+        tempo_medio_pulp = float(df['tempo_PuLP'].mean()) if 'tempo_PuLP' in df.columns else None
+        speedup_estimado = None
+        if tempo_medio_peab and tempo_medio_peab > 0 and tempo_medio_pulp is not None:
+            speedup_estimado = tempo_medio_pulp / tempo_medio_peab
+
         tabela_geral = pd.DataFrame({
             'Métrica': [
                 'Taxa de Otimalidade (GAP=0)',
@@ -259,7 +280,10 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
             f.write("⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.\n")
         
         f.write(f"- Em média, PEAB usa {metricas['gap_medio']:.2f} features a mais que o ótimo.\n")
-        f.write(f"- PEAB é {metricas['speedup']:.0f}x mais rápido que PuLP.\n")
+        if speedup_estimado is not None:
+            f.write(f"- PEAB é {speedup_estimado:.0f}x mais rápido que PuLP.\n")
+        else:
+            f.write(f"- Comparação de velocidade indisponível (tempo PEAB não informado no JSON).\n")
         f.write("\n")
         
         # Seção 2: Detalhamento por Tipo de Predição
@@ -271,10 +295,17 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         # Definir ordem desejada: POSITIVA → NEGATIVA → REJEITADA
         ordem_tipos = ['POSITIVA', 'NEGATIVA', 'REJEITADA']
         tabela_tipos = []
+        # Mapear tempos médios por tipo do PEAB (se disponíveis no JSON)
+        tempo_peab_por_tipo = {
+            'POSITIVA': ct.get('positive', None) if isinstance(ct, dict) else None,
+            'NEGATIVA': ct.get('negative', None) if isinstance(ct, dict) else None,
+            'REJEITADA': ct.get('rejected', None) if isinstance(ct, dict) else None,
+        }
         
         for tipo in ordem_tipos:
             if tipo in metricas['stats_por_tipo']:
                 stats = metricas['stats_por_tipo'][tipo]
+                tempo_peab_val = tempo_peab_por_tipo.get(tipo, None)
                 tabela_tipos.append({
                     'Tipo': tipo,
                     'Qtd': stats['instancias'],
@@ -282,6 +313,7 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
                     'GAP Médio': f"{stats['gap_medio']:.4f}",
                     'Tam. PEAB': f"{stats['tamanho_medio_peab']:.2f}",
                     'Tam. PuLP': f"{stats['tamanho_medio_pulp']:.2f}",
+                    'Tempo PEAB': f"{tempo_peab_val:.5f}s" if isinstance(tempo_peab_val, (int, float)) else "-",
                     'Tempo PuLP': f"{stats['tempo_medio_pulp']:.5f}s"
                 })
         
@@ -319,15 +351,19 @@ def gerar_relatorio_comparativo(df: pd.DataFrame, metricas: Dict, dataset_name: 
         f.write("5. ANÁLISE DE TEMPO DE EXECUÇÃO\n")
         f.write("-" * 80 + "\n\n")
         
-        tempo_total_peab = df['tempo_PEAB'].sum()
-        tempo_total_pulp = df['tempo_PuLP'].sum()
-        economia_tempo = tempo_total_pulp - tempo_total_peab
-        
-        f.write(f"Tempo total PEAB: {tempo_total_peab:.2f}s\n")
-        f.write(f"Tempo total PuLP: {tempo_total_pulp:.2f}s\n")
-        f.write(f"Economia de tempo: {economia_tempo:.2f}s ({economia_tempo/tempo_total_pulp*100:.1f}%)\n")
-        f.write(f"\nPara {len(df)} instâncias, PEAB economiza {economia_tempo:.1f}s\n")
-        f.write(f"Projetando para 10.000 instâncias: {economia_tempo/len(df)*10000/60:.1f} minutos economizados\n")
+        # Preferir tempos do JSON do PEAB, se disponíveis
+        tempo_total_peab_print = float(tempo_total_peab) if isinstance(tempo_total_peab, (int, float)) else 0.0
+        tempo_total_pulp_print = float(tempo_total_pulp) if isinstance(tempo_total_pulp, (int, float)) else 0.0
+        economia_tempo = tempo_total_pulp_print - tempo_total_peab_print
+
+        f.write(f"Tempo total PEAB: {tempo_total_peab_print:.2f}s\n")
+        f.write(f"Tempo total PuLP: {tempo_total_pulp_print:.2f}s\n")
+        if tempo_total_pulp_print > 0:
+            f.write(f"Economia de tempo: {economia_tempo:.2f}s ({(economia_tempo/tempo_total_pulp_print*100):.1f}%)\n")
+        else:
+            f.write("Economia de tempo: n/d\n")
+        f.write(f"\nPara {len(df)} instâncias, economia observada: {economia_tempo:.1f}s\n")
+        # Removida a projeção para 10.000 instâncias a pedido do usuário
         f.write("\n")
         
         # Seção 6: Conclusão

@@ -1,0 +1,97 @@
+================================================================================
+RELATÓRIO COMPARATIVO: PEAB vs PuLP
+Dataset: PIMA_INDIANS_DIABETES
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: pima_indians_diabetes
+Instâncias comparadas: 231
+Features por instância: 8
+Thresholds: t+ = 0.0779, t- = -0.1096
+Zona de rejeição: 0.1875
+Rejection cost: 0.24
+
+Hiperparâmetros:
+{
+  "norm_params": {
+    "max_abs": 5.935880946880589
+  },
+  "penalty": "l2",
+  "C": 10,
+  "solver": "saga",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO
+--------------------------------------------------------------------------------
+
+Métrica                         Valor   
+    Taxa de Otimalidade (GAP=0)   46.75%
+GAP Médio (features excedentes)  -0.6234
+                     GAP Máximo        0
+                     GAP Mínimo       -3
+           Desvio Padrão do GAP   0.6796
+           Tempo Médio PuLP (s) 0.025761
+
+INTERPRETAÇÃO:
+⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
+- Em média, PEAB usa -0.62 features a mais que o ótimo.
+- PEAB é 4x mais rápido que PuLP.
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+Onde o PEAB é perfeito e onde encontra dificuldades.
+
+     Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
+ POSITIVA   44  25.00%   -0.9773      3.34      4.32   0.00533s   0.02691s
+ NEGATIVA  143  37.06%   -0.7063      4.02      4.73   0.00541s   0.02562s
+REJEITADA   44 100.00%    0.0000      6.39      6.39   0.01278s   0.02506s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
+--------------------------------------------------------------------------------
+Instâncias onde PEAB ficou mais longe da solução ótima.
+
+indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
+    10      NEGATIVA             5             5    0
+   102      NEGATIVA             4             4    0
+   112      NEGATIVA             4             4    0
+   115     REJEITADA             6             6    0
+   116     REJEITADA             8             8    0
+   144     REJEITADA             6             6    0
+   151      NEGATIVA             4             4    0
+   153     REJEITADA             7             7    0
+   156      NEGATIVA             4             4    0
+   158      NEGATIVA             4             4    0
+
+--------------------------------------------------------------------------------
+4. DISTRIBUIÇÃO DE GAPS
+--------------------------------------------------------------------------------
+
+GAP = 0 (Ótimo): 108 instâncias (46.8%)
+
+--------------------------------------------------------------------------------
+5. ANÁLISE DE TEMPO DE EXECUÇÃO
+--------------------------------------------------------------------------------
+
+Tempo total PEAB: 1.58s
+Tempo total PuLP: 5.95s
+Economia de tempo: 4.37s (73.5%)
+
+Para 231 instâncias, economia observada: 4.4s
+
+================================================================================
+6. CONCLUSÃO
+================================================================================
+
+⚠ PEAB precisa de melhorias:
+   - Qualidade subótima: 46.8% de otimalidade
+   - Revisar heurística para este dataset
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

@@ -214,7 +214,10 @@ def gerar_perturbacoes(
     features_fixas: List[int],
     X_train: pd.DataFrame,
     n_perturbacoes: int = 1000,
-    estrategia: str = "uniform"
+    estrategia: str = "uniform",
+    pipeline = None,
+    y_pred: int = None,
+    scaler = None
 ) -> np.ndarray:
     """
     Gera perturbações de uma instância fixando features da explicação.
@@ -224,7 +227,10 @@ def gerar_perturbacoes(
         features_fixas: Índices das features da explicação (fixar valores)
         X_train: Dados de treino (para distribuição)
         n_perturbacoes: Número de perturbações a gerar
-        estrategia: 'uniform', 'distribution', ou 'adversarial'
+        estrategia: 'uniform', 'distribution', ou 'adversarial_worst_case'
+        pipeline: Pipeline do modelo (para estratégia adversarial_worst_case)
+        y_pred: Predição original (para estratégia adversarial_worst_case)
+        scaler: Scaler do pipeline (para estratégia adversarial_worst_case)
     
     Returns:
         Array (n_perturbacoes, n_features) com perturbações
@@ -263,6 +269,41 @@ def gerar_perturbacoes(
             n_min = n_perturbacoes // 2
             perturbacoes[:n_min, feat_idx] = feat_min
             perturbacoes[n_min:, feat_idx] = feat_max
+        
+        elif estrategia == "adversarial_worst_case" and pipeline is not None and y_pred is not None:
+            # Worst-case: escolhe min ou max baseado no coeficiente para empurrar score
+            # na direção CONTRÁRIA à predição (mais adversarial)
+            try:
+                # Obter coeficientes do modelo
+                if hasattr(pipeline, 'named_steps'):
+                    logreg = pipeline.named_steps.get('classifier')
+                    if logreg is None:
+                        logreg = pipeline.named_steps.get('logisticregression')
+                else:
+                    logreg = pipeline
+                
+                if logreg is not None and hasattr(logreg, 'coef_'):
+                    coef = logreg.coef_[0][feat_idx]
+                    
+                    # Para positivas (y_pred=1): empurrar para BAIXO (usar valores que diminuem score)
+                    # Para negativas (y_pred=0): empurrar para CIMA (usar valores que aumentam score)
+                    if y_pred == 1:
+                        # Adversário quer DIMINUIR score: coef > 0 → min, coef < 0 → max
+                        valor_adversarial = feat_min if coef > 0 else feat_max
+                    else:
+                        # Adversário quer AUMENTAR score: coef > 0 → max, coef < 0 → min
+                        valor_adversarial = feat_max if coef > 0 else feat_min
+                    
+                    perturbacoes[:, feat_idx] = valor_adversarial
+                else:
+                    # Fallback para uniform se não conseguir coeficientes
+                    perturbacoes[:, feat_idx] = np.random.uniform(feat_min, feat_max, n_perturbacoes)
+            except Exception:
+                # Fallback para uniform em caso de erro
+                perturbacoes[:, feat_idx] = np.random.uniform(feat_min, feat_max, n_perturbacoes)
+        else:
+            # Fallback para uniform
+            perturbacoes[:, feat_idx] = np.random.uniform(feat_min, feat_max, n_perturbacoes)
     
     return perturbacoes
 
@@ -308,10 +349,26 @@ def validar_necessidade_features(
     
     features_redundantes = []
     
+    # Obter scaler do pipeline
+    scaler = None
+    if hasattr(pipeline, 'named_steps') and 'scaler' in pipeline.named_steps:
+        scaler = pipeline.named_steps['scaler']
+    
     for feat_teste in explicacao_features:
         # Criar explicação sem essa feature
         expl_sem_feat = [f for f in explicacao_features if f != feat_teste]
         features_fixas_idx = [feature_names.index(f) for f in expl_sem_feat if f in feature_names]
+        
+        # Escolher estratégia de perturbação:
+        # - Rejeitadas: uniform (teste padrão, pois validação bidirecional já é rigorosa)
+        # - Classificadas: adversarial_worst_case (simula adversário tentando quebrar explicação)
+        if rejeitada:
+            estrategia = "uniform"
+        else:
+            estrategia = "adversarial_worst_case"
+            # DEBUG
+            if feat_teste == explicacao_features[0]:  # Só printa para primeira feature
+                print(f"  [DEBUG] Usando estratégia adversarial para feature {feat_teste}, y_pred={y_pred}")
         
         # Gerar perturbações mantendo expl_sem_feat fixas
         perturbacoes = gerar_perturbacoes(
@@ -319,7 +376,10 @@ def validar_necessidade_features(
             features_fixas_idx,
             X_train,
             n_perturbacoes,
-            "uniform"
+            estrategia,
+            pipeline=pipeline,
+            y_pred=y_pred,
+            scaler=scaler
         )
         
         # Reclassificar
@@ -337,6 +397,10 @@ def validar_necessidade_features(
                 acertos = np.sum(predicoes == y_pred)
             
             fidelity = (acertos / n_perturbacoes)
+            
+            # DEBUG: Mostrar fidelidade para primeira feature testada
+            if feat_teste == explicacao_features[0]:
+                print(f"    [FIDELITY] {feat_teste}: {fidelity*100:.1f}% (rejeitada={rejeitada})")
             
             # Se fidelity > 95% sem essa feature, ela é redundante
             if fidelity > 0.95:

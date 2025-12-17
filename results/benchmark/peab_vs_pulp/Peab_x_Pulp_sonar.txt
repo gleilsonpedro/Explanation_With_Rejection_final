@@ -1,0 +1,106 @@
+================================================================================
+RELATÓRIO COMPARATIVO: PEAB vs PuLP
+Dataset: SONAR
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: sonar
+Instâncias comparadas: 63
+Features por instância: 60
+Thresholds: t+ = 0.6750, t- = -0.0368
+Zona de rejeição: 0.7118
+Rejection cost: 0.24
+
+Hiperparâmetros:
+{
+  "norm_params": {
+    "max_abs": 0.3756831879089612
+  },
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "saga",
+  "max_iter": 200
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO
+--------------------------------------------------------------------------------
+
+Métrica                         Valor   
+    Taxa de Otimalidade (GAP=0)   55.56%
+GAP Médio (features excedentes)   2.1111
+                     GAP Máximo       13
+                     GAP Mínimo        0
+           Desvio Padrão do GAP   2.9844
+           Tempo Médio PuLP (s) 0.041646
+
+INTERPRETAÇÃO:
+⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
+- Em média, PEAB usa 2.11 features a mais que o ótimo.
+- PEAB é 2x mais rápido que PuLP.
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+Onde o PEAB é perfeito e onde encontra dificuldades.
+
+     Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
+ POSITIVA   12 100.00%    0.0000     40.42     40.42   0.00757s   0.04203s
+ NEGATIVA    8 100.00%    0.0000     46.00     46.00   0.00742s   0.04389s
+REJEITADA   43  34.88%    3.0930     39.05     35.95   0.02265s   0.04112s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
+--------------------------------------------------------------------------------
+Instâncias onde PEAB ficou mais longe da solução ótima.
+
+indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
+    77     REJEITADA            46            33   13
+    52     REJEITADA            40            32    8
+   108     REJEITADA            39            32    7
+   204     REJEITADA            40            33    7
+   205     REJEITADA            39            32    7
+    90     REJEITADA            39            32    7
+    99     REJEITADA            40            33    7
+     1     REJEITADA            52            46    6
+   158     REJEITADA            38            32    6
+   177     REJEITADA            38            32    6
+
+--------------------------------------------------------------------------------
+4. DISTRIBUIÇÃO DE GAPS
+--------------------------------------------------------------------------------
+
+GAP = 0 (Ótimo): 35 instâncias (55.6%)
+GAP = 1: 3 instâncias (4.8%)
+GAP = 2: 5 instâncias (7.9%)
+GAP = 3: 2 instâncias (3.2%)
+GAP = 4: 3 instâncias (4.8%)
+GAP = 5: 2 instâncias (3.2%)
+GAP = 6: 6 instâncias (9.5%)
+GAP = 7: 5 instâncias (7.9%)
+GAP = 8: 1 instâncias (1.6%)
+GAP = 13: 1 instâncias (1.6%)
+
+--------------------------------------------------------------------------------
+5. ANÁLISE DE TEMPO DE EXECUÇÃO
+--------------------------------------------------------------------------------
+
+Tempo total PEAB: 1.13s
+Tempo total PuLP: 2.62s
+Economia de tempo: 1.50s (57.0%)
+
+Para 63 instâncias, economia observada: 1.5s
+
+================================================================================
+6. CONCLUSÃO
+================================================================================
+
+⚠ PEAB precisa de melhorias:
+   - Qualidade subótima: 55.6% de otimalidade
+   - Revisar heurística para este dataset
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

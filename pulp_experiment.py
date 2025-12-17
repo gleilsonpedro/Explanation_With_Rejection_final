@@ -132,27 +132,31 @@ def calcular_explicacao_otima_pulp(
         termos_max.append(z[i] * (contrib_real - contrib_worst_max))
 
     # [INVESTIGAÇÃO] Scores do PuLP vs Thresholds
-    # Os scores (base_worst_min/max) são calculados como: intercept + sum(coefs * vals_scaled)
-    # Os thresholds (t_plus/t_minus) estão NORMALIZADOS (entre -1 e +1)
-    # Precisamos normalizar os scores ANTES da comparação!
-    
-    # Normalizar scores para comparar com thresholds normalizados
-    # HIPÓTESE: Os scores estão em escala RAW, thresholds em escala NORMALIZADA
-    # Então: score_normalized = score_raw / max_abs
-    
+    # Os scores (base_worst_min/max) estão na escala RAW do modelo.
+    # Os thresholds (t_plus/t_minus) estão na escala NORMALIZADA.
+    # CORREÇÃO: Normalizar expressões de restrição por max_abs para
+    # comparar corretamente com os thresholds normalizados.
+
     # [CORREÇÃO] Adicionar EPSILON como o PEAB faz, para evitar conservadorismo excessivo
     EPSILON = 1e-6
     
+    # Preparar termos normalizados para as restrições
+    # Observação: pulp.lpSum(termos_*) retorna uma expressão linear;
+    # dividir por max_abs mantém linearidade e corrige escala.
+    denom = max_abs if max_abs > 0 else 1.0
+    expr_min_norm = (base_worst_min + pulp.lpSum(termos_min)) / denom
+    expr_max_norm = (base_worst_max + pulp.lpSum(termos_max)) / denom
+
     # Restrições baseadas no tipo de predição (com tolerância EPSILON)
     if estado == 1:  # POSITIVA
         # Dar uma pequena margem de tolerância (como o PEAB)
-        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_plus - EPSILON
+        prob += expr_min_norm >= t_plus - EPSILON
     elif estado == 0:  # NEGATIVA
-        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_minus + EPSILON
+        prob += expr_max_norm <= t_minus + EPSILON
     else:  # REJEITADA
         # Para rejeitadas, dar margem nas DUAS direções
-        prob += (base_worst_max + pulp.lpSum(termos_max)) <= t_plus + EPSILON
-        prob += (base_worst_min + pulp.lpSum(termos_min)) >= t_minus - EPSILON
+        prob += expr_max_norm <= t_plus + EPSILON
+        prob += expr_min_norm >= t_minus - EPSILON
 
     # Resolve o problema com configurações menos conservadoras
     # Ajustar tolerâncias do solver CBC para evitar conservadorismo excessivo

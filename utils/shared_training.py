@@ -50,9 +50,10 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         # Importar função de seleção do PEAB
         from peab import aplicar_selecao_top_k_features
         
-        # Treinar modelo temporário para obter importâncias
+        # Treinar modelo temporário para obter importâncias (assinatura correta)
         print(f"\n[INFO] [Shared Training] Aplicando seleção de top-{top_k} features...")
-        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X, y, test_size, rejection_cost, params_modelo)
+        # Usa rejection_cost correto; sem passar test_size por engano
+        modelo_temp, _, _, _ = treinar_e_avaliar_modelo(X_train=X, y_train=y, rejection_cost=rejection_cost, logreg_params=params_modelo)
         X_train_temp, X_test_temp, _, _ = train_test_split(X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y)
         
         # Selecionar top-k features

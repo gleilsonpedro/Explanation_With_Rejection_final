@@ -263,7 +263,9 @@ def fase_1_reforco(modelo: Pipeline, instance_df: pd.DataFrame, expl_inicial: Li
     logreg = _get_lr(modelo)
     coefs = logreg.coef_[0]
     intercept = logreg.intercept_[0]
-    vals_s = scaler.transform(instance_df)[0]
+    # Garantir mesma ordem de colunas do treino antes de transformar
+    instance_df_ordered = instance_df[X_train.columns]
+    vals_s = scaler.transform(instance_df_ordered)[0]
     score_orig = modelo.decision_function(instance_df)[0]
 
     # Classe predita original
@@ -315,7 +317,9 @@ def fase_2_minimizacao(modelo: Pipeline, instance_df: pd.DataFrame, expl_robusta
     coefs = logreg.coef_[0]
     intercept = logreg.intercept_[0]
     #[NORM_THRESHOLD] Recebe norm_params para passar às validações
-    vals_s = scaler.transform(instance_df)[0]
+    # Garantir mesma ordem de colunas do treino antes de transformar
+    instance_df_ordered = instance_df[X_train.columns]
+    vals_s = scaler.transform(instance_df_ordered)[0]
     score_orig = modelo.decision_function(instance_df)[0]
     
     pred_class_orig = int(modelo.predict(instance_df)[0])
