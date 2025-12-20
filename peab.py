@@ -425,46 +425,129 @@ def executar_experimento_para_dataset(dataset_name: str):
             duracao = time.perf_counter() - start_inst
             p_code = preds[i]
             
+            # CORREÇÃO: Usar índice original do DataFrame, não sequencial
+            original_idx = str(X_test.index[i])
+            
             resultados.append({
-                'id': i, 'pred_code': int(p_code),
-                'explicacao': sorted(expl), 'tamanho_explicacao': len(expl),
-                'log_detalhado': [] # Logs detalhados desativados na versão fast para performance máxima
+                'id': original_idx,  # ✅ CORRIGIDO: Usa índice original
+                'pred_code': int(p_code),
+                'explicacao': sorted(expl), 
+                'tamanho_explicacao': len(expl),
+                'tempo': duracao,  # Adicionar tempo individual
+                'log_detalhado': []
             })
             pbar.update()
 
     total_time = time.perf_counter() - start_total
     print(f"[INFO] Tempo Total: {total_time:.2f}s | Média: {total_time/len(X_test):.4f}s/inst")
 
-    # Salvar Resultados (Simplificado para o exemplo, manter update_method_results do seu pipeline)
-    # Aqui apenas salvamos o TXT básico para conferência rápida
-    try:
-        from utils.results_handler import update_method_results
-        # Recriar estrutura de métricas compatível com sua função de cache...
-        # (Omitido para brevidade, mas o script deve manter a integração com update_method_results)
-        # O código abaixo é apenas um placeholder se update_method_results não estiver disponível
-        pass 
-    except ImportError:
-        pass
-
-    # Mantendo a compatibilidade com a estrutura de métricas que você já tinha:
+    # =========================================================================
+    # SALVAR RESULTADOS COM update_method_results (NECESSÁRIO PARA COMPARAÇÃO)
+    # =========================================================================
     mask_rej = (preds == 2)
-    metricas = {
-        'acuracia_sem_rejeicao': float(np.mean(modelo.predict(X_test) == y_test)*100),
-        'acuracia_com_rejeicao': float(np.mean(preds[~mask_rej] == y_test.iloc[~mask_rej])*100) if np.any(~mask_rej) else 100.0,
-        'taxa_rejeicao': float(np.mean(mask_rej)*100),
-        'tempo_total': total_time,
-        'tempo_medio_instancia': total_time/len(X_test),
-        # ... (Preencher demais estatísticas conforme necessário)
+    y_pred_final = modelo.predict(X_test)
+    
+    # Preparar dados no formato esperado por update_method_results
+    per_instance_data = []
+    for res in resultados:
+        idx = res['id']
+        idx_int = int(X_test.index.get_loc(int(idx)))  # Posição no array
+        
+        per_instance_data.append({
+            'id': idx,
+            'y_true': int(y_test.iloc[idx_int]),
+            'y_pred': int(y_pred_final[idx_int]),
+            'rejected': bool(preds[idx_int] == 2),
+            'decision_score': float(scores[idx_int]),
+            'explanation': res['explicacao'],
+            'explanation_size': res['tamanho_explicacao'],
+            'computation_time': res.get('tempo', 0.0)
+        })
+    
+    # Calcular tempos por tipo
+    tempos_por_tipo = {'positive': [], 'negative': [], 'rejected': []}
+    for i, res in enumerate(resultados):
+        if preds[i] == 1:
+            tempos_por_tipo['positive'].append(res.get('tempo', 0.0))
+        elif preds[i] == 0:
+            tempos_por_tipo['negative'].append(res.get('tempo', 0.0))
+        else:
+            tempos_por_tipo['rejected'].append(res.get('tempo', 0.0))
+    
+    # Preparar estrutura de resultados completa
+    results_data = {
+        'config': {
+            'dataset_name': dataset_name,
+            'test_size': test_size,
+            'random_state': RANDOM_STATE,
+            'rejection_cost': rejection_cost,
+            'subsample_size': cfg.get('subsample_size', None)
+        },
+        'thresholds': {
+            't_plus': float(t_plus),
+            't_minus': float(t_minus),
+            'rejection_zone_width': float(t_plus - t_minus)
+        },
+        'performance': {
+            'accuracy_without_rejection': float(np.mean(y_pred_final == y_test) * 100),
+            'accuracy_with_rejection': float(np.mean(preds[~mask_rej] == y_test.iloc[~mask_rej]) * 100) if np.any(~mask_rej) else 100.0,
+            'rejection_rate': float(np.mean(mask_rej) * 100),
+            'num_test_instances': len(X_test),
+            'num_rejected': int(np.sum(mask_rej)),
+            'num_accepted': int(np.sum(~mask_rej))
+        },
+        'explanation_stats': {
+            'positive': {
+                'count': int(np.sum(preds == 1)),
+                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 1])) if np.sum(preds == 1) > 0 else 0.0,
+            },
+            'negative': {
+                'count': int(np.sum(preds == 0)),
+                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 0])) if np.sum(preds == 0) > 0 else 0.0,
+            },
+            'rejected': {
+                'count': int(np.sum(preds == 2)),
+                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 2])) if np.sum(preds == 2) > 0 else 0.0,
+            }
+        },
+        'computation_time': {
+            'total': float(total_time),
+            'mean_per_instance': float(total_time / len(X_test)),
+            'positive': float(np.mean(tempos_por_tipo['positive'])) if tempos_por_tipo['positive'] else 0.0,
+            'negative': float(np.mean(tempos_por_tipo['negative'])) if tempos_por_tipo['negative'] else 0.0,
+            'rejected': float(np.mean(tempos_por_tipo['rejected'])) if tempos_por_tipo['rejected'] else 0.0,
+        },
+        'model': {
+            'params': params,
+            'num_features': len(X_train.columns)
+        },
+        'per_instance': per_instance_data
     }
     
-    # Salvar TXT (Básico)
+    # Normalizar nome do dataset para MNIST
+    dataset_json_key = dataset_name
+    if dataset_name == 'mnist':
+        digit_pair = cfg.get('digit_pair')
+        if digit_pair and len(digit_pair) == 2:
+            dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
+    
+    # Chamar update_method_results com assinatura correta
+    update_method_results(
+        method='peab',
+        dataset=dataset_json_key,
+        results=results_data
+    )
+    
+    print(f"[INFO] Resultados salvos em json/peab/{dataset_json_key}.json")
+    
+    # Salvar TXT (Básico) também
     os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)
     with open(f"{OUTPUT_BASE_DIR}/peab_{dataset_name}.txt", 'w') as f:
         f.write(f"RELATÓRIO PEAB FAST - {dataset_name}\n")
         f.write(f"Tempo Total: {total_time:.4f}s\n")
-        f.write(f"Tempo Médio: {metricas['tempo_medio_instancia']:.6f}s\n")
-        f.write(f"Acurácia: {metricas['acuracia_com_rejeicao']:.2f}%\n")
-        f.write(f"Taxa Rejeição: {metricas['taxa_rejeicao']:.2f}%\n")
+        f.write(f"Tempo Médio: {total_time/len(X_test):.6f}s\n")
+        f.write(f"Acurácia com rejeição: {float(np.mean(preds[~mask_rej] == y_test.iloc[~mask_rej])*100) if np.any(~mask_rej) else 100.0:.2f}%\n")
+        f.write(f"Taxa Rejeição: {float(np.mean(mask_rej)*100):.2f}%\n")
 
 if __name__ == '__main__':
     resultado = selecionar_dataset_e_classe()

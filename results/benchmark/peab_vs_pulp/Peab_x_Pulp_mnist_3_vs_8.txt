@@ -7,19 +7,16 @@ Dataset: MNIST_3_VS_8
 0. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
 Dataset: mnist_3_vs_8
-Instâncias comparadas: 1257
+Instâncias comparadas: 4190
 Features por instância: 784
-Thresholds: t+ = 2.2113, t- = -1.8671
-Zona de rejeição: 4.0784
+Thresholds: t+ = 1.6387, t- = -2.1754
+Zona de rejeição: 3.8141
 Rejection cost: 0.1
 
 Hiperparâmetros:
 {
-  "norm_params": {
-    "max_abs": 1.0
-  },
   "penalty": "l2",
-  "C": 0.1,
+  "C": 1.0,
   "solver": "lbfgs",
   "max_iter": 200
 }
@@ -29,17 +26,17 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 
 Métrica                         Valor   
-    Taxa de Otimalidade (GAP=0)   83.93%
-GAP Médio (features excedentes)   7.9165
-                     GAP Máximo       91
-                     GAP Mínimo       -1
-           Desvio Padrão do GAP  21.9389
-           Tempo Médio PuLP (s) 0.075588
+    Taxa de Otimalidade (GAP=0)    0.00%
+GAP Médio (features excedentes) 115.1033
+                     GAP Máximo      397
+                     GAP Mínimo       -5
+           Desvio Padrão do GAP  85.3967
+           Tempo Médio PuLP (s) 0.080697
 
 INTERPRETAÇÃO:
-✓ BOM: PEAB encontra a solução ótima em >80% dos casos.
-- Em média, PEAB usa 7.92 features a mais que o ótimo.
-- PEAB é 1x mais rápido que PuLP.
+⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
+- Em média, PEAB usa 115.10 features a mais que o ótimo.
+- PEAB é 3x mais rápido que PuLP.
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR TIPO DE PREDIÇÃO
@@ -47,9 +44,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA  527  96.02%   -0.0398    232.55    232.59   0.03578s   0.07517s
- NEGATIVA  570  96.32%   -0.0368    181.44    181.48   0.03288s   0.07430s
-REJEITADA  160   0.00%   62.4562    437.91    375.45   0.69717s   0.08155s
+ POSITIVA 1886   0.00%  125.1718    285.23    160.06   0.02107s   0.07921s
+ NEGATIVA 1962   0.00%   61.4929    219.08    157.59   0.01602s   0.08231s
+REJEITADA  342   0.00%  367.1345    525.10    157.96   0.14084s   0.07963s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -57,102 +54,299 @@ REJEITADA  160   0.00%   62.4562    437.91    375.45   0.69717s   0.08155s
 Instâncias onde PEAB ficou mais longe da solução ótima.
 
 indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
- 51330     REJEITADA           449           358   91
- 14140     REJEITADA           456           366   90
- 54191     REJEITADA           450           360   90
- 59303     REJEITADA           451           361   90
- 36648     REJEITADA           451           362   89
- 35088     REJEITADA           446           358   88
- 58239     REJEITADA           453           365   88
-  5086     REJEITADA           448           361   87
- 53083     REJEITADA           445           359   86
- 47936     REJEITADA           452           367   85
+ 17389     REJEITADA           554           157  397
+ 47669     REJEITADA           547           158  389
+ 20606     REJEITADA           544           157  387
+ 31474     REJEITADA           545           158  387
+ 20072     REJEITADA           543           157  386
+ 54030     REJEITADA           543           157  386
+  7134     REJEITADA           544           158  386
+ 25210     REJEITADA           542           157  385
+ 12901     REJEITADA           542           158  384
+ 33331     REJEITADA           541           157  384
 
 --------------------------------------------------------------------------------
 4. DISTRIBUIÇÃO DE GAPS
 --------------------------------------------------------------------------------
 
-GAP = 0 (Ótimo): 1055 instâncias (83.9%)
-GAP = 4: 1 instâncias (0.1%)
-GAP = 9: 1 instâncias (0.1%)
-GAP = 12: 1 instâncias (0.1%)
-GAP = 15: 1 instâncias (0.1%)
-GAP = 17: 2 instâncias (0.2%)
-GAP = 19: 3 instâncias (0.2%)
-GAP = 21: 1 instâncias (0.1%)
-GAP = 25: 1 instâncias (0.1%)
-GAP = 26: 1 instâncias (0.1%)
-GAP = 28: 2 instâncias (0.2%)
-GAP = 32: 2 instâncias (0.2%)
-GAP = 35: 1 instâncias (0.1%)
-GAP = 36: 3 instâncias (0.2%)
-GAP = 39: 2 instâncias (0.2%)
-GAP = 40: 1 instâncias (0.1%)
-GAP = 41: 1 instâncias (0.1%)
-GAP = 43: 4 instâncias (0.3%)
-GAP = 44: 1 instâncias (0.1%)
-GAP = 45: 1 instâncias (0.1%)
-GAP = 47: 1 instâncias (0.1%)
-GAP = 48: 2 instâncias (0.2%)
-GAP = 51: 4 instâncias (0.3%)
-GAP = 52: 3 instâncias (0.2%)
-GAP = 53: 2 instâncias (0.2%)
-GAP = 54: 2 instâncias (0.2%)
-GAP = 55: 1 instâncias (0.1%)
-GAP = 56: 2 instâncias (0.2%)
-GAP = 57: 1 instâncias (0.1%)
-GAP = 58: 2 instâncias (0.2%)
-GAP = 59: 1 instâncias (0.1%)
-GAP = 60: 3 instâncias (0.2%)
-GAP = 61: 6 instâncias (0.5%)
-GAP = 62: 3 instâncias (0.2%)
-GAP = 64: 9 instâncias (0.7%)
-GAP = 65: 3 instâncias (0.2%)
-GAP = 66: 4 instâncias (0.3%)
-GAP = 67: 4 instâncias (0.3%)
-GAP = 68: 5 instâncias (0.4%)
-GAP = 69: 5 instâncias (0.4%)
-GAP = 70: 2 instâncias (0.2%)
-GAP = 71: 5 instâncias (0.4%)
-GAP = 72: 6 instâncias (0.5%)
-GAP = 73: 5 instâncias (0.4%)
-GAP = 74: 3 instâncias (0.2%)
-GAP = 75: 4 instâncias (0.3%)
-GAP = 76: 3 instâncias (0.2%)
-GAP = 77: 1 instâncias (0.1%)
-GAP = 78: 4 instâncias (0.3%)
-GAP = 79: 5 instâncias (0.4%)
-GAP = 80: 3 instâncias (0.2%)
-GAP = 81: 4 instâncias (0.3%)
-GAP = 82: 4 instâncias (0.3%)
-GAP = 83: 3 instâncias (0.2%)
-GAP = 84: 5 instâncias (0.4%)
-GAP = 85: 1 instâncias (0.1%)
-GAP = 86: 1 instâncias (0.1%)
-GAP = 87: 1 instâncias (0.1%)
-GAP = 88: 2 instâncias (0.2%)
-GAP = 89: 1 instâncias (0.1%)
-GAP = 90: 3 instâncias (0.2%)
-GAP = 91: 1 instâncias (0.1%)
+GAP = 0 (Ótimo): 0 instâncias (0.0%)
+GAP = 5: 2 instâncias (0.0%)
+GAP = 7: 3 instâncias (0.1%)
+GAP = 8: 1 instâncias (0.0%)
+GAP = 9: 2 instâncias (0.0%)
+GAP = 10: 2 instâncias (0.0%)
+GAP = 11: 5 instâncias (0.1%)
+GAP = 12: 2 instâncias (0.0%)
+GAP = 13: 2 instâncias (0.0%)
+GAP = 14: 5 instâncias (0.1%)
+GAP = 15: 4 instâncias (0.1%)
+GAP = 16: 4 instâncias (0.1%)
+GAP = 17: 4 instâncias (0.1%)
+GAP = 18: 6 instâncias (0.1%)
+GAP = 19: 7 instâncias (0.2%)
+GAP = 20: 10 instâncias (0.2%)
+GAP = 21: 6 instâncias (0.1%)
+GAP = 22: 7 instâncias (0.2%)
+GAP = 23: 9 instâncias (0.2%)
+GAP = 24: 13 instâncias (0.3%)
+GAP = 25: 12 instâncias (0.3%)
+GAP = 26: 11 instâncias (0.3%)
+GAP = 27: 17 instâncias (0.4%)
+GAP = 28: 16 instâncias (0.4%)
+GAP = 29: 19 instâncias (0.5%)
+GAP = 30: 13 instâncias (0.3%)
+GAP = 31: 18 instâncias (0.4%)
+GAP = 32: 10 instâncias (0.2%)
+GAP = 33: 19 instâncias (0.5%)
+GAP = 34: 14 instâncias (0.3%)
+GAP = 35: 13 instâncias (0.3%)
+GAP = 36: 15 instâncias (0.4%)
+GAP = 37: 20 instâncias (0.5%)
+GAP = 38: 29 instâncias (0.7%)
+GAP = 39: 23 instâncias (0.5%)
+GAP = 40: 17 instâncias (0.4%)
+GAP = 41: 27 instâncias (0.6%)
+GAP = 42: 31 instâncias (0.7%)
+GAP = 43: 27 instâncias (0.6%)
+GAP = 44: 24 instâncias (0.6%)
+GAP = 45: 38 instâncias (0.9%)
+GAP = 46: 27 instâncias (0.6%)
+GAP = 47: 30 instâncias (0.7%)
+GAP = 48: 39 instâncias (0.9%)
+GAP = 49: 26 instâncias (0.6%)
+GAP = 50: 27 instâncias (0.6%)
+GAP = 51: 28 instâncias (0.7%)
+GAP = 52: 23 instâncias (0.5%)
+GAP = 53: 40 instâncias (1.0%)
+GAP = 54: 39 instâncias (0.9%)
+GAP = 55: 47 instâncias (1.1%)
+GAP = 56: 43 instâncias (1.0%)
+GAP = 57: 35 instâncias (0.8%)
+GAP = 58: 36 instâncias (0.9%)
+GAP = 59: 32 instâncias (0.8%)
+GAP = 60: 44 instâncias (1.1%)
+GAP = 61: 24 instâncias (0.6%)
+GAP = 62: 32 instâncias (0.8%)
+GAP = 63: 33 instâncias (0.8%)
+GAP = 64: 39 instâncias (0.9%)
+GAP = 65: 35 instâncias (0.8%)
+GAP = 66: 29 instâncias (0.7%)
+GAP = 67: 44 instâncias (1.1%)
+GAP = 68: 34 instâncias (0.8%)
+GAP = 69: 45 instâncias (1.1%)
+GAP = 70: 41 instâncias (1.0%)
+GAP = 71: 45 instâncias (1.1%)
+GAP = 72: 32 instâncias (0.8%)
+GAP = 73: 41 instâncias (1.0%)
+GAP = 74: 38 instâncias (0.9%)
+GAP = 75: 27 instâncias (0.6%)
+GAP = 76: 27 instâncias (0.6%)
+GAP = 77: 32 instâncias (0.8%)
+GAP = 78: 27 instâncias (0.6%)
+GAP = 79: 22 instâncias (0.5%)
+GAP = 80: 23 instâncias (0.5%)
+GAP = 81: 35 instâncias (0.8%)
+GAP = 82: 25 instâncias (0.6%)
+GAP = 83: 29 instâncias (0.7%)
+GAP = 84: 22 instâncias (0.5%)
+GAP = 85: 24 instâncias (0.6%)
+GAP = 86: 21 instâncias (0.5%)
+GAP = 87: 27 instâncias (0.6%)
+GAP = 88: 30 instâncias (0.7%)
+GAP = 89: 22 instâncias (0.5%)
+GAP = 90: 21 instâncias (0.5%)
+GAP = 91: 26 instâncias (0.6%)
+GAP = 92: 20 instâncias (0.5%)
+GAP = 93: 31 instâncias (0.7%)
+GAP = 94: 37 instâncias (0.9%)
+GAP = 95: 25 instâncias (0.6%)
+GAP = 96: 21 instâncias (0.5%)
+GAP = 97: 30 instâncias (0.7%)
+GAP = 98: 27 instâncias (0.6%)
+GAP = 99: 26 instâncias (0.6%)
+GAP = 100: 25 instâncias (0.6%)
+GAP = 101: 20 instâncias (0.5%)
+GAP = 102: 22 instâncias (0.5%)
+GAP = 103: 30 instâncias (0.7%)
+GAP = 104: 30 instâncias (0.7%)
+GAP = 105: 28 instâncias (0.7%)
+GAP = 106: 26 instâncias (0.6%)
+GAP = 107: 34 instâncias (0.8%)
+GAP = 108: 28 instâncias (0.7%)
+GAP = 109: 31 instâncias (0.7%)
+GAP = 110: 27 instâncias (0.6%)
+GAP = 111: 30 instâncias (0.7%)
+GAP = 112: 27 instâncias (0.6%)
+GAP = 113: 25 instâncias (0.6%)
+GAP = 114: 36 instâncias (0.9%)
+GAP = 115: 38 instâncias (0.9%)
+GAP = 116: 45 instâncias (1.1%)
+GAP = 117: 34 instâncias (0.8%)
+GAP = 118: 25 instâncias (0.6%)
+GAP = 119: 27 instâncias (0.6%)
+GAP = 120: 43 instâncias (1.0%)
+GAP = 121: 33 instâncias (0.8%)
+GAP = 122: 30 instâncias (0.7%)
+GAP = 123: 27 instâncias (0.6%)
+GAP = 124: 30 instâncias (0.7%)
+GAP = 125: 26 instâncias (0.6%)
+GAP = 126: 23 instâncias (0.5%)
+GAP = 127: 25 instâncias (0.6%)
+GAP = 128: 34 instâncias (0.8%)
+GAP = 129: 27 instâncias (0.6%)
+GAP = 130: 19 instâncias (0.5%)
+GAP = 131: 28 instâncias (0.7%)
+GAP = 132: 22 instâncias (0.5%)
+GAP = 133: 20 instâncias (0.5%)
+GAP = 134: 25 instâncias (0.6%)
+GAP = 135: 31 instâncias (0.7%)
+GAP = 136: 36 instâncias (0.9%)
+GAP = 137: 22 instâncias (0.5%)
+GAP = 138: 29 instâncias (0.7%)
+GAP = 139: 14 instâncias (0.3%)
+GAP = 140: 22 instâncias (0.5%)
+GAP = 141: 14 instâncias (0.3%)
+GAP = 142: 12 instâncias (0.3%)
+GAP = 143: 14 instâncias (0.3%)
+GAP = 144: 15 instâncias (0.4%)
+GAP = 145: 12 instâncias (0.3%)
+GAP = 146: 21 instâncias (0.5%)
+GAP = 147: 19 instâncias (0.5%)
+GAP = 148: 17 instâncias (0.4%)
+GAP = 149: 13 instâncias (0.3%)
+GAP = 150: 11 instâncias (0.3%)
+GAP = 151: 16 instâncias (0.4%)
+GAP = 152: 16 instâncias (0.4%)
+GAP = 153: 9 instâncias (0.2%)
+GAP = 154: 12 instâncias (0.3%)
+GAP = 155: 13 instâncias (0.3%)
+GAP = 156: 13 instâncias (0.3%)
+GAP = 157: 12 instâncias (0.3%)
+GAP = 158: 2 instâncias (0.0%)
+GAP = 159: 6 instâncias (0.1%)
+GAP = 160: 10 instâncias (0.2%)
+GAP = 161: 12 instâncias (0.3%)
+GAP = 162: 11 instâncias (0.3%)
+GAP = 163: 9 instâncias (0.2%)
+GAP = 164: 8 instâncias (0.2%)
+GAP = 165: 14 instâncias (0.3%)
+GAP = 166: 7 instâncias (0.2%)
+GAP = 167: 7 instâncias (0.2%)
+GAP = 168: 6 instâncias (0.1%)
+GAP = 169: 4 instâncias (0.1%)
+GAP = 170: 16 instâncias (0.4%)
+GAP = 171: 4 instâncias (0.1%)
+GAP = 172: 5 instâncias (0.1%)
+GAP = 173: 7 instâncias (0.2%)
+GAP = 174: 11 instâncias (0.3%)
+GAP = 175: 7 instâncias (0.2%)
+GAP = 176: 4 instâncias (0.1%)
+GAP = 177: 5 instâncias (0.1%)
+GAP = 178: 5 instâncias (0.1%)
+GAP = 179: 7 instâncias (0.2%)
+GAP = 180: 3 instâncias (0.1%)
+GAP = 181: 2 instâncias (0.0%)
+GAP = 182: 4 instâncias (0.1%)
+GAP = 183: 4 instâncias (0.1%)
+GAP = 184: 2 instâncias (0.0%)
+GAP = 185: 6 instâncias (0.1%)
+GAP = 186: 2 instâncias (0.0%)
+GAP = 187: 4 instâncias (0.1%)
+GAP = 188: 4 instâncias (0.1%)
+GAP = 190: 5 instâncias (0.1%)
+GAP = 191: 1 instâncias (0.0%)
+GAP = 192: 5 instâncias (0.1%)
+GAP = 193: 3 instâncias (0.1%)
+GAP = 194: 1 instâncias (0.0%)
+GAP = 195: 2 instâncias (0.0%)
+GAP = 196: 1 instâncias (0.0%)
+GAP = 198: 2 instâncias (0.0%)
+GAP = 199: 3 instâncias (0.1%)
+GAP = 200: 4 instâncias (0.1%)
+GAP = 201: 1 instâncias (0.0%)
+GAP = 202: 1 instâncias (0.0%)
+GAP = 203: 3 instâncias (0.1%)
+GAP = 205: 2 instâncias (0.0%)
+GAP = 207: 5 instâncias (0.1%)
+GAP = 210: 2 instâncias (0.0%)
+GAP = 211: 1 instâncias (0.0%)
+GAP = 213: 1 instâncias (0.0%)
+GAP = 214: 1 instâncias (0.0%)
+GAP = 216: 1 instâncias (0.0%)
+GAP = 217: 2 instâncias (0.0%)
+GAP = 223: 1 instâncias (0.0%)
+GAP = 224: 2 instâncias (0.0%)
+GAP = 226: 1 instâncias (0.0%)
+GAP = 228: 1 instâncias (0.0%)
+GAP = 229: 2 instâncias (0.0%)
+GAP = 238: 1 instâncias (0.0%)
+GAP = 239: 1 instâncias (0.0%)
+GAP = 242: 2 instâncias (0.0%)
+GAP = 244: 1 instâncias (0.0%)
+GAP = 245: 1 instâncias (0.0%)
+GAP = 255: 1 instâncias (0.0%)
+GAP = 257: 1 instâncias (0.0%)
+GAP = 258: 1 instâncias (0.0%)
+GAP = 348: 2 instâncias (0.0%)
+GAP = 349: 2 instâncias (0.0%)
+GAP = 350: 4 instâncias (0.1%)
+GAP = 351: 5 instâncias (0.1%)
+GAP = 352: 9 instâncias (0.2%)
+GAP = 353: 6 instâncias (0.1%)
+GAP = 354: 6 instâncias (0.1%)
+GAP = 355: 11 instâncias (0.3%)
+GAP = 356: 7 instâncias (0.2%)
+GAP = 357: 6 instâncias (0.1%)
+GAP = 358: 8 instâncias (0.2%)
+GAP = 359: 9 instâncias (0.2%)
+GAP = 360: 12 instâncias (0.3%)
+GAP = 361: 13 instâncias (0.3%)
+GAP = 362: 10 instâncias (0.2%)
+GAP = 363: 15 instâncias (0.4%)
+GAP = 364: 10 instâncias (0.2%)
+GAP = 365: 15 instâncias (0.4%)
+GAP = 366: 12 instâncias (0.3%)
+GAP = 367: 7 instâncias (0.2%)
+GAP = 368: 13 instâncias (0.3%)
+GAP = 369: 15 instâncias (0.4%)
+GAP = 370: 22 instâncias (0.5%)
+GAP = 371: 15 instâncias (0.4%)
+GAP = 372: 7 instâncias (0.2%)
+GAP = 373: 12 instâncias (0.3%)
+GAP = 374: 14 instâncias (0.3%)
+GAP = 375: 7 instâncias (0.2%)
+GAP = 376: 11 instâncias (0.3%)
+GAP = 377: 9 instâncias (0.2%)
+GAP = 378: 8 instâncias (0.2%)
+GAP = 379: 6 instâncias (0.1%)
+GAP = 380: 7 instâncias (0.2%)
+GAP = 381: 9 instâncias (0.2%)
+GAP = 382: 4 instâncias (0.1%)
+GAP = 383: 3 instâncias (0.1%)
+GAP = 384: 3 instâncias (0.1%)
+GAP = 385: 1 instâncias (0.0%)
+GAP = 386: 3 instâncias (0.1%)
+GAP = 387: 2 instâncias (0.0%)
+GAP = 389: 1 instâncias (0.0%)
+GAP = 397: 1 instâncias (0.0%)
 
 --------------------------------------------------------------------------------
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 149.30s
-Tempo total PuLP: 95.01s
-Economia de tempo: -54.29s (-57.1%)
+Tempo total PEAB: 119.65s
+Tempo total PuLP: 338.12s
+Economia de tempo: 218.47s (64.6%)
 
-Para 1257 instâncias, economia observada: -54.3s
+Para 4190 instâncias, economia observada: 218.5s
 
 ================================================================================
 6. CONCLUSÃO
 ================================================================================
 
-✓ PEAB demonstra ser uma heurística BOA:
-   - Qualidade aceitável: 83.9% de otimalidade
-   - Velocidade adequada: 1x mais rápido
-   - Adequado para maioria dos casos
+⚠ PEAB precisa de melhorias:
+   - Qualidade subótima: 0.0% de otimalidade
+   - Revisar heurística para este dataset
 
 ================================================================================
 FIM DO RELATÓRIO

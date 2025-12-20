@@ -109,7 +109,26 @@ def comparar_explicacoes(peab_data: Dict, pulp_data: Dict, dataset_name: str) ->
     indices_comuns = sorted(set(explicacoes_peab.keys()) & set(explicacoes_pulp.keys()))
     
     if not indices_comuns:
-        raise ValueError(f"❌ Nenhuma instância comum entre PEAB e PuLP para {dataset_name}")
+        msg_erro = (
+            f"❌ Nenhuma instância comum entre PEAB e PuLP para {dataset_name}\n\n"
+            f"   PEAB: {len(explicacoes_peab)} instâncias\n"
+            f"   PuLP: {len(explicacoes_pulp)} instâncias\n\n"
+            f"   💡 CAUSA PROVÁVEL:\n"
+            f"   Os datasets foram gerados com configurações diferentes (subsample_size,\n"
+            f"   test_size, random_state, etc.) ou em momentos diferentes.\n\n"
+            f"   🔧 SOLUÇÃO:\n"
+            f"   Execute novamente AMBOS os métodos (PEAB e PuLP) para garantir que:\n"
+            f"   - Usam o mesmo subsample_size\n"
+            f"   - Usam o mesmo test_size\n"
+            f"   - Usam o mesmo random_state\n"
+            f"   - São executados com as configurações sincronizadas\n\n"
+            f"   Exemplo:\n"
+            f"   1. Verifique: test_config_sync.py\n"
+            f"   2. Execute: python peab.py (selecione {dataset_name})\n"
+            f"   3. Execute: python pulp_experiment.py (selecione {dataset_name})\n"
+            f"   4. Execute novamente: python peab_vs_pulp.py\n"
+        )
+        raise ValueError(msg_erro)
     
     comparacoes = []
     for idx in indices_comuns:
