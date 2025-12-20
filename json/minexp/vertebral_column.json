@@ -7,72 +7,72 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.2543713913687597,
-    "t_minus": -0.016766284497145845,
-    "rejection_zone_width": 0.27113767586590554
+    "t_plus": 1.0951439757658799,
+    "t_minus": -0.07414164344260536,
+    "rejection_zone_width": 1.1692856192084853
   },
   "performance": {
     "accuracy_without_rejection": 76.34408602150538,
-    "accuracy_with_rejection": 79.76190476190477,
-    "rejection_rate": 9.67741935483871,
+    "accuracy_with_rejection": 86.20689655172413,
+    "rejection_rate": 37.634408602150536,
     "num_test_instances": 93,
-    "num_rejected": 9,
-    "num_accepted": 84
+    "num_rejected": 35,
+    "num_accepted": 58
   },
   "explanation_stats": {
     "positive": {
-      "count": 66,
-      "min_length": 2,
-      "mean_length": 3.0454545454545454,
-      "max_length": 5,
-      "std_length": 0.7868583134908355
+      "count": 41,
+      "min_length": 3,
+      "mean_length": 4.024390243902439,
+      "max_length": 6,
+      "std_length": 0.8406677043714188
     },
     "negative": {
-      "count": 18,
+      "count": 17,
       "min_length": 5,
-      "mean_length": 5.222222222222222,
+      "mean_length": 5.352941176470588,
       "max_length": 6,
-      "std_length": 0.41573970964154905
+      "std_length": 0.47788461203740945
     },
     "rejected": {
-      "count": 9,
+      "count": 35,
       "min_length": 5,
-      "mean_length": 5.555555555555555,
+      "mean_length": 5.057142857142857,
       "max_length": 6,
-      "std_length": 0.49690399499995325
+      "std_length": 0.23211538298959886
     }
   },
   "computation_time": {
-    "total": 19.61644610005899,
-    "mean_per_instance": 0.21092952795762332,
-    "positive": 0.20337077575756918,
-    "negative": 0.1998543944468515,
-    "rejected": 0.2885106444462306
+    "total": 26.440096100093783,
+    "mean_per_instance": 0.2843021086031591,
+    "positive": 0.2409868048782256,
+    "negative": 0.2112757411771728,
+    "rejected": 0.3705128428592745
   },
   "top_features": [
     {
       "feature": "pelvic_radius",
-      "count": 89
-    },
-    {
-      "feature": "lumbar_lordosis_angle",
-      "count": 73
+      "count": 93
     },
     {
       "feature": "pelvic_tilt",
-      "count": 71
+      "count": 92
+    },
+    {
+      "feature": "lumbar_lordosis_angle",
+      "count": 90
     },
     {
       "feature": "spondylolisthesis_grade",
-      "count": 60
+      "count": 74
     },
     {
       "feature": "pelvic_incidence",
-      "count": 34
+      "count": 67
     },
     {
       "feature": "sacral_slope",
-      "count": 18
+      "count": 17
     }
   ],
   "model": {

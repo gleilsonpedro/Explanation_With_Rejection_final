@@ -1,0 +1,2688 @@
+{
+  "metadata": {
+    "method": "PuLP",
+    "dataset": "heart_disease",
+    "date": "2025-12-19 15:03:52",
+    "num_perturbations": 1000,
+    "perturbation_strategy": "uniform",
+    "necessity_mode": "global",
+    "test_instances": 90,
+    "num_features": 13
+  },
+  "global_metrics": {
+    "fidelity_overall": 100.0,
+    "necessity_overall": 19.477994227994223,
+    "fidelity_positive": 100.0,
+    "fidelity_negative": 100.0,
+    "fidelity_rejected": 100.0,
+    "necessity_positive": 34.329945416901936,
+    "necessity_negative": 15.230507040851869,
+    "necessity_rejected": 13.73015873015873,
+    "sufficiency": 100.0,
+    "coverage": 100.0,
+    "mean_explanation_size": 6.811111111111111,
+    "median_explanation_size": 7.0,
+    "std_explanation_size": 1.4444871788550229,
+    "min_explanation_size": 5,
+    "max_explanation_size": 11,
+    "reduction_rate": 47.60683760683761,
+    "validation_time_seconds": 0.159515380859375
+  },
+  "per_type_metrics": {
+    "positive": {
+      "count": 23,
+      "fidelity": 100.0,
+      "necessity": 34.329945416901936,
+      "mean_size": 6.695652173913044,
+      "std_size": 1.5998582167803563
+    },
+    "negative": {
+      "count": 29,
+      "fidelity": 100.0,
+      "necessity": 15.230507040851869,
+      "mean_size": 7.448275862068965,
+      "std_size": 1.13216932133669
+    },
+    "rejected": {
+      "count": 38,
+      "fidelity": 100.0,
+      "necessity": 13.73015873015873,
+      "mean_size": 6.394736842105263,
+      "std_size": 1.386769697500568
+    }
+  },
+  "size_distribution": {
+    "6+": 69,
+    "5": 21
+  },
+  "per_instance_results": [
+    {
+      "instance_id": 245,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 206,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 222,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 262,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 278,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 9,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "thal"
+      ],
+      "necessity_score": 44.44444444444444
+    },
+    {
+      "instance_id": 23,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 295,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 103,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "cp",
+        "trestbps",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "necessity_score": 37.5
+    },
+    {
+      "instance_id": 198,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 246,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 280,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 28.57142857142857
+    },
+    {
+      "instance_id": 126,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 76,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 34,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 232,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 56,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 169,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 9,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 11.11111111111111
+    },
+    {
+      "instance_id": 137,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 11,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 7,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach"
+      ],
+      "necessity_score": 63.63636363636363
+    },
+    {
+      "instance_id": 298,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 151,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 290,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 113,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "oldpeak",
+        "slope"
+      ],
+      "necessity_score": 28.57142857142857
+    },
+    {
+      "instance_id": 167,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "thalach",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 260,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 9,
+      "explanation_features": [
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "thal"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 172,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 133,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 70,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 12.5
+    },
+    {
+      "instance_id": 195,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 7,
+      "explanation_features": [
+        "age",
+        "chol",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 42.857142857142854
+    },
+    {
+      "instance_id": 69,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 12.5
+    },
+    {
+      "instance_id": 104,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 10,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 5,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 67,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 27,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "chol",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "chol",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 101,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 214,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 9,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 210,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 216,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 64,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "trestbps",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 12.5
+    },
+    {
+      "instance_id": 213,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "chol",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 5,
+      "redundant_features": [
+        "chol",
+        "thalach"
+      ],
+      "necessity_score": 71.42857142857143
+    },
+    {
+      "instance_id": 286,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "cp",
+        "restecg",
+        "thalach",
+        "slope"
+      ],
+      "necessity_score": 42.857142857142854
+    },
+    {
+      "instance_id": 116,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "fbs",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 114,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 90,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 193,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 98,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 9,
+      "explanation_features": [
+        "cp",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "chol",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 11.11111111111111
+    },
+    {
+      "instance_id": 255,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 238,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 12.5
+    },
+    {
+      "instance_id": 221,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 155,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 88,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 175,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 66,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 292,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "thalach",
+        "oldpeak"
+      ],
+      "necessity_score": 37.5
+    },
+    {
+      "instance_id": 168,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 5,
+      "redundant_features": [
+        "chol",
+        "fbs",
+        "thalach"
+      ],
+      "necessity_score": 62.5
+    },
+    {
+      "instance_id": 183,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 62,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 289,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 9,
+      "explanation_features": [
+        "age",
+        "cp",
+        "chol",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "age",
+        "cp",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 22.22222222222222
+    },
+    {
+      "instance_id": 282,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 275,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 162,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 12.5
+    },
+    {
+      "instance_id": 157,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 242,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 236,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 190,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 270,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "restecg",
+        "thalach",
+        "ca"
+      ],
+      "necessity_score": 28.57142857142857
+    },
+    {
+      "instance_id": 124,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 11,
+      "explanation_features": [
+        "age",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 5,
+      "redundant_features": [
+        "cp",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 45.45454545454545
+    },
+    {
+      "instance_id": 272,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "ca"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 102,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 8,
+      "explanation_features": [
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "thal"
+      ],
+      "necessity_score": 37.5
+    },
+    {
+      "instance_id": 20,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 265,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "slope"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 200,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 194,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 187,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "sex",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "sex",
+        "thalach",
+        "slope"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 297,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "fbs",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 3,
+      "redundant_features": [
+        "fbs",
+        "thalach",
+        "slope"
+      ],
+      "necessity_score": 50.0
+    },
+    {
+      "instance_id": 6,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 6,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 164,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 9,
+      "explanation_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "cp",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 22.22222222222222
+    },
+    {
+      "instance_id": 93,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "sex",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "restecg",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 300,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "ca"
+      ],
+      "necessity_score": 33.33333333333333
+    },
+    {
+      "instance_id": 163,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 14,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 239,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 203,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "slope",
+        "ca"
+      ],
+      "necessity_score": 20.0
+    },
+    {
+      "instance_id": 21,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "cp",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "cp",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 252,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 5,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "thalach",
+        "exang",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "thalach"
+      ],
+      "necessity_score": 40.0
+    },
+    {
+      "instance_id": 5,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 7,
+      "explanation_features": [
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "restecg",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 14.285714285714285
+    },
+    {
+      "instance_id": 281,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 132,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 6,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 16.666666666666664
+    },
+    {
+      "instance_id": 33,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 5,
+      "explanation_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 0,
+      "redundant_features": [
+        "thalach",
+        "exang",
+        "oldpeak",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 0.0
+    },
+    {
+      "instance_id": 1,
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "explanation_size": 8,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "slope",
+        "ca"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 2,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "fbs",
+        "restecg",
+        "thalach",
+        "slope"
+      ],
+      "necessity_score": 25.0
+    },
+    {
+      "instance_id": 135,
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "explanation_size": 9,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 1,
+      "redundant_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+      ],
+      "necessity_score": 11.11111111111111
+    },
+    {
+      "instance_id": 3,
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "explanation_size": 9,
+      "explanation_features": [
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "oldpeak",
+        "slope",
+        "thal"
+      ],
+      "fidelity": 100.0,
+      "sufficiency": 100.0,
+      "perturbations_tested": 1000,
+      "perturbations_correct": 1000,
+      "necessary_features": 4,
+      "redundant_features": [
+        "trestbps",
+        "chol",
+        "fbs",
+        "thalach",
+        "thal"
+      ],
+      "necessity_score": 44.44444444444444
+    }
+  ]
+}

@@ -7,17 +7,17 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.07786762315773399,
-    "t_minus": -0.10958761565230668,
-    "rejection_zone_width": 0.18745523881004067
+    "t_plus": 0.0742754826848647,
+    "t_minus": -0.01,
+    "rejection_zone_width": 0.08427548268486469
   },
   "performance": {
     "accuracy_without_rejection": 74.45887445887446,
-    "accuracy_with_rejection": 74.7787610619469,
-    "rejection_rate": 2.1645021645021645,
+    "accuracy_with_rejection": 75.0,
+    "rejection_rate": 1.2987012987012987,
     "num_test_instances": 231,
-    "num_rejected": 5,
-    "num_accepted": 226
+    "num_rejected": 3,
+    "num_accepted": 228
   },
   "explanation_stats": {
     "positive": {
@@ -28,26 +28,26 @@
       "std_length": 1.618444392688971
     },
     "negative": {
-      "count": 167,
+      "count": 169,
       "min_length": 2,
-      "mean_length": 4.688622754491018,
+      "mean_length": 4.65680473372781,
       "max_length": 8,
-      "std_length": 1.0548104328753067
+      "std_length": 1.0323027471972952
     },
     "rejected": {
-      "count": 5,
-      "min_length": 7,
-      "mean_length": 7.8,
+      "count": 3,
+      "min_length": 8,
+      "mean_length": 8.0,
       "max_length": 8,
-      "std_length": 0.39999999999999997
+      "std_length": 0.0
     }
   },
   "computation_time": {
-    "total": 63.88085909996902,
-    "mean_per_instance": 0.2765405155842806,
-    "positive": 0.2738347406779274,
-    "negative": 0.2763231898202076,
-    "rejected": 0.3157273399992846
+    "total": 66.8509872999275,
+    "mean_per_instance": 0.2893982134195996,
+    "positive": 0.28879530169464396,
+    "negative": 0.2893207857988709,
+    "rejected": 0.305617233311447
   },
   "top_features": [
     {
@@ -56,27 +56,27 @@
     },
     {
       "feature": "imc",
-      "count": 231
+      "count": 230
     },
     {
       "feature": "diabetes_pedigree",
       "count": 193
     },
     {
-      "feature": "num_gravidezes",
-      "count": 129
+      "feature": "idade",
+      "count": 132
     },
     {
-      "feature": "idade",
-      "count": 129
+      "feature": "num_gravidezes",
+      "count": 121
     },
     {
       "feature": "pressao_sangue",
-      "count": 97
+      "count": 94
     },
     {
       "feature": "insulina",
-      "count": 50
+      "count": 48
     },
     {
       "feature": "espessura_pele",

@@ -7,64 +7,64 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.00010236186857182084,
-    "t_minus": -0.5948952458253887,
-    "rejection_zone_width": 0.5949976076939605
+    "t_plus": 0.01,
+    "t_minus": -0.3482220816338796,
+    "rejection_zone_width": 0.3582220816338796
   },
   "performance": {
     "accuracy_without_rejection": 61.40776699029126,
-    "accuracy_with_rejection": 100.0,
-    "rejection_rate": 93.93203883495146,
+    "accuracy_with_rejection": 94.73684210526316,
+    "rejection_rate": 58.495145631067956,
     "num_test_instances": 412,
-    "num_rejected": 387,
-    "num_accepted": 25
+    "num_rejected": 241,
+    "num_accepted": 171
   },
   "explanation_stats": {
     "positive": {
-      "count": 24,
+      "count": 21,
       "min_length": 2,
-      "mean_length": 3.4166666666666665,
+      "mean_length": 3.380952380952381,
       "max_length": 4,
-      "std_length": 0.5713045500334204
+      "std_length": 0.5753831415997415
     },
     "negative": {
-      "count": 1,
-      "min_length": 4,
-      "mean_length": 4.0,
+      "count": 150,
+      "min_length": 2,
+      "mean_length": 2.7933333333333334,
       "max_length": 4,
-      "std_length": 0.0
+      "std_length": 0.6249977777738271
     },
     "rejected": {
-      "count": 387,
-      "min_length": 1,
-      "mean_length": 2.165374677002584,
+      "count": 241,
+      "min_length": 2,
+      "mean_length": 2.7427385892116183,
       "max_length": 4,
-      "std_length": 0.7598041714790652
+      "std_length": 0.6695815022056203
     }
   },
   "computation_time": {
-    "total": 98.15473239997006,
-    "mean_per_instance": 0.23823964174749837,
-    "positive": 0.13302189583191648,
-    "negative": 0.1406940000015311,
-    "rejected": 0.24501682919897108
+    "total": 80.85973530006615,
+    "mean_per_instance": 0.19626149344676203,
+    "positive": 0.14180469524026626,
+    "negative": 0.1491443593334407,
+    "rejected": 0.23033270871371062
   },
   "top_features": [
     {
       "feature": "variance",
-      "count": 363
-    },
-    {
-      "feature": "entropy",
-      "count": 214
+      "count": 412
     },
     {
       "feature": "skewness",
-      "count": 180
+      "count": 373
     },
     {
       "feature": "curtosis",
-      "count": 167
+      "count": 195
+    },
+    {
+      "feature": "entropy",
+      "count": 171
     }
   ],
   "model": {

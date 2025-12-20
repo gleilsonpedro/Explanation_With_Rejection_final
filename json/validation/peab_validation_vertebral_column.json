@@ -2,21 +2,22 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "vertebral_column",
-    "date": "2025-12-17 11:21:48",
+    "date": "2025-12-19 14:54:48",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
+    "necessity_mode": "local",
     "test_instances": 93,
     "num_features": 6
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 52.867383512544805,
+    "necessity_overall": 29.928315412186375,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
-    "necessity_positive": 0.975609756097561,
-    "necessity_negative": 92.74509803921569,
-    "necessity_rejected": 94.28571428571429,
+    "necessity_positive": 26.666666666666664,
+    "necessity_negative": 18.823529411764707,
+    "necessity_rejected": 39.142857142857146,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 4.612903225806452,
@@ -25,27 +26,27 @@
     "min_explanation_size": 2,
     "max_explanation_size": 6,
     "reduction_rate": 23.118279569892465,
-    "validation_time_seconds": 0.2556495666503906
+    "validation_time_seconds": 0.11154818534851074
   },
   "per_type_metrics": {
     "positive": {
       "count": 41,
       "fidelity": 100.0,
-      "necessity": 0.975609756097561,
+      "necessity": 26.666666666666664,
       "mean_size": 3.926829268292683,
       "std_size": 0.8941611112108956
     },
     "negative": {
       "count": 17,
       "fidelity": 100.0,
-      "necessity": 92.74509803921569,
+      "necessity": 18.823529411764707,
       "mean_size": 5.352941176470588,
       "std_size": 0.47788461203740945
     },
     "rejected": {
       "count": 35,
       "fidelity": 100.0,
-      "necessity": 94.28571428571429,
+      "necessity": 39.142857142857146,
       "mean_size": 5.057142857142857,
       "std_size": 0.23211538298959886
     }
@@ -75,15 +76,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt",
         "spondylolisthesis_grade"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 281,
@@ -102,9 +100,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 85,
@@ -123,12 +126,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence"
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 20.0
     },
     {
       "instance_id": 127,
@@ -146,14 +151,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 284,
@@ -172,9 +176,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 65,
@@ -191,13 +199,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 194,
@@ -216,15 +223,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt",
         "spondylolisthesis_grade"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 258,
@@ -244,11 +248,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "sacral_slope"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 107,
@@ -266,14 +274,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 2,
       "redundant_features": [
-        "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 289,
@@ -292,9 +298,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 297,
@@ -313,9 +324,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 268,
@@ -334,9 +349,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 47,
@@ -355,9 +375,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 193,
@@ -377,16 +401,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt",
-        "sacral_slope",
-        "spondylolisthesis_grade"
+        "sacral_slope"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 201,
@@ -404,14 +424,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 2,
       "redundant_features": [
-        "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_tilt",
         "spondylolisthesis_grade"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 36,
@@ -430,9 +448,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 251,
@@ -451,9 +474,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 74,
@@ -472,15 +500,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 80.0
     },
     {
       "instance_id": 51,
@@ -497,13 +521,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 242,
@@ -522,9 +545,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 135,
@@ -589,15 +617,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 80.0
     },
     {
       "instance_id": 267,
@@ -618,8 +642,8 @@
       "perturbations_correct": 1000,
       "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence"
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
       ],
       "necessity_score": 60.0
     },
@@ -639,14 +663,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 100,
@@ -688,11 +711,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
-        "pelvic_incidence"
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 27,
@@ -711,9 +735,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 162,
@@ -753,9 +782,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 211,
@@ -774,9 +807,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 212,
@@ -816,9 +853,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 32,
@@ -837,9 +879,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 44,
@@ -858,9 +904,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 159,
@@ -929,9 +980,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 171,
@@ -975,9 +1031,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 156,
@@ -995,14 +1056,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 35,
@@ -1022,11 +1082,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "sacral_slope"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 34,
@@ -1046,9 +1110,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "sacral_slope",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 11,
@@ -1068,11 +1137,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "sacral_slope"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 4,
@@ -1091,9 +1164,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 230,
@@ -1112,9 +1189,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 203,
@@ -1159,16 +1241,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt",
         "sacral_slope",
         "spondylolisthesis_grade"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 308,
@@ -1187,11 +1266,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
-        "pelvic_incidence"
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 262,
@@ -1210,9 +1290,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 70,
@@ -1231,9 +1316,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 41,
@@ -1252,12 +1342,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence"
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 80.0
     },
     {
       "instance_id": 142,
@@ -1322,9 +1411,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 4,
+      "redundant_features": [
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 80.0
     },
     {
       "instance_id": 224,
@@ -1389,9 +1480,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 136,
@@ -1432,14 +1528,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 133,
@@ -1457,14 +1552,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 89,
@@ -1484,9 +1578,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 207,
@@ -1505,15 +1605,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 80.0
     },
     {
       "instance_id": 205,
@@ -1557,14 +1653,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_tilt",
+        "pelvic_radius",
         "spondylolisthesis_grade"
       ],
-      "necessity_score": 20.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 233,
@@ -1583,9 +1677,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 123,
@@ -1604,14 +1703,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 4,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
-      "necessity_score": 20.0
+      "necessity_score": 80.0
     },
     {
       "instance_id": 134,
@@ -1630,11 +1726,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
-        "lumbar_lordosis_angle"
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 40.0
     },
     {
       "instance_id": 61,
@@ -1678,9 +1776,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 261,
@@ -1698,14 +1800,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
-        "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 75.0
     },
     {
       "instance_id": 150,
@@ -1747,11 +1846,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
-        "pelvic_incidence"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 40.0
     },
     {
       "instance_id": 173,
@@ -1794,11 +1895,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "sacral_slope"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 43,
@@ -1817,9 +1922,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 14,
@@ -1838,9 +1948,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 296,
@@ -1860,11 +1975,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "sacral_slope"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 71,
@@ -1883,15 +2002,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 3,
       "redundant_features": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 40,
@@ -1910,11 +2026,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
-        "pelvic_incidence"
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 40.0
     },
     {
       "instance_id": 12,
@@ -1933,9 +2051,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 26,
@@ -1954,9 +2076,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 292,
@@ -1975,9 +2102,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 103,
@@ -1996,9 +2128,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 269,
@@ -2018,9 +2155,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "sacral_slope",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 122,
@@ -2087,9 +2230,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 302,
@@ -2108,9 +2256,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 40.0
     },
     {
       "instance_id": 98,
@@ -2128,14 +2280,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
-        "lumbar_lordosis_angle",
         "pelvic_incidence",
         "pelvic_radius",
         "pelvic_tilt"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 62,
@@ -2154,11 +2305,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [
-        "pelvic_incidence"
-      ],
-      "necessity_score": 80.0
+      "necessary_features": 5,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 0,
@@ -2176,14 +2325,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 285,
@@ -2202,9 +2350,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "lumbar_lordosis_angle",
+        "pelvic_incidence",
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
+      ],
+      "necessity_score": 20.0
     }
   ]
 }

@@ -162,6 +162,7 @@ def calcular_explicacao_otima_pulp(
     # Ajustar tolerâncias do solver CBC para evitar conservadorismo excessivo
     solver = pulp.PULP_CBC_CMD(
         msg=False,
+        timeLimit=60,  # Limite de tempo em segundos
         gapRel=0.0,      # Gap de otimalidade relativo (0 = buscar ótimo exato)
         gapAbs=0.0,      # Gap de otimalidade absoluto
         options=[

@@ -8,78 +8,78 @@ Solver de Otimização Inteira (Ground Truth)
 --------------------------------------------------------------------------------
 Dataset: breast_cancer
 Instâncias processadas: 171
-Thresholds: t+ = 0.5569, t- = -0.0633
-Zona de rejeição: 0.6202
+Thresholds: t+ = 0.9656, t- = -0.0100
+Zona de rejeição: 0.9756
 Rejection cost: 0.24
 Hiperparâmetros:
 {
-  "penalty": "l2",
+  "penalty": "l1",
   "C": 0.1,
-  "solver": "liblinear",
-  "max_iter": 200
+  "solver": "saga",
+  "max_iter": 1000
 }
 
 --------------------------------------------------------------------------------
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
-Acurácia (sem rejeição): 92.40%
-Acurácia (com rejeição): 99.31%
-Taxa de rejeição: 15.79%
-Risco empírico: 0.0448
+Acurácia (sem rejeição): 93.57%
+Acurácia (com rejeição): 98.54%
+Taxa de rejeição: 19.88%
+Risco empírico: 0.0623
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 18.44 features
-Tempo total: 8.25s
-Tempo médio/instância: 0.0483s
+Tamanho médio: 1.75 features
+Tempo total: 7.76s
+Tempo médio/instância: 0.0454s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 92 (53.8%)
-  - Tamanho médio: 18.00 features
-  - Tempo médio: 0.0477s
+  - Instâncias: 84 (49.1%)
+  - Tamanho médio: 1.82 features
+  - Tempo médio: 0.0447s
 
 NEGATIVA:
-  - Instâncias: 52 (30.4%)
-  - Tamanho médio: 16.69 features
-  - Tempo médio: 0.0496s
+  - Instâncias: 53 (31.0%)
+  - Tamanho médio: 1.49 features
+  - Tempo médio: 0.0471s
 
 REJEITADA:
-  - Instâncias: 27 (15.8%)
-  - Tamanho médio: 23.33 features
-  - Tempo médio: 0.0477s
+  - Instâncias: 34 (19.9%)
+  - Tamanho médio: 2.00 features
+  - Tempo médio: 0.0446s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância       64 (NEGATIVA  ):  29 features - 0.0416s
- 2. Instância      440 (POSITIVA  ):  29 features - 0.0473s
- 3. Instância      247 (REJEITADA ):  27 features - 0.0450s
- 4. Instância      542 (POSITIVA  ):  27 features - 0.0475s
- 5. Instância      495 (POSITIVA  ):  27 features - 0.0492s
- 6. Instância       65 (NEGATIVA  ):  27 features - 0.0435s
- 7. Instância      228 (POSITIVA  ):  26 features - 0.0405s
- 8. Instância      242 (POSITIVA  ):  26 features - 0.0495s
- 9. Instância      518 (POSITIVA  ):  26 features - 0.0439s
-10. Instância      526 (REJEITADA ):  26 features - 0.0482s
+ 1. Instância      150 (POSITIVA  ):   2 features - 0.0473s
+ 2. Instância      275 (POSITIVA  ):   2 features - 0.0406s
+ 3. Instância       86 (REJEITADA ):   2 features - 0.0523s
+ 4. Instância      292 (POSITIVA  ):   2 features - 0.0489s
+ 5. Instância      354 (POSITIVA  ):   2 features - 0.0416s
+ 6. Instância      102 (POSITIVA  ):   2 features - 0.0412s
+ 7. Instância       64 (NEGATIVA  ):   2 features - 0.0482s
+ 8. Instância       73 (REJEITADA ):   2 features - 0.0406s
+ 9. Instância       66 (POSITIVA  ):   2 features - 0.0531s
+10. Instância      205 (REJEITADA ):   2 features - 0.0474s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      212 (NEGATIVA  ):   6 features - 0.0409s
- 2. Instância      461 (NEGATIVA  ):   6 features - 0.0545s
- 3. Instância      122 (NEGATIVA  ):   8 features - 0.0434s
- 4. Instância      180 (NEGATIVA  ):   8 features - 0.0530s
- 5. Instância      567 (NEGATIVA  ):  10 features - 0.0419s
- 6. Instância      564 (NEGATIVA  ):  11 features - 0.0445s
- 7. Instância       23 (NEGATIVA  ):  12 features - 0.0418s
- 8. Instância      192 (POSITIVA  ):  12 features - 0.0508s
- 9. Instância      258 (NEGATIVA  ):  12 features - 0.0507s
-10. Instância      140 (POSITIVA  ):  13 features - 0.0410s
+ 1. Instância       14 (NEGATIVA  ):   1 features - 0.1500s
+ 2. Instância       83 (NEGATIVA  ):   1 features - 0.0390s
+ 3. Instância      509 (NEGATIVA  ):   1 features - 0.0421s
+ 4. Instância      140 (POSITIVA  ):   1 features - 0.0454s
+ 5. Instância      199 (NEGATIVA  ):   1 features - 0.0489s
+ 6. Instância      122 (NEGATIVA  ):   1 features - 0.0480s
+ 7. Instância       17 (NEGATIVA  ):   1 features - 0.0441s
+ 8. Instância      257 (NEGATIVA  ):   1 features - 0.0435s
+ 9. Instância      417 (NEGATIVA  ):   1 features - 0.0440s
+10. Instância      256 (NEGATIVA  ):   1 features - 0.0410s
 
 ================================================================================
 FIM DO RELATÓRIO

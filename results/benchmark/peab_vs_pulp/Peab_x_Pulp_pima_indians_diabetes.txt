@@ -34,12 +34,12 @@ GAP Médio (features excedentes)   0.0000
                      GAP Máximo        0
                      GAP Mínimo        0
            Desvio Padrão do GAP   0.0000
-           Tempo Médio PuLP (s) 0.041853
+           Tempo Médio PuLP (s) 0.044692
 
 INTERPRETAÇÃO:
 ✅ EXCELENTE: PEAB encontra a solução ótima em >95% dos casos.
 - Em média, PEAB usa 0.00 features a mais que o ótimo.
-- PEAB é 5x mais rápido que PuLP.
+- PEAB é 7x mais rápido que PuLP.
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR TIPO DE PREDIÇÃO
@@ -47,9 +47,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA   59 100.00%    0.0000      4.05      4.05   0.00899s   0.04278s
- NEGATIVA  169 100.00%    0.0000      4.21      4.21   0.00835s   0.04148s
-REJEITADA    3 100.00%    0.0000      8.00      8.00   0.01550s   0.04460s
+ POSITIVA   59 100.00%    0.0000      4.05      4.05   0.00623s   0.04429s
+ NEGATIVA  169 100.00%    0.0000      4.21      4.21   0.00660s   0.04488s
+REJEITADA    3 100.00%    0.0000      8.00      8.00   0.01350s   0.04169s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -78,11 +78,11 @@ GAP = 0 (Ótimo): 231 instâncias (100.0%)
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 2.00s
-Tempo total PuLP: 9.67s
-Economia de tempo: 7.67s (79.3%)
+Tempo total PEAB: 1.53s
+Tempo total PuLP: 10.32s
+Economia de tempo: 8.79s (85.2%)
 
-Para 231 instâncias, economia observada: 7.7s
+Para 231 instâncias, economia observada: 8.8s
 
 ================================================================================
 6. CONCLUSÃO

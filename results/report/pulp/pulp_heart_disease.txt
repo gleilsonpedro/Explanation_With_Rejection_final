@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - HEART_DISEASE
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: heart_disease
+Instâncias processadas: 90
+Thresholds: t+ = 0.1849, t- = -0.1093
+Zona de rejeição: 0.2942
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 85.56%
+Acurácia (com rejeição): 96.15%
+Taxa de rejeição: 42.22%
+Risco empírico: 0.1398
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 6.81 features
+Tempo total: 4.07s
+Tempo médio/instância: 0.0452s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 23 (25.6%)
+  - Tamanho médio: 6.70 features
+  - Tempo médio: 0.0463s
+
+NEGATIVA:
+  - Instâncias: 29 (32.2%)
+  - Tamanho médio: 7.45 features
+  - Tempo médio: 0.0432s
+
+REJEITADA:
+  - Instâncias: 38 (42.2%)
+  - Tamanho médio: 6.39 features
+  - Tempo médio: 0.0462s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      137 (POSITIVA  ):  11 features - 0.0513s
+ 2. Instância      124 (NEGATIVA  ):  11 features - 0.0412s
+ 3. Instância      104 (POSITIVA  ):  10 features - 0.0407s
+ 4. Instância      278 (REJEITADA ):   9 features - 0.0443s
+ 5. Instância      169 (NEGATIVA  ):   9 features - 0.0395s
+ 6. Instância      260 (REJEITADA ):   9 features - 0.0551s
+ 7. Instância      214 (REJEITADA ):   9 features - 0.0423s
+ 8. Instância       98 (NEGATIVA  ):   9 features - 0.0400s
+ 9. Instância      289 (NEGATIVA  ):   9 features - 0.0411s
+10. Instância      164 (NEGATIVA  ):   9 features - 0.0395s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      206 (POSITIVA  ):   5 features - 0.0435s
+ 2. Instância      246 (REJEITADA ):   5 features - 0.0562s
+ 3. Instância      126 (POSITIVA  ):   5 features - 0.0464s
+ 4. Instância      232 (REJEITADA ):   5 features - 0.0477s
+ 5. Instância      290 (REJEITADA ):   5 features - 0.0486s
+ 6. Instância      167 (REJEITADA ):   5 features - 0.0467s
+ 7. Instância      172 (REJEITADA ):   5 features - 0.0437s
+ 8. Instância       67 (REJEITADA ):   5 features - 0.0476s
+ 9. Instância      193 (REJEITADA ):   5 features - 0.0497s
+10. Instância      155 (REJEITADA ):   5 features - 0.0434s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

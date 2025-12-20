@@ -1,0 +1,37 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: vertebral_column_Normal_vs_Anormal
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 93
+  - Número de Features do Modelo: 6
+  - Acurácia do Modelo (teste, sem rejeição): 76.34%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 26.4401 segundos
+  - Tempo Médio por Instância (Geral): 0.2843 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 37.63% (35 de 93 instâncias)
+  - Acurácia com Opção de Rejeição (nas 58 instâncias aceitas): 86.21%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (41 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 4.02 ± 0.84 (Min: 3, Max: 6)
+  - Classe Negativa (17 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 5.35 ± 0.48 (Min: 5, Max: 6)
+  - Classe REJEITADA (35 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 5.06 ± 0.23 (Min: 5, Max: 6)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - pelvic_radius: 93 vezes
+    - pelvic_tilt: 92 vezes
+    - lumbar_lordosis_angle: 90 vezes
+    - spondylolisthesis_grade: 74 vezes
+    - pelvic_incidence: 67 vezes
+    - sacral_slope: 17 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 0.2410 segundos
+  - Negativas: 0.2113 segundos
+  - Rejeitadas: 0.3705 segundos

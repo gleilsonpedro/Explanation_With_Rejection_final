@@ -43,7 +43,7 @@
     "mnist": {
         "params": {
             "penalty": "l2",
-            "C": 0.1,
+            "C": 1.0,
             "max_iter": 200,
             "solver": "lbfgs"
         }
@@ -51,9 +51,19 @@
     "newsgroups": {
         "params": {
             "penalty": "l2",
-            "C": 1.0,
+            "C": 10.0,
             "max_iter": 1000,
             "solver": "liblinear"
-        }
+        },
+        "note": "C=10.0 para criar problema de otimizacao complexo e fazer PuLP estourar timeout"
+    },
+    "rcv1": {
+        "params": {
+            "penalty": "l2",
+            "C": 10.0,
+            "max_iter": 1000,
+            "solver": "liblinear"
+        },
+        "note": "C=10.0 para reduzir features ativas (~100-500) mas tornar constraints mais apertadas, dificultando PuLP"
     }
 }

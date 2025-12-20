@@ -316,27 +316,47 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
                 with zipfile.ZipFile(local_path, 'r') as zf:
                     zf.extractall(extracted_dir)
             
+            # Os arquivos batch estão dentro de Dataset/ após extração
+            dataset_subdir = os.path.join(extracted_dir, 'Dataset')
+            if not os.path.exists(dataset_subdir):
+                dataset_subdir = extracted_dir  # Fallback se não houver subpasta
+            
             # Load all batch files and concatenate
             batch_files = []
             for i in range(1, 11):  # 10 batches
-                batch_path = os.path.join(extracted_dir, f"batch{i}.dat")
+                batch_path = os.path.join(dataset_subdir, f"batch{i}.dat")
                 if os.path.exists(batch_path):
                     batch_files.append(batch_path)
             
             if not batch_files:
-                raise RuntimeError(f"Nenhum arquivo batch encontrado em {extracted_dir}")
+                raise RuntimeError(f"Nenhum arquivo batch encontrado em {dataset_subdir}")
             
-            # Read and concatenate all batches
-            all_data = []
+            # Read and concatenate all batches (formato LIBSVM: class idx:val idx:val ...)
+            all_rows = []
+            all_labels = []
+            num_features = 128  # Gas sensor tem 128 features
+            
             for batch_file in batch_files:
-                df = pd.read_csv(batch_file, sep=r'\s+', header=None)
-                all_data.append(df)
+                with open(batch_file, 'r') as f:
+                    for line in f:
+                        parts = line.strip().split()
+                        if not parts:
+                            continue
+                        # Primeiro elemento é a classe
+                        label = int(parts[0])
+                        # Resto são pares idx:valor
+                        row = np.zeros(num_features)
+                        for pair in parts[1:]:
+                            if ':' in pair:
+                                idx_str, val_str = pair.split(':', 1)
+                                idx = int(idx_str) - 1  # LIBSVM é 1-indexed
+                                if 0 <= idx < num_features:
+                                    row[idx] = float(val_str)
+                        all_rows.append(row)
+                        all_labels.append(label)
             
-            data_df = pd.concat(all_data, ignore_index=True)
-            
-            # Last column is class (1-6), rest are features
-            y_all = data_df.iloc[:, -1].astype(int)
-            X_all = data_df.iloc[:, :-1]
+            X_all = pd.DataFrame(all_rows)
+            y_all = pd.Series(all_labels)
             
             # Binarize: class 1 vs class 3 (2 most common)
             mask = (y_all == 1) | (y_all == 3)
@@ -430,6 +450,89 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             # Aplicar pooling 2x2 (196 features) se requisitado
             if MNIST_FEATURE_MODE == 'pool2x2':
                 X = _apply_pooling_df(X)
+        elif nome_dataset == 'newsgroups':
+            # 20 Newsgroups - Dataset de texto com TF-IDF (~50k features esparsas)
+            # Ideal para testar escalabilidade: PuLP não resolve, PEAB sim
+            from sklearn.datasets import fetch_20newsgroups
+            from sklearn.feature_extraction.text import TfidfVectorizer
+            
+            print("Carregando 20 Newsgroups TF-IDF (~50k features)...")
+            
+            # Binarização: sci.* (ciência) vs rec.* (recreação)
+            categories_pos = ['sci.crypt', 'sci.electronics', 'sci.med', 'sci.space']
+            categories_neg = ['rec.autos', 'rec.motorcycles', 'rec.sport.baseball', 'rec.sport.hockey']
+            
+            newsgroups = fetch_20newsgroups(
+                subset='all',
+                categories=categories_pos + categories_neg,
+                remove=('headers', 'footers', 'quotes'),
+                random_state=RANDOM_STATE
+            )
+            
+            # Vetorização TF-IDF (limitar a 10k features para não explodir demais)
+            # Mas ainda assim é muito para MILP
+            vectorizer = TfidfVectorizer(max_features=10000, stop_words='english')
+            X_sparse = vectorizer.fit_transform(newsgroups.data)
+            X = pd.DataFrame(X_sparse.toarray(), columns=vectorizer.get_feature_names_out())
+            
+            # Labels binários: sci.* = 1, rec.* = 0
+            y_binary = np.array([1 if newsgroups.target_names[t].startswith('sci') else 0 
+                                for t in newsgroups.target])
+            y_series = pd.Series(y_binary, name='target')
+            class_names_list = ['Recreation', 'Science']
+            
+            print(f"20 Newsgroups binário: {X.shape[0]} amostras, {X.shape[1]} features "
+                  f"({sum(y_series==0)} rec, {sum(y_series==1)} sci)")
+        
+        elif nome_dataset == 'rcv1':
+            # RCV1 Reuters Corpus - Dataset de texto (~47k features, 800k+ instâncias)
+            # Usamos subamostra para viabilidade
+            from sklearn.datasets import fetch_rcv1
+            
+            print("Carregando RCV1 Reuters (~47k features, subamostra de 5k)...")
+            
+            rcv1 = fetch_rcv1()
+            
+            # RCV1 é multilabel, vamos binarizar pegando 2 categorias frequentes
+            # CCAT (Corporate/Industrial) vs GCAT (Government/Social)
+            # Índices das categorias no target
+            target_names = list(rcv1.target_names)
+            
+            if 'CCAT' in target_names and 'GCAT' in target_names:
+                ccat_idx = target_names.index('CCAT')
+                gcat_idx = target_names.index('GCAT')
+                
+                # Filtrar instâncias que são CCAT ou GCAT (mas não ambos)
+                is_ccat = np.array(rcv1.target[:, ccat_idx].toarray().flatten(), dtype=bool)
+                is_gcat = np.array(rcv1.target[:, gcat_idx].toarray().flatten(), dtype=bool)
+                mask = (is_ccat | is_gcat) & ~(is_ccat & is_gcat)
+                
+                X_sparse = rcv1.data[mask]
+                y_binary = np.where(is_ccat[mask], 1, 0)
+            else:
+                # Fallback: usar primeiras 2 categorias
+                cat1 = np.array(rcv1.target[:, 0].toarray().flatten(), dtype=bool)
+                cat2 = np.array(rcv1.target[:, 1].toarray().flatten(), dtype=bool)
+                mask = (cat1 | cat2) & ~(cat1 & cat2)
+                X_sparse = rcv1.data[mask]
+                y_binary = np.where(cat1[mask], 1, 0)
+            
+            # Subamostra de 5000 instâncias para viabilidade
+            n_samples = min(5000, X_sparse.shape[0])
+            np.random.seed(RANDOM_STATE)
+            indices = np.random.choice(X_sparse.shape[0], size=n_samples, replace=False)
+            X_sparse = X_sparse[indices]
+            y_binary = y_binary[indices]
+            
+            # Converter para denso e criar DataFrame
+            X = pd.DataFrame(X_sparse.toarray())
+            X.columns = [f"feature_{i}" for i in range(X.shape[1])]
+            y_series = pd.Series(y_binary, name='target')
+            class_names_list = ['GCAT', 'CCAT']
+            
+            print(f"RCV1 binário: {X.shape[0]} amostras, {X.shape[1]} features "
+                  f"({sum(y_series==0)} GCAT, {sum(y_series==1)} CCAT)")
+        
         else:
             raise ValueError(f"Dataset '{nome_dataset}' não suportado.")
 
@@ -453,20 +556,25 @@ def selecionar_datasets_multiplos() -> Optional[List[str]]:
     nomes_datasets = [
         'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
         'vertebral_column', 'banknote', 'heart_disease',
-        'spambase', 'creditcard', 'covertype', 'gas_sensor'
+        'spambase', 'creditcard', 'covertype', 'gas_sensor',
+        'newsgroups', 'rcv1'
     ]
     
     menu = '''
-    | ******************* MENU DE DATASETS DO EXPERIMENTO ****************** |
+    | ***************** MENU DE DATASETS DO EXPERIMENTO ****************** |
     | Datasets Clássicos para Comparação:                                  |
-    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)       |
+    | [0] Breast Cancer (569x30x2)       | [1] MNIST (70k x 784 x 10)      |
     | [2] Pima Diabetes (392x8x2)        | [3] Sonar (208x60x2)            |
     | [4] Vertebral Column (310x6x2)     | [5] Banknote Auth (1372x4x2)    |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
-    | [6] Heart Disease (297x13x2)       | [7] Spambase (210x7x3)          |
+    | [6] Heart Disease (297x13x2)       | [7] Spambase (4601 x 57 x 2)    |
     | [8] Creditcard Fraud (Amostra)     | [9] Covertype (581k x 54 x 2)   |
     | [10] Gas Sensor (13.9k x 128 x 2)                                    |
+    |----------------------------------------------------------------------|
+    | Datasets Alta Dimensionalidade (para testar escalabilidade):         |
+    | [11] 20 Newsgroups TF-IDF (~7k x 10k features)  [PuLP ESTOURA]       |
+    | [12] RCV1 Reuters (~5k x 47k features)          [PuLP ESTOURA]       |
     |----------------------------------------------------------------------|
     '''
     print(menu)
@@ -523,9 +631,13 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     | [4] Vertebral Column (310x6x2)     | [5] Banknote Auth (1372x4x2)    |
     |----------------------------------------------------------------------|
     | Outros Datasets Disponíveis:                                         |
-    | [6] Heart Disease (297x13x2)       | [7] Spambase (210x7x3)          |
+    | [6] Heart Disease (297x13x2)       | [7] Spambase (4601 x 57 x 2)    |
     | [8] Creditcard Fraud (Amostra)     | [9] Covertype (581k x 54 x 2)   |
     | [10] Gas Sensor (13.9k x 128 x 2)                                    |
+    |----------------------------------------------------------------------|
+    | Datasets Alta Dimensionalidade (para testar escalabilidade):         |
+    | [11] 20 Newsgroups TF-IDF (~7k x 10k features)  [PuLP ESTOURA]       |
+    | [12] RCV1 Reuters (~5k x 47k features)          [PuLP ESTOURA]       |
     |----------------------------------------------------------------------|
     | [M] MÚLTIPLOS DATASETS (Ex: 0,2,3 ou 0-5)                           |
     | [A] TODOS OS DATASETS                                                |
@@ -537,7 +649,8 @@ def selecionar_dataset_e_classe() -> Tuple[Optional[str], Optional[str], Optiona
     nomes_datasets = [
         'breast_cancer', 'mnist', 'pima_indians_diabetes', 'sonar', 
         'vertebral_column', 'banknote', 'heart_disease',
-        'spambase', 'creditcard', 'covertype', 'gas_sensor'
+        'spambase', 'creditcard', 'covertype', 'gas_sensor',
+        'newsgroups', 'rcv1'
     ]
     while True:
         opcao = input("\nDigite o número do dataset, 'M' para múltiplos, 'A' para todos, ou 'Q' para sair: ").upper().strip()

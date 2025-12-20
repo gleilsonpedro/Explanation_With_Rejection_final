@@ -1,0 +1,103 @@
+================================================================================
+RELATÓRIO COMPARATIVO: PEAB vs PuLP
+Dataset: SPAMBASE
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: spambase
+Instâncias comparadas: 1381
+Features por instância: 57
+Thresholds: t+ = 0.3021, t- = -0.4747
+Zona de rejeição: 0.7768
+Rejection cost: 0.24
+
+Hiperparâmetros:
+{
+  "norm_params": {
+    "max_abs": 1.0
+  },
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO
+--------------------------------------------------------------------------------
+
+Métrica                         Valor   
+    Taxa de Otimalidade (GAP=0)   43.88%
+GAP Médio (features excedentes)   1.0956
+                     GAP Máximo        6
+                     GAP Mínimo       -1
+           Desvio Padrão do GAP   1.2795
+           Tempo Médio PuLP (s) 0.049152
+
+INTERPRETAÇÃO:
+⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
+- Em média, PEAB usa 1.10 features a mais que o ótimo.
+- PEAB é 3x mais rápido que PuLP.
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+Onde o PEAB é perfeito e onde encontra dificuldades.
+
+     Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
+ POSITIVA    5 100.00%    0.0000     30.20     30.20   0.00689s   0.05102s
+ NEGATIVA  435  94.48%   -0.0552     28.08     28.14   0.00675s   0.04741s
+REJEITADA  941  20.19%    1.6334     43.99     42.36   0.02523s   0.04995s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
+--------------------------------------------------------------------------------
+Instâncias onde PEAB ficou mais longe da solução ótima.
+
+indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
+  1004     REJEITADA            45            39    6
+  1049     REJEITADA            45            39    6
+   317     REJEITADA            45            39    6
+   331     REJEITADA            45            39    6
+   913     REJEITADA            45            39    6
+  1125     REJEITADA            44            39    5
+  1313     REJEITADA            45            40    5
+  1355     REJEITADA            48            43    5
+   611     REJEITADA            44            39    5
+   644     REJEITADA            45            40    5
+
+--------------------------------------------------------------------------------
+4. DISTRIBUIÇÃO DE GAPS
+--------------------------------------------------------------------------------
+
+GAP = 0 (Ótimo): 606 instâncias (43.9%)
+GAP = 1: 213 instâncias (15.4%)
+GAP = 2: 322 instâncias (23.3%)
+GAP = 3: 156 instâncias (11.3%)
+GAP = 4: 39 instâncias (2.8%)
+GAP = 5: 7 instâncias (0.5%)
+GAP = 6: 5 instâncias (0.4%)
+
+--------------------------------------------------------------------------------
+5. ANÁLISE DE TEMPO DE EXECUÇÃO
+--------------------------------------------------------------------------------
+
+Tempo total PEAB: 26.80s
+Tempo total PuLP: 67.88s
+Economia de tempo: 41.08s (60.5%)
+
+Para 1381 instâncias, economia observada: 41.1s
+
+================================================================================
+6. CONCLUSÃO
+================================================================================
+
+⚠ PEAB precisa de melhorias:
+   - Qualidade subótima: 43.9% de otimalidade
+   - Revisar heurística para este dataset
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

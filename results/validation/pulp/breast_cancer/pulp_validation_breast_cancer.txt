@@ -1,0 +1,140 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                     VALIDAÇÃO DE EXPLICABILIDADE - PULP                      ║
+║                                Breast Cancer                                 ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESUMO EXECUTIVO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:                Breast Cancer
+  Instâncias Testadas:    171
+  Features Totais:        30
+
+  MÉTRICAS PRINCIPAIS:
+    • Fidelidade:                      100.0%
+    • Necessidade (feat. necessárias): 55.3%
+    • Tamanho Médio:                   1.8 features
+    • Taxa de Rejeição:     19.9% (34 instâncias)
+
+  CONCLUSÃO:
+    Explicações fiéis, porém contêm features redundantes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODOLOGIA DE VALIDAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Método Avaliado:         PULP
+  Perturbações/instância:  1,000
+
+  TESTES APLICADOS:
+
+  1. FIDELIDADE (Sufficiency) - Teste Probabilístico
+     • Para cada feature da explicação, geramos perturbações e verificamos
+       se o modelo mantém a decisão quando apenas essa feature está ativa.
+     • Critério: Feature é fiel se >95% das perturbações mantêm a decisão.
+     • Objetivo: Garantir que features explicativas CAUSAM a decisão.
+
+  2. NECESSIDADE (Minimality) - Teste Determinístico (Worst-Case)
+     • Para cada feature, construímos o cenário mais adverso possível:
+       removemos a feature e atribuímos valores extremos às demais features
+       não-explicativas (pior caso que maximiza score positivo ou negativo).
+     • Critério: Feature é necessária se sua remoção SEMPRE quebra a decisão
+       no pior caso deterministicamente possível.
+     • Objetivo: Eliminar features redundantes (minimalidade).
+
+  NOTA TÉCNICA: Fidelidade é suficiência estatística (perturbações),
+                Necessidade é teste lógico (existe caso adverso).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONFIGURAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:              Breast Cancer
+  Instâncias:           171
+  Features:             30
+  Perturbações/inst:    1,000
+  Data:                 2025-12-19 15:01:14
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  MÉTRICAS GLOBAIS:
+    Fidelidade:       100.0%
+    Necessidade:      55.3%
+    Redundância:      44.7%
+    Cobertura:        100.0%
+    Tamanho médio:    1.8 features
+
+  POR TIPO DE DECISÃO:
+
+  “Necessidade Estrita (Worst-case)”
+  “O teste verifica se a feature é necessária sob o pior cenário adversarial possível, não se ela é única explicação possível.”
+
+  Tipo          | Count |  Fidelidade | Necessidade | Redundância
+  ────────────────────────────────────────────────────────────────────────
+  Positivas     |    84 |      100.0% |       17.9% |       82.1%
+  Negativas     |    53 |      100.0% |      100.0% |        0.0%
+  Rejeitadas    |    34 |      100.0% |       77.9% |       22.1%
+
+  TAMANHO DAS EXPLICAÇÕES:
+    Média:         1.8 features
+    Mediana:       2
+    Desvio:        0.4
+    Intervalo:     [1, 2]
+    Compactação:   94% (vs 30 features totais)
+
+3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Variáveis │ Quantidade │ Porcentagem │ Visualização
+  ───────────┼────────────┼─────────────┼──────────────────────────────────────────
+        1    │      42    │     24.6%   │ ████████████                            
+        2    │     129    │     75.4%   │ █████████████████████████████████████   
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERPRETAÇÃO DOS RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fidelidade:       100.0%
+  Necessidade:      55.3%
+  Redundância:      44.7%
+  Tamanho médio:    1.8 features
+  Cobertura:        100.0%
+
+  AVALIAÇÃO: Explicações fiéis, mas 45% de redundância (features desnecessárias).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIMITAÇÕES OBSERVADAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Alta redundância (45%): explicações não são minimais.
+    Possível causa: threshold de rejeição muito conservador ou
+    features correlacionadas no dataset.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMENDAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Ajustar hiperparâmetros (threshold de rejeição, tolerâncias).
+  • Investigar instâncias com baixa fidelidade ou alta redundância.
+  • Alta redundância: considerar pós-processamento para remover features
+    desnecessárias (ex: backward selection).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relatório gerado em: 2025-12-19 15:01:14
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

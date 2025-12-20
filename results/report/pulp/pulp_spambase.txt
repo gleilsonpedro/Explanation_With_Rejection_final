@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - SPAMBASE
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: spambase
+Instâncias processadas: 1381
+Thresholds: t+ = 0.3021, t- = -0.4747
+Zona de rejeição: 0.7768
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 62.27%
+Acurácia (com rejeição): 95.00%
+Taxa de rejeição: 68.14%
+Risco empírico: 0.2135
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 37.83 features
+Tempo total: 67.88s
+Tempo médio/instância: 0.0492s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 5 (0.4%)
+  - Tamanho médio: 30.20 features
+  - Tempo médio: 0.0510s
+
+NEGATIVA:
+  - Instâncias: 435 (31.5%)
+  - Tamanho médio: 28.14 features
+  - Tempo médio: 0.0474s
+
+REJEITADA:
+  - Instâncias: 941 (68.1%)
+  - Tamanho médio: 42.36 features
+  - Tempo médio: 0.0499s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      324 (REJEITADA ):  47 features - 0.0511s
+ 2. Instância     3329 (REJEITADA ):  46 features - 0.0438s
+ 3. Instância     2497 (REJEITADA ):  46 features - 0.0529s
+ 4. Instância     2015 (REJEITADA ):  46 features - 0.0440s
+ 5. Instância     3708 (REJEITADA ):  46 features - 0.0519s
+ 6. Instância     1929 (REJEITADA ):  46 features - 0.0455s
+ 7. Instância     3201 (REJEITADA ):  46 features - 0.0508s
+ 8. Instância     2939 (REJEITADA ):  46 features - 0.1594s
+ 9. Instância     3861 (REJEITADA ):  46 features - 0.0448s
+10. Instância     3894 (REJEITADA ):  46 features - 0.0447s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância     1762 (POSITIVA  ):  21 features - 0.0535s
+ 2. Instância     3474 (NEGATIVA  ):  22 features - 0.0452s
+ 3. Instância     4004 (NEGATIVA  ):  23 features - 0.0469s
+ 4. Instância     3166 (NEGATIVA  ):  23 features - 0.0460s
+ 5. Instância     2741 (NEGATIVA  ):  23 features - 0.0513s
+ 6. Instância     3781 (NEGATIVA  ):  23 features - 0.0472s
+ 7. Instância     3913 (NEGATIVA  ):  23 features - 0.0414s
+ 8. Instância     1848 (NEGATIVA  ):  23 features - 0.0426s
+ 9. Instância     3136 (NEGATIVA  ):  24 features - 0.0450s
+10. Instância     2148 (NEGATIVA  ):  24 features - 0.0477s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

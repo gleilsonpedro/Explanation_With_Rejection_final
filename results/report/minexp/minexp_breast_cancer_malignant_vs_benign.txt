@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: breast_cancer_malignant_vs_benign
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 171
+  - Número de Features do Modelo: 30
+  - Acurácia do Modelo (teste, sem rejeição): 93.57%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 116.5629 segundos
+  - Tempo Médio por Instância (Geral): 0.6817 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 19.88% (34 de 171 instâncias)
+  - Acurácia com Opção de Rejeição (nas 137 instâncias aceitas): 98.54%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (84 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 1.82 ± 0.38 (Min: 1, Max: 2)
+  - Classe Negativa (53 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 1.49 ± 0.50 (Min: 1, Max: 2)
+  - Classe REJEITADA (34 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 2.00 ± 0.00 (Min: 2, Max: 2)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - worst concave points: 171 vezes
+    - worst radius: 129 vezes
+    - mean radius: 0 vezes
+    - mean texture: 0 vezes
+    - mean perimeter: 0 vezes
+    - mean area: 0 vezes
+    - mean smoothness: 0 vezes
+    - mean compactness: 0 vezes
+    - mean concavity: 0 vezes
+    - mean concave points: 0 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 0.5936 segundos
+  - Negativas: 0.5977 segundos
+  - Rejeitadas: 1.0301 segundos

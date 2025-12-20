@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: sonar_Rocha_vs_Mina (Metal)
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 63
+  - Número de Features do Modelo: 60
+  - Acurácia do Modelo (teste, sem rejeição): 68.25%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 258.3570 segundos
+  - Tempo Médio por Instância (Geral): 4.1009 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 71.43% (45 de 63 instâncias)
+  - Acurácia com Opção de Rejeição (nas 18 instâncias aceitas): 94.44%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (10 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 51.10 ± 4.28 (Min: 44, Max: 60)
+  - Classe Negativa (8 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 53.38 ± 2.12 (Min: 50, Max: 56)
+  - Classe REJEITADA (45 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 48.89 ± 4.09 (Min: 43, Max: 57)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - feature_10: 63 vezes
+    - feature_33: 63 vezes
+    - feature_34: 63 vezes
+    - feature_35: 63 vezes
+    - feature_36: 63 vezes
+    - feature_42: 63 vezes
+    - feature_43: 63 vezes
+    - feature_44: 63 vezes
+    - feature_45: 63 vezes
+    - feature_46: 63 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 2.3976 segundos
+  - Negativas: 2.3808 segundos
+  - Rejeitadas: 4.7852 segundos

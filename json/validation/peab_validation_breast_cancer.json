@@ -2,21 +2,22 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "breast_cancer",
-    "date": "2025-12-17 11:31:47",
+    "date": "2025-12-19 13:04:23",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
+    "necessity_mode": "local",
     "test_instances": 171,
     "num_features": 30
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 83.62573099415205,
+    "necessity_overall": 55.55555555555556,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
-    "necessity_positive": 67.85714285714286,
-    "necessity_negative": 98.11320754716981,
-    "necessity_rejected": 100.0,
+    "necessity_positive": 17.857142857142858,
+    "necessity_negative": 100.0,
+    "necessity_rejected": 79.41176470588235,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 1.7543859649122806,
@@ -25,27 +26,27 @@
     "min_explanation_size": 1,
     "max_explanation_size": 2,
     "reduction_rate": 94.15204678362574,
-    "validation_time_seconds": 0.4758305549621582
+    "validation_time_seconds": 0.36550068855285645
   },
   "per_type_metrics": {
     "positive": {
       "count": 84,
       "fidelity": 100.0,
-      "necessity": 67.85714285714286,
+      "necessity": 17.857142857142858,
       "mean_size": 1.8214285714285714,
       "std_size": 0.3829930462415574
     },
     "negative": {
       "count": 53,
       "fidelity": 100.0,
-      "necessity": 98.11320754716981,
+      "necessity": 100.0,
       "mean_size": 1.490566037735849,
       "std_size": 0.49991099243365167
     },
     "rejected": {
       "count": 34,
       "fidelity": 100.0,
-      "necessity": 100.0,
+      "necessity": 79.41176470588235,
       "mean_size": 2.0,
       "std_size": 0.0
     }
@@ -86,11 +87,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 275,
@@ -106,9 +108,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 83,
@@ -210,9 +215,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 122,
@@ -245,11 +253,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 102,
@@ -265,11 +274,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 64,
@@ -285,11 +295,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "worst radius"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 73,
@@ -305,9 +313,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 66,
@@ -323,11 +333,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 205,
@@ -379,9 +390,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 504,
@@ -397,9 +410,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 247,
@@ -415,9 +431,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 361,
@@ -433,11 +451,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 228,
@@ -524,9 +543,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 246,
@@ -542,11 +564,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 298,
@@ -562,11 +585,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 257,
@@ -617,9 +641,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 417,
@@ -652,11 +678,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 295,
@@ -672,11 +699,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 256,
@@ -709,11 +737,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 406,
@@ -747,11 +776,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 48,
@@ -767,11 +797,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 200,
@@ -858,11 +889,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 355,
@@ -878,9 +910,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 542,
@@ -932,9 +967,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 206,
@@ -950,11 +988,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 372,
@@ -987,9 +1026,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 549,
@@ -1057,11 +1099,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 84,
@@ -1077,11 +1120,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 468,
@@ -1114,11 +1158,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 466,
@@ -1152,9 +1197,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 370,
@@ -1256,11 +1303,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 445,
@@ -1312,11 +1360,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 103,
@@ -1332,9 +1381,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 567,
@@ -1420,9 +1472,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 548,
@@ -1438,11 +1492,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 484,
@@ -1458,9 +1513,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 20,
@@ -1476,11 +1533,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 156,
@@ -1514,11 +1572,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 345,
@@ -1534,11 +1593,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 123,
@@ -1590,11 +1650,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 23,
@@ -1627,11 +1688,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 403,
@@ -1647,11 +1709,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 24,
@@ -1719,11 +1782,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "worst radius"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 399,
@@ -1739,11 +1800,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 452,
@@ -1759,11 +1821,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 553,
@@ -1796,11 +1859,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 483,
@@ -1816,11 +1880,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 7,
@@ -1854,11 +1919,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 38,
@@ -1926,11 +1992,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 235,
@@ -1946,11 +2013,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 167,
@@ -1984,9 +2052,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 494,
@@ -2002,11 +2072,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 523,
@@ -2040,9 +2111,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 501,
@@ -2111,11 +2185,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 261,
@@ -2131,11 +2206,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 96,
@@ -2151,11 +2227,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 288,
@@ -2171,9 +2248,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 194,
@@ -2207,9 +2287,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 291,
@@ -2225,9 +2307,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 316,
@@ -2277,9 +2361,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 266,
@@ -2295,11 +2382,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 258,
@@ -2332,11 +2420,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 41,
@@ -2352,9 +2441,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 507,
@@ -2370,9 +2461,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 447,
@@ -2388,11 +2482,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 65,
@@ -2426,9 +2521,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 415,
@@ -2444,11 +2542,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 519,
@@ -2464,11 +2563,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 98,
@@ -2484,11 +2584,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 138,
@@ -2522,11 +2623,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 408,
@@ -2611,9 +2713,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 513,
@@ -2629,11 +2733,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 305,
@@ -2649,11 +2754,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 104,
@@ -2774,11 +2880,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 541,
@@ -2846,11 +2953,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 180,
@@ -2883,9 +2991,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 328,
@@ -2919,11 +3029,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 412,
@@ -2974,11 +3085,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 267,
@@ -2994,11 +3106,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 177,
@@ -3049,9 +3162,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "worst radius"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 464,
@@ -3103,11 +3218,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 37,
@@ -3123,11 +3239,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 358,
@@ -3143,11 +3260,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "worst concave points",
         "worst radius"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 363,
@@ -3163,9 +3281,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 171,
@@ -3199,9 +3320,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "worst concave points",
+        "worst radius"
+      ],
+      "necessity_score": 0.0
     }
   ]
 }

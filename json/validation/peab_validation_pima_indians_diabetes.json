@@ -2,21 +2,22 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "pima_indians_diabetes",
-    "date": "2025-12-17 11:21:23",
+    "date": "2025-12-19 14:54:27",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
+    "necessity_mode": "local",
     "test_instances": 231,
     "num_features": 8
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 76.29303236446093,
+    "necessity_overall": 19.497526283240564,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
-    "necessity_positive": 62.05609362389023,
-    "necessity_negative": 80.84249084249085,
-    "necessity_rejected": 100.0,
+    "necessity_positive": 63.64810330912025,
+    "necessity_negative": 2.8029022259791487,
+    "necessity_rejected": 91.66666666666667,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 4.220779220779221,
@@ -25,27 +26,27 @@
     "min_explanation_size": 2,
     "max_explanation_size": 8,
     "reduction_rate": 47.24025974025974,
-    "validation_time_seconds": 0.700897216796875
+    "validation_time_seconds": 0.3163111209869385
   },
   "per_type_metrics": {
     "positive": {
       "count": 59,
       "fidelity": 100.0,
-      "necessity": 62.05609362389023,
+      "necessity": 63.64810330912025,
       "mean_size": 4.0508474576271185,
       "std_size": 1.5989798528909498
     },
     "negative": {
       "count": 169,
       "fidelity": 100.0,
-      "necessity": 80.84249084249085,
+      "necessity": 2.8029022259791487,
       "mean_size": 4.21301775147929,
       "std_size": 1.0214601480255663
     },
     "rejected": {
       "count": 3,
       "fidelity": 100.0,
-      "necessity": 100.0,
+      "necessity": 91.66666666666667,
       "mean_size": 8.0,
       "std_size": 0.0
     }
@@ -75,11 +76,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 198,
@@ -98,9 +103,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 24,
@@ -118,12 +129,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
-        "insulina",
-        "num_gravidezes"
+        "insulina"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 75.0
     },
     {
       "instance_id": 417,
@@ -143,14 +153,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "diabetes_pedigree",
         "insulina",
-        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 50.0
     },
     {
       "instance_id": 387,
@@ -170,11 +179,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "idade"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 156,
@@ -191,9 +204,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 660,
@@ -212,13 +229,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "insulina",
-        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 40.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 205,
@@ -236,12 +252,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 3,
@@ -258,9 +276,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 531,
@@ -279,11 +301,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 158,
@@ -300,9 +326,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 347,
@@ -320,12 +350,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 224,
@@ -342,9 +374,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 756,
@@ -364,9 +400,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 425,
@@ -403,9 +445,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "imc"
+      ],
+      "necessity_score": 50.0
     },
     {
       "instance_id": 78,
@@ -447,9 +491,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 247,
@@ -486,11 +535,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 162,
@@ -509,11 +562,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 304,
@@ -532,11 +589,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 513,
@@ -553,9 +614,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 348,
@@ -572,9 +637,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 335,
@@ -611,9 +680,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 164,
@@ -632,12 +706,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 541,
@@ -656,9 +733,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 33,
@@ -675,11 +758,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 496,
@@ -697,9 +782,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 484,
@@ -739,9 +829,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 389,
@@ -759,11 +855,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 310,
@@ -780,11 +879,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 392,
@@ -802,11 +903,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 259,
@@ -847,11 +951,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 88,
@@ -889,11 +996,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 330,
@@ -912,9 +1023,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 421,
@@ -931,9 +1047,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 245,
@@ -950,11 +1070,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 697,
@@ -971,9 +1092,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 441,
@@ -991,12 +1116,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 89,
@@ -1014,12 +1141,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 480,
@@ -1043,7 +1172,7 @@
       "redundant_features": [
         "diabetes_pedigree",
         "insulina",
-        "num_gravidezes"
+        "pressao_sangue"
       ],
       "necessity_score": 50.0
     },
@@ -1064,9 +1193,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 598,
@@ -1107,12 +1242,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 767,
@@ -1130,12 +1267,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 305,
@@ -1154,11 +1293,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 340,
@@ -1176,9 +1319,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 424,
@@ -1216,11 +1364,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 712,
@@ -1260,9 +1410,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 593,
@@ -1279,9 +1434,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 579,
@@ -1297,11 +1456,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "imc"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 630,
@@ -1320,11 +1477,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 678,
@@ -1343,11 +1504,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
-        "idade"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 367,
@@ -1364,11 +1529,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 543,
@@ -1386,9 +1553,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 560,
@@ -1407,9 +1579,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 293,
@@ -1429,9 +1606,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 62,
@@ -1448,12 +1631,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
         "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 373,
@@ -1471,9 +1655,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 140,
@@ -1491,11 +1680,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 59,
@@ -1513,9 +1705,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 275,
@@ -1534,11 +1731,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 727,
@@ -1557,11 +1758,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 761,
@@ -1623,11 +1828,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 494,
@@ -1643,9 +1850,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 80,
@@ -1663,12 +1873,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 502,
@@ -1684,11 +1896,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
         "imc"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 296,
@@ -1707,9 +1920,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 672,
@@ -1727,12 +1946,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "pressao_sangue"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 38,
@@ -1750,11 +1971,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 724,
@@ -1772,9 +1996,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 52,
@@ -1791,11 +2020,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 652,
@@ -1814,9 +2045,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 629,
@@ -1834,12 +2071,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 650,
@@ -1856,9 +2095,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 447,
@@ -1876,11 +2119,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 212,
@@ -1922,12 +2168,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 4,
       "redundant_features": [
-        "diabetes_pedigree",
-        "espessura_pele"
+        "espessura_pele",
+        "insulina",
+        "pressao_sangue"
       ],
-      "necessity_score": 71.42857142857143
+      "necessity_score": 57.14285714285714
     },
     {
       "instance_id": 215,
@@ -1984,12 +2231,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 359,
@@ -2005,11 +2254,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "imc"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 332,
@@ -2044,9 +2291,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 13,
@@ -2091,7 +2342,7 @@
       "redundant_features": [
         "idade",
         "insulina",
-        "num_gravidezes"
+        "pressao_sangue"
       ],
       "necessity_score": 50.0
     },
@@ -2111,9 +2362,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 25,
@@ -2133,9 +2389,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 268,
@@ -2152,9 +2414,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 635,
@@ -2174,12 +2440,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 1,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
         "idade",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 350,
@@ -2197,9 +2466,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 10,
@@ -2218,11 +2492,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 707,
@@ -2241,11 +2519,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
-        "idade"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 64,
@@ -2264,11 +2546,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 276,
@@ -2286,11 +2572,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 580,
@@ -2334,9 +2623,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 617,
@@ -2353,11 +2646,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 260,
@@ -2395,9 +2690,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 412,
@@ -2416,13 +2715,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
-        "diabetes_pedigree",
         "insulina",
         "pressao_sangue"
       ],
-      "necessity_score": 40.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 93,
@@ -2440,9 +2738,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 740,
@@ -2486,9 +2789,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 696,
@@ -2508,12 +2817,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "diabetes_pedigree",
-        "num_gravidezes"
+        "insulina",
+        "pressao_sangue"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 50.0
     },
     {
       "instance_id": 489,
@@ -2530,11 +2840,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 42,
@@ -2552,12 +2863,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 736,
@@ -2575,11 +2888,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 570,
@@ -2596,9 +2912,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 311,
@@ -2616,9 +2936,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 408,
@@ -2656,11 +2981,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
         "imc"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 618,
@@ -2680,11 +3006,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "idade"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 746,
@@ -2726,11 +3056,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 243,
@@ -2750,12 +3084,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 1,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
         "idade",
-        "pressao_sangue"
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 527,
@@ -2773,11 +3110,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 440,
@@ -2816,11 +3156,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 606,
@@ -2860,11 +3203,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 742,
@@ -2882,11 +3229,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 87,
@@ -2904,9 +3254,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 273,
@@ -2923,9 +3278,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 745,
@@ -2944,11 +3303,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
-        "num_gravidezes"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 66,
@@ -2966,11 +3329,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 445,
@@ -3005,9 +3371,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 81,
@@ -3023,9 +3393,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 190,
@@ -3043,12 +3416,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 300,
@@ -3088,11 +3463,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 199,
@@ -3112,9 +3491,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 262,
@@ -3132,11 +3517,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 584,
@@ -3156,11 +3544,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 1,
       "redundant_features": [
-        "insulina"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "insulina",
+        "num_gravidezes"
       ],
-      "necessity_score": 83.33333333333334
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 415,
@@ -3204,11 +3596,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
+      "necessary_features": 5,
       "redundant_features": [
-        "diabetes_pedigree"
+        "insulina",
+        "pressao_sangue"
       ],
-      "necessity_score": 85.71428571428571
+      "necessity_score": 71.42857142857143
     },
     {
       "instance_id": 679,
@@ -3225,9 +3618,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 407,
@@ -3244,9 +3641,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 17,
@@ -3264,9 +3665,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 615,
@@ -3284,12 +3690,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 658,
@@ -3332,11 +3740,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 112,
@@ -3354,12 +3766,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 517,
@@ -3381,11 +3795,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 7,
+      "necessary_features": 5,
       "redundant_features": [
-        "diabetes_pedigree"
+        "espessura_pele",
+        "insulina",
+        "pressao_sangue"
       ],
-      "necessity_score": 87.5
+      "necessity_score": 62.5
     },
     {
       "instance_id": 366,
@@ -3404,11 +3820,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 467,
@@ -3426,11 +3846,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 309,
@@ -3449,11 +3872,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 153,
@@ -3473,14 +3900,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
-        "diabetes_pedigree",
         "insulina",
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 50.0
     },
     {
       "instance_id": 203,
@@ -3497,9 +3923,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 481,
@@ -3517,9 +3947,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 645,
@@ -3564,11 +3999,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 279,
@@ -3586,11 +4024,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 44,
@@ -3609,13 +4050,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "insulina",
-        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 40.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 430,
@@ -3632,9 +4072,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 127,
@@ -3652,9 +4096,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 674,
@@ -3673,12 +4122,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 219,
@@ -3697,9 +4149,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
+        "pressao_sangue"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 99,
@@ -3720,11 +4178,16 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
+      "necessary_features": 1,
       "redundant_features": [
-        "insulina"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "insulina",
+        "num_gravidezes"
       ],
-      "necessity_score": 85.71428571428571
+      "necessity_score": 14.285714285714285
     },
     {
       "instance_id": 433,
@@ -3742,9 +4205,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 511,
@@ -3762,11 +4230,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 116,
@@ -3785,9 +4256,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 578,
@@ -3807,9 +4283,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 501,
@@ -3827,11 +4309,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 717,
@@ -3849,12 +4334,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 743,
@@ -3899,11 +4386,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 1,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 20.0
     },
     {
       "instance_id": 163,
@@ -3921,11 +4411,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 596,
@@ -3943,13 +4436,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
         "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 25.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 637,
@@ -3967,11 +4461,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 115,
@@ -3993,9 +4490,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 8,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 5,
+      "redundant_features": [
+        "espessura_pele",
+        "insulina",
+        "pressao_sangue"
+      ],
+      "necessity_score": 62.5
     },
     {
       "instance_id": 486,
@@ -4016,9 +4517,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 7,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 2,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 28.57142857142857
     },
     {
       "instance_id": 763,
@@ -4037,12 +4544,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 399,
@@ -4101,9 +4611,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 644,
@@ -4121,11 +4635,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 558,
@@ -4167,12 +4684,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 71,
@@ -4192,12 +4711,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 1,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
         "idade",
-        "pressao_sangue"
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 346,
@@ -4216,11 +4738,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
-        "idade"
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 97,
@@ -4237,11 +4763,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 380,
@@ -4259,11 +4787,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 532,
@@ -4281,11 +4812,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 418,
@@ -4302,11 +4836,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 436,
@@ -4324,12 +4860,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
-        "insulina",
-        "num_gravidezes"
+        "insulina"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 75.0
     },
     {
       "instance_id": 258,
@@ -4347,13 +4882,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
       "redundant_features": [
         "diabetes_pedigree",
-        "imc",
         "pressao_sangue"
       ],
-      "necessity_score": 25.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 661,
@@ -4369,11 +4903,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
-      "redundant_features": [
-        "imc"
-      ],
-      "necessity_score": 50.0
+      "necessary_features": 2,
+      "redundant_features": [],
+      "necessity_score": 100.0
     },
     {
       "instance_id": 563,
@@ -4391,12 +4923,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 422,
@@ -4414,9 +4948,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 307,
@@ -4434,9 +4973,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 533,
@@ -4454,12 +4998,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 734,
@@ -4477,12 +5023,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 476,
@@ -4500,11 +5048,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 698,
@@ -4523,9 +5074,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 699,
@@ -4548,7 +5104,7 @@
       "necessary_features": 4,
       "redundant_features": [
         "insulina",
-        "num_gravidezes"
+        "pressao_sangue"
       ],
       "necessity_score": 66.66666666666666
     },
@@ -4570,9 +5126,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 477,
@@ -4590,9 +5152,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 684,
@@ -4609,12 +5176,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 680,
@@ -4631,11 +5199,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 713,
@@ -4653,9 +5223,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 700,
@@ -4674,11 +5249,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 0,
       "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 80.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 238,
@@ -4723,9 +5302,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 8,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 3,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 37.5
     },
     {
       "instance_id": 151,
@@ -4743,12 +5328,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 537,
@@ -4765,11 +5352,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 235,
@@ -4808,9 +5397,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     },
     {
       "instance_id": 488,
@@ -4828,12 +5422,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 628,
@@ -4852,9 +5448,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 20.0
     },
     {
       "instance_id": 144,
@@ -4876,9 +5477,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 8,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 7,
+      "redundant_features": [
+        "idade"
+      ],
+      "necessity_score": 87.5
     },
     {
       "instance_id": 355,
@@ -4919,12 +5522,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 102,
@@ -4942,11 +5547,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
-        "diabetes_pedigree"
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 6,
@@ -4963,11 +5571,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
+        "glicose",
+        "imc",
         "num_gravidezes"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 0.0
     },
     {
       "instance_id": 469,
@@ -5007,12 +5617,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 0,
       "redundant_features": [
         "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes",
         "pressao_sangue"
       ],
-      "necessity_score": 60.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 437,
@@ -5032,9 +5645,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 6,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 1,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "idade",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 16.666666666666664
     },
     {
       "instance_id": 86,
@@ -5056,9 +5675,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 8,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 7,
+      "redundant_features": [
+        "insulina"
+      ],
+      "necessity_score": 87.5
     },
     {
       "instance_id": 221,
@@ -5103,9 +5724,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 0,
+      "redundant_features": [
+        "diabetes_pedigree",
+        "glicose",
+        "imc",
+        "num_gravidezes"
+      ],
+      "necessity_score": 0.0
     }
   ]
 }

@@ -1,0 +1,145 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                     VALIDAÇÃO DE EXPLICABILIDADE - PULP                      ║
+║                                   Banknote                                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESUMO EXECUTIVO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:                Banknote
+  Instâncias Testadas:    412
+  Features Totais:        4
+
+  MÉTRICAS PRINCIPAIS:
+    • Fidelidade:                      100.0%
+    • Necessidade (feat. necessárias): 59.5%
+    • Tamanho Médio:                   2.7 features
+    • Taxa de Rejeição:     58.5% (241 instâncias)
+
+  CONCLUSÃO:
+    Explicações fiéis, porém contêm features redundantes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODOLOGIA DE VALIDAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Método Avaliado:         PULP
+  Perturbações/instância:  1,000
+
+  TESTES APLICADOS:
+
+  1. FIDELIDADE (Sufficiency) - Teste Probabilístico
+     • Para cada feature da explicação, geramos perturbações e verificamos
+       se o modelo mantém a decisão quando apenas essa feature está ativa.
+     • Critério: Feature é fiel se >95% das perturbações mantêm a decisão.
+     • Objetivo: Garantir que features explicativas CAUSAM a decisão.
+
+  2. NECESSIDADE (Minimality) - Teste Determinístico (Worst-Case)
+     • Para cada feature, construímos o cenário mais adverso possível:
+       removemos a feature e atribuímos valores extremos às demais features
+       não-explicativas (pior caso que maximiza score positivo ou negativo).
+     • Critério: Feature é necessária se sua remoção SEMPRE quebra a decisão
+       no pior caso deterministicamente possível.
+     • Objetivo: Eliminar features redundantes (minimalidade).
+
+  NOTA TÉCNICA: Fidelidade é suficiência estatística (perturbações),
+                Necessidade é teste lógico (existe caso adverso).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONFIGURAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:              Banknote
+  Instâncias:           412
+  Features:             4
+  Perturbações/inst:    1,000
+  Data:                 2025-12-19 15:03:40
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  MÉTRICAS GLOBAIS:
+    Fidelidade:       100.0%
+    Necessidade:      59.5%
+    Redundância:      40.5%
+    Cobertura:        100.0%
+    Tamanho médio:    2.7 features
+
+  POR TIPO DE DECISÃO:
+
+  “Necessidade Estrita (Worst-case)”
+  “O teste verifica se a feature é necessária sob o pior cenário adversarial possível, não se ela é única explicação possível.”
+
+  Tipo          | Count |  Fidelidade | Necessidade | Redundância
+  ────────────────────────────────────────────────────────────────────────
+  Positivas     |    21 |      100.0% |       32.5% |       67.5%
+  Negativas     |   150 |      100.0% |       75.4% |       24.6%
+  Rejeitadas    |   241 |      100.0% |       52.0% |       48.0%
+
+  TAMANHO DAS EXPLICAÇÕES:
+    Média:         2.7 features
+    Mediana:       3
+    Desvio:        0.7
+    Intervalo:     [2, 4]
+    Compactação:   32% (vs 4 features totais)
+
+3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Variáveis │ Quantidade │ Porcentagem │ Visualização
+  ───────────┼────────────┼─────────────┼──────────────────────────────────────────
+        2    │     175    │     42.5%   │ █████████████████████                   
+        3    │     179    │     43.4%   │ █████████████████████                   
+        4    │      58    │     14.1%   │ ███████                                 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERPRETAÇÃO DOS RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fidelidade:       100.0%
+  Necessidade:      59.5%
+  Redundância:      40.5%
+  Tamanho médio:    2.7 features
+  Cobertura:        100.0%
+
+  AVALIAÇÃO: Explicações fiéis, mas 40% de redundância (features desnecessárias).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIMITAÇÕES OBSERVADAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Alta redundância (40%): explicações não são minimais.
+    Possível causa: threshold de rejeição muito conservador ou
+    features correlacionadas no dataset.
+  • Explicações usam 2.7 de 4 features (68%):
+    Compactação insuficiente para interpretabilidade prática.
+  • Explicações completas detectadas (max=4 features):
+    Método falhou em reduzir dimensionalidade em alguns casos.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMENDAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Ajustar hiperparâmetros (threshold de rejeição, tolerâncias).
+  • Investigar instâncias com baixa fidelidade ou alta redundância.
+  • Alta redundância: considerar pós-processamento para remover features
+    desnecessárias (ex: backward selection).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relatório gerado em: 2025-12-19 15:03:40
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

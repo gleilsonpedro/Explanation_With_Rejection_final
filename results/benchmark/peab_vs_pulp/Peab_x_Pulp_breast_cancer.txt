@@ -9,8 +9,8 @@ Dataset: BREAST_CANCER
 Dataset: breast_cancer
 Instâncias comparadas: 171
 Features por instância: 30
-Thresholds: t+ = 0.5569, t- = -0.0633
-Zona de rejeição: 0.6202
+Thresholds: t+ = 0.9656, t- = -0.0100
+Zona de rejeição: 0.9756
 Rejection cost: 0.24
 
 Hiperparâmetros:
@@ -18,10 +18,10 @@ Hiperparâmetros:
   "norm_params": {
     "max_abs": 1.0
   },
-  "penalty": "l2",
+  "penalty": "l1",
   "C": 0.1,
-  "solver": "liblinear",
-  "max_iter": 200
+  "solver": "saga",
+  "max_iter": 1000
 }
 
 --------------------------------------------------------------------------------
@@ -29,17 +29,17 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 
 Métrica                         Valor   
-    Taxa de Otimalidade (GAP=0)   99.42%
-GAP Médio (features excedentes)   0.0058
-                     GAP Máximo        1
+    Taxa de Otimalidade (GAP=0)  100.00%
+GAP Médio (features excedentes)   0.0000
+                     GAP Máximo        0
                      GAP Mínimo        0
-           Desvio Padrão do GAP   0.0765
-           Tempo Médio PuLP (s) 0.048259
+           Desvio Padrão do GAP   0.0000
+           Tempo Médio PuLP (s) 0.045400
 
 INTERPRETAÇÃO:
 ✅ EXCELENTE: PEAB encontra a solução ótima em >95% dos casos.
-- Em média, PEAB usa 0.01 features a mais que o ótimo.
-- PEAB é 6x mais rápido que PuLP.
+- Em média, PEAB usa 0.00 features a mais que o ótimo.
+- PEAB é 7x mais rápido que PuLP.
 
 --------------------------------------------------------------------------------
 2. DETALHAMENTO POR TIPO DE PREDIÇÃO
@@ -47,9 +47,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA   92 100.00%    0.0000     18.00     18.00   0.00590s   0.04769s
- NEGATIVA   52 100.00%    0.0000     16.69     16.69   0.00592s   0.04955s
-REJEITADA   27  96.30%    0.0370     23.37     23.33   0.01714s   0.04772s
+ POSITIVA   84 100.00%    0.0000      1.82      1.82   0.00503s   0.04467s
+ NEGATIVA   53 100.00%    0.0000      1.49      1.49   0.00527s   0.04708s
+REJEITADA   34 100.00%    0.0000      2.00      2.00   0.01068s   0.04458s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -57,40 +57,39 @@ REJEITADA   27  96.30%    0.0370     23.37     23.33   0.01714s   0.04772s
 Instâncias onde PEAB ficou mais longe da solução ótima.
 
 indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
-   484     REJEITADA            26            25    1
-     1      NEGATIVA            15            15    0
-   102      POSITIVA            16            16    0
-   103      POSITIVA            17            17    0
-   104      POSITIVA            15            15    0
-   113      POSITIVA            16            16    0
-   116      POSITIVA            15            15    0
-   121      NEGATIVA            17            17    0
-   122      NEGATIVA             8             8    0
-   123     REJEITADA            24            24    0
+     1      NEGATIVA             1             1    0
+   102      POSITIVA             2             2    0
+   103      POSITIVA             2             2    0
+   104      POSITIVA             1             1    0
+   113      POSITIVA             2             2    0
+   116      POSITIVA             2             2    0
+   121      NEGATIVA             2             2    0
+   122      NEGATIVA             1             1    0
+   123     REJEITADA             2             2    0
+   127     REJEITADA             2             2    0
 
 --------------------------------------------------------------------------------
 4. DISTRIBUIÇÃO DE GAPS
 --------------------------------------------------------------------------------
 
-GAP = 0 (Ótimo): 170 instâncias (99.4%)
-GAP = 1: 1 instâncias (0.6%)
+GAP = 0 (Ótimo): 171 instâncias (100.0%)
 
 --------------------------------------------------------------------------------
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 1.32s
-Tempo total PuLP: 8.25s
-Economia de tempo: 6.93s (84.0%)
+Tempo total PEAB: 1.07s
+Tempo total PuLP: 7.76s
+Economia de tempo: 6.69s (86.2%)
 
-Para 171 instâncias, economia observada: 6.9s
+Para 171 instâncias, economia observada: 6.7s
 
 ================================================================================
 6. CONCLUSÃO
 ================================================================================
 
 ✓ PEAB demonstra ser uma heurística BOA:
-   - Qualidade aceitável: 99.4% de otimalidade
+   - Qualidade aceitável: 100.0% de otimalidade
    - Velocidade adequada: 1x mais rápido
    - Adequado para maioria dos casos
 

@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: spambase_Não Spam_vs_Spam
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 1381
+  - Número de Features do Modelo: 57
+  - Acurácia do Modelo (teste, sem rejeição): 62.27%
+  - Thresholds de Rejeição (Score): t+ = 0.3021, t- = -0.4747
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 632.1381 segundos
+  - Tempo Médio por Instância (Geral): 0.4577 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 68.14% (941 de 1381 instâncias)
+  - Acurácia com Opção de Rejeição (nas 440 instâncias aceitas): 95.00%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (5 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 23.00 ± 13.40  (Min: 7, Max: 45)
+  - Classe Negativa (Aceitas): (435 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.09 ± 0.29  (Min: 1, Max: 2)
+  - Classe REJEITADA: (941 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.66 ± 7.09  (Min: 1, Max: 56)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - word_freq_you: 889 vezes
+    - word_freq_your: 786 vezes
+    - word_freq_re: 166 vezes
+    - word_freq_mail: 106 vezes
+    - word_freq_hp: 90 vezes
+    - capital_run_length_average: 85 vezes
+    - word_freq_will: 83 vezes
+    - word_freq_lab: 79 vezes
+    - word_freq_our: 70 vezes
+    - capital_run_length_total: 65 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 6.6352 segundos
+  - Tempo Médio (Negativas Aceitas): 0.1286 segundos
+  - Tempo Médio (Rejeitadas): 0.5771 segundos

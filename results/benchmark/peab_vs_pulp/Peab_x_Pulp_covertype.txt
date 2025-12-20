@@ -1,0 +1,105 @@
+================================================================================
+RELATÓRIO COMPARATIVO: PEAB vs PuLP
+Dataset: COVERTYPE
+================================================================================
+
+--------------------------------------------------------------------------------
+0. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: covertype
+Instâncias comparadas: 44563
+Features por instância: 54
+Thresholds: t+ = 2.8371, t- = -2.4371
+Zona de rejeição: 5.2742
+Rejection cost: 0.1
+
+Hiperparâmetros:
+{
+  "norm_params": {
+    "max_abs": 1.0
+  },
+  "penalty": "l2",
+  "C": 0.01,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+1. RESUMO GERAL DE DESEMPENHO
+--------------------------------------------------------------------------------
+
+Métrica                         Valor   
+    Taxa de Otimalidade (GAP=0)    5.72%
+GAP Médio (features excedentes)   2.8182
+                     GAP Máximo        8
+                     GAP Mínimo       -1
+           Desvio Padrão do GAP   1.5628
+           Tempo Médio PuLP (s) 0.052758
+
+INTERPRETAÇÃO:
+⚠ ATENÇÃO: PEAB tem taxa de otimalidade <80%. Revisar heurística.
+- Em média, PEAB usa 2.82 features a mais que o ótimo.
+- PEAB é 2x mais rápido que PuLP.
+
+--------------------------------------------------------------------------------
+2. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+Onde o PEAB é perfeito e onde encontra dificuldades.
+
+     Tipo   Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
+ POSITIVA   470  98.09%   -0.0191     18.95     18.97   0.00695s   0.05123s
+ NEGATIVA   273  95.24%   -0.0476     32.02     32.07   0.00733s   0.05181s
+REJEITADA 43820   4.17%    2.8665     25.11     22.25   0.02483s   0.05278s
+
+--------------------------------------------------------------------------------
+3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
+--------------------------------------------------------------------------------
+Instâncias onde PEAB ficou mais longe da solução ótima.
+
+indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
+116929     REJEITADA            31            23    8
+302657     REJEITADA            29            21    8
+356370     REJEITADA            28            20    8
+357610     REJEITADA            28            20    8
+397204     REJEITADA            28            20    8
+399047     REJEITADA            28            20    8
+405743     REJEITADA            28            20    8
+405744     REJEITADA            28            20    8
+412353     REJEITADA            28            20    8
+414942     REJEITADA            28            20    8
+
+--------------------------------------------------------------------------------
+4. DISTRIBUIÇÃO DE GAPS
+--------------------------------------------------------------------------------
+
+GAP = 0 (Ótimo): 2547 instâncias (5.7%)
+GAP = 1: 6905 instâncias (15.5%)
+GAP = 2: 10133 instâncias (22.7%)
+GAP = 3: 10742 instâncias (24.1%)
+GAP = 4: 7441 instâncias (16.7%)
+GAP = 5: 4523 instâncias (10.1%)
+GAP = 6: 1785 instâncias (4.0%)
+GAP = 7: 418 instâncias (0.9%)
+GAP = 8: 27 instâncias (0.1%)
+
+--------------------------------------------------------------------------------
+5. ANÁLISE DE TEMPO DE EXECUÇÃO
+--------------------------------------------------------------------------------
+
+Tempo total PEAB: 1096.39s
+Tempo total PuLP: 2351.07s
+Economia de tempo: 1254.68s (53.4%)
+
+Para 44563 instâncias, economia observada: 1254.7s
+
+================================================================================
+6. CONCLUSÃO
+================================================================================
+
+⚠ PEAB precisa de melhorias:
+   - Qualidade subótima: 5.7% de otimalidade
+   - Revisar heurística para este dataset
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

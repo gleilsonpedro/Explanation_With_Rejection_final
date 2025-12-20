@@ -7,64 +7,64 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.00010236186857182084,
-    "t_minus": -0.5948952458253887,
-    "rejection_zone_width": 0.5949976076939605
+    "t_plus": 0.01,
+    "t_minus": -0.3482220816338796,
+    "rejection_zone_width": 0.3582220816338796
   },
   "performance": {
     "accuracy_without_rejection": 61.40776699029126,
-    "accuracy_with_rejection": 100.0,
-    "rejection_rate": 93.93203883495146,
+    "accuracy_with_rejection": 94.73684210526315,
+    "rejection_rate": 58.495145631067956,
     "num_test_instances": 412,
-    "num_rejected": 387,
-    "num_accepted": 25
+    "num_rejected": 241,
+    "num_accepted": 171
   },
   "explanation_stats": {
     "positive": {
-      "count": 24,
+      "count": 21,
       "min_length": 4,
       "mean_length": 4.0,
       "max_length": 4,
       "std_length": 0.0
     },
     "negative": {
-      "count": 1,
+      "count": 150,
       "min_length": 1,
       "mean_length": 1.0,
       "max_length": 1,
       "std_length": 0.0
     },
     "rejected": {
-      "count": 387,
+      "count": 241,
       "min_length": 1,
-      "mean_length": 1.1291989664082687,
+      "mean_length": 1.045643153526971,
       "max_length": 4,
-      "std_length": 0.39223750807125746
+      "std_length": 0.3438730183419198
     }
   },
   "computation_time": {
-    "total": 10.102471900288947,
-    "mean_per_instance": 0.024520562864778998,
-    "positive": 0.0955588041615556,
-    "negative": 0.019698299991432577,
-    "rejected": 0.020127551163876434
+    "total": 35.35436989960726,
+    "mean_per_instance": 0.08581157742623122,
+    "positive": 0.7265412809626598,
+    "negative": 0.039390811328000076,
+    "rejected": 0.058872951453076326
   },
   "top_features": [
     {
       "feature": "skewness",
-      "count": 294
+      "count": 220
     },
     {
       "feature": "variance",
-      "count": 105
-    },
-    {
-      "feature": "entropy",
-      "count": 69
+      "count": 153
     },
     {
       "feature": "curtosis",
-      "count": 66
+      "count": 85
+    },
+    {
+      "feature": "entropy",
+      "count": 28
     }
   ],
   "model": {

@@ -1,0 +1,35 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: banknote_Autêntica_vs_Falsificada
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 412
+  - Número de Features do Modelo: 4
+  - Acurácia do Modelo (teste, sem rejeição): 61.41%
+  - Thresholds de Rejeição (Score): t+ = 0.0100, t- = -0.3482
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 35.3544 segundos
+  - Tempo Médio por Instância (Geral): 0.0858 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 58.50% (241 de 412 instâncias)
+  - Acurácia com Opção de Rejeição (nas 171 instâncias aceitas): 94.74%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (21 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 4.00 ± 0.00  (Min: 4, Max: 4)
+  - Classe Negativa (Aceitas): (150 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.00 ± 0.00  (Min: 1, Max: 1)
+  - Classe REJEITADA: (241 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 1.05 ± 0.34  (Min: 1, Max: 4)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - skewness: 220 vezes
+    - variance: 153 vezes
+    - curtosis: 85 vezes
+    - entropy: 28 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 0.7265 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0394 segundos
+  - Tempo Médio (Rejeitadas): 0.0589 segundos

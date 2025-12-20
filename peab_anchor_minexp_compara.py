@@ -72,13 +72,49 @@ def load_json_results(method: str) -> Dict:
 
 
 def extract_data_for_comparison() -> pd.DataFrame:
-    """Extrai dados dos JSONs e organiza em DataFrame para análise."""
+    """Extrai dados dos JSONs e organiza em DataFrame para análise.
+    FILTRO: Apenas datasets COMUNS aos 3 métodos (PEAB, Anchor, MinExp).
+    """
+    # Carregar todos os resultados
+    peab_results = load_json_results('PEAB')
+    anchor_results = load_json_results('Anchor')
+    minexp_results = load_json_results('MinExp')
+    
+    # Identificar datasets comuns aos 3 métodos
+    peab_datasets = set(peab_results.keys())
+    anchor_datasets = set(anchor_results.keys())
+    minexp_datasets = set(minexp_results.keys())
+    
+    common_datasets = peab_datasets & anchor_datasets & minexp_datasets
+    excluded_datasets = (peab_datasets | anchor_datasets | minexp_datasets) - common_datasets
+    
+    print(f"\n[*] FILTRAGEM DE DATASETS:")
+    print(f"  PEAB:   {len(peab_datasets)} datasets")
+    print(f"  Anchor: {len(anchor_datasets)} datasets")
+    print(f"  MinExp: {len(minexp_datasets)} datasets")
+    print(f"  [OK] COMUNS (usados): {len(common_datasets)} datasets")
+    print(f"  [X] EXCLUIDOS: {len(excluded_datasets)} datasets")
+    
+    if excluded_datasets:
+        print(f"\n  Datasets excluídos da comparação:")
+        for ds in sorted(excluded_datasets):
+            methods_with_ds = []
+            if ds in peab_datasets: methods_with_ds.append('PEAB')
+            if ds in anchor_datasets: methods_with_ds.append('Anchor')
+            if ds in minexp_datasets: methods_with_ds.append('MinExp')
+            print(f"    • {ds}: apenas em {', '.join(methods_with_ds)}")
+    
+    # Extrair dados APENAS dos datasets comuns
     data = []
     
     for method in ['PEAB', 'Anchor', 'MinExp']:
         results = load_json_results(method)
         
         for dataset_name, dataset_data in results.items():
+            # FILTRO: Apenas datasets comuns
+            if dataset_name not in common_datasets:
+                continue
+                
             row = {
                 'Dataset': dataset_name,
                 'Método': method,
@@ -124,7 +160,7 @@ def extract_data_for_comparison() -> pd.DataFrame:
             data.append(row)
     
     df = pd.DataFrame(data)
-    print(f"\n✅ Dados extraídos: {len(df)} registros ({len(df['Dataset'].unique())} datasets × 3 métodos)")
+    print(f"\n[OK] Dados extraidos: {len(df)} registros ({len(df['Dataset'].unique())} datasets COMUNS x 3 metodos)")
     return df
 
 
@@ -169,7 +205,7 @@ def calculate_speedups(df: pd.DataFrame) -> pd.DataFrame:
 
 def plot_computational_efficiency(df: pd.DataFrame):
     """Plot 1: Comparação de tempo computacional (barras agrupadas) - ESCALA LOG."""
-    print("\n📊 Gerando Plot 1: Eficiência Computacional...")
+    print("\n[*] Gerando Plot 1: Eficiencia Computacional...")
     
     # Filtrar apenas datasets com dados completos
     datasets_completos = []
@@ -225,12 +261,12 @@ def plot_computational_efficiency(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot1_computational_efficiency.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot1_computational_efficiency.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot1_computational_efficiency.png'}")
 
 
 def plot_speedup_comparison(speedup_df: pd.DataFrame):
     """Plot 2: Speedup do PEAB (barras horizontais) - MELHORADO."""
-    print("\n📊 Gerando Plot 2: Speedup do PEAB...")
+    print("\n[*] Gerando Plot 2: Speedup do PEAB...")
     
     if speedup_df.empty:
         print("   ⚠️  Sem dados de speedup disponíveis. Pulando plot...")
@@ -274,12 +310,12 @@ def plot_speedup_comparison(speedup_df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot2_speedup_comparison.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot2_speedup_comparison.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot2_speedup_comparison.png'}")
 
 
 def plot_explanation_size_distribution(df: pd.DataFrame):
     """Plot 3: Tamanho das explicações (box plot por classe)."""
-    print("\n📊 Gerando Plot 3: Distribuição do Tamanho das Explicações...")
+    print("\n[*] Gerando Plot 3: Distribuicao do Tamanho das Explicacoes...")
     
     # Filtrar apenas datasets com dados completos
     datasets_completos = []
@@ -345,12 +381,12 @@ def plot_explanation_size_distribution(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot3_explanation_size_distribution.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot3_explanation_size_distribution.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot3_explanation_size_distribution.png'}")
 
 
 def plot_rejection_impact(df: pd.DataFrame):
     """Plot 4: Impacto da rejeição na acurácia (scatter plot)."""
-    print("\n📊 Gerando Plot 4: Impacto da Rejeição na Acurácia...")
+    print("\n[*] Gerando Plot 4: Impacto da Rejeicao na Acuracia...")
     
     fig, ax = plt.subplots(figsize=(8, 8))  # Reduzido de 11x11
     
@@ -397,18 +433,18 @@ def plot_rejection_impact(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot4_rejection_impact.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot4_rejection_impact.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot4_rejection_impact.png'}")
 
 
 def plot_feature_importance_heatmap():
     """Plot 5: REMOVIDO - Heatmap não interessante para dissertação."""
-    print("\n📊 Plot 5 (Heatmap de Features): REMOVIDO conforme solicitado")
+    print("\n[*] Plot 5 (Heatmap de Features): REMOVIDO conforme solicitado")
     return  # Removido: não gerado mais
 
 
 def plot_time_vs_size_tradeoff(df: pd.DataFrame):
     """Plot 6: Trade-off entre tempo e tamanho (scatter) - POR DATASET."""
-    print("\n📊 Gerando Plot 6: Trade-off Tempo vs Tamanho...")
+    print("\n[*] Gerando Plot 6: Trade-off Tempo vs Tamanho...")
     
     fig, ax = plt.subplots(figsize=(10, 7))
     
@@ -455,12 +491,12 @@ def plot_time_vs_size_tradeoff(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot6_time_vs_size_tradeoff.png'}")
 
 
 def plot_rejection_thresholds(df: pd.DataFrame):
     """Plot 7: Visualização dos thresholds de rejeição - CORRIGIDO."""
-    print("\n📊 Gerando Plot 7: Thresholds de Rejeição...")
+    print("\n[*] Gerando Plot 7: Thresholds de Rejeicao...")
     
     # Pegar apenas PEAB (thresholds são IGUAIS para todos os 3 métodos!)
     df_peab = df[df['Método'] == 'PEAB'].copy()
@@ -523,12 +559,12 @@ def plot_rejection_thresholds(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot7_rejection_thresholds.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot7_rejection_thresholds.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot7_rejection_thresholds.png'}")
 
 
 def plot_class_distribution(df: pd.DataFrame):
     """Plot 8: Distribuição de instâncias por classe."""
-    print("\n📊 Gerando Plot 8: Distribuição por Classe...")
+    print("\n[*] Gerando Plot 8: Distribuicao por Classe...")
     
     # Pegar apenas PEAB (distribuição é igual para todos)
     df_peab = df[df['Método'] == 'PEAB'].copy()
@@ -573,7 +609,7 @@ def plot_class_distribution(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS_DIR / 'plot8_class_distribution.png', dpi=150, bbox_inches='tight')  # DPI 150
     plt.close()
-    print(f"   ✅ Salvo: {PLOTS_DIR / 'plot8_class_distribution.png'}")
+    print(f"   [OK] Salvo: {PLOTS_DIR / 'plot8_class_distribution.png'}")
 
 
 # ==============================================================================
@@ -640,8 +676,8 @@ def generate_main_comparison_table(df: pd.DataFrame):
         f.write("}\n")
         f.write("\\end{table}\n")
     
-    print(f"   ✅ Salvo: {TABLES_DIR / 'table1_main_comparison.csv'}")
-    print(f"   ✅ Salvo: {TABLES_DIR / 'table1_main_comparison.tex'}")
+    print(f"   [OK] Salvo: {TABLES_DIR / 'table1_main_comparison.csv'}")
+    print(f"   [OK] Salvo: {TABLES_DIR / 'table1_main_comparison.tex'}")
 
 
 def generate_speedup_table(speedup_df: pd.DataFrame):
@@ -822,12 +858,15 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
     
     # Datasets analisados
     datasets = df['Dataset'].unique()
-    report.append(f"DATASETS ANALISADOS: {len(datasets)}")
+    report.append(f"DATASETS ANALISADOS: {len(datasets)} (apenas comuns aos 3 métodos)")
     for dataset in datasets:
         dataset_rows = df[df['Dataset'] == dataset]
         if not dataset_rows.empty:
             n_inst = dataset_rows['Nº Instâncias Teste'].iloc[0]
             report.append(f"  • {dataset}: {int(n_inst)} instâncias de teste")
+    report.append("")
+    report.append("⚠️  NOTA: Datasets presentes em apenas 1 ou 2 métodos foram EXCLUÍDOS")
+    report.append("    para garantir comparação justa (ex: mnist_3_vs_8, newsgroups).")
     report.append("")
     
     # Performance computacional
@@ -895,7 +934,7 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
         report.append("")
     
     # Tamanho das explicações
-    report.append("TAMANHO DAS EXPLICAÇÕES (média geral):")
+    report.append("TAMANHO DAS EXPLICAÇÕES (média entre datasets comuns):")
     report.append("-" * 80)
     for method in ['PEAB', 'Anchor', 'MinExp']:
         df_method = df[df['Método'] == method]
@@ -943,18 +982,29 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
         else:
             report.append(f"  ✅ PEAB é em média {avg_speedup_minexp:.2f}x mais rápido que MinExp")
     
-    # Calcular médias reais de tamanho de explicações
+    # Calcular médias reais de tamanho de explicações (apenas datasets comuns)
     avg_pos_peab = df[df['Método'] == 'PEAB']['Positivos Média'].mean()
     avg_pos_anchor = df[df['Método'] == 'Anchor']['Positivos Média'].mean()
     avg_pos_minexp = df[df['Método'] == 'MinExp']['Positivos Média'].mean()
     
-    report.append(f"  ✅ Anchor gera explicações mais concisas (média: {avg_pos_anchor:.1f} features)")
-    report.append(f"  ✅ PEAB gera explicações balanceadas (média: {avg_pos_peab:.1f} features)")
-    report.append(f"  ✅ MinExp gera explicações mais completas (média: {avg_pos_minexp:.1f} features)")
+    # Ordenar por tamanho para conclusão correta
+    sizes = [
+        ('Anchor', avg_pos_anchor),
+        ('MinExp', avg_pos_minexp),
+        ('PEAB', avg_pos_peab)
+    ]
+    sizes_sorted = sorted(sizes, key=lambda x: x[1])
+    
+    report.append(f"  ✅ {sizes_sorted[0][0]} gera explicações mais concisas (média: {sizes_sorted[0][1]:.1f} features)")
+    if len(sizes_sorted) > 1:
+        report.append(f"  ✅ {sizes_sorted[1][0]} gera explicações intermediárias (média: {sizes_sorted[1][1]:.1f} features)")
+    if len(sizes_sorted) > 2:
+        report.append(f"  ✅ {sizes_sorted[2][0]} gera explicações mais completas (média: {sizes_sorted[2][1]:.1f} features)")
     
     if not df_peab.empty:
         report.append(f"  ✅ Rejeição melhora acurácia em média {avg_ganho:.1f}%")
     report.append(f"  ✅ Todos os métodos usam pipeline idêntico (comparação justa)")
+    report.append(f"  ⚠️  Comparação baseada APENAS em datasets comuns aos 3 métodos")
     report.append("")
     
     report.append("=" * 80)
@@ -976,14 +1026,14 @@ def generate_summary_report(df: pd.DataFrame, speedup_df: pd.DataFrame):
 
 def main():
     """Função principal."""
-    print("\n🔄 Carregando dados dos JSONs...")
+    print("\n[*] Carregando dados dos JSONs...")
     
     # Extrair dados
     df = extract_data_for_comparison()
     speedup_df = calculate_speedups(df)
     
     if df.empty:
-        print("\n❌ Nenhum dado encontrado nos JSONs! Verifique se os arquivos existem.")
+        print("\n[!] Nenhum dado encontrado nos JSONs! Verifique se os arquivos existem.")
         return
     
     print("\n" + "="*80)
@@ -1014,10 +1064,10 @@ def main():
     generate_summary_report(df, speedup_df)
     
     print("\n" + "="*80)
-    print("✅ ANÁLISE COMPLETA!")
+    print("[OK] ANALISE COMPLETA!")
     print("="*80)
-    print(f"\n📁 Resultados salvos em: {OUTPUT_DIR}")
-    print(f"   📊 Plots: {PLOTS_DIR}")
+    print(f"\nResultados salvos em: {OUTPUT_DIR}")
+    print(f"   Plots: {PLOTS_DIR}")
     print(f"   📋 Tabelas: {TABLES_DIR}")
     print(f"   📄 Relatório: {OUTPUT_DIR / 'RELATORIO_RESUMIDO.txt'}")
     print("\n🎓 Pronto para usar na dissertação!\n")

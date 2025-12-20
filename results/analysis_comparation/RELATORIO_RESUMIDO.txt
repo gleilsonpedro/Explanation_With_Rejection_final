@@ -1,0 +1,72 @@
+================================================================================
+RELATÓRIO DE ANÁLISE COMPARATIVA: PEAB vs Anchor vs MinExp
+================================================================================
+
+DATASETS ANALISADOS: 9 (apenas comuns aos 3 métodos)
+  • breast_cancer: 171 instâncias de teste
+  • pima_indians_diabetes: 231 instâncias de teste
+  • sonar: 63 instâncias de teste
+  • vertebral_column: 93 instâncias de teste
+  • wine: 54 instâncias de teste
+  • banknote: 412 instâncias de teste
+  • heart_disease: 90 instâncias de teste
+  • wine_quality: 480 instâncias de teste
+  • spambase: 1381 instâncias de teste
+
+⚠️  NOTA: Datasets presentes em apenas 1 ou 2 métodos foram EXCLUÍDOS
+    para garantir comparação justa (ex: mnist_3_vs_8, newsgroups).
+
+PERFORMANCE COMPUTACIONAL:
+--------------------------------------------------------------------------------
+  PEAB      : 9.1ms por instância (média)
+  Anchor    : 348.6ms por instância (média)
+  MinExp    : 1.037s por instância (média)
+
+SPEEDUPS DO PEAB:
+--------------------------------------------------------------------------------
+  breast_cancer            : 145.1x vs Anchor, 195.0x vs MinExp
+  pima_indians_diabetes    : 7.68x vs Anchor, 40.85x vs MinExp
+  sonar                    : 85.25x vs Anchor, 202.0x vs MinExp
+  vertebral_column         : 7.92x vs Anchor, 38.57x vs MinExp
+  wine                     : 5.02x vs Anchor, 57.37x vs MinExp
+  banknote                 : 3.16x vs Anchor, 16.60x vs MinExp
+  heart_disease            : 14.05x vs Anchor, 69.54x vs MinExp
+  wine_quality             : 7.23x vs Anchor, 79.27x vs MinExp
+  spambase                 : 29.88x vs Anchor, 168.0x vs MinExp
+
+  MÉDIA GERAL: 33.92x vs Anchor, 96.36x vs MinExp
+
+TAMANHO DAS EXPLICAÇÕES (média entre datasets comuns):
+--------------------------------------------------------------------------------
+  PEAB      : Pos=11.6, Neg=11.7, Rej=16.7 features
+  Anchor    : Pos=2.3, Neg=2.4, Rej=2.1 features
+  MinExp    : Pos=15.4, Neg=15.1, Rej=19.9 features
+
+IMPACTO DA REJEIÇÃO:
+--------------------------------------------------------------------------------
+  breast_cancer            : +5.59% ganho de acurácia (rejeitando 12.9%)
+  pima_indians_diabetes    : +7.36% ganho de acurácia (rejeitando 19.0%)
+  sonar                    : +26.75% ganho de acurácia (rejeitando 68.3%)
+  vertebral_column         : +10.22% ganho de acurácia (rejeitando 28.0%)
+  wine                     : +33.33% ganho de acurácia (rejeitando 50.0%)
+  banknote                 : +37.81% ganho de acurácia (rejeitando 68.9%)
+  heart_disease            : +5.23% ganho de acurácia (rejeitando 15.6%)
+  wine_quality             : +0.85% ganho de acurácia (rejeitando 3.1%)
+  spambase                 : +30.27% ganho de acurácia (rejeitando 51.4%)
+
+  MÉDIA GERAL: +17.49% ganho com 35.2% de rejeição
+
+PRINCIPAIS CONCLUSÕES:
+--------------------------------------------------------------------------------
+  ✅ PEAB é em média 33.92x mais rápido que Anchor
+  ✅ PEAB é em média 96.36x mais rápido que MinExp
+  ✅ Anchor gera explicações mais concisas (média: 2.3 features)
+  ✅ PEAB gera explicações intermediárias (média: 11.6 features)
+  ✅ MinExp gera explicações mais completas (média: 15.4 features)
+  ✅ Rejeição melhora acurácia em média 17.5%
+  ✅ Todos os métodos usam pipeline idêntico (comparação justa)
+  ⚠️  Comparação baseada APENAS em datasets comuns aos 3 métodos
+
+================================================================================
+Análise gerada em: results\analysis_comparation
+================================================================================

@@ -1,0 +1,162 @@
+{
+  "config": {
+    "dataset_name": "heart_disease",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.18488660156881243,
+    "t_minus": -0.10928101492574996,
+    "rejection_zone_width": 0.29416761649456236
+  },
+  "performance": {
+    "accuracy_without_rejection": 85.55555555555556,
+    "accuracy_with_rejection": 96.15384615384616,
+    "rejection_rate": 42.22222222222222,
+    "num_test_instances": 90,
+    "num_rejected": 38,
+    "num_accepted": 52
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 23,
+      "min_length": 5,
+      "mean_length": 7.0,
+      "max_length": 11,
+      "std_length": 1.5603789952109879
+    },
+    "negative": {
+      "count": 29,
+      "min_length": 6,
+      "mean_length": 7.724137931034483,
+      "max_length": 11,
+      "std_length": 1.2288641159452043
+    },
+    "rejected": {
+      "count": 38,
+      "min_length": 5,
+      "mean_length": 6.605263157894737,
+      "max_length": 9,
+      "std_length": 1.5481648505350238
+    }
+  },
+  "computation_time": {
+    "total": 56.75597009994082,
+    "mean_per_instance": 0.6306218899993431,
+    "positive": 0.4870099565216707,
+    "negative": 0.46759347241484267,
+    "rejected": 0.8419613263134744
+  },
+  "top_features": [
+    {
+      "feature": "thalach",
+      "count": 90
+    },
+    {
+      "feature": "thal",
+      "count": 87
+    },
+    {
+      "feature": "slope",
+      "count": 80
+    },
+    {
+      "feature": "ca",
+      "count": 80
+    },
+    {
+      "feature": "exang",
+      "count": 74
+    },
+    {
+      "feature": "oldpeak",
+      "count": 61
+    },
+    {
+      "feature": "chol",
+      "count": 37
+    },
+    {
+      "feature": "restecg",
+      "count": 37
+    },
+    {
+      "feature": "fbs",
+      "count": 32
+    },
+    {
+      "feature": "cp",
+      "count": 24
+    },
+    {
+      "feature": "trestbps",
+      "count": 19
+    },
+    {
+      "feature": "sex",
+      "count": 13
+    },
+    {
+      "feature": "age",
+      "count": 2
+    }
+  ],
+  "model": {
+    "type": "LogisticRegression",
+    "num_features": 13,
+    "class_names": [
+      "Sem Doença",
+      "Com Doença"
+    ],
+    "coefs": [
+      -0.008198470603293774,
+      0.03393936432813344,
+      0.03941808751552918,
+      -0.01778696602936599,
+      -0.021504093347770557,
+      -0.02321016366516309,
+      0.03725542009866997,
+      -0.13442449399945533,
+      0.13393307191072992,
+      0.053608349186277125,
+      0.06053094124847007,
+      0.09675301289737374,
+      0.17850840100297855
+    ],
+    "intercept": -0.10647879276179546,
+    "scaler_params": {
+      "min": [
+        -0.7906976744186046,
+        0.0,
+        -0.3333333333333333,
+        -0.9591836734693877,
+        -0.2876712328767123,
+        0.0,
+        0.0,
+        -0.8571428571428572,
+        0.0,
+        0.0,
+        -0.5,
+        0.0,
+        -0.75
+      ],
+      "scale": [
+        0.023255813953488372,
+        1.0,
+        0.3333333333333333,
+        0.01020408163265306,
+        0.00228310502283105,
+        1.0,
+        0.5,
+        0.009523809523809525,
+        1.0,
+        0.16129032258064516,
+        0.5,
+        0.3333333333333333,
+        0.25
+      ]
+    }
+  }
+}

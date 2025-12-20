@@ -1,0 +1,86 @@
+================================================================================
+RELATÓRIO PULP - RCV1
+Solver de Otimização Inteira (Ground Truth)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+Dataset: rcv1
+Instâncias processadas: 75
+Thresholds: t+ = 0.0100, t- = -1.6194
+Zona de rejeição: 1.6294
+Rejection cost: 0.24
+Hiperparâmetros:
+{
+  "penalty": "l2",
+  "C": 10.0,
+  "solver": "liblinear",
+  "max_iter": 1000
+}
+
+--------------------------------------------------------------------------------
+2. MÉTRICAS DO MODELO
+--------------------------------------------------------------------------------
+Acurácia (sem rejeição): 92.00%
+Acurácia (com rejeição): 91.04%
+Taxa de rejeição: 10.67%
+Risco empírico: 0.1152
+
+--------------------------------------------------------------------------------
+3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
+--------------------------------------------------------------------------------
+Tamanho médio: 2234.15 features
+Tempo total: 95.20s
+Tempo médio/instância: 1.2693s
+
+--------------------------------------------------------------------------------
+4. DETALHAMENTO POR TIPO DE PREDIÇÃO
+--------------------------------------------------------------------------------
+
+POSITIVA:
+  - Instâncias: 55 (73.3%)
+  - Tamanho médio: 2132.35 features
+  - Tempo médio: 1.2573s
+
+NEGATIVA:
+  - Instâncias: 12 (16.0%)
+  - Tamanho médio: 1613.33 features
+  - Tempo médio: 1.3125s
+
+REJEITADA:
+  - Instâncias: 8 (10.7%)
+  - Tamanho médio: 3865.25 features
+  - Tempo médio: 1.2871s
+
+--------------------------------------------------------------------------------
+5. TOP 10 MAIORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância      280 (REJEITADA ): 3876 features - 1.2857s
+ 2. Instância     1513 (REJEITADA ): 3873 features - 1.3448s
+ 3. Instância     3798 (REJEITADA ): 3866 features - 1.2605s
+ 4. Instância     3738 (REJEITADA ): 3865 features - 1.2826s
+ 5. Instância      651 (REJEITADA ): 3864 features - 1.3488s
+ 6. Instância     1633 (REJEITADA ): 3860 features - 1.2854s
+ 7. Instância      592 (REJEITADA ): 3860 features - 1.2390s
+ 8. Instância     4103 (REJEITADA ): 3858 features - 1.2500s
+ 9. Instância     4436 (POSITIVA  ): 2309 features - 1.2816s
+10. Instância      590 (POSITIVA  ): 2270 features - 1.2190s
+
+--------------------------------------------------------------------------------
+6. TOP 10 MENORES EXPLICAÇÕES
+--------------------------------------------------------------------------------
+ 1. Instância     4001 (NEGATIVA  ): 1498 features - 1.2130s
+ 2. Instância     2525 (NEGATIVA  ): 1552 features - 1.2300s
+ 3. Instância      304 (NEGATIVA  ): 1574 features - 1.2619s
+ 4. Instância     3811 (NEGATIVA  ): 1588 features - 1.2899s
+ 5. Instância     2105 (NEGATIVA  ): 1603 features - 1.2579s
+ 6. Instância     4861 (NEGATIVA  ): 1605 features - 1.2540s
+ 7. Instância     1882 (NEGATIVA  ): 1624 features - 1.3514s
+ 8. Instância     1700 (NEGATIVA  ): 1626 features - 1.2854s
+ 9. Instância     2555 (NEGATIVA  ): 1630 features - 1.8473s
+10. Instância     2790 (NEGATIVA  ): 1642 features - 1.2373s
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

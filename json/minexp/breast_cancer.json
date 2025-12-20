@@ -7,128 +7,128 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.09965766636200546,
-    "t_minus": -0.0018491951483334823,
-    "rejection_zone_width": 0.10150686151033894
+    "t_plus": 0.9655980814533653,
+    "t_minus": -0.01,
+    "rejection_zone_width": 0.9755980814533654
   },
   "performance": {
-    "accuracy_without_rejection": 92.39766081871345,
-    "accuracy_with_rejection": 92.89940828402366,
-    "rejection_rate": 1.1695906432748537,
+    "accuracy_without_rejection": 93.56725146198829,
+    "accuracy_with_rejection": 98.54014598540147,
+    "rejection_rate": 19.883040935672515,
     "num_test_instances": 171,
-    "num_rejected": 2,
-    "num_accepted": 169
+    "num_rejected": 34,
+    "num_accepted": 137
   },
   "explanation_stats": {
     "positive": {
-      "count": 116,
-      "min_length": 14,
-      "mean_length": 21.68103448275862,
-      "max_length": 28,
-      "std_length": 2.931985139948684
+      "count": 84,
+      "min_length": 1,
+      "mean_length": 1.8214285714285714,
+      "max_length": 2,
+      "std_length": 0.3829930462415574
     },
     "negative": {
       "count": 53,
-      "min_length": 15,
-      "mean_length": 21.830188679245282,
-      "max_length": 28,
-      "std_length": 3.1487394845808745
+      "min_length": 1,
+      "mean_length": 1.490566037735849,
+      "max_length": 2,
+      "std_length": 0.49991099243365167
     },
     "rejected": {
-      "count": 2,
-      "min_length": 28,
-      "mean_length": 28.0,
-      "max_length": 28,
+      "count": 34,
+      "min_length": 2,
+      "mean_length": 2.0,
+      "max_length": 2,
       "std_length": 0.0
     }
   },
   "computation_time": {
-    "total": 189.40053499996472,
-    "mean_per_instance": 1.1076054678360483,
-    "positive": 1.1049741594826374,
-    "negative": 1.1052549264145541,
-    "rejected": 1.3225107000034768
+    "total": 116.5628642000955,
+    "mean_per_instance": 0.6816541766087463,
+    "positive": 0.5935850488105121,
+    "negative": 0.5977146396224546,
+    "rejected": 1.0300836529418387
   },
   "top_features": [
-    {
-      "feature": "worst radius",
-      "count": 171
-    },
-    {
-      "feature": "worst perimeter",
-      "count": 171
-    },
-    {
-      "feature": "worst area",
-      "count": 171
-    },
-    {
-      "feature": "worst compactness",
-      "count": 171
-    },
-    {
-      "feature": "worst concavity",
-      "count": 171
-    },
     {
       "feature": "worst concave points",
       "count": 171
     },
     {
-      "feature": "worst texture",
-      "count": 170
-    },
-    {
-      "feature": "area error",
-      "count": 168
-    },
-    {
-      "feature": "worst smoothness",
-      "count": 165
-    },
-    {
-      "feature": "perimeter error",
-      "count": 164
-    },
-    {
-      "feature": "worst symmetry",
-      "count": 164
-    },
-    {
-      "feature": "radius error",
-      "count": 160
-    },
-    {
-      "feature": "symmetry error",
-      "count": 160
-    },
-    {
-      "feature": "mean concave points",
-      "count": 158
-    },
-    {
-      "feature": "worst fractal dimension",
-      "count": 154
-    },
-    {
-      "feature": "fractal dimension error",
-      "count": 145
-    },
-    {
-      "feature": "mean concavity",
-      "count": 144
-    },
-    {
-      "feature": "texture error",
-      "count": 144
-    },
-    {
-      "feature": "mean fractal dimension",
+      "feature": "worst radius",
       "count": 129
     },
     {
+      "feature": "mean radius",
+      "count": 0
+    },
+    {
+      "feature": "mean texture",
+      "count": 0
+    },
+    {
+      "feature": "mean perimeter",
+      "count": 0
+    },
+    {
+      "feature": "mean area",
+      "count": 0
+    },
+    {
+      "feature": "mean smoothness",
+      "count": 0
+    },
+    {
+      "feature": "mean compactness",
+      "count": 0
+    },
+    {
+      "feature": "mean concavity",
+      "count": 0
+    },
+    {
+      "feature": "mean concave points",
+      "count": 0
+    },
+    {
+      "feature": "mean symmetry",
+      "count": 0
+    },
+    {
+      "feature": "mean fractal dimension",
+      "count": 0
+    },
+    {
+      "feature": "radius error",
+      "count": 0
+    },
+    {
+      "feature": "texture error",
+      "count": 0
+    },
+    {
+      "feature": "perimeter error",
+      "count": 0
+    },
+    {
+      "feature": "area error",
+      "count": 0
+    },
+    {
+      "feature": "smoothness error",
+      "count": 0
+    },
+    {
+      "feature": "compactness error",
+      "count": 0
+    },
+    {
+      "feature": "concavity error",
+      "count": 0
+    },
+    {
       "feature": "concave points error",
-      "count": 127
+      "count": 0
     }
   ],
   "model": {
@@ -139,38 +139,38 @@
       "benign"
     ],
     "coefs": [
-      -0.2882034865402446,
-      -0.015786457339988742,
-      -0.32108138898536237,
-      -0.4451597992659865,
-      0.14587118262480558,
-      -0.28934609611103584,
-      -0.6297967161597106,
-      -0.7745902518842529,
-      0.23044187329458435,
-      0.4668394228441466,
-      -0.42162682113263283,
-      0.4178793187654141,
-      -0.3178470659418333,
-      -0.453099519799519,
-      0.2944054828184599,
-      0.06277401155263723,
-      0.04281734221404616,
-      0.07128529953242738,
-      0.2584107025371484,
-      0.18222981550100573,
-      -0.5131493287934624,
-      -0.13367748809581168,
-      -0.5160653271712289,
-      -0.5480154750824303,
-      -0.09417563226137925,
-      -0.43141859666411064,
-      -0.570555398831281,
-      -0.8059143707175692,
-      -0.09603681392141672,
-      -0.07025269564130593
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -1.7921821759987258,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -5.5530138025283495,
+      0.0,
+      0.0
     ],
-    "intercept": 1.9142209664900742,
+    "intercept": 3.452690861046289,
     "scaler_params": {
       "min": [
         -0.37233985812576664,

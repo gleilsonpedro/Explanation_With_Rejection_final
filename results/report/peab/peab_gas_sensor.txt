@@ -1,0 +1,84 @@
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: gas_sensor
+  Instâncias de teste: 1262
+  Features por instância: 128
+  Test size: 30.00%
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
+--------------------------------------------------------------------------------
+  norm_params: {'max_abs': 1.0}
+  penalty: l2
+  C: 0.01
+  solver: liblinear
+  max_iter: 1000
+  Intercepto: -0.016767
+
+--------------------------------------------------------------------------------
+3. THRESHOLDS DE REJEIÇÃO
+--------------------------------------------------------------------------------
+  t+ (limiar superior): 0.005294
+  t- (limiar inferior): -0.010000
+  Largura da zona de rejeição: 0.015294
+
+--------------------------------------------------------------------------------
+4. DESEMPENHO DO MODELO
+--------------------------------------------------------------------------------
+  Acurácia sem rejeição: 98.73%
+  Acurácia com rejeição: 98.73%
+  Taxa de rejeição: 0.00%
+
+--------------------------------------------------------------------------------
+5. ESTATÍSTICAS DAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  POSITIVAS:
+    Quantidade: 496
+    Tamanho médio: 64.31 features
+    Desvio padrão: 4.49
+    Mínimo: 55 features
+    Máximo: 89 features
+
+  NEGATIVAS:
+    Quantidade: 766
+    Tamanho médio: 43.15 features
+    Desvio padrão: 14.36
+    Mínimo: 1 features
+    Máximo: 107 features
+
+  REJEITADAS:
+    Quantidade: 0
+    Tamanho médio: 0.00 features
+    Desvio padrão: 0.00
+    Mínimo: 0 features
+    Máximo: 0 features
+
+--------------------------------------------------------------------------------
+6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
+--------------------------------------------------------------------------------
+  Tempo total: 12.6229s
+  Tempo médio por instância: 0.010002s
+  Tempo médio POSITIVAS: 0.010343s
+  Tempo médio NEGATIVAS: 0.009708s
+  Tempo médio REJEITADAS: 0.000000s
+
+--------------------------------------------------------------------------------
+7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  feature_67: 1257 ocorrências (99.6%)
+  feature_68: 1256 ocorrências (99.5%)
+  feature_64: 1248 ocorrências (98.9%)
+  feature_66: 1248 ocorrências (98.9%)
+  feature_8: 1244 ocorrências (98.6%)
+  feature_72: 1235 ocorrências (97.9%)
+  feature_10: 1233 ocorrências (97.7%)
+  feature_74: 1217 ocorrências (96.4%)
+  feature_69: 1201 ocorrências (95.2%)
+  feature_24: 1178 ocorrências (93.3%)
+

@@ -7,88 +7,88 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.6750478881851463,
-    "t_minus": -0.036751975790247526,
-    "rejection_zone_width": 0.7117998639753937
+    "t_plus": 0.25964069778992,
+    "t_minus": -0.009734477969248539,
+    "rejection_zone_width": 0.26937517575916853
   },
   "performance": {
     "accuracy_without_rejection": 68.25396825396825,
-    "accuracy_with_rejection": 100.0,
-    "rejection_rate": 95.23809523809523,
+    "accuracy_with_rejection": 94.44444444444444,
+    "rejection_rate": 71.42857142857143,
     "num_test_instances": 63,
-    "num_rejected": 60,
-    "num_accepted": 3
+    "num_rejected": 45,
+    "num_accepted": 18
   },
   "explanation_stats": {
     "positive": {
-      "count": 0,
-      "min_length": 0,
-      "mean_length": 0.0,
-      "max_length": 0,
+      "count": 10,
+      "min_length": 2,
+      "mean_length": 2.0,
+      "max_length": 2,
       "std_length": 0.0
     },
     "negative": {
-      "count": 3,
+      "count": 8,
       "min_length": 3,
-      "mean_length": 4.333333333333333,
-      "max_length": 7,
-      "std_length": 1.8856180831641267
+      "mean_length": 4.375,
+      "max_length": 6,
+      "std_length": 0.9921567416492215
     },
     "rejected": {
-      "count": 60,
+      "count": 45,
       "min_length": 2,
-      "mean_length": 2.283333333333333,
-      "max_length": 8,
-      "std_length": 1.001526612504908
+      "mean_length": 2.0444444444444443,
+      "max_length": 4,
+      "std_length": 0.29481109247603554
     }
   },
   "computation_time": {
-    "total": 91.92185340012657,
-    "mean_per_instance": 1.459077038097247,
-    "positive": 0.0,
-    "negative": 5.239652733318508,
-    "rejected": 1.270048253336184
+    "total": 696.9371459000977,
+    "mean_per_instance": 11.06249437936663,
+    "positive": 4.4768492199946195,
+    "negative": 48.95992559999286,
+    "rejected": 5.788649975560191
   },
   "top_features": [
     {
       "feature": "feature_1",
-      "count": 63
+      "count": 65
     },
     {
       "feature": "feature_2",
-      "count": 27
-    },
-    {
-      "feature": "feature_3",
-      "count": 19
-    },
-    {
-      "feature": "feature_4",
-      "count": 19
+      "count": 31
     },
     {
       "feature": "feature_20",
-      "count": 18
-    },
-    {
-      "feature": "feature_11",
-      "count": 16
+      "count": 27
     },
     {
       "feature": "feature_19",
-      "count": 15
+      "count": 25
     },
     {
-      "feature": "feature_12",
-      "count": 14
-    },
-    {
-      "feature": "feature_5",
-      "count": 8
+      "feature": "feature_3",
+      "count": 23
     },
     {
       "feature": "feature_10",
+      "count": 14
+    },
+    {
+      "feature": "feature_12",
+      "count": 11
+    },
+    {
+      "feature": "feature_8",
       "count": 8
+    },
+    {
+      "feature": "feature_9",
+      "count": 8
+    },
+    {
+      "feature": "feature_35",
+      "count": 7
     }
   ],
   "model": {

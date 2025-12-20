@@ -33,8 +33,10 @@ except ImportError as e:
 #==============================================================================
 RANDOM_STATE = 42
 
-# Exigir alta precisão nas âncoras
-ANCHOR_PRECISION_THRESHOLD = 1.0  # valor padrão; pode ser ajustado para datasets de alta dimensionalidade
+# Exigir alta precisão nas âncoras (95% é o padrão recomendado na literatura)
+# 1.0 = 100% precisão, gera âncoras muito pequenas
+# 0.95 = 95% precisão, permite âncoras mais informativas
+ANCHOR_PRECISION_THRESHOLD = 0.95  # AJUSTADO: era 1.0, causava âncoras muito curtas
 
 # Suprimir warnings verbosos do Alibi e outras bibliotecas
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -94,12 +96,343 @@ def formatar_log_anchor(metricas):
 """
     return log
 
+
+# Runner programático para automação (sem menu)
+def run_anchor_for_dataset(dataset_name: str) -> dict:
+    """
+    Executa o Anchor usando o MESMO pipeline e thresholds do PEAB para um dataset específico.
+    Retorna um dicionário com métricas principais e caminhos de saída.
+    """
+    pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
+    
+    # Extrair componentes do pipeline para função predict otimizada
+    scaler_treinado = pipeline.named_steps['scaler']
+    modelo_treinado = pipeline.named_steps['model']
+
+    nomes_features = meta['feature_names']
+    # Usa o rótulo positivo reportado em meta (índice 1) apenas para nomear o relatório
+    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
+
+    metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
+    metricas['total_instancias_teste'] = len(y_test)
+    metricas['num_features'] = len(nomes_features)
+    # Ajuste de precisão para MNIST (acelera geração): usar 0.95
+    local_anchor_threshold = 0.90 if len(nomes_features) >= 500 else ANCHOR_PRECISION_THRESHOLD
+    y_pred_sem_rejeicao = pipeline.predict(X_test)
+    metricas['acuracia_sem_rejeicao'] = accuracy_score(y_test, y_pred_sem_rejeicao) * 100
+    metricas['t_lower'], metricas['t_upper'] = float(t_minus), float(t_plus)
+    metricas['rejection_cost'] = float(meta['rejection_cost'])
+
+    # Aplicar rejeição com os mesmos thresholds
+    decision_scores_test = pipeline.decision_function(X_test)
+    y_pred_com_rejeicao = []
+    indices_aceitos, indices_rejeitados = [], []
+    for i, s in enumerate(decision_scores_test):
+        if s >= t_plus:
+            y_pred_com_rejeicao.append(1)
+            indices_aceitos.append(i)
+        elif s <= t_minus:
+            y_pred_com_rejeicao.append(0)
+            indices_aceitos.append(i)
+        else:
+            y_pred_com_rejeicao.append(-1)
+            indices_rejeitados.append(i)
+    y_pred_final = np.array(y_pred_com_rejeicao)
+    y_test_aceitos = y_test.iloc[indices_aceitos] if isinstance(y_test, pd.Series) else y_test[indices_aceitos]
+    y_pred_aceitos = y_pred_final[indices_aceitos]
+    metricas['num_rejeitadas_teste'] = len(indices_rejeitados)
+    metricas['num_aceitas_teste'] = len(indices_aceitos)
+    metricas['taxa_rejeicao_teste'] = (metricas['num_rejeitadas_teste'] / metricas['total_instancias_teste']) * 100
+    metricas['acuracia_com_rejeicao'] = accuracy_score(y_test_aceitos, y_pred_aceitos) * 100 if len(indices_aceitos) > 0 else 100
+
+    # OTIMIZAÇÃO: Função de predição ultra-rápida usando NumPy puro (sem Pandas)
+    def predict_fn_fast(x: np.ndarray):
+        """
+        Função de predição otimizada para o Anchor.
+        Recebe numpy, escala com numpy, prediz com numpy. Sem Pandas.
+        ~1000x mais rápida que a versão com DataFrame.
+        """
+        try:
+            # Garante que a entrada seja 2D, como o scaler espera
+            arr = x.reshape(1, -1) if x.ndim == 1 else x
+
+            # 1. Escala o array numpy diretamente (sem conversão para DataFrame)
+            x_scaled = scaler_treinado.transform(arr)
+
+            # 2. Prediz com o array numpy escalado
+            return modelo_treinado.predict_proba(x_scaled)
+        except Exception as e:
+            # Fallback para evitar quebrar o loop do Anchor
+            return np.array([[0.5, 0.5]] * (x.shape[0] if x.ndim > 1 else 1))
+
+    explainer = AnchorTabular(predict_fn_fast, feature_names=nomes_features)
+    explainer.fit(X_train.values if hasattr(X_train, 'values') else X_train, disc_perc=(25, 50, 75))
+
+    # Limitar número de explicações para datasets de alta dimensionalidade
+    # Contudo, se houver subamostragem aplicada (meta['subsample_size']), respeitamos isso
+    max_instances_to_explain = len(X_test)
+    subsample = meta.get('subsample_size', None)
+    if subsample is None and len(nomes_features) >= 500:
+        max_instances_to_explain = min(200, len(X_test))
+        print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
+              f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
+
+    tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
+    explicacoes = {}
+    # Parâmetros otimizados para alta dimensionalidade (ex.: MNIST)
+    # Ajustes para acelerar geração (~10x mais rápido)
+    low_memory = len(nomes_features) >= 500
+    if low_memory:
+        # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6, beam_size=2
+        anchor_threshold = 0.90
+        anchor_delta = 0.15
+        anchor_batch_size = 200
+        anchor_max_size = 6
+        anchor_beam_size = 2  # CORRIGIDO: era 1, causava explicações muito pequenas
+    else:
+        # Outros datasets: configuração balanceada
+        anchor_threshold = local_anchor_threshold  # 0.95 (permite pequeno erro)
+        anchor_delta = 0.05  # AJUSTADO: era 0.1, maior confiança estatística
+        anchor_batch_size = 100
+        anchor_max_size = None  # Sem limite de tamanho
+        anchor_beam_size = 4  # CORRIGIDO: era 1, permite mais exploração
+
+    print(f"\n[INFO] Gerando explicações para {max_instances_to_explain} instâncias de teste...")
+    
+    # Importar barra de progresso
+    from utils.progress_bar import ProgressBar, suppress_library_warnings
+    suppress_library_warnings()
+    
+    with ProgressBar(total=max_instances_to_explain, description=f"Anchor {dataset_name}") as pbar:
+        for i in range(max_instances_to_explain):
+            # [AUDITORIA] Preparar instância ANTES de iniciar timer
+            instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
+            
+            # [AUDITORIA] Iniciar timer APENAS para o algoritmo de explicação
+            start_time = time.perf_counter()
+            try:
+                explanation = explainer.explain(
+                    instance_arr,
+                    threshold=anchor_threshold,
+                    delta=anchor_delta,
+                    tau=0.1,  # AJUSTADO: era 0.15, força expansão mais agressiva
+                    batch_size=anchor_batch_size,
+                    max_anchor_size=anchor_max_size,
+                    beam_size=anchor_beam_size
+                )
+            except (MemoryError, OverflowError):
+                if low_memory and anchor_batch_size > 8:
+                    try:
+                        explanation = explainer.explain(
+                            instance_arr,
+                            threshold=anchor_threshold,
+                            delta=anchor_delta,
+                            batch_size=8,
+                            max_anchor_size=anchor_max_size,
+                            beam_size=anchor_beam_size
+                        )
+                    except Exception:
+                        pbar.update()
+                        continue
+                else:
+                    pbar.update()
+                    continue
+            except Exception:
+                pbar.update()
+                continue
+
+            # [AUDITORIA] Usar time.perf_counter() para maior precisão
+            runtime = time.perf_counter() - start_time
+            tempos_total.append(runtime)
+            explicacoes[i] = explanation.anchor
+            if i in indices_rejeitados:
+                tempos_rej.append(runtime)
+            elif y_pred_final[i] == 1:
+                tempos_pos.append(runtime)
+            else:
+                tempos_neg.append(runtime)
+            
+            pbar.update()
+
+    metricas['tempo_total'] = sum(tempos_total)
+    metricas['tempo_medio_instancia'] = np.mean(tempos_total) if tempos_total else 0
+    metricas['tempo_medio_positivas'] = np.mean(tempos_pos) if tempos_pos else 0
+    metricas['tempo_medio_negativas'] = np.mean(tempos_neg) if tempos_neg else 0
+    metricas['tempo_medio_rejeitadas'] = np.mean(tempos_rej) if tempos_rej else 0
+
+    feature_counts = Counter()
+    exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
+    for i in range(len(y_pred_final)):
+        exp_len = len(explicacoes.get(i, []))
+        if i in indices_rejeitados:
+            exp_lengths_rej.append(exp_len)
+        elif y_pred_final[i] == 1:
+            exp_lengths_pos.append(exp_len)
+        else:
+            exp_lengths_neg.append(exp_len)
+        for regra in explicacoes.get(i, []):
+            for feature_name in nomes_features:
+                if feature_name in regra:
+                    feature_counts[feature_name] += 1
+
+    stats_pos = {
+        'instancias': len(exp_lengths_pos),
+        'min': min(exp_lengths_pos) if exp_lengths_pos else 0,
+        'media': np.mean(exp_lengths_pos) if exp_lengths_pos else 0,
+        'max': max(exp_lengths_pos) if exp_lengths_pos else 0,
+        'std_dev': np.std(exp_lengths_pos) if exp_lengths_pos else 0
+    }
+    stats_neg = {
+        'instancias': len(exp_lengths_neg),
+        'min': min(exp_lengths_neg) if exp_lengths_neg else 0,
+        'media': np.mean(exp_lengths_neg) if exp_lengths_neg else 0,
+        'max': max(exp_lengths_neg) if exp_lengths_neg else 0,
+        'std_dev': np.std(exp_lengths_neg) if exp_lengths_neg else 0
+    }
+    stats_rej = {
+        'instancias': len(exp_lengths_rej),
+        'min': min(exp_lengths_rej) if exp_lengths_rej else 0,
+        'media': np.mean(exp_lengths_rej) if exp_lengths_rej else 0,
+        'max': max(exp_lengths_rej) if exp_lengths_rej else 0,
+        'std_dev': np.std(exp_lengths_rej) if exp_lengths_rej else 0
+    }
+
+    metricas['stats_explicacao_positiva'] = stats_pos
+    metricas['stats_explicacao_negativa'] = stats_neg
+    metricas['stats_explicacao_rejeitada'] = stats_rej
+    metricas['features_frequentes'] = feature_counts.most_common(10)
+
+    # Relatório e JSON
+    log_final = formatar_log_anchor(metricas)
+    base_dir = os.path.join('results', 'report', 'anchor')
+    os.makedirs(base_dir, exist_ok=True)
+    caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_relatorio}.txt')
+    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+        f.write(log_final)
+
+    def _conv_stats(d):
+        return {
+            'count': int(d.get('instancias', 0)),
+            'min_length': int(d.get('min', 0)),
+            'mean_length': float(d.get('media', 0.0)),
+            'max_length': int(d.get('max', 0)),
+            'std_length': float(d.get('std_dev', 0.0))
+        }
+
+    # Metadados MNIST
+    mnist_meta = {}
+    if dataset_name == 'mnist':
+        try:
+            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+            mnist_meta = {
+                'mnist_feature_mode': MNIST_FEATURE_MODE,
+                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
+            }
+        except Exception:
+            mnist_meta = {}
+
+    subsample = meta.get('subsample_size')
+
+    results_data = {
+        "config": {
+            "dataset_name": dataset_name,
+            "test_size": float(meta['test_size']),
+            "random_state": RANDOM_STATE,
+            "rejection_cost": float(meta['rejection_cost']),
+            "subsample_size": float(subsample) if subsample else None,
+            **mnist_meta
+        },
+        "thresholds": {
+            "t_plus": float(t_plus),
+            "t_minus": float(t_minus),
+            "rejection_zone_width": float(t_plus - t_minus)
+        },
+        "performance": {
+            "accuracy_without_rejection": float(metricas['acuracia_sem_rejeicao']),
+            "accuracy_with_rejection": float(metricas['acuracia_com_rejeicao']),
+            "rejection_rate": float(metricas['taxa_rejeicao_teste']),
+            "num_test_instances": int(metricas.get('total_instancias_teste', len(y_test))),
+            "num_rejected": int(metricas.get('num_rejeitadas_teste', 0)),
+            "num_accepted": int(metricas.get('num_aceitas_teste', 0))
+        },
+        "explanation_stats": {
+            "positive": _conv_stats(stats_pos),
+            "negative": _conv_stats(stats_neg),
+            "rejected": _conv_stats(stats_rej)
+        },
+        "computation_time": {
+            "total": float(metricas['tempo_total']),
+            "mean_per_instance": float(metricas['tempo_medio_instancia']),
+            "positive": float(metricas['tempo_medio_positivas']),
+            "negative": float(metricas['tempo_medio_negativas']),
+            "rejected": float(metricas['tempo_medio_rejeitadas'])
+        },
+        "top_features": [
+            {"feature": feat, "count": count}
+            for feat, count in metricas['features_frequentes'][:20]
+        ],
+        "model": {
+            "type": "LogisticRegression",
+            "num_features": len(nomes_features),
+            "class_names": list(meta['nomes_classes']),
+            "coefs": [float(c) for c in pipeline.named_steps['model'].coef_[0]],
+            "intercept": float(pipeline.named_steps['model'].intercept_[0]),
+            "scaler_params": {
+                "min": [float(v) for v in pipeline.named_steps['scaler'].min_],
+                "scale": [float(v) for v in pipeline.named_steps['scaler'].scale_]
+            }
+        }
+    }
+    update_method_results("anchor", dataset_name, results_data)
+
+    return {
+        'report_path': caminho_arquivo,
+        'json_updated_for': dataset_name,
+        'metrics': metricas
+    }
+
+
 # --- BLOCO PRINCIPAL DE EXECUÇÃO ---
 if __name__ == '__main__':
     print("Chamando menu de seleção de dataset...")
     nome_dataset_original, nome_classe_positiva, _, _, nomes_classes_binarias = selecionar_dataset_e_classe()
 
     if nome_dataset_original is not None:
+        # Detecta seleção múltipla de datasets
+        if nome_dataset_original == '__MULTIPLE__':
+            datasets_para_executar = nomes_classes_binarias  # Contém lista de datasets
+            print(f"\n{'='*80}")
+            print(f"MODO MÚLTIPLOS DATASETS DETECTADO")
+            print(f"Datasets selecionados: {', '.join(datasets_para_executar)}")
+            print(f"{'='*80}\n")
+            
+            resposta = input("Confirmar execução em sequência? (S/N): ").strip().upper()
+            if resposta != 'S':
+                print("Execução cancelada pelo usuário.")
+                exit(0)
+            
+            print(f"\nIniciando execução sequencial de {len(datasets_para_executar)} datasets...\n")
+            
+            for idx, dataset_name in enumerate(datasets_para_executar, 1):
+                print(f"\n{'='*80}")
+                print(f"DATASET {idx}/{len(datasets_para_executar)}: {dataset_name}")
+                print(f"{'='*80}\n")
+                
+                try:
+                    resultado = run_anchor_for_dataset(dataset_name)
+                    print(f"\n✓ Dataset '{dataset_name}' concluído com sucesso!")
+                    print(f"  Relatório: {resultado['report_path']}")
+                except Exception as e:
+                    print(f"\n✗ ERRO ao processar dataset '{dataset_name}': {e}")
+                    import traceback
+                    traceback.print_exc()
+                    continue
+            
+            print(f"\n{'='*80}")
+            print(f"EXECUÇÃO MÚLTIPLA CONCLUÍDA")
+            print(f"Total de datasets processados: {len(datasets_para_executar)}")
+            print(f"{'='*80}\n")
+            exit(0)
 
         # Usa treino e thresholds exatamente como no PEAB
         pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(nome_dataset_original)
@@ -200,17 +533,19 @@ if __name__ == '__main__':
         # Ajustes para acelerar geração (~10x mais rápido)
         low_memory = len(nomes_features) >= 500
         if low_memory:
-            # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6
+            # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6, beam_size=2
             anchor_threshold = 0.90
             anchor_delta = 0.15
             anchor_batch_size = 200
             anchor_max_size = 6
+            anchor_beam_size = 2  # CORRIGIDO: era 1, causava explicações muito pequenas
         else:
-            # Outros datasets: mantém alta precisão
-            anchor_threshold = local_anchor_threshold
-            anchor_delta = 0.1
+            # Outros datasets: configuração balanceada
+            anchor_threshold = local_anchor_threshold  # 0.95 (permite pequeno erro)
+            anchor_delta = 0.05  # AJUSTADO: era 0.1, maior confiança estatística
             anchor_batch_size = 100
-            anchor_max_size = None
+            anchor_max_size = None  # Sem limite de tamanho
+            anchor_beam_size = 4  # CORRIGIDO: era 1, permite mais exploração
 
         with ProgressBar(total=max_instances_to_explain, description=f"Anchor Explicando {nome_relatorio}") as pbar:
             for i in range(max_instances_to_explain):
@@ -225,10 +560,10 @@ if __name__ == '__main__':
                         instance_arr,
                         threshold=anchor_threshold,
                         delta=anchor_delta,
-                        tau=0.15,
+                        tau=0.1,  # AJUSTADO: era 0.15, força expansão mais agressiva
                         batch_size=anchor_batch_size,
                         max_anchor_size=anchor_max_size,
-                        beam_size=1
+                        beam_size=anchor_beam_size
                     )
                 except (MemoryError, OverflowError):
                     # Fallback: tentar reduzir ainda mais memória e continuar
@@ -240,7 +575,7 @@ if __name__ == '__main__':
                                 delta=anchor_delta,
                                 batch_size=8,
                                 max_anchor_size=anchor_max_size,
-                                beam_size=1
+                                beam_size=anchor_beam_size
                             )
                         except Exception:
                             pbar.update()
@@ -451,288 +786,3 @@ if __name__ == '__main__':
 
     else:
         print("Nenhum dataset selecionado. Encerrando o programa.")
-
-
-# Runner programático para automação (sem menu)
-def run_anchor_for_dataset(dataset_name: str) -> dict:
-    """
-    Executa o Anchor usando o MESMO pipeline e thresholds do PEAB para um dataset específico.
-    Retorna um dicionário com métricas principais e caminhos de saída.
-    """
-    pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
-    
-    # Extrair componentes do pipeline para função predict otimizada
-    scaler_treinado = pipeline.named_steps['scaler']
-    modelo_treinado = pipeline.named_steps['model']
-
-    nomes_features = meta['feature_names']
-    # Usa o rótulo positivo reportado em meta (índice 1) apenas para nomear o relatório
-    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
-
-    metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
-    metricas['total_instancias_teste'] = len(y_test)
-    metricas['num_features'] = len(nomes_features)
-    # Ajuste de precisão para MNIST (acelera geração): usar 0.95
-    local_anchor_threshold = 0.90 if len(nomes_features) >= 500 else ANCHOR_PRECISION_THRESHOLD
-    y_pred_sem_rejeicao = pipeline.predict(X_test)
-    metricas['acuracia_sem_rejeicao'] = accuracy_score(y_test, y_pred_sem_rejeicao) * 100
-    metricas['t_lower'], metricas['t_upper'] = float(t_minus), float(t_plus)
-    metricas['rejection_cost'] = float(meta['rejection_cost'])
-
-    # Aplicar rejeição com os mesmos thresholds
-    decision_scores_test = pipeline.decision_function(X_test)
-    y_pred_com_rejeicao = []
-    indices_aceitos, indices_rejeitados = [], []
-    for i, s in enumerate(decision_scores_test):
-        if s >= t_plus:
-            y_pred_com_rejeicao.append(1)
-            indices_aceitos.append(i)
-        elif s <= t_minus:
-            y_pred_com_rejeicao.append(0)
-            indices_aceitos.append(i)
-        else:
-            y_pred_com_rejeicao.append(-1)
-            indices_rejeitados.append(i)
-    y_pred_final = np.array(y_pred_com_rejeicao)
-    y_test_aceitos = y_test.iloc[indices_aceitos] if isinstance(y_test, pd.Series) else y_test[indices_aceitos]
-    y_pred_aceitos = y_pred_final[indices_aceitos]
-    metricas['num_rejeitadas_teste'] = len(indices_rejeitados)
-    metricas['num_aceitas_teste'] = len(indices_aceitos)
-    metricas['taxa_rejeicao_teste'] = (metricas['num_rejeitadas_teste'] / metricas['total_instancias_teste']) * 100
-    metricas['acuracia_com_rejeicao'] = accuracy_score(y_test_aceitos, y_pred_aceitos) * 100 if len(indices_aceitos) > 0 else 100
-
-    # OTIMIZAÇÃO: Função de predição ultra-rápida usando NumPy puro (sem Pandas)
-    def predict_fn_fast(x: np.ndarray):
-        """
-        Função de predição otimizada para o Anchor.
-        Recebe numpy, escala com numpy, prediz com numpy. Sem Pandas.
-        ~1000x mais rápida que a versão com DataFrame.
-        """
-        try:
-            # Garante que a entrada seja 2D, como o scaler espera
-            arr = x.reshape(1, -1) if x.ndim == 1 else x
-
-            # 1. Escala o array numpy diretamente (sem conversão para DataFrame)
-            x_scaled = scaler_treinado.transform(arr)
-
-            # 2. Prediz com o array numpy escalado
-            return modelo_treinado.predict_proba(x_scaled)
-        except Exception as e:
-            # Fallback para evitar quebrar o loop do Anchor
-            return np.array([[0.5, 0.5]] * (x.shape[0] if x.ndim > 1 else 1))
-
-    explainer = AnchorTabular(predict_fn_fast, feature_names=nomes_features)
-    explainer.fit(X_train.values if hasattr(X_train, 'values') else X_train, disc_perc=(25, 50, 75))
-
-    # Limitar número de explicações para datasets de alta dimensionalidade
-    # Contudo, se houver subamostragem aplicada (meta['subsample_size']), respeitamos isso
-    max_instances_to_explain = len(X_test)
-    subsample = meta.get('subsample_size', None)
-    if subsample is None and len(nomes_features) >= 500:
-        max_instances_to_explain = min(200, len(X_test))
-        print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
-              f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
-
-    tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
-    explicacoes = {}
-    # Parâmetros otimizados para alta dimensionalidade (ex.: MNIST)
-    # Ajustes para acelerar geração (~10x mais rápido)
-    low_memory = len(nomes_features) >= 500
-    if low_memory:
-        # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6
-        anchor_threshold = 0.90
-        anchor_delta = 0.15
-        anchor_batch_size = 200
-        anchor_max_size = 6
-    else:
-        # Outros datasets: mantém alta precisão
-        anchor_threshold = local_anchor_threshold
-        anchor_delta = 0.1
-        anchor_batch_size = 100
-        anchor_max_size = None
-
-    for i in range(max_instances_to_explain):
-        # [AUDITORIA] Preparar instância ANTES de iniciar timer
-        instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
-        
-        # [AUDITORIA] Iniciar timer APENAS para o algoritmo de explicação
-        start_time = time.perf_counter()
-        try:
-            explanation = explainer.explain(
-                instance_arr,
-                threshold=anchor_threshold,
-                delta=anchor_delta,
-                tau=0.15,
-                batch_size=anchor_batch_size,
-                max_anchor_size=anchor_max_size,
-                beam_size=1
-            )
-        except (MemoryError, OverflowError) as mem_err:
-            if low_memory and anchor_batch_size > 8:
-                print(f"MEMORY ERROR na instância {i}. Reduzindo batch_size e tentando novamente...")
-                try:
-                    explanation = explainer.explain(
-                        instance_arr,
-                        threshold=anchor_threshold,
-                        delta=anchor_delta,
-                        batch_size=8,
-                        max_anchor_size=anchor_max_size,
-                        beam_size=1
-                    )
-                except Exception as e:
-                    print(f"Falha ao re-tentar com batch_size=8: {e}. Pulando esta instância.")
-                    continue
-            else:
-                print(f"MEMORY ERROR ao explicar instância {i}: {mem_err}. Pulando esta instância.")
-                continue
-        except Exception as e:
-            print(f"Erro ao explicar instância {i} com Anchor: {e}. Pulando esta instância.")
-            continue
-
-        # [AUDITORIA] Usar time.perf_counter() para maior precisão
-        runtime = time.perf_counter() - start_time
-        tempos_total.append(runtime)
-        explicacoes[i] = explanation.anchor
-        if i in indices_rejeitados:
-            tempos_rej.append(runtime)
-        elif y_pred_final[i] == 1:
-            tempos_pos.append(runtime)
-        else:
-            tempos_neg.append(runtime)
-
-    metricas['tempo_total'] = sum(tempos_total)
-    metricas['tempo_medio_instancia'] = np.mean(tempos_total) if tempos_total else 0
-    metricas['tempo_medio_positivas'] = np.mean(tempos_pos) if tempos_pos else 0
-    metricas['tempo_medio_negativas'] = np.mean(tempos_neg) if tempos_neg else 0
-    metricas['tempo_medio_rejeitadas'] = np.mean(tempos_rej) if tempos_rej else 0
-
-    feature_counts = Counter()
-    exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
-    for i in range(len(y_pred_final)):
-        exp_len = len(explicacoes.get(i, []))
-        if i in indices_rejeitados:
-            exp_lengths_rej.append(exp_len)
-        elif y_pred_final[i] == 1:
-            exp_lengths_pos.append(exp_len)
-        else:
-            exp_lengths_neg.append(exp_len)
-        for regra in explicacoes.get(i, []):
-            for feature_name in nomes_features:
-                if feature_name in regra:
-                    feature_counts[feature_name] += 1
-
-    stats_pos = {
-        'instancias': len(exp_lengths_pos),
-        'min': min(exp_lengths_pos) if exp_lengths_pos else 0,
-        'media': np.mean(exp_lengths_pos) if exp_lengths_pos else 0,
-        'max': max(exp_lengths_pos) if exp_lengths_pos else 0,
-        'std_dev': np.std(exp_lengths_pos) if exp_lengths_pos else 0
-    }
-    stats_neg = {
-        'instancias': len(exp_lengths_neg),
-        'min': min(exp_lengths_neg) if exp_lengths_neg else 0,
-        'media': np.mean(exp_lengths_neg) if exp_lengths_neg else 0,
-        'max': max(exp_lengths_neg) if exp_lengths_neg else 0,
-        'std_dev': np.std(exp_lengths_neg) if exp_lengths_neg else 0
-    }
-    stats_rej = {
-        'instancias': len(exp_lengths_rej),
-        'min': min(exp_lengths_rej) if exp_lengths_rej else 0,
-        'media': np.mean(exp_lengths_rej) if exp_lengths_rej else 0,
-        'max': max(exp_lengths_rej) if exp_lengths_rej else 0,
-        'std_dev': np.std(exp_lengths_rej) if exp_lengths_rej else 0
-    }
-
-    metricas['stats_explicacao_positiva'] = stats_pos
-    metricas['stats_explicacao_negativa'] = stats_neg
-    metricas['stats_explicacao_rejeitada'] = stats_rej
-    metricas['features_frequentes'] = feature_counts.most_common(10)
-
-    # Relatório e JSON
-    log_final = formatar_log_anchor(metricas)
-    base_dir = os.path.join('results', 'report', 'anchor')
-    os.makedirs(base_dir, exist_ok=True)
-    caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_relatorio}.txt')
-    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
-        f.write(log_final)
-
-    def _conv_stats(d):
-        return {
-            'count': int(d.get('instancias', 0)),
-            'min_length': int(d.get('min', 0)),
-            'mean_length': float(d.get('media', 0.0)),
-            'max_length': int(d.get('max', 0)),
-            'std_length': float(d.get('std_dev', 0.0))
-        }
-
-    # Metadados MNIST
-    mnist_meta = {}
-    if dataset_name == 'mnist':
-        try:
-            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
-            mnist_meta = {
-                'mnist_feature_mode': MNIST_FEATURE_MODE,
-                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
-            }
-        except Exception:
-            mnist_meta = {}
-
-    subsample = meta.get('subsample_size')
-
-    results_data = {
-        "config": {
-            "dataset_name": dataset_name,
-            "test_size": float(meta['test_size']),
-            "random_state": RANDOM_STATE,
-            "rejection_cost": float(meta['rejection_cost']),
-            "subsample_size": float(subsample) if subsample else None,
-            **mnist_meta
-        },
-        "thresholds": {
-            "t_plus": float(t_plus),
-            "t_minus": float(t_minus),
-            "rejection_zone_width": float(t_plus - t_minus)
-        },
-        "performance": {
-            "accuracy_without_rejection": float(metricas['acuracia_sem_rejeicao']),
-            "accuracy_with_rejection": float(metricas['acuracia_com_rejeicao']),
-            "rejection_rate": float(metricas['taxa_rejeicao_teste']),
-            "num_test_instances": int(metricas.get('total_instancias_teste', len(y_test))),
-            "num_rejected": int(metricas.get('num_rejeitadas_teste', 0)),
-            "num_accepted": int(metricas.get('num_aceitas_teste', 0))
-        },
-        "explanation_stats": {
-            "positive": _conv_stats(stats_pos),
-            "negative": _conv_stats(stats_neg),
-            "rejected": _conv_stats(stats_rej)
-        },
-        "computation_time": {
-            "total": float(metricas['tempo_total']),
-            "mean_per_instance": float(metricas['tempo_medio_instancia']),
-            "positive": float(metricas['tempo_medio_positivas']),
-            "negative": float(metricas['tempo_medio_negativas']),
-            "rejected": float(metricas['tempo_medio_rejeitadas'])
-        },
-        "top_features": [
-            {"feature": feat, "count": count}
-            for feat, count in metricas['features_frequentes'][:20]
-        ],
-        "model": {
-            "type": "LogisticRegression",
-            "num_features": len(nomes_features),
-            "class_names": list(meta['nomes_classes']),
-            "coefs": [float(c) for c in pipeline.named_steps['model'].coef_[0]],
-            "intercept": float(pipeline.named_steps['model'].intercept_[0]),
-            "scaler_params": {
-                "min": [float(v) for v in pipeline.named_steps['scaler'].min_],
-                "scale": [float(v) for v in pipeline.named_steps['scaler'].scale_]
-            }
-        }
-    }
-    update_method_results("anchor", dataset_name, results_data)
-
-    return {
-        'report_path': caminho_arquivo,
-        'json_updated_for': dataset_name,
-        'metrics': metricas
-    }

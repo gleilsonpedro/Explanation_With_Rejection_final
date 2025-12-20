@@ -29,16 +29,16 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 
 Métrica                         Valor   
-    Taxa de Otimalidade (GAP=0)   87.27%
-GAP Médio (features excedentes)   8.0024
-                     GAP Máximo       92
-                     GAP Mínimo        0
-           Desvio Padrão do GAP  22.0007
-           Tempo Médio PuLP (s) 0.074426
+    Taxa de Otimalidade (GAP=0)   83.93%
+GAP Médio (features excedentes)   7.9165
+                     GAP Máximo       91
+                     GAP Mínimo       -1
+           Desvio Padrão do GAP  21.9389
+           Tempo Médio PuLP (s) 0.075588
 
 INTERPRETAÇÃO:
 ✓ BOM: PEAB encontra a solução ótima em >80% dos casos.
-- Em média, PEAB usa 8.00 features a mais que o ótimo.
+- Em média, PEAB usa 7.92 features a mais que o ótimo.
 - PEAB é 1x mais rápido que PuLP.
 
 --------------------------------------------------------------------------------
@@ -47,9 +47,9 @@ INTERPRETAÇÃO:
 Onde o PEAB é perfeito e onde encontra dificuldades.
 
      Tipo  Qtd % Ótimo GAP Médio Tam. PEAB Tam. PuLP Tempo PEAB Tempo PuLP
- POSITIVA  527 100.00%    0.0000    232.59    232.59   0.03856s   0.07465s
- NEGATIVA  570 100.00%    0.0000    181.48    181.48   0.03591s   0.07295s
-REJEITADA  160   0.00%   62.8687    438.32    375.45   0.72117s   0.07892s
+ POSITIVA  527  96.02%   -0.0398    232.55    232.59   0.03578s   0.07517s
+ NEGATIVA  570  96.32%   -0.0368    181.44    181.48   0.03288s   0.07430s
+REJEITADA  160   0.00%   62.4562    437.91    375.45   0.69717s   0.08155s
 
 --------------------------------------------------------------------------------
 3. TOP 10 MAIORES GAPS (Piores Casos do PEAB)
@@ -57,102 +57,100 @@ REJEITADA  160   0.00%   62.8687    438.32    375.45   0.72117s   0.07892s
 Instâncias onde PEAB ficou mais longe da solução ótima.
 
 indice tipo_predicao  tamanho_PEAB  tamanho_PuLP  GAP
- 51330     REJEITADA           450           358   92
- 59303     REJEITADA           453           361   92
- 36648     REJEITADA           450           362   88
- 17988     REJEITADA           446           359   87
+ 51330     REJEITADA           449           358   91
+ 14140     REJEITADA           456           366   90
+ 54191     REJEITADA           450           360   90
+ 59303     REJEITADA           451           361   90
+ 36648     REJEITADA           451           362   89
+ 35088     REJEITADA           446           358   88
+ 58239     REJEITADA           453           365   88
   5086     REJEITADA           448           361   87
- 58239     REJEITADA           452           365   87
- 35088     REJEITADA           444           358   86
- 35958     REJEITADA           448           363   85
- 36008     REJEITADA           444           359   85
- 53083     REJEITADA           444           359   85
+ 53083     REJEITADA           445           359   86
+ 47936     REJEITADA           452           367   85
 
 --------------------------------------------------------------------------------
 4. DISTRIBUIÇÃO DE GAPS
 --------------------------------------------------------------------------------
 
-GAP = 0 (Ótimo): 1097 instâncias (87.3%)
+GAP = 0 (Ótimo): 1055 instâncias (83.9%)
 GAP = 4: 1 instâncias (0.1%)
-GAP = 10: 1 instâncias (0.1%)
+GAP = 9: 1 instâncias (0.1%)
 GAP = 12: 1 instâncias (0.1%)
-GAP = 14: 1 instâncias (0.1%)
-GAP = 16: 1 instâncias (0.1%)
-GAP = 19: 1 instâncias (0.1%)
-GAP = 20: 2 instâncias (0.2%)
-GAP = 23: 1 instâncias (0.1%)
-GAP = 27: 1 instâncias (0.1%)
-GAP = 30: 1 instâncias (0.1%)
-GAP = 31: 1 instâncias (0.1%)
+GAP = 15: 1 instâncias (0.1%)
+GAP = 17: 2 instâncias (0.2%)
+GAP = 19: 3 instâncias (0.2%)
+GAP = 21: 1 instâncias (0.1%)
+GAP = 25: 1 instâncias (0.1%)
+GAP = 26: 1 instâncias (0.1%)
+GAP = 28: 2 instâncias (0.2%)
 GAP = 32: 2 instâncias (0.2%)
-GAP = 34: 3 instâncias (0.2%)
-GAP = 36: 2 instâncias (0.2%)
-GAP = 37: 1 instâncias (0.1%)
-GAP = 38: 2 instâncias (0.2%)
+GAP = 35: 1 instâncias (0.1%)
+GAP = 36: 3 instâncias (0.2%)
+GAP = 39: 2 instâncias (0.2%)
 GAP = 40: 1 instâncias (0.1%)
 GAP = 41: 1 instâncias (0.1%)
-GAP = 42: 1 instâncias (0.1%)
-GAP = 43: 1 instâncias (0.1%)
-GAP = 46: 1 instâncias (0.1%)
+GAP = 43: 4 instâncias (0.3%)
+GAP = 44: 1 instâncias (0.1%)
+GAP = 45: 1 instâncias (0.1%)
 GAP = 47: 1 instâncias (0.1%)
-GAP = 48: 3 instâncias (0.2%)
-GAP = 50: 1 instâncias (0.1%)
-GAP = 51: 2 instâncias (0.2%)
-GAP = 52: 1 instâncias (0.1%)
-GAP = 53: 4 instâncias (0.3%)
+GAP = 48: 2 instâncias (0.2%)
+GAP = 51: 4 instâncias (0.3%)
+GAP = 52: 3 instâncias (0.2%)
+GAP = 53: 2 instâncias (0.2%)
 GAP = 54: 2 instâncias (0.2%)
-GAP = 55: 5 instâncias (0.4%)
-GAP = 56: 1 instâncias (0.1%)
-GAP = 57: 3 instâncias (0.2%)
+GAP = 55: 1 instâncias (0.1%)
+GAP = 56: 2 instâncias (0.2%)
+GAP = 57: 1 instâncias (0.1%)
 GAP = 58: 2 instâncias (0.2%)
-GAP = 59: 3 instâncias (0.2%)
+GAP = 59: 1 instâncias (0.1%)
 GAP = 60: 3 instâncias (0.2%)
-GAP = 61: 1 instâncias (0.1%)
-GAP = 62: 6 instâncias (0.5%)
-GAP = 63: 6 instâncias (0.5%)
-GAP = 64: 4 instâncias (0.3%)
-GAP = 65: 2 instâncias (0.2%)
-GAP = 66: 1 instâncias (0.1%)
-GAP = 67: 1 instâncias (0.1%)
+GAP = 61: 6 instâncias (0.5%)
+GAP = 62: 3 instâncias (0.2%)
+GAP = 64: 9 instâncias (0.7%)
+GAP = 65: 3 instâncias (0.2%)
+GAP = 66: 4 instâncias (0.3%)
+GAP = 67: 4 instâncias (0.3%)
 GAP = 68: 5 instâncias (0.4%)
-GAP = 69: 4 instâncias (0.3%)
-GAP = 70: 3 instâncias (0.2%)
-GAP = 71: 4 instâncias (0.3%)
+GAP = 69: 5 instâncias (0.4%)
+GAP = 70: 2 instâncias (0.2%)
+GAP = 71: 5 instâncias (0.4%)
 GAP = 72: 6 instâncias (0.5%)
-GAP = 73: 6 instâncias (0.5%)
-GAP = 74: 4 instâncias (0.3%)
-GAP = 75: 5 instâncias (0.4%)
+GAP = 73: 5 instâncias (0.4%)
+GAP = 74: 3 instâncias (0.2%)
+GAP = 75: 4 instâncias (0.3%)
 GAP = 76: 3 instâncias (0.2%)
-GAP = 77: 2 instâncias (0.2%)
-GAP = 78: 7 instâncias (0.6%)
-GAP = 79: 4 instâncias (0.3%)
+GAP = 77: 1 instâncias (0.1%)
+GAP = 78: 4 instâncias (0.3%)
+GAP = 79: 5 instâncias (0.4%)
 GAP = 80: 3 instâncias (0.2%)
-GAP = 81: 3 instâncias (0.2%)
+GAP = 81: 4 instâncias (0.3%)
 GAP = 82: 4 instâncias (0.3%)
-GAP = 83: 4 instâncias (0.3%)
-GAP = 84: 2 instâncias (0.2%)
-GAP = 85: 5 instâncias (0.4%)
+GAP = 83: 3 instâncias (0.2%)
+GAP = 84: 5 instâncias (0.4%)
+GAP = 85: 1 instâncias (0.1%)
 GAP = 86: 1 instâncias (0.1%)
-GAP = 87: 3 instâncias (0.2%)
-GAP = 88: 1 instâncias (0.1%)
-GAP = 92: 2 instâncias (0.2%)
+GAP = 87: 1 instâncias (0.1%)
+GAP = 88: 2 instâncias (0.2%)
+GAP = 89: 1 instâncias (0.1%)
+GAP = 90: 3 instâncias (0.2%)
+GAP = 91: 1 instâncias (0.1%)
 
 --------------------------------------------------------------------------------
 5. ANÁLISE DE TEMPO DE EXECUÇÃO
 --------------------------------------------------------------------------------
 
-Tempo total PEAB: 156.35s
-Tempo total PuLP: 93.55s
-Economia de tempo: -62.80s (-67.1%)
+Tempo total PEAB: 149.30s
+Tempo total PuLP: 95.01s
+Economia de tempo: -54.29s (-57.1%)
 
-Para 1257 instâncias, economia observada: -62.8s
+Para 1257 instâncias, economia observada: -54.3s
 
 ================================================================================
 6. CONCLUSÃO
 ================================================================================
 
 ✓ PEAB demonstra ser uma heurística BOA:
-   - Qualidade aceitável: 87.3% de otimalidade
+   - Qualidade aceitável: 83.9% de otimalidade
    - Velocidade adequada: 1x mais rápido
    - Adequado para maioria dos casos
 
