@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 # Datasets comuns a todos os métodos
@@ -546,6 +547,206 @@ def gerar_tabela_explicacoes():
     return "\n".join(latex)
 
 
+def extrair_zona_rejeicao(data):
+    """Extrai t+ e t- dos dados do PEAB."""
+    if data is None:
+        return None, None, None
+    
+    try:
+        thresholds = data.get("thresholds", {})
+        t_plus = thresholds.get("t_plus", None)
+        t_minus = thresholds.get("t_minus", None)
+        
+        if t_plus is not None and t_minus is not None:
+            largura = t_plus - t_minus
+            return t_plus, t_minus, largura
+        
+        return None, None, None
+    except Exception as e:
+        print(f"Erro ao extrair zona de rejeição: {e}")
+        return None, None, None
+
+
+def gerar_grafico_zona_rejeicao(output_dir):
+    """Gera gráfico de barras com a largura da zona de rejeição por dataset."""
+    
+    # Datasets selecionados conforme solicitação
+    datasets_selecionados = [
+        "banknote",
+        "heart_disease", 
+        "pima_indians_diabetes",
+        "spambase",
+        "vertebral_column"
+    ]
+    
+    # Nomes para exibição
+    nomes_display = {
+        "banknote": "Banknote",
+        "heart_disease": "Heart Disease",
+        "pima_indians_diabetes": "Pima Indians",
+        "spambase": "Spambase",
+        "vertebral_column": "Vertebral Column"
+    }
+    
+    # Coletar dados
+    larguras = []
+    nomes = []
+    
+    print("\nColetando dados da zona de rejeição...")
+    for dataset in datasets_selecionados:
+        data = carregar_dados_json("peab", dataset)
+        t_plus, t_minus, largura = extrair_zona_rejeicao(data)
+        
+        if largura is not None:
+            larguras.append(largura)
+            nomes.append(nomes_display[dataset])
+            print(f"  {nomes_display[dataset]}: t+ = {t_plus:.6f}, t- = {t_minus:.6f}, largura = {largura:.6f}")
+        else:
+            print(f"  {nomes_display[dataset]}: Dados não disponíveis")
+    
+    if not larguras:
+        print("⚠ Nenhum dado disponível para gerar o gráfico.")
+        return
+    
+    # Criar gráfico
+    plt.figure(figsize=(10, 6))
+    plt.bar(range(len(nomes)), larguras, color='steelblue', alpha=0.8, edgecolor='black')
+    
+    # Configurar eixos
+    plt.xlabel('Dataset', fontsize=12, fontweight='bold')
+    plt.ylabel('t+ - t- (largura da zona de rejeição)', fontsize=12, fontweight='bold')
+    plt.title('Largura da Zona de Rejeição por Dataset', fontsize=14, fontweight='bold')
+    
+    # Configurar labels do eixo X
+    plt.xticks(range(len(nomes)), nomes, rotation=45, ha='right')
+    
+    # Adicionar valores sobre as barras
+    for i, (nome, valor) in enumerate(zip(nomes, larguras)):
+        plt.text(i, valor, f'{valor:.4f}', ha='center', va='bottom', fontsize=10)
+    
+    # Ajustar layout
+    plt.tight_layout()
+    
+    # Salvar gráfico
+    grafico_file = output_dir / "rejection_zone.png"
+    plt.savefig(grafico_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"✓ Gráfico da zona de rejeição salvo em: {grafico_file}")
+
+
+def gerar_grafico_intervalos_horizontais(output_dir):
+    """Gera gráfico de intervalos horizontais mostrando a zona de rejeição no contexto do espaço de decisão."""
+    
+    # Datasets selecionados conforme solicitação
+    datasets_selecionados = [
+        "banknote",
+        "heart_disease", 
+        "pima_indians_diabetes",
+        "spambase",
+        "vertebral_column"
+    ]
+    
+    # Nomes para exibição
+    nomes_display = {
+        "banknote": "Banknote",
+        "heart_disease": "Heart Disease",
+        "pima_indians_diabetes": "Pima Indians",
+        "spambase": "Spambase",
+        "vertebral_column": "Vertebral Column"
+    }
+    
+    # Cores para cada dataset
+    cores = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6']
+    
+    # Coletar dados
+    dados = []
+    
+    print("\nColetando dados para gráfico de intervalos...")
+    for dataset in datasets_selecionados:
+        data = carregar_dados_json("peab", dataset)
+        t_plus, t_minus, largura = extrair_zona_rejeicao(data)
+        
+        if t_plus is not None and t_minus is not None:
+            dados.append({
+                'nome': nomes_display[dataset],
+                't_minus': t_minus,
+                't_plus': t_plus,
+                'largura': largura
+            })
+            print(f"  {nomes_display[dataset]}: [{t_minus:.4f}, {t_plus:.4f}]")
+    
+    if not dados:
+        print("⚠ Nenhum dado disponível para gerar o gráfico de intervalos.")
+        return
+    
+    # Criar gráfico
+    fig, ax = plt.subplots(figsize=(12, 8))
+    
+    # Plotar intervalos horizontais (zonas de rejeição)
+    for i, info in enumerate(dados):
+        # Barra horizontal da zona de rejeição
+        ax.barh(i, info['largura'], left=info['t_minus'], height=0.6, 
+                color=cores[i], alpha=0.7, edgecolor='black', linewidth=1.5)
+        
+        # Marcadores nos extremos
+        ax.plot(info['t_minus'], i, 'o', color='darkred', markersize=10, 
+                markeredgecolor='black', markeredgewidth=1.5, zorder=5)
+        ax.plot(info['t_plus'], i, 'o', color='darkgreen', markersize=10, 
+                markeredgecolor='black', markeredgewidth=1.5, zorder=5)
+        
+        # Adicionar valores de t- e t+
+        # Se a largura for pequena, posicionar os textos de forma alternada
+        if info['largura'] < 0.15:  # Zona pequena
+            # t- abaixo
+            ax.text(info['t_minus'], i - 0.35, f"t-={info['t_minus']:.3f}", 
+                    ha='center', va='top', fontsize=9, fontweight='bold')
+            # t+ acima
+            ax.text(info['t_plus'], i + 0.35, f"t+={info['t_plus']:.3f}", 
+                    ha='center', va='bottom', fontsize=9, fontweight='bold')
+        else:  # Zona normal
+            ax.text(info['t_minus'], i - 0.35, f"t-={info['t_minus']:.3f}", 
+                    ha='center', va='top', fontsize=9, fontweight='bold')
+            ax.text(info['t_plus'], i - 0.35, f"t+={info['t_plus']:.3f}", 
+                    ha='center', va='top', fontsize=9, fontweight='bold')
+    
+    # Linha vertical no limiar de decisão (0)
+    ax.axvline(x=0, color='black', linestyle='--', linewidth=2.5, zorder=3)
+    
+    # Adicionar região sombreada para contexto
+    y_min, y_max = -0.5, len(dados) - 0.5
+    ax.axvspan(-10, 0, alpha=0.1, color='blue')
+    ax.axvspan(0, 10, alpha=0.1, color='red')
+    
+    # Configurações dos eixos
+    ax.set_yticks(range(len(dados)))
+    ax.set_yticklabels([d['nome'] for d in dados], fontsize=11, fontweight='bold')
+    ax.set_xlabel('Classifier Score', fontsize=13, fontweight='bold')
+    ax.set_ylabel('Dataset', fontsize=13, fontweight='bold')
+    ax.set_title('Rejection Zone in Classifier Decision Space', 
+                 fontsize=15, fontweight='bold', pad=20)
+    
+    # Ajustar limites do eixo X para mostrar contexto
+    all_values = [d['t_minus'] for d in dados] + [d['t_plus'] for d in dados]
+    x_min, x_max = min(all_values), max(all_values)
+    margin = (x_max - x_min) * 0.3
+    ax.set_xlim(x_min - margin, x_max + margin)
+    ax.set_ylim(-0.5, len(dados) - 0.5)
+    
+    # Grid
+    ax.grid(True, axis='x', alpha=0.3, linestyle=':')
+    
+    # Ajustar layout
+    plt.tight_layout()
+    
+    # Salvar gráfico
+    grafico_file = output_dir / "rejection_zone_intervals.png"
+    plt.savefig(grafico_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"✓ Gráfico de intervalos da zona de rejeição salvo em: {grafico_file}")
+
+
 def main():
     """Função principal que gera todas as tabelas."""
     
@@ -600,6 +801,14 @@ def main():
         f.write(tabela_redundancia)
     print(f"✓ Tabela de redundância salva em: {redundancia_file}")
     
+    # Gerar gráfico da zona de rejeição
+    print("\nGerando gráfico da zona de rejeição...")
+    gerar_grafico_zona_rejeicao(output_dir)
+    
+    # Gerar gráfico de intervalos horizontais
+    print("\nGerando gráfico de intervalos horizontais...")
+    gerar_grafico_intervalos_horizontais(output_dir)
+    
     # Gerar arquivo completo com ambas as tabelas
     print("\nGerando arquivo completo...")
     completo_file = output_dir / "tabelas_completas.tex"
@@ -626,6 +835,8 @@ def main():
     print("- tabela_necessidade.tex")
     print("- tabela_redundancia.tex")
     print("- tabelas_completas.tex")
+    print("- rejection_zone.png")
+    print("- rejection_zone_intervals.png")
     print()
     
     # Mostrar prévia da tabela de speedup
