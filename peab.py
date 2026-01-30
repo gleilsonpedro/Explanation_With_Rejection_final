@@ -29,8 +29,8 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.10,          
-    'subsample_size': 0.1
-}
+    'subsample_size': 0.05
+    }
 
 DATASET_CONFIG = {
     "mnist":                MNIST_CONFIG,
