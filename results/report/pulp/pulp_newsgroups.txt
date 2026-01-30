@@ -7,14 +7,14 @@ Solver de Otimização Inteira (Ground Truth)
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
 Dataset: newsgroups
-Instâncias processadas: 238
+Instâncias processadas: 1190
 Thresholds: t+ = 0.1389, t- = -0.7686
 Zona de rejeição: 0.9075
 Rejection cost: 0.24
 Hiperparâmetros:
 {
   "penalty": "l2",
-  "C": 1.0,
+  "C": 10.0,
   "solver": "liblinear",
   "max_iter": 1000
 }
@@ -22,64 +22,64 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
-Acurácia (sem rejeição): 86.13%
-Acurácia (com rejeição): 91.98%
-Taxa de rejeição: 21.43%
-Risco empírico: 0.1316
+Acurácia (sem rejeição): 89.24%
+Acurácia (com rejeição): 97.16%
+Taxa de rejeição: 67.48%
+Risco empírico: 0.1904
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 3816.18 features
-Tempo total: 91.03s
-Tempo médio/instância: 0.3825s
+Tamanho médio: 4864.01 features
+Tempo total: 535.13s
+Tempo médio/instância: 0.4497s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 110 (46.2%)
-  - Tamanho médio: 2828.65 features
-  - Tempo médio: 0.3588s
+  - Instâncias: 571 (48.0%)
+  - Tamanho médio: 4049.91 features
+  - Tempo médio: 0.4239s
 
 NEGATIVA:
-  - Instâncias: 77 (32.4%)
-  - Tamanho médio: 3489.00 features
-  - Tempo médio: 0.3676s
+  - Instâncias: 518 (43.5%)
+  - Tamanho médio: 4895.05 features
+  - Tempo médio: 0.4587s
 
 REJEITADA:
-  - Instâncias: 51 (21.4%)
-  - Tamanho médio: 6440.14 features
-  - Tempo médio: 0.4561s
+  - Instâncias: 101 (8.5%)
+  - Tamanho médio: 9307.26 features
+  - Tempo médio: 0.5493s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância     1010 (REJEITADA ): 6558 features - 0.4416s
- 2. Instância     6326 (REJEITADA ): 6528 features - 0.3891s
- 3. Instância      205 (REJEITADA ): 6523 features - 0.4061s
- 4. Instância      975 (REJEITADA ): 6510 features - 0.4829s
- 5. Instância       87 (REJEITADA ): 6509 features - 0.4906s
- 6. Instância      863 (REJEITADA ): 6495 features - 0.5544s
- 7. Instância      203 (REJEITADA ): 6493 features - 0.3506s
- 8. Instância      804 (REJEITADA ): 6493 features - 0.4398s
- 9. Instância     6920 (REJEITADA ): 6492 features - 0.4097s
-10. Instância     1815 (REJEITADA ): 6488 features - 0.4303s
+ 1. Instância     4197 (REJEITADA ): 9430 features - 0.4153s
+ 2. Instância     3900 (REJEITADA ): 9427 features - 0.7110s
+ 3. Instância     4381 (REJEITADA ): 9422 features - 0.4889s
+ 4. Instância     5594 (REJEITADA ): 9388 features - 0.4631s
+ 5. Instância     1585 (REJEITADA ): 9374 features - 0.4299s
+ 6. Instância     2986 (REJEITADA ): 9373 features - 0.4680s
+ 7. Instância      889 (REJEITADA ): 9370 features - 1.0631s
+ 8. Instância     7907 (REJEITADA ): 9369 features - 0.4308s
+ 9. Instância     7372 (REJEITADA ): 9365 features - 0.5504s
+10. Instância      661 (REJEITADA ): 9363 features - 1.0606s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância     2164 (POSITIVA  ): 2674 features - 0.4179s
- 2. Instância     7190 (POSITIVA  ): 2706 features - 0.3583s
- 3. Instância     2139 (POSITIVA  ): 2715 features - 0.3501s
- 4. Instância     2828 (POSITIVA  ): 2722 features - 0.3719s
- 5. Instância     6954 (POSITIVA  ): 2726 features - 0.3927s
- 6. Instância     4568 (POSITIVA  ): 2726 features - 0.3162s
- 7. Instância     7197 (POSITIVA  ): 2728 features - 0.3646s
- 8. Instância     2967 (POSITIVA  ): 2730 features - 0.3378s
- 9. Instância     1646 (POSITIVA  ): 2735 features - 0.3633s
-10. Instância     4144 (POSITIVA  ): 2737 features - 0.4252s
+ 1. Instância     6554 (POSITIVA  ): 3793 features - 0.8667s
+ 2. Instância     3772 (POSITIVA  ): 3794 features - 0.4166s
+ 3. Instância     5375 (POSITIVA  ): 3811 features - 0.3544s
+ 4. Instância     5365 (POSITIVA  ): 3820 features - 0.3721s
+ 5. Instância     6691 (POSITIVA  ): 3837 features - 0.4238s
+ 6. Instância     5386 (POSITIVA  ): 3838 features - 0.4554s
+ 7. Instância     4037 (POSITIVA  ): 3840 features - 0.3788s
+ 8. Instância     5487 (POSITIVA  ): 3841 features - 0.4259s
+ 9. Instância     7818 (POSITIVA  ): 3848 features - 0.3879s
+10. Instância     2013 (POSITIVA  ): 3856 features - 0.4166s
 
 ================================================================================
 FIM DO RELATÓRIO

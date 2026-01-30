@@ -2,7 +2,7 @@
   "metadata": {
     "method": "PuLP",
     "dataset": "spambase",
-    "date": "2025-12-19 15:04:07",
+    "date": "2026-01-30 16:23:21",
     "num_perturbations": 500,
     "perturbation_strategy": "uniform",
     "necessity_mode": "global",
@@ -11,13 +11,13 @@
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 0.8641012378472488,
+    "necessity_overall": 0.8930894157819466,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
     "necessity_positive": 9.85724664756923,
-    "necessity_negative": 1.1066527043937247,
-    "necessity_rejected": 0.704190913727879,
+    "necessity_negative": 1.3557706963481844,
+    "necessity_rejected": 0.6315727917593644,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 37.832729905865314,
@@ -26,7 +26,7 @@
     "min_explanation_size": 21,
     "max_explanation_size": 47,
     "reduction_rate": 33.62678963883278,
-    "validation_time_seconds": 6.469115734100342
+    "validation_time_seconds": 6.0545244216918945
   },
   "per_type_metrics": {
     "positive": {
@@ -39,14 +39,14 @@
     "negative": {
       "count": 435,
       "fidelity": 100.0,
-      "necessity": 1.1066527043937247,
+      "necessity": 1.3557706963481844,
       "mean_size": 28.135632183908047,
       "std_size": 2.4991942154983247
     },
     "rejected": {
       "count": 941,
       "fidelity": 100.0,
-      "necessity": 0.704190913727879,
+      "necessity": 0.6315727917593644,
       "mean_size": 42.35600425079702,
       "std_size": 1.9780244806095142
     }
@@ -3529,7 +3529,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -3544,6 +3544,7 @@
         "word_freq_people",
         "word_freq_addresses",
         "word_freq_free",
+        "word_freq_business",
         "word_freq_email",
         "word_freq_you",
         "word_freq_your",
@@ -3576,7 +3577,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 832,
@@ -3836,13 +3837,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
+        "word_freq_internet",
         "word_freq_order",
         "word_freq_mail",
         "word_freq_will",
@@ -3882,7 +3884,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 6.521739130434782
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 1263,
@@ -4272,7 +4274,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -4285,6 +4286,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "fidelity": 100.0,
@@ -4322,7 +4324,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -4335,6 +4336,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "necessity_score": 4.444444444444445
@@ -6009,7 +6011,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -6033,8 +6035,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_cs",
-        "char_freq_semicolon",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -6042,7 +6042,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 9.090909090909092
+      "necessity_score": 15.151515151515152
     },
     {
       "instance_id": 3180,
@@ -8432,6 +8432,7 @@
       "rejected": true,
       "explanation_size": 41,
       "explanation_features": [
+        "word_freq_make",
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
@@ -8471,8 +8472,7 @@
         "word_freq_edu",
         "char_freq_semicolon",
         "char_freq_exclamation",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -8480,6 +8480,7 @@
       "perturbations_correct": 500,
       "necessary_features": 0,
       "redundant_features": [
+        "word_freq_make",
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
@@ -8519,8 +8520,7 @@
         "word_freq_edu",
         "char_freq_semicolon",
         "char_freq_exclamation",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "necessity_score": 0.0
     },
@@ -8767,7 +8767,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -8793,7 +8793,6 @@
         "word_freq_money",
         "word_freq_george",
         "word_freq_650",
-        "word_freq_labs",
         "word_freq_857",
         "word_freq_415",
         "word_freq_technology",
@@ -8805,7 +8804,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 5.405405405405405
+      "necessity_score": 8.108108108108109
     },
     {
       "instance_id": 1367,
@@ -9277,6 +9276,7 @@
       "explanation_features": [
         "word_freq_make",
         "word_freq_all",
+        "word_freq_3d",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
@@ -9286,7 +9286,6 @@
         "word_freq_receive",
         "word_freq_will",
         "word_freq_people",
-        "word_freq_report",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -9312,6 +9311,7 @@
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
+        "word_freq_3d",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
@@ -9321,7 +9321,6 @@
         "word_freq_receive",
         "word_freq_will",
         "word_freq_people",
-        "word_freq_report",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -9387,7 +9386,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 5,
+      "necessary_features": 6,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -9411,7 +9410,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_re",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -9419,7 +9417,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 14.705882352941178
+      "necessity_score": 17.647058823529413
     },
     {
       "instance_id": 861,
@@ -10374,7 +10372,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 6,
+      "necessary_features": 4,
       "redundant_features": [
         "word_freq_address",
         "word_freq_our",
@@ -10387,6 +10385,7 @@
         "word_freq_will",
         "word_freq_addresses",
         "word_freq_business",
+        "word_freq_email",
         "word_freq_000",
         "word_freq_hp",
         "word_freq_hpl",
@@ -10415,9 +10414,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 13.043478260869565
+      "necessity_score": 8.695652173913043
     },
     {
       "instance_id": 2873,
@@ -10554,12 +10554,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
         "word_freq_over",
+        "word_freq_remove",
         "word_freq_internet",
         "word_freq_order",
         "word_freq_mail",
@@ -10601,7 +10602,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1718,
@@ -13382,9 +13383,10 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "word_freq_address",
+        "word_freq_all",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
@@ -13428,7 +13430,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 6.521739130434782
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 104,
@@ -15226,7 +15228,7 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_original",
+        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -15262,7 +15264,7 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_original",
+        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -16750,9 +16752,9 @@
         "word_freq_money",
         "word_freq_1999",
         "word_freq_pm",
+        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
-        "char_freq_hash",
         "capital_run_length_average",
         "capital_run_length_longest",
         "capital_run_length_total"
@@ -16786,9 +16788,9 @@
         "word_freq_000",
         "word_freq_money",
         "word_freq_1999",
+        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
-        "char_freq_hash",
         "capital_run_length_average",
         "capital_run_length_longest",
         "capital_run_length_total"
@@ -19019,7 +19021,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -19036,6 +19038,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_hp",
         "word_freq_hpl",
@@ -19066,7 +19069,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 976,
@@ -20110,8 +20113,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
+        "word_freq_make",
         "word_freq_address",
         "word_freq_our",
         "word_freq_remove",
@@ -20156,7 +20160,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 6.521739130434782
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 3496,
@@ -21562,7 +21566,6 @@
         "word_freq_650",
         "word_freq_lab",
         "word_freq_labs",
-        "word_freq_telnet",
         "word_freq_857",
         "word_freq_data",
         "word_freq_415",
@@ -21573,6 +21576,7 @@
         "word_freq_cs",
         "word_freq_meeting",
         "word_freq_original",
+        "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
         "char_freq_semicolon",
@@ -21609,7 +21613,6 @@
         "word_freq_650",
         "word_freq_lab",
         "word_freq_labs",
-        "word_freq_telnet",
         "word_freq_857",
         "word_freq_data",
         "word_freq_415",
@@ -21620,6 +21623,7 @@
         "word_freq_cs",
         "word_freq_meeting",
         "word_freq_original",
+        "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
         "char_freq_semicolon",
@@ -22698,11 +22702,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_address",
         "word_freq_all",
+        "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
         "word_freq_order",
@@ -22744,7 +22749,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 4.444444444444445
+      "necessity_score": 2.2222222222222223
     },
     {
       "instance_id": 2055,
@@ -22977,7 +22982,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -22991,6 +22996,7 @@
         "word_freq_will",
         "word_freq_addresses",
         "word_freq_free",
+        "word_freq_business",
         "word_freq_email",
         "word_freq_you",
         "word_freq_your",
@@ -23024,7 +23030,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 2354,
@@ -24392,7 +24398,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_our",
@@ -24400,6 +24406,7 @@
         "word_freq_remove",
         "word_freq_internet",
         "word_freq_order",
+        "word_freq_mail",
         "word_freq_receive",
         "word_freq_will",
         "word_freq_addresses",
@@ -24437,7 +24444,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 3247,
@@ -27239,7 +27246,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -27263,7 +27270,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_hp",
         "word_freq_labs",
         "word_freq_technology",
         "char_freq_exclamation",
@@ -27273,7 +27279,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 3.225806451612903
     },
     {
       "instance_id": 276,
@@ -29052,7 +29058,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -29076,7 +29082,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "char_freq_parentheses",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -29084,7 +29089,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 6.451612903225806
+      "necessity_score": 9.67741935483871
     },
     {
       "instance_id": 858,
@@ -33283,7 +33288,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -33307,7 +33312,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -33315,7 +33319,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 9.375
+      "necessity_score": 12.5
     },
     {
       "instance_id": 4529,
@@ -33675,7 +33679,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -33692,6 +33696,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_money",
         "word_freq_hp",
@@ -33720,7 +33725,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.3255813953488373
+      "necessity_score": 0.0
     },
     {
       "instance_id": 883,
@@ -34534,7 +34539,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -34551,6 +34556,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_hp",
         "word_freq_hpl",
@@ -34581,7 +34587,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 4405,
@@ -37452,7 +37458,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -37496,9 +37502,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
+        "char_freq_exclamation",
         "char_freq_dollar"
       ],
-      "necessity_score": 8.51063829787234
+      "necessity_score": 6.382978723404255
     },
     {
       "instance_id": 2708,
@@ -40983,6 +40990,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -40994,7 +41002,6 @@
         "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
-        "char_freq_parentheses",
         "char_freq_bracket",
         "char_freq_dollar"
       ],
@@ -41035,6 +41042,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -41046,7 +41054,6 @@
         "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
-        "char_freq_parentheses",
         "char_freq_bracket",
         "char_freq_dollar"
       ],
@@ -41665,7 +41672,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -41689,7 +41696,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_hp",
         "word_freq_1999",
         "word_freq_meeting",
         "char_freq_exclamation",
@@ -41699,7 +41705,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 3.225806451612903
     },
     {
       "instance_id": 3577,
@@ -42119,6 +42125,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -42127,7 +42134,6 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
-        "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
@@ -42170,6 +42176,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -42178,7 +42185,6 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
-        "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
@@ -44787,6 +44793,7 @@
         "word_freq_you",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -44813,8 +44820,7 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -44838,6 +44844,7 @@
         "word_freq_email",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -44864,8 +44871,7 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "necessity_score": 2.2222222222222223
     },
@@ -46635,6 +46641,7 @@
       "rejected": true,
       "explanation_size": 40,
       "explanation_features": [
+        "word_freq_make",
         "word_freq_all",
         "word_freq_our",
         "word_freq_over",
@@ -46643,7 +46650,6 @@
         "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
-        "word_freq_people",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -46682,6 +46688,7 @@
       "perturbations_correct": 500,
       "necessary_features": 0,
       "redundant_features": [
+        "word_freq_make",
         "word_freq_all",
         "word_freq_our",
         "word_freq_over",
@@ -46690,7 +46697,6 @@
         "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
-        "word_freq_people",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -47591,6 +47597,7 @@
         "word_freq_mail",
         "word_freq_receive",
         "word_freq_people",
+        "word_freq_report",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -47603,7 +47610,6 @@
         "word_freq_money",
         "word_freq_cs",
         "word_freq_re",
-        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -47628,6 +47634,7 @@
         "word_freq_mail",
         "word_freq_receive",
         "word_freq_people",
+        "word_freq_report",
         "word_freq_addresses",
         "word_freq_free",
         "word_freq_business",
@@ -47640,7 +47647,6 @@
         "word_freq_money",
         "word_freq_cs",
         "word_freq_re",
-        "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -47792,7 +47798,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -47816,7 +47822,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_labs",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -47824,7 +47829,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 12.121212121212121
+      "necessity_score": 15.151515151515152
     },
     {
       "instance_id": 3982,
@@ -48775,7 +48780,6 @@
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
-        "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
         "word_freq_will",
@@ -48786,6 +48790,7 @@
         "word_freq_you",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -48827,7 +48832,6 @@
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
-        "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
         "word_freq_will",
@@ -48837,6 +48841,7 @@
         "word_freq_email",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -50157,7 +50162,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -50165,6 +50170,7 @@
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
+        "word_freq_order",
         "word_freq_receive",
         "word_freq_will",
         "word_freq_free",
@@ -50202,7 +50208,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 3935,
@@ -52645,7 +52651,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -52658,6 +52663,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "fidelity": 100.0,
@@ -52696,7 +52702,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -52709,6 +52714,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "necessity_score": 2.2222222222222223
@@ -54329,7 +54335,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
         "word_freq_address",
         "word_freq_our",
@@ -54344,6 +54350,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_hp",
         "word_freq_hpl",
@@ -54372,9 +54379,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 439,
@@ -55463,7 +55471,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -55476,6 +55483,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "fidelity": 100.0,
@@ -55513,7 +55521,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -55526,6 +55533,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "necessity_score": 4.444444444444445
@@ -56268,7 +56276,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 6,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_address",
         "word_freq_over",
@@ -56309,9 +56317,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 13.043478260869565
+      "necessity_score": 10.869565217391305
     },
     {
       "instance_id": 1888,
@@ -56695,7 +56704,6 @@
         "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
-        "word_freq_will",
         "word_freq_people",
         "word_freq_report",
         "word_freq_addresses",
@@ -56710,6 +56718,7 @@
         "word_freq_money",
         "char_freq_exclamation",
         "char_freq_dollar",
+        "char_freq_hash",
         "capital_run_length_average",
         "capital_run_length_longest",
         "capital_run_length_total"
@@ -56730,7 +56739,6 @@
         "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
-        "word_freq_will",
         "word_freq_people",
         "word_freq_report",
         "word_freq_addresses",
@@ -56745,6 +56753,7 @@
         "word_freq_money",
         "char_freq_exclamation",
         "char_freq_dollar",
+        "char_freq_hash",
         "capital_run_length_average",
         "capital_run_length_longest",
         "capital_run_length_total"
@@ -59126,7 +59135,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -59150,7 +59159,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_1999",
         "word_freq_cs",
         "char_freq_exclamation",
         "char_freq_dollar",
@@ -59159,7 +59167,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 11.76470588235294
+      "necessity_score": 14.705882352941178
     },
     {
       "instance_id": 866,
@@ -60816,9 +60824,10 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_address",
+        "word_freq_all",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
@@ -60862,7 +60871,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 4.444444444444445
+      "necessity_score": 2.2222222222222223
     },
     {
       "instance_id": 929,
@@ -61219,7 +61228,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -61245,7 +61254,6 @@
         "word_freq_money",
         "word_freq_hp",
         "word_freq_labs",
-        "word_freq_pm",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -61253,7 +61261,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 3.225806451612903
     },
     {
       "instance_id": 1522,
@@ -63551,7 +63559,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -63568,6 +63576,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_money",
         "word_freq_hp",
@@ -63596,7 +63605,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.3255813953488373
+      "necessity_score": 0.0
     },
     {
       "instance_id": 3297,
@@ -64427,7 +64436,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -64452,7 +64461,6 @@
         "word_freq_000",
         "word_freq_money",
         "word_freq_direct",
-        "char_freq_bracket",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -64460,7 +64468,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 3.3333333333333335
     },
     {
       "instance_id": 2522,
@@ -67798,7 +67806,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -67810,7 +67818,6 @@
         "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
-        "word_freq_will",
         "word_freq_people",
         "word_freq_report",
         "word_freq_addresses",
@@ -67830,7 +67837,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 12.121212121212121
+      "necessity_score": 15.151515151515152
     },
     {
       "instance_id": 2841,
@@ -69531,7 +69538,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_address",
         "word_freq_our",
@@ -69546,6 +69553,7 @@
         "word_freq_free",
         "word_freq_business",
         "word_freq_email",
+        "word_freq_you",
         "word_freq_your",
         "word_freq_000",
         "word_freq_money",
@@ -69578,7 +69586,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 4.3478260869565215
+      "necessity_score": 2.1739130434782608
     },
     {
       "instance_id": 4052,
@@ -73049,7 +73057,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -73062,6 +73069,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "fidelity": 100.0,
@@ -73100,7 +73108,6 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
-        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -73113,6 +73120,7 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
+        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "necessity_score": 2.2222222222222223
@@ -74671,7 +74679,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_make",
         "word_freq_address",
@@ -74695,7 +74703,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_george",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -74703,7 +74710,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 6.451612903225806
+      "necessity_score": 9.67741935483871
     },
     {
       "instance_id": 3398,
@@ -77470,7 +77477,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 6,
+      "necessary_features": 5,
       "redundant_features": [
         "word_freq_address",
         "word_freq_our",
@@ -77511,9 +77518,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 13.043478260869565
+      "necessity_score": 10.869565217391305
     },
     {
       "instance_id": 375,
@@ -77573,7 +77581,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -77618,9 +77626,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 4.3478260869565215
+      "necessity_score": 2.1739130434782608
     },
     {
       "instance_id": 4144,
@@ -81859,7 +81868,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -81883,7 +81892,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_hpl",
         "word_freq_1999",
         "word_freq_re",
         "char_freq_exclamation",
@@ -81893,7 +81901,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 8.823529411764707
+      "necessity_score": 11.76470588235294
     },
     {
       "instance_id": 2268,
@@ -83291,7 +83299,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -83315,7 +83323,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_hpl",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -83323,7 +83330,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 6.451612903225806
+      "necessity_score": 9.67741935483871
     },
     {
       "instance_id": 2013,
@@ -88476,7 +88483,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_make",
         "word_freq_address",
@@ -88493,6 +88500,7 @@
         "word_freq_free",
         "word_freq_business",
         "word_freq_email",
+        "word_freq_you",
         "word_freq_your",
         "word_freq_000",
         "word_freq_money",
@@ -88523,7 +88531,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 2864,
@@ -98425,38 +98433,18 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 10,
+      "necessary_features": 30,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
-        "word_freq_3d",
         "word_freq_our",
-        "word_freq_over",
-        "word_freq_remove",
         "word_freq_internet",
-        "word_freq_order",
         "word_freq_mail",
-        "word_freq_receive",
-        "word_freq_people",
-        "word_freq_report",
-        "word_freq_addresses",
-        "word_freq_free",
-        "word_freq_business",
-        "word_freq_email",
         "word_freq_you",
-        "word_freq_credit",
-        "word_freq_your",
-        "word_freq_font",
-        "word_freq_000",
-        "word_freq_money",
-        "char_freq_exclamation",
         "char_freq_dollar",
-        "char_freq_hash",
-        "capital_run_length_average",
-        "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 26.31578947368421
+      "necessity_score": 78.94736842105263
     },
     {
       "instance_id": 2638,
@@ -99518,7 +99506,7 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_george",
+        "word_freq_labs",
         "word_freq_1999",
         "char_freq_exclamation",
         "char_freq_dollar",
@@ -99555,7 +99543,7 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_george",
+        "word_freq_labs",
         "word_freq_1999",
         "char_freq_exclamation",
         "char_freq_dollar",
@@ -105910,11 +105898,11 @@
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
-        "word_freq_650",
         "word_freq_labs",
         "word_freq_1999",
         "word_freq_cs",
         "word_freq_original",
+        "word_freq_re",
         "word_freq_edu",
         "char_freq_exclamation",
         "char_freq_dollar",
@@ -105927,7 +105915,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 7,
+      "necessary_features": 8,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -105951,8 +105939,7 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_650",
-        "word_freq_edu",
+        "word_freq_re",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -105960,7 +105947,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 18.91891891891892
+      "necessity_score": 21.62162162162162
     },
     {
       "instance_id": 2305,
@@ -106638,7 +106625,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -106646,6 +106633,7 @@
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
+        "word_freq_order",
         "word_freq_mail",
         "word_freq_receive",
         "word_freq_will",
@@ -106685,7 +106673,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 3512,
@@ -108869,7 +108857,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -108877,6 +108865,7 @@
         "word_freq_remove",
         "word_freq_internet",
         "word_freq_order",
+        "word_freq_mail",
         "word_freq_receive",
         "word_freq_will",
         "word_freq_addresses",
@@ -108914,7 +108903,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 876,
@@ -111510,6 +111499,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -111518,7 +111508,6 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
-        "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
@@ -111561,6 +111550,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -111569,7 +111559,6 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_edu",
-        "word_freq_table",
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
@@ -112102,6 +112091,7 @@
       "rejected": true,
       "explanation_size": 41,
       "explanation_features": [
+        "word_freq_make",
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
@@ -112141,8 +112131,7 @@
         "word_freq_edu",
         "char_freq_semicolon",
         "char_freq_exclamation",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -112150,6 +112139,7 @@
       "perturbations_correct": 500,
       "necessary_features": 0,
       "redundant_features": [
+        "word_freq_make",
         "word_freq_address",
         "word_freq_all",
         "word_freq_our",
@@ -112189,8 +112179,7 @@
         "word_freq_edu",
         "char_freq_semicolon",
         "char_freq_exclamation",
-        "char_freq_dollar",
-        "capital_run_length_total"
+        "char_freq_dollar"
       ],
       "necessity_score": 0.0
     },
@@ -114118,7 +114107,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -114135,6 +114124,7 @@
         "word_freq_business",
         "word_freq_email",
         "word_freq_you",
+        "word_freq_your",
         "word_freq_000",
         "word_freq_money",
         "word_freq_hp",
@@ -114163,7 +114153,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 2.3255813953488373
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1966,
@@ -120304,9 +120294,10 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "word_freq_address",
+        "word_freq_all",
         "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
@@ -120350,7 +120341,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 6.521739130434782
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 1639,
@@ -120673,10 +120664,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
+        "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
@@ -120718,7 +120710,7 @@
         "char_freq_dollar",
         "capital_run_length_total"
       ],
-      "necessity_score": 4.545454545454546
+      "necessity_score": 2.272727272727273
     },
     {
       "instance_id": 3317,
@@ -121127,7 +121119,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
@@ -121170,9 +121162,10 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_bracket",
-        "char_freq_dollar"
+        "char_freq_dollar",
+        "capital_run_length_total"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 4048,
@@ -122263,6 +122256,7 @@
         "word_freq_you",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -122288,7 +122282,6 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_dollar",
-        "capital_run_length_longest",
         "capital_run_length_total"
       ],
       "fidelity": 100.0,
@@ -122313,6 +122306,7 @@
         "word_freq_you",
         "word_freq_your",
         "word_freq_000",
+        "word_freq_money",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_george",
@@ -122338,7 +122332,6 @@
         "char_freq_semicolon",
         "char_freq_parentheses",
         "char_freq_dollar",
-        "capital_run_length_longest",
         "capital_run_length_total"
       ],
       "necessity_score": 2.272727272727273
@@ -125406,7 +125399,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 0,
+      "necessary_features": 1,
       "redundant_features": [
         "word_freq_make",
         "word_freq_all",
@@ -125429,7 +125422,6 @@
         "word_freq_font",
         "word_freq_000",
         "word_freq_money",
-        "word_freq_hp",
         "char_freq_exclamation",
         "char_freq_dollar",
         "char_freq_hash",
@@ -125437,7 +125429,7 @@
         "capital_run_length_longest",
         "capital_run_length_total"
       ],
-      "necessity_score": 0.0
+      "necessity_score": 3.571428571428571
     },
     {
       "instance_id": 4033,
@@ -126606,6 +126598,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -126618,7 +126611,6 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
-        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "fidelity": 100.0,
@@ -126657,6 +126649,7 @@
         "word_freq_85",
         "word_freq_technology",
         "word_freq_1999",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_direct",
         "word_freq_cs",
@@ -126669,7 +126662,6 @@
         "word_freq_conference",
         "char_freq_semicolon",
         "char_freq_parentheses",
-        "char_freq_bracket",
         "char_freq_dollar"
       ],
       "necessity_score": 2.2222222222222223
@@ -127310,10 +127302,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "word_freq_address",
         "word_freq_all",
+        "word_freq_our",
         "word_freq_over",
         "word_freq_remove",
         "word_freq_internet",
@@ -127355,7 +127348,7 @@
         "char_freq_bracket",
         "char_freq_dollar"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 558,

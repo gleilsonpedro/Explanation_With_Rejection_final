@@ -1,3 +1,23 @@
+% Tabela 0: Características dos Datasets
+\begin{table}[!t]
+\centering
+\caption{Características dos datasets utilizados nos experimentos com zona de rejeição.}
+\label{tab:datasets}
+\begin{tabular}{lrrrr}
+\hline
+\textbf{Dataset} & \textbf{Instâncias} & \textbf{Features} & \textbf{Thresholds ($t^-$, $t^+$)} & \textbf{Zona} \\
+\hline
+Banknote & 1372 & 4 & (-0.35, 0.01) & 0.36 \\
+Breast Cancer & 569 & 30 & (-0.01, 0.97) & 0.98 \\
+Heart Disease & 303 & 13 & (-0.11, 0.18) & 0.29 \\
+Pima Indians & 768 & 8 & (-0.01, 0.07) & 0.08 \\
+Sonar & 208 & 60 & (-0.01, 0.26) & 0.27 \\
+Spambase & 4601 & 57 & (-0.47, 0.30) & 0.78 \\
+Vertebral Column & 310 & 6 & (-0.07, 1.10) & 1.17 \\
+\hline
+\end{tabular}
+\end{table}
+
 % Tabela 1: Speedup Classificadas (Comparação de Tempos)
 \begin{table}[!t]
 \centering
@@ -7,13 +27,13 @@
 \hline
 \textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
 \hline
-Banknote & 5.6 & 47.1 & 123.8 & 148.2 & 22.1$\times$ & 26.5$\times$ \\
-Breast Cancer & 5.1 & 44.0 & 4765.0 & 595.2 & 930.2$\times$ & 116.2$\times$ \\
-Heart Disease & 4.8 & 48.1 & 86.3 & 476.2 & 17.9$\times$ & 98.5$\times$ \\
-Pima Indians & 6.5 & 27.3 & 330.7 & 289.2 & 50.9$\times$ & 44.5$\times$ \\
-Sonar & 10.7 & 52.7 & 24247.1 & 2390.1 & 2258.9$\times$ & 222.7$\times$ \\
-Spambase & 6.8 & 44.7 & 202.6 & 2335.6 & 30.0$\times$ & 345.9$\times$ \\
-Vertebral Column & 6.2 & 47.5 & 308.3 & 232.3 & 50.0$\times$ & 37.6$\times$ \\
+Banknote & 5.6 & 39.7 & 123.8 & 148.2 & 22.1$\times$ & 26.5$\times$ \\
+Breast Cancer & 5.1 & 43.8 & 4765.0 & 595.2 & 930.2$\times$ & 116.2$\times$ \\
+Heart Disease & 4.8 & 42.9 & 86.3 & 476.2 & 17.9$\times$ & 98.5$\times$ \\
+Pima Indians & 6.5 & 44.4 & 330.7 & 289.2 & 50.9$\times$ & 44.5$\times$ \\
+Sonar & 10.7 & 47.6 & 24247.1 & 2390.1 & 2258.9$\times$ & 222.7$\times$ \\
+Spambase & 6.8 & 42.4 & 202.6 & 2335.6 & 30.0$\times$ & 345.9$\times$ \\
+Vertebral Column & 6.2 & 41.8 & 308.3 & 232.3 & 50.0$\times$ & 37.6$\times$ \\
 \hline
 \textbf{Média} & - & - & - & - & 480.0$\times$ & 127.4$\times$ \\
 \hline
@@ -29,13 +49,13 @@ Vertebral Column & 6.2 & 47.5 & 308.3 & 232.3 & 50.0$\times$ & 37.6$\times$ \\
 \hline
 \textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
 \hline
-Banknote & 12.5 & 47.6 & 58.9 & 230.3 & 4.7$\times$ & 18.4$\times$ \\
-Breast Cancer & 10.7 & 43.5 & 3547.5 & 1030.1 & 332.3$\times$ & 96.5$\times$ \\
-Heart Disease & 12.0 & 49.4 & 103.0 & 842.0 & 8.6$\times$ & 70.4$\times$ \\
-Pima Indians & 13.5 & 23.3 & 1120.9 & 305.6 & 83.0$\times$ & 22.6$\times$ \\
-Sonar & 32.4 & 53.3 & 5788.6 & 4785.2 & 178.6$\times$ & 147.6$\times$ \\
-Spambase & 25.2 & 48.2 & 577.1 & 3709.6 & 22.9$\times$ & 147.0$\times$ \\
-Vertebral Column & 14.1 & 46.9 & 123.8 & 370.5 & 8.8$\times$ & 26.2$\times$ \\
+Banknote & 12.5 & 40.8 & 58.9 & 230.3 & 4.7$\times$ & 18.4$\times$ \\
+Breast Cancer & 10.7 & 44.6 & 3547.5 & 1030.1 & 332.3$\times$ & 96.5$\times$ \\
+Heart Disease & 12.0 & 44.1 & 103.0 & 842.0 & 8.6$\times$ & 70.4$\times$ \\
+Pima Indians & 13.5 & 42.7 & 1120.9 & 305.6 & 83.0$\times$ & 22.6$\times$ \\
+Sonar & 32.4 & 48.7 & 5788.6 & 4785.2 & 178.6$\times$ & 147.6$\times$ \\
+Spambase & 25.2 & 44.7 & 577.1 & 3709.6 & 22.9$\times$ & 147.0$\times$ \\
+Vertebral Column & 14.1 & 42.4 & 123.8 & 370.5 & 8.8$\times$ & 26.2$\times$ \\
 \hline
 \textbf{Média} & - & - & - & - & 91.3$\times$ & 75.5$\times$ \\
 \hline
@@ -58,10 +78,10 @@ Breast Cancer & 1.69 & 2.00 & 1.69 & 2.00 & 2.07 & 1.97 & 1.69 & 2.00 \\
 Heart Disease & 7.06 & 6.92 & 7.12 & 6.39 & 2.60 & 3.03 & 7.40 & 6.61 \\
 Pima Indians & 4.17 & 8.00 & 4.17 & 8.00 & 2.46 & 5.00 & 4.60 & 8.00 \\
 Sonar & 41.89 & 39.13 & 42.28 & 36.51 & 3.06 & 2.04 & 52.11 & 48.89 \\
-Spambase & 28.10 & 43.99 & 51.02 & 38.60 & 1.34 & 2.66 & 30.13 & 48.90 \\
+Spambase & 28.10 & 43.99 & 28.16 & 42.36 & 1.34 & 2.66 & 30.13 & 48.90 \\
 Vertebral Column & 4.34 & 5.06 & 4.34 & 5.06 & 2.10 & 1.74 & 4.41 & 5.06 \\
 \hline
-\textbf{Média} & 12.88 & 15.38 & 16.21 & 14.17 & 2.14 & 2.50 & 14.75 & 17.46 \\
+\textbf{Média} & 12.88 & 15.38 & 12.95 & 14.70 & 2.14 & 2.50 & 14.75 & 17.46 \\
 \hline
 \end{tabular}
 \end{table}

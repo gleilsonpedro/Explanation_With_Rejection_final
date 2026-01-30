@@ -29,7 +29,7 @@ MNIST_CONFIG = {
     'top_k_features': None,          
     'test_size': 0.3,                
     'rejection_cost': 0.10,          
-    'subsample_size': 1.0
+    'subsample_size': 0.1
 }
 
 DATASET_CONFIG = {
@@ -42,10 +42,10 @@ DATASET_CONFIG = {
     "banknote":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
     "creditcard":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.05},
-    "covertype":            {'subsample_size': 0.3, 'test_size': 0.3, 'rejection_cost': 0.10},
-    "gas_sensor":           {'test_size': 0.3, 'rejection_cost': 0.24},
-    "newsgroups":           {'subsample_size': 0.1, 'test_size': 0.3, 'rejection_cost': 0.24},
-    "rcv1":                 {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "covertype":            {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.10},
+    "gas_sensor":           {'test_size': 0.5, 'rejection_cost': 0.24},
+    "newsgroups":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "rcv1":                 {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
 }
 OUTPUT_BASE_DIR: str = 'results/report/peab'
 HIPERPARAMETROS_FILE: str = 'json/hiperparametros.json'

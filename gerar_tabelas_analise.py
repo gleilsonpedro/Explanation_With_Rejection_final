@@ -110,6 +110,69 @@ def extrair_contagens_explicacoes(data, metodo):
     return "\n".join(latex)
 
 
+def gerar_tabela_datasets_caracteristicas():
+    """Gera tabela LaTeX com características dos datasets incluindo thresholds."""
+    
+    # Informações sobre os datasets
+    dataset_info = {
+        "banknote": {"instancias": 1372, "features": 4},
+        "pima_indians_diabetes": {"instancias": 768, "features": 8},
+        "vertebral_column": {"instancias": 310, "features": 6},
+        "heart_disease": {"instancias": 303, "features": 13},
+        "spambase": {"instancias": 4601, "features": 57},
+        "breast_cancer": {"instancias": 569, "features": 30},
+        "sonar": {"instancias": 208, "features": 60}
+    }
+    
+    # Ordem específica da tabela do artigo (todos os 7 datasets comuns)
+    datasets_ordenados = [
+        "banknote",
+        "breast_cancer",
+        "heart_disease",
+        "pima_indians_diabetes",
+        "sonar",
+        "spambase",
+        "vertebral_column"
+    ]
+    
+    latex = []
+    latex.append("\\begin{table}[!t]")
+    latex.append("\\centering")
+    latex.append("\\caption{Características dos datasets utilizados nos experimentos com zona de rejeição.}")
+    latex.append("\\label{tab:datasets}")
+    latex.append("\\begin{tabular}{lrrrr}")
+    latex.append("\\hline")
+    latex.append("\\textbf{Dataset} & \\textbf{Instâncias} & \\textbf{Features} & \\textbf{Thresholds ($t^-$, $t^+$)} & \\textbf{Zona} \\\\")
+    latex.append("\\hline")
+    
+    for dataset in datasets_ordenados:
+        nome = DATASET_NAMES[dataset]
+        info = dataset_info[dataset]
+        
+        # Carregar thresholds do JSON do PEAB
+        data = carregar_dados_json("peab", dataset)
+        if data and "thresholds" in data:
+            t_plus = data["thresholds"]["t_plus"]
+            t_minus = data["thresholds"]["t_minus"]
+            largura = t_plus - t_minus
+            
+            # Formatar thresholds
+            threshold_str = f"({t_minus:.2f}, {t_plus:.2f})"
+            largura_str = f"{largura:.2f}"
+        else:
+            threshold_str = "N/A"
+            largura_str = "N/A"
+        
+        linha = f"{nome} & {info['instancias']} & {info['features']} & {threshold_str} & {largura_str} \\\\"
+        latex.append(linha)
+    
+    latex.append("\\hline")
+    latex.append("\\end{tabular}")
+    latex.append("\\end{table}")
+    
+    return "\n".join(latex)
+
+
 def gerar_tabela_necessidade():
     """Gera tabela LaTeX com percentual de features necessárias (PEAB vs PULP)."""
     
@@ -911,8 +974,18 @@ def main():
     print(f"Métodos: {', '.join(METODOS).upper()}")
     print()
     
+    # Gerar tabela de características dos datasets
+    print("Gerando tabela de características dos datasets...")
+    tabela_datasets = gerar_tabela_datasets_caracteristicas()
+    
+    # Salvar tabela de datasets
+    datasets_file = output_dir / "tabela_datasets.tex"
+    with open(datasets_file, 'w', encoding='utf-8') as f:
+        f.write(tabela_datasets)
+    print(f"✓ Tabela de datasets salva em: {datasets_file}")
+    
     # Gerar tabelas de speedup (classificadas e rejeitadas)
-    print("Gerando tabela de speedup para instâncias CLASSIFICADAS...")
+    print("\nGerando tabela de speedup para instâncias CLASSIFICADAS...")
     tabela_speedup_classif = gerar_tabela_speedup_classificadas()
     
     # Salvar tabela de speedup classificadas
@@ -972,6 +1045,9 @@ def main():
     print("\nGerando arquivo completo...")
     completo_file = output_dir / "tabelas_completas.tex"
     with open(completo_file, 'w', encoding='utf-8') as f:
+        f.write("% Tabela 0: Características dos Datasets\n")
+        f.write(tabela_datasets)
+        f.write("\n\n")
         f.write("% Tabela 1: Speedup Classificadas (Comparação de Tempos)\n")
         f.write(tabela_speedup_classif)
         f.write("\n\n")
@@ -992,6 +1068,7 @@ def main():
     print("TABELAS GERADAS COM SUCESSO!")
     print("="*70)
     print(f"\nArquivos criados em: {output_dir.absolute()}")
+    print("- tabela_datasets.tex")
     print("- tabela_speedup_classificadas.tex")
     print("- tabela_speedup_rejeitadas.tex")
     print("- tabela_explicacoes.tex")
@@ -1001,6 +1078,12 @@ def main():
     print("- rejection_zone.png")
     print("- rejection_zone_intervals.png")
     print()
+    
+    # Mostrar prévia da tabela de datasets
+    print("\n" + "="*70)
+    print("PRÉVIA: TABELA DE CARACTERÍSTICAS DOS DATASETS")
+    print("="*70)
+    print(tabela_datasets)
     
     # Mostrar prévia das tabelas de speedup
     print("\n" + "="*70)

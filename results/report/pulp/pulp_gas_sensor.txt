@@ -7,7 +7,7 @@ Solver de Otimização Inteira (Ground Truth)
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
 Dataset: gas_sensor
-Instâncias processadas: 1262
+Instâncias processadas: 2103
 Thresholds: t+ = 0.0053, t- = -0.0100
 Zona de rejeição: 0.0153
 Rejection cost: 0.24
@@ -22,59 +22,64 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
-Acurácia (sem rejeição): 98.73%
-Acurácia (com rejeição): 98.73%
-Taxa de rejeição: 0.00%
-Risco empírico: 0.0127
+Acurácia (sem rejeição): 97.67%
+Acurácia (com rejeição): 97.89%
+Taxa de rejeição: 0.76%
+Risco empírico: 0.0229
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 51.49 features
-Tempo total: 70.56s
-Tempo médio/instância: 0.0559s
+Tamanho médio: 52.93 features
+Tempo total: 110.57s
+Tempo médio/instância: 0.0526s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 496 (39.3%)
-  - Tamanho médio: 64.33 features
-  - Tempo médio: 0.0563s
+  - Instâncias: 838 (39.8%)
+  - Tamanho médio: 65.96 features
+  - Tempo médio: 0.0526s
 
 NEGATIVA:
-  - Instâncias: 766 (60.7%)
-  - Tamanho médio: 43.18 features
-  - Tempo médio: 0.0557s
+  - Instâncias: 1260 (59.9%)
+  - Tamanho médio: 43.98 features
+  - Tempo médio: 0.0526s
+
+REJEITADA:
+  - Instâncias: 5 (0.2%)
+  - Tamanho médio: 124.60 features
+  - Tempo médio: 0.0562s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância    12344 (NEGATIVA  ): 110 features - 0.0506s
- 2. Instância      718 (NEGATIVA  ): 103 features - 0.0519s
- 3. Instância    12318 (NEGATIVA  ):  99 features - 0.0539s
- 4. Instância       57 (NEGATIVA  ):  95 features - 0.0472s
- 5. Instância     8095 (NEGATIVA  ):  95 features - 0.0544s
- 6. Instância      692 (NEGATIVA  ):  91 features - 0.0626s
- 7. Instância    11390 (NEGATIVA  ):  91 features - 0.0581s
- 8. Instância    12224 (NEGATIVA  ):  90 features - 0.0524s
- 9. Instância    12511 (POSITIVA  ):  89 features - 0.0509s
-10. Instância      265 (POSITIVA  ):  88 features - 0.0494s
+ 1. Instância    12511 (REJEITADA ): 125 features - 0.0635s
+ 2. Instância    12517 (REJEITADA ): 125 features - 0.0575s
+ 3. Instância    12190 (REJEITADA ): 125 features - 0.0543s
+ 4. Instância    12483 (REJEITADA ): 124 features - 0.0530s
+ 5. Instância    12086 (REJEITADA ): 124 features - 0.0528s
+ 6. Instância    12479 (POSITIVA  ): 111 features - 0.0546s
+ 7. Instância    12525 (POSITIVA  ): 111 features - 0.0501s
+ 8. Instância    12230 (POSITIVA  ): 108 features - 0.0584s
+ 9. Instância    12547 (POSITIVA  ): 107 features - 0.0527s
+10. Instância    12250 (NEGATIVA  ): 106 features - 0.0511s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância      663 (NEGATIVA  ):   1 features - 0.0592s
- 2. Instância      662 (NEGATIVA  ):  10 features - 0.0533s
- 3. Instância      457 (NEGATIVA  ):  13 features - 0.0488s
- 4. Instância      691 (NEGATIVA  ):  14 features - 0.0540s
- 5. Instância      704 (NEGATIVA  ):  14 features - 0.0579s
- 6. Instância      743 (NEGATIVA  ):  14 features - 0.0517s
- 7. Instância      472 (NEGATIVA  ):  15 features - 0.0545s
- 8. Instância      703 (NEGATIVA  ):  15 features - 0.0583s
- 9. Instância      458 (NEGATIVA  ):  15 features - 0.0577s
-10. Instância      500 (NEGATIVA  ):  15 features - 0.0522s
+ 1. Instância      666 (POSITIVA  ):   1 features - 0.0556s
+ 2. Instância      663 (NEGATIVA  ):   2 features - 0.0601s
+ 3. Instância      662 (NEGATIVA  ):   9 features - 0.0548s
+ 4. Instância      457 (NEGATIVA  ):  15 features - 0.0511s
+ 5. Instância      704 (NEGATIVA  ):  15 features - 0.0535s
+ 6. Instância      691 (NEGATIVA  ):  15 features - 0.0477s
+ 7. Instância      730 (NEGATIVA  ):  15 features - 0.0568s
+ 8. Instância      743 (NEGATIVA  ):  16 features - 0.0532s
+ 9. Instância      717 (NEGATIVA  ):  16 features - 0.0506s
+10. Instância      729 (NEGATIVA  ):  17 features - 0.0460s
 
 ================================================================================
 FIM DO RELATÓRIO

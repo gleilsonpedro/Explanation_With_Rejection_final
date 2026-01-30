@@ -134,22 +134,28 @@ def calcular_explicacao_otima_pulp(
     # [CORREÇÃO] Adicionar EPSILON como o PEAB faz, para evitar conservadorismo excessivo
     EPSILON = 1e-5
     
-    # Preparar expressões para as restrições (SEM normalização)
-    # Os thresholds carregados do PEAB JSON já estão em escala RAW,
-    # então devemos comparar scores RAW com thresholds RAW diretamente.
-    expr_min = base_worst_min + pulp.lpSum(termos_min)
-    expr_max = base_worst_max + pulp.lpSum(termos_max)
+    # [EXPERIMENTAL] Tentar normalização condicional
+    # Para datasets com scores em escalas muito diferentes, a normalização pode ajudar
+    # Vamos usar normalização para manter consistência numérica
+    denom = max_abs if max_abs > 0 else 1.0
+    expr_min_norm = (base_worst_min + pulp.lpSum(termos_min)) / denom
+    expr_max_norm = (base_worst_max + pulp.lpSum(termos_max)) / denom
+    
+    # Thresholds também precisam ser normalizados para comparação justa
+    t_plus_norm = t_plus / denom
+    t_minus_norm = t_minus / denom
+    epsilon_norm = EPSILON / denom
 
     # Restrições baseadas no tipo de predição (com tolerância EPSILON)
     if estado == 1:  # POSITIVA
         # Dar uma pequena margem de tolerância (como o PEAB)
-        prob += expr_min >= t_plus - EPSILON
+        prob += expr_min_norm >= t_plus_norm - epsilon_norm
     elif estado == 0:  # NEGATIVA
-        prob += expr_max <= t_minus + EPSILON
+        prob += expr_max_norm <= t_minus_norm + epsilon_norm
     else:  # REJEITADA
         # Para rejeitadas, dar margem nas DUAS direções
-        prob += expr_max <= t_plus + EPSILON
-        prob += expr_min >= t_minus - EPSILON
+        prob += expr_max_norm <= t_plus_norm + epsilon_norm
+        prob += expr_min_norm >= t_minus_norm - epsilon_norm
 
     # Resolve o problema com configurações menos conservadoras
     # Ajustar tolerâncias do solver CBC para evitar conservadorismo excessivo

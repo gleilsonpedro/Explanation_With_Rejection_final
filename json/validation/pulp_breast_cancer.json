@@ -1,0 +1,674 @@
+{
+  "dataset": "breast_cancer",
+  "timestamp": "2026-01-30T15:55:33.858026",
+  "total_explicacoes": 30,
+  "estatisticas_por_tipo": {
+    "positiva": {
+      "total": 12,
+      "corretas": 0,
+      "corretude_percentual": 0.0,
+      "necessidade_media": 54.166666666666664,
+      "redundantes_media": 0.9166666666666666
+    },
+    "negativa": {
+      "total": 11,
+      "corretas": 11,
+      "corretude_percentual": 100.0,
+      "necessidade_media": 18.181818181818183,
+      "redundantes_media": 1.0
+    },
+    "rejeitada": {
+      "total": 7,
+      "corretas": 0,
+      "corretude_percentual": 0.0,
+      "necessidade_media": 100.0,
+      "redundantes_media": 0.0
+    }
+  },
+  "resultados_detalhados": [
+    {
+      "instance_id": "14",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -24.709912691812818,
+        "score_raw": -24.709912691812818,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "150",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -22.274226500102852,
+        "score_raw": -22.274226500102852,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "275",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -19.267140736112097,
+        "score_raw": -19.267140736112097,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "83",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -34.004682618053266,
+        "score_raw": -34.004682618053266,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "86",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -26.27882640270278,
+        "score_raw": -26.27882640270278,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "509",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -28.41266305577879,
+        "score_raw": -28.41266305577879,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "140",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -15.580283848060176,
+        "score_raw": -15.580283848060176,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "1/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "199",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -30.41865236191506,
+        "score_raw": -30.41865236191506,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "292",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -21.758290494723195,
+        "score_raw": -21.758290494723195,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "122",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -44.428206861248924,
+        "score_raw": -44.428206861248924,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "354",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -18.486346313393426,
+        "score_raw": -18.486346313393426,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "102",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -20.867663822442594,
+        "score_raw": -20.867663822442594,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "64",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -28.1285996952858,
+        "score_raw": -28.1285996952858,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "73",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -27.01174960414227,
+        "score_raw": -27.01174960414227,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "66",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -15.565815500611219,
+        "score_raw": -15.565815500611219,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "205",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -29.089623734527617,
+        "score_raw": -29.089623734527617,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "121",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -37.35293706546861,
+        "score_raw": -37.35293706546861,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "128",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -26.209557858392966,
+        "score_raw": -26.209557858392966,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "504",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -15.540125822979764,
+        "score_raw": -15.540125822979764,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "247",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -23.203636106150054,
+        "score_raw": -23.203636106150054,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "361",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -22.308042233009555,
+        "score_raw": -22.308042233009555,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "228",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -22.65155166683396,
+        "score_raw": -22.65155166683396,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "242",
+      "tipo_predicao": "REJEITADA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -19.769317994165633,
+        "score_raw": -19.769317994165633,
+        "expected_type": "NEGATIVA",
+        "actual_type": "REJEITADA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 2,
+        "redundant_features": [],
+        "necessity_score": 100.0,
+        "details": "2/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "17",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -35.26258730915113,
+        "score_raw": -35.26258730915113,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "460",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -38.55930554617761,
+        "score_raw": -38.55930554617761,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "204",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -23.939907214611264,
+        "score_raw": -23.939907214611264,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "246",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -21.806313458361608,
+        "score_raw": -21.806313458361608,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "298",
+      "tipo_predicao": "POSITIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": false,
+        "score_normalized": -26.034645972983427,
+        "score_raw": -26.034645972983427,
+        "expected_type": "NEGATIVA",
+        "actual_type": "POSITIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          20
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    },
+    {
+      "instance_id": "257",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 1,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -29.560465895994685,
+        "score_raw": -29.560465895994685,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 0,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 0.0,
+        "details": "0/1 features necessárias"
+      }
+    },
+    {
+      "instance_id": "516",
+      "tipo_predicao": "NEGATIVA",
+      "tamanho_explicacao": 2,
+      "corretude": {
+        "correct": true,
+        "score_normalized": -36.56291659046764,
+        "score_raw": -36.56291659046764,
+        "expected_type": "NEGATIVA",
+        "actual_type": "NEGATIVA",
+        "t_plus_norm": 0.9665149683549802,
+        "t_minus_norm": -0.01
+      },
+      "necessidade": {
+        "necessary_count": 1,
+        "redundant_features": [
+          27
+        ],
+        "necessity_score": 50.0,
+        "details": "1/2 features necessárias"
+      }
+    }
+  ]
+}

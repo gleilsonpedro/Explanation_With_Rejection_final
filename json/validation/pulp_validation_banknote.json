@@ -2,7 +2,7 @@
   "metadata": {
     "method": "PuLP",
     "dataset": "banknote",
-    "date": "2025-12-19 15:03:40",
+    "date": "2026-01-30 16:22:43",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
     "necessity_mode": "global",
@@ -11,13 +11,13 @@
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 59.54692556634303,
+    "necessity_overall": 59.20307443365695,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
     "necessity_positive": 32.53968253968254,
     "necessity_negative": 75.44444444444444,
-    "necessity_rejected": 52.00553250345781,
+    "necessity_rejected": 51.417704011065005,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 2.716019417475728,
@@ -26,7 +26,7 @@
     "min_explanation_size": 2,
     "max_explanation_size": 4,
     "reduction_rate": 32.0995145631068,
-    "validation_time_seconds": 0.46793484687805176
+    "validation_time_seconds": 0.4090864658355713
   },
   "per_type_metrics": {
     "positive": {
@@ -46,7 +46,7 @@
     "rejected": {
       "count": 241,
       "fidelity": 100.0,
-      "necessity": 52.00553250345781,
+      "necessity": 51.417704011065005,
       "mean_size": 2.6099585062240664,
       "std_size": 0.7095557010440235
     }
@@ -606,12 +606,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 475,
@@ -3378,11 +3379,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "necessity_score": 75.0
+      "necessity_score": 50.0
     },
     {
       "instance_id": 1299,
@@ -3692,12 +3694,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "variance",
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "necessity_score": 33.33333333333333
+      "necessity_score": 0.0
     },
     {
       "instance_id": 455,
@@ -6554,11 +6557,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
-        "skewness"
+        "skewness",
+        "entropy"
       ],
-      "necessity_score": 66.66666666666666
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 831,
@@ -8470,7 +8474,7 @@
       "explanation_features": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -8480,7 +8484,7 @@
       "redundant_features": [
         "variance",
         "skewness",
-        "curtosis"
+        "entropy"
       ],
       "necessity_score": 0.0
     },
@@ -8521,12 +8525,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "variance",
-        "skewness"
+        "skewness",
+        "curtosis"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 25.0
     },
     {
       "instance_id": 872,

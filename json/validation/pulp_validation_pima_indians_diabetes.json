@@ -2,7 +2,7 @@
   "metadata": {
     "method": "PuLP",
     "dataset": "pima_indians_diabetes",
-    "date": "2025-12-19 15:03:07",
+    "date": "2026-01-30 16:21:32",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
     "necessity_mode": "global",
@@ -26,7 +26,7 @@
     "min_explanation_size": 2,
     "max_explanation_size": 8,
     "reduction_rate": 47.24025974025974,
-    "validation_time_seconds": 0.281480073928833
+    "validation_time_seconds": 0.28363466262817383
   },
   "per_type_metrics": {
     "positive": {
@@ -4288,8 +4288,8 @@
       "explanation_features": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -4299,8 +4299,8 @@
       "redundant_features": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "necessity_score": 0.0
     },
@@ -5307,8 +5307,8 @@
       "explanation_features": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "fidelity": 100.0,
       "sufficiency": 100.0,
@@ -5318,8 +5318,8 @@
       "redundant_features": [
         "num_gravidezes",
         "glicose",
-        "pressao_sangue",
-        "imc"
+        "imc",
+        "diabetes_pedigree"
       ],
       "necessity_score": 0.0
     },
@@ -5673,8 +5673,8 @@
       "rejected": false,
       "explanation_size": 6,
       "explanation_features": [
+        "num_gravidezes",
         "glicose",
-        "pressao_sangue",
         "insulina",
         "imc",
         "diabetes_pedigree",
@@ -5686,7 +5686,7 @@
       "perturbations_correct": 1000,
       "necessary_features": 3,
       "redundant_features": [
-        "pressao_sangue",
+        "num_gravidezes",
         "insulina",
         "idade"
       ],

@@ -2,7 +2,7 @@
   "metadata": {
     "method": "PuLP",
     "dataset": "heart_disease",
-    "date": "2025-12-19 15:03:52",
+    "date": "2026-01-30 16:23:02",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
     "necessity_mode": "global",
@@ -11,13 +11,13 @@
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 19.477994227994223,
+    "necessity_overall": 19.39333814333814,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
-    "necessity_positive": 34.329945416901936,
+    "necessity_positive": 35.489365706757006,
     "necessity_negative": 15.230507040851869,
-    "necessity_rejected": 13.73015873015873,
+    "necessity_rejected": 12.827903091060985,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 6.811111111111111,
@@ -26,13 +26,13 @@
     "min_explanation_size": 5,
     "max_explanation_size": 11,
     "reduction_rate": 47.60683760683761,
-    "validation_time_seconds": 0.159515380859375
+    "validation_time_seconds": 0.1524052619934082
   },
   "per_type_metrics": {
     "positive": {
       "count": 23,
       "fidelity": 100.0,
-      "necessity": 34.329945416901936,
+      "necessity": 35.489365706757006,
       "mean_size": 6.695652173913044,
       "std_size": 1.5998582167803563
     },
@@ -46,7 +46,7 @@
     "rejected": {
       "count": 38,
       "fidelity": 100.0,
-      "necessity": 13.73015873015873,
+      "necessity": 12.827903091060985,
       "mean_size": 6.394736842105263,
       "std_size": 1.386769697500568
     }
@@ -657,14 +657,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "thalach",
         "exang",
         "oldpeak",
         "ca",
         "thal"
       ],
-      "necessity_score": 20.0
+      "necessity_score": 0.0
     },
     {
       "instance_id": 113,
@@ -858,14 +859,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
+        "age",
         "oldpeak",
         "slope",
         "ca",
         "thal"
       ],
-      "necessity_score": 42.857142857142854
+      "necessity_score": 28.57142857142857
     },
     {
       "instance_id": 69,
@@ -921,15 +923,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 6,
       "redundant_features": [
         "trestbps",
         "chol",
         "fbs",
-        "thalach",
-        "oldpeak"
+        "thalach"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 60.0
     },
     {
       "instance_id": 67,
@@ -2180,13 +2181,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 3,
+      "necessary_features": 4,
       "redundant_features": [
         "fbs",
-        "thalach",
-        "slope"
+        "thalach"
       ],
-      "necessity_score": 50.0
+      "necessity_score": 66.66666666666666
     },
     {
       "instance_id": 6,
