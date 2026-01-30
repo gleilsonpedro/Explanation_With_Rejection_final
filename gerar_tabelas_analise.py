@@ -351,24 +351,174 @@ def calcular_features_redundantes(data):
         return None, None
 
 
-def gerar_tabela_speedup():
-    """Gera tabela LaTeX com comparação de tempos (speedup) - tempo médio por instância em ms."""
+def extrair_tempo_por_tipo(data, metodo):
+    """Extrai tempo médio separado por tipo: classificadas e rejeitadas."""
+    if data is None:
+        return None, None
     
-    # Coletar dados de tempo
+    try:
+        if metodo in ["peab", "anchor", "minexp"]:
+            # Buscar tempos em computation_time
+            comp_time = data.get("computation_time", {})
+            
+            # Tempo para classificadas (positivas + negativas)
+            pos_time = comp_time.get("positive", None)
+            neg_time = comp_time.get("negative", None)
+            
+            # Contar instâncias para ponderação
+            stats = data.get("explanation_stats", {})
+            pos_count = stats.get("positive", {}).get("count", 0)
+            neg_count = stats.get("negative", {}).get("count", 0)
+            
+            # Tempo para rejeitadas
+            rej_time = comp_time.get("rejected", None)
+            
+            # Calcular tempo médio ponderado para classificadas
+            if pos_time is not None and neg_time is not None and (pos_count + neg_count) > 0:
+                classif_time = (pos_time * pos_count + neg_time * neg_count) / (pos_count + neg_count)
+                # Converter para ms
+                classif_time_ms = classif_time * 1000
+            else:
+                classif_time_ms = None
+            
+            # Converter tempo rejeitadas para ms
+            rej_time_ms = rej_time * 1000 if rej_time is not None else None
+            
+            return classif_time_ms, rej_time_ms
+            
+        elif metodo == "pulp":
+            stats = data.get("estatisticas_por_tipo", {})
+            
+            # Tempo para classificadas (positivas + negativas)
+            pos_time = stats.get("positiva", {}).get("tempo_medio", None)
+            neg_time = stats.get("negativa", {}).get("tempo_medio", None)
+            pos_count = stats.get("positiva", {}).get("instancias", 0)
+            neg_count = stats.get("negativa", {}).get("instancias", 0)
+            
+            # Tempo para rejeitadas
+            rej_time = stats.get("rejeitada", {}).get("tempo_medio", None)
+            
+            # Calcular tempo médio ponderado para classificadas
+            if pos_time is not None and neg_time is not None and (pos_count + neg_count) > 0:
+                classif_time = (pos_time * pos_count + neg_time * neg_count) / (pos_count + neg_count)
+                # Converter para ms
+                classif_time_ms = classif_time * 1000
+            else:
+                classif_time_ms = None
+            
+            # Converter tempo rejeitadas para ms
+            rej_time_ms = rej_time * 1000 if rej_time is not None else None
+            
+            return classif_time_ms, rej_time_ms
+    except Exception as e:
+        print(f"Erro ao extrair tempo por tipo para {metodo}: {e}")
+        return None, None
+
+
+def gerar_tabela_speedup_classificadas():
+    """Gera tabela LaTeX com comparação de tempos (speedup) para instâncias CLASSIFICADAS."""
+    
+    # Coletar dados de tempo para classificadas
     dados_tempo = {}
     for dataset in DATASETS_COMUNS:
         dados_tempo[dataset] = {}
         for metodo in METODOS:
             data = carregar_dados_json(metodo, dataset)
-            tempo_ms = extrair_tempo_medio_ms(data, metodo)
-            dados_tempo[dataset][metodo] = tempo_ms
+            tempo_classif, _ = extrair_tempo_por_tipo(data, metodo)
+            dados_tempo[dataset][metodo] = tempo_classif
     
     # Gerar tabela LaTeX
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Tempo médio de execução por instância (ms) e \\emph{speedup} do PEAB em relação aos baselines.}")
-    latex.append("\\label{tab:runtime}")
+    latex.append("\\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \\emph{speedup} do PEAB em relação aos baselines.}")
+    latex.append("\\label{tab:runtime_classified}")
+    latex.append("\\begin{tabular}{lrrrrrr}")
+    latex.append("\\hline")
+    latex.append("\\textbf{Dataset} & \\textbf{PEAB} & \\textbf{PULP} & \\textbf{Anchor} & \\textbf{MinExp} & \\textbf{Speedup (Anchor)} & \\textbf{Speedup (MinExp)} \\\\")
+    latex.append("\\hline")
+    
+    speedups_pulp = []
+    speedups_anchor = []
+    speedups_minexp = []
+    
+    for dataset in DATASETS_COMUNS:
+        nome = DATASET_NAMES[dataset]
+        tempos = dados_tempo[dataset]
+        
+        # Valores de tempo em ms
+        t_peab = tempos.get("peab")
+        t_pulp = tempos.get("pulp")
+        t_anchor = tempos.get("anchor")
+        t_minexp = tempos.get("minexp")
+        
+        # Formatar tempos com 1 casa decimal
+        str_peab = f"{t_peab:.1f}" if t_peab is not None else "N/A"
+        str_pulp = f"{t_pulp:.1f}" if t_pulp is not None else "N/A"
+        str_anchor = f"{t_anchor:.1f}" if t_anchor is not None else "N/A"
+        str_minexp = f"{t_minexp:.1f}" if t_minexp is not None else "N/A"
+        
+        # Calcular speedups
+        speedup_pulp = ""
+        speedup_anchor = ""
+        speedup_minexp = ""
+        
+        if t_peab is not None and t_pulp is not None and t_peab > 0:
+            sp = t_pulp / t_peab
+            speedup_pulp = f"{sp:.1f}$\\times$"
+            speedups_pulp.append(sp)
+        else:
+            speedup_pulp = "N/A"
+        
+        if t_peab is not None and t_anchor is not None and t_peab > 0:
+            sp = t_anchor / t_peab
+            speedup_anchor = f"{sp:.1f}$\\times$"
+            speedups_anchor.append(sp)
+        else:
+            speedup_anchor = "N/A"
+        
+        if t_peab is not None and t_minexp is not None and t_peab > 0:
+            sp = t_minexp / t_peab
+            speedup_minexp = f"{sp:.1f}$\\times$"
+            speedups_minexp.append(sp)
+        else:
+            speedup_minexp = "N/A"
+        
+        linha = f"{nome} & {str_peab} & {str_pulp} & {str_anchor} & {str_minexp} & {speedup_anchor} & {speedup_minexp} \\\\"
+        latex.append(linha)
+    
+    # Adicionar linha de média dos speedups
+    latex.append("\\hline")
+    
+    media_anchor = f"{np.mean(speedups_anchor):.1f}$\\times$" if speedups_anchor else "N/A"
+    media_minexp = f"{np.mean(speedups_minexp):.1f}$\\times$" if speedups_minexp else "N/A"
+    
+    latex.append(f"\\textbf{{Média}} & - & - & - & - & {media_anchor} & {media_minexp} \\\\")
+    latex.append("\\hline")
+    latex.append("\\end{tabular}")
+    latex.append("\\end{table}")
+    
+    return "\n".join(latex)
+
+
+def gerar_tabela_speedup_rejeitadas():
+    """Gera tabela LaTeX com comparação de tempos (speedup) para instâncias REJEITADAS."""
+    
+    # Coletar dados de tempo para rejeitadas
+    dados_tempo = {}
+    for dataset in DATASETS_COMUNS:
+        dados_tempo[dataset] = {}
+        for metodo in METODOS:
+            data = carregar_dados_json(metodo, dataset)
+            _, tempo_rej = extrair_tempo_por_tipo(data, metodo)
+            dados_tempo[dataset][metodo] = tempo_rej
+    
+    # Gerar tabela LaTeX
+    latex = []
+    latex.append("\\begin{table}[!t]")
+    latex.append("\\centering")
+    latex.append("\\caption{Tempo médio de execução por instância REJEITADA (ms) e \\emph{speedup} do PEAB em relação aos baselines.}")
+    latex.append("\\label{tab:runtime_rejected}")
     latex.append("\\begin{tabular}{lrrrrrr}")
     latex.append("\\hline")
     latex.append("\\textbf{Dataset} & \\textbf{PEAB} & \\textbf{PULP} & \\textbf{Anchor} & \\textbf{MinExp} & \\textbf{Speedup (Anchor)} & \\textbf{Speedup (MinExp)} \\\\")
@@ -761,15 +911,24 @@ def main():
     print(f"Métodos: {', '.join(METODOS).upper()}")
     print()
     
-    # Gerar tabela de speedup
-    print("Gerando tabela de speedup...")
-    tabela_speedup = gerar_tabela_speedup()
+    # Gerar tabelas de speedup (classificadas e rejeitadas)
+    print("Gerando tabela de speedup para instâncias CLASSIFICADAS...")
+    tabela_speedup_classif = gerar_tabela_speedup_classificadas()
     
-    # Salvar tabela de speedup
-    speedup_file = output_dir / "tabela_speedup.tex"
-    with open(speedup_file, 'w', encoding='utf-8') as f:
-        f.write(tabela_speedup)
-    print(f"✓ Tabela de speedup salva em: {speedup_file}")
+    # Salvar tabela de speedup classificadas
+    speedup_classif_file = output_dir / "tabela_speedup_classificadas.tex"
+    with open(speedup_classif_file, 'w', encoding='utf-8') as f:
+        f.write(tabela_speedup_classif)
+    print(f"✓ Tabela de speedup (classificadas) salva em: {speedup_classif_file}")
+    
+    print("\nGerando tabela de speedup para instâncias REJEITADAS...")
+    tabela_speedup_rej = gerar_tabela_speedup_rejeitadas()
+    
+    # Salvar tabela de speedup rejeitadas
+    speedup_rej_file = output_dir / "tabela_speedup_rejeitadas.tex"
+    with open(speedup_rej_file, 'w', encoding='utf-8') as f:
+        f.write(tabela_speedup_rej)
+    print(f"✓ Tabela de speedup (rejeitadas) salva em: {speedup_rej_file}")
     
     # Gerar tabela de explicações
     print("\nGerando tabela de quantidade de explicações...")
@@ -813,16 +972,19 @@ def main():
     print("\nGerando arquivo completo...")
     completo_file = output_dir / "tabelas_completas.tex"
     with open(completo_file, 'w', encoding='utf-8') as f:
-        f.write("% Tabela 1: Speedup (Comparação de Tempos)\n")
-        f.write(tabela_speedup)
+        f.write("% Tabela 1: Speedup Classificadas (Comparação de Tempos)\n")
+        f.write(tabela_speedup_classif)
         f.write("\n\n")
-        f.write("% Tabela 2: Quantidade de Explicações\n")
+        f.write("% Tabela 2: Speedup Rejeitadas (Comparação de Tempos)\n")
+        f.write(tabela_speedup_rej)
+        f.write("\n\n")
+        f.write("% Tabela 3: Quantidade de Explicações\n")
         f.write(tabela_explicacoes)
         f.write("\n\n")
-        f.write("% Tabela 3: Percentual de Features Necessárias\n")
+        f.write("% Tabela 4: Percentual de Features Necessárias\n")
         f.write(tabela_necessidade)
         f.write("\n\n")
-        f.write("% Tabela 4: Features Redundantes Médias\n")
+        f.write("% Tabela 5: Features Redundantes Médias\n")
         f.write(tabela_redundancia)
     print(f"✓ Arquivo completo salvo em: {completo_file}")
     
@@ -830,7 +992,8 @@ def main():
     print("TABELAS GERADAS COM SUCESSO!")
     print("="*70)
     print(f"\nArquivos criados em: {output_dir.absolute()}")
-    print("- tabela_speedup.tex")
+    print("- tabela_speedup_classificadas.tex")
+    print("- tabela_speedup_rejeitadas.tex")
     print("- tabela_explicacoes.tex")
     print("- tabela_necessidade.tex")
     print("- tabela_redundancia.tex")
@@ -839,11 +1002,16 @@ def main():
     print("- rejection_zone_intervals.png")
     print()
     
-    # Mostrar prévia da tabela de speedup
+    # Mostrar prévia das tabelas de speedup
     print("\n" + "="*70)
-    print("PRÉVIA: TABELA DE SPEEDUP")
+    print("PRÉVIA: TABELA DE SPEEDUP (CLASSIFICADAS)")
     print("="*70)
-    print(tabela_speedup)
+    print(tabela_speedup_classif)
+    
+    print("\n" + "="*70)
+    print("PRÉVIA: TABELA DE SPEEDUP (REJEITADAS)")
+    print("="*70)
+    print(tabela_speedup_rej)
     
     print("\n" + "="*70)
     print("PRÉVIA: TABELA DE EXPLICAÇÕES")

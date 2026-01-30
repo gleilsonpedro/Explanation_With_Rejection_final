@@ -1,26 +1,48 @@
-% Tabela 1: Speedup (Comparação de Tempos)
+% Tabela 1: Speedup Classificadas (Comparação de Tempos)
 \begin{table}[!t]
 \centering
-\caption{Tempo médio de execução por instância (ms) e \emph{speedup} do PEAB em relação aos baselines.}
-\label{tab:runtime}
+\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \emph{speedup} do PEAB em relação aos baselines.}
+\label{tab:runtime_classified}
 \begin{tabular}{lrrrrrr}
 \hline
 \textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
 \hline
-Banknote & 9.7 & 44.0 & 85.8 & 196.3 & 8.8$\times$ & 20.2$\times$ \\
-Breast Cancer & 6.3 & 36.8 & 4522.9 & 681.7 & 721.8$\times$ & 108.8$\times$ \\
-Heart Disease & 7.9 & 45.2 & 93.4 & 630.6 & 11.8$\times$ & 80.0$\times$ \\
-Pima Indians & 6.6 & 44.7 & 341.0 & 289.4 & 51.4$\times$ & 43.6$\times$ \\
-Sonar & 26.3 & 51.5 & 11062.5 & 4100.9 & 420.3$\times$ & 155.8$\times$ \\
-Spambase & 19.4 & 49.2 & 457.7 & 3271.8 & 23.6$\times$ & 168.6$\times$ \\
-Vertebral Column & 9.2 & 44.6 & 238.9 & 284.3 & 25.9$\times$ & 30.9$\times$ \\
+Banknote & 5.6 & 43.3 & 123.8 & 148.2 & 22.1$\times$ & 26.5$\times$ \\
+Breast Cancer & 5.1 & N/A & 4765.0 & 595.2 & 930.2$\times$ & 116.2$\times$ \\
+Heart Disease & 4.8 & 44.6 & 86.3 & 476.2 & 17.9$\times$ & 98.5$\times$ \\
+Pima Indians & 6.5 & 44.7 & 330.7 & 289.2 & 50.9$\times$ & 44.5$\times$ \\
+Sonar & 10.7 & 49.6 & 24247.1 & 2390.1 & 2258.9$\times$ & 222.7$\times$ \\
+Spambase & 6.8 & 47.5 & 202.6 & 2335.6 & 30.0$\times$ & 345.9$\times$ \\
+Vertebral Column & 6.2 & 44.8 & 308.3 & 232.3 & 50.0$\times$ & 37.6$\times$ \\
 \hline
-\textbf{Média} & - & - & - & - & 180.5$\times$ & 86.8$\times$ \\
+\textbf{Média} & - & - & - & - & 480.0$\times$ & 127.4$\times$ \\
 \hline
 \end{tabular}
 \end{table}
 
-% Tabela 2: Quantidade de Explicações
+% Tabela 2: Speedup Rejeitadas (Comparação de Tempos)
+\begin{table}[!t]
+\centering
+\caption{Tempo médio de execução por instância REJEITADA (ms) e \emph{speedup} do PEAB em relação aos baselines.}
+\label{tab:runtime_rejected}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
+\hline
+Banknote & 12.5 & 44.5 & 58.9 & 230.3 & 4.7$\times$ & 18.4$\times$ \\
+Breast Cancer & 10.7 & 35.8 & 3547.5 & 1030.1 & 332.3$\times$ & 96.5$\times$ \\
+Heart Disease & 12.0 & 46.2 & 103.0 & 842.0 & 8.6$\times$ & 70.4$\times$ \\
+Pima Indians & 13.5 & 41.7 & 1120.9 & 305.6 & 83.0$\times$ & 22.6$\times$ \\
+Sonar & 32.4 & 52.3 & 5788.6 & 4785.2 & 178.6$\times$ & 147.6$\times$ \\
+Spambase & 25.2 & 49.9 & 577.1 & 3709.6 & 22.9$\times$ & 147.0$\times$ \\
+Vertebral Column & 14.1 & 44.2 & 123.8 & 370.5 & 8.8$\times$ & 26.2$\times$ \\
+\hline
+\textbf{Média} & - & - & - & - & 91.3$\times$ & 75.5$\times$ \\
+\hline
+\end{tabular}
+\end{table}
+
+% Tabela 3: Quantidade de Explicações
 \begin{table}[!t]
 \centering
 \caption{Tamanho médio das explicações (número de features): Classificadas vs Rejeitadas.}
@@ -44,7 +66,7 @@ Vertebral Column & 4.34 & 5.06 & 4.34 & 5.06 & 2.10 & 1.74 & 4.41 & 5.06 \\
 \end{tabular}
 \end{table}
 
-% Tabela 3: Percentual de Features Necessárias
+% Tabela 4: Percentual de Features Necessárias
 \begin{table}[!t]
 \centering
 \caption{Percentual médio de features necessárias nas explicações.}
@@ -68,7 +90,7 @@ Vertebral Column & 24.4\% & 39.1\% & 40.7\% & 38.0\% \\
 \end{tabular}
 \end{table}
 
-% Tabela 4: Features Redundantes Médias
+% Tabela 5: Features Redundantes Médias
 \begin{table}[!t]
 \centering
 \caption{Número médio de features redundantes por explicação.}

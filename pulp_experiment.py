@@ -138,7 +138,7 @@ def calcular_explicacao_otima_pulp(
     # comparar corretamente com os thresholds normalizados.
 
     # [CORREÇÃO] Adicionar EPSILON como o PEAB faz, para evitar conservadorismo excessivo
-    EPSILON = 1e-6
+    EPSILON = 1e-1
     
     # Preparar termos normalizados para as restrições
     # Observação: pulp.lpSum(termos_*) retorna uma expressão linear;
