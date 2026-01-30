@@ -25,6 +25,7 @@ import pandas as pd
 import numpy as np
 import os
 import json
+from pathlib import Path
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from typing import List, Tuple, Dict, Any
@@ -87,17 +88,16 @@ def calcular_explicacao_otima_pulp(
     max_scaled = np.ones(len(coefs))   # MinMaxScaler: máximo teórico = 1
     
     # CRÍTICO: PuLP precisa usar os MESMOS thresholds que o PEAB
-    # Os thresholds vêm NORMALIZADOS do get_shared_pipeline()
-    # Então o score RAW precisa ser normalizado antes da comparação!
+    # Os thresholds do PEAB estão em ESCALA RAW (não normalizada)!
+    # Então comparar score_raw DIRETO com os thresholds (como o PEAB faz)
     score_raw = modelo.decision_function(instance_df)[0]
-    score_norm = score_raw / max_abs if max_abs > 0 else score_raw
     
-    # Determina tipo de predição (thresholds JÁ estão normalizados)
-    # IMPORTANTE: Comparar score NORMALIZADO com thresholds normalizados
-    if score_norm >= t_plus: 
+    # Determina tipo de predição (comparando score RAW com thresholds RAW)
+    # IMPORTANTE: PEAB usa score RAW, então PULP também deve usar!
+    if score_raw >= t_plus: 
         tipo_predicao = "POSITIVA"
         estado = 1
-    elif score_norm <= t_minus: 
+    elif score_raw <= t_minus: 
         tipo_predicao = "NEGATIVA"
         estado = 0
     else: 
@@ -131,32 +131,25 @@ def calcular_explicacao_otima_pulp(
         termos_min.append(z[i] * (contrib_real - contrib_worst_min))
         termos_max.append(z[i] * (contrib_real - contrib_worst_max))
 
-    # [INVESTIGAÇÃO] Scores do PuLP vs Thresholds
-    # Os scores (base_worst_min/max) estão na escala RAW do modelo.
-    # Os thresholds (t_plus/t_minus) estão na escala NORMALIZADA.
-    # CORREÇÃO: Normalizar expressões de restrição por max_abs para
-    # comparar corretamente com os thresholds normalizados.
-
     # [CORREÇÃO] Adicionar EPSILON como o PEAB faz, para evitar conservadorismo excessivo
-    EPSILON = 1e-1
+    EPSILON = 1e-5
     
-    # Preparar termos normalizados para as restrições
-    # Observação: pulp.lpSum(termos_*) retorna uma expressão linear;
-    # dividir por max_abs mantém linearidade e corrige escala.
-    denom = max_abs if max_abs > 0 else 1.0
-    expr_min_norm = (base_worst_min + pulp.lpSum(termos_min)) / denom
-    expr_max_norm = (base_worst_max + pulp.lpSum(termos_max)) / denom
+    # Preparar expressões para as restrições (SEM normalização)
+    # Os thresholds carregados do PEAB JSON já estão em escala RAW,
+    # então devemos comparar scores RAW com thresholds RAW diretamente.
+    expr_min = base_worst_min + pulp.lpSum(termos_min)
+    expr_max = base_worst_max + pulp.lpSum(termos_max)
 
     # Restrições baseadas no tipo de predição (com tolerância EPSILON)
     if estado == 1:  # POSITIVA
         # Dar uma pequena margem de tolerância (como o PEAB)
-        prob += expr_min_norm >= t_plus - EPSILON
+        prob += expr_min >= t_plus - EPSILON
     elif estado == 0:  # NEGATIVA
-        prob += expr_max_norm <= t_minus + EPSILON
+        prob += expr_max <= t_minus + EPSILON
     else:  # REJEITADA
         # Para rejeitadas, dar margem nas DUAS direções
-        prob += expr_max_norm <= t_plus + EPSILON
-        prob += expr_min_norm >= t_minus - EPSILON
+        prob += expr_max <= t_plus + EPSILON
+        prob += expr_min >= t_minus - EPSILON
 
     # Resolve o problema com configurações menos conservadoras
     # Ajustar tolerâncias do solver CBC para evitar conservadorismo excessivo
@@ -213,7 +206,23 @@ def executar_experimento_pulp_para_dataset(dataset_name):
     # USAR GET_SHARED_PIPELINE PARA GARANTIR 100% DE CONSISTÊNCIA COM PEAB
     # =========================================================================
     print("🔧 Usando get_shared_pipeline() para garantir consistência total com PEAB/Anchor/MinExp...")
-    modelo, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
+    modelo, X_train, X_test, y_train, y_test, t_plus_pipeline, t_minus_pipeline, meta = get_shared_pipeline(dataset_name)
+    
+    # [CORREÇÃO CRÍTICA] Ler thresholds EXATOS do JSON do PEAB para garantir consistência perfeita
+    # Isso resolve problemas de pequenas diferenças numéricas no cálculo dos thresholds
+    peab_json_path = Path(f"json/peab/{dataset_json_key}.json")
+    if peab_json_path.exists():
+        print("🔧 Carregando thresholds EXATOS do JSON do PEAB para garantir consistência...")
+        with open(peab_json_path, 'r', encoding='utf-8') as f:
+            peab_data = json.load(f)
+        t_plus = peab_data['thresholds']['t_plus']
+        t_minus = peab_data['thresholds']['t_minus']
+        print(f"   ✅ Thresholds do PEAB: t+ = {t_plus:.6f}, t- = {t_minus:.6f}")
+    else:
+        print(f"   ⚠️  JSON do PEAB não encontrado em {peab_json_path}")
+        print(f"   📌 Usando thresholds do pipeline: t+ = {t_plus_pipeline:.6f}, t- = {t_minus_pipeline:.6f}")
+        t_plus = t_plus_pipeline
+        t_minus = t_minus_pipeline
     
     nomes_classes = meta['nomes_classes']
     rejection_cost = meta['rejection_cost']

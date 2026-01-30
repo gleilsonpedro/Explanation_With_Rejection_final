@@ -8,7 +8,7 @@
     "solver": "saga",
     "max_iter": 1000
   },
-  "t_plus": 0.9665149683549802,
+  "t_plus": 0.9655980814533653,
   "t_minus": -0.01,
   "rejection_cost": 0.24,
   "metricas_modelo": {
@@ -18,20 +18,25 @@
     "risco_empirico": 0.16701754385964912
   },
   "estatisticas_gerais": {
-    "tamanho_medio": 1.280701754385965,
-    "tempo_total_segundos": 6.25815869984217,
-    "tempo_medio_segundos": 0.03659741929732263
+    "tamanho_medio": 1.7543859649122806,
+    "tempo_total_segundos": 7.506730798166245,
+    "tempo_medio_segundos": 0.04389901051559208
   },
   "estatisticas_por_tipo": {
+    "positiva": {
+      "instancias": 84,
+      "tamanho_medio": 1.8214285714285714,
+      "tempo_medio": 0.04339798926819293
+    },
     "negativa": {
-      "instancias": 52,
-      "tamanho_medio": 1.2884615384615385,
-      "tempo_medio": 0.03760491540351023
+      "instancias": 53,
+      "tamanho_medio": 1.490566037735849,
+      "tempo_medio": 0.044937371706836066
     },
     "rejeitada": {
-      "instancias": 119,
-      "tamanho_medio": 1.2773109243697478,
-      "tempo_medio": 0.03615716889798015
+      "instancias": 34,
+      "tamanho_medio": 2.0,
+      "tempo_medio": 0.04351820585810963
     }
   },
   "explicacoes": [
@@ -43,27 +48,29 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.040070399874821305
+      "tempo_segundos": 0.14478680002503097
     },
     {
       "indice": "150",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03275500005111098
+      "tamanho": 2,
+      "tempo_segundos": 0.04793709982186556
     },
     {
       "indice": "275",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03192150010727346
+      "tamanho": 2,
+      "tempo_segundos": 0.04452689993195236
     },
     {
       "indice": "83",
@@ -73,7 +80,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03633400006219745
+      "tempo_segundos": 0.04556040000170469
     },
     {
       "indice": "86",
@@ -84,7 +91,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03385320003144443
+      "tempo_segundos": 0.04278829996474087
     },
     {
       "indice": "509",
@@ -94,17 +101,17 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03354970016516745
+      "tempo_segundos": 0.0408179999794811
     },
     {
       "indice": "140",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03709859983064234
+      "tempo_segundos": 0.04195370012894273
     },
     {
       "indice": "199",
@@ -114,17 +121,18 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.044493200024589896
+      "tempo_segundos": 0.04282660013996065
     },
     {
       "indice": "292",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.040162699995562434
+      "tamanho": 2,
+      "tempo_segundos": 0.03948789997957647
     },
     {
       "indice": "122",
@@ -134,37 +142,40 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03667050017975271
+      "tempo_segundos": 0.04206020012497902
     },
     {
       "indice": "354",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.034642199985682964
+      "tamanho": 2,
+      "tempo_segundos": 0.043783700093626976
     },
     {
       "indice": "102",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.033951599849388
+      "tamanho": 2,
+      "tempo_segundos": 0.04409450013190508
     },
     {
       "indice": "64",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.044271199963986874
+      "tamanho": 2,
+      "tempo_segundos": 0.04062010021880269
     },
     {
       "indice": "73",
@@ -175,17 +186,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03174040000885725
+      "tempo_segundos": 0.04475210001692176
     },
     {
       "indice": "66",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03303639986552298
+      "tamanho": 2,
+      "tempo_segundos": 0.03949110000394285
     },
     {
       "indice": "205",
@@ -196,17 +208,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.036151899956166744
+      "tempo_segundos": 0.042257499881088734
     },
     {
       "indice": "121",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04489560006186366
+      "tamanho": 2,
+      "tempo_segundos": 0.05177709995768964
     },
     {
       "indice": "128",
@@ -217,17 +230,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0351067001465708
+      "tempo_segundos": 0.043122399831190705
     },
     {
       "indice": "504",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.046505700098350644
+      "tamanho": 2,
+      "tempo_segundos": 0.04539420013315976
     },
     {
       "indice": "247",
@@ -238,17 +252,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.033211000030860305
+      "tempo_segundos": 0.048469899920746684
     },
     {
       "indice": "361",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03316709981299937
+      "tamanho": 2,
+      "tempo_segundos": 0.0839531000237912
     },
     {
       "indice": "228",
@@ -259,7 +274,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.036793800070881844
+      "tempo_segundos": 0.05846730014309287
     },
     {
       "indice": "242",
@@ -270,7 +285,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03745039994828403
+      "tempo_segundos": 0.047565699787810445
     },
     {
       "indice": "17",
@@ -280,7 +295,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.041923100128769875
+      "tempo_segundos": 0.04630200006067753
     },
     {
       "indice": "460",
@@ -291,37 +306,40 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.035562000004574656
+      "tempo_segundos": 0.04353859997354448
     },
     {
       "indice": "204",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04199129994958639
+      "tamanho": 2,
+      "tempo_segundos": 0.04375459998846054
     },
     {
       "indice": "246",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03493289998732507
+      "tamanho": 2,
+      "tempo_segundos": 0.044377599842846394
     },
     {
       "indice": "298",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04543080017901957
+      "tamanho": 2,
+      "tempo_segundos": 0.044681400060653687
     },
     {
       "indice": "257",
@@ -331,7 +349,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.035792000126093626
+      "tempo_segundos": 0.04080209997482598
     },
     {
       "indice": "516",
@@ -342,7 +360,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03407349996268749
+      "tempo_segundos": 0.043303600046783686
     },
     {
       "indice": "496",
@@ -353,7 +371,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03749080002307892
+      "tempo_segundos": 0.04332879977300763
     },
     {
       "indice": "417",
@@ -363,27 +381,29 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03380999993532896
+      "tempo_segundos": 0.04346140008419752
     },
     {
       "indice": "506",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.032348599983379245
+      "tamanho": 2,
+      "tempo_segundos": 0.04363940004259348
     },
     {
       "indice": "295",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03998720017261803
+      "tamanho": 2,
+      "tempo_segundos": 0.04271210008300841
     },
     {
       "indice": "256",
@@ -393,17 +413,18 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.04199269996024668
+      "tempo_segundos": 0.04039429989643395
     },
     {
       "indice": "349",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03617079998366535
+      "tamanho": 2,
+      "tempo_segundos": 0.045441499911248684
     },
     {
       "indice": "406",
@@ -414,27 +435,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03597039985470474
+      "tempo_segundos": 0.04395000007934868
     },
     {
       "indice": "431",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.042860900051891804
+      "tamanho": 2,
+      "tempo_segundos": 0.04102570004761219
     },
     {
       "indice": "48",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03396869986318052
+      "tamanho": 2,
+      "tempo_segundos": 0.04414439992979169
     },
     {
       "indice": "200",
@@ -445,7 +468,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03561479994095862
+      "tempo_segundos": 0.04355029994621873
     },
     {
       "indice": "518",
@@ -456,7 +479,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03311969991773367
+      "tempo_segundos": 0.04319739993661642
     },
     {
       "indice": "127",
@@ -467,37 +490,39 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03330749995075166
+      "tempo_segundos": 0.04535129992291331
     },
     {
       "indice": "217",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.0332977999933064
+      "tempo_segundos": 0.0413593000266701
     },
     {
       "indice": "116",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.036271599819883704
+      "tamanho": 2,
+      "tempo_segundos": 0.042792499996721745
     },
     {
       "indice": "355",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04471429996192455
+      "tamanho": 2,
+      "tempo_segundos": 0.0446641999296844
     },
     {
       "indice": "542",
@@ -508,7 +533,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03465809999033809
+      "tempo_segundos": 0.045047199819236994
     },
     {
       "indice": "375",
@@ -519,27 +544,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.039606899954378605
+      "tempo_segundos": 0.04171650018543005
     },
     {
       "indice": "320",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.043684399919584394
+      "tamanho": 2,
+      "tempo_segundos": 0.04384789988398552
     },
     {
       "indice": "206",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.033043700037524104
+      "tamanho": 2,
+      "tempo_segundos": 0.04594049998559058
     },
     {
       "indice": "372",
@@ -549,27 +576,28 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03603610000573099
+      "tempo_segundos": 0.04511019983328879
     },
     {
       "indice": "534",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04103439999744296
+      "tamanho": 2,
+      "tempo_segundos": 0.04508169996552169
     },
     {
       "indice": "549",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03300849976949394
+      "tempo_segundos": 0.04425460007041693
     },
     {
       "indice": "343",
@@ -579,7 +607,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03923640004359186
+      "tempo_segundos": 0.05179099994711578
     },
     {
       "indice": "95",
@@ -590,27 +618,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03063280018977821
+      "tempo_segundos": 0.04789200006052852
     },
     {
       "indice": "334",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03617869992740452
+      "tamanho": 2,
+      "tempo_segundos": 0.04349829978309572
     },
     {
       "indice": "84",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03971739998087287
+      "tamanho": 2,
+      "tempo_segundos": 0.04496899992227554
     },
     {
       "indice": "468",
@@ -620,17 +650,18 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.045840000035241246
+      "tempo_segundos": 0.04713409999385476
     },
     {
       "indice": "326",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.033105900045484304
+      "tamanho": 2,
+      "tempo_segundos": 0.04577849991619587
     },
     {
       "indice": "466",
@@ -641,7 +672,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0382103999145329
+      "tempo_segundos": 0.044008699944242835
     },
     {
       "indice": "340",
@@ -652,7 +683,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0379912001080811
+      "tempo_segundos": 0.04723830008879304
     },
     {
       "indice": "370",
@@ -662,7 +693,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.036535099847242236
+      "tempo_segundos": 0.03840459999628365
     },
     {
       "indice": "1",
@@ -672,47 +703,49 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.04913140018470585
+      "tempo_segundos": 0.04728649999015033
     },
     {
       "indice": "498",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.05042769992724061
+      "tamanho": 2,
+      "tempo_segundos": 0.04688949999399483
     },
     {
       "indice": "307",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.05271649989299476
+      "tempo_segundos": 0.049188700038939714
     },
     {
       "indice": "467",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03608600003644824
+      "tempo_segundos": 0.04582569980993867
     },
     {
       "indice": "344",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.037238100077956915
+      "tamanho": 2,
+      "tempo_segundos": 0.04678440000861883
     },
     {
       "indice": "445",
@@ -723,7 +756,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.05229409993626177
+      "tempo_segundos": 0.04439040017314255
     },
     {
       "indice": "212",
@@ -734,27 +767,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03627400007098913
+      "tempo_segundos": 0.04358609998598695
     },
     {
       "indice": "398",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03590489993803203
+      "tamanho": 2,
+      "tempo_segundos": 0.046189900022000074
     },
     {
       "indice": "103",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.0522902999073267
+      "tamanho": 2,
+      "tempo_segundos": 0.04407920013181865
     },
     {
       "indice": "567",
@@ -764,7 +799,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03501220000907779
+      "tempo_segundos": 0.042494700057432055
     },
     {
       "indice": "223",
@@ -775,7 +810,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03697940008714795
+      "tempo_segundos": 0.04378549987450242
     },
     {
       "indice": "321",
@@ -786,7 +821,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03896050015464425
+      "tempo_segundos": 0.03980070003308356
     },
     {
       "indice": "564",
@@ -796,7 +831,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03752329992130399
+      "tempo_segundos": 0.03884110017679632
     },
     {
       "indice": "423",
@@ -807,17 +842,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03439679997973144
+      "tempo_segundos": 0.04402719996869564
     },
     {
       "indice": "548",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.0410631000995636
+      "tamanho": 2,
+      "tempo_segundos": 0.040400599827989936
     },
     {
       "indice": "484",
@@ -828,17 +864,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.04426269978284836
+      "tempo_segundos": 0.03864610008895397
     },
     {
       "indice": "20",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04007459990680218
+      "tamanho": 2,
+      "tempo_segundos": 0.04070020001381636
     },
     {
       "indice": "156",
@@ -849,27 +886,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0346560999751091
+      "tempo_segundos": 0.039534399984404445
     },
     {
       "indice": "310",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03237619996070862
+      "tamanho": 2,
+      "tempo_segundos": 0.040824499912559986
     },
     {
       "indice": "345",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03232080000452697
+      "tamanho": 2,
+      "tempo_segundos": 0.04253400000743568
     },
     {
       "indice": "123",
@@ -880,7 +919,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0320210000500083
+      "tempo_segundos": 0.042611599899828434
     },
     {
       "indice": "237",
@@ -891,17 +930,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0367274999152869
+      "tempo_segundos": 0.04646319989115
     },
     {
       "indice": "540",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.031650699907913804
+      "tamanho": 2,
+      "tempo_segundos": 0.04581559984944761
     },
     {
       "indice": "23",
@@ -911,27 +951,29 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.031195699935778975
+      "tempo_segundos": 0.03866980015300214
     },
     {
       "indice": "158",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.037818099837750196
+      "tamanho": 2,
+      "tempo_segundos": 0.04116609995253384
     },
     {
       "indice": "403",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.043599000200629234
+      "tamanho": 2,
+      "tempo_segundos": 0.04597839992493391
     },
     {
       "indice": "24",
@@ -941,7 +983,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03460600017569959
+      "tempo_segundos": 0.041072099935263395
     },
     {
       "indice": "77",
@@ -951,77 +993,83 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.033612299943342805
+      "tempo_segundos": 0.04280569986440241
     },
     {
       "indice": "85",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.040344699984416366
+      "tamanho": 2,
+      "tempo_segundos": 0.04308820003643632
     },
     {
       "indice": "70",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03970779990777373
+      "tamanho": 2,
+      "tempo_segundos": 0.04737330018542707
     },
     {
       "indice": "399",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03540829988196492
+      "tamanho": 2,
+      "tempo_segundos": 0.04086120007559657
     },
     {
       "indice": "452",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03300309996120632
+      "tamanho": 2,
+      "tempo_segundos": 0.04375579999759793
     },
     {
       "indice": "553",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03346649999730289
+      "tempo_segundos": 0.04357300000265241
     },
     {
       "indice": "269",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03444449999369681
+      "tamanho": 2,
+      "tempo_segundos": 0.041858499869704247
     },
     {
       "indice": "483",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03514270018786192
+      "tamanho": 2,
+      "tempo_segundos": 0.04410079983063042
     },
     {
       "indice": "7",
@@ -1032,67 +1080,71 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.032773799961432815
+      "tempo_segundos": 0.041512199910357594
     },
     {
       "indice": "397",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.029221300035715103
+      "tamanho": 2,
+      "tempo_segundos": 0.04044650006107986
     },
     {
       "indice": "38",
       "classe_real": "malignant",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.031440400052815676
+      "tempo_segundos": 0.040824499912559986
     },
     {
       "indice": "192",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.035818600095808506
+      "tempo_segundos": 0.03560170019045472
     },
     {
       "indice": "495",
       "classe_real": "benign",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03851259988732636
+      "tamanho": 2,
+      "tempo_segundos": 0.03846660000272095
     },
     {
       "indice": "428",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03541569993831217
+      "tamanho": 2,
+      "tempo_segundos": 0.044676699908450246
     },
     {
       "indice": "235",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03393479995429516
+      "tamanho": 2,
+      "tempo_segundos": 0.040290100034326315
     },
     {
       "indice": "167",
@@ -1103,7 +1155,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.032461199909448624
+      "tempo_segundos": 0.041024599922820926
     },
     {
       "indice": "526",
@@ -1114,17 +1166,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03076260001398623
+      "tempo_segundos": 0.04238570015877485
     },
     {
       "indice": "494",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03518979996442795
+      "tamanho": 2,
+      "tempo_segundos": 0.04178570001386106
     },
     {
       "indice": "523",
@@ -1135,38 +1188,39 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03499409998767078
+      "tempo_segundos": 0.044115399941802025
     },
     {
       "indice": "527",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
-      "features_selecionadas": [
-        "worst concave points"
-      ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03692169999703765
-    },
-    {
-      "indice": "501",
-      "classe_real": "malignant",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst radius",
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.030977899907156825
+      "tempo_segundos": 0.04431760008446872
+    },
+    {
+      "indice": "501",
+      "classe_real": "malignant",
+      "tipo_predicao": "NEGATIVA",
+      "features_selecionadas": [
+        "worst radius",
+        "worst concave points"
+      ],
+      "tamanho": 2,
+      "tempo_segundos": 0.04071920015849173
     },
     {
       "indice": "231",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03677879995666444
+      "tempo_segundos": 0.04264909983612597
     },
     {
       "indice": "13",
@@ -1177,57 +1231,62 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03289799997583032
+      "tempo_segundos": 0.04352979990653694
     },
     {
       "indice": "434",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.0329817000310868
+      "tamanho": 2,
+      "tempo_segundos": 0.04148030001670122
     },
     {
       "indice": "261",
       "classe_real": "malignant",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03608630015514791
+      "tamanho": 2,
+      "tempo_segundos": 0.0401683000382036
     },
     {
       "indice": "96",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03485409985296428
+      "tamanho": 2,
+      "tempo_segundos": 0.044952299911528826
     },
     {
       "indice": "288",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.039536900119856
+      "tamanho": 2,
+      "tempo_segundos": 0.04171060002408922
     },
     {
       "indice": "194",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.043257599929347634
+      "tamanho": 2,
+      "tempo_segundos": 0.04382580006495118
     },
     {
       "indice": "385",
@@ -1238,7 +1297,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03228029981255531
+      "tempo_segundos": 0.04105550004169345
     },
     {
       "indice": "291",
@@ -1249,17 +1308,17 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.031024699797853827
+      "tempo_segundos": 0.043464599875733256
     },
     {
       "indice": "316",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.036438400158658624
+      "tempo_segundos": 0.04285100009292364
     },
     {
       "indice": "535",
@@ -1269,27 +1328,29 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.0341643001884222
+      "tempo_segundos": 0.0431684001814574
     },
     {
       "indice": "488",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04177829995751381
+      "tamanho": 2,
+      "tempo_segundos": 0.04295709985308349
     },
     {
       "indice": "266",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.036438100039958954
+      "tamanho": 2,
+      "tempo_segundos": 0.042718400014564395
     },
     {
       "indice": "258",
@@ -1299,17 +1360,18 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03577019996009767
+      "tempo_segundos": 0.04594689980149269
     },
     {
       "indice": "51",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.031624200055375695
+      "tamanho": 2,
+      "tempo_segundos": 0.04218109999783337
     },
     {
       "indice": "41",
@@ -1320,27 +1382,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03648500004783273
+      "tempo_segundos": 0.04008370009250939
     },
     {
       "indice": "507",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04286419996060431
+      "tamanho": 2,
+      "tempo_segundos": 0.042223599972203374
     },
     {
       "indice": "447",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.031986699905246496
+      "tamanho": 2,
+      "tempo_segundos": 0.04201549990102649
     },
     {
       "indice": "65",
@@ -1351,67 +1415,73 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03527020011097193
+      "tempo_segundos": 0.03849609987810254
     },
     {
       "indice": "528",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.034593600081279874
+      "tamanho": 2,
+      "tempo_segundos": 0.04120879992842674
     },
     {
       "indice": "415",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03258050000295043
+      "tamanho": 2,
+      "tempo_segundos": 0.04070240003056824
     },
     {
       "indice": "519",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04057479999028146
+      "tamanho": 2,
+      "tempo_segundos": 0.042154400143772364
     },
     {
       "indice": "98",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.034799099899828434
+      "tamanho": 2,
+      "tempo_segundos": 0.045920400181785226
     },
     {
       "indice": "138",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.045226499903947115
+      "tamanho": 2,
+      "tempo_segundos": 0.04147140006534755
     },
     {
       "indice": "359",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.037347299978137016
+      "tamanho": 2,
+      "tempo_segundos": 0.043475500075146556
     },
     {
       "indice": "408",
@@ -1421,17 +1491,17 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03525319998152554
+      "tempo_segundos": 0.04422860010527074
     },
     {
       "indice": "568",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03161749988794327
+      "tempo_segundos": 0.033591500017791986
     },
     {
       "indice": "8",
@@ -1441,7 +1511,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.035987300099805
+      "tempo_segundos": 0.04073060001246631
     },
     {
       "indice": "537",
@@ -1452,7 +1522,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.034182900097221136
+      "tempo_segundos": 0.041961299953982234
     },
     {
       "indice": "536",
@@ -1463,37 +1533,39 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03287960006855428
+      "tempo_segundos": 0.04016069998033345
     },
     {
       "indice": "513",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04457710008136928
+      "tamanho": 2,
+      "tempo_segundos": 0.041255699936300516
     },
     {
       "indice": "305",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.0313311000354588
+      "tamanho": 2,
+      "tempo_segundos": 0.04342219978570938
     },
     {
       "indice": "104",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03403250011615455
+      "tempo_segundos": 0.041261799866333604
     },
     {
       "indice": "203",
@@ -1503,17 +1575,18 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.037139799911528826
+      "tempo_segundos": 0.04154679994098842
     },
     {
       "indice": "198",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04512280016206205
+      "tamanho": 2,
+      "tempo_segundos": 0.04433820000849664
     },
     {
       "indice": "461",
@@ -1523,7 +1596,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03138620010577142
+      "tempo_segundos": 0.0402108000125736
     },
     {
       "indice": "492",
@@ -1534,27 +1607,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.0364930999930948
+      "tempo_segundos": 0.04096199991181493
     },
     {
       "indice": "168",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.0445590999443084
+      "tamanho": 2,
+      "tempo_segundos": 0.04659799998626113
     },
     {
       "indice": "113",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.031528100138530135
+      "tamanho": 2,
+      "tempo_segundos": 0.04033669992350042
     },
     {
       "indice": "541",
@@ -1565,37 +1640,38 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.035967899952083826
+      "tempo_segundos": 0.040754999965429306
     },
     {
       "indice": "296",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.04222860001027584
+      "tempo_segundos": 0.043814499862492085
     },
     {
       "indice": "308",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.0330827001016587
+      "tempo_segundos": 0.04197989986278117
     },
     {
       "indice": "390",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03864630009047687
+      "tamanho": 2,
+      "tempo_segundos": 0.03963300003670156
     },
     {
       "indice": "180",
@@ -1605,7 +1681,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03280360018834472
+      "tempo_segundos": 0.043811900075525045
     },
     {
       "indice": "440",
@@ -1616,7 +1692,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03242040006443858
+      "tempo_segundos": 0.039760899962857366
     },
     {
       "indice": "328",
@@ -1627,27 +1703,28 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.034294999903067946
+      "tempo_segundos": 0.040318400133401155
     },
     {
       "indice": "74",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.031385699985548854
+      "tamanho": 2,
+      "tempo_segundos": 0.043894700007513165
     },
     {
       "indice": "412",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03196100005879998
+      "tempo_segundos": 0.0348193000536412
     },
     {
       "indice": "353",
@@ -1658,27 +1735,29 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.033115699887275696
+      "tempo_segundos": 0.04091269988566637
     },
     {
       "indice": "439",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03665150003507733
+      "tamanho": 2,
+      "tempo_segundos": 0.0440484001301229
     },
     {
       "indice": "267",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03250190010294318
+      "tamanho": 2,
+      "tempo_segundos": 0.0423826000187546
     },
     {
       "indice": "177",
@@ -1688,7 +1767,7 @@
         "worst concave points"
       ],
       "tamanho": 1,
-      "tempo_segundos": 0.03171080001629889
+      "tempo_segundos": 0.03875750000588596
     },
     {
       "indice": "444",
@@ -1699,7 +1778,7 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03745800000615418
+      "tempo_segundos": 0.042344499845057726
     },
     {
       "indice": "508",
@@ -1710,67 +1789,73 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03332630009390414
+      "tempo_segundos": 0.041125599993392825
     },
     {
       "indice": "464",
       "classe_real": "benign",
       "tipo_predicao": "REJEITADA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03660409990698099
+      "tamanho": 2,
+      "tempo_segundos": 0.04149720002897084
     },
     {
       "indice": "433",
       "classe_real": "malignant",
       "tipo_predicao": "NEGATIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03433030005544424
+      "tamanho": 2,
+      "tempo_segundos": 0.04248220007866621
     },
     {
       "indice": "348",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.033490699948742986
+      "tamanho": 2,
+      "tempo_segundos": 0.0415497999638319
     },
     {
       "indice": "37",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03205909999087453
+      "tamanho": 2,
+      "tempo_segundos": 0.04339920007623732
     },
     {
       "indice": "358",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.033508799970149994
+      "tamanho": 2,
+      "tempo_segundos": 0.04644960002042353
     },
     {
       "indice": "363",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.04078819998539984
+      "tamanho": 2,
+      "tempo_segundos": 0.04440629994496703
     },
     {
       "indice": "171",
@@ -1781,17 +1866,18 @@
         "worst concave points"
       ],
       "tamanho": 2,
-      "tempo_segundos": 0.03466649982146919
+      "tempo_segundos": 0.04676999989897013
     },
     {
       "indice": "284",
       "classe_real": "benign",
-      "tipo_predicao": "REJEITADA",
+      "tipo_predicao": "POSITIVA",
       "features_selecionadas": [
+        "worst radius",
         "worst concave points"
       ],
-      "tamanho": 1,
-      "tempo_segundos": 0.03328020009212196
+      "tamanho": 2,
+      "tempo_segundos": 0.04565229988656938
     }
   ]
 }
