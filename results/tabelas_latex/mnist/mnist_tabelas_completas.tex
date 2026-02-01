@@ -1,0 +1,86 @@
+% Tabelas geradas automaticamente para MNIST (3 vs 8)
+% Gerado em: C:\Users\gleilsonpedro\OneDrive\Área de Trabalho\PYTHON\MESTRADO\XAI\Explanation_With_Rejection_final
+
+\begin{table}[!t]
+\centering
+\caption{Características do dataset MNIST (dígitos 3 vs 8).}
+\label{tab:mnist_characteristics}
+\begin{tabular}{lrrrr}
+\hline
+\textbf{Dataset} & \textbf{Instâncias} & \textbf{Features} & \textbf{Thresholds ($t^-$, $t^+$)} & \textbf{Zona} \\
+\hline
+MNIST (3 vs 8) & 210 & 196 & (-0.22, 0.37) & 0.59 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \emph{speedup} do PEAB em relação aos baselines - MNIST.}
+\label{tab:mnist_runtime_classified}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
+\hline
+MNIST (3 vs 8) & 3.9 & 51.5 & 66335.1 & 8825.0 & 16925.0$\times$ & 2251.7$\times$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Tempo médio de execução por instância REJEITADA (ms) e \emph{speedup} do PEAB em relação aos baselines - MNIST.}
+\label{tab:mnist_runtime_rejected}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
+\hline
+MNIST (3 vs 8) & 16.7 & 52.1 & 55087.0 & 12604.3 & 3307.2$\times$ & 756.7$\times$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Tamanho médio das explicações (número de features): Classificadas vs Rejeitadas - MNIST.}
+\label{tab:mnist_explanation_size}
+\begin{tabular}{lcccccccc}
+\hline
+\multirow{2}{*}{\textbf{Dataset}} & \multicolumn{2}{c}{\textbf{PEAB}} & \multicolumn{2}{c}{\textbf{PULP}} & \multicolumn{2}{c}{\textbf{Anchor}} & \multicolumn{2}{c}{\textbf{MinExp}} \\
+\cline{2-9}
+ & \textbf{Classif.} & \textbf{Rejeit.} & \textbf{Classif.} & \textbf{Rejeit.} & \textbf{Classif.} & \textbf{Rejeit.} & \textbf{Classif.} & \textbf{Rejeit.} \\
+\hline
+MNIST (3 vs 8) & 52.13 & 122.00 & 52.13 & 120.00 & 2.58 & 3.00 & 77.56 & 127.00 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Percentual médio de features necessárias nas explicações - MNIST.}
+\label{tab:mnist_necessity}
+\begin{tabular}{lcccc}
+\hline
+\multirow{2}{*}{\textbf{Dataset}} & \multicolumn{2}{c}{\textbf{PEAB}} & \multicolumn{2}{c}{\textbf{PULP}} \\
+\cline{2-5}
+ & \textbf{Classif.} & \textbf{Rejeit.} & \textbf{Classif.} & \textbf{Rejeit.} \\
+\hline
+MNIST (3 vs 8) & 0.3\% & 16.9\% & 0.8\% & 15.8\% \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Número médio de features redundantes por explicação - MNIST.}
+\label{tab:mnist_redundancy}
+\begin{tabular}{lcccc}
+\hline
+\multirow{2}{*}{\textbf{Dataset}} & \multicolumn{2}{c}{\textbf{PEAB}} & \multicolumn{2}{c}{\textbf{PULP}} \\
+\cline{2-5}
+ & \textbf{Classif.} & \textbf{Rejeit.} & \textbf{Classif.} & \textbf{Rejeit.} \\
+\hline
+MNIST (3 vs 8) & 51.95 & 101.32 & 51.70 & 101.00 \\
+\hline
+\end{tabular}
+\end{table}

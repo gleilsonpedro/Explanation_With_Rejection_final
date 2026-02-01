@@ -24,11 +24,21 @@ RANDOM_STATE: int = 42
 
 # Configurações específicas de MNIST
 MNIST_CONFIG = {
-    'feature_mode': 'raw',           
-    'digit_pair': (3, 8),            
-    'top_k_features': None,          
-    'test_size': 0.3,                
-    'rejection_cost': 0.10,          
+    # Feature mode: 'raw' = 784 features (28x28 pixels originais), 'pool2x2' = 196 features (14x14 via pooling, ~4x mais rapido)
+    'feature_mode': 'pool2x2',
+    
+    # Digits para classificacao binaria (classe A vs classe B)
+    'digit_pair': (3, 8),
+    
+    # Top-K features: None = usa todas features disponiveis, N > 0 = seleciona apenas as N features mais relevantes via ANOVA F-test
+    'top_k_features': None,
+    
+    'test_size': 0.3,
+    
+    # Rejection cost: custo de rejeitar uma instancia (entre 0 e 1)
+    'rejection_cost': 0.08,
+    
+    # Subsample size: fracao do dataset a usar (0.01 = 1%, reduz tamanho para testes rapidos)
     'subsample_size': 0.05
     }
 
@@ -41,8 +51,8 @@ DATASET_CONFIG = {
     "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "banknote":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.05},
-    "covertype":            {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.10},
+    "creditcard":           {'subsample_size': 0.02, 'test_size': 0.3, 'rejection_cost': 0.05},  # ~5.7k para Anchor/MinExp
+    "covertype":            {'subsample_size': 0.01, 'test_size': 0.3, 'rejection_cost': 0.10},  # ~5.8k para Anchor/MinExp
     "gas_sensor":           {'test_size': 0.5, 'rejection_cost': 0.24},
     "newsgroups":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
     "rcv1":                 {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
@@ -52,6 +62,13 @@ HIPERPARAMETROS_FILE: str = 'json/hiperparametros.json'
 DEFAULT_LOGREG_PARAMS: Dict[str, Any] = {
     'penalty': 'l2', 'C': 0.01, 'solver': 'liblinear', 'max_iter': 1000
 }
+
+def sanitize_filename(filename: str) -> str:
+    """Remove caracteres inválidos para nomes de arquivo no Windows."""
+    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    for char in invalid_chars:
+        filename = filename.replace(char, '_')
+    return filename
 
 #==============================================================================
 # UTILITÁRIOS MATEMÁTICOS OTIMIZADOS
@@ -350,10 +367,14 @@ def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejectio
     t_minus_grid = np.linspace(scores_neg.min(), -0.01, 50) if len(scores_neg) > 0 else np.linspace(-1.0, -0.01, 50)
     t_plus_grid = np.linspace(0.01, scores_pos.max(), 50) if len(scores_pos) > 0 else np.linspace(0.01, 1.0, 50)
     
+    print(f"[DEBUG] Grid t-: [{t_minus_grid.min():.4f}, {t_minus_grid.max():.4f}], Grid t+: [{t_plus_grid.min():.4f}, {t_plus_grid.max():.4f}]")
+    
     best_risk, best_t_plus, best_t_minus = float('inf'), 0.1, -0.1
+    valid_pairs_found = 0
     for tm in t_minus_grid:
         for tp in t_plus_grid:
             if not (tm < 0 < tp): continue
+            valid_pairs_found += 1
             y_pred = np.full(y_val.shape, -1)
             acc_mask = (decision_scores_raw >= tp) | (decision_scores_raw <= tm)
             y_pred[decision_scores_raw >= tp] = 1
@@ -362,6 +383,8 @@ def treinar_e_avaliar_modelo(X_train: pd.DataFrame, y_train: pd.Series, rejectio
             rej = 1.0 - np.mean(acc_mask)
             risk = err + rejection_cost * rej
             if risk < best_risk: best_risk, best_t_plus, best_t_minus = risk, tp, tm
+    
+    print(f"[DEBUG] Pares válidos testados: {valid_pairs_found}, Best t+={best_t_plus:.4f}, Best t-={best_t_minus:.4f}, Risk={best_risk:.4f}")
             
     # Retreino Final
     pipeline.fit(X_train, y_train)
@@ -532,17 +555,19 @@ def executar_experimento_para_dataset(dataset_name: str):
             dataset_json_key = f"mnist_{digit_pair[0]}_vs_{digit_pair[1]}"
     
     # Chamar update_method_results com assinatura correta
+    dataset_json_key_safe = sanitize_filename(dataset_json_key)
     update_method_results(
         method='peab',
-        dataset=dataset_json_key,
+        dataset=dataset_json_key_safe,
         results=results_data
     )
     
-    print(f"[INFO] Resultados salvos em json/peab/{dataset_json_key}.json")
+    print(f"[INFO] Resultados salvos em json/peab/{dataset_json_key_safe}.json")
     
     # Salvar TXT (Básico) também
     os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)
-    with open(f"{OUTPUT_BASE_DIR}/peab_{dataset_name}.txt", 'w') as f:
+    dataset_name_safe = sanitize_filename(dataset_name)
+    with open(f"{OUTPUT_BASE_DIR}/peab_{dataset_name_safe}.txt", 'w') as f:
         f.write(f"RELATÓRIO PEAB FAST - {dataset_name}\n")
         f.write(f"Tempo Total: {total_time:.4f}s\n")
         f.write(f"Tempo Médio: {total_time/len(X_test):.6f}s\n")

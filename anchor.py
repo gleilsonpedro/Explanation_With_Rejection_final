@@ -33,6 +33,13 @@ except ImportError as e:
 #==============================================================================
 RANDOM_STATE = 42
 
+def sanitize_filename(filename: str) -> str:
+    """Remove caracteres inválidos para nomes de arquivo no Windows."""
+    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    for char in invalid_chars:
+        filename = filename.replace(char, '_')
+    return filename
+
 # Exigir alta precisão nas âncoras (95% é o padrão recomendado na literatura)
 # 1.0 = 100% precisão, gera âncoras muito pequenas
 # 0.95 = 95% precisão, permite âncoras mais informativas
@@ -306,7 +313,8 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
     log_final = formatar_log_anchor(metricas)
     base_dir = os.path.join('results', 'report', 'anchor')
     os.makedirs(base_dir, exist_ok=True)
-    caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_relatorio}.txt')
+    nome_arquivo_seguro = sanitize_filename(nome_relatorio)
+    caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_arquivo_seguro}.txt')
     with open(caminho_arquivo, 'w', encoding='utf-8') as f:
         f.write(log_final)
 
@@ -383,11 +391,12 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
             }
         }
     }
-    update_method_results("anchor", dataset_name, results_data)
+    dataset_name_safe = sanitize_filename(dataset_name)
+    update_method_results("anchor", dataset_name_safe, results_data)
 
     return {
         'report_path': caminho_arquivo,
-        'json_updated_for': dataset_name,
+        'json_updated_for': dataset_name_safe,
         'metrics': metricas
     }
 
@@ -652,7 +661,8 @@ if __name__ == '__main__':
         log_final = formatar_log_anchor(metricas)
         base_dir = os.path.join('results', 'report', 'anchor')
         os.makedirs(base_dir, exist_ok=True)
-        caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_relatorio}.txt')
+        nome_arquivo_seguro = sanitize_filename(nome_relatorio)
+        caminho_arquivo = os.path.join(base_dir, f'anchor_{nome_arquivo_seguro}.txt')
         with open(caminho_arquivo, 'w', encoding='utf-8') as f:
             f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
@@ -769,7 +779,8 @@ if __name__ == '__main__':
             }
         }
 
-        update_method_results("anchor", dataset_key, dataset_cache)
+        dataset_key_safe = sanitize_filename(dataset_key)
+        update_method_results("anchor", dataset_key_safe, dataset_cache)
 
         # Salvar plot também dentro de results/anchor/plots
         plot_dir = os.path.join(base_dir, 'plots')

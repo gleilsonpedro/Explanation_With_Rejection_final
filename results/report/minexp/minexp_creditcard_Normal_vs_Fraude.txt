@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: creditcard_Normal_vs_Fraude
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 1709
+  - Número de Features do Modelo: 29
+  - Acurácia do Modelo (teste, sem rejeição): 99.94%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.05
+  - Tempo Total de Geração das Explicações: 1887.3413 segundos
+  - Tempo Médio por Instância (Geral): 1.1044 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 0.06% (1 de 1709 instâncias)
+  - Acurácia com Opção de Rejeição (nas 1708 instâncias aceitas): 99.94%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (4 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 16.00 ± 3.16 (Min: 12, Max: 20)
+  - Classe Negativa (1704 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 19.17 ± 1.89 (Min: 13, Max: 26)
+  - Classe REJEITADA (1 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 21.00 ± 0.00 (Min: 21, Max: 21)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - V11: 1709 vezes
+    - V12: 1709 vezes
+    - V14: 1709 vezes
+    - V16: 1709 vezes
+    - V17: 1709 vezes
+    - V25: 1709 vezes
+    - V28: 1708 vezes
+    - V27: 1707 vezes
+    - V18: 1704 vezes
+    - V21: 1704 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 1.1311 segundos
+  - Negativas: 1.1041 segundos
+  - Rejeitadas: 1.4942 segundos

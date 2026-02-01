@@ -353,7 +353,7 @@ def carregar_dados_validacao(metodo, dataset):
 def extrair_necessidade(data):
     """Extrai métricas de necessidade do JSON de validação."""
     if data is None:
-        return None
+        return None, None
     
     try:
         per_type = data.get("per_type_metrics", {})
@@ -374,6 +374,8 @@ def extrair_necessidade(data):
         
         return classif_nec, rej_nec
     except Exception as e:
+        print(f"Erro ao extrair necessidade: {e}")
+        return None, None
         print(f"Erro ao extrair necessidade: {e}")
         return None, None
 

@@ -47,6 +47,13 @@ from utils.results_handler import _to_builtin, update_method_results
 #==============================================================================
 OUTPUT_BASE_DIR = 'results/report/pulp'
 
+def sanitize_filename(filename: str) -> str:
+    """Remove caracteres inválidos para nomes de arquivo no Windows."""
+    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    for char in invalid_chars:
+        filename = filename.replace(char, '_')
+    return filename
+
 #==============================================================================
 # SOLVER DE OTIMIZAÇÃO INTEIRA (GROUND TRUTH)
 #==============================================================================
@@ -349,12 +356,13 @@ def executar_experimento_pulp_para_dataset(dataset_name):
     results_data['explicacoes'] = explicacoes
     
     # Salva em JSON (estrutura: json/pulp/{dataset_json_key}.json)
-    update_method_results('pulp', dataset_json_key, results_data)
+    dataset_json_key_safe = sanitize_filename(dataset_json_key)
+    update_method_results('pulp', dataset_json_key_safe, results_data)
     
-    print(f"\n✅ JSON salvo: json/pulp/{dataset_json_key}.json")
+    print(f"\n✅ JSON salvo: json/pulp/{dataset_json_key_safe}.json")
     
     # Gera relatório em TXT
-    gerar_relatorio_pulp(results_data, dataset_json_key)
+    gerar_relatorio_pulp(results_data, dataset_json_key_safe)
     
     # Resumo final
     print("\n" + "="*80)
@@ -382,7 +390,8 @@ def gerar_relatorio_pulp(results_data: Dict, dataset_name: str):
     """
     output_dir = os.path.join(OUTPUT_BASE_DIR)
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"pulp_{dataset_name}.txt")
+    dataset_name_safe = sanitize_filename(dataset_name)
+    output_file = os.path.join(output_dir, f"pulp_{dataset_name_safe}.txt")
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("="*80 + "\n")

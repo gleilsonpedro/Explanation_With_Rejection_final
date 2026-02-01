@@ -23,6 +23,13 @@ except ImportError as e:
 
 warnings.filterwarnings("ignore", message="Overwriting previously set objective.")
 
+def sanitize_filename(filename: str) -> str:
+    """Remove caracteres inválidos para nomes de arquivo no Windows."""
+    invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    for char in invalid_chars:
+        filename = filename.replace(char, '_')
+    return filename
+
 def formatar_log(metricas):
     """
     Pega todas as métricas coletadas e formata a string do log final.
@@ -132,6 +139,25 @@ if __name__ == '__main__':
         w_solver = w
         topk_idx = None  # Garantir que o remapeamento não ocorra
         hi_dim = len(nomes_features) >= 500 # Mantido para controle de time_limit
+        
+        # [OTIMIZAÇÃO] Configuração adaptativa por tamanho de dataset E número de features
+        num_instances = len(y_test)
+        num_features = len(nomes_features)
+        
+        # Regra: Mais features = chunks menores (LP fica mais pesado)
+        if num_features >= 150:  # MNIST pool2x2 (196), etc
+            default_chunk_size = 10  # Processa 10 por vez
+            default_time_limit = 20.0  # 20s por chunk de 10 = ~2s/instância
+            default_threads = 4
+            print(f"[MinExp] Dataset com {num_features} features: chunk_size=10, threads=4")
+        elif num_instances > 1000:  # Datasets grandes mas poucas features
+            default_chunk_size = 50
+            default_time_limit = 60.0
+            default_threads = 4
+        else:
+            default_chunk_size = 50  # Reduzido de 200 para 50
+            default_time_limit = 30.0
+            default_threads = 2
 
 
         print(f"\n[INFO] Gerando explicações para {len(y_test)} instâncias de teste...")
@@ -154,8 +180,8 @@ if __name__ == '__main__':
         def explain_in_chunks(idx_array, classified_label):
             if len(idx_array) == 0:
                 return
-            time_limit = 30.0 if hi_dim else None
-            chunk_size = 20 if hi_dim else len(idx_array)
+            time_limit = 30.0 if hi_dim else default_time_limit
+            chunk_size = 20 if hi_dim else default_chunk_size
             for start in range(0, len(idx_array), chunk_size):
                 sl = slice(start, start + chunk_size)
                 sel_idx = idx_array[sl]
@@ -172,7 +198,7 @@ if __name__ == '__main__':
                         lower_bound=lower_bound,
                         upper_bound=upper_bound,
                         show_log=0,
-                        n_threads=1,
+                        n_threads=default_threads,
                         data=X_test_solver[sel_idx],
                         classified=classified_label,
                         time_limit=time_limit
@@ -212,8 +238,8 @@ if __name__ == '__main__':
 
         # [AUDITORIA] Processar instâncias rejeitadas
         if len(rej_idx) > 0:
-            time_limit = 30.0 if hi_dim else None
-            chunk_size = 20 if hi_dim else len(rej_idx)
+            time_limit = 30.0 if hi_dim else default_time_limit
+            chunk_size = 20 if hi_dim else default_chunk_size
             for start in range(0, len(rej_idx), chunk_size):
                 sl = slice(start, start + chunk_size)
                 sel_idx = rej_idx[sl]
@@ -231,7 +257,7 @@ if __name__ == '__main__':
                         upper_bound=upper_bound,
                         data=X_test_solver[sel_idx],
                         show_log=0,
-                        n_threads=1,
+                        n_threads=default_threads,
                         time_limit=time_limit
                     )
                     # [AUDITORIA] Tempo dividido igualmente entre instâncias
@@ -321,7 +347,8 @@ if __name__ == '__main__':
         log_final = formatar_log(metricas)
         base_dir = os.path.join('results', 'report', 'minexp')
         os.makedirs(base_dir, exist_ok=True)
-        caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_relatorio}.txt')
+        nome_arquivo_seguro = sanitize_filename(nome_relatorio)
+        caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_arquivo_seguro}.txt')
         with open(caminho_arquivo, 'w', encoding='utf-8') as f:
             f.write(log_final)
         print(f"\nANÁLISE CONCLUÍDA. Relatório salvo em: {caminho_arquivo}")
@@ -429,7 +456,8 @@ if __name__ == '__main__':
                 }
             }
         }
-        update_method_results("MinExp", dataset_key, dataset_cache)
+        dataset_key_safe = sanitize_filename(dataset_key)
+        update_method_results("MinExp", dataset_key_safe, dataset_cache)
         
     else:
         print("Nenhum dataset foi selecionado. Encerrando o programa.")
@@ -480,17 +508,44 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     topk_idx = None
     X_test_solver = X_test_scaled
     w_solver = w
+    
+    # [OTIMIZAÇÃO] Configuração adaptativa por tamanho de dataset E número de features
+    num_instances = len(y_test)
+    num_features = len(nomes_features)
+    
+    # Regra: Mais features = chunks menores (LP fica mais pesado)
+    if num_features >= 150:  # MNIST pool2x2 (196), etc
+        default_chunk_size = 10  # Processa 10 por vez
+        default_time_limit = 20.0  # 20s por chunk de 10 = ~2s/instância
+        default_threads = 4
+        print(f"[MinExp] Dataset com {num_features} features: chunk_size=10, threads=4")
+    elif num_instances > 1000:  # Datasets grandes mas poucas features
+        default_chunk_size = 50
+        default_time_limit = 60.0
+        default_threads = 4
+    else:
+        default_chunk_size = 50  # Reduzido de 200 para 50
+        default_time_limit = 30.0
+        default_threads = 2
 
     all_explanations = {}
     # [AUDITORIA] Dicionário para armazenar tempo por instância (run_minexp_for_dataset)
     tempos_individuais = {}
+    
+    # Importar barra de progresso
+    from utils.progress_bar import ProgressBar, suppress_library_warnings
+    suppress_library_warnings()
+    
+    # Criar barra de progresso global
+    total_instances = len(neg_idx) + len(pos_idx) + len(rej_idx)
+    pbar = ProgressBar(total=total_instances, description=f"MinExp Explicando {nome_relatorio}")
 
     # Runner: usar mesma estratégia de chunks e time_limit maior para alta dimensionalidade
     def explain_in_chunks(idx_array, classified_label):
         if len(idx_array) == 0:
             return
-        time_limit = 30.0 if hi_dim else None
-        chunk_size = 20 if hi_dim else len(idx_array)
+        time_limit = 30.0 if hi_dim else default_time_limit
+        chunk_size = 20 if hi_dim else default_chunk_size
         for start in range(0, len(idx_array), chunk_size):
             sl = slice(start, start + chunk_size)
             sel_idx = idx_array[sl]
@@ -507,7 +562,7 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                     lower_bound=lower_bound,
                     upper_bound=upper_bound,
                     show_log=0,
-                    n_threads=1,
+                    n_threads=default_threads,
                     data=X_test_solver[sel_idx],
                     classified=classified_label,
                     time_limit=time_limit
@@ -526,9 +581,14 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                 # [AUDITORIA] Armazenar tempo para cada instância do chunk
                 for idx in sel_idx:
                     tempos_individuais[idx] = tempo_por_instancia
+                
+                # Atualizar barra de progresso
+                pbar.update(len(sel_idx))
                     
             except Exception as e:
                 print(f"[MinExp] Solver falhou (runner) para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+                # Atualizar progresso mesmo em caso de erro
+                pbar.update(len(sel_idx))
 
     # [AUDITORIA] Processar cada tipo (não medir aqui, já medido dentro do explain_in_chunks)
     if len(neg_idx) > 0:
@@ -538,8 +598,8 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     
     # [AUDITORIA] Rejeitadas: mesmo padrão com timer no solver
     if len(rej_idx) > 0:
-        time_limit = 30.0 if hi_dim else None
-        chunk_size = 20 if hi_dim else len(rej_idx)
+        time_limit = 30.0 if hi_dim else default_time_limit
+        chunk_size = 20 if hi_dim else default_chunk_size
         for start in range(0, len(rej_idx), chunk_size):
             sl = slice(start, start + chunk_size)
             sel_idx = rej_idx[sl]
@@ -557,7 +617,7 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                     upper_bound=upper_bound,
                     data=X_test_solver[sel_idx],
                     show_log=0,
-                    n_threads=1,
+                    n_threads=default_threads,
                     time_limit=time_limit
                 )
                 # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
@@ -574,9 +634,14 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                 # [AUDITORIA] Armazenar tempo para cada instância do chunk
                 for idx in sel_idx:
                     tempos_individuais[idx] = tempo_por_instancia
+                
+                # Atualizar barra de progresso
+                pbar.update(len(sel_idx))
                     
             except Exception as e:
                 print(f"[MinExp] Solver falhou (runner) para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
+                # Atualizar progresso mesmo em caso de erro
+                pbar.update(len(sel_idx))
 
     # [AUDITORIA] Calcular métricas a partir dos tempos individuais
     tempos_neg = [tempos_individuais.get(i, 0.0) for i in neg_idx]
@@ -629,7 +694,8 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
     log_final = formatar_log(metricas)
     base_dir = os.path.join('results', 'report', 'minexp')
     os.makedirs(base_dir, exist_ok=True)
-    caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_relatorio}.txt')
+    nome_arquivo_seguro = sanitize_filename(nome_relatorio)
+    caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_arquivo_seguro}.txt')
     with open(caminho_arquivo, 'w', encoding='utf-8') as f:
         f.write(log_final)
 
@@ -720,7 +786,8 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
             }
         }
     }
-    update_method_results("MinExp", dataset_key, dataset_cache)
+    dataset_key_safe = sanitize_filename(dataset_key)
+    update_method_results("MinExp", dataset_key_safe, dataset_cache)
 
     return {
         'report_path': caminho_arquivo,

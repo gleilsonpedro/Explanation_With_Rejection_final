@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: mnist_3_vs_8
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 210
+  - Número de Features do Modelo: 196
+  - Acurácia do Modelo (teste, sem rejeição): 97.62%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.08
+  - Tempo Total de Geração das Explicações: 1979.0376 segundos
+  - Tempo Médio por Instância (Geral): 9.4240 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 1.43% (3 de 210 instâncias)
+  - Acurácia com Opção de Rejeição (nas 207 instâncias aceitas): 97.58%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (99 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 87.75 ± 9.22 (Min: 65, Max: 111)
+  - Classe Negativa (108 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 68.22 ± 7.47 (Min: 55, Max: 87)
+  - Classe REJEITADA (3 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 127.00 ± 2.16 (Min: 124, Max: 129)
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - bin_8_6: 207 vezes
+    - bin_7_7: 206 vezes
+    - bin_9_9: 206 vezes
+    - bin_10_5: 206 vezes
+    - bin_11_7: 206 vezes
+    - bin_7_6: 205 vezes
+    - bin_8_7: 205 vezes
+    - bin_9_5: 205 vezes
+    - bin_10_8: 204 vezes
+    - bin_11_6: 204 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 9.1488 segundos
+  - Negativas: 9.5881 segundos
+  - Rejeitadas: 12.5969 segundos

@@ -10,14 +10,14 @@ RESUMO EXECUTIVO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Dataset:                Mnist
-  Instâncias Testadas:    1257
-  Features Totais:        784
+  Instâncias Testadas:    210
+  Features Totais:        196
 
   MÉTRICAS PRINCIPAIS:
     • Fidelidade:                      100.0%
-    • Necessidade (feat. necessárias): 0.1%
-    • Tamanho Médio:                   235.5 features
-    • Taxa de Rejeição:     12.7% (160 instâncias)
+    • Necessidade (feat. necessárias): 0.6%
+    • Tamanho Médio:                   53.1 features
+    • Taxa de Rejeição:     1.4% (3 instâncias)
 
   CONCLUSÃO:
     Explicações fiéis, porém contêm features redundantes.
@@ -29,7 +29,7 @@ METODOLOGIA DE VALIDAÇÃO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Método Avaliado:         PEAB
-  Perturbações/instância:  500
+  Perturbações/instância:  1,000
 
   TESTES APLICADOS:
 
@@ -57,10 +57,10 @@ CONFIGURAÇÃO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Dataset:              Mnist
-  Instâncias:           1257
-  Features:             784
-  Perturbações/inst:    500
-  Data:                 2025-12-19 13:24:04
+  Instâncias:           210
+  Features:             196
+  Perturbações/inst:    1,000
+  Data:                 2026-01-31 15:35:28
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -70,10 +70,10 @@ RESULTADOS
 
   MÉTRICAS GLOBAIS:
     Fidelidade:       100.0%
-    Necessidade:      0.1%
-    Redundância:      99.9%
+    Necessidade:      0.6%
+    Redundância:      99.4%
     Cobertura:        100.0%
-    Tamanho médio:    235.5 features
+    Tamanho médio:    53.1 features
 
   POR TIPO DE DECISÃO:
 
@@ -82,23 +82,23 @@ RESULTADOS
 
   Tipo          | Count |  Fidelidade | Necessidade | Redundância
   ────────────────────────────────────────────────────────────────────────
-  Positivas     |   527 |      100.0% |        0.0% |      100.0%
-  Negativas     |   570 |      100.0% |        0.0% |      100.0%
-  Rejeitadas    |   160 |      100.0% |        0.9% |       99.1%
+  Positivas     |    99 |      100.0% |        0.5% |       99.5%
+  Negativas     |   108 |      100.0% |        0.2% |       99.8%
+  Rejeitadas    |     3 |      100.0% |       16.9% |       83.1%
 
   TAMANHO DAS EXPLICAÇÕES:
-    Média:         235.5 features
-    Mediana:       209
-    Desvio:        86.5
-    Intervalo:     [127, 459]
-    Compactação:   70% (vs 784 features totais)
+    Média:         53.1 features
+    Mediana:       51
+    Desvio:        15.6
+    Intervalo:     [32, 124]
+    Compactação:   73% (vs 196 features totais)
 
 3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
 ────────────────────────────────────────────────────────────────────────────────
 
   Variáveis │ Quantidade │ Porcentagem │ Visualização
   ───────────┼────────────┼─────────────┼──────────────────────────────────────────
-       6+    │    1257    │    100.0%   │ ██████████████████████████████████████████████████
+       6+    │     210    │    100.0%   │ ██████████████████████████████████████████████████
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -107,12 +107,12 @@ INTERPRETAÇÃO DOS RESULTADOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Fidelidade:       100.0%
-  Necessidade:      0.1%
-  Redundância:      99.9%
-  Tamanho médio:    235.5 features
+  Necessidade:      0.6%
+  Redundância:      99.4%
+  Tamanho médio:    53.1 features
   Cobertura:        100.0%
 
-  AVALIAÇÃO: Explicações fiéis, mas 100% de redundância (features desnecessárias).
+  AVALIAÇÃO: Explicações fiéis, mas 99% de redundância (features desnecessárias).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -120,7 +120,7 @@ INTERPRETAÇÃO DOS RESULTADOS
 LIMITAÇÕES OBSERVADAS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  • Alta redundância (100%): explicações não são minimais.
+  • Alta redundância (99%): explicações não são minimais.
     Possível causa: threshold de rejeição muito conservador ou
     features correlacionadas no dataset.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -135,5 +135,5 @@ RECOMENDAÇÕES
     desnecessárias (ex: backward selection).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Relatório gerado em: 2025-12-19 13:24:04
+Relatório gerado em: 2026-01-31 15:35:28
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

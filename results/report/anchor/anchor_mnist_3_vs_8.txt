@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: mnist_3_vs_8
+  - Classificador Usado: LogisticRegression (explicado por Anchor)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 210
+  - Número de Features do Modelo: 196
+  - Acurácia do Modelo (teste, sem rejeição): 97.62%
+  - Thresholds de Rejeição (Score): t+ = 0.3711, t- = -0.2227
+  - Custo de Rejeição usado para Thresholds: 0.08
+  - Tempo Total de Geração das Explicações: 13834.6571 segundos
+  - Tempo Médio por Instância (Geral): 66.1945 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 1.43% (3 de 210 instâncias)
+  - Acurácia com Opção de Rejeição (nas 207 instâncias aceitas): 97.58%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (Aceitas): (99 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.56 ± 0.64  (Min: 0, Max: 4)
+  - Classe Negativa (Aceitas): (108 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.61 ± 0.49  (Min: 2, Max: 3)
+  - Classe REJEITADA: (3 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.00 ± 0.00  (Min: 3, Max: 3)
+
+[Análise de Importância de Features (Frequência nas Âncoras)]
+  - Top 10 Features Mais Frequentes:
+    - bin_8_6: 138 vezes
+    - bin_9_5: 98 vezes
+    - bin_8_5: 40 vezes
+    - bin_9_6: 35 vezes
+    - bin_5_5: 30 vezes
+    - bin_8_7: 29 vezes
+    - bin_9_4: 20 vezes
+    - bin_8_9: 16 vezes
+    - bin_3_2: 13 vezes
+    - bin_10_1: 13 vezes
+
+[Custo Computacional por Classe]
+  - Tempo Médio (Positivas Aceitas): 61.9764 segundos
+  - Tempo Médio (Negativas Aceitas): 70.3306 segundos
+  - Tempo Médio (Rejeitadas): 55.0870 segundos

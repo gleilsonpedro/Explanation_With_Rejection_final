@@ -10,14 +10,14 @@ RESUMO EXECUTIVO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Dataset:                Mnist
-  Instâncias Testadas:    4190
-  Features Totais:        784
+  Instâncias Testadas:    210
+  Features Totais:        196
 
   MÉTRICAS PRINCIPAIS:
     • Fidelidade:                      100.0%
-    • Necessidade (feat. necessárias): 0.5%
-    • Tamanho Médio:                   270.7 features
-    • Taxa de Rejeição:     8.2% (342 instâncias)
+    • Necessidade (feat. necessárias): 1.0%
+    • Tamanho Médio:                   53.1 features
+    • Taxa de Rejeição:     1.4% (3 instâncias)
 
   CONCLUSÃO:
     Explicações fiéis, porém contêm features redundantes.
@@ -29,7 +29,7 @@ METODOLOGIA DE VALIDAÇÃO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Método Avaliado:         PULP
-  Perturbações/instância:  500
+  Perturbações/instância:  1,000
 
   TESTES APLICADOS:
 
@@ -57,10 +57,10 @@ CONFIGURAÇÃO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Dataset:              Mnist
-  Instâncias:           4190
-  Features:             784
-  Perturbações/inst:    500
-  Data:                 2026-01-30 16:16:34
+  Instâncias:           210
+  Features:             196
+  Perturbações/inst:    1,000
+  Data:                 2026-01-31 16:33:30
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -70,10 +70,10 @@ RESULTADOS
 
   MÉTRICAS GLOBAIS:
     Fidelidade:       100.0%
-    Necessidade:      0.5%
-    Redundância:      99.5%
+    Necessidade:      1.0%
+    Redundância:      99.0%
     Cobertura:        100.0%
-    Tamanho médio:    270.7 features
+    Tamanho médio:    53.1 features
 
   POR TIPO DE DECISÃO:
 
@@ -82,23 +82,23 @@ RESULTADOS
 
   Tipo          | Count |  Fidelidade | Necessidade | Redundância
   ────────────────────────────────────────────────────────────────────────
-  Positivas     |  1886 |      100.0% |        0.4% |       99.6%
-  Negativas     |  1962 |      100.0% |        0.4% |       99.6%
-  Rejeitadas    |   342 |      100.0% |        2.1% |       97.9%
+  Positivas     |    99 |      100.0% |        1.1% |       98.9%
+  Negativas     |   108 |      100.0% |        0.5% |       99.5%
+  Rejeitadas    |     3 |      100.0% |       15.8% |       84.2%
 
   TAMANHO DAS EXPLICAÇÕES:
-    Média:         270.7 features
-    Mediana:       256
-    Desvio:        76.2
-    Intervalo:     [161, 532]
-    Compactação:   65% (vs 784 features totais)
+    Média:         53.1 features
+    Mediana:       51
+    Desvio:        15.5
+    Intervalo:     [32, 120]
+    Compactação:   73% (vs 196 features totais)
 
 3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
 ────────────────────────────────────────────────────────────────────────────────
 
   Variáveis │ Quantidade │ Porcentagem │ Visualização
   ───────────┼────────────┼─────────────┼──────────────────────────────────────────
-       6+    │    4190    │    100.0%   │ ██████████████████████████████████████████████████
+       6+    │     210    │    100.0%   │ ██████████████████████████████████████████████████
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -107,9 +107,9 @@ INTERPRETAÇÃO DOS RESULTADOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Fidelidade:       100.0%
-  Necessidade:      0.5%
-  Redundância:      99.5%
-  Tamanho médio:    270.7 features
+  Necessidade:      1.0%
+  Redundância:      99.0%
+  Tamanho médio:    53.1 features
   Cobertura:        100.0%
 
   AVALIAÇÃO: Explicações fiéis, mas 99% de redundância (features desnecessárias).
@@ -135,5 +135,5 @@ RECOMENDAÇÕES
     desnecessárias (ex: backward selection).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Relatório gerado em: 2026-01-30 16:16:34
+Relatório gerado em: 2026-01-31 16:33:30
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
