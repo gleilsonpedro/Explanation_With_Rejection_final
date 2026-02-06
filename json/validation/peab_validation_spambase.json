@@ -2,21 +2,22 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "spambase",
-    "date": "2025-12-18 13:38:43",
+    "date": "2026-02-06 08:32:53",
     "num_perturbations": 500,
     "perturbation_strategy": "uniform",
+    "necessity_mode": "local",
     "test_instances": 1381,
     "num_features": 57
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 2.103972167297656,
+    "necessity_overall": 1.7712474518398862,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
     "necessity_positive": 3.42974944991074,
     "necessity_negative": 0.0,
-    "necessity_rejected": 3.06953965546069,
+    "necessity_rejected": 2.581236964656035,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 38.92831281679942,
@@ -25,7 +26,7 @@
     "min_explanation_size": 21,
     "max_explanation_size": 48,
     "reduction_rate": 31.704714356492246,
-    "validation_time_seconds": 16.090674877166748
+    "validation_time_seconds": 14.870674133300781
   },
   "per_type_metrics": {
     "positive": {
@@ -45,7 +46,7 @@
     "rejected": {
       "count": 941,
       "fidelity": 100.0,
-      "necessity": 3.06953965546069,
+      "necessity": 2.581236964656035,
       "mean_size": 43.98937300743889,
       "std_size": 1.5647191930527808
     }
@@ -3970,14 +3971,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 10,
+      "necessary_features": 6,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
         "word_freq_1999",
         "word_freq_415",
         "word_freq_650",
+        "word_freq_85",
+        "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
         "word_freq_conference",
@@ -4007,9 +4011,10 @@
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
+        "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 21.73913043478261
+      "necessity_score": 13.043478260869565
     },
     {
       "instance_id": 1263,
@@ -4317,8 +4322,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
+        "capital_run_length_total",
         "char_freq_bracket",
         "char_freq_dollar",
         "char_freq_parentheses",
@@ -4364,7 +4370,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 3566,
@@ -10676,18 +10682,25 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 38,
+      "necessary_features": 31,
       "redundant_features": [
         "word_freq_1999",
+        "word_freq_415",
+        "word_freq_650",
+        "word_freq_857",
+        "word_freq_address",
+        "word_freq_business",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_labs",
+        "word_freq_order",
         "word_freq_original",
         "word_freq_pm",
-        "word_freq_re"
+        "word_freq_re",
+        "word_freq_remove"
       ],
-      "necessity_score": 82.6086956521739
+      "necessity_score": 67.3913043478261
     },
     {
       "instance_id": 2873,
@@ -13718,7 +13731,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 5,
+      "necessary_features": 4,
       "redundant_features": [
         "capital_run_length_average",
         "capital_run_length_longest",
@@ -13732,6 +13745,7 @@
         "word_freq_415",
         "word_freq_650",
         "word_freq_85",
+        "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
         "word_freq_business",
@@ -13764,7 +13778,7 @@
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 10.416666666666668
+      "necessity_score": 8.333333333333332
     },
     {
       "instance_id": 104,
@@ -16689,14 +16703,16 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
         "word_freq_000",
         "word_freq_1999",
         "word_freq_415",
+        "word_freq_650",
         "word_freq_85",
         "word_freq_857",
         "word_freq_address",
@@ -16734,7 +16750,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 3051,
@@ -20621,15 +20637,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 41,
+      "necessary_features": 36,
       "redundant_features": [
+        "word_freq_cs",
         "word_freq_data",
+        "word_freq_email",
+        "word_freq_free",
         "word_freq_hpl",
         "word_freq_meeting",
         "word_freq_original",
+        "word_freq_project",
+        "word_freq_technology",
         "word_freq_will"
       ],
-      "necessity_score": 89.13043478260869
+      "necessity_score": 78.26086956521739
     },
     {
       "instance_id": 3496,
@@ -21991,7 +22012,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "capital_run_length_average",
         "capital_run_length_longest",
@@ -22033,9 +22054,10 @@
         "word_freq_remove",
         "word_freq_technology",
         "word_freq_telnet",
-        "word_freq_you"
+        "word_freq_you",
+        "word_freq_your"
       ],
-      "necessity_score": 2.380952380952381
+      "necessity_score": 0.0
     },
     {
       "instance_id": 1447,
@@ -23516,7 +23538,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_bracket",
@@ -23542,6 +23564,7 @@
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_lab",
         "word_freq_labs",
         "word_freq_mail",
@@ -23562,7 +23585,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 4.444444444444445
+      "necessity_score": 2.2222222222222223
     },
     {
       "instance_id": 2354,
@@ -24962,7 +24985,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 17,
+      "necessary_features": 10,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_parentheses",
@@ -24971,17 +24994,23 @@
         "word_freq_1999",
         "word_freq_415",
         "word_freq_650",
+        "word_freq_85",
         "word_freq_857",
+        "word_freq_addresses",
         "word_freq_business",
         "word_freq_conference",
+        "word_freq_cs",
         "word_freq_direct",
         "word_freq_edu",
         "word_freq_email",
+        "word_freq_free",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_lab",
         "word_freq_labs",
+        "word_freq_meeting",
         "word_freq_order",
         "word_freq_original",
         "word_freq_our",
@@ -24991,10 +25020,11 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
+        "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet"
       ],
-      "necessity_score": 36.95652173913043
+      "necessity_score": 21.73913043478261
     },
     {
       "instance_id": 3247,
@@ -25709,25 +25739,43 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 31,
+      "necessary_features": 13,
       "redundant_features": [
+        "char_freq_bracket",
         "char_freq_parentheses",
+        "char_freq_semicolon",
         "word_freq_000",
+        "word_freq_1999",
         "word_freq_415",
+        "word_freq_650",
         "word_freq_85",
+        "word_freq_address",
+        "word_freq_addresses",
+        "word_freq_all",
+        "word_freq_business",
+        "word_freq_conference",
+        "word_freq_cs",
         "word_freq_data",
         "word_freq_edu",
         "word_freq_george",
+        "word_freq_hp",
         "word_freq_hpl",
         "word_freq_internet",
         "word_freq_lab",
+        "word_freq_labs",
         "word_freq_order",
+        "word_freq_original",
+        "word_freq_our",
         "word_freq_over",
         "word_freq_parts",
+        "word_freq_project",
         "word_freq_re",
+        "word_freq_receive",
+        "word_freq_remove",
+        "word_freq_table",
         "word_freq_will"
       ],
-      "necessity_score": 67.3913043478261
+      "necessity_score": 28.26086956521739
     },
     {
       "instance_id": 479,
@@ -27697,7 +27745,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 7,
+      "necessary_features": 3,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -27719,11 +27767,15 @@
         "word_freq_direct",
         "word_freq_edu",
         "word_freq_email",
+        "word_freq_free",
         "word_freq_george",
         "word_freq_hp",
+        "word_freq_hpl",
         "word_freq_internet",
         "word_freq_lab",
+        "word_freq_labs",
         "word_freq_mail",
+        "word_freq_meeting",
         "word_freq_money",
         "word_freq_order",
         "word_freq_original",
@@ -27739,7 +27791,7 @@
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 15.217391304347828
+      "necessity_score": 6.521739130434782
     },
     {
       "instance_id": 3789,
@@ -27979,7 +28031,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -28011,6 +28063,7 @@
         "word_freq_mail",
         "word_freq_meeting",
         "word_freq_money",
+        "word_freq_order",
         "word_freq_original",
         "word_freq_our",
         "word_freq_over",
@@ -28025,7 +28078,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 2.272727272727273
+      "necessity_score": 0.0
     },
     {
       "instance_id": 2213,
@@ -33135,8 +33188,9 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 26,
+      "necessary_features": 16,
       "redundant_features": [
+        "char_freq_bracket",
         "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
@@ -33145,20 +33199,29 @@
         "word_freq_415",
         "word_freq_650",
         "word_freq_857",
+        "word_freq_address",
+        "word_freq_business",
         "word_freq_cs",
+        "word_freq_data",
         "word_freq_direct",
         "word_freq_edu",
+        "word_freq_email",
         "word_freq_free",
+        "word_freq_hp",
+        "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_lab",
         "word_freq_meeting",
         "word_freq_original",
+        "word_freq_parts",
         "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
         "word_freq_remove",
+        "word_freq_will",
         "word_freq_your"
       ],
-      "necessity_score": 56.52173913043478
+      "necessity_score": 34.78260869565217
     },
     {
       "instance_id": 3493,
@@ -43068,30 +43131,41 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 26,
+      "necessary_features": 15,
       "redundant_features": [
         "char_freq_semicolon",
         "word_freq_000",
         "word_freq_650",
         "word_freq_85",
+        "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
         "word_freq_edu",
         "word_freq_email",
         "word_freq_free",
+        "word_freq_george",
         "word_freq_hp",
+        "word_freq_hpl",
         "word_freq_internet",
         "word_freq_lab",
+        "word_freq_meeting",
         "word_freq_original",
+        "word_freq_over",
+        "word_freq_parts",
         "word_freq_pm",
+        "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
-        "word_freq_technology"
+        "word_freq_technology",
+        "word_freq_telnet",
+        "word_freq_will",
+        "word_freq_your"
       ],
-      "necessity_score": 56.52173913043478
+      "necessity_score": 32.608695652173914
     },
     {
       "instance_id": 611,
@@ -44818,21 +44892,29 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 35,
+      "necessary_features": 27,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_parentheses",
+        "char_freq_semicolon",
         "word_freq_650",
+        "word_freq_85",
+        "word_freq_857",
+        "word_freq_address",
         "word_freq_addresses",
         "word_freq_all",
+        "word_freq_direct",
         "word_freq_free",
         "word_freq_hpl",
         "word_freq_labs",
         "word_freq_meeting",
+        "word_freq_our",
         "word_freq_remove",
         "word_freq_table",
+        "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 76.08695652173914
+      "necessity_score": 58.69565217391305
     },
     {
       "instance_id": 1442,
@@ -49007,9 +49089,10 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 4,
+      "necessary_features": 2,
       "redundant_features": [
         "capital_run_length_longest",
+        "capital_run_length_total",
         "char_freq_bracket",
         "char_freq_dollar",
         "char_freq_parentheses",
@@ -49022,6 +49105,7 @@
         "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_business",
         "word_freq_conference",
         "word_freq_cs",
@@ -49052,7 +49136,7 @@
         "word_freq_will",
         "word_freq_you"
       ],
-      "necessity_score": 8.695652173913043
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 880,
@@ -51151,12 +51235,13 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 9,
+      "necessary_features": 6,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
+        "word_freq_000",
         "word_freq_1999",
         "word_freq_415",
         "word_freq_650",
@@ -51186,12 +51271,14 @@
         "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
+        "word_freq_remove",
+        "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
         "word_freq_your"
       ],
-      "necessity_score": 19.565217391304348
+      "necessity_score": 13.043478260869565
     },
     {
       "instance_id": 3935,
@@ -55378,9 +55465,10 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 10,
+      "necessary_features": 6,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
         "word_freq_000",
@@ -55388,6 +55476,7 @@
         "word_freq_415",
         "word_freq_650",
         "word_freq_85",
+        "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
         "word_freq_conference",
@@ -55400,12 +55489,14 @@
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_lab",
         "word_freq_labs",
         "word_freq_mail",
         "word_freq_meeting",
         "word_freq_original",
         "word_freq_our",
+        "word_freq_over",
         "word_freq_parts",
         "word_freq_pm",
         "word_freq_project",
@@ -55417,7 +55508,7 @@
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 21.73913043478261
+      "necessity_score": 13.043478260869565
     },
     {
       "instance_id": 439,
@@ -57132,15 +57223,17 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 19,
+      "necessary_features": 11,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
+        "char_freq_parentheses",
         "word_freq_1999",
         "word_freq_415",
         "word_freq_650",
         "word_freq_85",
         "word_freq_857",
+        "word_freq_address",
         "word_freq_addresses",
         "word_freq_business",
         "word_freq_conference",
@@ -57148,21 +57241,27 @@
         "word_freq_data",
         "word_freq_direct",
         "word_freq_edu",
+        "word_freq_email",
+        "word_freq_free",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_lab",
         "word_freq_labs",
+        "word_freq_mail",
         "word_freq_order",
         "word_freq_original",
+        "word_freq_our",
+        "word_freq_parts",
         "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
+        "word_freq_remove",
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 41.30434782608695
+      "necessity_score": 23.91304347826087
     },
     {
       "instance_id": 1509,
@@ -58547,7 +58646,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_bracket",
@@ -58591,9 +58690,10 @@
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
-        "word_freq_you"
+        "word_freq_you",
+        "word_freq_your"
       ],
-      "necessity_score": 4.444444444444445
+      "necessity_score": 2.2222222222222223
     },
     {
       "instance_id": 3344,
@@ -60518,17 +60618,20 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 39,
+      "necessary_features": 36,
       "redundant_features": [
+        "char_freq_semicolon",
         "word_freq_1999",
+        "word_freq_conference",
         "word_freq_data",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_meeting",
-        "word_freq_pm"
+        "word_freq_pm",
+        "word_freq_will"
       ],
-      "necessity_score": 84.78260869565217
+      "necessity_score": 78.26086956521739
     },
     {
       "instance_id": 895,
@@ -61700,7 +61803,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_bracket",
@@ -61745,9 +61848,10 @@
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
+        "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 3070,
@@ -70785,12 +70889,15 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 44,
+      "necessary_features": 41,
       "redundant_features": [
         "word_freq_edu",
-        "word_freq_hp"
+        "word_freq_email",
+        "word_freq_hp",
+        "word_freq_re",
+        "word_freq_receive"
       ],
-      "necessity_score": 95.65217391304348
+      "necessity_score": 89.13043478260869
     },
     {
       "instance_id": 4052,
@@ -72394,22 +72501,38 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 34,
+      "necessary_features": 18,
       "redundant_features": [
+        "char_freq_bracket",
         "char_freq_parentheses",
         "char_freq_semicolon",
+        "word_freq_000",
         "word_freq_1999",
+        "word_freq_415",
+        "word_freq_650",
         "word_freq_85",
+        "word_freq_address",
+        "word_freq_addresses",
+        "word_freq_business",
+        "word_freq_conference",
+        "word_freq_cs",
         "word_freq_data",
         "word_freq_direct",
+        "word_freq_email",
+        "word_freq_free",
         "word_freq_hp",
         "word_freq_hpl",
         "word_freq_internet",
         "word_freq_labs",
+        "word_freq_mail",
+        "word_freq_original",
         "word_freq_parts",
+        "word_freq_re",
+        "word_freq_receive",
+        "word_freq_table",
         "word_freq_telnet"
       ],
-      "necessity_score": 73.91304347826086
+      "necessity_score": 39.130434782608695
     },
     {
       "instance_id": 2205,
@@ -76227,7 +76350,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "capital_run_length_average",
         "capital_run_length_longest",
@@ -76271,9 +76394,10 @@
         "word_freq_remove",
         "word_freq_technology",
         "word_freq_telnet",
-        "word_freq_you"
+        "word_freq_you",
+        "word_freq_your"
       ],
-      "necessity_score": 2.272727272727273
+      "necessity_score": 0.0
     },
     {
       "instance_id": 2586,
@@ -77136,22 +77260,30 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 34,
+      "necessary_features": 26,
       "redundant_features": [
         "char_freq_dollar",
         "word_freq_1999",
+        "word_freq_85",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_conference",
+        "word_freq_email",
+        "word_freq_free",
+        "word_freq_george",
         "word_freq_hpl",
         "word_freq_lab",
         "word_freq_meeting",
+        "word_freq_order",
         "word_freq_original",
         "word_freq_project",
         "word_freq_re",
         "word_freq_receive",
-        "word_freq_will"
+        "word_freq_telnet",
+        "word_freq_will",
+        "word_freq_you"
       ],
-      "necessity_score": 73.91304347826086
+      "necessity_score": 56.52173913043478
     },
     {
       "instance_id": 2875,
@@ -78803,30 +78935,41 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 26,
+      "necessary_features": 15,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_parentheses",
         "char_freq_semicolon",
         "word_freq_1999",
+        "word_freq_650",
+        "word_freq_85",
         "word_freq_857",
         "word_freq_address",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
+        "word_freq_direct",
+        "word_freq_edu",
         "word_freq_email",
+        "word_freq_george",
         "word_freq_hp",
+        "word_freq_lab",
+        "word_freq_labs",
         "word_freq_mail",
         "word_freq_meeting",
+        "word_freq_over",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_project",
+        "word_freq_re",
         "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
+        "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 56.52173913043478
+      "necessity_score": 32.608695652173914
     },
     {
       "instance_id": 375,
@@ -79344,7 +79487,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -79377,6 +79520,7 @@
         "word_freq_money",
         "word_freq_order",
         "word_freq_original",
+        "word_freq_our",
         "word_freq_over",
         "word_freq_parts",
         "word_freq_people",
@@ -79391,7 +79535,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 2.2222222222222223
+      "necessity_score": 0.0
     },
     {
       "instance_id": 2575,
@@ -80540,7 +80684,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -80574,6 +80718,7 @@
         "word_freq_order",
         "word_freq_original",
         "word_freq_our",
+        "word_freq_over",
         "word_freq_pm",
         "word_freq_project",
         "word_freq_re",
@@ -80585,7 +80730,7 @@
         "word_freq_will",
         "word_freq_your"
       ],
-      "necessity_score": 6.666666666666667
+      "necessity_score": 4.444444444444445
     },
     {
       "instance_id": 3587,
@@ -86437,11 +86582,12 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 45,
+      "necessary_features": 44,
       "redundant_features": [
-        "word_freq_george"
+        "word_freq_george",
+        "word_freq_original"
       ],
-      "necessity_score": 97.82608695652173
+      "necessity_score": 95.65217391304348
     },
     {
       "instance_id": 3913,
@@ -89701,7 +89847,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -89745,9 +89891,10 @@
         "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
-        "word_freq_will"
+        "word_freq_will",
+        "word_freq_you"
       ],
-      "necessity_score": 6.521739130434782
+      "necessity_score": 4.3478260869565215
     },
     {
       "instance_id": 1967,
@@ -95219,7 +95366,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_bracket",
@@ -95234,6 +95381,7 @@
         "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
@@ -95264,7 +95412,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 6.666666666666667
+      "necessity_score": 4.444444444444445
     },
     {
       "instance_id": 4149,
@@ -99471,38 +99619,52 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 18,
+      "necessary_features": 4,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_parentheses",
+        "char_freq_semicolon",
+        "word_freq_000",
         "word_freq_1999",
         "word_freq_415",
+        "word_freq_650",
         "word_freq_85",
         "word_freq_857",
         "word_freq_address",
+        "word_freq_addresses",
+        "word_freq_business",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
         "word_freq_direct",
+        "word_freq_edu",
         "word_freq_email",
+        "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_lab",
+        "word_freq_labs",
         "word_freq_mail",
+        "word_freq_meeting",
         "word_freq_order",
+        "word_freq_original",
         "word_freq_our",
         "word_freq_over",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_project",
+        "word_freq_re",
         "word_freq_receive",
         "word_freq_remove",
         "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will",
-        "word_freq_you"
+        "word_freq_you",
+        "word_freq_your"
       ],
-      "necessity_score": 39.130434782608695
+      "necessity_score": 8.695652173913043
     },
     {
       "instance_id": 2648,
@@ -103132,7 +103294,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 1,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_bracket",
@@ -103156,6 +103318,7 @@
         "word_freq_direct",
         "word_freq_edu",
         "word_freq_email",
+        "word_freq_free",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
@@ -103179,7 +103342,7 @@
         "word_freq_will",
         "word_freq_your"
       ],
-      "necessity_score": 4.3478260869565215
+      "necessity_score": 2.1739130434782608
     },
     {
       "instance_id": 3251,
@@ -104798,9 +104961,11 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 46,
-      "redundant_features": [],
-      "necessity_score": 100.0
+      "necessary_features": 45,
+      "redundant_features": [
+        "word_freq_re"
+      ],
+      "necessity_score": 97.82608695652173
     },
     {
       "instance_id": 658,
@@ -110722,17 +110887,30 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 39,
+      "necessary_features": 26,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_parentheses",
+        "word_freq_1999",
+        "word_freq_415",
+        "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_business",
+        "word_freq_cs",
+        "word_freq_data",
         "word_freq_email",
+        "word_freq_free",
         "word_freq_hp",
+        "word_freq_internet",
+        "word_freq_labs",
+        "word_freq_order",
         "word_freq_pm",
+        "word_freq_receive",
+        "word_freq_technology",
         "word_freq_will"
       ],
-      "necessity_score": 84.78260869565217
+      "necessity_score": 56.52173913043478
     },
     {
       "instance_id": 876,
@@ -113723,7 +113901,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 1,
+      "necessary_features": 0,
       "redundant_features": [
         "capital_run_length_total",
         "char_freq_dollar",
@@ -113737,6 +113915,7 @@
         "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_business",
         "word_freq_conference",
         "word_freq_cs",
@@ -113771,7 +113950,7 @@
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 2.1739130434782608
+      "necessity_score": 0.0
     },
     {
       "instance_id": 31,
@@ -114432,22 +114611,26 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 11,
+      "necessary_features": 4,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
         "char_freq_parentheses",
         "char_freq_semicolon",
         "word_freq_415",
+        "word_freq_650",
         "word_freq_85",
         "word_freq_857",
         "word_freq_address",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_business",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
         "word_freq_direct",
+        "word_freq_edu",
+        "word_freq_free",
         "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
@@ -114456,6 +114639,7 @@
         "word_freq_labs",
         "word_freq_mail",
         "word_freq_meeting",
+        "word_freq_money",
         "word_freq_order",
         "word_freq_original",
         "word_freq_our",
@@ -114465,12 +114649,14 @@
         "word_freq_re",
         "word_freq_receive",
         "word_freq_remove",
+        "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
+        "word_freq_will",
         "word_freq_you",
         "word_freq_your"
       ],
-      "necessity_score": 23.91304347826087
+      "necessity_score": 8.695652173913043
     },
     {
       "instance_id": 2808,
@@ -119738,7 +119924,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 2,
+      "necessary_features": 0,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -119782,9 +119968,11 @@
         "word_freq_table",
         "word_freq_technology",
         "word_freq_telnet",
-        "word_freq_will"
+        "word_freq_will",
+        "word_freq_you",
+        "word_freq_your"
       ],
-      "necessity_score": 4.444444444444445
+      "necessity_score": 0.0
     },
     {
       "instance_id": 4324,
@@ -122381,28 +122569,40 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 28,
+      "necessary_features": 16,
       "redundant_features": [
         "char_freq_bracket",
+        "char_freq_parentheses",
+        "char_freq_semicolon",
         "word_freq_1999",
         "word_freq_415",
         "word_freq_650",
+        "word_freq_85",
         "word_freq_857",
+        "word_freq_address",
         "word_freq_business",
         "word_freq_conference",
         "word_freq_cs",
         "word_freq_data",
+        "word_freq_direct",
         "word_freq_email",
+        "word_freq_george",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
+        "word_freq_labs",
+        "word_freq_mail",
         "word_freq_meeting",
+        "word_freq_parts",
         "word_freq_pm",
         "word_freq_project",
+        "word_freq_receive",
         "word_freq_remove",
+        "word_freq_table",
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 60.86956521739131
+      "necessity_score": 34.78260869565217
     },
     {
       "instance_id": 1639,
@@ -129377,7 +129577,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 3,
+      "necessary_features": 2,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_dollar",
@@ -129408,6 +129608,7 @@
         "word_freq_labs",
         "word_freq_mail",
         "word_freq_meeting",
+        "word_freq_money",
         "word_freq_order",
         "word_freq_original",
         "word_freq_our",
@@ -129422,7 +129623,7 @@
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 6.666666666666667
+      "necessity_score": 4.444444444444445
     },
     {
       "instance_id": 3381,
@@ -129482,7 +129683,7 @@
       "sufficiency": 100.0,
       "perturbations_tested": 500,
       "perturbations_correct": 500,
-      "necessary_features": 24,
+      "necessary_features": 12,
       "redundant_features": [
         "char_freq_bracket",
         "char_freq_parentheses",
@@ -129490,24 +129691,36 @@
         "word_freq_000",
         "word_freq_1999",
         "word_freq_415",
+        "word_freq_650",
         "word_freq_addresses",
+        "word_freq_all",
         "word_freq_business",
+        "word_freq_conference",
+        "word_freq_cs",
+        "word_freq_data",
         "word_freq_direct",
         "word_freq_edu",
+        "word_freq_free",
         "word_freq_hp",
         "word_freq_hpl",
+        "word_freq_internet",
         "word_freq_labs",
+        "word_freq_mail",
+        "word_freq_meeting",
         "word_freq_original",
         "word_freq_over",
         "word_freq_parts",
         "word_freq_pm",
+        "word_freq_project",
         "word_freq_re",
+        "word_freq_receive",
         "word_freq_remove",
         "word_freq_table",
+        "word_freq_technology",
         "word_freq_telnet",
         "word_freq_will"
       ],
-      "necessity_score": 52.17391304347826
+      "necessity_score": 26.08695652173913
     },
     {
       "instance_id": 558,

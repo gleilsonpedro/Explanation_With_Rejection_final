@@ -444,6 +444,7 @@ if __name__ == '__main__':
                 {"feature": feat, "count": int(count)}
                 for feat, count in metricas['features_frequentes'][:20]  # Top 20 em vez de todas
             ],
+            'per_instance': per_instance,
             'model': {
                 'type': 'LogisticRegression',
                 'num_features': len(nomes_features),
@@ -722,6 +723,20 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
                 feats.add(nomes_features[fidx])
         return sorted(list(feats))
 
+    per_instance = []
+    for i in range(len(y_test_list)):
+        feats_list = extract_feats_minexp(all_explanations.get(i, []))
+        per_instance.append({
+            'id': str(i),
+            'y_true': int(y_test_list[i]),
+            'y_pred': int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1,
+            'rejected': bool(rejected_mask[i]),
+            'decision_score': float(decfun_test[i]),
+            'explanation': feats_list,
+            'explanation_size': int(len(feats_list)),
+            'tempo_segundos': float(tempos_individuais.get(i, 0.0))
+        })
+
     # Metadados MNIST
     mnist_meta = {}
     if dataset_name == 'mnist':
@@ -774,6 +789,7 @@ def run_minexp_for_dataset(dataset_name: str) -> dict:
             {"feature": feat, "count": int(count)}
             for feat, count in metricas['features_frequentes'][:20]
         ],
+        'per_instance': per_instance,
         'model': {
             'type': 'LogisticRegression',
             'num_features': len(nomes_features),

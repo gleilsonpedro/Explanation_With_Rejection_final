@@ -26,6 +26,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import argparse
 import random
+import math
 
 # ==============================================================================
 # CONFIGURAÇÕES
@@ -47,9 +48,9 @@ SHOW_PLOTS = False
 # 3. Anote os que você gostou e coloque aqui embaixo
 # 4. Execute novamente - sempre usará os mesmos exemplos!
 
-IDX_POSITIVA = 165    # Ex: 104 para fixar um dígito 8 específico
-IDX_NEGATIVA = 552    # Ex: 14 para fixar um dígito 3 específico  
-IDX_REJEITADA = 526   # Ex: 13 para fixar uma instância rejeitada específica
+IDX_POSITIVA = None    # Ex: 104 para fixar um dígito 8 específico
+IDX_NEGATIVA = None    # Ex: 14 para fixar um dígito 3 específico  
+IDX_REJEITADA = None   # Ex: 13 para fixar uma instância rejeitada específica
 
 # Exemplos de uso:
 # IDX_POSITIVA = 104   # ← Descomente e use o índice que você gostou
@@ -71,6 +72,35 @@ def carregar_json(filepath: str) -> dict:
     
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
+
+
+def detectar_tamanho_imagem(num_features: int) -> tuple:
+    """
+    Detecta o tamanho da imagem baseado no número de features
+    
+    Returns:
+        tuple: (altura, largura) da imagem
+    """
+    # Tentar encontrar dimensões quadradas perfeitas
+    sqrt = int(math.sqrt(num_features))
+    if sqrt * sqrt == num_features:
+        return (sqrt, sqrt)
+    
+    # Dimensões conhecidas do MNIST
+    if num_features == 784:  # 28x28 original
+        return (28, 28)
+    elif num_features == 196:  # 14x14 com pooling 2x2
+        return (14, 14)
+    elif num_features == 100:  # 10x10 com pooling maior
+        return (10, 10)
+    else:
+        # Tentar dimensões retangulares próximas
+        for h in range(int(math.sqrt(num_features)), 0, -1):
+            if num_features % h == 0:
+                w = num_features // h
+                return (h, w)
+    
+    raise ValueError(f"Não foi possível detectar dimensões para {num_features} features")
 
 
 def _get_instance_vector(X_test, inst_idx: int, num_features: int) -> np.ndarray:
@@ -148,7 +178,15 @@ def criar_imagem_individual(inst: dict, inst_idx: int, X_test,
     for feat in explanation:
         try:
             if isinstance(feat, str) and feat.startswith('pixel'):
+                # Formato: "pixel123" -> índice 122
                 idx = int(feat.replace('pixel', '')) - 1
+            elif isinstance(feat, str) and feat.startswith('bin_'):
+                # Formato: "bin_10_5" -> linha 10, coluna 5 (com pooling)
+                parts = feat.replace('bin_', '').split('_')
+                row = int(parts[0])
+                col = int(parts[1])
+                # Converter coordenadas (row, col) para índice linear
+                idx = row * img_shape[1] + col
             elif isinstance(feat, (int, np.integer)):
                 idx = int(feat) - 1
             else:
@@ -343,6 +381,12 @@ def processar_experimento(data: dict, exp_key: str):
         
         print(f"✓ Dataset recarregado: {X_test.shape[0]} instâncias de teste")
         
+        # Detectar tamanho da imagem automaticamente
+        num_features = X_test.shape[1] if hasattr(X_test, 'shape') else len(list(X_test.keys()))
+        img_shape = detectar_tamanho_imagem(num_features)
+        print(f"✓ Número de features: {num_features}")
+        print(f"✓ Formato da imagem detectado: {img_shape}")
+        
         # Obter thresholds
         t_plus = exp_data.get('thresholds', {}).get('t_plus', 0.0)
         t_minus = exp_data.get('thresholds', {}).get('t_minus', 0.0)
@@ -445,7 +489,7 @@ def processar_experimento(data: dict, exp_key: str):
             criar_imagem_individual(
                 exemplo_positiva, idx_positiva, X_test, 
                 class_names, exp_key, t_plus, t_minus,
-                img_shape=(28, 28), 
+                img_shape=img_shape, 
                 output_suffix="exemplo_positiva"
             )
         else:
@@ -456,7 +500,7 @@ def processar_experimento(data: dict, exp_key: str):
             criar_imagem_individual(
                 exemplo_negativa, idx_negativa, X_test, 
                 class_names, exp_key, t_plus, t_minus,
-                img_shape=(28, 28), 
+                img_shape=img_shape, 
                 output_suffix="exemplo_negativa"
             )
         else:
@@ -467,7 +511,7 @@ def processar_experimento(data: dict, exp_key: str):
             criar_imagem_individual(
                 exemplo_rejeitada, idx_rejeitada, X_test, 
                 class_names, exp_key, t_plus, t_minus,
-                img_shape=(28, 28), 
+                img_shape=img_shape, 
                 output_suffix="exemplo_rejeitada"
             )
         else:

@@ -25,7 +25,7 @@ RANDOM_STATE: int = 42
 # Configurações específicas de MNIST
 MNIST_CONFIG = {
     # Feature mode: 'raw' = 784 features (28x28 pixels originais), 'pool2x2' = 196 features (14x14 via pooling, ~4x mais rapido)
-    'feature_mode': 'pool2x2',
+    'feature_mode': 'raw',
     
     # Digits para classificacao binaria (classe A vs classe B)
     'digit_pair': (3, 8),
@@ -37,9 +37,9 @@ MNIST_CONFIG = {
     
     # Rejection cost: custo de rejeitar uma instancia (entre 0 e 1)
     'rejection_cost': 0.08,
-    
+
     # Subsample size: fracao do dataset a usar (0.01 = 1%, reduz tamanho para testes rapidos)
-    'subsample_size': 0.05
+    'subsample_size': 0.12
     }
 
 DATASET_CONFIG = {
@@ -564,15 +564,126 @@ def executar_experimento_para_dataset(dataset_name: str):
     
     print(f"[INFO] Resultados salvos em json/peab/{dataset_json_key_safe}.json")
     
-    # Salvar TXT (Básico) também
+    # =========================================================================
+    # GERAR RELATÓRIO TXT COMPLETO (igual aos outros datasets)
+    # =========================================================================
+    gerar_relatorio_texto(dataset_name, test_size, rejection_cost, modelo, t_plus, t_minus, 
+                         len(X_test), len(X_train.columns), results_data, resultados, model_params)
+
+def gerar_relatorio_texto(dataset_name, test_size, wr, modelo, t_plus, t_minus, num_test, num_features, results_data, resultados_instancias, model_params):
+    """Gera relatório TXT completo (igual ao formato do pima e outros datasets)."""
+    output_path = os.path.join(OUTPUT_BASE_DIR, f"peab_{dataset_name}.txt")
     os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)
-    dataset_name_safe = sanitize_filename(dataset_name)
-    with open(f"{OUTPUT_BASE_DIR}/peab_{dataset_name_safe}.txt", 'w') as f:
-        f.write(f"RELATÓRIO PEAB FAST - {dataset_name}\n")
-        f.write(f"Tempo Total: {total_time:.4f}s\n")
-        f.write(f"Tempo Médio: {total_time/len(X_test):.6f}s\n")
-        f.write(f"Acurácia com rejeição: {float(np.mean(preds[~mask_rej] == y_test.iloc[~mask_rej])*100) if np.any(~mask_rej) else 100.0:.2f}%\n")
-        f.write(f"Taxa Rejeição: {float(np.mean(mask_rej)*100):.2f}%\n")
+    
+    # Extrair métricas do results_data
+    perf = results_data['performance']
+    exp_stats = results_data['explanation_stats']
+    comp_time = results_data['computation_time']
+    
+    # Calcular estatísticas das explicações por tipo
+    def calc_stats(pred_code):
+        tamanhos = [r['tamanho_explicacao'] for r in resultados_instancias if r['pred_code'] == pred_code]
+        if not tamanhos:
+            return {'instancias': 0, 'media': 0.0, 'std_dev': 0.0, 'min': 0, 'max': 0}
+        return {
+            'instancias': len(tamanhos),
+            'media': float(np.mean(tamanhos)),
+            'std_dev': float(np.std(tamanhos)),
+            'min': int(np.min(tamanhos)),
+            'max': int(np.max(tamanhos))
+        }
+    
+    stats_pos = calc_stats(1)
+    stats_neg = calc_stats(0)
+    stats_rej = calc_stats(2)
+    
+    # Calcular features mais frequentes
+    todas_features = []
+    for r in resultados_instancias:
+        todas_features.extend(r['explicacao'])
+    features_counter = Counter(todas_features)
+    top_features = features_counter.most_common(10)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write("="*80 + "\n")
+        f.write("          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)\n")
+        f.write("="*80 + "\n\n")
+        
+        # SEÇÃO 1: CONFIGURAÇÃO DO EXPERIMENTO
+        f.write("-"*80 + "\n")
+        f.write("1. CONFIGURAÇÃO DO EXPERIMENTO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Dataset: {dataset_name}\n")
+        f.write(f"  Instâncias de teste: {num_test}\n")
+        f.write(f"  Features por instância: {num_features}\n")
+        f.write(f"  Test size: {test_size:.2%}\n")
+        f.write(f"  Custo de rejeição (WR): {wr:.4f}\n\n")
+        
+        # SEÇÃO 2: HIPERPARÂMETROS DO MODELO
+        f.write("-"*80 + "\n")
+        f.write("2. HIPERPARÂMETROS DO MODELO (Regressão Logística)\n")
+        f.write("-"*80 + "\n")
+        # Extrair params do model_params ou do results_data
+        if 'params' in results_data.get('model', {}):
+            params_display = results_data['model']['params']
+        else:
+            params_display = {}
+        for k, v in params_display.items():
+            if k not in ['coefs', 'intercepto', 'scaler_params', 'norm_params']:
+                f.write(f"  {k}: {v}\n")
+        intercepto = model_params.get('intercepto', 0.0)
+        f.write(f"  Intercepto: {intercepto:.6f}\n\n")
+        
+        # SEÇÃO 3: THRESHOLDS DE REJEIÇÃO
+        f.write("-"*80 + "\n")
+        f.write("3. THRESHOLDS DE REJEIÇÃO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  t+ (limiar superior): {t_plus:.6f}\n")
+        f.write(f"  t- (limiar inferior): {t_minus:.6f}\n")
+        f.write(f"  Largura da zona de rejeição: {t_plus - t_minus:.6f}\n\n")
+        
+        # SEÇÃO 4: DESEMPENHO DO MODELO
+        f.write("-"*80 + "\n")
+        f.write("4. DESEMPENHO DO MODELO\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Acurácia sem rejeição: {perf['accuracy_without_rejection']:.2f}%\n")
+        f.write(f"  Acurácia com rejeição: {perf['accuracy_with_rejection']:.2f}%\n")
+        f.write(f"  Taxa de rejeição: {perf['rejection_rate']:.2f}%\n\n")
+        
+        # SEÇÃO 5: ESTATÍSTICAS DAS EXPLICAÇÕES
+        f.write("-"*80 + "\n")
+        f.write("5. ESTATÍSTICAS DAS EXPLICAÇÕES\n")
+        f.write("-"*80 + "\n")
+        for tipo_label, stats in [('POSITIVAS', stats_pos), 
+                                   ('NEGATIVAS', stats_neg), 
+                                   ('REJEITADAS', stats_rej)]:
+            f.write(f"  {tipo_label}:\n")
+            f.write(f"    Quantidade: {stats['instancias']}\n")
+            f.write(f"    Tamanho médio: {stats['media']:.2f} features\n")
+            f.write(f"    Desvio padrão: {stats['std_dev']:.2f}\n")
+            f.write(f"    Mínimo: {stats['min']} features\n")
+            f.write(f"    Máximo: {stats['max']} features\n\n")
+        
+        # SEÇÃO 6: TEMPOS DE EXECUÇÃO
+        f.write("-"*80 + "\n")
+        f.write("6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)\n")
+        f.write("-"*80 + "\n")
+        f.write(f"  Tempo total: {comp_time['total']:.4f}s\n")
+        f.write(f"  Tempo médio por instância: {comp_time['mean_per_instance']:.6f}s\n")
+        f.write(f"  Tempo médio POSITIVAS: {comp_time['positive']:.6f}s\n")
+        f.write(f"  Tempo médio NEGATIVAS: {comp_time['negative']:.6f}s\n")
+        f.write(f"  Tempo médio REJEITADAS: {comp_time['rejected']:.6f}s\n\n")
+        
+        # SEÇÃO 7: TOP 10 FEATURES MAIS FREQUENTES
+        f.write("-"*80 + "\n")
+        f.write("7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES\n")
+        f.write("-"*80 + "\n")
+        for feat, count in top_features:
+            freq_pct = (count / num_test * 100)
+            f.write(f"  {feat}: {count} ocorrências ({freq_pct:.1f}%)\n")
+        f.write("\n")
+    
+    print(f"[INFO] Relatório completo salvo em {output_path}")
 
 if __name__ == '__main__':
     resultado = selecionar_dataset_e_classe()

@@ -1,0 +1,139 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                     VALIDAÇÃO DE EXPLICABILIDADE - PEAB                      ║
+║                                  Covertype                                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESUMO EXECUTIVO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:                Covertype
+  Instâncias Testadas:    1486
+  Features Totais:        54
+
+  MÉTRICAS PRINCIPAIS:
+    • Fidelidade:                      100.0%
+    • Necessidade (feat. necessárias): 4.1%
+    • Tamanho Médio:                   25.6 features
+    • Taxa de Rejeição:     91.7% (1362 instâncias)
+
+  CONCLUSÃO:
+    Explicações fiéis, porém contêm features redundantes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODOLOGIA DE VALIDAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Método Avaliado:         PEAB
+  Perturbações/instância:  500
+
+  TESTES APLICADOS:
+
+  1. FIDELIDADE (Sufficiency) - Teste Probabilístico
+     • Para cada feature da explicação, geramos perturbações e verificamos
+       se o modelo mantém a decisão quando apenas essa feature está ativa.
+     • Critério: Feature é fiel se >95% das perturbações mantêm a decisão.
+     • Objetivo: Garantir que features explicativas CAUSAM a decisão.
+
+  2. NECESSIDADE (Minimality) - Teste Determinístico (Worst-Case)
+     • Para cada feature, construímos o cenário mais adverso possível:
+       removemos a feature e atribuímos valores extremos às demais features
+       não-explicativas (pior caso que maximiza score positivo ou negativo).
+     • Critério: Feature é necessária se sua remoção SEMPRE quebra a decisão
+       no pior caso deterministicamente possível.
+     • Objetivo: Eliminar features redundantes (minimalidade).
+
+  NOTA TÉCNICA: Fidelidade é suficiência estatística (perturbações),
+                Necessidade é teste lógico (existe caso adverso).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONFIGURAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:              Covertype
+  Instâncias:           1486
+  Features:             54
+  Perturbações/inst:    500
+  Data:                 2026-02-06 08:32:29
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  MÉTRICAS GLOBAIS:
+    Fidelidade:       100.0%
+    Necessidade:      4.1%
+    Redundância:      95.9%
+    Cobertura:        100.0%
+    Tamanho médio:    25.6 features
+
+  POR TIPO DE DECISÃO:
+
+  “Necessidade Estrita (Worst-case)”
+  “O teste verifica se a feature é necessária sob o pior cenário adversarial possível, não se ela é única explicação possível.”
+
+  Tipo          | Count |  Fidelidade | Necessidade | Redundância
+  ────────────────────────────────────────────────────────────────────────
+  Positivas     |    74 |      100.0% |       11.1% |       88.9%
+  Negativas     |    50 |      100.0% |        8.4% |       91.6%
+  Rejeitadas    |  1362 |      100.0% |        3.5% |       96.5%
+
+  TAMANHO DAS EXPLICAÇÕES:
+    Média:         25.6 features
+    Mediana:       25
+    Desvio:        2.5
+    Intervalo:     [18, 35]
+    Compactação:   53% (vs 54 features totais)
+
+3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Variáveis │ Quantidade │ Porcentagem │ Visualização
+  ───────────┼────────────┼─────────────┼──────────────────────────────────────────
+       6+    │    1486    │    100.0%   │ ██████████████████████████████████████████████████
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERPRETAÇÃO DOS RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fidelidade:       100.0%
+  Necessidade:      4.1%
+  Redundância:      95.9%
+  Tamanho médio:    25.6 features
+  Cobertura:        100.0%
+
+  AVALIAÇÃO: Explicações fiéis, mas 96% de redundância (features desnecessárias).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIMITAÇÕES OBSERVADAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Alta redundância (96%): explicações não são minimais.
+    Possível causa: threshold de rejeição muito conservador ou
+    features correlacionadas no dataset.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMENDAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Ajustar hiperparâmetros (threshold de rejeição, tolerâncias).
+  • Investigar instâncias com baixa fidelidade ou alta redundância.
+  • Alta redundância: considerar pós-processamento para remover features
+    desnecessárias (ex: backward selection).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relatório gerado em: 2026-02-06 08:32:29
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

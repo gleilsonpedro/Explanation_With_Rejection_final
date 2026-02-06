@@ -1,6 +1,7 @@
 """
-Script para gerar tabelas LaTeX especificamente para o dataset MNIST.
-Compara os métodos PEAB, PULP, Anchor e MinExp apenas para MNIST (3 vs 8).
+Script para gerar tabelas LaTeX para múltiplos datasets.
+Compara os métodos PEAB, PULP, Anchor e MinExp para creditcard, covertype e mnist (3 vs 8).
+Datasets ordenados por número de features (menor para maior).
 Resultados salvos em results/tabelas_latex/mnist/
 """
 
@@ -10,22 +11,43 @@ from pathlib import Path
 import numpy as np
 
 
-# Mapeamento de nomes de arquivos JSON para MNIST
-# peab/pulp usam "mnist_3_vs_8", anchor/minexp usam "mnist"
-DATASET_NAME_MAPPING = {
-    "peab": "mnist_3_vs_8",
-    "pulp": "mnist_3_vs_8",
-    "anchor": "mnist",
-    "minexp": "mnist"
-}
+# Configuração de datasets ordenados por número de features (menor para maior)
+DATASETS = [
+    {
+        "name": "creditcard",
+        "display_name": "Credit Card",
+        "num_features": 29,
+        "peab_name": "creditcard",
+        "pulp_name": "creditcard",
+        "anchor_name": "creditcard",
+        "minexp_name": "creditcard"
+    },
+    {
+        "name": "covertype",
+        "display_name": "Covertype",
+        "num_features": 54,
+        "peab_name": "covertype",
+        "pulp_name": "covertype",
+        "anchor_name": "covertype",
+        "minexp_name": "covertype"
+    },
+    {
+        "name": "mnist",
+        "display_name": "MNIST (3 vs 8)",
+        "num_features": 196,
+        "peab_name": "mnist_3_vs_8",
+        "pulp_name": "mnist_3_vs_8",
+        "anchor_name": "mnist",
+        "minexp_name": "mnist"
+    }
+]
 
 METODOS = ["peab", "pulp", "anchor", "minexp"]
 OUTPUT_DIR = "results/tabelas_latex/mnist"
 
-
-def carregar_dados_json(metodo):
-    """Carrega os dados de JSON do MNIST para um método específico."""
-    dataset_name = DATASET_NAME_MAPPING[metodo]
+def carregar_dados_json(dataset_config, metodo):
+    """Carrega os dados de JSON para um dataset e método específicos."""
+    dataset_name = dataset_config[f"{metodo}_name"]
     json_path = Path(f"json/{metodo}/{dataset_name}.json")
     
     if not json_path.exists():
@@ -40,16 +62,16 @@ def carregar_dados_json(metodo):
         return None
 
 
-def carregar_dados_validacao(metodo):
-    """Carrega os dados de validação do MNIST para um método específico."""
-    dataset_name = DATASET_NAME_MAPPING[metodo]
+def carregar_dados_validacao(dataset_config, metodo):
+    """Carrega os dados de validação para um dataset e método específicos."""
+    dataset_name = dataset_config[f"{metodo}_name"]
     
-    # Tentar primeiro com o nome mapeado (mnist_3_vs_8)
+    # Tentar primeiro com o nome do dataset específico
     json_path = Path(f"json/validation/{metodo}_validation_{dataset_name}.json")
     
     if not json_path.exists():
-        # Se não encontrar, tentar com 'mnist' (nome comum para validação)
-        json_path = Path(f"json/validation/{metodo}_validation_mnist.json")
+        # Se não encontrar, tentar com o nome base
+        json_path = Path(f"json/validation/{metodo}_validation_{dataset_config['name']}.json")
     
     if not json_path.exists():
         return None
@@ -258,40 +280,42 @@ def calcular_features_redundantes(data):
 
 
 def gerar_tabela_caracteristicas():
-    """Gera tabela com características do MNIST."""
-    data = carregar_dados_json("peab")
-    
+    """Gera tabela com características dos datasets."""
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Características do dataset MNIST (dígitos 3 vs 8).}")
+    latex.append("\\caption{Características dos datasets ordenados por número de features.}")
     latex.append("\\label{tab:mnist_characteristics}")
     latex.append("\\begin{tabular}{lrrrr}")
     latex.append("\\hline")
-    latex.append("\\textbf{Dataset} & \\textbf{Instâncias} & \\textbf{Features} & \\textbf{Thresholds ($t^-$, $t^+$)} & \\textbf{Zona} \\\\")
+    latex.append("\\textbf{Dataset} & \\textbf{Inst.} & \\textbf{Feat.} & \\textbf{Limiares ($t^-$, $t^+$)} & \\textbf{Largura} \\\\")
     latex.append("\\hline")
     
-    if data:
-        # Buscar num de instancias: pode estar em 'num_test_instances' ou 'total_instances'
-        total_instances = data.get("total_instances", data.get("performance", {}).get("num_test_instances", "N/A"))
+    for dataset_config in DATASETS:
+        data = carregar_dados_json(dataset_config, "peab")
         
-        # Buscar num de features: pode estar em 'num_features' ou dentro de 'model'
-        num_features = data.get("num_features", data.get("model", {}).get("num_features", "N/A"))
-        
-        if "thresholds" in data:
-            t_plus = data["thresholds"]["t_plus"]
-            t_minus = data["thresholds"]["t_minus"]
-            largura = t_plus - t_minus
-            threshold_str = f"({t_minus:.2f}, {t_plus:.2f})"
-            largura_str = f"{largura:.2f}"
+        if data:
+            # Buscar num de instancias
+            total_instances = data.get("total_instances", data.get("performance", {}).get("num_test_instances", "N/A"))
+            
+            # Buscar num de features
+            num_features = data.get("num_features", data.get("model", {}).get("num_features", dataset_config["num_features"]))
+            
+            if "thresholds" in data:
+                t_plus = data["thresholds"]["t_plus"]
+                t_minus = data["thresholds"]["t_minus"]
+                largura = t_plus - t_minus
+                threshold_str = f"({t_minus:.2f}, {t_plus:.2f})"
+                largura_str = f"{largura:.2f}"
+            else:
+                threshold_str = "N/A"
+                largura_str = "N/A"
+            
+            linha = f"{dataset_config['display_name']} & {total_instances} & {num_features} & {threshold_str} & {largura_str} \\\\"
+            latex.append(linha)
         else:
-            threshold_str = "N/A"
-            largura_str = "N/A"
-        
-        linha = f"MNIST (3 vs 8) & {total_instances} & {num_features} & {threshold_str} & {largura_str} \\\\"
-        latex.append(linha)
-    else:
-        latex.append("MNIST (3 vs 8) & N/A & N/A & N/A & N/A \\\\")
+            linha = f"{dataset_config['display_name']} & N/A & {dataset_config['num_features']} & N/A & N/A \\\\"
+            latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -302,47 +326,48 @@ def gerar_tabela_caracteristicas():
 
 def gerar_tabela_speedup_classificadas():
     """Gera tabela com comparação de tempos para instâncias CLASSIFICADAS."""
-    dados_tempo = {}
-    
-    for metodo in METODOS:
-        data = carregar_dados_json(metodo)
-        tempo_classif, _ = extrair_tempo_por_tipo(data, metodo)
-        dados_tempo[metodo] = tempo_classif
-    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \\emph{speedup} do PEAB em relação aos baselines - MNIST.}")
+    latex.append("\\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \\emph{speedup} do PEAB em relação aos baselines.}")
     latex.append("\\label{tab:mnist_runtime_classified}")
     latex.append("\\begin{tabular}{lrrrrrr}")
     latex.append("\\hline")
     latex.append("\\textbf{Dataset} & \\textbf{PEAB} & \\textbf{PULP} & \\textbf{Anchor} & \\textbf{MinExp} & \\textbf{Speedup (Anchor)} & \\textbf{Speedup (MinExp)} \\\\")
     latex.append("\\hline")
     
-    peab_time = dados_tempo.get("peab")
-    pulp_time = dados_tempo.get("pulp")
-    anchor_time = dados_tempo.get("anchor")
-    minexp_time = dados_tempo.get("minexp")
-    
-    peab_str = f"{peab_time:.1f}" if peab_time is not None else "N/A"
-    pulp_str = f"{pulp_time:.1f}" if pulp_time is not None else "N/A"
-    anchor_str = f"{anchor_time:.1f}" if anchor_time is not None else "N/A"
-    minexp_str = f"{minexp_time:.1f}" if minexp_time is not None else "N/A"
-    
-    if peab_time and anchor_time:
-        speedup_anchor = anchor_time / peab_time
-        speedup_anchor_str = f"{speedup_anchor:.1f}$\\times$"
-    else:
-        speedup_anchor_str = "N/A"
-    
-    if peab_time and minexp_time:
-        speedup_minexp = minexp_time / peab_time
-        speedup_minexp_str = f"{speedup_minexp:.1f}$\\times$"
-    else:
-        speedup_minexp_str = "N/A"
-    
-    linha = f"MNIST (3 vs 8) & {peab_str} & {pulp_str} & {anchor_str} & {minexp_str} & {speedup_anchor_str} & {speedup_minexp_str} \\\\"
-    latex.append(linha)
+    for dataset_config in DATASETS:
+        dados_tempo = {}
+        
+        for metodo in METODOS:
+            data = carregar_dados_json(dataset_config, metodo)
+            tempo_classif, _ = extrair_tempo_por_tipo(data, metodo)
+            dados_tempo[metodo] = tempo_classif
+        
+        peab_time = dados_tempo.get("peab")
+        pulp_time = dados_tempo.get("pulp")
+        anchor_time = dados_tempo.get("anchor")
+        minexp_time = dados_tempo.get("minexp")
+        
+        peab_str = f"{peab_time:.1f}" if peab_time is not None else "N/A"
+        pulp_str = f"{pulp_time:.1f}" if pulp_time is not None else "N/A"
+        anchor_str = f"{anchor_time:.1f}" if anchor_time is not None else "N/A"
+        minexp_str = f"{minexp_time:.1f}" if minexp_time is not None else "N/A"
+        
+        if peab_time and anchor_time:
+            speedup_anchor = anchor_time / peab_time
+            speedup_anchor_str = f"{speedup_anchor:.1f}$\\times$"
+        else:
+            speedup_anchor_str = "N/A"
+        
+        if peab_time and minexp_time:
+            speedup_minexp = minexp_time / peab_time
+            speedup_minexp_str = f"{speedup_minexp:.1f}$\\times$"
+        else:
+            speedup_minexp_str = "N/A"
+        
+        linha = f"{dataset_config['display_name']} & {peab_str} & {pulp_str} & {anchor_str} & {minexp_str} & {speedup_anchor_str} & {speedup_minexp_str} \\\\"
+        latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -353,47 +378,48 @@ def gerar_tabela_speedup_classificadas():
 
 def gerar_tabela_speedup_rejeitadas():
     """Gera tabela com comparação de tempos para instâncias REJEITADAS."""
-    dados_tempo = {}
-    
-    for metodo in METODOS:
-        data = carregar_dados_json(metodo)
-        _, tempo_rej = extrair_tempo_por_tipo(data, metodo)
-        dados_tempo[metodo] = tempo_rej
-    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Tempo médio de execução por instância REJEITADA (ms) e \\emph{speedup} do PEAB em relação aos baselines - MNIST.}")
+    latex.append("\\caption{Tempo médio de execução por instância REJEITADA (ms) e \\emph{speedup} do PEAB em relação aos baselines.}")
     latex.append("\\label{tab:mnist_runtime_rejected}")
     latex.append("\\begin{tabular}{lrrrrrr}")
     latex.append("\\hline")
     latex.append("\\textbf{Dataset} & \\textbf{PEAB} & \\textbf{PULP} & \\textbf{Anchor} & \\textbf{MinExp} & \\textbf{Speedup (Anchor)} & \\textbf{Speedup (MinExp)} \\\\")
     latex.append("\\hline")
     
-    peab_time = dados_tempo.get("peab")
-    pulp_time = dados_tempo.get("pulp")
-    anchor_time = dados_tempo.get("anchor")
-    minexp_time = dados_tempo.get("minexp")
-    
-    peab_str = f"{peab_time:.1f}" if peab_time is not None and peab_time > 0 else "0.0"
-    pulp_str = f"{pulp_time:.1f}" if pulp_time is not None and pulp_time > 0 else "N/A"
-    anchor_str = f"{anchor_time:.1f}" if anchor_time is not None and anchor_time > 0 else "0.0"
-    minexp_str = f"{minexp_time:.1f}" if minexp_time is not None and minexp_time > 0 else "0.0"
-    
-    if peab_time and peab_time > 0 and anchor_time and anchor_time > 0:
-        speedup_anchor = anchor_time / peab_time
-        speedup_anchor_str = f"{speedup_anchor:.1f}$\\times$"
-    else:
-        speedup_anchor_str = "N/A"
-    
-    if peab_time and peab_time > 0 and minexp_time and minexp_time > 0:
-        speedup_minexp = minexp_time / peab_time
-        speedup_minexp_str = f"{speedup_minexp:.1f}$\\times$"
-    else:
-        speedup_minexp_str = "N/A"
-    
-    linha = f"MNIST (3 vs 8) & {peab_str} & {pulp_str} & {anchor_str} & {minexp_str} & {speedup_anchor_str} & {speedup_minexp_str} \\\\"
-    latex.append(linha)
+    for dataset_config in DATASETS:
+        dados_tempo = {}
+        
+        for metodo in METODOS:
+            data = carregar_dados_json(dataset_config, metodo)
+            _, tempo_rej = extrair_tempo_por_tipo(data, metodo)
+            dados_tempo[metodo] = tempo_rej
+        
+        peab_time = dados_tempo.get("peab")
+        pulp_time = dados_tempo.get("pulp")
+        anchor_time = dados_tempo.get("anchor")
+        minexp_time = dados_tempo.get("minexp")
+        
+        peab_str = f"{peab_time:.1f}" if peab_time is not None and peab_time > 0 else "0.0"
+        pulp_str = f"{pulp_time:.1f}" if pulp_time is not None and pulp_time > 0 else "N/A"
+        anchor_str = f"{anchor_time:.1f}" if anchor_time is not None and anchor_time > 0 else "0.0"
+        minexp_str = f"{minexp_time:.1f}" if minexp_time is not None and minexp_time > 0 else "0.0"
+        
+        if peab_time and peab_time > 0 and anchor_time and anchor_time > 0:
+            speedup_anchor = anchor_time / peab_time
+            speedup_anchor_str = f"{speedup_anchor:.1f}$\\times$"
+        else:
+            speedup_anchor_str = "N/A"
+        
+        if peab_time and peab_time > 0 and minexp_time and minexp_time > 0:
+            speedup_minexp = minexp_time / peab_time
+            speedup_minexp_str = f"{speedup_minexp:.1f}$\\times$"
+        else:
+            speedup_minexp_str = "N/A"
+        
+        linha = f"{dataset_config['display_name']} & {peab_str} & {pulp_str} & {anchor_str} & {minexp_str} & {speedup_anchor_str} & {speedup_minexp_str} \\\\"
+        latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -404,17 +430,10 @@ def gerar_tabela_speedup_rejeitadas():
 
 def gerar_tabela_explicacoes():
     """Gera tabela com tamanho médio das explicações."""
-    dados_tamanho = {}
-    
-    for metodo in METODOS:
-        data = carregar_dados_json(metodo)
-        classif_size, rej_size = extrair_tamanho_medio_por_tipo(data, metodo)
-        dados_tamanho[metodo] = {"classificadas": classif_size, "rejeitadas": rej_size}
-    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Tamanho médio das explicações (número de features): Classificadas vs Rejeitadas - MNIST.}")
+    latex.append("\\caption{Tamanho médio das explicações (número de features): Classificadas vs Rejeitadas.}")
     latex.append("\\label{tab:mnist_explanation_size}")
     latex.append("\\begin{tabular}{lcccccccc}")
     latex.append("\\hline")
@@ -423,26 +442,34 @@ def gerar_tabela_explicacoes():
     latex.append(" & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} \\\\")
     latex.append("\\hline")
     
-    peab_classif = dados_tamanho["peab"]["classificadas"]
-    peab_rej = dados_tamanho["peab"]["rejeitadas"]
-    pulp_classif = dados_tamanho["pulp"]["classificadas"]
-    pulp_rej = dados_tamanho["pulp"]["rejeitadas"]
-    anchor_classif = dados_tamanho["anchor"]["classificadas"]
-    anchor_rej = dados_tamanho["anchor"]["rejeitadas"]
-    minexp_classif = dados_tamanho["minexp"]["classificadas"]
-    minexp_rej = dados_tamanho["minexp"]["rejeitadas"]
-    
-    peab_c_str = f"{peab_classif:.2f}" if peab_classif is not None else "N/A"
-    peab_r_str = f"{peab_rej:.2f}" if peab_rej is not None and peab_rej > 0 else "0.00"
-    pulp_c_str = f"{pulp_classif:.2f}" if pulp_classif is not None else "N/A"
-    pulp_r_str = f"{pulp_rej:.2f}" if pulp_rej is not None and pulp_rej > 0 else "N/A"
-    anchor_c_str = f"{anchor_classif:.2f}" if anchor_classif is not None else "N/A"
-    anchor_r_str = f"{anchor_rej:.2f}" if anchor_rej is not None and anchor_rej > 0 else "0.00"
-    minexp_c_str = f"{minexp_classif:.2f}" if minexp_classif is not None else "N/A"
-    minexp_r_str = f"{minexp_rej:.2f}" if minexp_rej is not None and minexp_rej > 0 else "0.00"
-    
-    linha = f"MNIST (3 vs 8) & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} & {anchor_c_str} & {anchor_r_str} & {minexp_c_str} & {minexp_r_str} \\\\"
-    latex.append(linha)
+    for dataset_config in DATASETS:
+        dados_tamanho = {}
+        
+        for metodo in METODOS:
+            data = carregar_dados_json(dataset_config, metodo)
+            classif_size, rej_size = extrair_tamanho_medio_por_tipo(data, metodo)
+            dados_tamanho[metodo] = {"classificadas": classif_size, "rejeitadas": rej_size}
+        
+        peab_classif = dados_tamanho["peab"]["classificadas"]
+        peab_rej = dados_tamanho["peab"]["rejeitadas"]
+        pulp_classif = dados_tamanho["pulp"]["classificadas"]
+        pulp_rej = dados_tamanho["pulp"]["rejeitadas"]
+        anchor_classif = dados_tamanho["anchor"]["classificadas"]
+        anchor_rej = dados_tamanho["anchor"]["rejeitadas"]
+        minexp_classif = dados_tamanho["minexp"]["classificadas"]
+        minexp_rej = dados_tamanho["minexp"]["rejeitadas"]
+        
+        peab_c_str = f"{peab_classif:.2f}" if peab_classif is not None else "N/A"
+        peab_r_str = f"{peab_rej:.2f}" if peab_rej is not None and peab_rej > 0 else "0.00"
+        pulp_c_str = f"{pulp_classif:.2f}" if pulp_classif is not None else "N/A"
+        pulp_r_str = f"{pulp_rej:.2f}" if pulp_rej is not None and pulp_rej > 0 else "N/A"
+        anchor_c_str = f"{anchor_classif:.2f}" if anchor_classif is not None else "N/A"
+        anchor_r_str = f"{anchor_rej:.2f}" if anchor_rej is not None and anchor_rej > 0 else "0.00"
+        minexp_c_str = f"{minexp_classif:.2f}" if minexp_classif is not None else "N/A"
+        minexp_r_str = f"{minexp_rej:.2f}" if minexp_rej is not None and minexp_rej > 0 else "0.00"
+        
+        linha = f"{dataset_config['display_name']} & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} & {anchor_c_str} & {anchor_r_str} & {minexp_c_str} & {minexp_r_str} \\\\"
+        latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -453,17 +480,10 @@ def gerar_tabela_explicacoes():
 
 def gerar_tabela_necessidade():
     """Gera tabela com percentual de features necessárias."""
-    dados_necessidade = {}
-    
-    for metodo in ["peab", "pulp"]:
-        data = carregar_dados_validacao(metodo)
-        classif_nec, rej_nec = extrair_necessidade(data)
-        dados_necessidade[metodo] = {"classificadas": classif_nec, "rejeitadas": rej_nec}
-    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Percentual médio de features necessárias nas explicações - MNIST.}")
+    latex.append("\\caption{Percentual médio de features necessárias nas explicações.}")
     latex.append("\\label{tab:mnist_necessity}")
     latex.append("\\begin{tabular}{lcccc}")
     latex.append("\\hline")
@@ -472,18 +492,26 @@ def gerar_tabela_necessidade():
     latex.append(" & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} \\\\")
     latex.append("\\hline")
     
-    peab_classif = dados_necessidade["peab"]["classificadas"]
-    peab_rej = dados_necessidade["peab"]["rejeitadas"]
-    pulp_classif = dados_necessidade["pulp"]["classificadas"]
-    pulp_rej = dados_necessidade["pulp"]["rejeitadas"]
-    
-    peab_c_str = f"{peab_classif:.1f}\\%" if peab_classif is not None else "N/A"
-    peab_r_str = f"{peab_rej:.1f}\\%" if peab_rej is not None else "N/A"
-    pulp_c_str = f"{pulp_classif:.1f}\\%" if pulp_classif is not None else "N/A"
-    pulp_r_str = f"{pulp_rej:.1f}\\%" if pulp_rej is not None else "N/A"
-    
-    linha = f"MNIST (3 vs 8) & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} \\\\"
-    latex.append(linha)
+    for dataset_config in DATASETS:
+        dados_necessidade = {}
+        
+        for metodo in ["peab", "pulp"]:
+            data = carregar_dados_validacao(dataset_config, metodo)
+            classif_nec, rej_nec = extrair_necessidade(data)
+            dados_necessidade[metodo] = {"classificadas": classif_nec, "rejeitadas": rej_nec}
+        
+        peab_classif = dados_necessidade["peab"]["classificadas"]
+        peab_rej = dados_necessidade["peab"]["rejeitadas"]
+        pulp_classif = dados_necessidade["pulp"]["classificadas"]
+        pulp_rej = dados_necessidade["pulp"]["rejeitadas"]
+        
+        peab_c_str = f"{peab_classif:.1f}\\%" if peab_classif is not None else "N/A"
+        peab_r_str = f"{peab_rej:.1f}\\%" if peab_rej is not None else "N/A"
+        pulp_c_str = f"{pulp_classif:.1f}\\%" if pulp_classif is not None else "N/A"
+        pulp_r_str = f"{pulp_rej:.1f}\\%" if pulp_rej is not None else "N/A"
+        
+        linha = f"{dataset_config['display_name']} & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} \\\\"
+        latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -494,17 +522,10 @@ def gerar_tabela_necessidade():
 
 def gerar_tabela_redundancia():
     """Gera tabela com número médio de features redundantes."""
-    dados_redundancia = {}
-    
-    for metodo in ["peab", "pulp"]:
-        data = carregar_dados_validacao(metodo)
-        classif_red, rej_red = calcular_features_redundantes(data)
-        dados_redundancia[metodo] = {"classificadas": classif_red, "rejeitadas": rej_red}
-    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Número médio de features redundantes por explicação - MNIST.}")
+    latex.append("\\caption{Número médio de features redundantes por explicação.}")
     latex.append("\\label{tab:mnist_redundancy}")
     latex.append("\\begin{tabular}{lcccc}")
     latex.append("\\hline")
@@ -513,18 +534,26 @@ def gerar_tabela_redundancia():
     latex.append(" & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} \\\\")
     latex.append("\\hline")
     
-    peab_classif = dados_redundancia["peab"]["classificadas"]
-    peab_rej = dados_redundancia["peab"]["rejeitadas"]
-    pulp_classif = dados_redundancia["pulp"]["classificadas"]
-    pulp_rej = dados_redundancia["pulp"]["rejeitadas"]
-    
-    peab_c_str = f"{peab_classif:.2f}" if peab_classif is not None else "N/A"
-    peab_r_str = f"{peab_rej:.2f}" if peab_rej is not None else "N/A"
-    pulp_c_str = f"{pulp_classif:.2f}" if pulp_classif is not None else "N/A"
-    pulp_r_str = f"{pulp_rej:.2f}" if pulp_rej is not None else "N/A"
-    
-    linha = f"MNIST (3 vs 8) & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} \\\\"
-    latex.append(linha)
+    for dataset_config in DATASETS:
+        dados_redundancia = {}
+        
+        for metodo in ["peab", "pulp"]:
+            data = carregar_dados_validacao(dataset_config, metodo)
+            classif_red, rej_red = calcular_features_redundantes(data)
+            dados_redundancia[metodo] = {"classificadas": classif_red, "rejeitadas": rej_red}
+        
+        peab_classif = dados_redundancia["peab"]["classificadas"]
+        peab_rej = dados_redundancia["peab"]["rejeitadas"]
+        pulp_classif = dados_redundancia["pulp"]["classificadas"]
+        pulp_rej = dados_redundancia["pulp"]["rejeitadas"]
+        
+        peab_c_str = f"{peab_classif:.2f}" if peab_classif is not None else "N/A"
+        peab_r_str = f"{peab_rej:.2f}" if peab_rej is not None else "N/A"
+        pulp_c_str = f"{pulp_classif:.2f}" if pulp_classif is not None else "N/A"
+        pulp_r_str = f"{pulp_rej:.2f}" if pulp_rej is not None else "N/A"
+        
+        linha = f"{dataset_config['display_name']} & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} \\\\"
+        latex.append(linha)
     
     latex.append("\\hline")
     latex.append("\\end{tabular}")
@@ -535,7 +564,9 @@ def gerar_tabela_redundancia():
 
 def main():
     print("=" * 70)
-    print("GERADOR DE TABELAS LATEX - MNIST (3 vs 8)")
+    print("GERADOR DE TABELAS LATEX - MÚLTIPLOS DATASETS")
+    print("Datasets: Credit Card, Covertype, MNIST (3 vs 8)")
+    print("Ordenados por número de features: 29, 54, 196")
     print("=" * 70)
     print()
     
@@ -543,7 +574,7 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     # Gerar tabelas
-    print("Gerando tabela de características do MNIST...")
+    print("Gerando tabela de características dos datasets...")
     tabela_caracteristicas = gerar_tabela_caracteristicas()
     with open(f"{OUTPUT_DIR}/mnist_caracteristicas.tex", 'w', encoding='utf-8') as f:
         f.write(tabela_caracteristicas)
@@ -581,7 +612,8 @@ def main():
     
     # Gerar arquivo completo
     print("\nGerando arquivo completo...")
-    completo = f"""% Tabelas geradas automaticamente para MNIST (3 vs 8)
+    completo = f"""% Tabelas geradas automaticamente para múltiplos datasets
+% Datasets: Credit Card (29 features), Covertype (54 features), MNIST 3 vs 8 (196 features)
 % Gerado em: {Path.cwd()}
 
 {tabela_caracteristicas}

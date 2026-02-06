@@ -2,21 +2,22 @@
   "metadata": {
     "method": "PEAB",
     "dataset": "heart_disease",
-    "date": "2025-12-18 14:16:13",
+    "date": "2026-02-06 08:31:30",
     "num_perturbations": 1000,
     "perturbation_strategy": "uniform",
+    "necessity_mode": "local",
     "test_instances": 90,
     "num_features": 13
   },
   "global_metrics": {
     "fidelity_overall": 100.0,
-    "necessity_overall": 16.023889690556356,
+    "necessity_overall": 16.050344717011384,
     "fidelity_positive": 100.0,
     "fidelity_negative": 100.0,
     "fidelity_rejected": 100.0,
-    "necessity_positive": 16.85315891837631,
+    "necessity_positive": 18.121274860405293,
     "necessity_negative": 8.817858386823904,
-    "necessity_rejected": 21.021303258145362,
+    "necessity_rejected": 20.316416040100247,
     "sufficiency": 100.0,
     "coverage": 100.0,
     "mean_explanation_size": 7.0,
@@ -25,13 +26,13 @@
     "min_explanation_size": 5,
     "max_explanation_size": 11,
     "reduction_rate": 46.15384615384615,
-    "validation_time_seconds": 0.18832969665527344
+    "validation_time_seconds": 0.17230510711669922
   },
   "per_type_metrics": {
     "positive": {
       "count": 23,
       "fidelity": 100.0,
-      "necessity": 16.85315891837631,
+      "necessity": 18.121274860405293,
       "mean_size": 6.565217391304348,
       "std_size": 1.498581559966442
     },
@@ -45,7 +46,7 @@
     "rejected": {
       "count": 38,
       "fidelity": 100.0,
-      "necessity": 21.021303258145362,
+      "necessity": 20.316416040100247,
       "mean_size": 6.921052631578948,
       "std_size": 1.3054859741907854
     }
@@ -873,13 +874,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 4,
+      "necessary_features": 3,
       "redundant_features": [
         "ca",
         "oldpeak",
-        "slope"
+        "slope",
+        "thal"
       ],
-      "necessity_score": 57.14285714285714
+      "necessity_score": 42.857142857142854
     },
     {
       "instance_id": 69,
@@ -1142,13 +1144,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 5,
+      "necessary_features": 4,
       "redundant_features": [
         "ca",
+        "oldpeak",
         "slope",
         "thal"
       ],
-      "necessity_score": 62.5
+      "necessity_score": 50.0
     },
     {
       "instance_id": 213,
@@ -1745,15 +1748,14 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
       "redundant_features": [
         "ca",
         "cp",
-        "exang",
         "slope",
         "thalach"
       ],
-      "necessity_score": 16.666666666666664
+      "necessity_score": 33.33333333333333
     },
     {
       "instance_id": 275,
@@ -2662,9 +2664,8 @@
       "sufficiency": 100.0,
       "perturbations_tested": 1000,
       "perturbations_correct": 1000,
-      "necessary_features": 1,
+      "necessary_features": 2,
       "redundant_features": [
-        "ca",
         "cp",
         "fbs",
         "restecg",
@@ -2672,7 +2673,7 @@
         "slope",
         "thalach"
       ],
-      "necessity_score": 12.5
+      "necessity_score": 25.0
     },
     {
       "instance_id": 135,

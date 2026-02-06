@@ -1,0 +1,140 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                     VALIDAÇÃO DE EXPLICABILIDADE - PEAB                      ║
+║                                  Creditcard                                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESUMO EXECUTIVO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:                Creditcard
+  Instâncias Testadas:    1709
+  Features Totais:        29
+
+  MÉTRICAS PRINCIPAIS:
+    • Fidelidade:                      100.0%
+    • Necessidade (feat. necessárias): 2.6%
+    • Tamanho Médio:                   13.7 features
+    • Taxa de Rejeição:     0.1% (1 instâncias)
+
+  CONCLUSÃO:
+    Explicações fiéis, porém contêm features redundantes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODOLOGIA DE VALIDAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Método Avaliado:         PEAB
+  Perturbações/instância:  500
+
+  TESTES APLICADOS:
+
+  1. FIDELIDADE (Sufficiency) - Teste Probabilístico
+     • Para cada feature da explicação, geramos perturbações e verificamos
+       se o modelo mantém a decisão quando apenas essa feature está ativa.
+     • Critério: Feature é fiel se >95% das perturbações mantêm a decisão.
+     • Objetivo: Garantir que features explicativas CAUSAM a decisão.
+
+  2. NECESSIDADE (Minimality) - Teste Determinístico (Worst-Case)
+     • Para cada feature, construímos o cenário mais adverso possível:
+       removemos a feature e atribuímos valores extremos às demais features
+       não-explicativas (pior caso que maximiza score positivo ou negativo).
+     • Critério: Feature é necessária se sua remoção SEMPRE quebra a decisão
+       no pior caso deterministicamente possível.
+     • Objetivo: Eliminar features redundantes (minimalidade).
+
+  NOTA TÉCNICA: Fidelidade é suficiência estatística (perturbações),
+                Necessidade é teste lógico (existe caso adverso).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONFIGURAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Dataset:              Creditcard
+  Instâncias:           1709
+  Features:             29
+  Perturbações/inst:    500
+  Data:                 2026-02-06 08:31:53
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  MÉTRICAS GLOBAIS:
+    Fidelidade:       100.0%
+    Necessidade:      2.6%
+    Redundância:      97.4%
+    Cobertura:        100.0%
+    Tamanho médio:    13.7 features
+
+  POR TIPO DE DECISÃO:
+
+  “Necessidade Estrita (Worst-case)”
+  “O teste verifica se a feature é necessária sob o pior cenário adversarial possível, não se ela é única explicação possível.”
+
+  Tipo          | Count |  Fidelidade | Necessidade | Redundância
+  ────────────────────────────────────────────────────────────────────────
+  Positivas     |     4 |      100.0% |        2.5% |       97.5%
+  Negativas     |  1704 |      100.0% |        2.5% |       97.5%
+  Rejeitadas    |     1 |      100.0% |       57.1% |       42.9%
+
+  TAMANHO DAS EXPLICAÇÕES:
+    Média:         13.7 features
+    Mediana:       14
+    Desvio:        1.5
+    Intervalo:     [5, 22]
+    Compactação:   53% (vs 29 features totais)
+
+3.3 DISTRIBUIÇÃO DE TAMANHOS DAS EXPLICAÇÕES
+────────────────────────────────────────────────────────────────────────────────
+
+  Variáveis │ Quantidade │ Porcentagem │ Visualização
+  ───────────┼────────────┼─────────────┼──────────────────────────────────────────
+        5    │       1    │      0.1%   │                                         
+       6+    │    1708    │     99.9%   │ █████████████████████████████████████████████████
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERPRETAÇÃO DOS RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fidelidade:       100.0%
+  Necessidade:      2.6%
+  Redundância:      97.4%
+  Tamanho médio:    13.7 features
+  Cobertura:        100.0%
+
+  AVALIAÇÃO: Explicações fiéis, mas 97% de redundância (features desnecessárias).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIMITAÇÕES OBSERVADAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Alta redundância (97%): explicações não são minimais.
+    Possível causa: threshold de rejeição muito conservador ou
+    features correlacionadas no dataset.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMENDAÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Ajustar hiperparâmetros (threshold de rejeição, tolerâncias).
+  • Investigar instâncias com baixa fidelidade ou alta redundância.
+  • Alta redundância: considerar pós-processamento para remover features
+    desnecessárias (ex: backward selection).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relatório gerado em: 2026-02-06 08:31:53
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

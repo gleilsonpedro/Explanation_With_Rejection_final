@@ -1,12 +1,14 @@
 \begin{table}[!t]
 \centering
-\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \emph{speedup} do PEAB em relação aos baselines - MNIST.}
+\caption{Tempo médio de execução por instância CLASSIFICADA (ms) e \emph{speedup} do PEAB em relação aos baselines.}
 \label{tab:mnist_runtime_classified}
 \begin{tabular}{lrrrrrr}
 \hline
 \textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
 \hline
-MNIST (3 vs 8) & 3.8 & 51.3 & 66335.1 & 9371.1 & 17247.0$\times$ & 2436.5$\times$ \\
+Credit Card & 1.7 & 43.5 & 513.4 & 1146.3 & 307.4$\times$ & 686.4$\times$ \\
+Covertype & 2.2 & 44.8 & 3038.7 & 2073.0 & 1352.6$\times$ & 922.8$\times$ \\
+MNIST (3 vs 8) & 3.9 & 50.8 & 64536.7 & 9371.1 & 16396.5$\times$ & 2380.9$\times$ \\
 \hline
 \end{tabular}
 \end{table}

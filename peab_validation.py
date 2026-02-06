@@ -1098,13 +1098,18 @@ def validar_metodo(
     if not explicacoes:
         print(f"\n❌ ERRO: Nenhuma explicação individual encontrada em {metodo}_results.json")
         print(f"\n{'─'*70}")
+        print("DIAGNÓSTICO:")
+        print(f"  ✗ O arquivo json/{metodo.lower()}/{dataset}.json NÃO contém 'per_instance'")
+        print(f"  ✗ Este arquivo foi gerado com uma versão ANTIGA do código")
+        print(f"\n{'─'*70}")
         print("SOLUÇÃO:")
-        print(f"  1. O arquivo {metodo.lower()}_results.json existe mas NÃO contém explicações individuais")
-        print(f"  2. Execute novamente o método para gerar explicações completas:")
+        print(f"  1. Execute novamente o método {metodo} com a versão ATUAL do código:")
         print(f"     python {metodo.lower()}.py")
-        print(f"  3. Selecione o dataset: {dataset}")
-        print(f"\n  NOTA: O JSON atual contém apenas estatísticas agregadas.")
-        print(f"        A validação precisa das explicações individuais (por instância).")
+        print(f"  2. Selecione o dataset: {dataset}")
+        print(f"  3. O novo arquivo json/{metodo.lower()}/{dataset}.json incluirá 'per_instance'")
+        print(f"  4. Depois execute a validação novamente")
+        print(f"\n  NOTA: A versão antiga do código salvava apenas estatísticas agregadas.")
+        print(f"        A validação precisa das explicações individuais (uma por instância).")
         print(f"{'─'*70}\n")
         return None
     

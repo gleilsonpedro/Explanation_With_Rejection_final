@@ -1,12 +1,14 @@
 \begin{table}[!t]
 \centering
-\caption{Tempo médio de execução por instância REJEITADA (ms) e \emph{speedup} do PEAB em relação aos baselines - MNIST.}
+\caption{Tempo médio de execução por instância REJEITADA (ms) e \emph{speedup} do PEAB em relação aos baselines.}
 \label{tab:mnist_runtime_rejected}
 \begin{tabular}{lrrrrrr}
 \hline
 \textbf{Dataset} & \textbf{PEAB} & \textbf{PULP} & \textbf{Anchor} & \textbf{MinExp} & \textbf{Speedup (Anchor)} & \textbf{Speedup (MinExp)} \\
 \hline
-MNIST (3 vs 8) & 16.2 & 50.7 & 55087.0 & 13493.9 & 3402.8$\times$ & 833.5$\times$ \\
+Credit Card & 2.5 & 40.5 & 9.5 & 1585.5 & 3.7$\times$ & 622.3$\times$ \\
+Covertype & 4.0 & 46.6 & 4492.0 & 3607.6 & 1125.8$\times$ & 904.2$\times$ \\
+MNIST (3 vs 8) & 17.5 & 51.2 & 81369.7 & 13493.9 & 4658.8$\times$ & 772.6$\times$ \\
 \hline
 \end{tabular}
 \end{table}
