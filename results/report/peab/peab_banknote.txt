@@ -14,7 +14,6 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -25,15 +24,15 @@
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
   t+ (limiar superior): 0.010000
-  t- (limiar inferior): -0.348222
-  Largura da zona de rejeição: 0.358222
+  t- (limiar inferior): -0.350552
+  Largura da zona de rejeição: 0.360552
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
   Acurácia sem rejeição: 61.41%
-  Acurácia com rejeição: 94.74%
-  Taxa de rejeição: 58.50%
+  Acurácia com rejeição: 94.71%
+  Taxa de rejeição: 58.74%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
@@ -46,15 +45,15 @@
     Máximo: 4 features
 
   NEGATIVAS:
-    Quantidade: 150
+    Quantidade: 149
     Tamanho médio: 2.79 features
-    Desvio padrão: 0.62
+    Desvio padrão: 0.63
     Mínimo: 2 features
     Máximo: 4 features
 
   REJEITADAS:
-    Quantidade: 241
-    Tamanho médio: 2.59 features
+    Quantidade: 242
+    Tamanho médio: 2.60 features
     Desvio padrão: 0.70
     Mínimo: 2 features
     Máximo: 4 features
@@ -62,11 +61,11 @@
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 3.9958s
-  Tempo médio por instância: 0.009699s
-  Tempo médio POSITIVAS: 0.005098s
-  Tempo médio NEGATIVAS: 0.005670s
-  Tempo médio REJEITADAS: 0.012534s
+  Tempo total: 0.5878s
+  Tempo médio por instância: 0.001427s
+  Tempo médio POSITIVAS: 0.001269s
+  Tempo médio NEGATIVAS: 0.001385s
+  Tempo médio REJEITADAS: 0.001447s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
@@ -74,5 +73,5 @@
   variance: 412 ocorrências (100.0%)
   skewness: 406 ocorrências (98.5%)
   curtosis: 188 ocorrências (45.6%)
-  entropy: 107 ocorrências (26.0%)
+  entropy: 109 ocorrências (26.5%)
 

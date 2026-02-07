@@ -8,103 +8,46 @@
   },
   "thresholds": {
     "t_plus": 0.01,
-    "t_minus": -0.3482220816338796,
-    "rejection_zone_width": 0.3582220816338796,
-    "note": "Thresholds are in RAW score space (no normalization applied). Guarantees t- < 0 < t+ to preserve probabilistic interpretation."
+    "t_minus": -0.3505522298713733,
+    "rejection_zone_width": 0.3605522298713733
   },
   "performance": {
     "accuracy_without_rejection": 61.40776699029126,
-    "accuracy_with_rejection": 94.73684210526315,
-    "rejection_rate": 58.495145631067956,
+    "accuracy_with_rejection": 94.70588235294117,
+    "rejection_rate": 58.7378640776699,
     "num_test_instances": 412,
-    "num_rejected": 241,
-    "num_accepted": 171
+    "num_rejected": 242,
+    "num_accepted": 170
   },
   "explanation_stats": {
     "positive": {
       "count": 21,
-      "mean_length": 3.380952380952381,
-      "std_length": 0.5753831415997415,
-      "min_length": 2,
-      "max_length": 4
+      "mean_length": 3.380952380952381
     },
     "negative": {
-      "count": 150,
-      "mean_length": 2.7933333333333334,
-      "std_length": 0.6249977777738271,
-      "min_length": 2,
-      "max_length": 4
+      "count": 149,
+      "mean_length": 2.791946308724832
     },
     "rejected": {
-      "count": 241,
-      "mean_length": 2.5850622406639006,
-      "std_length": 0.6952900945851123,
-      "min_length": 2,
-      "max_length": 4
+      "count": 242,
+      "mean_length": 2.5950413223140494
     }
   },
   "computation_time": {
-    "total": 3.9958045999519527,
-    "mean_per_instance": 0.009698554854252313,
-    "positive": 0.005097704762149425,
-    "negative": 0.005670387332017223,
-    "rejected": 0.01253418713668941
+    "total": 0.5877929000416771,
+    "mean_per_instance": 0.0014266817962176627,
+    "positive": 0.0012694047542200202,
+    "negative": 0.0013851221422696073,
+    "rejected": 0.0014469776897160105
   },
-  "top_features": [
-    {
-      "feature": "variance",
-      "count": 412
-    },
-    {
-      "feature": "skewness",
-      "count": 406
-    },
-    {
-      "feature": "curtosis",
-      "count": 188
-    },
-    {
-      "feature": "entropy",
-      "count": 107
-    }
-  ],
   "model": {
-    "type": "LogisticRegression",
-    "num_features": 4,
-    "class_names": [
-      "Autêntica",
-      "Falsificada"
-    ],
     "params": {
-      "norm_params": {
-        "max_abs": 1.0
-      },
       "penalty": "l2",
       "C": 0.01,
       "solver": "liblinear",
       "max_iter": 1000
     },
-    "coefs": [
-      -0.5656688370935852,
-      -0.31683395872938175,
-      0.1125288068112902,
-      0.06876666326225822
-    ],
-    "intercept": 0.13399869808979759,
-    "scaler_params": {
-      "min": [
-        0.5078352046960749,
-        0.5153696767409924,
-        0.22537408234780695,
-        0.8001310431974541
-      ],
-      "scale": [
-        0.07211417115577383,
-        0.037418567841734425,
-        0.043209049703369876,
-        0.09360228389572707
-      ]
-    }
+    "num_features": 4
   },
   "per_instance": [
     {
@@ -117,48 +60,52 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013906999956816435
     },
     {
       "id": "1367",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2793860611312686,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012886000331491232
     },
     {
       "id": "711",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22523271017663415,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012492999667301774
     },
     {
       "id": "1072",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16805535126476268,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012304999399930239
     },
     {
       "id": "130",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3020677554040549,
       "explanation": [
@@ -166,7 +113,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013228999450802803
     },
     {
       "id": "91",
@@ -179,24 +127,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012126999208703637
     },
     {
       "id": "1287",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10876288974745776,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001282599987462163
     },
     {
       "id": "1008",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.003466324665338555,
       "explanation": [
@@ -204,12 +154,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001325199962593615
     },
     {
       "id": "682",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.32607988661302384,
       "explanation": [
@@ -218,31 +169,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0017299000173807144
     },
     {
       "id": "977",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.08488363819899514,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0023487000726163387
     },
     {
       "id": "1073",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23103638228841594,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.002132000052370131
     },
     {
       "id": "366",
@@ -254,7 +208,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0020358000183477998
     },
     {
       "id": "459",
@@ -267,12 +222,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0020481999963521957
     },
     {
       "id": "670",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3123355180909257,
       "explanation": [
@@ -281,7 +237,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002787900040857494
     },
     {
       "id": "660",
@@ -294,7 +251,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0020581999560818076
     },
     {
       "id": "1162",
@@ -307,7 +265,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013382999459281564
     },
     {
       "id": "474",
@@ -319,12 +278,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016417000442743301
     },
     {
       "id": "122",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3093762666568341,
       "explanation": [
@@ -332,7 +292,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0019202999537810683
     },
     {
       "id": "677",
@@ -345,7 +306,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014909000601619482
     },
     {
       "id": "460",
@@ -358,19 +320,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001322000054642558
     },
     {
       "id": "315",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.18091684687342585,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013716999674215913
     },
     {
       "id": "276",
@@ -383,7 +347,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014509999891743064
     },
     {
       "id": "1248",
@@ -396,24 +361,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001389100099913776
     },
     {
       "id": "953",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23955612083039052,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012644000817090273
     },
     {
       "id": "776",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11292623262939333,
       "explanation": [
@@ -421,7 +388,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0018739000661298633
     },
     {
       "id": "664",
@@ -433,12 +401,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0035381000488996506
     },
     {
       "id": "803",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3434865367324274,
       "explanation": [
@@ -446,7 +415,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0018381999107077718
     },
     {
       "id": "475",
@@ -459,12 +429,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012867000186815858
     },
     {
       "id": "13",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30691714414638105,
       "explanation": [
@@ -472,7 +443,8 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014089999021962285
     },
     {
       "id": "1004",
@@ -485,7 +457,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013772000093013048
     },
     {
       "id": "882",
@@ -498,7 +471,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001274299924261868
     },
     {
       "id": "62",
@@ -510,31 +484,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013273999793455005
     },
     {
       "id": "987",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2856565271226453,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013658000389114022
     },
     {
       "id": "981",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14229421082172145,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0014900000533089042
     },
     {
       "id": "187",
@@ -547,12 +524,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013131999876350164
     },
     {
       "id": "1208",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.04761908421994543,
       "explanation": [
@@ -560,19 +538,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001723600085824728
     },
     {
       "id": "808",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10899524955906378,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013649000320583582
     },
     {
       "id": "633",
@@ -585,7 +565,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012009999481961131
     },
     {
       "id": "1339",
@@ -598,60 +579,65 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012797999661415815
     },
     {
       "id": "1258",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22363732308576673,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001282599987462163
     },
     {
       "id": "975",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10612759774208719,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012356999795883894
     },
     {
       "id": "1359",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2867017008636173,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012507999781519175
     },
     {
       "id": "870",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17298301585817688,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012250000145286322
     },
     {
       "id": "1213",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.0217997831994671,
       "explanation": [
@@ -659,31 +645,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012902000453323126
     },
     {
       "id": "1025",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09536505622266608,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012685999972745776
     },
     {
       "id": "795",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2684801986231126,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012378999963402748
     },
     {
       "id": "253",
@@ -695,7 +684,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001174100092612207
     },
     {
       "id": "52",
@@ -708,7 +698,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012020000722259283
     },
     {
       "id": "654",
@@ -721,12 +712,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001191499992273748
     },
     {
       "id": "1107",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.32551539177902566,
       "explanation": [
@@ -734,13 +726,14 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001330800005234778
     },
     {
       "id": "87",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
+      "rejected": true,
       "decision_score": -0.34970144484461135,
       "explanation": [
         "curtosis",
@@ -748,7 +741,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013256999664008617
     },
     {
       "id": "219",
@@ -762,24 +756,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013491000281646848
     },
     {
       "id": "984",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1892417270667482,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012684999965131283
     },
     {
       "id": "764",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.03872702748660037,
       "explanation": [
@@ -787,12 +783,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013237000675871968
     },
     {
       "id": "989",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.0895242200874341,
       "explanation": [
@@ -800,24 +797,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001340900082141161
     },
     {
       "id": "906",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.19351441370535433,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001270800014026463
     },
     {
       "id": "293",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2938337976115843,
       "explanation": [
@@ -825,7 +824,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013070000568404794
     },
     {
       "id": "614",
@@ -838,12 +838,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012003000592812896
     },
     {
       "id": "955",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.0038057407254434295,
       "explanation": [
@@ -852,7 +853,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013166998978704214
     },
     {
       "id": "504",
@@ -865,12 +867,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012026999611407518
     },
     {
       "id": "1092",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.02303543624390275,
       "explanation": [
@@ -878,19 +881,22 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012886000331491232
     },
     {
       "id": "990",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09323606598869119,
       "explanation": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 3,
+      "computation_time": 0.001309499959461391
     },
     {
       "id": "560",
@@ -902,19 +908,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011726999655365944
     },
     {
       "id": "1201",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.19754050070274798,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013125999830663204
     },
     {
       "id": "64",
@@ -926,12 +934,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013779998989775777
     },
     {
       "id": "959",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.08895295382137042,
       "explanation": [
@@ -939,7 +948,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001313099986873567
     },
     {
       "id": "347",
@@ -952,7 +962,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012399000115692616
     },
     {
       "id": "556",
@@ -965,7 +976,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001187399961054325
     },
     {
       "id": "765",
@@ -978,12 +990,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012058999855071306
     },
     {
       "id": "288",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2635064754896889,
       "explanation": [
@@ -991,36 +1004,39 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012897999258711934
     },
     {
       "id": "561",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1727798125209195,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012395000085234642
     },
     {
       "id": "1018",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22427771107480476,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001256300020031631
     },
     {
       "id": "1210",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3265064013000402,
       "explanation": [
@@ -1028,7 +1044,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001290300046093762
     },
     {
       "id": "191",
@@ -1040,7 +1057,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.00120599998626858
     },
     {
       "id": "472",
@@ -1052,7 +1070,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001154000055976212
     },
     {
       "id": "715",
@@ -1064,19 +1083,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012023999588564038
     },
     {
       "id": "830",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.24806673737776191,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0015487999189645052
     },
     {
       "id": "565",
@@ -1089,24 +1110,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.002567899995483458
     },
     {
       "id": "994",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23584736231220543,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0015677000628784299
     },
     {
       "id": "1198",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.05789893653930753,
       "explanation": [
@@ -1114,19 +1137,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013257000828161836
     },
     {
       "id": "1171",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14737938372589499,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001251600100658834
     },
     {
       "id": "205",
@@ -1138,7 +1163,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011740999761968851
     },
     {
       "id": "267",
@@ -1150,31 +1176,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001159899984486401
     },
     {
       "id": "612",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17306094808694705,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012006000615656376
     },
     {
       "id": "807",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10332585532149507,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001213700044900179
     },
     {
       "id": "379",
@@ -1187,7 +1216,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012622999493032694
     },
     {
       "id": "489",
@@ -1200,19 +1230,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012174999574199319
     },
     {
       "id": "769",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2654414859279155,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013604999985545874
     },
     {
       "id": "376",
@@ -1224,7 +1256,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0014908999437466264
     },
     {
       "id": "1034",
@@ -1238,12 +1271,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002004200010560453
     },
     {
       "id": "217",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2776773685499621,
       "explanation": [
@@ -1251,12 +1285,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0025330999633297324
     },
     {
       "id": "596",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.32183940304163366,
       "explanation": [
@@ -1265,7 +1300,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.004327600006945431
     },
     {
       "id": "441",
@@ -1278,19 +1314,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014352999860420823
     },
     {
       "id": "1204",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1867347022054171,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016319999704137444
     },
     {
       "id": "295",
@@ -1303,7 +1341,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012836999958381057
     },
     {
       "id": "128",
@@ -1316,19 +1355,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012882000301033258
     },
     {
       "id": "836",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2749451749414044,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013359000440686941
     },
     {
       "id": "723",
@@ -1342,12 +1383,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012879999121651053
     },
     {
       "id": "844",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3286007131718598,
       "explanation": [
@@ -1355,7 +1397,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014878000365570188
     },
     {
       "id": "391",
@@ -1368,12 +1411,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0022124999668449163
     },
     {
       "id": "577",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3252657336103519,
       "explanation": [
@@ -1382,7 +1426,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002266500028781593
     },
     {
       "id": "202",
@@ -1396,12 +1441,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0020363000221550465
     },
     {
       "id": "186",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2986850212246296,
       "explanation": [
@@ -1409,12 +1455,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.002095600008033216
     },
     {
       "id": "1295",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.0777182118710078,
       "explanation": [
@@ -1422,12 +1469,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001352999941445887
     },
     {
       "id": "463",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30270390954879967,
       "explanation": [
@@ -1435,7 +1483,8 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013352000387385488
     },
     {
       "id": "744",
@@ -1447,31 +1496,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011558000696823
     },
     {
       "id": "767",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.12416791254167026,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012546000070869923
     },
     {
       "id": "898",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14607297279309034,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012759000528603792
     },
     {
       "id": "36",
@@ -1484,7 +1536,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011638998985290527
     },
     {
       "id": "273",
@@ -1497,31 +1550,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013461000053212047
     },
     {
       "id": "1079",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2398229210805684,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012117000296711922
     },
     {
       "id": "1227",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1019491858623599,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012475000694394112
     },
     {
       "id": "766",
@@ -1535,12 +1591,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0011680000461637974
     },
     {
       "id": "282",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2898644105954375,
       "explanation": [
@@ -1548,7 +1605,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012818999821320176
     },
     {
       "id": "508",
@@ -1561,24 +1619,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011693999404087663
     },
     {
       "id": "502",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1985965086430349,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012610000558197498
     },
     {
       "id": "678",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3423361278285421,
       "explanation": [
@@ -1587,7 +1647,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013743999879807234
     },
     {
       "id": "625",
@@ -1601,7 +1662,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012172999558970332
     },
     {
       "id": "1242",
@@ -1615,7 +1677,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012706000125035644
     },
     {
       "id": "738",
@@ -1628,7 +1691,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012146999360993505
     },
     {
       "id": "1346",
@@ -1641,12 +1705,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011717999586835504
     },
     {
       "id": "672",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2847319116125277,
       "explanation": [
@@ -1654,19 +1719,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012898000422865152
     },
     {
       "id": "1323",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22577740852274308,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012035999679937959
     },
     {
       "id": "385",
@@ -1679,12 +1746,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012141999322921038
     },
     {
       "id": "1164",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13136748211284077,
       "explanation": [
@@ -1692,12 +1760,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001285900012589991
     },
     {
       "id": "1185",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.05609348543429349,
       "explanation": [
@@ -1705,12 +1774,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012916999403387308
     },
     {
       "id": "509",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.34735701844478195,
       "explanation": [
@@ -1719,12 +1789,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001412699930369854
     },
     {
       "id": "496",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29720217015291417,
       "explanation": [
@@ -1732,7 +1803,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001290000043809414
     },
     {
       "id": "35",
@@ -1745,7 +1817,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011862999526783824
     },
     {
       "id": "1153",
@@ -1759,7 +1832,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001183799933642149
     },
     {
       "id": "343",
@@ -1772,24 +1846,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001181200030259788
     },
     {
       "id": "895",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11785075336539502,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011929000029340386
     },
     {
       "id": "410",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2912464733687183,
       "explanation": [
@@ -1797,7 +1873,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012942999601364136
     },
     {
       "id": "755",
@@ -1809,19 +1886,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.00115280004683882
     },
     {
       "id": "34",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13622955179895546,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012344999704509974
     },
     {
       "id": "372",
@@ -1834,7 +1913,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011910999892279506
     },
     {
       "id": "240",
@@ -1846,19 +1926,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001306000049225986
     },
     {
       "id": "822",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.08789976654834572,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013129999861121178
     },
     {
       "id": "605",
@@ -1871,24 +1953,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012083000037819147
     },
     {
       "id": "1231",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2845899693810081,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.00148610002361238
     },
     {
       "id": "471",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33315436774522234,
       "explanation": [
@@ -1897,7 +1981,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013648000312969089
     },
     {
       "id": "1",
@@ -1909,19 +1994,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011745999800041318
     },
     {
       "id": "1096",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16240126939230376,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012444000458344817
     },
     {
       "id": "161",
@@ -1933,19 +2020,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011468000011518598
     },
     {
       "id": "1081",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14838961796927974,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001259300042875111
     },
     {
       "id": "384",
@@ -1958,19 +2047,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012440999271348119
     },
     {
       "id": "944",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13080173597422756,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012481999583542347
     },
     {
       "id": "665",
@@ -1983,7 +2074,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012481000740081072
     },
     {
       "id": "308",
@@ -1995,12 +2087,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011628000065684319
     },
     {
       "id": "491",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29136378573744043,
       "explanation": [
@@ -2008,19 +2101,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.002376900054514408
     },
     {
       "id": "945",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22589582767749122,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0015004000160843134
     },
     {
       "id": "1303",
@@ -2034,31 +2129,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012194999726489186
     },
     {
       "id": "1239",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16953952799635402,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012257000198587775
     },
     {
       "id": "4",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1809184785829993,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011977000394836068
     },
     {
       "id": "973",
@@ -2072,31 +2170,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012787999585270882
     },
     {
       "id": "727",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2900246432339383,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012191999703645706
     },
     {
       "id": "476",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25925791653198516,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011989000486209989
     },
     {
       "id": "348",
@@ -2109,7 +2210,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011780000058934093
     },
     {
       "id": "146",
@@ -2122,7 +2224,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011700999457389116
     },
     {
       "id": "71",
@@ -2135,12 +2238,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012880000285804272
     },
     {
       "id": "620",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30645632835931114,
       "explanation": [
@@ -2148,24 +2252,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014246999053284526
     },
     {
       "id": "1299",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23897142018095957,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001311599975451827
     },
     {
       "id": "562",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33145469345922923,
       "explanation": [
@@ -2173,24 +2279,26 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014606000622734427
     },
     {
       "id": "604",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2900246432339383,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001621800009161234
     },
     {
       "id": "159",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3292845057192757,
       "explanation": [
@@ -2199,7 +2307,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0020631999941542745
     },
     {
       "id": "252",
@@ -2212,12 +2321,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0019985000835731626
     },
     {
       "id": "1130",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.012016067422502469,
       "explanation": [
@@ -2225,7 +2335,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0026017000200226903
     },
     {
       "id": "696",
@@ -2238,19 +2349,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014998000115156174
     },
     {
       "id": "123",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1569808753932524,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016725999303162098
     },
     {
       "id": "1315",
@@ -2264,7 +2377,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014539000112563372
     },
     {
       "id": "106",
@@ -2276,12 +2390,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012838999973610044
     },
     {
       "id": "1155",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2968169257644863,
       "explanation": [
@@ -2289,24 +2404,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001385000068694353
     },
     {
       "id": "1076",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.08221421482143124,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013259000843390822
     },
     {
       "id": "789",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30540414009004563,
       "explanation": [
@@ -2314,7 +2431,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0020806000102311373
     },
     {
       "id": "911",
@@ -2328,12 +2446,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0019827999640256166
     },
     {
       "id": "524",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2951133727641314,
       "explanation": [
@@ -2341,7 +2460,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014047999866306782
     },
     {
       "id": "455",
@@ -2353,12 +2473,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012075999984517694
     },
     {
       "id": "1147",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.053275353702283645,
       "explanation": [
@@ -2366,12 +2487,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0016326999757438898
     },
     {
       "id": "1281",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.02269033282064789,
       "explanation": [
@@ -2379,12 +2501,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013608000008389354
     },
     {
       "id": "741",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3305256544673423,
       "explanation": [
@@ -2393,31 +2516,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014304999494925141
     },
     {
       "id": "823",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.21695606071961965,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013018000172451138
     },
     {
       "id": "691",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2567320310717153,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012913999380543828
     },
     {
       "id": "1370",
@@ -2430,19 +2556,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012538000009953976
     },
     {
       "id": "1061",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1966374138788311,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012661999789997935
     },
     {
       "id": "243",
@@ -2455,12 +2583,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012582000344991684
     },
     {
       "id": "1269",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.04356769491511772,
       "explanation": [
@@ -2468,24 +2597,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012750999303534627
     },
     {
       "id": "1311",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2492191926150052,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013703000731766224
     },
     {
       "id": "147",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.27193947211985664,
       "explanation": [
@@ -2493,24 +2624,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013207000447437167
     },
     {
       "id": "241",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.156213807084982,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012694000033661723
     },
     {
       "id": "894",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.009139416237750803,
       "explanation": [
@@ -2518,12 +2651,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001347400015220046
     },
     {
       "id": "246",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.27812479851790034,
       "explanation": [
@@ -2531,24 +2665,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012890000361949205
     },
     {
       "id": "1279",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15502923843159344,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012298000510782003
     },
     {
       "id": "1344",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2944379107241031,
       "explanation": [
@@ -2556,24 +2692,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012706000125035644
     },
     {
       "id": "1036",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10982622131801723,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012302000541239977
     },
     {
       "id": "1124",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.04452850322206092,
       "explanation": [
@@ -2581,19 +2719,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012904999312013388
     },
     {
       "id": "1043",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14179637913931226,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016805999912321568
     },
     {
       "id": "1186",
@@ -2605,19 +2745,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012372999917715788
     },
     {
       "id": "345",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2737796050626532,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012305999407544732
     },
     {
       "id": "387",
@@ -2630,12 +2772,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012135999277234077
     },
     {
       "id": "330",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29738452049145736,
       "explanation": [
@@ -2643,7 +2786,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001296799979172647
     },
     {
       "id": "339",
@@ -2656,7 +2800,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012222999939695
     },
     {
       "id": "105",
@@ -2669,7 +2814,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001260399934835732
     },
     {
       "id": "575",
@@ -2682,19 +2828,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001243900042027235
     },
     {
       "id": "956",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.08630271011238597,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012556000147014856
     },
     {
       "id": "1085",
@@ -2707,19 +2855,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011970000341534615
     },
     {
       "id": "1087",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25826969524008536,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012621000641956925
     },
     {
       "id": "112",
@@ -2731,19 +2881,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011922999983653426
     },
     {
       "id": "1202",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2802579770284904,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0017957000527530909
     },
     {
       "id": "313",
@@ -2756,31 +2908,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001933199935592711
     },
     {
       "id": "828",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11629175435593109,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0019087999826297164
     },
     {
       "id": "1211",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15399823227309573,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0019475999288260937
     },
     {
       "id": "427",
@@ -2794,19 +2949,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.00191730004735291
     },
     {
       "id": "1148",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2139494199479588,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0019385999767109752
     },
     {
       "id": "608",
@@ -2818,12 +2975,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0018283999525010586
     },
     {
       "id": "1098",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.04166696413336313,
       "explanation": [
@@ -2831,7 +2989,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0020134999649599195
     },
     {
       "id": "262",
@@ -2844,31 +3003,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.002066600020043552
     },
     {
       "id": "809",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1748876066932321,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0019649999449029565
     },
     {
       "id": "768",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2236220262081669,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001484300009906292
     },
     {
       "id": "279",
@@ -2881,12 +3043,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001235299976542592
     },
     {
       "id": "216",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3288594499153015,
       "explanation": [
@@ -2895,19 +3058,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013470000121742487
     },
     {
       "id": "716",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2099924723759089,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012323999544605613
     },
     {
       "id": "1304",
@@ -2920,24 +3085,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011487000156193972
     },
     {
       "id": "992",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.18634572021351598,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012131000403314829
     },
     {
       "id": "1274",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.015384415404986723,
       "explanation": [
@@ -2945,12 +3112,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012538000009953976
     },
     {
       "id": "200",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.28981562370683434,
       "explanation": [
@@ -2958,7 +3126,8 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001254200004041195
     },
     {
       "id": "8",
@@ -2971,7 +3140,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012148000532761216
     },
     {
       "id": "540",
@@ -2984,7 +3154,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.00120900000911206
     },
     {
       "id": "40",
@@ -2996,43 +3167,47 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.002270100056193769
     },
     {
       "id": "1348",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14248596516797446,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0024458999978378415
     },
     {
       "id": "1035",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1715489406589104,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.002873099991120398
     },
     {
       "id": "1215",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14029016334219074,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0022978000342845917
     },
     {
       "id": "406",
@@ -3046,7 +3221,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0021019000560045242
     },
     {
       "id": "1285",
@@ -3060,12 +3236,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0020868999417871237
     },
     {
       "id": "134",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33531797721939505,
       "explanation": [
@@ -3074,19 +3251,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0021522000897675753
     },
     {
       "id": "230",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15888935027376416,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0021059999708086252
     },
     {
       "id": "458",
@@ -3096,10 +3275,12 @@
       "decision_score": -0.3556148854803233,
       "explanation": [
         "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 4,
+      "computation_time": 0.0021513999672606587
     },
     {
       "id": "454",
@@ -3112,19 +3293,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0018174999859184027
     },
     {
       "id": "862",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1690376664037675,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013913000002503395
     },
     {
       "id": "505",
@@ -3137,12 +3320,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011943998979404569
     },
     {
       "id": "1324",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3079141723306783,
       "explanation": [
@@ -3150,19 +3334,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013355000410228968
     },
     {
       "id": "418",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16690434317419706,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001273399917408824
     },
     {
       "id": "183",
@@ -3175,19 +3361,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012388000031933188
     },
     {
       "id": "583",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.21362237571523124,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001246499945409596
     },
     {
       "id": "510",
@@ -3200,7 +3388,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011921999976038933
     },
     {
       "id": "787",
@@ -3214,12 +3403,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012023999588564038
     },
     {
       "id": "413",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.348119513606326,
       "explanation": [
@@ -3228,12 +3418,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013675999362021685
     },
     {
       "id": "681",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2556915573046178,
       "explanation": [
@@ -3241,12 +3432,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013272999785840511
     },
     {
       "id": "224",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25751676537764123,
       "explanation": [
@@ -3254,12 +3446,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013525000540539622
     },
     {
       "id": "201",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3378137929542823,
       "explanation": [
@@ -3268,12 +3461,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013630000175908208
     },
     {
       "id": "392",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33044823601395446,
       "explanation": [
@@ -3282,7 +3476,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013191000325605273
     },
     {
       "id": "520",
@@ -3295,7 +3490,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011805000249296427
     },
     {
       "id": "20",
@@ -3307,12 +3503,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011757999891415238
     },
     {
       "id": "687",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30812137460969874,
       "explanation": [
@@ -3320,12 +3517,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0015541999600827694
     },
     {
       "id": "466",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3189978503363889,
       "explanation": [
@@ -3334,19 +3532,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014495999785140157
     },
     {
       "id": "1272",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1584124184272026,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012496999697759748
     },
     {
       "id": "700",
@@ -3358,7 +3558,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001184399938210845
     },
     {
       "id": "546",
@@ -3371,7 +3572,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012150999391451478
     },
     {
       "id": "438",
@@ -3383,12 +3585,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011394000612199306
     },
     {
       "id": "1267",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.008663742510103961,
       "explanation": [
@@ -3397,31 +3600,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012888000346720219
     },
     {
       "id": "1238",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.24046653838664173,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011764999944716692
     },
     {
       "id": "591",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.20121002368858337,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012022999580949545
     },
     {
       "id": "650",
@@ -3435,12 +3641,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012148999376222491
     },
     {
       "id": "661",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3126089572018871,
       "explanation": [
@@ -3448,12 +3655,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013015000149607658
     },
     {
       "id": "156",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25045415665112003,
       "explanation": [
@@ -3461,7 +3669,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001294099958613515
     },
     {
       "id": "435",
@@ -3474,19 +3683,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011904999846592546
     },
     {
       "id": "899",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2156891136945528,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016044999938458204
     },
     {
       "id": "251",
@@ -3499,7 +3710,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012920000590384007
     },
     {
       "id": "1126",
@@ -3513,12 +3725,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013077999465167522
     },
     {
       "id": "941",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.03668694750323634,
       "explanation": [
@@ -3526,7 +3739,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012425999157130718
     },
     {
       "id": "269",
@@ -3538,7 +3752,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001152500044554472
     },
     {
       "id": "726",
@@ -3552,19 +3767,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0011732999701052904
     },
     {
       "id": "1196",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23216953911561694,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012045000912621617
     },
     {
       "id": "1121",
@@ -3577,19 +3794,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012931000674143434
     },
     {
       "id": "873",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17419520828387652,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013080999488011003
     },
     {
       "id": "580",
@@ -3601,24 +3820,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011780000058934093
     },
     {
       "id": "1000",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17319425557001067,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012512000976130366
     },
     {
       "id": "242",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3407231644749396,
       "explanation": [
@@ -3627,7 +3848,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013287999900057912
     },
     {
       "id": "258",
@@ -3640,12 +3862,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012931000674143434
     },
     {
       "id": "847",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.018855722840143613,
       "explanation": [
@@ -3653,12 +3876,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014019000809639692
     },
     {
       "id": "1307",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.04790648733856784,
       "explanation": [
@@ -3666,31 +3890,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013293999945744872
     },
     {
       "id": "21",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.18091684687342585,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013354000402614474
     },
     {
       "id": "99",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2830840221884633,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012359999818727374
     },
     {
       "id": "797",
@@ -3704,12 +3931,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012150000547990203
     },
     {
       "id": "1249",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.07296571259645615,
       "explanation": [
@@ -3717,7 +3945,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013161998940631747
     },
     {
       "id": "160",
@@ -3729,19 +3958,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013312000082805753
     },
     {
       "id": "1038",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11584740271276195,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012573000276461244
     },
     {
       "id": "1207",
@@ -3754,12 +3985,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011745999800041318
     },
     {
       "id": "786",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.03640484566551058,
       "explanation": [
@@ -3767,19 +3999,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014288000529631972
     },
     {
       "id": "800",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.12526108032431688,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012637999607250094
     },
     {
       "id": "695",
@@ -3792,24 +4026,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011902999831363559
     },
     {
       "id": "839",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13925486712812662,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012538000009953976
     },
     {
       "id": "143",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3355168864267847,
       "explanation": [
@@ -3818,7 +4054,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013090000720694661
     },
     {
       "id": "693",
@@ -3831,24 +4068,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001229100045748055
     },
     {
       "id": "1135",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.24050049325840822,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012573999119922519
     },
     {
       "id": "854",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.030170243811173558,
       "explanation": [
@@ -3856,24 +4095,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013243000721558928
     },
     {
       "id": "498",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2567320310717153,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012869000202044845
     },
     {
       "id": "27",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33362298056553996,
       "explanation": [
@@ -3882,7 +4123,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001591100008226931
     },
     {
       "id": "488",
@@ -3895,7 +4137,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0018575999420136213
     },
     {
       "id": "699",
@@ -3907,12 +4150,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012758000520989299
     },
     {
       "id": "397",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29151794231811257,
       "explanation": [
@@ -3920,7 +4164,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014201999874785542
     },
     {
       "id": "573",
@@ -3932,19 +4177,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012118000304326415
     },
     {
       "id": "997",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15237484337041052,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013104999670758843
     },
     {
       "id": "706",
@@ -3957,7 +4204,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012363999849185348
     },
     {
       "id": "129",
@@ -3970,12 +4218,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012529001105576754
     },
     {
       "id": "1111",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09003740331550295,
       "explanation": [
@@ -3983,12 +4232,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013523000525310636
     },
     {
       "id": "986",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3385872652957509,
       "explanation": [
@@ -3996,7 +4246,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013086999533697963
     },
     {
       "id": "270",
@@ -4008,12 +4259,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001187099958769977
     },
     {
       "id": "781",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.05330040206352127,
       "explanation": [
@@ -4021,7 +4273,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014850000152364373
     },
     {
       "id": "652",
@@ -4034,7 +4287,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0016953999875113368
     },
     {
       "id": "1352",
@@ -4048,7 +4302,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014032999752089381
     },
     {
       "id": "98",
@@ -4060,24 +4315,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011891999747604132
     },
     {
       "id": "386",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2794218160459789,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012826999882236123
     },
     {
       "id": "400",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2608497799778101,
       "explanation": [
@@ -4085,12 +4342,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013707999605685472
     },
     {
       "id": "58",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.28685417911157235,
       "explanation": [
@@ -4098,79 +4356,86 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001510599977336824
     },
     {
       "id": "831",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22304610533633884,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013609000016003847
     },
     {
       "id": "927",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16263961597695153,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016632999759167433
     },
     {
       "id": "1305",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14068084862318492,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0019029000541195273
     },
     {
       "id": "1316",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14599930562668273,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0015904000028967857
     },
     {
       "id": "868",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09804726733494962,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0023943999549373984
     },
     {
       "id": "804",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2964020557154801,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.00208170001860708
     },
     {
       "id": "566",
@@ -4183,7 +4448,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013466000091284513
     },
     {
       "id": "80",
@@ -4195,7 +4461,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013064000522717834
     },
     {
       "id": "887",
@@ -4208,12 +4475,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013974999310448766
     },
     {
       "id": "842",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.054741918247906834,
       "explanation": [
@@ -4221,7 +4489,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013349000364542007
     },
     {
       "id": "166",
@@ -4234,36 +4503,39 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012425999157130718
     },
     {
       "id": "1363",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1532258866150235,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001233499962836504
     },
     {
       "id": "934",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.18872352968142525,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013316000113263726
     },
     {
       "id": "663",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33779936543737227,
       "explanation": [
@@ -4272,7 +4544,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.00172149995341897
     },
     {
       "id": "414",
@@ -4285,7 +4558,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014539000112563372
     },
     {
       "id": "317",
@@ -4298,19 +4572,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001338199945166707
     },
     {
       "id": "907",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15203142531648445,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013426999794319272
     },
     {
       "id": "14",
@@ -4322,24 +4598,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012415999080985785
     },
     {
       "id": "1166",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11007063867239056,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013162000104784966
     },
     {
       "id": "867",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09885708546466984,
       "explanation": [
@@ -4347,12 +4625,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001345600001513958
     },
     {
       "id": "901",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.014005794988590087,
       "explanation": [
@@ -4360,19 +4639,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013163000112399459
     },
     {
       "id": "964",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.0648937442092937,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012762000551447272
     },
     {
       "id": "214",
@@ -4385,7 +4666,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012029000790789723
     },
     {
       "id": "1064",
@@ -4398,7 +4680,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012252000160515308
     },
     {
       "id": "646",
@@ -4411,7 +4694,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013634000206366181
     },
     {
       "id": "647",
@@ -4424,7 +4708,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001257999916560948
     },
     {
       "id": "85",
@@ -4437,7 +4722,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001191499992273748
     },
     {
       "id": "102",
@@ -4450,7 +4736,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012342999689280987
     },
     {
       "id": "150",
@@ -4462,12 +4749,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001185899949632585
     },
     {
       "id": "1091",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.026356064671116675,
       "explanation": [
@@ -4475,7 +4763,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013572999741882086
     },
     {
       "id": "555",
@@ -4488,12 +4777,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013538999482989311
     },
     {
       "id": "303",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30523838880909876,
       "explanation": [
@@ -4501,12 +4791,13 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001575700007379055
     },
     {
       "id": "1364",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.006515048990822725,
       "explanation": [
@@ -4515,7 +4806,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014123000437393785
     },
     {
       "id": "373",
@@ -4528,12 +4820,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012925999471917748
     },
     {
       "id": "189",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25947730216452297,
       "explanation": [
@@ -4541,7 +4834,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013605999993160367
     },
     {
       "id": "47",
@@ -4555,43 +4849,47 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001284099998883903
     },
     {
       "id": "233",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.20953955596810198,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012745000422000885
     },
     {
       "id": "812",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17367458427463722,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001335499924607575
     },
     {
       "id": "874",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1609796285305367,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012781999539583921
     },
     {
       "id": "378",
@@ -4603,19 +4901,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012187999673187733
     },
     {
       "id": "817",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.18628470102506778,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012866000179201365
     },
     {
       "id": "121",
@@ -4627,24 +4927,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001207799999974668
     },
     {
       "id": "1270",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.20253103448741244,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001235899981111288
     },
     {
       "id": "553",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29565306628389076,
       "explanation": [
@@ -4652,24 +4954,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001331100007519126
     },
     {
       "id": "913",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.17308522629273598,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012236000038683414
     },
     {
       "id": "415",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.31960139279749994,
       "explanation": [
@@ -4678,7 +4982,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0012879999121651053
     },
     {
       "id": "206",
@@ -4690,31 +4995,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011230000527575612
     },
     {
       "id": "834",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.06694885773502401,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011761999921873212
     },
     {
       "id": "1083",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13790774753204765,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012141000479459763
     },
     {
       "id": "563",
@@ -4726,12 +5034,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011147999903187156
     },
     {
       "id": "855",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.05803169888167958,
       "explanation": [
@@ -4739,7 +5048,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012887000339105725
     },
     {
       "id": "704",
@@ -4751,12 +5061,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001142399967648089
     },
     {
       "id": "1169",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3471615986662683,
       "explanation": [
@@ -4765,12 +5076,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013911999994888902
     },
     {
       "id": "686",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.33459372031107976,
       "explanation": [
@@ -4779,24 +5091,26 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013945000246167183
     },
     {
       "id": "401",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22490397770627307,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012148000532761216
     },
     {
       "id": "1246",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.05094476515971039,
       "explanation": [
@@ -4804,7 +5118,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0015018000267446041
     },
     {
       "id": "461",
@@ -4816,7 +5131,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0016478999750688672
     },
     {
       "id": "574",
@@ -4829,7 +5145,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012682999949902296
     },
     {
       "id": "645",
@@ -4842,12 +5159,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012178000761196017
     },
     {
       "id": "629",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.31459207134287237,
       "explanation": [
@@ -4856,12 +5174,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013089999556541443
     },
     {
       "id": "1264",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09090811423476736,
       "explanation": [
@@ -4869,12 +5188,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013688999461010098
     },
     {
       "id": "600",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.3471778564954995,
       "explanation": [
@@ -4883,55 +5203,60 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013046000385656953
     },
     {
       "id": "792",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.11678826308273199,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012313000624999404
     },
     {
       "id": "856",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.25946425074595625,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012287000427022576
     },
     {
       "id": "1235",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.09424739679144983,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011884999694302678
     },
     {
       "id": "801",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.1755991503927961,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012089000083506107
     },
     {
       "id": "452",
@@ -4944,12 +5269,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012281999224796891
     },
     {
       "id": "1050",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10309406991030792,
       "explanation": [
@@ -4957,7 +5283,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0024603999918326735
     },
     {
       "id": "759",
@@ -4971,12 +5298,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002102699945680797
     },
     {
       "id": "232",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.30671527918517877,
       "explanation": [
@@ -4985,7 +5313,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001975500024855137
     },
     {
       "id": "138",
@@ -4997,19 +5326,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.00233070005197078
     },
     {
       "id": "879",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2439417375342285,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0015032000374048948
     },
     {
       "id": "402",
@@ -5022,19 +5353,21 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012757000513374805
     },
     {
       "id": "1014",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.22108979307739607,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012827001046389341
     },
     {
       "id": "389",
@@ -5046,12 +5379,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001585200079716742
     },
     {
       "id": "1328",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.020774018915490355,
       "explanation": [
@@ -5059,12 +5393,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001422200002707541
     },
     {
       "id": "337",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2760407884364523,
       "explanation": [
@@ -5072,31 +5407,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013840999454259872
     },
     {
       "id": "721",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16971427590203952,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012703000102192163
     },
     {
       "id": "1354",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.16375697626764651,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013000000035390258
     },
     {
       "id": "197",
@@ -5109,7 +5447,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013677999377250671
     },
     {
       "id": "1010",
@@ -5123,36 +5462,39 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013675999362021685
     },
     {
       "id": "170",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2567320310717153,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001442600041627884
     },
     {
       "id": "95",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.13212002438886766,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013547000708058476
     },
     {
       "id": "592",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.2814280832185997,
       "explanation": [
@@ -5160,7 +5502,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013780000153928995
     },
     {
       "id": "1138",
@@ -5174,7 +5517,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013101999647915363
     },
     {
       "id": "297",
@@ -5187,12 +5531,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012115000281482935
     },
     {
       "id": "564",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29662026824001414,
       "explanation": [
@@ -5200,7 +5545,8 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012983999913558364
     },
     {
       "id": "358",
@@ -5212,12 +5558,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001188000082038343
     },
     {
       "id": "750",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.31860831341337614,
       "explanation": [
@@ -5226,12 +5573,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013180000241845846
     },
     {
       "id": "1069",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.02790726141255276,
       "explanation": [
@@ -5239,31 +5587,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013203999260440469
     },
     {
       "id": "1371",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.10393415866439254,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012948999647051096
     },
     {
       "id": "814",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.15059843130070738,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001253900001756847
     },
     {
       "id": "32",
@@ -5275,12 +5626,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0011981000425294042
     },
     {
       "id": "492",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.29589591382758135,
       "explanation": [
@@ -5288,7 +5640,8 @@
         "entropy",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0012546000070869923
     },
     {
       "id": "325",
@@ -5301,12 +5654,13 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0011860999511554837
     },
     {
       "id": "966",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.34424066637406053,
       "explanation": [
@@ -5314,31 +5668,34 @@
         "skewness",
         "variance"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013457000022754073
     },
     {
       "id": "872",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.23971468195801982,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013026000233367085
     },
     {
       "id": "1042",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 0,
       "rejected": true,
       "decision_score": -0.14952785785901646,
       "explanation": [
         "skewness",
         "variance"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0014992000069469213
     }
   ]
 }

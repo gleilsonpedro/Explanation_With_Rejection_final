@@ -1,5 +1,83 @@
-RELAT�RIO PEAB FAST - covertype
-Tempo Total: 5.7378s
-Tempo M�dio: 0.003861s
-Acur�cia com rejei��o: 87.90%
-Taxa Rejei��o: 91.66%
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO PEAB (EXPLAINABLE AI)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: covertype
+  Instâncias de teste: 742
+  Features por instância: 54
+  Test size: 30.00%
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
+--------------------------------------------------------------------------------
+  penalty: l2
+  C: 0.01
+  solver: liblinear
+  max_iter: 1000
+  Intercepto: 0.440633
+
+--------------------------------------------------------------------------------
+3. THRESHOLDS DE REJEIÇÃO
+--------------------------------------------------------------------------------
+  t+ (limiar superior): 0.247611
+  t- (limiar inferior): -0.188786
+  Largura da zona de rejeição: 0.436397
+
+--------------------------------------------------------------------------------
+4. DESEMPENHO DO MODELO
+--------------------------------------------------------------------------------
+  Acurácia sem rejeição: 76.68%
+  Acurácia com rejeição: 79.21%
+  Taxa de rejeição: 11.19%
+
+--------------------------------------------------------------------------------
+5. ESTATÍSTICAS DAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  POSITIVAS:
+    Quantidade: 412
+    Tamanho médio: 16.60 features
+    Desvio padrão: 3.77
+    Mínimo: 10 features
+    Máximo: 26 features
+
+  NEGATIVAS:
+    Quantidade: 247
+    Tamanho médio: 25.83 features
+    Desvio padrão: 3.52
+    Mínimo: 16 features
+    Máximo: 35 features
+
+  REJEITADAS:
+    Quantidade: 83
+    Tamanho médio: 43.57 features
+    Desvio padrão: 0.70
+    Mínimo: 43 features
+    Máximo: 45 features
+
+--------------------------------------------------------------------------------
+6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
+--------------------------------------------------------------------------------
+  Tempo total: 1.7795s
+  Tempo médio por instância: 0.002398s
+  Tempo médio POSITIVAS: 0.002003s
+  Tempo médio NEGATIVAS: 0.002277s
+  Tempo médio REJEITADAS: 0.004585s
+
+--------------------------------------------------------------------------------
+7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  feature_0: 742 ocorrências (100.0%)
+  feature_6: 692 ocorrências (93.3%)
+  feature_7: 691 ocorrências (93.1%)
+  feature_3: 576 ocorrências (77.6%)
+  feature_36: 532 ocorrências (71.7%)
+  feature_35: 531 ocorrências (71.6%)
+  feature_8: 517 ocorrências (69.7%)
+  feature_4: 512 ocorrências (69.0%)
+  feature_51: 505 ocorrências (68.1%)
+  feature_52: 502 ocorrências (67.7%)
+

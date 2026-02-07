@@ -9,8 +9,7 @@
   "thresholds": {
     "t_plus": 0.0742754826848647,
     "t_minus": -0.01,
-    "rejection_zone_width": 0.08427548268486469,
-    "note": "Thresholds are in RAW score space (no normalization applied). Guarantees t- < 0 < t+ to preserve probabilistic interpretation."
+    "rejection_zone_width": 0.08427548268486469
   },
   "performance": {
     "accuracy_without_rejection": 74.45887445887446,
@@ -23,116 +22,32 @@
   "explanation_stats": {
     "positive": {
       "count": 59,
-      "mean_length": 4.0508474576271185,
-      "std_length": 1.5989798528909498,
-      "min_length": 2,
-      "max_length": 8
+      "mean_length": 4.0508474576271185
     },
     "negative": {
       "count": 169,
-      "mean_length": 4.21301775147929,
-      "std_length": 1.0214601480255663,
-      "min_length": 2,
-      "max_length": 8
+      "mean_length": 4.21301775147929
     },
     "rejected": {
       "count": 3,
-      "mean_length": 8.0,
-      "std_length": 0.0,
-      "min_length": 8,
-      "max_length": 8
+      "mean_length": 8.0
     }
   },
   "computation_time": {
-    "total": 1.5324618000304326,
-    "mean_per_instance": 0.006634033766365509,
-    "positive": 0.006231347463977665,
-    "negative": 0.006596707100373797,
-    "rejected": 0.013501600013114512
+    "total": 0.35967330005951226,
+    "mean_per_instance": 0.0015570272729849015,
+    "positive": 0.0015454237246728044,
+    "negative": 0.0015308816542507276,
+    "rejected": 0.0021750667365267873
   },
-  "top_features": [
-    {
-      "feature": "glicose",
-      "count": 231
-    },
-    {
-      "feature": "imc",
-      "count": 231
-    },
-    {
-      "feature": "num_gravidezes",
-      "count": 202
-    },
-    {
-      "feature": "diabetes_pedigree",
-      "count": 151
-    },
-    {
-      "feature": "pressao_sangue",
-      "count": 90
-    },
-    {
-      "feature": "insulina",
-      "count": 33
-    },
-    {
-      "feature": "idade",
-      "count": 29
-    },
-    {
-      "feature": "espessura_pele",
-      "count": 8
-    }
-  ],
   "model": {
-    "type": "LogisticRegression",
-    "num_features": 8,
-    "class_names": [
-      "Não Diabético",
-      "Diabético"
-    ],
     "params": {
-      "norm_params": {
-        "max_abs": 1.0
-      },
       "penalty": "l2",
       "C": 10,
       "solver": "saga",
       "max_iter": 200
     },
-    "coefs": [
-      2.2004444513454193,
-      6.718124384308161,
-      -1.1358834066505783,
-      -0.12306452312434635,
-      -0.3656140014914121,
-      5.447884922193201,
-      1.5046948693588431,
-      0.5274457499762587
-    ],
-    "intercept": -7.717096315457622,
-    "scaler_params": {
-      "min": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        -0.037416481069042315,
-        -0.35
-      ],
-      "scale": [
-        0.058823529411764705,
-        0.005050505050505051,
-        0.00819672131147541,
-        0.016666666666666666,
-        0.0013440860215053765,
-        0.01490312965722802,
-        0.4454342984409799,
-        0.016666666666666666
-      ]
-    }
+    "num_features": 8
   },
   "per_instance": [
     {
@@ -148,7 +63,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0027449000626802444
     },
     {
       "id": "198",
@@ -163,7 +79,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.002092899987474084
     },
     {
       "id": "24",
@@ -177,7 +94,8 @@
         "insulina",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0020608999766409397
     },
     {
       "id": "417",
@@ -193,7 +111,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0021427000174298882
     },
     {
       "id": "387",
@@ -209,7 +128,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0017598000122234225
     },
     {
       "id": "156",
@@ -222,7 +142,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014832000015303493
     },
     {
       "id": "660",
@@ -237,7 +158,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0017316000303253531
     },
     {
       "id": "205",
@@ -251,7 +173,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002592800068669021
     },
     {
       "id": "3",
@@ -264,7 +187,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0027141000609844923
     },
     {
       "id": "531",
@@ -279,7 +203,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.003147499985061586
     },
     {
       "id": "158",
@@ -292,7 +217,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0020178999984636903
     },
     {
       "id": "347",
@@ -306,7 +232,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015432999935001135
     },
     {
       "id": "224",
@@ -319,7 +246,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014709000242874026
     },
     {
       "id": "756",
@@ -335,7 +263,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001585699967108667
     },
     {
       "id": "425",
@@ -348,7 +277,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001421900000423193
     },
     {
       "id": "185",
@@ -360,7 +290,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013970000436529517
     },
     {
       "id": "78",
@@ -374,7 +305,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014145999448373914
     },
     {
       "id": "428",
@@ -389,7 +321,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014894999330863357
     },
     {
       "id": "247",
@@ -401,7 +334,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001383200054988265
     },
     {
       "id": "471",
@@ -416,7 +350,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014312000712379813
     },
     {
       "id": "162",
@@ -431,7 +366,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001483400003053248
     },
     {
       "id": "304",
@@ -446,7 +382,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013697000686079264
     },
     {
       "id": "513",
@@ -459,7 +396,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013226000592112541
     },
     {
       "id": "348",
@@ -472,7 +410,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013410999672487378
     },
     {
       "id": "335",
@@ -484,7 +423,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001288199913688004
     },
     {
       "id": "351",
@@ -499,7 +439,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015177000313997269
     },
     {
       "id": "164",
@@ -514,7 +455,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013679999392479658
     },
     {
       "id": "541",
@@ -529,7 +471,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001415399950928986
     },
     {
       "id": "33",
@@ -542,7 +485,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013957000337541103
     },
     {
       "id": "496",
@@ -556,7 +500,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014860000228509307
     },
     {
       "id": "484",
@@ -569,7 +514,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013663999270647764
     },
     {
       "id": "722",
@@ -584,7 +530,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014009999576956034
     },
     {
       "id": "389",
@@ -598,7 +545,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013833000557497144
     },
     {
       "id": "310",
@@ -611,7 +559,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013599999947473407
     },
     {
       "id": "392",
@@ -625,7 +574,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0016144000692293048
     },
     {
       "id": "259",
@@ -639,7 +589,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013800000306218863
     },
     {
       "id": "452",
@@ -653,7 +604,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013518999330699444
     },
     {
       "id": "88",
@@ -666,7 +618,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001347700017504394
     },
     {
       "id": "139",
@@ -681,7 +634,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013868999667465687
     },
     {
       "id": "330",
@@ -696,7 +650,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013806999195367098
     },
     {
       "id": "421",
@@ -709,7 +664,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013357000425457954
     },
     {
       "id": "245",
@@ -722,7 +678,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013035000301897526
     },
     {
       "id": "697",
@@ -735,7 +692,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013448999961838126
     },
     {
       "id": "441",
@@ -749,7 +707,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001372499973513186
     },
     {
       "id": "89",
@@ -763,7 +722,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001386999967508018
     },
     {
       "id": "480",
@@ -779,7 +739,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0013983999378979206
     },
     {
       "id": "217",
@@ -794,7 +755,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0016026999801397324
     },
     {
       "id": "598",
@@ -808,7 +770,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013928000116720796
     },
     {
       "id": "512",
@@ -822,7 +785,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013830000534653664
     },
     {
       "id": "767",
@@ -836,7 +800,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013871999690309167
     },
     {
       "id": "305",
@@ -851,7 +816,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001398199936375022
     },
     {
       "id": "340",
@@ -865,7 +831,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013199999229982495
     },
     {
       "id": "424",
@@ -878,7 +845,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013640000252053142
     },
     {
       "id": "525",
@@ -891,7 +859,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013515999307855964
     },
     {
       "id": "712",
@@ -905,7 +874,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013636000221595168
     },
     {
       "id": "419",
@@ -919,7 +889,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001357399974949658
     },
     {
       "id": "593",
@@ -932,7 +903,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013367999345064163
     },
     {
       "id": "579",
@@ -944,7 +916,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0014676999999210238
     },
     {
       "id": "630",
@@ -959,7 +932,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014152999501675367
     },
     {
       "id": "678",
@@ -974,7 +948,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014386000111699104
     },
     {
       "id": "367",
@@ -987,7 +962,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013238000683486462
     },
     {
       "id": "543",
@@ -1001,7 +977,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013385999482125044
     },
     {
       "id": "560",
@@ -1016,7 +993,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013955999165773392
     },
     {
       "id": "293",
@@ -1032,7 +1010,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014266000362113118
     },
     {
       "id": "62",
@@ -1045,7 +1024,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013283999869599938
     },
     {
       "id": "373",
@@ -1059,7 +1039,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013381000608205795
     },
     {
       "id": "140",
@@ -1073,7 +1054,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013663999270647764
     },
     {
       "id": "59",
@@ -1087,7 +1069,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001375799998641014
     },
     {
       "id": "275",
@@ -1102,7 +1085,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0017016000347211957
     },
     {
       "id": "727",
@@ -1117,7 +1101,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0026839999482035637
     },
     {
       "id": "761",
@@ -1130,12 +1115,13 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0021901000291109085
     },
     {
       "id": "298",
       "y_true": 1,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.03129069527970696,
       "explanation": [
@@ -1148,7 +1134,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.0028088000835850835
     },
     {
       "id": "589",
@@ -1161,7 +1148,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0015717999776825309
     },
     {
       "id": "494",
@@ -1173,7 +1161,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.001290300046093762
     },
     {
       "id": "80",
@@ -1187,7 +1176,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013906999956816435
     },
     {
       "id": "502",
@@ -1199,7 +1189,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0014253000263124704
     },
     {
       "id": "296",
@@ -1214,7 +1205,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013967999257147312
     },
     {
       "id": "672",
@@ -1228,7 +1220,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0018916999688372016
     },
     {
       "id": "38",
@@ -1242,7 +1235,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002195199951529503
     },
     {
       "id": "724",
@@ -1256,7 +1250,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.002123399986885488
     },
     {
       "id": "52",
@@ -1269,7 +1264,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0024330999003723264
     },
     {
       "id": "652",
@@ -1284,7 +1280,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0016703000292181969
     },
     {
       "id": "629",
@@ -1298,7 +1295,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001978800049982965
     },
     {
       "id": "650",
@@ -1311,7 +1309,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001769099966622889
     },
     {
       "id": "447",
@@ -1325,7 +1324,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.00152749998960644
     },
     {
       "id": "212",
@@ -1338,7 +1338,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014151999494060874
     },
     {
       "id": "535",
@@ -1355,7 +1356,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 7
+      "explanation_size": 7,
+      "computation_time": 0.001640699920244515
     },
     {
       "id": "215",
@@ -1368,7 +1370,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014278000453487039
     },
     {
       "id": "43",
@@ -1380,7 +1383,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013760000001639128
     },
     {
       "id": "82",
@@ -1394,7 +1398,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001435199985280633
     },
     {
       "id": "359",
@@ -1406,7 +1411,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013574999757111073
     },
     {
       "id": "332",
@@ -1418,7 +1424,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0017488000448793173
     },
     {
       "id": "381",
@@ -1431,7 +1438,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001456800033338368
     },
     {
       "id": "13",
@@ -1444,7 +1452,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013494999147951603
     },
     {
       "id": "749",
@@ -1460,7 +1469,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001367500051856041
     },
     {
       "id": "329",
@@ -1474,7 +1484,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013753999955952168
     },
     {
       "id": "25",
@@ -1490,7 +1501,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0013851000694558024
     },
     {
       "id": "268",
@@ -1503,7 +1515,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013052000431343913
     },
     {
       "id": "635",
@@ -1519,7 +1532,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001350899925455451
     },
     {
       "id": "350",
@@ -1533,7 +1547,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013279999839141965
     },
     {
       "id": "10",
@@ -1548,7 +1563,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001361000002361834
     },
     {
       "id": "707",
@@ -1563,7 +1579,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013781000161543489
     },
     {
       "id": "64",
@@ -1578,7 +1595,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013646000297740102
     },
     {
       "id": "276",
@@ -1592,7 +1610,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013064999366179109
     },
     {
       "id": "580",
@@ -1608,7 +1627,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0013949000276625156
     },
     {
       "id": "83",
@@ -1621,7 +1641,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001295299967750907
     },
     {
       "id": "617",
@@ -1634,7 +1655,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001359199988655746
     },
     {
       "id": "260",
@@ -1647,7 +1669,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0018523999024182558
     },
     {
       "id": "32",
@@ -1660,7 +1683,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013798000290989876
     },
     {
       "id": "412",
@@ -1675,7 +1699,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014254000270739198
     },
     {
       "id": "93",
@@ -1689,7 +1714,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014290999388322234
     },
     {
       "id": "740",
@@ -1704,7 +1730,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014769000699743629
     },
     {
       "id": "402",
@@ -1720,7 +1747,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014034000923857093
     },
     {
       "id": "696",
@@ -1736,7 +1764,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001393200014717877
     },
     {
       "id": "489",
@@ -1749,7 +1778,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013290999922901392
     },
     {
       "id": "42",
@@ -1763,7 +1793,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001384299946948886
     },
     {
       "id": "736",
@@ -1777,7 +1808,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013813000405207276
     },
     {
       "id": "570",
@@ -1790,7 +1822,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013321000151336193
     },
     {
       "id": "311",
@@ -1804,7 +1837,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014992000069469213
     },
     {
       "id": "408",
@@ -1817,7 +1851,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001334899920038879
     },
     {
       "id": "75",
@@ -1829,7 +1864,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013120999792590737
     },
     {
       "id": "618",
@@ -1845,7 +1881,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001380200032144785
     },
     {
       "id": "746",
@@ -1859,7 +1896,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001343900104984641
     },
     {
       "id": "410",
@@ -1874,7 +1912,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001361000002361834
     },
     {
       "id": "243",
@@ -1890,7 +1929,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0013928000116720796
     },
     {
       "id": "527",
@@ -1904,7 +1944,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001347100012935698
     },
     {
       "id": "440",
@@ -1917,7 +1958,8 @@
         "imc",
         "insulina"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001498500001616776
     },
     {
       "id": "554",
@@ -1931,7 +1973,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014028999721631408
     },
     {
       "id": "606",
@@ -1944,7 +1987,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.00136009999550879
     },
     {
       "id": "21",
@@ -1959,7 +2003,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0016662999987602234
     },
     {
       "id": "742",
@@ -1973,7 +2018,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015737999929115176
     },
     {
       "id": "87",
@@ -1987,7 +2033,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013392999535426497
     },
     {
       "id": "273",
@@ -2000,7 +2047,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013521000510081649
     },
     {
       "id": "745",
@@ -2015,7 +2063,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.00134529999922961
     },
     {
       "id": "66",
@@ -2029,7 +2078,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015074999537318945
     },
     {
       "id": "445",
@@ -2041,7 +2091,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013453999999910593
     },
     {
       "id": "252",
@@ -2054,7 +2105,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013434001011773944
     },
     {
       "id": "81",
@@ -2066,7 +2118,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0012851000064983964
     },
     {
       "id": "190",
@@ -2080,7 +2133,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001359199988655746
     },
     {
       "id": "300",
@@ -2093,7 +2147,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013414999702945352
     },
     {
       "id": "264",
@@ -2108,7 +2163,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0016042999923229218
     },
     {
       "id": "199",
@@ -2124,7 +2180,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0017525999573990703
     },
     {
       "id": "262",
@@ -2138,7 +2195,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0019132999004796147
     },
     {
       "id": "584",
@@ -2154,7 +2212,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0018351000035181642
     },
     {
       "id": "415",
@@ -2168,7 +2227,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.003441500011831522
     },
     {
       "id": "345",
@@ -2185,7 +2245,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 7
+      "explanation_size": 7,
+      "computation_time": 0.001791900023818016
     },
     {
       "id": "679",
@@ -2198,7 +2259,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014605000615119934
     },
     {
       "id": "407",
@@ -2211,7 +2273,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0016339999856427312
     },
     {
       "id": "17",
@@ -2225,7 +2288,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015257000923156738
     },
     {
       "id": "615",
@@ -2239,7 +2303,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014711000258103013
     },
     {
       "id": "658",
@@ -2254,7 +2319,8 @@
         "insulina",
         "num_gravidezes"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015755000058561563
     },
     {
       "id": "397",
@@ -2269,7 +2335,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015212000580504537
     },
     {
       "id": "112",
@@ -2283,7 +2350,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015595000004395843
     },
     {
       "id": "517",
@@ -2301,7 +2369,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.0016728000482544303
     },
     {
       "id": "366",
@@ -2316,7 +2385,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015321000246331096
     },
     {
       "id": "467",
@@ -2330,7 +2400,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014210999943315983
     },
     {
       "id": "309",
@@ -2345,7 +2416,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014079000102356076
     },
     {
       "id": "153",
@@ -2361,7 +2433,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014526000013574958
     },
     {
       "id": "203",
@@ -2374,7 +2447,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013460000045597553
     },
     {
       "id": "481",
@@ -2388,7 +2462,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013409999664872885
     },
     {
       "id": "645",
@@ -2404,7 +2479,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014739999314770103
     },
     {
       "id": "124",
@@ -2418,7 +2494,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013985000550746918
     },
     {
       "id": "279",
@@ -2432,7 +2509,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013987000565975904
     },
     {
       "id": "44",
@@ -2447,7 +2525,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014075000071898103
     },
     {
       "id": "430",
@@ -2460,7 +2539,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.00130390003323555
     },
     {
       "id": "127",
@@ -2474,7 +2554,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013716999674215913
     },
     {
       "id": "674",
@@ -2489,7 +2570,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014069000026211143
     },
     {
       "id": "219",
@@ -2504,7 +2586,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015647999243810773
     },
     {
       "id": "99",
@@ -2521,7 +2604,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 7
+      "explanation_size": 7,
+      "computation_time": 0.0015987999504432082
     },
     {
       "id": "433",
@@ -2535,7 +2619,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014452999457716942
     },
     {
       "id": "511",
@@ -2549,7 +2634,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013936000177636743
     },
     {
       "id": "116",
@@ -2564,7 +2650,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014167999615892768
     },
     {
       "id": "578",
@@ -2580,7 +2667,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014447999419644475
     },
     {
       "id": "501",
@@ -2594,7 +2682,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013395999558269978
     },
     {
       "id": "717",
@@ -2608,7 +2697,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013306000037118793
     },
     {
       "id": "743",
@@ -2624,7 +2714,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014390998985618353
     },
     {
       "id": "187",
@@ -2639,7 +2730,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001511799986474216
     },
     {
       "id": "163",
@@ -2653,7 +2745,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013952000299468637
     },
     {
       "id": "596",
@@ -2667,7 +2760,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0015008999034762383
     },
     {
       "id": "637",
@@ -2681,7 +2775,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014066000003367662
     },
     {
       "id": "115",
@@ -2699,7 +2794,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.001482799998484552
     },
     {
       "id": "486",
@@ -2716,7 +2812,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 7
+      "explanation_size": 7,
+      "computation_time": 0.0014538000104948878
     },
     {
       "id": "763",
@@ -2731,7 +2828,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0013789000222459435
     },
     {
       "id": "399",
@@ -2744,7 +2842,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001333200023509562
     },
     {
       "id": "175",
@@ -2757,7 +2856,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013325000181794167
     },
     {
       "id": "416",
@@ -2770,7 +2870,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013608000008389354
     },
     {
       "id": "644",
@@ -2784,7 +2885,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001438200008124113
     },
     {
       "id": "558",
@@ -2799,7 +2901,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0014186000917106867
     },
     {
       "id": "463",
@@ -2813,7 +2916,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013556000776588917
     },
     {
       "id": "71",
@@ -2829,7 +2933,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0015950000379234552
     },
     {
       "id": "346",
@@ -2844,7 +2949,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015328999143093824
     },
     {
       "id": "97",
@@ -2857,7 +2963,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013819000450894237
     },
     {
       "id": "380",
@@ -2871,7 +2978,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001366899930872023
     },
     {
       "id": "532",
@@ -2885,7 +2993,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001334700034931302
     },
     {
       "id": "418",
@@ -2898,7 +3007,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013385000638663769
     },
     {
       "id": "436",
@@ -2912,7 +3022,8 @@
         "insulina",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013946999097242951
     },
     {
       "id": "258",
@@ -2926,7 +3037,8 @@
         "imc",
         "pressao_sangue"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013867999659851193
     },
     {
       "id": "661",
@@ -2938,7 +3050,8 @@
         "glicose",
         "imc"
       ],
-      "explanation_size": 2
+      "explanation_size": 2,
+      "computation_time": 0.0013123999815434217
     },
     {
       "id": "563",
@@ -2952,7 +3065,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013836000580340624
     },
     {
       "id": "422",
@@ -2966,7 +3080,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013750999933108687
     },
     {
       "id": "307",
@@ -2980,7 +3095,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013638000236824155
     },
     {
       "id": "533",
@@ -2994,7 +3110,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0021118998993188143
     },
     {
       "id": "734",
@@ -3008,7 +3125,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0022445000940933824
     },
     {
       "id": "476",
@@ -3022,7 +3140,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013998000649735332
     },
     {
       "id": "698",
@@ -3037,7 +3156,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.001401199959218502
     },
     {
       "id": "699",
@@ -3053,7 +3173,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0014299999456852674
     },
     {
       "id": "539",
@@ -3069,7 +3190,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0013954000314697623
     },
     {
       "id": "477",
@@ -3083,7 +3205,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014004000695422292
     },
     {
       "id": "684",
@@ -3096,7 +3219,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001410100026987493
     },
     {
       "id": "680",
@@ -3109,7 +3233,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.001375799998641014
     },
     {
       "id": "713",
@@ -3123,7 +3248,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0013654999202117324
     },
     {
       "id": "700",
@@ -3138,7 +3264,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0024779000086709857
     },
     {
       "id": "238",
@@ -3152,7 +3279,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0035975000355392694
     },
     {
       "id": "244",
@@ -3170,7 +3298,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.003383000032044947
     },
     {
       "id": "151",
@@ -3184,7 +3313,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001727399998344481
     },
     {
       "id": "537",
@@ -3197,7 +3327,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0019031999399885535
     },
     {
       "id": "235",
@@ -3210,7 +3341,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0015575999859720469
     },
     {
       "id": "653",
@@ -3224,7 +3356,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.001482799998484552
     },
     {
       "id": "488",
@@ -3238,7 +3371,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014430000446736813
     },
     {
       "id": "628",
@@ -3253,12 +3387,13 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015736999921500683
     },
     {
       "id": "144",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.02864349892939355,
       "explanation": [
@@ -3271,7 +3406,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.0018594000721350312
     },
     {
       "id": "355",
@@ -3285,7 +3421,8 @@
         "insulina",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014261000324040651
     },
     {
       "id": "98",
@@ -3299,7 +3436,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014387000119313598
     },
     {
       "id": "102",
@@ -3313,7 +3451,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014894999330863357
     },
     {
       "id": "6",
@@ -3326,7 +3465,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0013617000076919794
     },
     {
       "id": "469",
@@ -3339,7 +3479,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 3
+      "explanation_size": 3,
+      "computation_time": 0.0014106999151408672
     },
     {
       "id": "94",
@@ -3354,7 +3495,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 5
+      "explanation_size": 5,
+      "computation_time": 0.0015218999469652772
     },
     {
       "id": "437",
@@ -3370,12 +3512,13 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.0016935999738052487
     },
     {
       "id": "86",
       "y_true": 0,
-      "y_pred": -1,
+      "y_pred": 1,
       "rejected": true,
       "decision_score": 0.02660735727411634,
       "explanation": [
@@ -3388,7 +3531,8 @@
         "num_gravidezes",
         "pressao_sangue"
       ],
-      "explanation_size": 8
+      "explanation_size": 8,
+      "computation_time": 0.0018570000538602471
     },
     {
       "id": "221",
@@ -3404,7 +3548,8 @@
         "insulina",
         "pressao_sangue"
       ],
-      "explanation_size": 6
+      "explanation_size": 6,
+      "computation_time": 0.001648699981160462
     },
     {
       "id": "19",
@@ -3418,7 +3563,8 @@
         "imc",
         "num_gravidezes"
       ],
-      "explanation_size": 4
+      "explanation_size": 4,
+      "computation_time": 0.0014004999538883567
     }
   ]
 }

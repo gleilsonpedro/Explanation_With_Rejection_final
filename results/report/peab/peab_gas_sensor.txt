@@ -6,15 +6,14 @@
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
   Dataset: gas_sensor
-  Instâncias de teste: 1262
+  Instâncias de teste: 63
   Features por instância: 128
   Test size: 30.00%
-  Custo de rejeição (WR): 0.2400
+  Custo de rejeição (WR): 0.0450
 
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -24,61 +23,61 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.005294
-  t- (limiar inferior): -0.010000
-  Largura da zona de rejeição: 0.015294
+  t+ (limiar superior): 0.010000
+  t- (limiar inferior): -0.438182
+  Largura da zona de rejeição: 0.448182
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 98.73%
-  Acurácia com rejeição: 98.73%
-  Taxa de rejeição: 0.00%
+  Acurácia sem rejeição: 100.00%
+  Acurácia com rejeição: 100.00%
+  Taxa de rejeição: 9.52%
 
 --------------------------------------------------------------------------------
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 496
-    Tamanho médio: 64.31 features
-    Desvio padrão: 4.49
-    Mínimo: 55 features
-    Máximo: 89 features
+    Quantidade: 25
+    Tamanho médio: 64.72 features
+    Desvio padrão: 4.29
+    Mínimo: 57 features
+    Máximo: 74 features
 
   NEGATIVAS:
-    Quantidade: 766
-    Tamanho médio: 43.15 features
-    Desvio padrão: 14.36
-    Mínimo: 1 features
-    Máximo: 107 features
+    Quantidade: 32
+    Tamanho médio: 55.34 features
+    Desvio padrão: 20.66
+    Mínimo: 26 features
+    Máximo: 109 features
 
   REJEITADAS:
-    Quantidade: 0
-    Tamanho médio: 0.00 features
-    Desvio padrão: 0.00
-    Mínimo: 0 features
-    Máximo: 0 features
+    Quantidade: 6
+    Tamanho médio: 95.50 features
+    Desvio padrão: 2.06
+    Mínimo: 94 features
+    Máximo: 100 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 12.6229s
-  Tempo médio por instância: 0.010002s
-  Tempo médio POSITIVAS: 0.010343s
-  Tempo médio NEGATIVAS: 0.009708s
-  Tempo médio REJEITADAS: 0.000000s
+  Tempo total: 0.2970s
+  Tempo médio por instância: 0.004714s
+  Tempo médio POSITIVAS: 0.004346s
+  Tempo médio NEGATIVAS: 0.003947s
+  Tempo médio REJEITADAS: 0.009763s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  feature_67: 1257 ocorrências (99.6%)
-  feature_68: 1256 ocorrências (99.5%)
-  feature_64: 1248 ocorrências (98.9%)
-  feature_66: 1248 ocorrências (98.9%)
-  feature_8: 1244 ocorrências (98.6%)
-  feature_72: 1235 ocorrências (97.9%)
-  feature_10: 1233 ocorrências (97.7%)
-  feature_74: 1217 ocorrências (96.4%)
-  feature_69: 1201 ocorrências (95.2%)
-  feature_24: 1178 ocorrências (93.3%)
+  feature_112: 63 ocorrências (100.0%)
+  feature_114: 63 ocorrências (100.0%)
+  feature_120: 63 ocorrências (100.0%)
+  feature_122: 63 ocorrências (100.0%)
+  feature_67: 63 ocorrências (100.0%)
+  feature_68: 63 ocorrências (100.0%)
+  feature_69: 63 ocorrências (100.0%)
+  feature_10: 62 ocorrências (98.4%)
+  feature_3: 62 ocorrências (98.4%)
+  feature_64: 62 ocorrências (98.4%)
 

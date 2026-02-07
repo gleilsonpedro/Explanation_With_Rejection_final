@@ -2,40 +2,40 @@
   - Dataset: mnist_3_vs_8
   - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 503
+  - Total de Instâncias de Teste: 41
   - Número de Features do Modelo: 784
-  - Acurácia do Modelo (teste, sem rejeição): 96.02%
+  - Acurácia do Modelo (teste, sem rejeição): 90.24%
   - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
   - Custo de Rejeição (wr): 0.08
-  - Tempo Total de Geração das Explicações: 29519.7878 segundos
-  - Tempo Médio por Instância (Geral): 58.6875 segundos
+  - Tempo Total de Geração das Explicações: 2649.7752 segundos
+  - Tempo Médio por Instância (Geral): 64.6287 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 11.33% (57 de 503 instâncias)
-  - Acurácia com Opção de Rejeição (nas 446 instâncias aceitas): 98.43%
+  - Taxa de Rejeição no Teste: 12.20% (5 de 41 instâncias)
+  - Acurácia com Opção de Rejeição (nas 36 instâncias aceitas): 100.00%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (198 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 355.44 ± 18.15 (Min: 292, Max: 400)
-  - Classe Negativa (248 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 283.19 ± 21.66 (Min: 223, Max: 341)
-  - Classe REJEITADA (57 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 498.39 ± 38.45 (Min: 480, Max: 784)
+  - Classe Positiva (19 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 409.58 ± 28.05 (Min: 366, Max: 494)
+  - Classe Negativa (17 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 316.53 ± 24.73 (Min: 270, Max: 368)
+  - Classe REJEITADA (5 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 565.20 ± 5.38 (Min: 555, Max: 570)
 
 [Análise de Importância de Features (Frequência nas Explicações)]
   - Top 10 Features Mais Frequentes:
-    - pixel462: 490 vezes
-    - pixel461: 489 vezes
-    - pixel433: 488 vezes
-    - pixel434: 488 vezes
-    - pixel435: 486 vezes
-    - pixel488: 486 vezes
-    - pixel489: 485 vezes
-    - pixel405: 479 vezes
-    - pixel407: 479 vezes
-    - pixel516: 479 vezes
+    - pixel604: 41 vezes
+    - pixel377: 40 vezes
+    - pixel408: 40 vezes
+    - pixel438: 40 vezes
+    - pixel466: 40 vezes
+    - pixel605: 40 vezes
+    - pixel630: 40 vezes
+    - pixel660: 40 vezes
+    - pixel378: 39 vezes
+    - pixel379: 39 vezes
 
 [Custo Computacional por Classe (Tempo Médio)]
-  - Positivas: 57.4223 segundos
-  - Negativas: 59.6199 segundos
-  - Rejeitadas: 59.0251 segundos
+  - Positivas: 68.9902 segundos
+  - Negativas: 60.5100 segundos
+  - Rejeitadas: 62.0580 segundos

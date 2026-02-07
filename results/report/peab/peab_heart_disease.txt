@@ -14,7 +14,6 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 0.01
   solver: liblinear
@@ -24,9 +23,9 @@
 --------------------------------------------------------------------------------
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.184887
+  t+ (limiar superior): 0.186898
   t- (limiar inferior): -0.109281
-  Largura da zona de rejeição: 0.294168
+  Largura da zona de rejeição: 0.296179
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
@@ -40,8 +39,8 @@
 --------------------------------------------------------------------------------
   POSITIVAS:
     Quantidade: 23
-    Tamanho médio: 6.57 features
-    Desvio padrão: 1.50
+    Tamanho médio: 6.78 features
+    Desvio padrão: 1.59
     Mínimo: 5 features
     Máximo: 11 features
 
@@ -54,31 +53,31 @@
 
   REJEITADAS:
     Quantidade: 38
-    Tamanho médio: 6.92 features
-    Desvio padrão: 1.31
+    Tamanho médio: 6.84 features
+    Desvio padrão: 1.27
     Mínimo: 5 features
     Máximo: 9 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 0.7097s
-  Tempo médio por instância: 0.007886s
-  Tempo médio POSITIVAS: 0.004829s
-  Tempo médio NEGATIVAS: 0.004837s
-  Tempo médio REJEITADAS: 0.011964s
+  Tempo total: 0.1632s
+  Tempo médio por instância: 0.001814s
+  Tempo médio POSITIVAS: 0.001611s
+  Tempo médio NEGATIVAS: 0.001553s
+  Tempo médio REJEITADAS: 0.002073s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   thalach: 90 ocorrências (100.0%)
-  exang: 82 ocorrências (91.1%)
-  thal: 80 ocorrências (88.9%)
-  ca: 76 ocorrências (84.4%)
+  exang: 81 ocorrências (90.0%)
+  thal: 81 ocorrências (90.0%)
+  ca: 77 ocorrências (85.6%)
   slope: 68 ocorrências (75.6%)
-  oldpeak: 55 ocorrências (61.1%)
+  oldpeak: 54 ocorrências (60.0%)
   cp: 49 ocorrências (54.4%)
   restecg: 37 ocorrências (41.1%)
   sex: 30 ocorrências (33.3%)
-  chol: 21 ocorrências (23.3%)
+  trestbps: 23 ocorrências (25.6%)
 

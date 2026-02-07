@@ -7,10 +7,10 @@ Solver de Otimização Inteira (Ground Truth)
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
 Dataset: creditcard
-Instâncias processadas: 1709
-Thresholds: t+ = 0.0100, t- = -0.1452
-Zona de rejeição: 0.1552
-Rejection cost: 0.05
+Instâncias processadas: 1708
+Thresholds: t+ = 0.6134, t- = -0.0100
+Zona de rejeição: 0.6234
+Rejection cost: 0.24
 Hiperparâmetros:
 {
   "penalty": "l2",
@@ -23,64 +23,59 @@ Hiperparâmetros:
 --------------------------------------------------------------------------------
 2. MÉTRICAS DO MODELO
 --------------------------------------------------------------------------------
-Acurácia (sem rejeição): 99.94%
-Acurácia (com rejeição): 99.94%
-Taxa de rejeição: 0.00%
-Risco empírico: 0.0006
+Acurácia (sem rejeição): 99.82%
+Acurácia (com rejeição): 100.00%
+Taxa de rejeição: 0.29%
+Risco empírico: 0.0007
 
 --------------------------------------------------------------------------------
 3. ESTATÍSTICAS DAS EXPLICAÇÕES (ÓTIMAS)
 --------------------------------------------------------------------------------
-Tamanho médio: 13.69 features
-Tempo total: 74.36s
-Tempo médio/instância: 0.0435s
+Tamanho médio: 15.78 features
+Tempo total: 82.95s
+Tempo médio/instância: 0.0486s
 
 --------------------------------------------------------------------------------
 4. DETALHAMENTO POR TIPO DE PREDIÇÃO
 --------------------------------------------------------------------------------
 
 POSITIVA:
-  - Instâncias: 4 (0.2%)
-  - Tamanho médio: 12.50 features
-  - Tempo médio: 0.0416s
+  - Instâncias: 6 (0.4%)
+  - Tamanho médio: 13.83 features
+  - Tempo médio: 0.0476s
 
 NEGATIVA:
-  - Instâncias: 1704 (99.7%)
-  - Tamanho médio: 13.69 features
-  - Tempo médio: 0.0435s
-
-REJEITADA:
-  - Instâncias: 1 (0.1%)
-  - Tamanho médio: 21.00 features
-  - Tempo médio: 0.0405s
+  - Instâncias: 1702 (99.6%)
+  - Tamanho médio: 15.79 features
+  - Tempo médio: 0.0486s
 
 --------------------------------------------------------------------------------
 5. TOP 10 MAIORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância   245773 (NEGATIVA  ):  22 features - 0.0406s
- 2. Instância   115606 (NEGATIVA  ):  21 features - 0.0459s
- 3. Instância   217549 (REJEITADA ):  21 features - 0.0405s
- 4. Instância   114803 (NEGATIVA  ):  20 features - 0.0393s
- 5. Instância    52398 (POSITIVA  ):  20 features - 0.0441s
- 6. Instância     1830 (NEGATIVA  ):  19 features - 0.0496s
- 7. Instância   196949 (NEGATIVA  ):  19 features - 0.0461s
- 8. Instância   151114 (NEGATIVA  ):  19 features - 0.0505s
- 9. Instância    56174 (NEGATIVA  ):  18 features - 0.0393s
-10. Instância    39516 (NEGATIVA  ):  18 features - 0.0399s
+ 1. Instância   153844 (NEGATIVA  ):  25 features - 0.0535s
+ 2. Instância    48541 (NEGATIVA  ):  23 features - 0.0498s
+ 3. Instância   153398 (POSITIVA  ):  22 features - 0.0489s
+ 4. Instância   243738 (NEGATIVA  ):  21 features - 0.0511s
+ 5. Instância    70036 (NEGATIVA  ):  21 features - 0.0467s
+ 6. Instância    62436 (NEGATIVA  ):  21 features - 0.0432s
+ 7. Instância     4530 (NEGATIVA  ):  21 features - 0.0439s
+ 8. Instância   157204 (NEGATIVA  ):  21 features - 0.0502s
+ 9. Instância   254492 (NEGATIVA  ):  21 features - 0.0527s
+10. Instância    16383 (NEGATIVA  ):  20 features - 0.0430s
 
 --------------------------------------------------------------------------------
 6. TOP 10 MENORES EXPLICAÇÕES
 --------------------------------------------------------------------------------
- 1. Instância   154684 (POSITIVA  ):   5 features - 0.0435s
- 2. Instância   164072 (NEGATIVA  ):   9 features - 0.0434s
- 3. Instância    30801 (NEGATIVA  ):  10 features - 0.0392s
- 4. Instância    83630 (NEGATIVA  ):  10 features - 0.0441s
- 5. Instância   148504 (NEGATIVA  ):  10 features - 0.0457s
- 6. Instância    19950 (NEGATIVA  ):  10 features - 0.0525s
- 7. Instância    15347 (NEGATIVA  ):  10 features - 0.0468s
- 8. Instância   179279 (NEGATIVA  ):  10 features - 0.0463s
- 9. Instância   163149 (POSITIVA  ):  10 features - 0.0384s
-10. Instância    80335 (NEGATIVA  ):  10 features - 0.0448s
+ 1. Instância    43204 (POSITIVA  ):   9 features - 0.0516s
+ 2. Instância    49259 (NEGATIVA  ):  10 features - 0.0458s
+ 3. Instância    57596 (NEGATIVA  ):  11 features - 0.0518s
+ 4. Instância   198674 (NEGATIVA  ):  11 features - 0.0477s
+ 5. Instância   233160 (NEGATIVA  ):  11 features - 0.0508s
+ 6. Instância   135881 (NEGATIVA  ):  12 features - 0.0475s
+ 7. Instância   263274 (POSITIVA  ):  12 features - 0.0478s
+ 8. Instância   108795 (NEGATIVA  ):  12 features - 0.0433s
+ 9. Instância    15539 (POSITIVA  ):  12 features - 0.0431s
+10. Instância   172777 (NEGATIVA  ):  12 features - 0.0480s
 
 ================================================================================
 FIM DO RELATÓRIO

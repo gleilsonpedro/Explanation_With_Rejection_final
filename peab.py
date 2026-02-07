@@ -36,10 +36,10 @@ MNIST_CONFIG = {
     'test_size': 0.3,
     
     # Rejection cost: custo de rejeitar uma instancia (entre 0 e 1)
-    'rejection_cost': 0.08,
+    'rejection_cost': 0.24,
 
     # Subsample size: fracao do dataset a usar (0.01 = 1%, reduz tamanho para testes rapidos)
-    'subsample_size': 0.12
+    'subsample_size': 0.005
     }
 
 DATASET_CONFIG = {
@@ -51,9 +51,10 @@ DATASET_CONFIG = {
     "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "banknote":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "creditcard":           {'subsample_size': 0.02, 'test_size': 0.3, 'rejection_cost': 0.05},  # ~5.7k para Anchor/MinExp
-    "covertype":            {'subsample_size': 0.01, 'test_size': 0.3, 'rejection_cost': 0.10},  # ~5.8k para Anchor/MinExp
-    "gas_sensor":           {'test_size': 0.5, 'rejection_cost': 0.24},
+    "wine":                 {'subsample_size': 0.20, 'test_size': 0.3, 'rejection_cost': 0.24},  # ~96 inst (rápido p/ Anchor)
+    "creditcard":           {'subsample_size': 0.03, 'test_size': 0.3, 'rejection_cost': 0.040},  # ~850 inst (artigo urgente)
+    "covertype":            {'subsample_size': 0.005, 'test_size': 0.3, 'rejection_cost': 0.24},  # ~870 inst (artigo urgente)
+    "gas_sensor":           {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.045},  # ~50 inst, +rejection_cost (128 features!)
     "newsgroups":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
     "rcv1":                 {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
 }
@@ -330,7 +331,23 @@ def gerar_explicacao_instancia_fast(instancia_df: pd.DataFrame, modelo: Pipeline
 # FUNÇÕES DE SUPORTE (TREINO, CONFIGURAÇÃO, RELATÓRIO)
 #==============================================================================
 
+def aplicar_subsample_teste(X_test: pd.DataFrame, y_test: pd.Series, subsample_size: float) -> Tuple[pd.DataFrame, pd.Series]:
+    """Aplica subsample APENAS no conjunto de teste (para reduzir tempo de explicações)."""
+    if subsample_size and subsample_size < 1.0:
+        idx = np.arange(len(y_test))
+        sample_idx, _ = train_test_split(
+            idx, 
+            test_size=(1 - subsample_size), 
+            random_state=RANDOM_STATE, 
+            stratify=y_test
+        )
+        X_test = X_test.iloc[sample_idx] if isinstance(X_test, pd.DataFrame) else X_test[sample_idx]
+        y_test = y_test.iloc[sample_idx] if isinstance(y_test, pd.Series) else y_test[sample_idx]
+        print(f"[SUBSAMPLE] Teste reduzido para {len(y_test)} instâncias ({subsample_size*100:.1f}% do teste original)")
+    return X_test, y_test
+
 def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, List[str], float, float]:
+    """Carrega dataset e configurações SEM aplicar subsample (subsample é aplicado apenas no teste)."""
     if dataset_name == 'mnist':
         from data import datasets as ds_module
         cfg = DATASET_CONFIG.get(dataset_name, {})
@@ -339,13 +356,9 @@ def configurar_experimento(dataset_name: str) -> Tuple[pd.DataFrame, pd.Series, 
     X, y, nomes_classes = carregar_dataset(dataset_name)
     cfg = DATASET_CONFIG.get(dataset_name, {'test_size': 0.3, 'rejection_cost': 0.24})
 
-    if 'subsample_size' in cfg and cfg['subsample_size']:
-        frac = cfg['subsample_size']
-        if frac < 1.0:
-            idx = np.arange(len(y))
-            sample_idx, _ = train_test_split(idx, test_size=(1 - frac), random_state=RANDOM_STATE, stratify=y)
-            X = X.iloc[sample_idx] if isinstance(X, pd.DataFrame) else X[sample_idx]
-            y = y.iloc[sample_idx] if isinstance(y, pd.Series) else y[sample_idx]
+    # ✅ CORREÇÃO: Subsample foi REMOVIDO daqui
+    # Agora retorna dataset COMPLETO para treino
+    # Subsample será aplicado apenas no conjunto de TESTE quando necessário
 
     return X, y, nomes_classes, cfg['rejection_cost'], cfg['test_size']
 
@@ -413,8 +426,13 @@ def executar_experimento_para_dataset(dataset_name: str):
 
     X_train, X_test, y_train, y_test = train_test_split(X_full, y_full, test_size=test_size, random_state=RANDOM_STATE, stratify=y_full)
     
-    # Feature Selection (Opcional, configurado em DATASET_CONFIG)
+    # ✅ CORREÇÃO: Aplicar subsample APENAS no teste APÓS a divisão
     cfg = DATASET_CONFIG.get(dataset_name, {})
+    subsample_size = cfg.get('subsample_size', None)
+    if subsample_size:
+        X_test, y_test = aplicar_subsample_teste(X_test, y_test, subsample_size)
+    
+    # Feature Selection (Opcional, configurado em DATASET_CONFIG)
     top_k = cfg.get('top_k_features', None)
     if top_k and top_k > 0 and top_k < X_train.shape[1]:
         print(f"[FEAT_SEL] Selecionando Top-{top_k} features...")

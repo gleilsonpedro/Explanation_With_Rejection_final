@@ -2,40 +2,40 @@
   - Dataset: covertype_Spruce/Fir_vs_Lodgepole Pine
   - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 1486
+  - Total de Instâncias de Teste: 742
   - Número de Features do Modelo: 54
-  - Acurácia do Modelo (teste, sem rejeição): 68.37%
+  - Acurácia do Modelo (teste, sem rejeição): 76.68%
   - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
-  - Custo de Rejeição (wr): 0.10
-  - Tempo Total de Geração das Explicações: 5170.6285 segundos
-  - Tempo Médio por Instância (Geral): 3.4796 segundos
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 1849.5086 segundos
+  - Tempo Médio por Instância (Geral): 2.4926 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 91.66% (1362 de 1486 instâncias)
-  - Acurácia com Opção de Rejeição (nas 124 instâncias aceitas): 87.90%
+  - Taxa de Rejeição no Teste: 11.19% (83 de 742 instâncias)
+  - Acurácia com Opção de Rejeição (nas 659 instâncias aceitas): 79.21%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (74 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 23.28 ± 1.70 (Min: 19, Max: 27)
-  - Classe Negativa (50 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 31.48 ± 1.57 (Min: 27, Max: 35)
-  - Classe REJEITADA (1362 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 34.52 ± 3.58 (Min: 25, Max: 43)
+  - Classe Positiva (412 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 18.66 ± 3.32 (Min: 11, Max: 26)
+  - Classe Negativa (247 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 29.27 ± 1.95 (Min: 23, Max: 35)
+  - Classe REJEITADA (83 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 44.51 ± 1.08 (Min: 43, Max: 47)
 
 [Análise de Importância de Features (Frequência nas Explicações)]
   - Top 10 Features Mais Frequentes:
-    - feature_52: 1437 vezes
-    - feature_51: 1436 vezes
-    - feature_53: 1436 vezes
-    - feature_35: 1427 vezes
-    - feature_43: 1412 vezes
-    - feature_47: 1411 vezes
-    - feature_25: 1405 vezes
-    - feature_42: 1405 vezes
-    - feature_26: 1394 vezes
-    - feature_36: 1384 vezes
+    - feature_0: 742 vezes
+    - feature_7: 693 vezes
+    - feature_6: 621 vezes
+    - feature_8: 539 vezes
+    - feature_36: 534 vezes
+    - feature_35: 531 vezes
+    - feature_51: 505 vezes
+    - feature_52: 502 vezes
+    - feature_53: 501 vezes
+    - feature_48: 497 vezes
 
 [Custo Computacional por Classe (Tempo Médio)]
-  - Positivas: 2.0658 segundos
-  - Negativas: 2.0838 segundos
-  - Rejeitadas: 3.6076 segundos
+  - Positivas: 2.3551 segundos
+  - Negativas: 2.3636 segundos
+  - Rejeitadas: 3.5589 segundos

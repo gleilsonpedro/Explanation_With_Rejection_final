@@ -2,40 +2,40 @@
   - Dataset: creditcard_Normal_vs_Fraude
   - Classificador Usado: LogisticRegression (explicado por Anchor)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 1709
+  - Total de Instâncias de Teste: 2563
   - Número de Features do Modelo: 29
-  - Acurácia do Modelo (teste, sem rejeição): 99.94%
-  - Thresholds de Rejeição (Score): t+ = 0.0100, t- = -0.1452
-  - Custo de Rejeição usado para Thresholds: 0.05
-  - Tempo Total de Geração das Explicações: 876.9123 segundos
-  - Tempo Médio por Instância (Geral): 0.5131 segundos
+  - Acurácia do Modelo (teste, sem rejeição): 99.73%
+  - Thresholds de Rejeição (Score): t+ = 4.4755, t- = -0.0100
+  - Custo de Rejeição usado para Thresholds: 0.04
+  - Tempo Total de Geração das Explicações: 887.1919 segundos
+  - Tempo Médio por Instância (Geral): 0.3462 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 0.06% (1 de 1709 instâncias)
-  - Acurácia com Opção de Rejeição (nas 1708 instâncias aceitas): 99.94%
+  - Taxa de Rejeição no Teste: 0.35% (9 de 2563 instâncias)
+  - Acurácia com Opção de Rejeição (nas 2554 instâncias aceitas): 99.96%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (Aceitas): (4 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 25.25 ± 2.05  (Min: 22, Max: 27)
-  - Classe Negativa (Aceitas): (1704 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 0.18 ± 0.38  (Min: 0, Max: 1)
-  - Classe REJEITADA: (1 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 0.00 ± 0.00  (Min: 0, Max: 0)
+  - Classe Positiva (Aceitas): (0 instâncias)
+    - N/A
+  - Classe Negativa (Aceitas): (2554 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 0.19 ± 0.39  (Min: 0, Max: 1)
+  - Classe REJEITADA: (9 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 7.56 ± 0.83  (Min: 7, Max: 9)
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - V1: 198 vezes
-    - V2: 87 vezes
-    - Amount: 42 vezes
-    - V18: 35 vezes
-    - V17: 27 vezes
-    - V21: 25 vezes
-    - V20: 24 vezes
-    - V10: 22 vezes
-    - V19: 21 vezes
-    - V9: 18 vezes
+    - V1: 305 vezes
+    - V2: 99 vezes
+    - Amount: 49 vezes
+    - V18: 42 vezes
+    - V17: 40 vezes
+    - V19: 33 vezes
+    - V21: 33 vezes
+    - V20: 30 vezes
+    - V10: 26 vezes
+    - V16: 26 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 192.3883 segundos
-  - Tempo Médio (Negativas Aceitas): 0.0630 segundos
-  - Tempo Médio (Rejeitadas): 0.0095 segundos
+  - Tempo Médio (Positivas Aceitas): 0.0000 segundos
+  - Tempo Médio (Negativas Aceitas): 0.2358 segundos
+  - Tempo Médio (Rejeitadas): 31.6658 segundos

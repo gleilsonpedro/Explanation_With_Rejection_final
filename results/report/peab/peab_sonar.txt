@@ -14,7 +14,6 @@
 --------------------------------------------------------------------------------
 2. HIPERPARÂMETROS DO MODELO (Regressão Logística)
 --------------------------------------------------------------------------------
-  norm_params: {'max_abs': 1.0}
   penalty: l2
   C: 0.01
   solver: saga
@@ -25,8 +24,8 @@
 3. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
   t+ (limiar superior): 0.259641
-  t- (limiar inferior): -0.009734
-  Largura da zona de rejeição: 0.269375
+  t- (limiar inferior): -0.010000
+  Largura da zona de rejeição: 0.269641
 
 --------------------------------------------------------------------------------
 4. DESEMPENHO DO MODELO
@@ -40,33 +39,33 @@
 --------------------------------------------------------------------------------
   POSITIVAS:
     Quantidade: 10
-    Tamanho médio: 39.80 features
-    Desvio padrão: 9.40
+    Tamanho médio: 40.40 features
+    Desvio padrão: 9.94
     Mínimo: 24 features
-    Máximo: 57 features
+    Máximo: 59 features
 
   NEGATIVAS:
     Quantidade: 8
-    Tamanho médio: 44.50 features
-    Desvio padrão: 3.94
+    Tamanho médio: 44.75 features
+    Desvio padrão: 4.12
     Mínimo: 38 features
-    Máximo: 50 features
+    Máximo: 51 features
 
   REJEITADAS:
     Quantidade: 45
-    Tamanho médio: 39.13 features
-    Desvio padrão: 4.63
+    Tamanho médio: 39.33 features
+    Desvio padrão: 4.65
     Mínimo: 33 features
-    Máximo: 54 features
+    Máximo: 56 features
 
 --------------------------------------------------------------------------------
 6. TEMPOS DE EXECUÇÃO (apenas geração de explicações)
 --------------------------------------------------------------------------------
-  Tempo total: 1.6581s
-  Tempo médio por instância: 0.026319s
-  Tempo médio POSITIVAS: 0.010607s
-  Tempo médio NEGATIVAS: 0.010892s
-  Tempo médio REJEITADAS: 0.032417s
+  Tempo total: 0.2754s
+  Tempo médio por instância: 0.004371s
+  Tempo médio POSITIVAS: 0.003536s
+  Tempo médio NEGATIVAS: 0.003037s
+  Tempo médio REJEITADAS: 0.004708s
 
 --------------------------------------------------------------------------------
 7. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
@@ -75,10 +74,10 @@
   feature_10: 62 ocorrências (98.4%)
   feature_11: 61 ocorrências (96.8%)
   feature_12: 61 ocorrências (96.8%)
+  feature_35: 61 ocorrências (96.8%)
+  feature_36: 61 ocorrências (96.8%)
   feature_42: 61 ocorrências (96.8%)
   feature_44: 61 ocorrências (96.8%)
   feature_47: 61 ocorrências (96.8%)
   feature_48: 61 ocorrências (96.8%)
-  feature_5: 61 ocorrências (96.8%)
-  feature_34: 60 ocorrências (95.2%)
 

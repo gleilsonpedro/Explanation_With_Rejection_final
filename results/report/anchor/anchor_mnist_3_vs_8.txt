@@ -2,40 +2,36 @@
   - Dataset: mnist_3_vs_8
   - Classificador Usado: LogisticRegression (explicado por Anchor)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 210
-  - Número de Features do Modelo: 196
-  - Acurácia do Modelo (teste, sem rejeição): 97.62%
-  - Thresholds de Rejeição (Score): t+ = 0.3711, t- = -0.2227
-  - Custo de Rejeição usado para Thresholds: 0.08
-  - Tempo Total de Geração das Explicações: 13603.1976 segundos
-  - Tempo Médio por Instância (Geral): 64.7771 segundos
+  - Total de Instâncias de Teste: 20
+  - Número de Features do Modelo: 784
+  - Acurácia do Modelo (teste, sem rejeição): 90.00%
+  - Thresholds de Rejeição (Score): t+ = 0.8244, t- = -1.3092
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 1981.7503 segundos
+  - Tempo Médio por Instância (Geral): 1981.7503 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 1.43% (3 de 210 instâncias)
-  - Acurácia com Opção de Rejeição (nas 207 instâncias aceitas): 97.58%
+  - Taxa de Rejeição no Teste: 0.00% (0 de 20 instâncias)
+  - Acurácia com Opção de Rejeição (nas 20 instâncias aceitas): 90.00%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (Aceitas): (99 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 2.59 ± 0.60  (Min: 2, Max: 4)
-  - Classe Negativa (Aceitas): (108 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 2.61 ± 0.49  (Min: 2, Max: 3)
-  - Classe REJEITADA: (3 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 3.00 ± 0.00  (Min: 3, Max: 3)
+  - Classe Positiva (Aceitas): (10 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 0.20 ± 0.60  (Min: 0, Max: 2)
+  - Classe Negativa (Aceitas): (10 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 0.00 ± 0.00  (Min: 0, Max: 0)
+  - Classe REJEITADA: (0 instâncias)
+    - N/A
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - bin_8_6: 126 vezes
-    - bin_9_5: 105 vezes
-    - bin_8_5: 35 vezes
-    - bin_9_6: 33 vezes
-    - bin_8_7: 32 vezes
-    - bin_5_5: 29 vezes
-    - bin_8_9: 19 vezes
-    - bin_9_4: 19 vezes
-    - bin_3_2: 14 vezes
-    - bin_4_1: 10 vezes
+    - pixel5: 1 vezes
+    - pixel51: 1 vezes
+    - pixel514: 1 vezes
+    - pixel2: 1 vezes
+    - pixel27: 1 vezes
+    - pixel277: 1 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 61.2910 segundos
-  - Tempo Médio (Negativas Aceitas): 67.5119 segundos
-  - Tempo Médio (Rejeitadas): 81.3697 segundos
+  - Tempo Médio (Positivas Aceitas): 1981.7503 segundos
+  - Tempo Médio (Negativas Aceitas): 0.0000 segundos
+  - Tempo Médio (Rejeitadas): 0.0000 segundos

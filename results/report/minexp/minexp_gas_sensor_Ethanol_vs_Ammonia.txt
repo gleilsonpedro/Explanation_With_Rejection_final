@@ -1,0 +1,41 @@
+[CONFIGURAÇÕES GERAIS E DO MODELO]
+  - Dataset: gas_sensor_Ethanol_vs_Ammonia
+  - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
+  - Tamanho do Conjunto de Teste: 30%
+  - Total de Instâncias de Teste: 25
+  - Número de Features do Modelo: 128
+  - Acurácia do Modelo (teste, sem rejeição): 100.00%
+  - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
+  - Custo de Rejeição (wr): 0.24
+  - Tempo Total de Geração das Explicações: 142.1905 segundos
+  - Tempo Médio por Instância (Geral): 5.6876 segundos
+
+[Métricas de Desempenho do Modelo]
+  - Taxa de Rejeição no Teste: 0.00% (0 de 25 instâncias)
+  - Acurácia com Opção de Rejeição (nas 25 instâncias aceitas): 100.00%
+
+[Estatísticas do Tamanho das Explicações (Nº de Regras)]
+  - Classe Positiva (10 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 111.20 ± 4.51 (Min: 103, Max: 117)
+  - Classe Negativa (15 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 89.13 ± 14.28 (Min: 52, Max: 107)
+  - Classe REJEITADA (0 instâncias):
+    - N/A
+
+[Análise de Importância de Features (Frequência nas Explicações)]
+  - Top 10 Features Mais Frequentes:
+    - feature_64: 25 vezes
+    - feature_66: 25 vezes
+    - feature_67: 25 vezes
+    - feature_68: 25 vezes
+    - feature_69: 25 vezes
+    - feature_72: 25 vezes
+    - feature_73: 25 vezes
+    - feature_74: 25 vezes
+    - feature_75: 25 vezes
+    - feature_76: 25 vezes
+
+[Custo Computacional por Classe (Tempo Médio)]
+  - Positivas: 5.6720 segundos
+  - Negativas: 5.6980 segundos
+  - Rejeitadas: 0.0000 segundos

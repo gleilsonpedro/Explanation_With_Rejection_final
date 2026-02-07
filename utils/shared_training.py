@@ -68,6 +68,13 @@ def get_shared_pipeline(dataset_name: str) -> Tuple[Any, pd.DataFrame, pd.DataFr
         X, y, test_size=test_size, random_state=RANDOM_STATE, stratify=y
     )
 
+    # 3.5) ✅ CORREÇÃO: Aplicar subsample APENAS no teste APÓS a divisão
+    cfg = DATASET_CONFIG.get(dataset_name, {})
+    subsample_size = cfg.get('subsample_size', None)
+    if subsample_size:
+        from peab import aplicar_subsample_teste
+        X_test, y_test = aplicar_subsample_teste(X_test, y_test, subsample_size)
+
     # 4) Treinar e otimizar thresholds com a mesma função do PEAB
     pipeline, t_plus, t_minus, model_params = treinar_e_avaliar_modelo(
         X_train=X_train, y_train=y_train, rejection_cost=rejection_cost, logreg_params=params_modelo

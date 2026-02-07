@@ -2,40 +2,40 @@
   - Dataset: creditcard_Normal_vs_Fraude
   - Classificador: LogisticRegression (via get_shared_pipeline, mesmo do PEAB)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 1709
+  - Total de Instâncias de Teste: 2563
   - Número de Features do Modelo: 29
-  - Acurácia do Modelo (teste, sem rejeição): 99.94%
+  - Acurácia do Modelo (teste, sem rejeição): 99.73%
   - Thresholds de Rejeição: t+ = 0.0000, t- = 0.0000
-  - Custo de Rejeição (wr): 0.05
-  - Tempo Total de Geração das Explicações: 1959.4376 segundos
-  - Tempo Médio por Instância (Geral): 1.1465 segundos
+  - Custo de Rejeição (wr): 0.04
+  - Tempo Total de Geração das Explicações: 2965.1278 segundos
+  - Tempo Médio por Instância (Geral): 1.1569 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 0.06% (1 de 1709 instâncias)
-  - Acurácia com Opção de Rejeição (nas 1708 instâncias aceitas): 99.94%
+  - Taxa de Rejeição no Teste: 0.35% (9 de 2563 instâncias)
+  - Acurácia com Opção de Rejeição (nas 2554 instâncias aceitas): 99.96%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (4 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 16.00 ± 3.16 (Min: 12, Max: 20)
-  - Classe Negativa (1704 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 19.17 ± 1.89 (Min: 13, Max: 26)
-  - Classe REJEITADA (1 instâncias):
-    - Tamanho (Média ± Desv. Padrão): 21.00 ± 0.00 (Min: 21, Max: 21)
+  - Classe Positiva (0 instâncias):
+    - N/A
+  - Classe Negativa (2554 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 20.33 ± 1.56 (Min: 15, Max: 26)
+  - Classe REJEITADA (9 instâncias):
+    - Tamanho (Média ± Desv. Padrão): 20.44 ± 3.95 (Min: 16, Max: 27)
 
 [Análise de Importância de Features (Frequência nas Explicações)]
   - Top 10 Features Mais Frequentes:
-    - V11: 1709 vezes
-    - V12: 1709 vezes
-    - V14: 1709 vezes
-    - V16: 1709 vezes
-    - V17: 1709 vezes
-    - V25: 1709 vezes
-    - V28: 1708 vezes
-    - V27: 1707 vezes
-    - V18: 1704 vezes
-    - V21: 1704 vezes
+    - V4: 2563 vezes
+    - V11: 2563 vezes
+    - V12: 2563 vezes
+    - V14: 2563 vezes
+    - V16: 2563 vezes
+    - V17: 2563 vezes
+    - V21: 2563 vezes
+    - V25: 2563 vezes
+    - V27: 2563 vezes
+    - V28: 2563 vezes
 
 [Custo Computacional por Classe (Tempo Médio)]
-  - Positivas: 1.1709 segundos
-  - Negativas: 1.1462 segundos
-  - Rejeitadas: 1.5855 segundos
+  - Positivas: 0.0000 segundos
+  - Negativas: 1.1555 segundos
+  - Rejeitadas: 1.5656 segundos

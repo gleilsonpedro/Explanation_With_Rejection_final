@@ -2,40 +2,40 @@
   - Dataset: covertype_Spruce/Fir_vs_Lodgepole Pine
   - Classificador Usado: LogisticRegression (explicado por Anchor)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 1486
+  - Total de Instâncias de Teste: 742
   - Número de Features do Modelo: 54
-  - Acurácia do Modelo (teste, sem rejeição): 68.37%
-  - Thresholds de Rejeição (Score): t+ = 0.7752, t- = -0.4003
-  - Custo de Rejeição usado para Thresholds: 0.10
-  - Tempo Total de Geração das Explicações: 6494.9320 segundos
-  - Tempo Médio por Instância (Geral): 4.3707 segundos
+  - Acurácia do Modelo (teste, sem rejeição): 76.68%
+  - Thresholds de Rejeição (Score): t+ = 0.2476, t- = -0.1888
+  - Custo de Rejeição usado para Thresholds: 0.24
+  - Tempo Total de Geração das Explicações: 33667.3683 segundos
+  - Tempo Médio por Instância (Geral): 45.4350 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 91.66% (1362 de 1486 instâncias)
-  - Acurácia com Opção de Rejeição (nas 124 instâncias aceitas): 87.90%
+  - Taxa de Rejeição no Teste: 11.19% (83 de 742 instâncias)
+  - Acurácia com Opção de Rejeição (nas 659 instâncias aceitas): 79.21%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (Aceitas): (74 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 2.24 ± 0.43  (Min: 2, Max: 3)
-  - Classe Negativa (Aceitas): (50 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 5.24 ± 2.82  (Min: 2, Max: 13)
-  - Classe REJEITADA: (1362 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 3.02 ± 1.42  (Min: 2, Max: 16)
+  - Classe Positiva (Aceitas): (412 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.48 ± 1.09  (Min: 0, Max: 11)
+  - Classe Negativa (Aceitas): (247 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.34 ± 1.72  (Min: 2, Max: 16)
+  - Classe REJEITADA: (83 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 5.82 ± 3.21  (Min: 2, Max: 23)
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - feature_3: 1693 vezes
-    - feature_0: 1176 vezes
-    - feature_36: 1157 vezes
-    - feature_1: 743 vezes
-    - feature_35: 483 vezes
-    - feature_11: 416 vezes
-    - feature_4: 408 vezes
-    - feature_2: 367 vezes
-    - feature_12: 273 vezes
-    - feature_42: 192 vezes
+    - feature_3: 975 vezes
+    - feature_0: 727 vezes
+    - feature_35: 368 vezes
+    - feature_4: 313 vezes
+    - feature_36: 294 vezes
+    - feature_5: 224 vezes
+    - feature_2: 183 vezes
+    - feature_7: 164 vezes
+    - feature_52: 98 vezes
+    - feature_25: 88 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 1.9716 segundos
-  - Tempo Médio (Negativas Aceitas): 4.6179 segundos
-  - Tempo Médio (Rejeitadas): 4.4920 segundos
+  - Tempo Médio (Positivas Aceitas): 38.7809 segundos
+  - Tempo Médio (Negativas Aceitas): 41.0762 segundos
+  - Tempo Médio (Rejeitadas): 91.3564 segundos
