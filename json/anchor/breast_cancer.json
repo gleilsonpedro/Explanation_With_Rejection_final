@@ -7,9 +7,9 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.9655980814533653,
+    "t_plus": 0.9665149683549802,
     "t_minus": -0.01,
-    "rejection_zone_width": 0.9755980814533654
+    "rejection_zone_width": 0.9765149683549802
   },
   "performance": {
     "accuracy_without_rejection": 93.56725146198829,
@@ -22,73 +22,2305 @@
   "explanation_stats": {
     "positive": {
       "count": 84,
-      "min_length": 1,
-      "mean_length": 1.9761904761904763,
+      "min_length": 2,
+      "mean_length": 2.0,
       "max_length": 2,
-      "std_length": 0.15245533898649638
+      "std_length": 0.0
     },
     "negative": {
       "count": 53,
       "min_length": 1,
-      "mean_length": 2.2264150943396226,
-      "max_length": 6,
-      "std_length": 1.4490271223416056
+      "mean_length": 2.1320754716981134,
+      "max_length": 5,
+      "std_length": 1.3463820962197188
     },
     "rejected": {
       "count": 34,
-      "min_length": 1,
-      "mean_length": 1.9705882352941178,
+      "min_length": 2,
+      "mean_length": 2.0,
       "max_length": 2,
-      "std_length": 0.16895772489817729
+      "std_length": 0.0
     }
   },
   "computation_time": {
-    "total": 773.4130044009071,
-    "mean_per_instance": 4.522883066671971,
-    "positive": 2.653055090483533,
-    "negative": 8.112113533965488,
-    "rejected": 3.5474811617682196
+    "total": 1064.220023600008,
+    "mean_per_instance": 6.223508909941567,
+    "positive": 3.4619317202381827,
+    "negative": 11.382811328301992,
+    "rejected": 5.003787020588093
   },
+  "per_instance": [
+    {
+      "id": "0",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2656701373319237,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 5.899040299998887
+    },
+    {
+      "id": "1",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8081880372702526,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.4037513000002946
+    },
+    {
+      "id": "2",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4276694922873086,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.9833758999993734
+    },
+    {
+      "id": "3",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9422687961592455,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "worst concavity > 0.11",
+        "mean concavity > 0.06"
+      ],
+      "explanation_size": 4,
+      "computation_time": 3.182932300000175
+    },
+    {
+      "id": "4",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5262221000919411,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.891693199999281
+    },
+    {
+      "id": "5",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3277249377303573,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "worst compactness > 0.14",
+        "mean concavity > 0.03",
+        "area error > 17.76"
+      ],
+      "explanation_size": 5,
+      "computation_time": 6.268209100000604
+    },
+    {
+      "id": "6",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.261382525592457,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.942266899999595
+    },
+    {
+      "id": "7",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7943073590269734,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 9.492765299999519
+    },
+    {
+      "id": "8",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0243790166990667,
+      "explanation": [
+        "worst radius <= 18.80",
+        "worst concavity <= 0.23"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.302407500001209
+    },
+    {
+      "id": "9",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.123590784052949,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.02443680000033
+    },
+    {
+      "id": "10",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.406288515682796,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.653269899999941
+    },
+    {
+      "id": "11",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6499184555102648,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.342940599999565
+    },
+    {
+      "id": "12",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.4733138528036749,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 8.489568200000576
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.19911565537853937,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.180026199999702
+    },
+    {
+      "id": "14",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0327094405959767,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.810698900000716
+    },
+    {
+      "id": "15",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3637546807197145,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "concavity error <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.963194699999804
+    },
+    {
+      "id": "16",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7601378978771827,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 27.11685959999886
+    },
+    {
+      "id": "17",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.15550000529185581,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 7.223230800000238
+    },
+    {
+      "id": "18",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.329604291337641,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 86.04"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.379578899999615
+    },
+    {
+      "id": "19",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.014484751755013292,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.102870200000325
+    },
+    {
+      "id": "20",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9354861013662963,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.5732014999994135
+    },
+    {
+      "id": "21",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.7550413115917136,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.991936700000224
+    },
+    {
+      "id": "22",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.7977394406048592,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.969102600000042
+    },
+    {
+      "id": "23",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.429787853028829,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 22.459899999999834
+    },
+    {
+      "id": "24",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5835499117702847,
+      "explanation": [
+        "worst radius > 18.80",
+        "worst area > 1092.25",
+        "worst smoothness > 0.15"
+      ],
+      "explanation_size": 3,
+      "computation_time": 7.126209700001709
+    },
+    {
+      "id": "25",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0151417969071623,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 97.62"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.524041500000749
+    },
+    {
+      "id": "26",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.076868309327457,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.8564337999996496
+    },
+    {
+      "id": "27",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4262059389545336,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.136148999999932
+    },
+    {
+      "id": "28",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4977629516710937,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "worst radius > 13.06",
+        "mean compactness > 0.06"
+      ],
+      "explanation_size": 4,
+      "computation_time": 6.226125800001682
+    },
+    {
+      "id": "29",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.4194483899593555,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.79867749999903
+    },
+    {
+      "id": "30",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.30906676869405203,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.3610872000008385
+    },
+    {
+      "id": "31",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7033627672451592,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 6.799767999998949
+    },
+    {
+      "id": "32",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5373475894732018,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.036866299999019
+    },
+    {
+      "id": "33",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8661853406997484,
+      "explanation": [
+        "worst radius <= 18.80",
+        "worst perimeter <= 97.62"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.310924299999897
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4687725790391504,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.793282200000249
+    },
+    {
+      "id": "35",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.196160378068803,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean area <= 777.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.699565700000676
+    },
+    {
+      "id": "36",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.6027367975342872,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.0940711999992345
+    },
+    {
+      "id": "37",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6942732302677586,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.623275300000387
+    },
+    {
+      "id": "38",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7885474188186206,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.0421705999997357
+    },
+    {
+      "id": "39",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.9287981264972651,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.41686479999953
+    },
+    {
+      "id": "40",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.8548839042505678,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.717463699998916
+    },
+    {
+      "id": "41",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.1050468059132883,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean compactness <= 0.09"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.438551900000675
+    },
+    {
+      "id": "42",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.518783904506126,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.0868774999999005
+    },
+    {
+      "id": "43",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.6132374610419182,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.672290800001065
+    },
+    {
+      "id": "44",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2978114580898494,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.53881900000124
+    },
+    {
+      "id": "45",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.752959379552967,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.577717799998936
+    },
+    {
+      "id": "46",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.4225576051394597,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst concavity <= 0.23"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.9389883000003465
+    },
+    {
+      "id": "47",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.355043510610587,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.233510899999601
+    },
+    {
+      "id": "48",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.20927488339723,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.597657199999958
+    },
+    {
+      "id": "49",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3486396000354954,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 27.038641899998765
+    },
+    {
+      "id": "50",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3085367245626056,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 8.322306299998672
+    },
+    {
+      "id": "51",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.467133818504732,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.507138400000258
+    },
+    {
+      "id": "52",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9043915763757404,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "radius error > 0.23",
+        "mean concavity > 0.06",
+        "area error > 17.76"
+      ],
+      "explanation_size": 5,
+      "computation_time": 5.373654400000305
+    },
+    {
+      "id": "53",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7075075595549318,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.827693600000202
+    },
+    {
+      "id": "54",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.3071726188808963,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.7329846000011457
+    },
+    {
+      "id": "55",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5880935346725922,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.7552307000005385
+    },
+    {
+      "id": "56",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.326234623854515,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "mean compactness > 0.09",
+        "mean concavity > 0.06",
+        "radius error > 0.23"
+      ],
+      "explanation_size": 5,
+      "computation_time": 7.0153805000009015
+    },
+    {
+      "id": "57",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7882309489675838,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.8924760000008973
+    },
+    {
+      "id": "58",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.7104620552354501,
+      "explanation": [
+        "worst perimeter <= 126.08",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.187523300000976
+    },
+    {
+      "id": "59",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.13284800420646192,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.878816200000074
+    },
+    {
+      "id": "60",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6513650043453483,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 9.732244400000127
+    },
+    {
+      "id": "61",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3099370531889036,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 14.88089249999939
+    },
+    {
+      "id": "62",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7747062942118976,
+      "explanation": [
+        "worst radius > 18.80",
+        "worst area > 1092.25",
+        "mean compactness > 0.09"
+      ],
+      "explanation_size": 3,
+      "computation_time": 9.209051499999987
+    },
+    {
+      "id": "63",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.0618262911927676,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.059940799999822
+    },
+    {
+      "id": "64",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.7466267637699042,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean area <= 777.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.763307799999893
+    },
+    {
+      "id": "65",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.58720427201925,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.01645710000048
+    },
+    {
+      "id": "66",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.7998241391309722,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.3957613999991736
+    },
+    {
+      "id": "67",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0261394510376372,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "mean concavity > 0.06"
+      ],
+      "explanation_size": 3,
+      "computation_time": 4.135311200001524
+    },
+    {
+      "id": "68",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0546538412104995,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.4043959000009636
+    },
+    {
+      "id": "69",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3910709214927315,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.4404875000000175
+    },
+    {
+      "id": "70",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.87079501942263,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "worst compactness > 0.14",
+        "worst concavity > 0.23"
+      ],
+      "explanation_size": 4,
+      "computation_time": 4.641875400000572
+    },
+    {
+      "id": "71",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19672039008897668,
+      "explanation": [
+        "worst radius > 14.91",
+        "worst concavity > 0.39",
+        "worst area > 682.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 5.58698799999911
+    },
+    {
+      "id": "72",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3425889642457758,
+      "explanation": [
+        "worst radius > 18.80",
+        "worst area > 1092.25",
+        "worst concave points > 0.10"
+      ],
+      "explanation_size": 3,
+      "computation_time": 17.538106900001367
+    },
+    {
+      "id": "73",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0219892607658725,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 13.3435513000004
+    },
+    {
+      "id": "74",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.2550168300528206,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "area error <= 24.27"
+      ],
+      "explanation_size": 2,
+      "computation_time": 7.627154400001018
+    },
+    {
+      "id": "75",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.5054220571207253,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.4849735999996483
+    },
+    {
+      "id": "76",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.03615418619748567,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.650110399999903
+    },
+    {
+      "id": "77",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5956633127961655,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concavity <= 0.13"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.8111571000008553
+    },
+    {
+      "id": "78",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3301351577472422,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 40.92705289999867
+    },
+    {
+      "id": "79",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.024329459965098,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.828587699999844
+    },
+    {
+      "id": "80",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.465469824755961,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.1683783999997104
+    },
+    {
+      "id": "81",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5701254623170895,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst compactness <= 0.22"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.061648099999729
+    },
+    {
+      "id": "82",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.4632512823303174,
+      "explanation": [
+        "worst concave points > 0.10",
+        "worst perimeter > 126.08",
+        "mean area > 777.40"
+      ],
+      "explanation_size": 3,
+      "computation_time": 6.289679899999101
+    },
+    {
+      "id": "83",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8246195991594951,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.745240800000829
+    },
+    {
+      "id": "84",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.891541288422454,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 28.377927899999122
+    },
+    {
+      "id": "85",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.741617161505929,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.246702699998423
+    },
+    {
+      "id": "86",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.430317186276496,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.502233699999124
+    },
+    {
+      "id": "87",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8629202724225618,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.143453700000464
+    },
+    {
+      "id": "88",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5868263924914254,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "concave points error > 0.01",
+        "mean concavity > 0.06",
+        "area error > 17.76"
+      ],
+      "explanation_size": 5,
+      "computation_time": 7.288189200000488
+    },
+    {
+      "id": "89",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7474342999868675,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.239526600000318
+    },
+    {
+      "id": "90",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.165205765174612,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.911497700000837
+    },
+    {
+      "id": "91",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.03805776248244,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.196941600001082
+    },
+    {
+      "id": "92",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7278079838128624,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.21039490000112
+    },
+    {
+      "id": "93",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.827223384022893,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.588085299999875
+    },
+    {
+      "id": "94",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5441890388499484,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.7023778000002494
+    },
+    {
+      "id": "95",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2206084377025328,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.10283359999994
+    },
+    {
+      "id": "96",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16585995606338422,
+      "explanation": [
+        "worst radius > 13.06",
+        "worst compactness > 0.34",
+        "worst smoothness > 0.15",
+        "worst perimeter > 84.02"
+      ],
+      "explanation_size": 4,
+      "computation_time": 5.655069500000536
+    },
+    {
+      "id": "97",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4564073070401042,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.23904020000009
+    },
+    {
+      "id": "98",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.39739307553494,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.3219246999997267
+    },
+    {
+      "id": "99",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.307751683479408,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.3426603999996587
+    },
+    {
+      "id": "100",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.9373622186454216,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean compactness <= 0.09"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.440213199999562
+    },
+    {
+      "id": "101",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.414299908999485,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.1278204999998707
+    },
+    {
+      "id": "102",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4068739430571386,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.836044600000605
+    },
+    {
+      "id": "103",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.22202711601542102,
+      "explanation": [
+        "worst radius > 14.91",
+        "worst perimeter > 126.08",
+        "mean compactness > 0.09"
+      ],
+      "explanation_size": 3,
+      "computation_time": 6.495157400000608
+    },
+    {
+      "id": "104",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.20191693526981824,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.734838599999421
+    },
+    {
+      "id": "105",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.184931581600549,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.8650183999998262
+    },
+    {
+      "id": "106",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.49186539665787077,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst concavity <= 0.23"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.856341799999427
+    },
+    {
+      "id": "107",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0069088706188878,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.565801400000055
+    },
+    {
+      "id": "108",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.024396872926498947,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concavity > 0.13",
+        "worst symmetry > 0.32"
+      ],
+      "explanation_size": 3,
+      "computation_time": 4.020569300000716
+    },
+    {
+      "id": "109",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.7600608225892946,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst concavity <= 0.39"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.004148099998929
+    },
+    {
+      "id": "110",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.6836922752686068,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.841989900000044
+    },
+    {
+      "id": "111",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3356513678134236,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.31862750000073
+    },
+    {
+      "id": "112",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.033514585912216,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.6706857000008313
+    },
+    {
+      "id": "113",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9817770695572439,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.8256945999983145
+    },
+    {
+      "id": "114",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3958497163566332,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.227641000001313
+    },
+    {
+      "id": "115",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.422475102907081,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 7.7291952000014135
+    },
+    {
+      "id": "116",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.30038601280573474,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.84112660000028
+    },
+    {
+      "id": "117",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.01959879470347614,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst concavity <= 0.23"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.510618300000715
+    },
+    {
+      "id": "118",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.7493803255752685,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.8618523000004643
+    },
+    {
+      "id": "119",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8104420221252742,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 28.765304399999877
+    },
+    {
+      "id": "120",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1964135059857681,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.218610899999476
+    },
+    {
+      "id": "121",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6592927501657266,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.1354914999992616
+    },
+    {
+      "id": "122",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0931565877794336,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 8.20151369999985
+    },
+    {
+      "id": "123",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3349279377362113,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.896542700000282
+    },
+    {
+      "id": "124",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3861487259639689,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.23548479999954
+    },
+    {
+      "id": "125",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.369774790894247,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.3161958000000595
+    },
+    {
+      "id": "126",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2628090689872913,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.2149528000009013
+    },
+    {
+      "id": "127",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.29431816676014044,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "mean concavity > 0.06",
+        "worst area > 518.70"
+      ],
+      "explanation_size": 4,
+      "computation_time": 4.859714799998983
+    },
+    {
+      "id": "128",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.040033216018256,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.557891500000551
+    },
+    {
+      "id": "129",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5117761940063141,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.1519527999989805
+    },
+    {
+      "id": "130",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4538104147767577,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean radius <= 15.77"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.3494494000005943
+    },
+    {
+      "id": "131",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4755715203189383,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.1062622999997984
+    },
+    {
+      "id": "132",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.4836422735420447,
+      "explanation": [
+        "worst concave points > 0.10",
+        "mean concave points > 0.07",
+        "worst perimeter > 97.62",
+        "mean concavity > 0.03"
+      ],
+      "explanation_size": 4,
+      "computation_time": 6.128447799999776
+    },
+    {
+      "id": "133",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1977678549771817,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.5862214999997377
+    },
+    {
+      "id": "134",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2494050894510043,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 6.815861099999893
+    },
+    {
+      "id": "135",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.3441642737219217,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concavity <= 0.13"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.4715467000005447
+    },
+    {
+      "id": "136",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0159632533369711,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.758867099999406
+    },
+    {
+      "id": "137",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5975494095543383,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 682.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.423673499999495
+    },
+    {
+      "id": "138",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.3302204264669877,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "area error <= 24.27"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.620875699998578
+    },
+    {
+      "id": "139",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0717954765237865,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.878950599999371
+    },
+    {
+      "id": "140",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.21312372837374,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.710616200000004
+    },
+    {
+      "id": "141",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.584740483789158,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.6324953000003006
+    },
+    {
+      "id": "142",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1901244441211487,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 9.671280700000352
+    },
+    {
+      "id": "143",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9039598292672952,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 17.321549499998582
+    },
+    {
+      "id": "144",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.5556076205465175,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 11.955360500000097
+    },
+    {
+      "id": "145",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.35590604217244737,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 31.850902100000894
+    },
+    {
+      "id": "146",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9131210725530909,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 10.26066179999907
+    },
+    {
+      "id": "147",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0520750928755587,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.32184210000014
+    },
+    {
+      "id": "148",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5636759600051131,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.060470599999462
+    },
+    {
+      "id": "149",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.598548028592353,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.682435999999143
+    },
+    {
+      "id": "150",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.5302940165661005,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.886897800000952
+    },
+    {
+      "id": "151",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9295669367199595,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean area <= 777.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.080018700000437
+    },
+    {
+      "id": "152",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.4681619532661703,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 26.356161700001394
+    },
+    {
+      "id": "153",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.17030449559425875,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 14.91"
+      ],
+      "explanation_size": 2,
+      "computation_time": 6.655748600000152
+    },
+    {
+      "id": "154",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3752654800451012,
+      "explanation": [
+        "worst radius > 14.91",
+        "mean concave points > 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.346740700000737
+    },
+    {
+      "id": "155",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.360633142286913,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.088078700000551
+    },
+    {
+      "id": "156",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.8186891831848038,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.6509709999991173
+    },
+    {
+      "id": "157",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.2117339845491104,
+      "explanation": [
+        "worst radius > 14.91",
+        "worst concavity > 0.39",
+        "mean radius > 13.27"
+      ],
+      "explanation_size": 3,
+      "computation_time": 6.42635060000066
+    },
+    {
+      "id": "158",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3884648661952737,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.4490070000010746
+    },
+    {
+      "id": "159",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7830905976413556,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst perimeter <= 126.08"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.979715800000122
+    },
+    {
+      "id": "160",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.131829131921581,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 10.476256599999033
+    },
+    {
+      "id": "161",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3618995504350213,
+      "explanation": [
+        "worst radius > 14.91",
+        "worst concavity > 0.39",
+        "worst perimeter > 126.08"
+      ],
+      "explanation_size": 3,
+      "computation_time": 8.418829100000949
+    },
+    {
+      "id": "162",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.19539145645173228,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.1688453999995545
+    },
+    {
+      "id": "163",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.9628725157548619,
+      "explanation": [
+        "worst radius <= 18.80",
+        "mean concave points <= 0.03"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.322540400000435
+    },
+    {
+      "id": "164",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8541769910451089,
+      "explanation": [
+        "worst concave points > 0.17"
+      ],
+      "explanation_size": 1,
+      "computation_time": 10.596712500000649
+    },
+    {
+      "id": "165",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.877445344215383,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst area <= 1092.25"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.3675801000008505
+    },
+    {
+      "id": "166",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.114178562817585,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "worst radius <= 18.80"
+      ],
+      "explanation_size": 2,
+      "computation_time": 3.2695942999998806
+    },
+    {
+      "id": "167",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.398117463693082,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean perimeter <= 103.67"
+      ],
+      "explanation_size": 2,
+      "computation_time": 2.5381988000008278
+    },
+    {
+      "id": "168",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9863853389335846,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concave points <= 0.07"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.890795499999513
+    },
+    {
+      "id": "169",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5243790285082501,
+      "explanation": [
+        "worst concave points <= 0.17",
+        "mean concavity <= 0.06"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.748178199999529
+    },
+    {
+      "id": "170",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0874219167151562,
+      "explanation": [
+        "worst radius <= 18.80",
+        "worst perimeter <= 97.62"
+      ],
+      "explanation_size": 2,
+      "computation_time": 5.930283699999563
+    }
+  ],
   "top_features": [
     {
       "feature": "worst concave points",
-      "count": 136
+      "count": 140
     },
     {
       "feature": "worst radius",
-      "count": 55
-    },
-    {
-      "feature": "mean concave points",
-      "count": 33
-    },
-    {
-      "feature": "worst perimeter",
-      "count": 27
+      "count": 51
     },
     {
       "feature": "worst area",
-      "count": 25
+      "count": 35
+    },
+    {
+      "feature": "mean concave points",
+      "count": 34
+    },
+    {
+      "feature": "worst perimeter",
+      "count": 26
     },
     {
       "feature": "mean concavity",
-      "count": 19
-    },
-    {
-      "feature": "mean compactness",
-      "count": 10
+      "count": 17
     },
     {
       "feature": "worst concavity",
-      "count": 9
-    },
-    {
-      "feature": "area error",
-      "count": 9
+      "count": 10
     },
     {
       "feature": "mean perimeter",
+      "count": 8
+    },
+    {
+      "feature": "mean compactness",
       "count": 6
+    },
+    {
+      "feature": "area error",
+      "count": 5
     }
   ],
   "model": {

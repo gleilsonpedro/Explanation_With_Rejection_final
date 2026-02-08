@@ -23,32 +23,3159 @@
     "positive": {
       "count": 59,
       "min_length": 2,
-      "mean_length": 3.3220338983050848,
+      "mean_length": 3.4915254237288136,
       "max_length": 7,
-      "std_length": 1.0323689717180382
+      "std_length": 1.0950254444212266
     },
     "negative": {
       "count": 169,
       "min_length": 1,
-      "mean_length": 2.1538461538461537,
+      "mean_length": 2.1420118343195265,
       "max_length": 5,
-      "std_length": 0.5756395979652218
+      "std_length": 0.6085763578154361
     },
     "rejected": {
       "count": 3,
       "min_length": 3,
-      "mean_length": 5.0,
-      "max_length": 6,
-      "std_length": 1.4142135623730951
+      "mean_length": 5.333333333333333,
+      "max_length": 7,
+      "std_length": 1.699673171197595
     }
   },
   "computation_time": {
-    "total": 78.76369080075528,
-    "mean_per_instance": 0.3409683584448281,
-    "positive": 0.5325529084765842,
-    "negative": 0.2602381520737899,
-    "rejected": 1.1209405000554398
+    "total": 118.35675919999267,
+    "mean_per_instance": 0.5123669229436912,
+    "positive": 0.8336660288134874,
+    "negative": 0.38564128165678174,
+    "rejected": 1.3323623000002651
   },
+  "per_instance": [
+    {
+      "id": "0",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.149830908184553,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4404849999991711
+    },
+    {
+      "id": "1",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8161004036656969,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.45998359999975946
+    },
+    {
+      "id": "2",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8933159573299658,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.42334179999852495
+    },
+    {
+      "id": "3",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.4389688151018838,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4705930999989505
+    },
+    {
+      "id": "4",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.2934259120015179,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.34007019999990007
+    },
+    {
+      "id": "5",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.292333244197714,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.22458469999946828
+    },
+    {
+      "id": "6",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8966031167668014,
+      "explanation": [
+        "glicose > 141.00",
+        "num_gravidezes > 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.0843794000011258
+    },
+    {
+      "id": "7",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8217862931380067,
+      "explanation": [
+        "glicose <= 117.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2470279000008304
+    },
+    {
+      "id": "8",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9386734405947657,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.3814310999987356
+    },
+    {
+      "id": "9",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.686404606963805,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.44504589999996824
+    },
+    {
+      "id": "10",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.765879933746537,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3625831000008475
+    },
+    {
+      "id": "11",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.398317633079058,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.377116699999533
+    },
+    {
+      "id": "12",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5173143591845903,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.3517780000001949
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.12257725786855023,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.58155380000062
+    },
+    {
+      "id": "14",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3140270323610093,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.5714490999998816
+    },
+    {
+      "id": "15",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.614414190616978,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6389687000009872
+    },
+    {
+      "id": "16",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.40377343555145906,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "pressao_sangue <= 62.00",
+        "insulina <= 0.00",
+        "idade > 24.00",
+        "espessura_pele <= 0.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.2039648999998462
+    },
+    {
+      "id": "17",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7030126129766634,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5061440999998013
+    },
+    {
+      "id": "18",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1352848449202266,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7913081999995484
+    },
+    {
+      "id": "19",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.036416957041335,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.36304980000022624
+    },
+    {
+      "id": "20",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1067208161218076,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.43339390000073763
+    },
+    {
+      "id": "21",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0188006231047302,
+      "explanation": [
+        "imc <= 27.70",
+        "num_gravidezes <= 6.00",
+        "insulina <= 130.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.5724780999989889
+    },
+    {
+      "id": "22",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4269804877300114,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.22227999999995518
+    },
+    {
+      "id": "23",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.6777030750735618,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.24035360000016226
+    },
+    {
+      "id": "24",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0105066091815296,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.7388241999997263
+    },
+    {
+      "id": "25",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.6081668019805679,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4601548000009643
+    },
+    {
+      "id": "26",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9875931367358053,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.33779060000051686
+    },
+    {
+      "id": "27",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8057753781774313,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4647764000001189
+    },
+    {
+      "id": "28",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9285517004808144,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2723592999991524
+    },
+    {
+      "id": "29",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.641249523735179,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3442759000008664
+    },
+    {
+      "id": "30",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2452240525229712,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6026552000002994
+    },
+    {
+      "id": "31",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5460035875019464,
+      "explanation": [
+        "imc <= 36.40",
+        "num_gravidezes <= 3.00",
+        "insulina <= 130.00",
+        "pressao_sangue <= 80.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.6671550000010029
+    },
+    {
+      "id": "32",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4489691077178612,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.399862000000212
+    },
+    {
+      "id": "33",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.445608879587697,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2813226999987819
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8427252611122977,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3835632999998779
+    },
+    {
+      "id": "35",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9450220407382535,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7153617000003578
+    },
+    {
+      "id": "36",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9576932530053446,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.283274800000072
+    },
+    {
+      "id": "37",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.319327348533749,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "idade > 24.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.759695599999759
+    },
+    {
+      "id": "38",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2890797810169934,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4888574999986304
+    },
+    {
+      "id": "39",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.35894193077911485,
+      "explanation": [
+        "imc <= 32.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6143707999999606
+    },
+    {
+      "id": "40",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5455305875802026,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2764053999999305
+    },
+    {
+      "id": "41",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.307351468402759,
+      "explanation": [
+        "glicose > 141.00",
+        "num_gravidezes > 6.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7000011000000086
+    },
+    {
+      "id": "42",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2062089600847656,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3317596000015328
+    },
+    {
+      "id": "43",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.428340675465252,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.34185719999914
+    },
+    {
+      "id": "44",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3970314857328345,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.40923060000022815
+    },
+    {
+      "id": "45",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3372894234321109,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.9182065999993938
+    },
+    {
+      "id": "46",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.665739648228465,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5159160000002885
+    },
+    {
+      "id": "47",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7331751239612707,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.7695956000006845
+    },
+    {
+      "id": "48",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7298303320177322,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.26436780000040017
+    },
+    {
+      "id": "49",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5068955947685794,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3232757000005222
+    },
+    {
+      "id": "50",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.840325852729789,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.404471800000465
+    },
+    {
+      "id": "51",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5350879732645586,
+      "explanation": [
+        "imc <= 32.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3102008999994723
+    },
+    {
+      "id": "52",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.451252847449295,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4587792000002082
+    },
+    {
+      "id": "53",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9611889467680523,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.23609659999965515
+    },
+    {
+      "id": "54",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0369213269735447,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 117.00",
+        "num_gravidezes > 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.8193866000001435
+    },
+    {
+      "id": "55",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.368241892396898,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.28619070000058855
+    },
+    {
+      "id": "56",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8302152922032784,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5205203000004985
+    },
+    {
+      "id": "57",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.878003128157994,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7488446999996086
+    },
+    {
+      "id": "58",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7656753534587573,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.29273710000052233
+    },
+    {
+      "id": "59",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7205663984972439,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.5833034000006592
+    },
+    {
+      "id": "60",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.103313808491661,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4202426000010746
+    },
+    {
+      "id": "61",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9694147481852635,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.39278899999953865
+    },
+    {
+      "id": "62",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3476939822065148,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6284928000004584
+    },
+    {
+      "id": "63",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.21001931504075788,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4296839999988151
+    },
+    {
+      "id": "64",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.6554855629675016,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.22834359999978915
+    },
+    {
+      "id": "65",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6006081501023761,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.3238208000002487
+    },
+    {
+      "id": "66",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5766423440394224,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.28087150000101246
+    },
+    {
+      "id": "67",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4663535364995743,
+      "explanation": [
+        "glicose <= 117.00",
+        "idade <= 30.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.29188609999982873
+    },
+    {
+      "id": "68",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1307977804108384,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5110533000006399
+    },
+    {
+      "id": "69",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8951102413198306,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.35449469999912253
+    },
+    {
+      "id": "70",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.44295741347951,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.45313489999898593
+    },
+    {
+      "id": "71",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.03129069527970696,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 99.00",
+        "diabetes_pedigree > 0.39",
+        "num_gravidezes > 6.00",
+        "idade > 41.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.3106010999999853
+    },
+    {
+      "id": "72",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.3190061093061063,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.1777654999987135
+    },
+    {
+      "id": "73",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.545276292305389,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 32.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.18258439999954135
+    },
+    {
+      "id": "74",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.066036002912827,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3102732000006654
+    },
+    {
+      "id": "75",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.8844661071410447,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.3136192000001756
+    },
+    {
+      "id": "76",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.8978067646161216,
+      "explanation": [
+        "imc <= 36.40",
+        "idade <= 30.00",
+        "diabetes_pedigree <= 0.65",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.572168500000771
+    },
+    {
+      "id": "77",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9281092176207926,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.346953799999028
+    },
+    {
+      "id": "78",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6887333850399582,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3142974000002141
+    },
+    {
+      "id": "79",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.701284226205095,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.36162049999984447
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5198546370679136,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.2604769000008673
+    },
+    {
+      "id": "81",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7512595370912454,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5534885999986727
+    },
+    {
+      "id": "82",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.611937777822316,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.19092390000150772
+    },
+    {
+      "id": "83",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9391027787823862,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2762546999983897
+    },
+    {
+      "id": "84",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2038160538801375,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3091846000006626
+    },
+    {
+      "id": "85",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.487517681506688,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.519091500000286
+    },
+    {
+      "id": "86",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.11426795717126303,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "pressao_sangue <= 62.00",
+        "idade <= 41.00",
+        "insulina <= 38.00",
+        "diabetes_pedigree > 0.25"
+      ],
+      "explanation_size": 7,
+      "computation_time": 1.2554024000000936
+    },
+    {
+      "id": "87",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0768504081028727,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6317378000003373
+    },
+    {
+      "id": "88",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.461628468373112,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.3886858999994729
+    },
+    {
+      "id": "89",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8407666914543128,
+      "explanation": [
+        "glicose <= 141.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3109172000004037
+    },
+    {
+      "id": "90",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7227477907428348,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.54014079999979
+    },
+    {
+      "id": "91",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.343800883436117,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7109368000001268
+    },
+    {
+      "id": "92",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.0982152359032966,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.35839620000115247
+    },
+    {
+      "id": "93",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7918925664110752,
+      "explanation": [
+        "imc > 27.70",
+        "glicose > 141.00",
+        "idade > 30.00",
+        "diabetes_pedigree > 0.39"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.0621464000014385
+    },
+    {
+      "id": "94",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2697910741293148,
+      "explanation": [
+        "glicose > 141.00",
+        "idade > 41.00",
+        "num_gravidezes > 3.00",
+        "pressao_sangue <= 62.00",
+        "insulina <= 0.00",
+        "espessura_pele <= 0.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.7692157000001316
+    },
+    {
+      "id": "95",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4618243581557504,
+      "explanation": [
+        "glicose <= 117.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4061227999991388
+    },
+    {
+      "id": "96",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1611140760078893,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00",
+        "pressao_sangue <= 80.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6269714000009117
+    },
+    {
+      "id": "97",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7065304045485465,
+      "explanation": [
+        "glicose <= 117.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2812670999992406
+    },
+    {
+      "id": "98",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.23809898667902551,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.41193810000004305
+    },
+    {
+      "id": "99",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.223519688221101,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.45268620000024384
+    },
+    {
+      "id": "100",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1200242090348755,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4724241999992955
+    },
+    {
+      "id": "101",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9216940809334737,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5181043000011414
+    },
+    {
+      "id": "102",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5932364434677382,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.5875935000003665
+    },
+    {
+      "id": "103",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4583495659069508,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3861861000004865
+    },
+    {
+      "id": "104",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.0845067267493409,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.584409199998845
+    },
+    {
+      "id": "105",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8441631082395036,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.32356350000009115
+    },
+    {
+      "id": "106",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.99681004040725,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.24873800000023039
+    },
+    {
+      "id": "107",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1912363446666827,
+      "explanation": [
+        "glicose > 141.00",
+        "idade > 30.00",
+        "imc > 27.70",
+        "num_gravidezes > 1.00",
+        "diabetes_pedigree > 0.25",
+        "espessura_pele <= 23.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.0461190000005445
+    },
+    {
+      "id": "108",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7870875485529947,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2164840000004915
+    },
+    {
+      "id": "109",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3988729805986235,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5787153000001126
+    },
+    {
+      "id": "110",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9185613476967642,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.40861819999918225
+    },
+    {
+      "id": "111",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0254177188033644,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.693152599998939
+    },
+    {
+      "id": "112",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.26473147309663947,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.41826080000100774
+    },
+    {
+      "id": "113",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.25482739652498765,
+      "explanation": [
+        "glicose > 141.00",
+        "idade > 30.00",
+        "imc > 27.70",
+        "num_gravidezes > 1.00",
+        "diabetes_pedigree > 0.25",
+        "pressao_sangue > 72.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.1025437999996939
+    },
+    {
+      "id": "114",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9924214676414707,
+      "explanation": [
+        "glicose > 141.00",
+        "num_gravidezes > 6.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6505197999995289
+    },
+    {
+      "id": "115",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.926364096609971,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.31136940000033064
+    },
+    {
+      "id": "116",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.843484710970186,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.34572449999905075
+    },
+    {
+      "id": "117",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4123938544310395,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.33760679999977583
+    },
+    {
+      "id": "118",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3639862085262315,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3856415999998717
+    },
+    {
+      "id": "119",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.316650222580785,
+      "explanation": [
+        "glicose > 141.00",
+        "num_gravidezes > 6.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.5669292000002315
+    },
+    {
+      "id": "120",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.023854284024704,
+      "explanation": [
+        "glicose <= 117.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.20240480000029493
+    },
+    {
+      "id": "121",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.21723642704700374,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.4552592000000004
+    },
+    {
+      "id": "122",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6798415235354458,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6708251999989443
+    },
+    {
+      "id": "123",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0420749772493405,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5236796000008326
+    },
+    {
+      "id": "124",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3671150715433136,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.39185750000069675
+    },
+    {
+      "id": "125",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9871561286340427,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.35892520000015793
+    },
+    {
+      "id": "126",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.871993643980808,
+      "explanation": [
+        "glicose > 141.00",
+        "idade > 30.00",
+        "imc > 32.40",
+        "diabetes_pedigree > 0.39"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.7179352000002837
+    },
+    {
+      "id": "127",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.120255926379204,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.39338339999994787
+    },
+    {
+      "id": "128",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6405836402418927,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5446605000015552
+    },
+    {
+      "id": "129",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7717836632677226,
+      "explanation": [
+        "glicose <= 141.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.36362150000059046
+    },
+    {
+      "id": "130",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1100270526850853,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3387654999987717
+    },
+    {
+      "id": "131",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.453863521455304,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4402097000001959
+    },
+    {
+      "id": "132",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.1074542566537326,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.33783030000086
+    },
+    {
+      "id": "133",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7459540150081505,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.39212469999984023
+    },
+    {
+      "id": "134",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5947004236136229,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3266161999999895
+    },
+    {
+      "id": "135",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.951539172488813,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00",
+        "pressao_sangue > 62.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.5288328000006004
+    },
+    {
+      "id": "136",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.087100749806029,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.25420049999956973
+    },
+    {
+      "id": "137",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.92655120265732,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.229939299999387
+    },
+    {
+      "id": "138",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2660333902698664,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2979451999999583
+    },
+    {
+      "id": "139",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1568049092761967,
+      "explanation": [
+        "diabetes_pedigree > 0.65",
+        "glicose > 141.00",
+        "imc > 27.70"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.8196934000006877
+    },
+    {
+      "id": "140",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7868743333650823,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4342371999991883
+    },
+    {
+      "id": "141",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.3246474109855555,
+      "explanation": [
+        "imc <= 36.40",
+        "idade <= 30.00",
+        "diabetes_pedigree <= 0.65",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.6210109000003285
+    },
+    {
+      "id": "142",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.706896345640673,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.29716869999901974
+    },
+    {
+      "id": "143",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5191197811052248,
+      "explanation": [
+        "imc <= 32.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4931240000005346
+    },
+    {
+      "id": "144",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.4823082265446299,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.814747600001283
+    },
+    {
+      "id": "145",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.19693084598056565,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "idade > 30.00",
+        "num_gravidezes > 3.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.7045150000012654
+    },
+    {
+      "id": "146",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3987811927279825,
+      "explanation": [
+        "glicose <= 117.00",
+        "idade <= 30.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.24384699999973236
+    },
+    {
+      "id": "147",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8852895685762157,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.288722899998902
+    },
+    {
+      "id": "148",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2644191206505564,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.4598585000003368
+    },
+    {
+      "id": "149",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1726681293455608,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.31332800000018324
+    },
+    {
+      "id": "150",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5301050556521236,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "idade > 24.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.6695375999988755
+    },
+    {
+      "id": "151",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1001206565233588,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "pressao_sangue <= 80.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4513931000001321
+    },
+    {
+      "id": "152",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.740301464805066,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.34657309999965946
+    },
+    {
+      "id": "153",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.09344489101330566,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.5467495000011695
+    },
+    {
+      "id": "154",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9019822583475055,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3588414999994711
+    },
+    {
+      "id": "155",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7759276228173242,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2664168999999674
+    },
+    {
+      "id": "156",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7617486923747316,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5234708000007231
+    },
+    {
+      "id": "157",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.23374826924271375,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "diabetes_pedigree > 0.39"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6985537999989901
+    },
+    {
+      "id": "158",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.9950960815217975,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.22606530000120983
+    },
+    {
+      "id": "159",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4349611713977435,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.406683699999121
+    },
+    {
+      "id": "160",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.20332377831573822,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.564046800000142
+    },
+    {
+      "id": "161",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7393612899316695,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.43335989999832236
+    },
+    {
+      "id": "162",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9310710844758887,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.31800420000035956
+    },
+    {
+      "id": "163",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5203493683847356,
+      "explanation": [
+        "glicose > 141.00",
+        "idade > 30.00",
+        "num_gravidezes > 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6774480999993102
+    },
+    {
+      "id": "164",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.263061070776092,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.1931399999994028
+    },
+    {
+      "id": "165",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4041104269742721,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.44046590000107244
+    },
+    {
+      "id": "166",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.716751862817274,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.39588439999897673
+    },
+    {
+      "id": "167",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5207994611624089,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5015194999996311
+    },
+    {
+      "id": "168",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.2142655919173091,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4638057000011031
+    },
+    {
+      "id": "169",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2358164902549067,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.30557020000014745
+    },
+    {
+      "id": "170",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8394045991794084,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3925872999989224
+    },
+    {
+      "id": "171",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5505008380652558,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5677653000002465
+    },
+    {
+      "id": "172",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.11123808987962036,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00",
+        "idade <= 41.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4818329999998241
+    },
+    {
+      "id": "173",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.010183378866661,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4156994000004488
+    },
+    {
+      "id": "174",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4149093415652167,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.19309749999956694
+    },
+    {
+      "id": "175",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6244115322759658,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 117.00",
+        "num_gravidezes > 6.00",
+        "diabetes_pedigree > 0.39"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.88121719999981
+    },
+    {
+      "id": "176",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7369791868185613,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00",
+        "insulina <= 130.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.378186399999322
+    },
+    {
+      "id": "177",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.106568552953558,
+      "explanation": [
+        "glicose <= 141.00",
+        "imc <= 36.40"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5105464999996912
+    },
+    {
+      "id": "178",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1799640874095836,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4046087999995507
+    },
+    {
+      "id": "179",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0838706978220056,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3069545999987895
+    },
+    {
+      "id": "180",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.08759162379451091,
+      "explanation": [
+        "glicose > 141.00",
+        "diabetes_pedigree > 0.39",
+        "num_gravidezes > 3.00",
+        "imc > 27.70"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.690046199999415
+    },
+    {
+      "id": "181",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16122119304830385,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3976772999994864
+    },
+    {
+      "id": "182",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.7916095567913217,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.4926512999991246
+    },
+    {
+      "id": "183",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.478313310352842,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7843456999999034
+    },
+    {
+      "id": "184",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7838721453781208,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 32.40",
+        "num_gravidezes > 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6087028000001737
+    },
+    {
+      "id": "185",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0778552838288213,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.19621659999938856
+    },
+    {
+      "id": "186",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9140055903779745,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3605600000009872
+    },
+    {
+      "id": "187",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.45010314168136567,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 99.00",
+        "num_gravidezes > 6.00",
+        "insulina <= 38.00",
+        "pressao_sangue <= 72.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 6,
+      "computation_time": 3.7551134999994247
+    },
+    {
+      "id": "188",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.373693305343747,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.27527310000004945
+    },
+    {
+      "id": "189",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.5049344804423423,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4987323000004835
+    },
+    {
+      "id": "190",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.6584438242051442,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.407157499999812
+    },
+    {
+      "id": "191",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.874540286916906,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.23289819999990868
+    },
+    {
+      "id": "192",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7083330451951824,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3464555999998993
+    },
+    {
+      "id": "193",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4409701124954344,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.26375349999943865
+    },
+    {
+      "id": "194",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.512246915624159,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2641848999992362
+    },
+    {
+      "id": "195",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0468479902512602,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.8417668000001868
+    },
+    {
+      "id": "196",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7901076656814663,
+      "explanation": [
+        "diabetes_pedigree > 0.65",
+        "glicose > 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 4.773997099999178
+    },
+    {
+      "id": "197",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.738482828822182,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "pressao_sangue <= 80.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.6392203999985213
+    },
+    {
+      "id": "198",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6480107608772538,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.20366379999904893
+    },
+    {
+      "id": "199",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.412321861116955,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4641496999993251
+    },
+    {
+      "id": "200",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7501875877618387,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.41321659999994154
+    },
+    {
+      "id": "201",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.0659692530722094,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3481677999989188
+    },
+    {
+      "id": "202",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.101788357618368,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.33675579999908223
+    },
+    {
+      "id": "203",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5998900164007006,
+      "explanation": [
+        "glicose <= 141.00",
+        "idade <= 41.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.5787550000004558
+    },
+    {
+      "id": "204",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.6011882880221107,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5506409999998141
+    },
+    {
+      "id": "205",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3591812855481695,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 117.00",
+        "num_gravidezes > 3.00",
+        "diabetes_pedigree > 0.25"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.7602410999988933
+    },
+    {
+      "id": "206",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.340534430746505,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3642794999996113
+    },
+    {
+      "id": "207",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4632684791853636,
+      "explanation": [
+        "glicose <= 117.00"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.2737606999999116
+    },
+    {
+      "id": "208",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.424288571331487,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3386588000012125
+    },
+    {
+      "id": "209",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.019255971272383,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.18427449999944656
+    },
+    {
+      "id": "210",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5714656082298397,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2601477000007435
+    },
+    {
+      "id": "211",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.9539111174362045,
+      "explanation": [
+        "imc <= 36.40",
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4154381000007561
+    },
+    {
+      "id": "212",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2852338662115592,
+      "explanation": [
+        "glicose > 141.00",
+        "num_gravidezes > 6.00",
+        "idade > 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4952212000007421
+    },
+    {
+      "id": "213",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.043159970846697426,
+      "explanation": [
+        "pressao_sangue > 62.00",
+        "idade <= 30.00",
+        "diabetes_pedigree <= 0.65",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 2.918632400000206
+    },
+    {
+      "id": "214",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7845480678868473,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2733664999996108
+    },
+    {
+      "id": "215",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.7391843023596865,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.20002519999979995
+    },
+    {
+      "id": "216",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7809214353314182,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 27.70",
+        "num_gravidezes > 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.564460899999176
+    },
+    {
+      "id": "217",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.412087061487215,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.30568719999973837
+    },
+    {
+      "id": "218",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2647441792913376,
+      "explanation": [
+        "glicose <= 117.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.15292980000049283
+    },
+    {
+      "id": "219",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.41133305865059544,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.4404183999995439
+    },
+    {
+      "id": "220",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02864349892939355,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "num_gravidezes > 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4534772000006342
+    },
+    {
+      "id": "221",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0874026497315885,
+      "explanation": [
+        "glicose > 141.00",
+        "imc > 27.70",
+        "idade > 30.00",
+        "num_gravidezes > 3.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.5635848000001715
+    },
+    {
+      "id": "222",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8134392063886438,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2419913000012457
+    },
+    {
+      "id": "223",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4235758209388463,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.2605552000004536
+    },
+    {
+      "id": "224",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5858735940757374,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.25657869999849936
+    },
+    {
+      "id": "225",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5276624807069208,
+      "explanation": [
+        "imc > 32.40",
+        "glicose > 141.00",
+        "idade > 24.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.3564427999990585
+    },
+    {
+      "id": "226",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.012843804610343,
+      "explanation": [
+        "imc <= 27.70",
+        "num_gravidezes <= 6.00",
+        "idade <= 30.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.4398449000000255
+    },
+    {
+      "id": "227",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.05678005313053802,
+      "explanation": [
+        "imc <= 36.40",
+        "num_gravidezes <= 6.00",
+        "idade <= 30.00",
+        "insulina <= 130.00",
+        "espessura_pele <= 32.00"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.680772399999114
+    },
+    {
+      "id": "228",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02660735727411634,
+      "explanation": [
+        "imc > 36.40",
+        "glicose > 99.00",
+        "num_gravidezes > 6.00",
+        "pressao_sangue <= 72.00",
+        "idade > 41.00",
+        "insulina <= 0.00",
+        "espessura_pele > 32.00"
+      ],
+      "explanation_size": 7,
+      "computation_time": 2.2330086000001756
+    },
+    {
+      "id": "229",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5092104848073102,
+      "explanation": [
+        "diabetes_pedigree > 0.65",
+        "glicose > 141.00",
+        "imc > 27.70"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.5461529000003793
+    },
+    {
+      "id": "230",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.242013205123885,
+      "explanation": [
+        "glicose <= 141.00",
+        "num_gravidezes <= 6.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.3112133000013273
+    }
+  ],
   "top_features": [
     {
       "feature": "glicose",
@@ -56,15 +3183,15 @@
     },
     {
       "feature": "num_gravidezes",
-      "count": 152
+      "count": 154
     },
     {
       "feature": "imc",
-      "count": 99
+      "count": 90
     },
     {
       "feature": "idade",
-      "count": 53
+      "count": 62
     },
     {
       "feature": "pressao_sangue",
@@ -72,15 +3199,15 @@
     },
     {
       "feature": "diabetes_pedigree",
-      "count": 14
+      "count": 16
     },
     {
       "feature": "espessura_pele",
-      "count": 8
+      "count": 12
     },
     {
       "feature": "insulina",
-      "count": 8
+      "count": 9
     }
   ],
   "model": {

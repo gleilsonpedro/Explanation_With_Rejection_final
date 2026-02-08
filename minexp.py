@@ -87,12 +87,362 @@ def formatar_log(metricas):
     return log
 
 RANDOM_STATE = 42
+
+
+def run_minexp_for_dataset(dataset_name: str) -> dict:
+    """
+    Executa o MinExp usando o MESMO pipeline e thresholds do PEAB para um dataset específico.
+    Retorna um dicionário com métricas principais e caminho do relatório.
+    """
+    pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
+    nomes_features = meta['feature_names']
+
+    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
+
+    metricas = {
+        'dataset_name': nome_relatorio,
+        'test_size': meta['test_size'],
+        'rejection_cost': meta['rejection_cost'],
+        'num_features': len(nomes_features),
+        'total_instancias_teste': len(y_test)
+    }
+    metricas['acuracia_sem_rejeicao'] = metrics.accuracy_score(y_test, pipeline.predict(X_test)) * 100
+
+    # Índices com thresholds compartilhados
+    t_upper, t_lower = float(t_plus), float(t_minus)
+    decfun_test = pipeline.decision_function(X_test)
+    pos_idx = np.where(decfun_test > t_upper)[0]
+    neg_idx = np.where(decfun_test < t_lower)[0]
+    rej_idx = np.where((decfun_test <= t_upper) & (decfun_test >= t_lower))[0]
+
+    # Adapter LR -> solver
+    w = pipeline.named_steps['model'].coef_[0]
+    b = pipeline.named_steps['model'].intercept_[0]
+    support_vectors = np.array([w])
+    dual_coef = np.array([[1.0]])
+    intercept = np.array([b])
+
+    X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
+    X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
+    lower_bound, upper_bound = 0.0, 1.0
+
+    hi_dim = len(nomes_features) >= 500
+    topk_idx = None
+    X_test_solver = X_test_scaled
+    w_solver = w
+    
+    num_instances = len(y_test)
+    num_features = len(nomes_features)
+    
+    if num_features >= 150:
+        default_chunk_size = 10
+        default_time_limit = 20.0
+        default_threads = 4
+        print(f"[MinExp] Dataset com {num_features} features: chunk_size=10, threads=4")
+    elif num_instances > 1000:
+        default_chunk_size = 50
+        default_time_limit = 60.0
+        default_threads = 4
+    else:
+        default_chunk_size = 50
+        default_time_limit = 30.0
+        default_threads = 2
+
+    all_explanations = {}
+    tempos_individuais = {}
+    
+    from utils.progress_bar import ProgressBar, suppress_library_warnings
+    suppress_library_warnings()
+    
+    total_instances = len(neg_idx) + len(pos_idx) + len(rej_idx)
+    pbar = ProgressBar(total=total_instances, description=f"MinExp {nome_relatorio}")
+
+    def explain_in_chunks(idx_array, classified_label):
+        if len(idx_array) == 0:
+            return
+        time_limit = 30.0 if hi_dim else default_time_limit
+        # [CORRECAO] Processar instância por instância para medir tempo real individual
+        for idx in idx_array:
+            start_instance = time.perf_counter()
+            try:
+                explanations_local = utils.svm_explainer.svm_explanation_binary(
+                    dual_coef=dual_coef,
+                    support_vectors=np.array([w_solver]),
+                    intercept=intercept,
+                    t_lower=t_lower,
+                    t_upper=t_upper,
+                    lower_bound=lower_bound,
+                    upper_bound=upper_bound,
+                    show_log=0,
+                    n_threads=default_threads,
+                    data=X_test_solver[[idx]],  # Uma instância por vez
+                    classified=classified_label,
+                    time_limit=time_limit
+                )
+                tempo_instancia = time.perf_counter() - start_instance
+                
+                if topk_idx is not None:
+                    exp = explanations_local[0]
+                    exp = [(int(topk_idx[int(item[0])]), item[1]) for item in exp]
+                    all_explanations[idx] = exp
+                else:
+                    all_explanations[idx] = explanations_local[0]
+                
+                tempos_individuais[idx] = tempo_instancia
+                pbar.update(1)
+            except Exception:
+                tempos_individuais[idx] = 0.0
+                all_explanations[idx] = []
+                pbar.update(1)
+
+    if len(neg_idx) > 0:
+        explain_in_chunks(neg_idx, "Negative")
+    if len(pos_idx) > 0:
+        explain_in_chunks(pos_idx, "Positive")
+    
+    if len(rej_idx) > 0:
+        time_limit = 30.0 if hi_dim else default_time_limit
+        # [CORRECAO] Processar instância por instância para medir tempo real individual
+        for idx in rej_idx:
+            start_instance = time.perf_counter()
+            try:
+                explanations_local = utils.svm_explainer.svm_explanation_rejected(
+                    dual_coef=dual_coef,
+                    support_vectors=np.array([w_solver]),
+                    intercept=intercept,
+                    t_lower=t_lower,
+                    t_upper=t_upper,
+                    lower_bound=lower_bound,
+                    upper_bound=upper_bound,
+                    data=X_test_solver[[idx]],  # Uma instância por vez
+                    show_log=0,
+                    n_threads=default_threads,
+                    time_limit=time_limit
+                )
+                tempo_instancia = time.perf_counter() - start_instance
+                
+                if topk_idx is not None:
+                    exp = explanations_local[0]
+                    exp = [(int(topk_idx[int(item[0])]), item[1]) for item in exp]
+                    all_explanations[idx] = exp
+                else:
+                    all_explanations[idx] = explanations_local[0]
+                
+                tempos_individuais[idx] = tempo_instancia
+                pbar.update(1)
+            except Exception:
+                tempos_individuais[idx] = 0.0
+                all_explanations[idx] = []
+                pbar.update(1)
+
+    tempos_neg = [tempos_individuais.get(i, 0.0) for i in neg_idx]
+    tempos_pos = [tempos_individuais.get(i, 0.0) for i in pos_idx]
+    tempos_rej = [tempos_individuais.get(i, 0.0) for i in rej_idx]
+    todos_tempos = [tempos_individuais.get(i, 0.0) for i in range(len(y_test))]
+    
+    metricas['tempo_medio_negativas'] = float(np.mean(tempos_neg)) if tempos_neg else 0.0
+    metricas['tempo_medio_positivas'] = float(np.mean(tempos_pos)) if tempos_pos else 0.0
+    metricas['tempo_medio_rejeitadas'] = float(np.mean(tempos_rej)) if tempos_rej else 0.0
+    metricas['tempo_total'] = float(sum(todos_tempos))
+    metricas['tempo_medio_instancia'] = float(np.mean(todos_tempos)) if todos_tempos else 0.0
+    metricas['num_rejeitadas_teste'] = len(rej_idx)
+    metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
+    metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_test)) * 100 if len(y_test) > 0 else 0
+    metricas['acuracia_com_rejeicao'] = utils.utility.calculate_accuracy(pipeline, t_upper, t_lower, X_test, y_test) * 100
+
+    feature_counts = {name: 0 for name in nomes_features}
+    exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
+    total_n = len(y_test)
+    for i in range(total_n):
+        exp = all_explanations.get(i, [])
+        exp_len = len(exp)
+        if i in pos_idx:
+            exp_lengths_pos.append(exp_len)
+        elif i in neg_idx:
+            exp_lengths_neg.append(exp_len)
+        elif i in rej_idx:
+            exp_lengths_rej.append(exp_len)
+        for item_explicacao in exp:
+            feature_idx = item_explicacao[0]
+            if 0 <= feature_idx < len(nomes_features):
+                feature_counts[nomes_features[feature_idx]] += 1
+
+    for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative", exp_lengths_neg), ("rejected", exp_lengths_rej)]:
+        stats = {'count': len(exp_lengths)}
+        if exp_lengths:
+            stats.update({
+                'min_length': int(np.min(exp_lengths)),
+                'mean_length': float(np.mean(exp_lengths)),
+                'max_length': int(np.max(exp_lengths)),
+                'std_length': float(np.std(exp_lengths))
+            })
+        else:
+            stats.update({'min_length': 0, 'mean_length': 0, 'max_length': 0, 'std_length': 0})
+        metricas[f'stats_explicacao_{class_key}'] = stats
+
+    metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item[1], reverse=True)
+
+    log_final = formatar_log(metricas)
+    base_dir = os.path.join('results', 'report', 'minexp')
+    os.makedirs(base_dir, exist_ok=True)
+    nome_arquivo_seguro = sanitize_filename(nome_relatorio)
+    caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_arquivo_seguro}.txt')
+    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+        f.write(log_final)
+
+    dataset_key = dataset_name
+    y_pred_final = np.full(len(y_test), -1, dtype=int)
+    y_pred_final[pos_idx] = 1
+    y_pred_final[neg_idx] = 0
+    rejected_mask = np.array([i in rej_idx for i in range(len(y_test))])
+
+    X_test_dict = {}
+    for col in X_test.columns:
+        X_test_dict[str(col)] = [float(x) for x in X_test[col].tolist()]
+    y_test_list = [int(v) for v in (y_test.tolist() if hasattr(y_test, 'tolist') else list(y_test))]
+
+    def extract_feats_minexp(exp):
+        feats = set()
+        for item in exp:
+            try:
+                fidx = int(item[0])
+            except Exception:
+                continue
+            if 0 <= fidx < len(nomes_features):
+                feats.add(nomes_features[fidx])
+        return sorted(list(feats))
+
+    per_instance = []
+    for i in range(len(y_test_list)):
+        feats_list = extract_feats_minexp(all_explanations.get(i, []))
+        per_instance.append({
+            'id': str(i),
+            'y_true': int(y_test_list[i]),
+            'y_pred': int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1,
+            'rejected': bool(rejected_mask[i]),
+            'decision_score': float(decfun_test[i]),
+            'explanation': feats_list,
+            'explanation_size': int(len(feats_list)),
+            'computation_time': float(tempos_individuais.get(i, 0.0))
+        })
+
+    mnist_meta = {}
+    if dataset_name == 'mnist':
+        try:
+            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
+            mnist_meta = {
+                'mnist_feature_mode': MNIST_FEATURE_MODE,
+                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
+            }
+        except Exception:
+            mnist_meta = {}
+
+    subsample = meta.get('subsample_size')
+
+    dataset_cache = {
+        'config': {
+            'dataset_name': dataset_key,
+            'test_size': float(meta['test_size']),
+            'random_state': RANDOM_STATE,
+            'rejection_cost': float(meta['rejection_cost']),
+            'subsample_size': float(subsample) if subsample else None,
+            **mnist_meta
+        },
+        'thresholds': {
+            't_plus': float(t_upper),
+            't_minus': float(t_lower),
+            'rejection_zone_width': float(t_upper - t_lower)
+        },
+        'performance': {
+            'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
+            'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
+            'rejection_rate': float(metricas['taxa_rejeicao_teste']),
+            'num_test_instances': int(metricas.get('total_instancias_teste', len(y_test))),
+            'num_rejected': int(metricas.get('num_rejeitadas_teste', len(rej_idx))),
+            'num_accepted': int(metricas.get('num_aceitas_teste', len(pos_idx) + len(neg_idx)))
+        },
+        'explanation_stats': {
+            'positive': metricas['stats_explicacao_positive'],
+            'negative': metricas['stats_explicacao_negative'],
+            'rejected': metricas['stats_explicacao_rejected']
+        },
+        'computation_time': {
+            'total': float(metricas['tempo_total']),
+            'mean_per_instance': float(metricas['tempo_medio_instancia']),
+            'positive': float(metricas['tempo_medio_positivas']),
+            'negative': float(metricas['tempo_medio_negativas']),
+            'rejected': float(metricas['tempo_medio_rejeitadas'])
+        },
+        'top_features': [
+            {"feature": feat, "count": int(count)}
+            for feat, count in metricas['features_frequentes'][:20]
+        ],
+        'per_instance': per_instance,
+        'model': {
+            'type': 'LogisticRegression',
+            'num_features': len(nomes_features),
+            'class_names': list(meta['nomes_classes']),
+            'coefs': [float(c) for c in pipeline.named_steps['model'].coef_[0].tolist()],
+            'intercept': float(pipeline.named_steps['model'].intercept_[0]),
+            'scaler_params': {
+                'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
+                'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
+            }
+        }
+    }
+    dataset_key_safe = sanitize_filename(dataset_key)
+    update_method_results("MinExp", dataset_key_safe, dataset_cache)
+
+    return {
+        'report_path': caminho_arquivo,
+        'json_updated_for': dataset_key,
+        'metrics': metricas
+    }
+
+
 # --- BLOCO PRINCIPAL DE EXECUÇÃO ---
 if __name__ == '__main__':
     # Config local não é mais necessária para treino/thresholds; ficam a cargo do shared trainer
 
     print("Chamando menu de seleção de dataset...")
-    nome_dataset_original, nome_classe_positiva, dados_completos, alvos_completos, _ = selecionar_dataset_e_classe()
+    nome_dataset_original, nome_classe_positiva, dados_completos, alvos_completos, nomes_classes_binarias = selecionar_dataset_e_classe()
+
+    if nome_dataset_original is not None:
+        # Detecta seleção múltipla de datasets
+        if nome_dataset_original == '__MULTIPLE__':
+            datasets_para_executar = nomes_classes_binarias  # Contém lista de datasets
+            print(f"\n{'='*80}")
+            print(f"MODO MÚLTIPLOS DATASETS DETECTADO")
+            print(f"Datasets selecionados: {', '.join(datasets_para_executar)}")
+            print(f"{'='*80}\n")
+            
+            resposta = input("Confirmar execução em sequência? (S/N): ").strip().upper()
+            if resposta != 'S':
+                print("Execução cancelada pelo usuário.")
+                exit(0)
+            
+            print(f"\nIniciando execução sequencial de {len(datasets_para_executar)} datasets...\n")
+            
+            for idx, dataset_name in enumerate(datasets_para_executar, 1):
+                print(f"\n{'='*80}")
+                print(f"DATASET {idx}/{len(datasets_para_executar)}: {dataset_name}")
+                print(f"{'='*80}\n")
+                
+                try:
+                    resultado = run_minexp_for_dataset(dataset_name)
+                    print(f"\n✓ Dataset '{dataset_name}' concluído com sucesso!")
+                    print(f"  Relatório: {resultado['report_path']}")
+                except Exception as e:
+                    print(f"\n✗ ERRO ao processar dataset '{dataset_name}': {e}")
+                    import traceback
+                    traceback.print_exc()
+                    continue
+            
+            print(f"\n{'='*80}")
+            print(f"EXECUÇÃO MÚLTIPLA CONCLUÍDA")
+            print(f"Total de datasets processados: {len(datasets_para_executar)}")
+            print(f"{'='*80}\n")
+            exit(0)
 
     if dados_completos is not None:
         # 1) Obter pipeline e thresholds idênticos ao PEAB
@@ -176,18 +526,14 @@ if __name__ == '__main__':
         # [AUDITORIA] Dicionário para armazenar tempo por instância
         tempos_individuais = {}
         
-        # Helper: explicar em chunks para reduzir uso de memória
+        # Helper: explicar instância por instância para tempo individual preciso
         def explain_in_chunks(idx_array, classified_label):
             if len(idx_array) == 0:
                 return
             time_limit = 30.0 if hi_dim else default_time_limit
-            chunk_size = 20 if hi_dim else default_chunk_size
-            for start in range(0, len(idx_array), chunk_size):
-                sl = slice(start, start + chunk_size)
-                sel_idx = idx_array[sl]
-                
-                # [AUDITORIA] Medir APENAS o tempo do solver (excluir overhead)
-                start_chunk = time.perf_counter()
+            # [CORRECAO] Processar instância por instância para medir tempo real
+            for idx in idx_array:
+                start_instance = time.perf_counter()
                 try:
                     explanations_local = utils.svm_explainer.svm_explanation_binary(
                         dual_coef=dual_coef,
@@ -199,34 +545,28 @@ if __name__ == '__main__':
                         upper_bound=upper_bound,
                         show_log=0,
                         n_threads=default_threads,
-                        data=X_test_solver[sel_idx],
+                        data=X_test_solver[[idx]],
                         classified=classified_label,
                         time_limit=time_limit
                     )
-                    # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
-                    tempo_chunk = time.perf_counter() - start_chunk
-                    tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                    tempo_instancia = time.perf_counter() - start_instance
                     
                     # Se reduzimos dimensão, remapear índices para espaço original
                     if topk_idx is not None:
-                        remapped = []
-                        for exp in explanations_local:
-                            remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
-                        explanations_local = remapped
-                    all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                        exp = explanations_local[0]
+                        exp = [(int(topk_idx[int(item[0])]), item[1]) for item in exp]
+                        all_explanations[idx] = exp
+                    else:
+                        all_explanations[idx] = explanations_local[0]
                     
-                    # [AUDITORIA] Armazenar tempo para cada instância
-                    for idx in sel_idx:
-                        tempos_individuais[idx] = tempo_por_instancia
-                    
-                    # Atualizar progresso
-                    pbar.update(len(sel_idx))
+                    # [AUDITORIA] Armazenar tempo para esta instância
+                    tempos_individuais[idx] = tempo_instancia
+                    pbar.update(1)
                 except Exception:
                     # [AUDITORIA] Em caso de erro, tempo = 0
-                    for idx in sel_idx:
-                        tempos_individuais[idx] = 0.0
-                    # Silenciar erros e atualizar progresso
-                    pbar.update(len(sel_idx))
+                    tempos_individuais[idx] = 0.0
+                    all_explanations[idx] = []
+                    pbar.update(1)
 
         # [AUDITORIA] Processar instâncias negativas
         if len(neg_idx) > 0:
@@ -239,13 +579,9 @@ if __name__ == '__main__':
         # [AUDITORIA] Processar instâncias rejeitadas
         if len(rej_idx) > 0:
             time_limit = 30.0 if hi_dim else default_time_limit
-            chunk_size = 20 if hi_dim else default_chunk_size
-            for start in range(0, len(rej_idx), chunk_size):
-                sl = slice(start, start + chunk_size)
-                sel_idx = rej_idx[sl]
-                
-                # [AUDITORIA] Medir APENAS o tempo do solver
-                start_chunk = time.perf_counter()
+            # [CORRECAO] Processar instância por instância para tempo individual
+            for idx in rej_idx:
+                start_instance = time.perf_counter()
                 try:
                     explanations_local = utils.svm_explainer.svm_explanation_rejected(
                         dual_coef=dual_coef,
@@ -255,34 +591,28 @@ if __name__ == '__main__':
                         t_upper=t_upper,
                         lower_bound=lower_bound,
                         upper_bound=upper_bound,
-                        data=X_test_solver[sel_idx],
+                        data=X_test_solver[[idx]],
                         show_log=0,
                         n_threads=default_threads,
                         time_limit=time_limit
                     )
-                    # [AUDITORIA] Tempo dividido igualmente entre instâncias
-                    tempo_chunk = time.perf_counter() - start_chunk
-                    tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
+                    tempo_instancia = time.perf_counter() - start_instance
                     
                     if topk_idx is not None:
-                        remapped = []
-                        for exp in explanations_local:
-                            remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
-                        explanations_local = remapped
-                    all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
+                        exp = explanations_local[0]
+                        exp = [(int(topk_idx[int(item[0])]), item[1]) for item in exp]
+                        all_explanations[idx] = exp
+                    else:
+                        all_explanations[idx] = explanations_local[0]
                     
-                    # [AUDITORIA] Armazenar tempo para cada instância
-                    for idx in sel_idx:
-                        tempos_individuais[idx] = tempo_por_instancia
-                    
-                    # Atualizar progresso
-                    pbar.update(len(sel_idx))
+                    # [AUDITORIA] Armazenar tempo para esta instância
+                    tempos_individuais[idx] = tempo_instancia
+                    pbar.update(1)
                 except Exception:
                     # [AUDITORIA] Em caso de erro, tempo = 0
-                    for idx in sel_idx:
-                        tempos_individuais[idx] = 0.0
-                    # Silenciar erros e atualizar progresso
-                    pbar.update(len(sel_idx))
+                    tempos_individuais[idx] = 0.0
+                    all_explanations[idx] = []
+                    pbar.update(1)
         
         # Fechar barra de progresso
         pbar.close()
@@ -389,7 +719,7 @@ if __name__ == '__main__':
                 'decision_score': float(decfun_test[i]),
                 'explanation': feats_list,
                 'explanation_size': int(len(feats_list)),
-                'tempo_segundos': float(tempos_individuais.get(i, 0.0))  # [AUDITORIA] Tempo por instância
+                'computation_time': float(tempos_individuais.get(i, 0.0))  # [CORRECAO] Renomeado de tempo_segundos para computation_time
             })
 
         # Metadados MNIST
@@ -462,351 +792,3 @@ if __name__ == '__main__':
         
     else:
         print("Nenhum dataset foi selecionado. Encerrando o programa.")
-
-
-def run_minexp_for_dataset(dataset_name: str) -> dict:
-    """
-    Executa o MinExp usando o MESMO pipeline e thresholds do PEAB para um dataset específico.
-    Retorna um dicionário com métricas principais e caminho do relatório.
-    """
-    pipeline, X_train, X_test, y_train, y_test, t_plus, t_minus, meta = get_shared_pipeline(dataset_name)
-    nomes_features = meta['feature_names']
-
-    nome_relatorio = f"{dataset_name}_{meta['nomes_classes'][0]}_vs_{meta['nomes_classes'][1]}"
-
-    metricas = {
-        'dataset_name': nome_relatorio,
-        'test_size': meta['test_size'],
-        'rejection_cost': meta['rejection_cost'],
-        'num_features': len(nomes_features),
-        'total_instancias_teste': len(y_test)
-    }
-    metricas['acuracia_sem_rejeicao'] = metrics.accuracy_score(y_test, pipeline.predict(X_test)) * 100
-
-    # Índices com thresholds compartilhados
-    t_upper, t_lower = float(t_plus), float(t_minus)
-    decfun_test = pipeline.decision_function(X_test)
-    pos_idx = np.where(decfun_test > t_upper)[0]
-    neg_idx = np.where(decfun_test < t_lower)[0]
-    rej_idx = np.where((decfun_test <= t_upper) & (decfun_test >= t_lower))[0]
-
-    # Adapter LR -> solver
-    w = pipeline.named_steps['model'].coef_[0]
-    b = pipeline.named_steps['model'].intercept_[0]
-    support_vectors = np.array([w])
-    dual_coef = np.array([[1.0]])
-    intercept = np.array([b])
-
-    X_test_scaled = pipeline.named_steps['scaler'].transform(X_test)
-    # Clipping para manter dentro de [0,1] esperado pelo solver
-    X_test_scaled = np.clip(X_test_scaled, 0.0, 1.0)
-    lower_bound, upper_bound = 0.0, 1.0
-
-    # Alta dimensionalidade: manter MESMAS features do PEAB (sem redução aqui).
-    # Nota: get_shared_pipeline já aplica top_k_features quando configurado no PEAB.
-    # Portanto, para 1:1, não reduzimos novamente nesta função.
-    hi_dim = len(nomes_features) >= 500
-    topk_idx = None
-    X_test_solver = X_test_scaled
-    w_solver = w
-    
-    # [OTIMIZAÇÃO] Configuração adaptativa por tamanho de dataset E número de features
-    num_instances = len(y_test)
-    num_features = len(nomes_features)
-    
-    # Regra: Mais features = chunks menores (LP fica mais pesado)
-    if num_features >= 150:  # MNIST pool2x2 (196), etc
-        default_chunk_size = 10  # Processa 10 por vez
-        default_time_limit = 20.0  # 20s por chunk de 10 = ~2s/instância
-        default_threads = 4
-        print(f"[MinExp] Dataset com {num_features} features: chunk_size=10, threads=4")
-    elif num_instances > 1000:  # Datasets grandes mas poucas features
-        default_chunk_size = 50
-        default_time_limit = 60.0
-        default_threads = 4
-    else:
-        default_chunk_size = 50  # Reduzido de 200 para 50
-        default_time_limit = 30.0
-        default_threads = 2
-
-    all_explanations = {}
-    # [AUDITORIA] Dicionário para armazenar tempo por instância (run_minexp_for_dataset)
-    tempos_individuais = {}
-    
-    # Importar barra de progresso
-    from utils.progress_bar import ProgressBar, suppress_library_warnings
-    suppress_library_warnings()
-    
-    # Criar barra de progresso global
-    total_instances = len(neg_idx) + len(pos_idx) + len(rej_idx)
-    pbar = ProgressBar(total=total_instances, description=f"MinExp Explicando {nome_relatorio}")
-
-    # Runner: usar mesma estratégia de chunks e time_limit maior para alta dimensionalidade
-    def explain_in_chunks(idx_array, classified_label):
-        if len(idx_array) == 0:
-            return
-        time_limit = 30.0 if hi_dim else default_time_limit
-        chunk_size = 20 if hi_dim else default_chunk_size
-        for start in range(0, len(idx_array), chunk_size):
-            sl = slice(start, start + chunk_size)
-            sel_idx = idx_array[sl]
-            
-            # [AUDITORIA] Medir APENAS o tempo do solver (excluir overhead)
-            start_chunk = time.perf_counter()
-            try:
-                explanations_local = utils.svm_explainer.svm_explanation_binary(
-                    dual_coef=dual_coef,
-                    support_vectors=np.array([w_solver]),
-                    intercept=intercept,
-                    t_lower=t_lower,
-                    t_upper=t_upper,
-                    lower_bound=lower_bound,
-                    upper_bound=upper_bound,
-                    show_log=0,
-                    n_threads=default_threads,
-                    data=X_test_solver[sel_idx],
-                    classified=classified_label,
-                    time_limit=time_limit
-                )
-                # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
-                tempo_chunk = time.perf_counter() - start_chunk
-                tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
-                
-                if topk_idx is not None:
-                    remapped = []
-                    for exp in explanations_local:
-                        remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
-                    explanations_local = remapped
-                all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
-                
-                # [AUDITORIA] Armazenar tempo para cada instância do chunk
-                for idx in sel_idx:
-                    tempos_individuais[idx] = tempo_por_instancia
-                
-                # Atualizar barra de progresso
-                pbar.update(len(sel_idx))
-                    
-            except Exception as e:
-                print(f"[MinExp] Solver falhou (runner) para {classified_label.lower()} (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
-                # Atualizar progresso mesmo em caso de erro
-                pbar.update(len(sel_idx))
-
-    # [AUDITORIA] Processar cada tipo (não medir aqui, já medido dentro do explain_in_chunks)
-    if len(neg_idx) > 0:
-        explain_in_chunks(neg_idx, "Negative")
-    if len(pos_idx) > 0:
-        explain_in_chunks(pos_idx, "Positive")
-    
-    # [AUDITORIA] Rejeitadas: mesmo padrão com timer no solver
-    if len(rej_idx) > 0:
-        time_limit = 30.0 if hi_dim else default_time_limit
-        chunk_size = 20 if hi_dim else default_chunk_size
-        for start in range(0, len(rej_idx), chunk_size):
-            sl = slice(start, start + chunk_size)
-            sel_idx = rej_idx[sl]
-            
-            # [AUDITORIA] Medir APENAS o tempo do solver
-            start_chunk = time.perf_counter()
-            try:
-                explanations_local = utils.svm_explainer.svm_explanation_rejected(
-                    dual_coef=dual_coef,
-                    support_vectors=np.array([w_solver]),
-                    intercept=intercept,
-                    t_lower=t_lower,
-                    t_upper=t_upper,
-                    lower_bound=lower_bound,
-                    upper_bound=upper_bound,
-                    data=X_test_solver[sel_idx],
-                    show_log=0,
-                    n_threads=default_threads,
-                    time_limit=time_limit
-                )
-                # [AUDITORIA] Tempo do solver dividido igualmente entre instâncias
-                tempo_chunk = time.perf_counter() - start_chunk
-                tempo_por_instancia = tempo_chunk / len(sel_idx) if len(sel_idx) > 0 else 0.0
-                
-                if topk_idx is not None:
-                    remapped = []
-                    for exp in explanations_local:
-                        remapped.append([(int(topk_idx[int(item[0])]), item[1]) for item in exp])
-                    explanations_local = remapped
-                all_explanations.update({idx: exp for idx, exp in zip(sel_idx, explanations_local)})
-                
-                # [AUDITORIA] Armazenar tempo para cada instância do chunk
-                for idx in sel_idx:
-                    tempos_individuais[idx] = tempo_por_instancia
-                
-                # Atualizar barra de progresso
-                pbar.update(len(sel_idx))
-                    
-            except Exception as e:
-                print(f"[MinExp] Solver falhou (runner) para rejeitadas (chunk {start}:{start+chunk_size}): {e}. Prosseguindo.")
-                # Atualizar progresso mesmo em caso de erro
-                pbar.update(len(sel_idx))
-
-    # [AUDITORIA] Calcular métricas a partir dos tempos individuais
-    tempos_neg = [tempos_individuais.get(i, 0.0) for i in neg_idx]
-    tempos_pos = [tempos_individuais.get(i, 0.0) for i in pos_idx]
-    tempos_rej = [tempos_individuais.get(i, 0.0) for i in rej_idx]
-    todos_tempos = [tempos_individuais.get(i, 0.0) for i in range(len(y_test))]
-    
-    metricas['tempo_medio_negativas'] = float(np.mean(tempos_neg)) if tempos_neg else 0.0
-    metricas['tempo_medio_positivas'] = float(np.mean(tempos_pos)) if tempos_pos else 0.0
-    metricas['tempo_medio_rejeitadas'] = float(np.mean(tempos_rej)) if tempos_rej else 0.0
-    metricas['tempo_total'] = float(sum(todos_tempos))
-    metricas['tempo_medio_instancia'] = float(np.mean(todos_tempos)) if todos_tempos else 0.0
-    metricas['num_rejeitadas_teste'] = len(rej_idx)
-    metricas['num_aceitas_teste'] = len(y_test) - len(rej_idx)
-    metricas['taxa_rejeicao_teste'] = (len(rej_idx) / len(y_test)) * 100 if len(y_test) > 0 else 0
-    metricas['acuracia_com_rejeicao'] = utils.utility.calculate_accuracy(pipeline, t_upper, t_lower, X_test, y_test) * 100
-
-    feature_counts = {name: 0 for name in nomes_features}
-    exp_lengths_pos, exp_lengths_neg, exp_lengths_rej = [], [], []
-    total_n = len(y_test)
-    for i in range(total_n):
-        exp = all_explanations.get(i, [])
-        exp_len = len(exp)
-        if i in pos_idx:
-            exp_lengths_pos.append(exp_len)
-        elif i in neg_idx:
-            exp_lengths_neg.append(exp_len)
-        elif i in rej_idx:
-            exp_lengths_rej.append(exp_len)
-        for item_explicacao in exp:
-            feature_idx = item_explicacao[0]
-            if 0 <= feature_idx < len(nomes_features):
-                feature_counts[nomes_features[feature_idx]] += 1
-
-    for class_key, exp_lengths in [("positive", exp_lengths_pos), ("negative", exp_lengths_neg), ("rejected", exp_lengths_rej)]:
-        stats = {'count': len(exp_lengths)}
-        if exp_lengths:
-            stats.update({
-                'min_length': int(np.min(exp_lengths)),
-                'mean_length': float(np.mean(exp_lengths)),
-                'max_length': int(np.max(exp_lengths)),
-                'std_length': float(np.std(exp_lengths))
-            })
-        else:
-            stats.update({'min_length': 0, 'mean_length': 0, 'max_length': 0, 'std_length': 0})
-        metricas[f'stats_explicacao_{class_key}'] = stats
-
-    metricas['features_frequentes'] = sorted(feature_counts.items(), key=lambda item: item[1], reverse=True)
-
-    log_final = formatar_log(metricas)
-    base_dir = os.path.join('results', 'report', 'minexp')
-    os.makedirs(base_dir, exist_ok=True)
-    nome_arquivo_seguro = sanitize_filename(nome_relatorio)
-    caminho_arquivo = os.path.join(base_dir, f'minexp_{nome_arquivo_seguro}.txt')
-    with open(caminho_arquivo, 'w', encoding='utf-8') as f:
-        f.write(log_final)
-
-    dataset_key = dataset_name
-    # Predições finais por threshold
-    y_pred_final = np.full(len(y_test), -1, dtype=int)
-    y_pred_final[pos_idx] = 1
-    y_pred_final[neg_idx] = 0
-    rejected_mask = np.array([i in rej_idx for i in range(len(y_test))])
-
-    X_test_dict = {}
-    for col in X_test.columns:
-        X_test_dict[str(col)] = [float(x) for x in X_test[col].tolist()]
-    y_test_list = [int(v) for v in (y_test.tolist() if hasattr(y_test, 'tolist') else list(y_test))]
-
-    def extract_feats_minexp(exp):
-        feats = set()
-        for item in exp:
-            try:
-                fidx = int(item[0])
-            except Exception:
-                continue
-            if 0 <= fidx < len(nomes_features):
-                feats.add(nomes_features[fidx])
-        return sorted(list(feats))
-
-    per_instance = []
-    for i in range(len(y_test_list)):
-        feats_list = extract_feats_minexp(all_explanations.get(i, []))
-        per_instance.append({
-            'id': str(i),
-            'y_true': int(y_test_list[i]),
-            'y_pred': int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1,
-            'rejected': bool(rejected_mask[i]),
-            'decision_score': float(decfun_test[i]),
-            'explanation': feats_list,
-            'explanation_size': int(len(feats_list)),
-            'tempo_segundos': float(tempos_individuais.get(i, 0.0))
-        })
-
-    # Metadados MNIST
-    mnist_meta = {}
-    if dataset_name == 'mnist':
-        try:
-            from data.datasets import MNIST_FEATURE_MODE, MNIST_SELECTED_PAIR
-            mnist_meta = {
-                'mnist_feature_mode': MNIST_FEATURE_MODE,
-                'mnist_digit_pair': list(MNIST_SELECTED_PAIR) if MNIST_SELECTED_PAIR is not None else None
-            }
-        except Exception:
-            mnist_meta = {}
-
-    subsample = meta.get('subsample_size')
-
-    dataset_cache = {
-        'config': {
-            'dataset_name': dataset_key,
-            'test_size': float(meta['test_size']),
-            'random_state': RANDOM_STATE,
-            'rejection_cost': float(meta['rejection_cost']),
-            'subsample_size': float(subsample) if subsample else None,
-            **mnist_meta
-        },
-        'thresholds': {
-            't_plus': float(t_upper),
-            't_minus': float(t_lower),
-            'rejection_zone_width': float(t_upper - t_lower)
-        },
-        'performance': {
-            'accuracy_without_rejection': float(metricas['acuracia_sem_rejeicao']),
-            'accuracy_with_rejection': float(metricas['acuracia_com_rejeicao']),
-            'rejection_rate': float(metricas['taxa_rejeicao_teste']),
-            'num_test_instances': int(metricas.get('total_instancias_teste', len(y_test))),
-            'num_rejected': int(metricas.get('num_rejeitadas_teste', len(rej_idx))),
-            'num_accepted': int(metricas.get('num_aceitas_teste', len(pos_idx) + len(neg_idx)))
-        },
-        'explanation_stats': {
-            'positive': metricas['stats_explicacao_positive'],
-            'negative': metricas['stats_explicacao_negative'],
-            'rejected': metricas['stats_explicacao_rejected']
-        },
-        'computation_time': {
-            'total': float(metricas['tempo_total']),
-            'mean_per_instance': float(metricas['tempo_medio_instancia']),
-            'positive': float(metricas['tempo_medio_positivas']),
-            'negative': float(metricas['tempo_medio_negativas']),
-            'rejected': float(metricas['tempo_medio_rejeitadas'])
-        },
-        'top_features': [
-            {"feature": feat, "count": int(count)}
-            for feat, count in metricas['features_frequentes'][:20]
-        ],
-        'per_instance': per_instance,
-        'model': {
-            'type': 'LogisticRegression',
-            'num_features': len(nomes_features),
-            'class_names': list(meta['nomes_classes']),
-            'coefs': [float(c) for c in pipeline.named_steps['model'].coef_[0].tolist()],
-            'intercept': float(pipeline.named_steps['model'].intercept_[0]),
-            'scaler_params': {
-                'min': [float(v) for v in pipeline.named_steps['scaler'].min_],
-                'scale': [float(v) for v in pipeline.named_steps['scaler'].scale_]
-            }
-        }
-    }
-    dataset_key_safe = sanitize_filename(dataset_key)
-    update_method_results("MinExp", dataset_key_safe, dataset_cache)
-
-    return {
-        'report_path': caminho_arquivo,
-        'json_updated_for': dataset_key,
-        'metrics': metricas
-    }

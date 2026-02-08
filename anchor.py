@@ -123,8 +123,6 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
     metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
     metricas['total_instancias_teste'] = len(y_test)
     metricas['num_features'] = len(nomes_features)
-    # Ajuste de precisão para MNIST (acelera geração): usar 0.95
-    local_anchor_threshold = 0.90 if len(nomes_features) >= 500 else ANCHOR_PRECISION_THRESHOLD
     y_pred_sem_rejeicao = pipeline.predict(X_test)
     metricas['acuracia_sem_rejeicao'] = accuracy_score(y_test, y_pred_sem_rejeicao) * 100
     metricas['t_lower'], metricas['t_upper'] = float(t_minus), float(t_plus)
@@ -176,33 +174,20 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
     explainer.fit(X_train.values if hasattr(X_train, 'values') else X_train, disc_perc=(25, 50, 75))
 
     # Limitar número de explicações para datasets de alta dimensionalidade
-    # Contudo, se houver subamostragem aplicada (meta['subsample_size']), respeitamos isso
+    # Explica TODAS as instâncias de teste, sem limites artificiais
     max_instances_to_explain = len(X_test)
-    subsample = meta.get('subsample_size', None)
-    if subsample is None and len(nomes_features) >= 500:
-        max_instances_to_explain = min(200, len(X_test))
-        print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
-              f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
 
     tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
+    tempos_individuais = {}  # [CORRECAO] Dicionário para armazenar tempo por instância
     explicacoes = {}
-    # Parâmetros otimizados para alta dimensionalidade (ex.: MNIST)
-    # Ajustes para acelerar geração (~10x mais rápido)
-    low_memory = len(nomes_features) >= 500
-    if low_memory:
-        # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6, beam_size=2
-        anchor_threshold = 0.90
-        anchor_delta = 0.15
-        anchor_batch_size = 200
-        anchor_max_size = 6
-        anchor_beam_size = 2  # CORRIGIDO: era 1, causava explicações muito pequenas
-    else:
-        # Outros datasets: configuração balanceada
-        anchor_threshold = local_anchor_threshold  # 0.95 (permite pequeno erro)
-        anchor_delta = 0.05  # AJUSTADO: era 0.1, maior confiança estatística
-        anchor_batch_size = 100
-        anchor_max_size = None  # Sem limite de tamanho
-        anchor_beam_size = 4  # CORRIGIDO: era 1, permite mais exploração
+    
+    # Parâmetros do Anchor: IGUAIS PARA TODOS OS DATASETS
+    # NÃO mudar threshold/delta ou invalida comparação científica
+    anchor_threshold = ANCHOR_PRECISION_THRESHOLD  # 0.95 - padrão
+    anchor_delta = 0.05  # Confiança estatística padrão
+    anchor_batch_size = 100
+    anchor_max_size = None  # Sem limite
+    anchor_beam_size = 4
 
     print(f"\n[INFO] Gerando explicações para {max_instances_to_explain} instâncias de teste...")
     
@@ -229,7 +214,7 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
                 )
             except (MemoryError, OverflowError):
                 if low_memory and anchor_batch_size > 8:
-                    try:
+                    try:  
                         explanation = explainer.explain(
                             instance_arr,
                             threshold=anchor_threshold,
@@ -239,18 +224,52 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
                             beam_size=anchor_beam_size
                         )
                     except Exception:
+                        # Falhou - registrar como falha
+                        runtime = time.perf_counter() - start_time
+                        tempos_total.append(runtime)
+                        tempos_individuais[i] = runtime
+                        explicacoes[i] = []
+                        if i in indices_rejeitados:
+                            tempos_rej.append(runtime)
+                        elif y_pred_final[i] == 1:
+                            tempos_pos.append(runtime)
+                        else:
+                            tempos_neg.append(runtime)
                         pbar.update()
                         continue
                 else:
+                    # Sem memória - registrar como falha
+                    runtime = time.perf_counter() - start_time
+                    tempos_total.append(runtime)
+                    tempos_individuais[i] = runtime
+                    explicacoes[i] = []
+                    if i in indices_rejeitados:
+                        tempos_rej.append(runtime)
+                    elif y_pred_final[i] == 1:
+                        tempos_pos.append(runtime)
+                    else:
+                        tempos_neg.append(runtime)
                     pbar.update()
                     continue
             except Exception:
+                # Erro genérico - registrar como falha
+                runtime = time.perf_counter() - start_time
+                tempos_total.append(runtime)
+                tempos_individuais[i] = runtime
+                explicacoes[i] = []
+                if i in indices_rejeitados:
+                    tempos_rej.append(runtime)
+                elif y_pred_final[i] == 1:
+                    tempos_pos.append(runtime)
+                else:
+                    tempos_neg.append(runtime)
                 pbar.update()
                 continue
 
             # [AUDITORIA] Usar time.perf_counter() para maior precisão
             runtime = time.perf_counter() - start_time
             tempos_total.append(runtime)
+            tempos_individuais[i] = runtime  # [CORRECAO] Armazenar tempo individual
             explicacoes[i] = explanation.anchor
             if i in indices_rejeitados:
                 tempos_rej.append(runtime)
@@ -341,6 +360,22 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
 
     subsample = meta.get('subsample_size')
 
+    # Criar per_instance com tempos individuais
+    per_instance = []
+    for i in range(len(y_test)):
+        y_pred_i = int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1
+        rules = explicacoes.get(i, [])
+        per_instance.append({
+            'id': str(i),
+            'y_true': int(y_test.iloc[i] if hasattr(y_test, 'iloc') else y_test[i]),
+            'y_pred': y_pred_i,
+            'rejected': bool(i in indices_rejeitados),
+            'decision_score': float(decision_scores_test[i]),
+            'explanation': list(rules),
+            'explanation_size': int(len(rules)),
+            'computation_time': float(tempos_individuais.get(i, 0.0))
+        })
+
     results_data = {
         "config": {
             "dataset_name": dataset_name,
@@ -375,6 +410,7 @@ def run_anchor_for_dataset(dataset_name: str) -> dict:
             "negative": float(metricas['tempo_medio_negativas']),
             "rejected": float(metricas['tempo_medio_rejeitadas'])
         },
+        "per_instance": per_instance,
         "top_features": [
             {"feature": feat, "count": count}
             for feat, count in metricas['features_frequentes'][:20]
@@ -452,8 +488,6 @@ if __name__ == '__main__':
 
         metricas = {'dataset_name': nome_relatorio, 'test_size_atual': meta['test_size']}
         nomes_features = meta['feature_names']
-        # Ajuste de precisão para MNIST (acelera geração): usar 0.95
-        local_anchor_threshold = 0.90 if len(nomes_features) >= 500 else ANCHOR_PRECISION_THRESHOLD
 
         # Métricas do modelo sem rejeição (mesmo pipeline do PEAB)
         metricas['total_instancias_teste'] = len(y_test)
@@ -524,11 +558,9 @@ if __name__ == '__main__':
         # NÃO aplicamos limite extra — queremos que PEAB/MinExp/Anchor façam a mesma análise.
         max_instances_to_explain = len(X_test)
         subsample = meta.get('subsample_size', None)
-        if subsample is None and len(nomes_features) >= 500:
-            # limite seguro para evitar estouro de memória em Alibi (quando NÃO houve subamostragem)
-            max_instances_to_explain = min(200, len(X_test))
-            print(f"Dataset de alta dimensionalidade detectado ({len(nomes_features)} features). "
-                  f"Explicando apenas as primeiras {max_instances_to_explain} instâncias para evitar estouro de memória.")
+        
+        # Explica TODAS as instâncias de teste, sem limites artificiais
+        max_instances_to_explain = len(X_test)
 
         print(f"\n[INFO] Gerando explicações para {max_instances_to_explain} instâncias de teste...")
         
@@ -537,45 +569,37 @@ if __name__ == '__main__':
         suppress_library_warnings()
         
         tempos_total, tempos_pos, tempos_neg, tempos_rej = [], [], [], []
+        tempos_individuais = {}  # [CORRECAO] Dicionário para armazenar tempo por instância
         explicacoes = {}
-        # Parâmetros otimizados para alta dimensionalidade (ex.: MNIST)
-        # Ajustes para acelerar geração (~10x mais rápido)
-        low_memory = len(nomes_features) >= 500
-        if low_memory:
-            # MNIST: threshold=0.90, delta=0.15, batch_size=200, max_anchor_size=6, beam_size=2
-            anchor_threshold = 0.90
-            anchor_delta = 0.15
-            anchor_batch_size = 200
-            anchor_max_size = 6
-            anchor_beam_size = 2  # CORRIGIDO: era 1, causava explicações muito pequenas
-        else:
-            # Outros datasets: configuração balanceada
-            anchor_threshold = local_anchor_threshold  # 0.95 (permite pequeno erro)
-            anchor_delta = 0.05  # AJUSTADO: era 0.1, maior confiança estatística
-            anchor_batch_size = 100
-            anchor_max_size = None  # Sem limite de tamanho
-            anchor_beam_size = 4  # CORRIGIDO: era 1, permite mais exploração
-
-        with ProgressBar(total=max_instances_to_explain, description=f"Anchor Explicando {nome_relatorio}") as pbar:
+        
+        # Parâmetros do Anchor: IGUAIS PARA TODOS OS DATASETS
+        # NÃO mudar threshold/delta ou invalida comparação científica
+        anchor_threshold = ANCHOR_PRECISION_THRESHOLD  # 0.95 - padrão
+        anchor_delta = 0.05  # Confiança estatística padrão
+        anchor_batch_size = 100
+        anchor_max_size = None  # Sem limite
+        anchor_beam_size = 4
+        low_memory = False  # Flag para modo economia de memória
+        
+        with ProgressBar(total=max_instances_to_explain, description=f"Anchor {meta.get('dataset_name', 'dataset')}") as pbar:
             for i in range(max_instances_to_explain):
-                # [AUDITORIA] Preparar instância ANTES de iniciar timer
+                # Preparar instância ANTES de iniciar timer
                 instance_arr = X_test.iloc[i].values if hasattr(X_test, 'iloc') else X_test[i]
                 
-                # [AUDITORIA] Iniciar timer APENAS para o algoritmo de explicação
+                # Iniciar timer APENAS para o algoritmo de explicação
                 start_time = time.perf_counter()
-                
                 try:
                     explanation = explainer.explain(
                         instance_arr,
                         threshold=anchor_threshold,
                         delta=anchor_delta,
-                        tau=0.1,  # AJUSTADO: era 0.15, força expansão mais agressiva
+                        tau=0.1,
                         batch_size=anchor_batch_size,
                         max_anchor_size=anchor_max_size,
                         beam_size=anchor_beam_size
                     )
                 except (MemoryError, OverflowError):
-                    # Fallback: tentar reduzir ainda mais memória e continuar
+                    # Fallback: tentar reduzir memória
                     if low_memory and anchor_batch_size > 8:
                         try:
                             explanation = explainer.explain(
@@ -587,19 +611,52 @@ if __name__ == '__main__':
                                 beam_size=anchor_beam_size
                             )
                         except Exception:
+                            # Falhou mesmo com batch reduzido - registrar como falha
+                            runtime = time.perf_counter() - start_time
+                            tempos_total.append(runtime)
+                            tempos_individuais[i] = runtime
+                            explicacoes[i] = []  # Explicação vazia
+                            if i in indices_rejeitados:
+                                tempos_rej.append(runtime)
+                            elif y_pred_final[i] == 1:
+                                tempos_pos.append(runtime)
+                            else:
+                                tempos_neg.append(runtime)
                             pbar.update()
                             continue
                     else:
+                        # Sem memória ou não tem low_memory - registrar como falha
+                        runtime = time.perf_counter() - start_time
+                        tempos_total.append(runtime)
+                        tempos_individuais[i] = runtime
+                        explicacoes[i] = []
+                        if i in indices_rejeitados:
+                            tempos_rej.append(runtime)
+                        elif y_pred_final[i] == 1:
+                            tempos_pos.append(runtime)
+                        else:
+                            tempos_neg.append(runtime)
                         pbar.update()
                         continue
                 except Exception:
-                    # Silenciar erros e continuar
+                    # Qualquer outro erro - registrar como falha
+                    runtime = time.perf_counter() - start_time
+                    tempos_total.append(runtime)
+                    tempos_individuais[i] = runtime
+                    explicacoes[i] = []
+                    if i in indices_rejeitados:
+                        tempos_rej.append(runtime)
+                    elif y_pred_final[i] == 1:
+                        tempos_pos.append(runtime)
+                    else:
+                        tempos_neg.append(runtime)
                     pbar.update()
                     continue
 
-                # [AUDITORIA] Usar time.perf_counter() para maior precisão
+                # Usar time.perf_counter() para maior precisão
                 runtime = time.perf_counter() - start_time
                 tempos_total.append(runtime)
+                tempos_individuais[i] = runtime  # [CORRECAO] Armazenar tempo individual
                 explicacoes[i] = explanation.anchor
                 if i in indices_rejeitados:
                     tempos_rej.append(runtime)
@@ -682,10 +739,9 @@ if __name__ == '__main__':
             return sorted(list(feats))
 
         per_instance = []
-        explicacoes_local = locals().get('explicacoes', {}) if isinstance(locals().get('explicacoes', {}), dict) else {}
         for i in range(len(y_test_list)):
             y_pred_i = int(y_pred_final[i]) if int(y_pred_final[i]) in (0, 1) else -1
-            rules = explicacoes_local.get(i, [])
+            rules = explicacoes.get(i, [])
             feats_list = extract_feats(rules)
             per_instance.append({
                 'id': str(i),
@@ -694,7 +750,8 @@ if __name__ == '__main__':
                 'rejected': bool(rejected_mask[i]),
                 'decision_score': float(decision_scores_test[i]),
                 'explanation': feats_list,
-                'explanation_size': int(len(feats_list))
+                'explanation_size': int(len(feats_list)),
+                'computation_time': float(tempos_individuais.get(i, 0.0))  # [CORRECAO] Adicionar tempo
             })
 
         def conv_stats(d):
@@ -765,6 +822,7 @@ if __name__ == '__main__':
                 'negative': float(metricas.get('tempo_medio_negativas', 0.0)),
                 'rejected': float(metricas.get('tempo_medio_rejeitadas', 0.0))
             },
+            'per_instance': per_instance,
             'top_features': [
                 {"feature": feat, "count": int(count)}
                 for feat, count in metricas['features_frequentes'][:20]  # Top 20 em vez de todas

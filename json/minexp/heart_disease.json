@@ -7,9 +7,9 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.18488660156881243,
+    "t_plus": 0.1868980476283751,
     "t_minus": -0.10928101492574996,
-    "rejection_zone_width": 0.29416761649456236
+    "rejection_zone_width": 0.29617906255412507
   },
   "performance": {
     "accuracy_without_rejection": 85.55555555555556,
@@ -23,9 +23,9 @@
     "positive": {
       "count": 23,
       "min_length": 5,
-      "mean_length": 7.0,
+      "mean_length": 7.086956521739131,
       "max_length": 11,
-      "std_length": 1.5603789952109879
+      "std_length": 1.6128032166079485
     },
     "negative": {
       "count": 29,
@@ -39,15 +39,15 @@
       "min_length": 5,
       "mean_length": 6.605263157894737,
       "max_length": 9,
-      "std_length": 1.5481648505350238
+      "std_length": 1.5137870545547005
     }
   },
   "computation_time": {
-    "total": 56.75597009994082,
-    "mean_per_instance": 0.6306218899993431,
-    "positive": 0.4870099565216707,
-    "negative": 0.46759347241484267,
-    "rejected": 0.8419613263134744
+    "total": 64.50586739995924,
+    "mean_per_instance": 0.7167318599995471,
+    "positive": 0.5304102521723785,
+    "negative": 0.5275719827582963,
+    "rejected": 0.9738643184211565
   },
   "top_features": [
     {
@@ -56,15 +56,15 @@
     },
     {
       "feature": "thal",
-      "count": 87
-    },
-    {
-      "feature": "slope",
-      "count": 80
+      "count": 88
     },
     {
       "feature": "ca",
       "count": 80
+    },
+    {
+      "feature": "slope",
+      "count": 79
     },
     {
       "feature": "exang",
@@ -72,7 +72,7 @@
     },
     {
       "feature": "oldpeak",
-      "count": 61
+      "count": 62
     },
     {
       "feature": "chol",
@@ -88,11 +88,11 @@
     },
     {
       "feature": "cp",
-      "count": 24
+      "count": 23
     },
     {
       "feature": "trestbps",
-      "count": 19
+      "count": 22
     },
     {
       "feature": "sex",
@@ -100,7 +100,1637 @@
     },
     {
       "feature": "age",
-      "count": 2
+      "count": 1
+    }
+  ],
+  "per_instance": [
+    {
+      "id": "0",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.01365456187450681,
+      "explanation": [
+        "ca",
+        "chol",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.9472745999955805
+    },
+    {
+      "id": "1",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3687965635155946,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.5257189999974798
+    },
+    {
+      "id": "2",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19867815542516187,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.6028202000015881
+    },
+    {
+      "id": "3",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.22311398216730088,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5960616999946069
+    },
+    {
+      "id": "4",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10511029860685663,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "restecg",
+        "sex",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.831828200010932
+    },
+    {
+      "id": "5",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.13913029419637668,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.027096599995275
+    },
+    {
+      "id": "6",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.18475713228383384,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.5023075000062818
+    },
+    {
+      "id": "7",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10189598887215798,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.894526300005964
+    },
+    {
+      "id": "8",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.18956799233257793,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5292094000033103
+    },
+    {
+      "id": "9",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08304005127798068,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.0711235999915516
+    },
+    {
+      "id": "10",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.28237345852637746,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5172268999886
+    },
+    {
+      "id": "11",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3326078764208933,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.5696287000027951
+    },
+    {
+      "id": "12",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.32094596244128737,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5425774000032106
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.03650368158939518,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "fbs",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 7,
+      "computation_time": 1.0498107000021264
+    },
+    {
+      "id": "14",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.04023140430894363,
+      "explanation": [
+        "ca",
+        "exang",
+        "restecg",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9666699999943376
+    },
+    {
+      "id": "15",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08984218725590294,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.0053905000095256
+    },
+    {
+      "id": "16",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.13155870134750708,
+      "explanation": [
+        "ca",
+        "cp",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5471128999924986
+    },
+    {
+      "id": "17",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.19667488258008903,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "sex",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 11,
+      "computation_time": 0.5028428999939933
+    },
+    {
+      "id": "18",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08106391519467947,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.9949620999977924
+    },
+    {
+      "id": "19",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.045121027075829455,
+      "explanation": [
+        "ca",
+        "chol",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.8723342000012053
+    },
+    {
+      "id": "20",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.108830703746482,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.0446150000061607
+    },
+    {
+      "id": "21",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.23757167976952853,
+      "explanation": [
+        "chol",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5183804999978747
+    },
+    {
+      "id": "22",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.020109991411285916,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9456363000062993
+    },
+    {
+      "id": "23",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10258116450414027,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.6974613000056706
+    },
+    {
+      "id": "24",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.003960127971026697,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9417492999928072
+    },
+    {
+      "id": "25",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.0030534572740804483,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "restecg",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.9339560999942478
+    },
+    {
+      "id": "26",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17153913840256257,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5163883999921381
+    },
+    {
+      "id": "27",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.17993384942294993,
+      "explanation": [
+        "ca",
+        "chol",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.9520583999983501
+    },
+    {
+      "id": "28",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.075448117725752,
+      "explanation": [
+        "ca",
+        "chol",
+        "fbs",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.7990390000049956
+    },
+    {
+      "id": "29",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.20320488542246617,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 10,
+      "computation_time": 0.5351679000013974
+    },
+    {
+      "id": "30",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.06813862495382479,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.0906301000068197
+    },
+    {
+      "id": "31",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.07536730788255744,
+      "explanation": [
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 1.0357517000084044
+    },
+    {
+      "id": "32",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.14992897701310587,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5265300000028219
+    },
+    {
+      "id": "33",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10229157240694164,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "sex",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.8927378999942448
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19227926036930998,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5157367000065278
+    },
+    {
+      "id": "35",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.2064324964510529,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.542516000001342
+    },
+    {
+      "id": "36",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.1789870892149819,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.9707959999941522
+    },
+    {
+      "id": "37",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.20321213457567672,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5222539999958826
+    },
+    {
+      "id": "38",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2388531833449244,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5033284999954049
+    },
+    {
+      "id": "39",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.14533098612794607,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5480223000049591
+    },
+    {
+      "id": "40",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.14364029205891787,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 1.0730115999904228
+    },
+    {
+      "id": "41",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.059697169504247284,
+      "explanation": [
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.8352086000086274
+    },
+    {
+      "id": "42",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.011119578125391077,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9444500999961747
+    },
+    {
+      "id": "43",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1216618298897688,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.530389000006835
+    },
+    {
+      "id": "44",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16651322348769518,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5307969999994384
+    },
+    {
+      "id": "45",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17248960827034987,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5212078999902587
+    },
+    {
+      "id": "46",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15479939780541402,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5212358999997377
+    },
+    {
+      "id": "47",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.10455908982695301,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9431637999950908
+    },
+    {
+      "id": "48",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.13633255844410072,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5353929999982938
+    },
+    {
+      "id": "49",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3325944513110817,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.5265726999932667
+    },
+    {
+      "id": "50",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.05221832079911343,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 9,
+      "computation_time": 1.2019300000101794
+    },
+    {
+      "id": "51",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.24156485378258657,
+      "explanation": [
+        "chol",
+        "cp",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5642838999920059
+    },
+    {
+      "id": "52",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2184225127001544,
+      "explanation": [
+        "chol",
+        "cp",
+        "exang",
+        "fbs",
+        "restecg",
+        "sex",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5018445000023348
+    },
+    {
+      "id": "53",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.1425754745784984,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 7,
+      "computation_time": 1.3875963000027696
+    },
+    {
+      "id": "54",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.39496126064386755,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.5078803999931552
+    },
+    {
+      "id": "55",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.11451806664405415,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5845539000001736
+    },
+    {
+      "id": "56",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2785551528177121,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.49544989998685196
+    },
+    {
+      "id": "57",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.07099006177620705,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.059471599990502
+    },
+    {
+      "id": "58",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.134193740920383,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5651110999897355
+    },
+    {
+      "id": "59",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.12470049157242123,
+      "explanation": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.1606962000078056
+    },
+    {
+      "id": "60",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17693239633990646,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5273106999957236
+    },
+    {
+      "id": "61",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.33265106764941704,
+      "explanation": [
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.5170374000008451
+    },
+    {
+      "id": "62",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15255754141268013,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.36284589998831507
+    },
+    {
+      "id": "63",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2863300788784181,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.50632630000473
+    },
+    {
+      "id": "64",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1129676833875741,
+      "explanation": [
+        "age",
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 11,
+      "computation_time": 0.5372490000008838
+    },
+    {
+      "id": "65",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3315246187194089,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.5202344999997877
+    },
+    {
+      "id": "66",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10513660390722233,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "fbs",
+        "restecg",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.817438799989759
+    },
+    {
+      "id": "67",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.06254862510011343,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 0.9857397999876412
+    },
+    {
+      "id": "68",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.21728660611701062,
+      "explanation": [
+        "cp",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.5727260999992723
+    },
+    {
+      "id": "69",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1303802706233253,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5147202999942238
+    },
+    {
+      "id": "70",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.04708991846082706,
+      "explanation": [
+        "ca",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.8584633999998914
+    },
+    {
+      "id": "71",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2730540949989567,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.5762803000106942
+    },
+    {
+      "id": "72",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2167475773410114,
+      "explanation": [
+        "cp",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5098996000015177
+    },
+    {
+      "id": "73",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.016079594172043896,
+      "explanation": [
+        "ca",
+        "exang",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.8994999999995343
+    },
+    {
+      "id": "74",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1282363434213961,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 10,
+      "computation_time": 0.5157037000026321
+    },
+    {
+      "id": "75",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15875057861358646,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5208787000010489
+    },
+    {
+      "id": "76",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.30904188803334054,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.5960206000017934
+    },
+    {
+      "id": "77",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.043515384548579714,
+      "explanation": [
+        "ca",
+        "chol",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.8677862000040477
+    },
+    {
+      "id": "78",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 1.1085548730291328e-05,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.1211469000118086
+    },
+    {
+      "id": "79",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16611839115483515,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5411815999977989
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02173778533521574,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.0773241999995662
+    },
+    {
+      "id": "81",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19841178369264273,
+      "explanation": [
+        "ca",
+        "chol",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 8,
+      "computation_time": 0.6308837000105996
+    },
+    {
+      "id": "82",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3057453917528199,
+      "explanation": [
+        "ca",
+        "exang",
+        "fbs",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.550210600005812
+    },
+    {
+      "id": "83",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17945751661744055,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 7,
+      "computation_time": 0.5180934000090929
+    },
+    {
+      "id": "84",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1754492650652678,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.3901886999956332
+    },
+    {
+      "id": "85",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17494094582392328,
+      "explanation": [
+        "ca",
+        "exang",
+        "oldpeak",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 6,
+      "computation_time": 0.5123236000072211
+    },
+    {
+      "id": "86",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.07156880442078885,
+      "explanation": [
+        "ca",
+        "exang",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 5,
+      "computation_time": 1.0165871999925002
+    },
+    {
+      "id": "87",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.22888499432147252,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "fbs",
+        "oldpeak",
+        "restecg",
+        "slope",
+        "thalach"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5175431999959983
+    },
+    {
+      "id": "88",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.12214329791038868,
+      "explanation": [
+        "ca",
+        "chol",
+        "cp",
+        "exang",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.5128152999968734
+    },
+    {
+      "id": "89",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.09284350287869868,
+      "explanation": [
+        "chol",
+        "cp",
+        "fbs",
+        "oldpeak",
+        "sex",
+        "slope",
+        "thal",
+        "thalach",
+        "trestbps"
+      ],
+      "explanation_size": 9,
+      "computation_time": 0.7918815000011818
     }
   ],
   "model": {

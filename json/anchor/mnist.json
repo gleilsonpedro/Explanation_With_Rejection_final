@@ -4,7 +4,7 @@
     "test_size": 0.3,
     "random_state": 42,
     "rejection_cost": 0.24,
-    "subsample_size": 0.005,
+    "subsample_size": 0.01,
     "mnist_feature_mode": "raw",
     "mnist_digit_pair": [
       3,
@@ -17,30 +17,30 @@
     "rejection_zone_width": 2.1335761727104106
   },
   "performance": {
-    "accuracy_without_rejection": 90.0,
-    "accuracy_with_rejection": 90.0,
-    "rejection_rate": 0.0,
-    "num_test_instances": 20,
-    "num_rejected": 0,
-    "num_accepted": 20
+    "accuracy_without_rejection": 90.2439024390244,
+    "accuracy_with_rejection": 94.73684210526315,
+    "rejection_rate": 7.317073170731707,
+    "num_test_instances": 41,
+    "num_rejected": 3,
+    "num_accepted": 38
   },
   "explanation_stats": {
     "positive": {
-      "count": 10,
-      "min_length": 0,
-      "mean_length": 0.2,
-      "max_length": 2,
-      "std_length": 0.6000000000000001
-    },
-    "negative": {
-      "count": 10,
+      "count": 20,
       "min_length": 0,
       "mean_length": 0.0,
       "max_length": 0,
       "std_length": 0.0
     },
+    "negative": {
+      "count": 18,
+      "min_length": 0,
+      "mean_length": 0.1111111111111111,
+      "max_length": 2,
+      "std_length": 0.4581228472908512
+    },
     "rejected": {
-      "count": 0,
+      "count": 3,
       "min_length": 0,
       "mean_length": 0.0,
       "max_length": 0,
@@ -48,35 +48,454 @@
     }
   },
   "computation_time": {
-    "total": 1981.750332500087,
-    "mean_per_instance": 1981.750332500087,
-    "positive": 1981.750332500087,
-    "negative": 0.0,
-    "rejected": 0.0
+    "total": 10700.899077700007,
+    "mean_per_instance": 260.997538480488,
+    "positive": 206.20617996999937,
+    "negative": 315.2780267388896,
+    "rejected": 300.59033233333565
   },
+  "per_instance": [
+    {
+      "id": "0",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -7.592429932218471,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 474.3717961000002
+    },
+    {
+      "id": "1",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.218671176708463,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 452.7688324999981
+    },
+    {
+      "id": "2",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 5.133853196231689,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 445.2668660999989
+    },
+    {
+      "id": "3",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 8.72981914257649,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 442.8278194999948
+    },
+    {
+      "id": "4",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -10.04788222423738,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 443.7908272000059
+    },
+    {
+      "id": "5",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 3.5778737492092816,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 998.0292771999957
+    },
+    {
+      "id": "6",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.926640393422393,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 447.6052159999963
+    },
+    {
+      "id": "7",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -8.071505298933777,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 443.1067131000018
+    },
+    {
+      "id": "8",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.692177876384858,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 1112.955320000001
+    },
+    {
+      "id": "9",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -7.1509059149901955,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 448.0500570000004
+    },
+    {
+      "id": "10",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.4060214427720235,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 445.08960490000027
+    },
+    {
+      "id": "11",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 9.492217671803456,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 444.8818490000049
+    },
+    {
+      "id": "12",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.17628356656403,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 447.1490464000017
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.5592945881187019,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 449.17620710000483
+    },
+    {
+      "id": "14",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -10.06718015044952,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 470.7715953000006
+    },
+    {
+      "id": "15",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 7.2814647336858025,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 454.5563003999996
+    },
+    {
+      "id": "16",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.7353643143799033,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 452.0251158999963
+    },
+    {
+      "id": "17",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2719826539692936,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 437.91830240000127
+    },
+    {
+      "id": "18",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 7.901652388048121,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 447.43207010000333
+    },
+    {
+      "id": "19",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -15.614450385319952,
+      "explanation": [
+        "pixel4",
+        "pixel49",
+        "pixel496",
+        "pixel6",
+        "pixel62",
+        "pixel620"
+      ],
+      "explanation_size": 6,
+      "computation_time": 929.5644486000019
+    },
+    {
+      "id": "20",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 13.104165684807064,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 1.1973660000003292
+    },
+    {
+      "id": "21",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.8143553843147284,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.7769937999983085
+    },
+    {
+      "id": "22",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -8.736432454146305,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6577306000035605
+    },
+    {
+      "id": "23",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 6.425308911187593,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6631462000004831
+    },
+    {
+      "id": "24",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.340013114072616,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6148570000004838
+    },
+    {
+      "id": "25",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -7.287958551240858,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6290497999943909
+    },
+    {
+      "id": "26",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.511767861826876,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6038075000033132
+    },
+    {
+      "id": "27",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 5.533995647301119,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5902261000010185
+    },
+    {
+      "id": "28",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3785301180964047,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6097380999999586
+    },
+    {
+      "id": "29",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5008340269959268,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5786459000009927
+    },
+    {
+      "id": "30",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 4.885533670895924,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6004862999980105
+    },
+    {
+      "id": "31",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 4.429041719596606,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6261534000004758
+    },
+    {
+      "id": "32",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 11.791136984258689,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.6110187999947811
+    },
+    {
+      "id": "33",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 4.675251005509967,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5760995999953593
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.40368779747521066,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5696740000057616
+    },
+    {
+      "id": "35",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -4.782205567514901,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5853294000044116
+    },
+    {
+      "id": "36",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 6.531893260106778,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.7419860000009066
+    },
+    {
+      "id": "37",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -8.118528950256747,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.641104299997096
+    },
+    {
+      "id": "38",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 5.05336038190852,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.567366299997957
+    },
+    {
+      "id": "39",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -6.183628022524534,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.5652235000015935
+    },
+    {
+      "id": "40",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 8.905298615818248,
+      "explanation": [],
+      "explanation_size": 0,
+      "computation_time": 0.555810300000303
+    }
+  ],
   "top_features": [
     {
-      "feature": "pixel5",
+      "feature": "pixel4",
       "count": 1
     },
     {
-      "feature": "pixel51",
+      "feature": "pixel49",
       "count": 1
     },
     {
-      "feature": "pixel514",
+      "feature": "pixel496",
       "count": 1
     },
     {
-      "feature": "pixel2",
+      "feature": "pixel6",
       "count": 1
     },
     {
-      "feature": "pixel27",
+      "feature": "pixel62",
       "count": 1
     },
     {
-      "feature": "pixel277",
+      "feature": "pixel620",
       "count": 1
     }
   ],

@@ -2,36 +2,36 @@
   - Dataset: mnist_3_vs_8
   - Classificador Usado: LogisticRegression (explicado por Anchor)
   - Tamanho do Conjunto de Teste: 30%
-  - Total de Instâncias de Teste: 20
+  - Total de Instâncias de Teste: 41
   - Número de Features do Modelo: 784
-  - Acurácia do Modelo (teste, sem rejeição): 90.00%
+  - Acurácia do Modelo (teste, sem rejeição): 90.24%
   - Thresholds de Rejeição (Score): t+ = 0.8244, t- = -1.3092
   - Custo de Rejeição usado para Thresholds: 0.24
-  - Tempo Total de Geração das Explicações: 1981.7503 segundos
-  - Tempo Médio por Instância (Geral): 1981.7503 segundos
+  - Tempo Total de Geração das Explicações: 10700.8991 segundos
+  - Tempo Médio por Instância (Geral): 260.9975 segundos
 
 [Métricas de Desempenho do Modelo]
-  - Taxa de Rejeição no Teste: 0.00% (0 de 20 instâncias)
-  - Acurácia com Opção de Rejeição (nas 20 instâncias aceitas): 90.00%
+  - Taxa de Rejeição no Teste: 7.32% (3 de 41 instâncias)
+  - Acurácia com Opção de Rejeição (nas 38 instâncias aceitas): 94.74%
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
-  - Classe Positiva (Aceitas): (10 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 0.20 ± 0.60  (Min: 0, Max: 2)
-  - Classe Negativa (Aceitas): (10 instâncias)
+  - Classe Positiva (Aceitas): (20 instâncias)
     - Tamanho Explicação (Média ± Desv. Padrão): 0.00 ± 0.00  (Min: 0, Max: 0)
-  - Classe REJEITADA: (0 instâncias)
-    - N/A
+  - Classe Negativa (Aceitas): (18 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 0.11 ± 0.46  (Min: 0, Max: 2)
+  - Classe REJEITADA: (3 instâncias)
+    - Tamanho Explicação (Média ± Desv. Padrão): 0.00 ± 0.00  (Min: 0, Max: 0)
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - pixel5: 1 vezes
-    - pixel51: 1 vezes
-    - pixel514: 1 vezes
-    - pixel2: 1 vezes
-    - pixel27: 1 vezes
-    - pixel277: 1 vezes
+    - pixel4: 1 vezes
+    - pixel49: 1 vezes
+    - pixel496: 1 vezes
+    - pixel6: 1 vezes
+    - pixel62: 1 vezes
+    - pixel620: 1 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 1981.7503 segundos
-  - Tempo Médio (Negativas Aceitas): 0.0000 segundos
-  - Tempo Médio (Rejeitadas): 0.0000 segundos
+  - Tempo Médio (Positivas Aceitas): 206.2062 segundos
+  - Tempo Médio (Negativas Aceitas): 315.2780 segundos
+  - Tempo Médio (Rejeitadas): 300.5903 segundos

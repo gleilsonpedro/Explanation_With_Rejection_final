@@ -1,7 +1,8 @@
-"""
-Script para gerar tabelas LaTeX para múltiplos datasets.
-Compara os métodos PEAB, PULP, Anchor e MinExp para creditcard, covertype e mnist (3 vs 8).
-Datasets ordenados por número de features (menor para maior).
+"""Script para gerar tabelas LaTeX para múltiplos datasets.
+
+Gera tabelas comparando PEAB (MINABRO), PuLP, Anchors e MinExp (AbLinRO).
+Inclui uma tabela unificada de tempo (classificadas vs rejeitadas) com média e desvio padrão.
+
 Resultados salvos em results/tabelas_latex/mnist/
 """
 
@@ -11,8 +12,44 @@ from pathlib import Path
 import numpy as np
 
 
-# Configuração de datasets ordenados por número de features (menor para maior)
+# Datasets (ordem igual à tabela de tempo do artigo)
 DATASETS = [
+    {
+        "name": "banknote",
+        "display_name": "Banknote",
+        "num_features": 4,
+        "peab_name": "banknote",
+        "pulp_name": "banknote",
+        "anchor_name": "banknote",
+        "minexp_name": "banknote",
+    },
+    {
+        "name": "vertebral_column",
+        "display_name": "Vertebral Column",
+        "num_features": 6,
+        "peab_name": "vertebral_column",
+        "pulp_name": "vertebral_column",
+        "anchor_name": "vertebral_column",
+        "minexp_name": "vertebral_column",
+    },
+    {
+        "name": "pima_indians_diabetes",
+        "display_name": "Pima Indians",
+        "num_features": 8,
+        "peab_name": "pima_indians_diabetes",
+        "pulp_name": "pima_indians_diabetes",
+        "anchor_name": "pima_indians_diabetes",
+        "minexp_name": "pima_indians_diabetes",
+    },
+    {
+        "name": "heart_disease",
+        "display_name": "Heart Disease",
+        "num_features": 13,
+        "peab_name": "heart_disease",
+        "pulp_name": "heart_disease",
+        "anchor_name": "heart_disease",
+        "minexp_name": "heart_disease",
+    },
     {
         "name": "creditcard",
         "display_name": "Credit Card",
@@ -20,7 +57,16 @@ DATASETS = [
         "peab_name": "creditcard",
         "pulp_name": "creditcard",
         "anchor_name": "creditcard",
-        "minexp_name": "creditcard"
+        "minexp_name": "creditcard",
+    },
+    {
+        "name": "breast_cancer",
+        "display_name": "Breast Cancer",
+        "num_features": 30,
+        "peab_name": "breast_cancer",
+        "pulp_name": "breast_cancer",
+        "anchor_name": "breast_cancer",
+        "minexp_name": "breast_cancer",
     },
     {
         "name": "covertype",
@@ -29,17 +75,35 @@ DATASETS = [
         "peab_name": "covertype",
         "pulp_name": "covertype",
         "anchor_name": "covertype",
-        "minexp_name": "covertype"
+        "minexp_name": "covertype",
+    },
+    {
+        "name": "spambase",
+        "display_name": "Spambase",
+        "num_features": 57,
+        "peab_name": "spambase",
+        "pulp_name": "spambase",
+        "anchor_name": "spambase",
+        "minexp_name": "spambase",
+    },
+    {
+        "name": "sonar",
+        "display_name": "Sonar",
+        "num_features": 60,
+        "peab_name": "sonar",
+        "pulp_name": "sonar",
+        "anchor_name": "sonar",
+        "minexp_name": "sonar",
     },
     {
         "name": "mnist",
         "display_name": "MNIST (3 vs 8)",
-        "num_features": 196,
+        "num_features": 784,
         "peab_name": "mnist_3_vs_8",
         "pulp_name": "mnist_3_vs_8",
         "anchor_name": "mnist",
-        "minexp_name": "mnist"
-    }
+        "minexp_name": "mnist",
+    },
 ]
 
 METODOS = ["peab", "pulp", "anchor", "minexp"]
@@ -153,6 +217,142 @@ def extrair_tempo_por_tipo(data, metodo):
         return None, None
 
 
+def extrair_tempo_por_tipo_media_std_ms(data, metodo):
+    """Extrai (média, desvio padrão) em ms para instâncias classificadas e rejeitadas.
+
+    Fonte preferida: tempos por instância nos JSONs.
+
+    - PEAB/Anchor/MinExp: usa per_instance[*].computation_time (segundos) + per_instance[*].rejected
+    - PuLP: usa explicacoes[*].tempo_segundos (segundos) + explicacoes[*].tipo_predicao
+
+    Retorna:
+      - (mean_class_ms, std_class_ms), (mean_rej_ms, std_rej_ms)
+    """
+    if data is None:
+        return (None, None), (None, None)
+
+    try:
+        classif_s: list[float] = []
+        rej_s: list[float] = []
+
+        if metodo in ["peab", "anchor", "minexp"]:
+            per_instance = data.get("per_instance", [])
+            if not isinstance(per_instance, list):
+                per_instance = []
+
+            for pi in per_instance:
+                if not isinstance(pi, dict):
+                    continue
+                t = pi.get("computation_time", None)
+                if t is None:
+                    continue
+                try:
+                    t_f = float(t)
+                except Exception:
+                    continue
+
+                if bool(pi.get("rejected", False)):
+                    rej_s.append(t_f)
+                else:
+                    classif_s.append(t_f)
+
+            # Fallback: alguns JSONs (ex.: Anchor em certos datasets) podem ter
+            # computation_time agregado, mas per_instance.computation_time = 0.0
+            all_times = classif_s + rej_s
+            if len(all_times) > 0 and float(np.max(np.abs(np.array(all_times, dtype=float)))) < 1e-12:
+                mean_class_ms, mean_rej_ms = extrair_tempo_por_tipo(data, metodo)
+                return (
+                    (0.0 if mean_class_ms is None else float(mean_class_ms), 0.0),
+                    (0.0 if mean_rej_ms is None else float(mean_rej_ms), 0.0),
+                )
+
+        elif metodo == "pulp":
+            explicacoes = data.get("explicacoes", [])
+            if not isinstance(explicacoes, list):
+                explicacoes = []
+
+            for ex in explicacoes:
+                if not isinstance(ex, dict):
+                    continue
+                t = ex.get("tempo_segundos", None)
+                if t is None:
+                    continue
+                try:
+                    t_f = float(t)
+                except Exception:
+                    continue
+
+                tipo = str(ex.get("tipo_predicao", "")).upper()
+                if tipo == "REJEITADA":
+                    rej_s.append(t_f)
+                else:
+                    classif_s.append(t_f)
+
+        else:
+            return (None, None), (None, None)
+
+        def stats_ms(values_s: list[float]) -> tuple[float, float]:
+            if len(values_s) == 0:
+                return (0.0, 0.0)
+            arr = np.array(values_s, dtype=float)
+            mean_ms = float(arr.mean() * 1000.0)
+            std_ms = float(arr.std(ddof=1) * 1000.0) if len(arr) > 1 else 0.0
+            return (mean_ms, std_ms)
+
+        return stats_ms(classif_s), stats_ms(rej_s)
+
+    except Exception as e:
+        print(f"Erro ao extrair tempo (média/std) para {metodo}: {e}")
+        return (None, None), (None, None)
+
+
+def gerar_tabela_runtime_unified():
+    """Gera tabela unificada de tempo (ms) com média e desvio padrão.
+
+    Formato alinhado ao modelo fornecido pelo usuário.
+    """
+
+    def fmt_cell(mean_std: tuple[float, float] | tuple[None, None]) -> str:
+        mean, std = mean_std
+        if mean is None or std is None:
+            return "N/A"
+        return f"{mean:.2f} $\\pm$ {std:.2f}"
+
+    latex: list[str] = []
+    latex.append("\\begin{table}[H]")
+    latex.append("\\centering")
+    latex.append("\\caption{Tempo médio de execução $\\pm$ desvio padrão (ms) para instâncias classificadas e rejeitadas.}")
+    latex.append("\\label{tab:runtime_unified}")
+    latex.append("\\small")
+    latex.append("\\setlength{\\tabcolsep}{4pt}")
+    latex.append("\\begin{tabular}{lccccccc}")
+    latex.append("\\hline")
+    latex.append("\\multirow{2}{*}{\\textbf{Dataset}} & \\multicolumn{2}{c}{\\textbf{MINABRO}} & \\multicolumn{2}{c}{\\textbf{Anchors}} & \\multicolumn{2}{c}{\\textbf{AbLinRO}} \\\\")
+    latex.append("\\cline{2-7}")
+    latex.append(" & \\textbf{Clas.} & \\textbf{Rej.} & \\textbf{Clas.} & \\textbf{Rej.} & \\textbf{Clas.} & \\textbf{Rej.} \\\\")
+    latex.append("\\hline")
+
+    for dataset_config in DATASETS:
+        data_peab = carregar_dados_json(dataset_config, "peab")
+        data_anchor = carregar_dados_json(dataset_config, "anchor")
+        data_minexp = carregar_dados_json(dataset_config, "minexp")
+
+        peab_class, peab_rej = extrair_tempo_por_tipo_media_std_ms(data_peab, "peab")
+        anchor_class, anchor_rej = extrair_tempo_por_tipo_media_std_ms(data_anchor, "anchor")
+        minexp_class, minexp_rej = extrair_tempo_por_tipo_media_std_ms(data_minexp, "minexp")
+
+        latex.append(
+            f"{dataset_config['display_name']} & "
+            f"{fmt_cell(peab_class)} & {fmt_cell(peab_rej)} & "
+            f"{fmt_cell(anchor_class)} & {fmt_cell(anchor_rej)} & "
+            f"{fmt_cell(minexp_class)} & {fmt_cell(minexp_rej)} \\\\")
+
+    latex.append("\\hline")
+    latex.append("\\end{tabular}")
+    latex.append("\\end{table}")
+    return "\n".join(latex)
+
+
 def extrair_contagens_explicacoes(data, metodo):
     """Extrai as contagens de explicações por tipo."""
     if data is None:
@@ -219,6 +419,81 @@ def extrair_tamanho_medio_por_tipo(data, metodo):
     except Exception as e:
         print(f"Erro ao extrair tamanhos para {metodo}: {e}")
         return None, None
+
+
+def extrair_tamanho_medio_std_por_tipo(data, metodo):
+    """Extrai tamanho médio E desvio padrão de explicações por tipo.
+    
+    Retorna:
+        (mean_class, std_class), (mean_rej, std_rej)
+    """
+    if data is None:
+        return (None, None), (None, None)
+    
+    try:
+        if metodo in ["peab", "anchor", "minexp"]:
+            stats = data.get("explanation_stats", {})
+            
+            # Positivas
+            pos_mean = stats.get("positive", {}).get("mean_size", stats.get("positive", {}).get("mean_length", 0))
+            pos_std = stats.get("positive", {}).get("std_size", stats.get("positive", {}).get("std_length", 0))
+            pos_count = stats.get("positive", {}).get("count", 0)
+            
+            # Negativas
+            neg_mean = stats.get("negative", {}).get("mean_size", stats.get("negative", {}).get("mean_length", 0))
+            neg_std = stats.get("negative", {}).get("std_size", stats.get("negative", {}).get("std_length", 0))
+            neg_count = stats.get("negative", {}).get("count", 0)
+            
+            # Classificadas: média ponderada
+            if (pos_count + neg_count) > 0:
+                classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
+                # Desvio padrão combinado (pooled standard deviation)
+                classif_std = ((pos_std**2 * pos_count + neg_std**2 * neg_count) / (pos_count + neg_count)) ** 0.5
+            else:
+                classif_mean, classif_std = None, None
+            
+            # Rejeitadas
+            rej_count = stats.get("rejected", {}).get("count", 0)
+            if rej_count > 0:
+                rej_mean = stats.get("rejected", {}).get("mean_size", stats.get("rejected", {}).get("mean_length", 0))
+                rej_std = stats.get("rejected", {}).get("std_size", stats.get("rejected", {}).get("std_length", 0))
+            else:
+                rej_mean, rej_std = 0.0, 0.0
+            
+            return (classif_mean, classif_std), (rej_mean, rej_std)
+            
+        elif metodo == "pulp":
+            stats = data.get("estatisticas_por_tipo", {})
+            
+            # Positivas
+            pos_mean = stats.get("positiva", {}).get("tamanho_medio", 0)
+            pos_std = stats.get("positiva", {}).get("desvio_padrao", 0)
+            pos_count = stats.get("positiva", {}).get("instancias", 0)
+            
+            # Negativas
+            neg_mean = stats.get("negativa", {}).get("tamanho_medio", 0)
+            neg_std = stats.get("negativa", {}).get("desvio_padrao", 0)
+            neg_count = stats.get("negativa", {}).get("instancias", 0)
+            
+            # Classificadas
+            if (pos_count + neg_count) > 0:
+                classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
+                classif_std = ((pos_std**2 * pos_count + neg_std**2 * neg_count) / (pos_count + neg_count)) ** 0.5
+            else:
+                classif_mean, classif_std = None, None
+            
+            # Rejeitadas
+            rej_count = stats.get("rejeitada", {}).get("instancias", 0)
+            if rej_count > 0:
+                rej_mean = stats.get("rejeitada", {}).get("tamanho_medio", 0)
+                rej_std = stats.get("rejeitada", {}).get("desvio_padrao", 0)
+            else:
+                rej_mean, rej_std = 0.0, 0.0
+            
+            return (classif_mean, classif_std), (rej_mean, rej_std)
+    except Exception as e:
+        print(f"Erro ao extrair tamanhos/std para {metodo}: {e}")
+        return (None, None), (None, None)
 
 
 def extrair_necessidade(data):
@@ -429,46 +704,43 @@ def gerar_tabela_speedup_rejeitadas():
 
 
 def gerar_tabela_explicacoes():
-    """Gera tabela com tamanho médio das explicações."""
+    """Gera tabela com tamanho médio das explicações E desvio padrão."""
+    
+    def fmt_cell(mean_std):
+        mean, std = mean_std
+        if mean is None or std is None:
+            return "N/A"
+        return f"{mean:.2f} $\\pm$ {std:.2f}"
+    
     latex = []
     latex.append("\\begin{table}[!t]")
     latex.append("\\centering")
-    latex.append("\\caption{Tamanho médio das explicações (número de features): Classificadas vs Rejeitadas.}")
+    latex.append("\\caption{Tamanho médio $\\pm$ desvio padrão das explicações (número de features).}")
     latex.append("\\label{tab:mnist_explanation_size}")
-    latex.append("\\begin{tabular}{lcccccccc}")
+    latex.append("\\small")
+    latex.append("\\setlength{\\tabcolsep}{4pt}")
+    latex.append("\\begin{tabular}{lcccccc}")
     latex.append("\\hline")
-    latex.append("\\multirow{2}{*}{\\textbf{Dataset}} & \\multicolumn{2}{c}{\\textbf{PEAB}} & \\multicolumn{2}{c}{\\textbf{PULP}} & \\multicolumn{2}{c}{\\textbf{Anchor}} & \\multicolumn{2}{c}{\\textbf{MinExp}} \\\\")
-    latex.append("\\cline{2-9}")
-    latex.append(" & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} & \\textbf{Classif.} & \\textbf{Rejeit.} \\\\")
+    latex.append("\\multirow{2}{*}{\\textbf{Dataset}} & \\multicolumn{2}{c}{\\textbf{PEAB}} & \\multicolumn{2}{c}{\\textbf{Anchor}} & \\multicolumn{2}{c}{\\textbf{MinExp}} \\\\")
+    latex.append("\\cline{2-7}")
+    latex.append(" & \\textbf{Clas.} & \\textbf{Rej.} & \\textbf{Clas.} & \\textbf{Rej.} & \\textbf{Clas.} & \\textbf{Rej.} \\\\")
     latex.append("\\hline")
     
     for dataset_config in DATASETS:
-        dados_tamanho = {}
+        data_peab = carregar_dados_json(dataset_config, "peab")
+        data_anchor = carregar_dados_json(dataset_config, "anchor")
+        data_minexp = carregar_dados_json(dataset_config, "minexp")
         
-        for metodo in METODOS:
-            data = carregar_dados_json(dataset_config, metodo)
-            classif_size, rej_size = extrair_tamanho_medio_por_tipo(data, metodo)
-            dados_tamanho[metodo] = {"classificadas": classif_size, "rejeitadas": rej_size}
+        peab_class, peab_rej = extrair_tamanho_medio_std_por_tipo(data_peab, "peab")
+        anchor_class, anchor_rej = extrair_tamanho_medio_std_por_tipo(data_anchor, "anchor")
+        minexp_class, minexp_rej = extrair_tamanho_medio_std_por_tipo(data_minexp, "minexp")
         
-        peab_classif = dados_tamanho["peab"]["classificadas"]
-        peab_rej = dados_tamanho["peab"]["rejeitadas"]
-        pulp_classif = dados_tamanho["pulp"]["classificadas"]
-        pulp_rej = dados_tamanho["pulp"]["rejeitadas"]
-        anchor_classif = dados_tamanho["anchor"]["classificadas"]
-        anchor_rej = dados_tamanho["anchor"]["rejeitadas"]
-        minexp_classif = dados_tamanho["minexp"]["classificadas"]
-        minexp_rej = dados_tamanho["minexp"]["rejeitadas"]
-        
-        peab_c_str = f"{peab_classif:.2f}" if peab_classif is not None else "N/A"
-        peab_r_str = f"{peab_rej:.2f}" if peab_rej is not None and peab_rej > 0 else "0.00"
-        pulp_c_str = f"{pulp_classif:.2f}" if pulp_classif is not None else "N/A"
-        pulp_r_str = f"{pulp_rej:.2f}" if pulp_rej is not None and pulp_rej > 0 else "N/A"
-        anchor_c_str = f"{anchor_classif:.2f}" if anchor_classif is not None else "N/A"
-        anchor_r_str = f"{anchor_rej:.2f}" if anchor_rej is not None and anchor_rej > 0 else "0.00"
-        minexp_c_str = f"{minexp_classif:.2f}" if minexp_classif is not None else "N/A"
-        minexp_r_str = f"{minexp_rej:.2f}" if minexp_rej is not None and minexp_rej > 0 else "0.00"
-        
-        linha = f"{dataset_config['display_name']} & {peab_c_str} & {peab_r_str} & {pulp_c_str} & {pulp_r_str} & {anchor_c_str} & {anchor_r_str} & {minexp_c_str} & {minexp_r_str} \\\\"
+        linha = (
+            f"{dataset_config['display_name']} & "
+            f"{fmt_cell(peab_class)} & {fmt_cell(peab_rej)} & "
+            f"{fmt_cell(anchor_class)} & {fmt_cell(anchor_rej)} & "
+            f"{fmt_cell(minexp_class)} & {fmt_cell(minexp_rej)} \\\\"
+        )
         latex.append(linha)
     
     latex.append("\\hline")
@@ -565,8 +837,7 @@ def gerar_tabela_redundancia():
 def main():
     print("=" * 70)
     print("GERADOR DE TABELAS LATEX - MÚLTIPLOS DATASETS")
-    print("Datasets: Credit Card, Covertype, MNIST (3 vs 8)")
-    print("Ordenados por número de features: 29, 54, 196")
+    print("Datasets: 10 (tabela unificada de tempo)")
     print("=" * 70)
     print()
     
@@ -580,17 +851,11 @@ def main():
         f.write(tabela_caracteristicas)
     print(f"✓ Tabela salva em: {OUTPUT_DIR}/mnist_caracteristicas.tex")
     
-    print("\nGerando tabela de speedup para instâncias CLASSIFICADAS...")
-    tabela_speedup_classif = gerar_tabela_speedup_classificadas()
-    with open(f"{OUTPUT_DIR}/mnist_speedup_classificadas.tex", 'w', encoding='utf-8') as f:
-        f.write(tabela_speedup_classif)
-    print(f"✓ Tabela salva em: {OUTPUT_DIR}/mnist_speedup_classificadas.tex")
-    
-    print("\nGerando tabela de speedup para instâncias REJEITADAS...")
-    tabela_speedup_rej = gerar_tabela_speedup_rejeitadas()
-    with open(f"{OUTPUT_DIR}/mnist_speedup_rejeitadas.tex", 'w', encoding='utf-8') as f:
-        f.write(tabela_speedup_rej)
-    print(f"✓ Tabela salva em: {OUTPUT_DIR}/mnist_speedup_rejeitadas.tex")
+    print("\nGerando tabela de tempo (unificada, média $\\pm$ desvio padrão)...")
+    tabela_runtime = gerar_tabela_runtime_unified()
+    with open(f"{OUTPUT_DIR}/mnist_runtime_unified.tex", 'w', encoding='utf-8') as f:
+        f.write(tabela_runtime)
+    print(f"✓ Tabela salva em: {OUTPUT_DIR}/mnist_runtime_unified.tex")
     
     print("\nGerando tabela de tamanho de explicações...")
     tabela_explicacoes = gerar_tabela_explicacoes()
@@ -613,14 +878,12 @@ def main():
     # Gerar arquivo completo
     print("\nGerando arquivo completo...")
     completo = f"""% Tabelas geradas automaticamente para múltiplos datasets
-% Datasets: Credit Card (29 features), Covertype (54 features), MNIST 3 vs 8 (196 features)
+% Datasets: 10 datasets (ver tabela de runtime unificada)
 % Gerado em: {Path.cwd()}
 
 {tabela_caracteristicas}
 
-{tabela_speedup_classif}
-
-{tabela_speedup_rej}
+{tabela_runtime}
 
 {tabela_explicacoes}
 
@@ -638,8 +901,7 @@ def main():
     print("=" * 70)
     print(f"\nArquivos criados em: {Path(OUTPUT_DIR).resolve()}")
     print("- mnist_caracteristicas.tex")
-    print("- mnist_speedup_classificadas.tex")
-    print("- mnist_speedup_rejeitadas.tex")
+    print("- mnist_runtime_unified.tex")
     print("- mnist_explicacoes.tex")
     print("- mnist_necessidade.tex")
     print("- mnist_redundancia.tex")
@@ -654,9 +916,9 @@ def main():
     print()
     
     print("=" * 70)
-    print("PRÉVIA: TABELA DE SPEEDUP (CLASSIFICADAS)")
+    print("PRÉVIA: TABELA DE TEMPO (UNIFICADA)")
     print("=" * 70)
-    print(tabela_speedup_classif)
+    print(tabela_runtime)
     print()
 
 

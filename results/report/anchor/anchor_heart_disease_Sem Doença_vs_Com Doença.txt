@@ -5,10 +5,10 @@
   - Total de Instâncias de Teste: 90
   - Número de Features do Modelo: 13
   - Acurácia do Modelo (teste, sem rejeição): 85.56%
-  - Thresholds de Rejeição (Score): t+ = 0.1849, t- = -0.1093
+  - Thresholds de Rejeição (Score): t+ = 0.1869, t- = -0.1093
   - Custo de Rejeição usado para Thresholds: 0.24
-  - Tempo Total de Geração das Explicações: 8.4029 segundos
-  - Tempo Médio por Instância (Geral): 0.0934 segundos
+  - Tempo Total de Geração das Explicações: 101.7844 segundos
+  - Tempo Médio por Instância (Geral): 1.1309 segundos
 
 [Métricas de Desempenho do Modelo]
   - Taxa de Rejeição no Teste: 42.22% (38 de 90 instâncias)
@@ -16,26 +16,26 @@
 
 [Estatísticas do Tamanho das Explicações (Nº de Regras)]
   - Classe Positiva (Aceitas): (23 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 2.09 ± 0.28  (Min: 2, Max: 3)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.04 ± 0.20  (Min: 2, Max: 3)
   - Classe Negativa (Aceitas): (29 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 3.00 ± 0.00  (Min: 3, Max: 3)
+    - Tamanho Explicação (Média ± Desv. Padrão): 3.10 ± 0.48  (Min: 2, Max: 4)
   - Classe REJEITADA: (38 instâncias)
-    - Tamanho Explicação (Média ± Desv. Padrão): 3.03 ± 0.96  (Min: 2, Max: 7)
+    - Tamanho Explicação (Média ± Desv. Padrão): 2.79 ± 0.73  (Min: 2, Max: 4)
 
 [Análise de Importância de Features (Frequência nas Âncoras)]
   - Top 10 Features Mais Frequentes:
-    - thal: 122 vezes
-    - exang: 42 vezes
-    - oldpeak: 41 vezes
-    - thalach: 39 vezes
-    - ca: 13 vezes
-    - cp: 7 vezes
-    - slope: 6 vezes
-    - restecg: 5 vezes
-    - age: 5 vezes
-    - sex: 4 vezes
+    - thal: 131 vezes
+    - exang: 51 vezes
+    - thalach: 49 vezes
+    - ca: 24 vezes
+    - cp: 10 vezes
+    - oldpeak: 10 vezes
+    - slope: 9 vezes
+    - sex: 6 vezes
+    - trestbps: 1 vezes
+    - age: 1 vezes
 
 [Custo Computacional por Classe]
-  - Tempo Médio (Positivas Aceitas): 0.0537 segundos
-  - Tempo Médio (Negativas Aceitas): 0.1122 segundos
-  - Tempo Médio (Rejeitadas): 0.1030 segundos
+  - Tempo Médio (Positivas Aceitas): 0.7122 segundos
+  - Tempo Médio (Negativas Aceitas): 1.4063 segundos
+  - Tempo Médio (Rejeitadas): 1.1742 segundos

@@ -7,9 +7,9 @@
     "subsample_size": null
   },
   "thresholds": {
-    "t_plus": 0.18488660156881243,
+    "t_plus": 0.1868980476283751,
     "t_minus": -0.10928101492574996,
-    "rejection_zone_width": 0.29416761649456236
+    "rejection_zone_width": 0.29617906255412507
   },
   "performance": {
     "accuracy_without_rejection": 85.55555555555556,
@@ -23,72 +23,1307 @@
     "positive": {
       "count": 23,
       "min_length": 2,
-      "mean_length": 2.0869565217391304,
+      "mean_length": 2.0434782608695654,
       "max_length": 3,
-      "std_length": 0.28177133471338517
+      "std_length": 0.20393111999232302
     },
     "negative": {
       "count": 29,
-      "min_length": 3,
-      "mean_length": 3.0,
-      "max_length": 3,
-      "std_length": 0.0
+      "min_length": 2,
+      "mean_length": 3.103448275862069,
+      "max_length": 4,
+      "std_length": 0.4802892509373834
     },
     "rejected": {
       "count": 38,
       "min_length": 2,
-      "mean_length": 3.026315789473684,
-      "max_length": 7,
-      "std_length": 0.9593540070293781
+      "mean_length": 2.789473684210526,
+      "max_length": 4,
+      "std_length": 0.7311812626026212
     }
   },
   "computation_time": {
-    "total": 8.402860200032592,
-    "mean_per_instance": 0.09336511333369546,
-    "positive": 0.05366366956403236,
-    "negative": 0.11217024828034357,
-    "rejected": 0.1030436473665759
+    "total": 101.78443220000736,
+    "mean_per_instance": 1.1309381355556374,
+    "positive": 0.7121770956524098,
+    "negative": 1.4063199068963326,
+    "rejected": 1.1742389921054812
   },
+  "per_instance": [
+    {
+      "id": "0",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.01365456187450681,
+      "explanation": [
+        "thalach <= 152.00",
+        "slope > 1.00",
+        "cp > 3.00",
+        "sex > 0.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.1701895000005607
+    },
+    {
+      "id": "1",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3687965635155946,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.676914300000135
+    },
+    {
+      "id": "2",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19867815542516187,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.1867296000000351
+    },
+    {
+      "id": "3",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.22311398216730088,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 152.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3112774999990506
+    },
+    {
+      "id": "4",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10511029860685663,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.6671322000001965
+    },
+    {
+      "id": "5",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.13913029419637668,
+      "explanation": [
+        "thal > 3.00",
+        "oldpeak > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7232660999998188
+    },
+    {
+      "id": "6",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.18475713228383384,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3674302999988868
+    },
+    {
+      "id": "7",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10189598887215798,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "ca <= 1.00",
+        "cp <= 3.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.3873407999999472
+    },
+    {
+      "id": "8",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.18956799233257793,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50",
+        "oldpeak <= 1.60"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.2112259999994421
+    },
+    {
+      "id": "9",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08304005127798068,
+      "explanation": [
+        "thal > 3.00",
+        "sex > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8555511000013212
+    },
+    {
+      "id": "10",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.28237345852637746,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7257661000003282
+    },
+    {
+      "id": "11",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3326078764208933,
+      "explanation": [
+        "thal > 3.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6878163999990647
+    },
+    {
+      "id": "12",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.32094596244128737,
+      "explanation": [
+        "thal > 3.00",
+        "cp > 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7451311000004353
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.03650368158939518,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "thalach > 152.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.2754065000008268
+    },
+    {
+      "id": "14",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.04023140430894363,
+      "explanation": [
+        "ca > 0.00",
+        "thalach <= 139.50",
+        "sex > 0.00",
+        "trestbps <= 140.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.069899500000247
+    },
+    {
+      "id": "15",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08984218725590294,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.048602299999402
+    },
+    {
+      "id": "16",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.13155870134750708,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5333871000002546
+    },
+    {
+      "id": "17",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.19667488258008903,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.72665330000018
+    },
+    {
+      "id": "18",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.08106391519467947,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6722332999997889
+    },
+    {
+      "id": "19",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.045121027075829455,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "ca <= 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3627837000003638
+    },
+    {
+      "id": "20",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.108830703746482,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8003821000002063
+    },
+    {
+      "id": "21",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.23757167976952853,
+      "explanation": [
+        "thal > 3.00",
+        "slope > 1.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6368352000008599
+    },
+    {
+      "id": "22",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.020109991411285916,
+      "explanation": [
+        "slope <= 1.00",
+        "sex <= 0.00",
+        "cp <= 3.00",
+        "age <= 61.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.5392988000003243
+    },
+    {
+      "id": "23",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10258116450414027,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.7578215000012278
+    },
+    {
+      "id": "24",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.003960127971026697,
+      "explanation": [
+        "thal <= 7.00",
+        "exang > 0.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.8916571000008844
+    },
+    {
+      "id": "25",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.0030534572740804483,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "thalach > 152.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3723016000003554
+    },
+    {
+      "id": "26",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17153913840256257,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "cp <= 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.1296400999999605
+    },
+    {
+      "id": "27",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.17993384942294993,
+      "explanation": [
+        "thal <= 7.00",
+        "exang > 0.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.9873492000006081
+    },
+    {
+      "id": "28",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.075448117725752,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.7299722000007023
+    },
+    {
+      "id": "29",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.20320488542246617,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.9051020999995671
+    },
+    {
+      "id": "30",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.06813862495382479,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.279906600000686
+    },
+    {
+      "id": "31",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.07536730788255744,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.883588900000177
+    },
+    {
+      "id": "32",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.14992897701310587,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "oldpeak <= 0.80"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.4705374999994092
+    },
+    {
+      "id": "33",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10229157240694164,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 2.116152200000215
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19227926036930998,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5992237000009482
+    },
+    {
+      "id": "35",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.2064324964510529,
+      "explanation": [
+        "exang <= 0.00",
+        "sex <= 0.00",
+        "oldpeak <= 0.80"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.4572336999990512
+    },
+    {
+      "id": "36",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.1789870892149819,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7645379999994475
+    },
+    {
+      "id": "37",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.20321213457567672,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5695706999995309
+    },
+    {
+      "id": "38",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2388531833449244,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5264862999993056
+    },
+    {
+      "id": "39",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.14533098612794607,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5110285000009753
+    },
+    {
+      "id": "40",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.14364029205891787,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7195730000003095
+    },
+    {
+      "id": "41",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.059697169504247284,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.7516706000005797
+    },
+    {
+      "id": "42",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.011119578125391077,
+      "explanation": [
+        "thalach <= 152.00",
+        "oldpeak > 1.60",
+        "cp > 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.9320934999996098
+    },
+    {
+      "id": "43",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1216618298897688,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.4259244999993825
+    },
+    {
+      "id": "44",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16651322348769518,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 167.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.4910921000009694
+    },
+    {
+      "id": "45",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17248960827034987,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5207867999997688
+    },
+    {
+      "id": "46",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15479939780541402,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.378909199998816
+    },
+    {
+      "id": "47",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.10455908982695301,
+      "explanation": [
+        "thalach <= 152.00",
+        "oldpeak > 1.60",
+        "cp > 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.733771400000478
+    },
+    {
+      "id": "48",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.13633255844410072,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "ca <= 0.00",
+        "slope <= 2.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.402267599998595
+    },
+    {
+      "id": "49",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3325944513110817,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8538647999994282
+    },
+    {
+      "id": "50",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.05221832079911343,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3069223999991664
+    },
+    {
+      "id": "51",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.24156485378258657,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.687175600000046
+    },
+    {
+      "id": "52",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2184225127001544,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6885414000007586
+    },
+    {
+      "id": "53",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.1425754745784984,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7104971000007936
+    },
+    {
+      "id": "54",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.39496126064386755,
+      "explanation": [
+        "thal > 3.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.5990127000004577
+    },
+    {
+      "id": "55",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.11451806664405415,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3343177999995532
+    },
+    {
+      "id": "56",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2785551528177121,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.602429900000061
+    },
+    {
+      "id": "57",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.07099006177620705,
+      "explanation": [
+        "thal > 3.00",
+        "sex > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8746230999986437
+    },
+    {
+      "id": "58",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.134193740920383,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.2122325000000274
+    },
+    {
+      "id": "59",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.12470049157242123,
+      "explanation": [
+        "thal > 3.00",
+        "cp > 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6060612000001129
+    },
+    {
+      "id": "60",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17693239633990646,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "oldpeak <= 0.80"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.2296734999999899
+    },
+    {
+      "id": "61",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.33265106764941704,
+      "explanation": [
+        "thal > 3.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7528817000002164
+    },
+    {
+      "id": "62",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15255754141268013,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5851308999990579
+    },
+    {
+      "id": "63",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2863300788784181,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8661422000004677
+    },
+    {
+      "id": "64",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1129676833875741,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5715620999999373
+    },
+    {
+      "id": "65",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3315246187194089,
+      "explanation": [
+        "thal > 3.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7701420000012149
+    },
+    {
+      "id": "66",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.10513660390722233,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.49837320000006
+    },
+    {
+      "id": "67",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.06254862510011343,
+      "explanation": [
+        "thal <= 7.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.9765876000001299
+    },
+    {
+      "id": "68",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.21728660611701062,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.8036083000006329
+    },
+    {
+      "id": "69",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1303802706233253,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.2416491000003589
+    },
+    {
+      "id": "70",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.04708991846082706,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "ca <= 1.00",
+        "slope <= 2.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.4749111000000994
+    },
+    {
+      "id": "71",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2730540949989567,
+      "explanation": [
+        "thal > 3.00",
+        "exang > 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.6213062000006175
+    },
+    {
+      "id": "72",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2167475773410114,
+      "explanation": [
+        "thal > 3.00",
+        "cp > 3.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.583095100000719
+    },
+    {
+      "id": "73",
+      "y_true": 1,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.016079594172043896,
+      "explanation": [
+        "ca > 0.00",
+        "slope > 2.00",
+        "cp > 3.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.7249060000012832
+    },
+    {
+      "id": "74",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1282363434213961,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50",
+        "oldpeak <= 1.60"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.4677619000012783
+    },
+    {
+      "id": "75",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.15875057861358646,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.8161531000005198
+    },
+    {
+      "id": "76",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.30904188803334054,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 152.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.7792466000009881
+    },
+    {
+      "id": "77",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.043515384548579714,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "slope <= 2.00",
+        "oldpeak <= 1.60"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.3623678000003565
+    },
+    {
+      "id": "78",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 1.1085548730291328e-05,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.0607013999997434
+    },
+    {
+      "id": "79",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.16611839115483515,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.5529271999985212
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.02173778533521574,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.933575799999744
+    },
+    {
+      "id": "81",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.19841178369264273,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50",
+        "slope <= 2.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.4950597000006383
+    },
+    {
+      "id": "82",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3057453917528199,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.733893700000408
+    },
+    {
+      "id": "83",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17945751661744055,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50",
+        "slope <= 2.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.293462300000101
+    },
+    {
+      "id": "84",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.1754492650652678,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 1.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.3658696999991662
+    },
+    {
+      "id": "85",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.17494094582392328,
+      "explanation": [
+        "thal <= 3.00",
+        "ca <= 0.00",
+        "exang <= 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.1916127000004053
+    },
+    {
+      "id": "86",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": 0.07156880442078885,
+      "explanation": [
+        "thal > 3.00",
+        "thalach <= 167.00"
+      ],
+      "explanation_size": 2,
+      "computation_time": 1.0793933000004472
+    },
+    {
+      "id": "87",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.22888499432147252,
+      "explanation": [
+        "exang > 0.00",
+        "thalach <= 152.00",
+        "oldpeak > 0.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.8384575000000041
+    },
+    {
+      "id": "88",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -0.12214329791038868,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "ca <= 1.00"
+      ],
+      "explanation_size": 3,
+      "computation_time": 1.4291705999985425
+    },
+    {
+      "id": "89",
+      "y_true": 0,
+      "y_pred": -1,
+      "rejected": true,
+      "decision_score": -0.09284350287869868,
+      "explanation": [
+        "thal <= 3.00",
+        "exang <= 0.00",
+        "thalach > 139.50",
+        "ca <= 1.00"
+      ],
+      "explanation_size": 4,
+      "computation_time": 1.5196799999994255
+    }
+  ],
   "top_features": [
     {
       "feature": "thal",
-      "count": 122
+      "count": 131
     },
     {
       "feature": "exang",
-      "count": 42
-    },
-    {
-      "feature": "oldpeak",
-      "count": 41
+      "count": 51
     },
     {
       "feature": "thalach",
-      "count": 39
+      "count": 49
     },
     {
       "feature": "ca",
-      "count": 13
+      "count": 24
     },
     {
       "feature": "cp",
-      "count": 7
+      "count": 10
+    },
+    {
+      "feature": "oldpeak",
+      "count": 10
     },
     {
       "feature": "slope",
-      "count": 6
-    },
-    {
-      "feature": "restecg",
-      "count": 5
-    },
-    {
-      "feature": "age",
-      "count": 5
+      "count": 9
     },
     {
       "feature": "sex",
-      "count": 4
+      "count": 6
+    },
+    {
+      "feature": "trestbps",
+      "count": 1
+    },
+    {
+      "feature": "age",
+      "count": 1
     }
   ],
   "model": {

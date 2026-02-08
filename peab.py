@@ -39,7 +39,7 @@ MNIST_CONFIG = {
     'rejection_cost': 0.24,
 
     # Subsample size: fracao do dataset a usar (0.01 = 1%, reduz tamanho para testes rapidos)
-    'subsample_size': 0.005
+    'subsample_size': 0.01
     }
 
 DATASET_CONFIG = {
@@ -505,15 +505,31 @@ def executar_experimento_para_dataset(dataset_name: str):
             'computation_time': res.get('tempo', 0.0)
         })
     
-    # Calcular tempos por tipo
+    # Calcular tempos e tamanhos por tipo
     tempos_por_tipo = {'positive': [], 'negative': [], 'rejected': []}
+    tamanhos_por_tipo = {'positive': [], 'negative': [], 'rejected': []}
     for i, res in enumerate(resultados):
         if preds[i] == 1:
             tempos_por_tipo['positive'].append(res.get('tempo', 0.0))
+            tamanhos_por_tipo['positive'].append(res['tamanho_explicacao'])
         elif preds[i] == 0:
             tempos_por_tipo['negative'].append(res.get('tempo', 0.0))
+            tamanhos_por_tipo['negative'].append(res['tamanho_explicacao'])
         else:
             tempos_por_tipo['rejected'].append(res.get('tempo', 0.0))
+            tamanhos_por_tipo['rejected'].append(res['tamanho_explicacao'])
+    
+    # Calcular estatísticas completas de explicações
+    def calc_exp_stats(tamanhos):
+        if not tamanhos:
+            return {'count': 0, 'mean_length': 0.0, 'std_length': 0.0, 'min_length': 0, 'max_length': 0}
+        return {
+            'count': len(tamanhos),
+            'mean_length': float(np.mean(tamanhos)),
+            'std_length': float(np.std(tamanhos)),
+            'min_length': int(np.min(tamanhos)),
+            'max_length': int(np.max(tamanhos))
+        }
     
     # Preparar estrutura de resultados completa
     results_data = {
@@ -538,18 +554,9 @@ def executar_experimento_para_dataset(dataset_name: str):
             'num_accepted': int(np.sum(~mask_rej))
         },
         'explanation_stats': {
-            'positive': {
-                'count': int(np.sum(preds == 1)),
-                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 1])) if np.sum(preds == 1) > 0 else 0.0,
-            },
-            'negative': {
-                'count': int(np.sum(preds == 0)),
-                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 0])) if np.sum(preds == 0) > 0 else 0.0,
-            },
-            'rejected': {
-                'count': int(np.sum(preds == 2)),
-                'mean_length': float(np.mean([r['tamanho_explicacao'] for r in resultados if preds[resultados.index(r)] == 2])) if np.sum(preds == 2) > 0 else 0.0,
-            }
+            'positive': calc_exp_stats(tamanhos_por_tipo['positive']),
+            'negative': calc_exp_stats(tamanhos_por_tipo['negative']),
+            'rejected': calc_exp_stats(tamanhos_por_tipo['rejected'])
         },
         'computation_time': {
             'total': float(total_time),
