@@ -1,74 +1,120 @@
 """
-Análise do tempo MinExp no MNIST
+Análise: MinExp MNIST está com tempo MUITO alto (67 segundos/instância)
+Vamos comparar com outros datasets para ver se é erro experimental
 """
+import json
+import numpy as np
 
-print("\n" + "="*80)
-print("ANÁLISE RÁPIDA - MinExp MNIST muito lento")
-print("="*80 + "\n")
+print("=" * 100)
+print("ANÁLISE: Tempos do MinExp em todos os datasets")
+print("=" * 100)
 
-# Dados observados
-instancias_total = 502
-instancias_feitas = 40
-tempo_minutos = 40.38
-tempo_restante_horas = 7.77
+datasets = [
+    ("Banknote", "banknote.json"),
+    ("Vertebral", "vertebral_column.json"),
+    ("Pima", "pima_indians_diabetes.json"),
+    ("Heart", "heart_disease.json"),
+    ("Credit", "creditcard.json"),
+    ("Breast", "breast_cancer.json"),
+    ("Covertype", "covertype.json"),
+    ("Spambase", "spambase.json"),
+    ("Sonar", "sonar.json"),
+    ("MNIST", "mnist.json"),
+]
 
-tempo_por_instancia = tempo_minutos / instancias_feitas
-tempo_total_horas = (tempo_minutos + (instancias_total - instancias_feitas) * tempo_por_instancia) / 60
+tempos_classif = []
+tempos_rej = []
 
-print(f"SITUAÇÃO ATUAL (subsample=0.12):")
-print(f"  Instâncias no teste: {instancias_total}")
-print(f"  Progresso: {instancias_feitas}/{instancias_total} ({instancias_feitas/instancias_total*100:.1f}%)")
-print(f"  Tempo por instância: {tempo_por_instancia:.2f} min (~{tempo_por_instancia*60:.0f}s)")
-print(f"  Tempo restante: {tempo_restante_horas:.1f} horas")
-print(f"  ⚠️ MUITO LENTO!")
+for nome, arquivo in datasets:
+    try:
+        with open(f"json/minexp/{arquivo}") as f:
+            data = json.load(f)
+        
+        per_instance = data.get("per_instance", [])
+        classif = [p["computation_time"] for p in per_instance if not p.get("rejected")]
+        rej = [p["computation_time"] for p in per_instance if p.get("rejected")]
+        
+        if classif:
+            mean_c = np.mean(classif) * 1000
+            tempos_classif.append((nome, mean_c))
+        
+        if rej:
+            mean_r = np.mean(rej) * 1000
+            tempos_rej.append((nome, mean_r))
+        
+        n_features = data.get("n_features", "?")
+        
+        print(f"\n{nome:15} (features={n_features}):")
+        print(f"  Classif: {mean_c:10.2f} ms ({len(classif):3} inst)")
+        if rej:
+            print(f"  Rejeita: {mean_r:10.2f} ms ({len(rej):3} inst)")
+        else:
+            print(f"  Rejeita: (sem rejeitadas)")
+            
+    except Exception as e:
+        print(f"\n{nome:15}: ERRO - {e}")
 
-print(f"\n{'─'*80}\n")
+print("\n" + "=" * 100)
+print("ANÁLISE COMPARATIVA")
+print("=" * 100)
 
-# Calcular com subsample 0.01
-subsample_atual = 0.12
-subsample_novo = 0.01
-reducao_fator = subsample_novo / subsample_atual
+# Ordenar por tempo
+tempos_classif_sorted = sorted(tempos_classif, key=lambda x: x[1])
 
-instancias_novo = int(instancias_total * reducao_fator)
-tempo_novo_min = instancias_novo * tempo_por_instancia
-tempo_novo_horas = tempo_novo_min / 60
+print("\nRanking de tempo (classificadas):")
+for i, (nome, tempo) in enumerate(tempos_classif_sorted, 1):
+    print(f"{i:2}. {nome:15} {tempo:10.2f} ms")
 
-economia_horas = tempo_total_horas - tempo_novo_horas
+# Estatísticas
+tempos_apenas = [t for _, t in tempos_classif]
+media_geral = np.mean(tempos_apenas)
+mediana = np.median(tempos_apenas)
+std = np.std(tempos_apenas)
 
-print(f"COM SUBSAMPLE=0.01 (RECOMENDADO):")
-print(f"  Instâncias no teste: {instancias_novo}")
-print(f"  Tempo total: ~{tempo_novo_min:.0f} min = {tempo_novo_horas:.1f}h")
-print(f"  ⏱️ ECONOMIZA: {economia_horas:.1f} horas!")
-print(f"  ✅ {instancias_novo} instâncias ainda é válido estatisticamente")
+print(f"\nESTATÍSTICAS:")
+print(f"  Média:   {media_geral:10.2f} ms")
+print(f"  Mediana: {mediana:10.2f} ms")
+print(f"  Desvio:  {std:10.2f} ms")
+print(f"  Mínimo:  {min(tempos_apenas):10.2f} ms")
+print(f"  Máximo:  {max(tempos_apenas):10.2f} ms")
 
-print(f"\n{'─'*80}\n")
+# Verificar se MNIST é outlier
+mnist_tempo = [t for n, t in tempos_classif if n == "MNIST"][0]
+z_score = (mnist_tempo - media_geral) / std
 
-print("COMPARAÇÃO:")
-print("-"*80)
-print(f"  Subsample 0.12: {instancias_total} inst → {tempo_total_horas:.1f}h")
-print(f"  Subsample 0.01: {instancias_novo} inst → {tempo_novo_horas:.1f}h")
-print(f"  Redução: {(1-reducao_fator)*100:.0f}% das instâncias")
-print(f"  Economia: {economia_horas:.1f}h ({economia_horas/tempo_total_horas*100:.0f}%)")
-
-print(f"\n{'='*80}")
-print("RECOMENDAÇÃO URGENTE:")
-print("="*80)
-print(f"✅ SIM, REDUZA PARA 0.01 IMEDIATAMENTE!")
-print(f"   Economiza {economia_horas:.1f}h (de {tempo_total_horas:.1f}h para {tempo_novo_horas:.1f}h)")
-print(f"   {instancias_novo} instâncias AINDA É VÁLIDO")
-print(f"   Modelo foi treinado com dataset COMPLETO (isso não muda!)")
+print(f"\n{'!' * 100}")
+print(f"MNIST ANÁLISE:")
+print(f"{'!' * 100}")
+print(f"  Tempo MNIST: {mnist_tempo:10.2f} ms = {mnist_tempo/1000:.2f} segundos")
+print(f"  Z-score: {z_score:.2f} (número de desvios padrão da média)")
 print()
-print("🔴 AÇÃO: Cancele o MinExp agora (Ctrl+C)")
-print("   Atualize peab.py → subsample_size: 0.01")
-print("   Recomece: python minexp.py")
-print("="*80 + "\n")
 
-print("VALOR PARA ATUALIZAR NO peab.py:")
-print("-"*80)
+if z_score > 3:
+    print(f"  ⚠️  ALERTA: MNIST está {z_score:.1f} desvios padrão acima da média!")
+    print(f"      Isso indica OUTLIER EXTREMO - provável ERRO EXPERIMENTAL")
+    print(f"      Recomendação: REFAZER o experimento MNIST com MinExp")
+    print()
+    print(f"      Comparação:")
+    print(f"      - Segundo maior: {tempos_classif_sorted[-2][1]:.2f} ms ({tempos_classif_sorted[-2][0]})")
+    print(f"      - MNIST: {mnist_tempo:.2f} ms")
+    print(f"      - Diferença: {(mnist_tempo / tempos_classif_sorted[-2][1]):.1f}x mais lento")
+elif z_score > 2:
+    print(f"  ⚠️  MNIST é significativamente mais lento que outros datasets")
+    print(f"      Pode ser normal (MNIST tem mais features) ou erro experimental")
+    print(f"      Recomendação: Revisar os dados")
+else:
+    print(f"  ✓ Tempo MNIST está dentro do esperado para a variação dos datasets")
+
+print("\n" + "=" * 100)
+print("CONCLUSÃO")
+print("=" * 100)
 print("""
-MNIST_CONFIG = {
-    # ... outras configs ...
-    'subsample_size': 0.01   # ← MUDE de 0.12 para 0.01
-}
+Se MNIST for outlier extremo (z-score > 3):
+  → Valor está TECNICAMENTE correto (é o que está no JSON)
+  → Mas indica ERRO EXPERIMENTAL (algo deu errado no experimento)
+  → Recomendação: REFAZER experimento MinExp para MNIST
+
+Se MNIST estiver dentro da variação normal:
+  → Valor está correto
+  → MNIST é naturalmente mais lento (mais features, mais complexo)
 """)
-print("="*80 + "\n")

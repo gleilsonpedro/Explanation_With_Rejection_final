@@ -433,6 +433,7 @@ def extrair_tamanho_medio_std_por_tipo(data, metodo):
     try:
         if metodo in ["peab", "anchor", "minexp"]:
             stats = data.get("explanation_stats", {})
+            per_inst = data.get("per_instance", [])
             
             # Positivas
             pos_mean = stats.get("positive", {}).get("mean_size", stats.get("positive", {}).get("mean_length", 0))
@@ -444,11 +445,24 @@ def extrair_tamanho_medio_std_por_tipo(data, metodo):
             neg_std = stats.get("negative", {}).get("std_size", stats.get("negative", {}).get("std_length", 0))
             neg_count = stats.get("negative", {}).get("count", 0)
             
-            # Classificadas: média ponderada
+            # Classificadas: calcular média e std direto dos valores individuais
             if (pos_count + neg_count) > 0:
-                classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
-                # Desvio padrão combinado (pooled standard deviation)
-                classif_std = ((pos_std**2 * pos_count + neg_std**2 * neg_count) / (pos_count + neg_count)) ** 0.5
+                # Extrair tamanhos das classificadas
+                classificadas = [inst for inst in per_inst if not inst.get('rejected', False)]
+                tamanhos_classif = [inst.get('explanation_size', inst.get('explanation_stats', {}).get('size', 0)) 
+                                   for inst in classificadas]
+                
+                if tamanhos_classif:
+                    classif_mean = sum(tamanhos_classif) / len(tamanhos_classif)
+                    # Calcular std corretamente (considera diferença entre médias dos grupos)
+                    if len(tamanhos_classif) > 1:
+                        import numpy as np
+                        classif_std = float(np.std(tamanhos_classif, ddof=1))
+                    else:
+                        classif_std = 0.0
+                else:
+                    classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
+                    classif_std = 0.0
             else:
                 classif_mean, classif_std = None, None
             
@@ -464,6 +478,7 @@ def extrair_tamanho_medio_std_por_tipo(data, metodo):
             
         elif metodo == "pulp":
             stats = data.get("estatisticas_por_tipo", {})
+            per_inst = data.get("per_instance", [])
             
             # Positivas
             pos_mean = stats.get("positiva", {}).get("tamanho_medio", 0)
@@ -475,10 +490,23 @@ def extrair_tamanho_medio_std_por_tipo(data, metodo):
             neg_std = stats.get("negativa", {}).get("desvio_padrao", 0)
             neg_count = stats.get("negativa", {}).get("instancias", 0)
             
-            # Classificadas
+            # Classificadas: calcular direto dos valores individuais
             if (pos_count + neg_count) > 0:
-                classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
-                classif_std = ((pos_std**2 * pos_count + neg_std**2 * neg_count) / (pos_count + neg_count)) ** 0.5
+                # Extrair tamanhos das classificadas
+                classificadas = [inst for inst in per_inst if not inst.get('rejected', False)]
+                tamanhos_classif = [inst.get('explanation_size', inst.get('tamanho_explicacao', 0)) 
+                                   for inst in classificadas]
+                
+                if tamanhos_classif:
+                    classif_mean = sum(tamanhos_classif) / len(tamanhos_classif)
+                    if len(tamanhos_classif) > 1:
+                        import numpy as np
+                        classif_std = float(np.std(tamanhos_classif, ddof=1))
+                    else:
+                        classif_std = 0.0
+                else:
+                    classif_mean = (pos_mean * pos_count + neg_mean * neg_count) / (pos_count + neg_count)
+                    classif_std = 0.0
             else:
                 classif_mean, classif_std = None, None
             
