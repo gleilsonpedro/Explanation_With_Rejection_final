@@ -1,0 +1,2858 @@
+{
+    "config": {
+        "dataset_name": "breast_cancer",
+        "num_instances_total": 569,
+        "num_features": 30,
+        "test_size": 0.3,
+        "rejection_cost": 0.24,
+        "random_state": 42
+    },
+    "model_params": {
+        "model_type": "MLPClassifier",
+        "hidden_layer_sizes": [
+            100,
+            50
+        ],
+        "activation": "relu",
+        "solver": "adam",
+        "max_iter": 500,
+        "n_iter_": 19,
+        "n_layers_": 4
+    },
+    "thresholds": {
+        "t_plus": 0.1187022741385405,
+        "t_minus": -0.05137599062347298,
+        "rejection_zone_width": 0.1700782647620135
+    },
+    "performance": {
+        "accuracy_without_rejection": 90.05847953216374,
+        "accuracy_with_rejection": 90.9090909090909,
+        "rejection_rate": 22.807017543859647,
+        "num_test_instances": 171,
+        "num_positive": 61,
+        "num_negative": 71,
+        "num_rejected": 39
+    },
+    "explanation_stats": {
+        "positive": {
+            "count": 61,
+            "mean": 13.59016393442623,
+            "std": 3.7651423206084758,
+            "min": 6,
+            "max": 26
+        },
+        "negative": {
+            "count": 71,
+            "mean": 1.7183098591549295,
+            "std": 1.21241347699478,
+            "min": 1,
+            "max": 11
+        },
+        "rejected": {
+            "count": 39,
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0,
+            "max": 0
+        }
+    },
+    "computation_time": {
+        "total_seconds": 7.870717525482178,
+        "mean_per_instance_seconds": 0.04602758786831683
+    },
+    "per_instance": [
+        {
+            "id": "14",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.10924376474658598,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0901496410369873
+        },
+        {
+            "id": "150",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.06388319410568417,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.006802558898925781
+        },
+        {
+            "id": "275",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.1140204581892653,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.010236501693725586
+        },
+        {
+            "id": "83",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.2646863286569142,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.009996652603149414
+        },
+        {
+            "id": "86",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.09412525987332981,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.0215299129486084
+        },
+        {
+            "id": "509",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.17074925961766624,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.008996009826660156
+        },
+        {
+            "id": "140",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.20187558003652362,
+            "explicacao": [
+                "mean radius",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 15,
+            "tempo_execucao": 0.14438199996948242
+        },
+        {
+            "id": "199",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.25572394444224755,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.017246484756469727
+        },
+        {
+            "id": "292",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.11101508103468982,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "122",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.9311833087646126,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.021450042724609375
+        },
+        {
+            "id": "354",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.15744940130648294,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean concavity",
+                "radius error",
+                "concave points error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.15660834312438965
+        },
+        {
+            "id": "102",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.19390030540496686,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "radius error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 8,
+            "tempo_execucao": 0.14853835105895996
+        },
+        {
+            "id": "64",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.08609923020464404,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.016739845275878906
+        },
+        {
+            "id": "73",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.06264299989039271,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01647043228149414
+        },
+        {
+            "id": "66",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.3316616516057951,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.08241915702819824
+        },
+        {
+            "id": "205",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.11654616415106482,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.017258882522583008
+        },
+        {
+            "id": "121",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4280939386535344,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020101070404052734
+        },
+        {
+            "id": "128",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.11651925450137839,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01926422119140625
+        },
+        {
+            "id": "504",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2557487436707056,
+            "explicacao": [
+                "mean radius",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.07791304588317871
+        },
+        {
+            "id": "247",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.05915299279832004,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.013197660446166992
+        },
+        {
+            "id": "361",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1535144274824924,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean concavity",
+                "radius error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.097076416015625
+        },
+        {
+            "id": "228",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.12367971865620712,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.10162544250488281
+        },
+        {
+            "id": "242",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1596980739433263,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 14,
+            "tempo_execucao": 0.07413005828857422
+        },
+        {
+            "id": "17",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.38735768947385296,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.014845132827758789
+        },
+        {
+            "id": "460",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.3216560972259596,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.007186174392700195
+        },
+        {
+            "id": "204",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.04607385280843286,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0028846263885498047
+        },
+        {
+            "id": "246",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.16582759576521294,
+            "explicacao": [
+                "mean texture",
+                "mean area",
+                "mean concavity",
+                "radius error",
+                "area error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.11531209945678711
+        },
+        {
+            "id": "298",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.07609245402015101,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "257",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.2826868384651369,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.016239643096923828
+        },
+        {
+            "id": "516",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4304359046705549,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01589059829711914
+        },
+        {
+            "id": "496",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.005918245418753619,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.005326509475708008
+        },
+        {
+            "id": "417",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4893425662931066,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.006160736083984375
+        },
+        {
+            "id": "506",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1513480467596599,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 14,
+            "tempo_execucao": 0.10640621185302734
+        },
+        {
+            "id": "295",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.0843984291853232,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "256",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.6197922000216349,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.01858806610107422
+        },
+        {
+            "id": "349",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1254665899134218,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean smoothness",
+                "mean compactness",
+                "mean concavity",
+                "mean concave points",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "texture error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concavity error",
+                "concave points error",
+                "fractal dimension error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concavity",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 26,
+            "tempo_execucao": 0.13077831268310547
+        },
+        {
+            "id": "406",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.1375938441648506,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020880937576293945
+        },
+        {
+            "id": "431",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.20990240098265367,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.1122596263885498
+        },
+        {
+            "id": "48",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.08270628441628569,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "200",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.09719375969119516,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "518",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.040099151502978526,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "127",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.3857124110058114,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.029566049575805664
+        },
+        {
+            "id": "217",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.24617902872009548,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 10,
+            "tempo_execucao": 0.10308599472045898
+        },
+        {
+            "id": "116",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.34259890826952044,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 11,
+            "tempo_execucao": 0.08466792106628418
+        },
+        {
+            "id": "355",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.144524584750167,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "compactness error",
+                "concave points error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 19,
+            "tempo_execucao": 0.11629033088684082
+        },
+        {
+            "id": "542",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.036483021983635684,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "375",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.11718409291329313,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.015697002410888672
+        },
+        {
+            "id": "320",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.28199695404729813,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.08461236953735352
+        },
+        {
+            "id": "206",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.23720821796151975,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 15,
+            "tempo_execucao": 0.11533713340759277
+        },
+        {
+            "id": "372",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.5730739140578875,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "534",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2250739488962777,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 20,
+            "tempo_execucao": 0.10114336013793945
+        },
+        {
+            "id": "549",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.259481686039752,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.09880399703979492
+        },
+        {
+            "id": "343",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.6181287922860391,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.016730308532714844
+        },
+        {
+            "id": "95",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.540561510476783,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020699024200439453
+        },
+        {
+            "id": "334",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.23345324660251046,
+            "explicacao": [
+                "mean radius",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "compactness error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.09604382514953613
+        },
+        {
+            "id": "84",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.106889189081176,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "468",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.32534296364890847,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.004792213439941406
+        },
+        {
+            "id": "326",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.10198407507216287,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "466",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.00417077569221138,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "340",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.13131262360448043,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.024444103240966797
+        },
+        {
+            "id": "370",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4538143036319939,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.005002021789550781
+        },
+        {
+            "id": "1",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.45115309591231456,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.005006551742553711
+        },
+        {
+            "id": "498",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.405877661342824,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01094675064086914
+        },
+        {
+            "id": "307",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.21210017193732097,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "symmetry error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 14,
+            "tempo_execucao": 0.08324766159057617
+        },
+        {
+            "id": "467",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.26726534972765226,
+            "explicacao": [
+                "mean radius",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.09978985786437988
+        },
+        {
+            "id": "344",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.14826534154372112,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 17,
+            "tempo_execucao": 0.10091638565063477
+        },
+        {
+            "id": "445",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.19627262010400393,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 14,
+            "tempo_execucao": 0.09959816932678223
+        },
+        {
+            "id": "212",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -1.0352305886245434,
+            "explicacao": [
+                "worst perimeter"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.016801834106445312
+        },
+        {
+            "id": "398",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.17675224547530827,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "fractal dimension error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 19,
+            "tempo_execucao": 0.11501026153564453
+        },
+        {
+            "id": "103",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.19711733074475132,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.1019754409790039
+        },
+        {
+            "id": "567",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.8418202090926632,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "223",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.23195883875165899,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.016399860382080078
+        },
+        {
+            "id": "321",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4501813168813792,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.028177261352539062
+        },
+        {
+            "id": "564",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.7191569513029047,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.004998922348022461
+        },
+        {
+            "id": "423",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.04544301427065005,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.004002094268798828
+        },
+        {
+            "id": "548",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2734575676762007,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.07845449447631836
+        },
+        {
+            "id": "484",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.20549996094964282,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020771503448486328
+        },
+        {
+            "id": "20",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.04960569943955868,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0040988922119140625
+        },
+        {
+            "id": "156",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.40673781378591345,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.014920473098754883
+        },
+        {
+            "id": "310",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.20179066227769143,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean concave points",
+                "mean fractal dimension",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concavity",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 17,
+            "tempo_execucao": 0.09929299354553223
+        },
+        {
+            "id": "345",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.34779622219856615,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.07818794250488281
+        },
+        {
+            "id": "123",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.14149902368340403,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01837754249572754
+        },
+        {
+            "id": "237",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4095831999700234,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01973867416381836
+        },
+        {
+            "id": "540",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.25336402128596713,
+            "explicacao": [
+                "mean radius",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "symmetry error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 15,
+            "tempo_execucao": 0.1013174057006836
+        },
+        {
+            "id": "23",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.649541131223888,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "158",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.141389996998313,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean smoothness",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "fractal dimension error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concavity",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 20,
+            "tempo_execucao": 0.14289474487304688
+        },
+        {
+            "id": "403",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.07635032419955447,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "24",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.5978590476139439,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.014839887619018555
+        },
+        {
+            "id": "77",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.5598961864203575,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0022695064544677734
+        },
+        {
+            "id": "85",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4544782749198924,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.02127861976623535
+        },
+        {
+            "id": "70",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.5290170559627084,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.005994319915771484
+        },
+        {
+            "id": "399",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.190858804580541,
+            "explicacao": [
+                "mean radius",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 11,
+            "tempo_execucao": 0.10703396797180176
+        },
+        {
+            "id": "452",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.28994121616309115,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 19,
+            "tempo_execucao": 0.09978318214416504
+        },
+        {
+            "id": "553",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.3414249996466555,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.082794189453125
+        },
+        {
+            "id": "269",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.27586918250672204,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "concave points error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.08386349678039551
+        },
+        {
+            "id": "483",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.043374328928947124,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "7",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.04143530548635296,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "397",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.10406206217545684,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.01566147804260254
+        },
+        {
+            "id": "38",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.09326146588227346,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "192",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2587517076094301,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 10,
+            "tempo_execucao": 0.09992194175720215
+        },
+        {
+            "id": "495",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.006808606475020633,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.01681804656982422
+        },
+        {
+            "id": "428",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1964605093968953,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.12120842933654785
+        },
+        {
+            "id": "235",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.16258880612632967,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.0977027416229248
+        },
+        {
+            "id": "167",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.2884812133509767,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.014612436294555664
+        },
+        {
+            "id": "526",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.06069018037684739,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.027771949768066406
+        },
+        {
+            "id": "494",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2000974535000433,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean concavity",
+                "radius error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.10951805114746094
+        },
+        {
+            "id": "523",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.06358617966721847,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.005206584930419922
+        },
+        {
+            "id": "527",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.02389790493890182,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0040111541748046875
+        },
+        {
+            "id": "501",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.008828690269630474,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.003283262252807617
+        },
+        {
+            "id": "231",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.22840398042464657,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean concavity",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 6,
+            "tempo_execucao": 0.10503745079040527
+        },
+        {
+            "id": "13",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.09741647580818066,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.0005047321319580078
+        },
+        {
+            "id": "434",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.037501998862469146,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.017388582229614258
+        },
+        {
+            "id": "261",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.07131986974681778,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.014360427856445312
+        },
+        {
+            "id": "96",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.22236270159934815,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.10181593894958496
+        },
+        {
+            "id": "288",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.25575758944186344,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 16,
+            "tempo_execucao": 0.09992647171020508
+        },
+        {
+            "id": "194",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.1726988642673934,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.018617868423461914
+        },
+        {
+            "id": "385",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.03105986418200816,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "291",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.10586196452631498,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.014869928359985352
+        },
+        {
+            "id": "316",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.14468303737917537,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "fractal dimension error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry"
+            ],
+            "tamanho_explicacao": 21,
+            "tempo_execucao": 0.13202428817749023
+        },
+        {
+            "id": "535",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.7135278555308873,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.004962444305419922
+        },
+        {
+            "id": "488",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.10858817777937152,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "266",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.15815143394221023,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean area",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "texture error",
+                "perimeter error",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst smoothness",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 17,
+            "tempo_execucao": 0.12874817848205566
+        },
+        {
+            "id": "258",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.5095461867787404,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.015596628189086914
+        },
+        {
+            "id": "51",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.12631427725533254,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "concave points error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 16,
+            "tempo_execucao": 0.1168055534362793
+        },
+        {
+            "id": "41",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.07120600972243787,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "507",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.31932070277504726,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "concave points error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 10,
+            "tempo_execucao": 0.08267569541931152
+        },
+        {
+            "id": "447",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": -0.029956764714630213,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "65",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.17834784784789268,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.025458812713623047
+        },
+        {
+            "id": "528",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.0887100928222226,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.003000020980834961
+        },
+        {
+            "id": "415",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.19290535046747204,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "concave points error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.11082649230957031
+        },
+        {
+            "id": "519",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.0920053138346722,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "98",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.12464038855615514,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean perimeter",
+                "mean smoothness",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "fractal dimension error",
+                "worst radius",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concavity",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 19,
+            "tempo_execucao": 0.13105058670043945
+        },
+        {
+            "id": "138",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.3328395438671032,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.010820150375366211
+        },
+        {
+            "id": "359",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2470120680945455,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.08320093154907227
+        },
+        {
+            "id": "408",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4062033996709272,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.017122268676757812
+        },
+        {
+            "id": "568",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2325672595591023,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 13,
+            "tempo_execucao": 0.08338093757629395
+        },
+        {
+            "id": "8",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.2156648049329859,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.007606029510498047
+        },
+        {
+            "id": "537",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.23331196090500858,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst perimeter",
+                "worst area",
+                "worst compactness",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 17,
+            "tempo_execucao": 0.09326457977294922
+        },
+        {
+            "id": "536",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.07340625933860236,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020763635635375977
+        },
+        {
+            "id": "513",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.11738344057553891,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "compactness error",
+                "concave points error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 11,
+            "tempo_execucao": 0.08333730697631836
+        },
+        {
+            "id": "305",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.24094404303325603,
+            "explicacao": [
+                "mean radius",
+                "mean area",
+                "mean symmetry",
+                "radius error",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.11705183982849121
+        },
+        {
+            "id": "104",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.2604405190445979,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.09552407264709473
+        },
+        {
+            "id": "203",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.23437520410442006,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0184481143951416
+        },
+        {
+            "id": "198",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.48508888815573753,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.014667272567749023
+        },
+        {
+            "id": "461",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -1.3334147071687705,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.007703065872192383
+        },
+        {
+            "id": "492",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.39312336120105157,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.012995481491088867
+        },
+        {
+            "id": "168",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4876710155417675,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.011985540390014648
+        },
+        {
+            "id": "113",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.35799413059106844,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "concave points error",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 10,
+            "tempo_execucao": 0.07280707359313965
+        },
+        {
+            "id": "541",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.01602096805635224,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.010437726974487305
+        },
+        {
+            "id": "296",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.1801300346751053,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "radius error",
+                "perimeter error",
+                "area error",
+                "smoothness error",
+                "compactness error",
+                "concave points error",
+                "symmetry error",
+                "fractal dimension error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 20,
+            "tempo_execucao": 0.1150200366973877
+        },
+        {
+            "id": "308",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.10785736184398477,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0021784305572509766
+        },
+        {
+            "id": "390",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.15409519566046134,
+            "explicacao": [
+                "mean radius",
+                "mean smoothness",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "fractal dimension error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concavity",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 17,
+            "tempo_execucao": 0.13216352462768555
+        },
+        {
+            "id": "180",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -1.1499653473328657,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.016420602798461914
+        },
+        {
+            "id": "440",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.11007409110836397,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "328",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.3001403365214965,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01958012580871582
+        },
+        {
+            "id": "74",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.11629724077692508,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.003907442092895508
+        },
+        {
+            "id": "412",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.3096595217077975,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 11,
+            "tempo_execucao": 0.07609033584594727
+        },
+        {
+            "id": "353",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.11126694251948646,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.001010894775390625
+        },
+        {
+            "id": "439",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.07575246038039801,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.003374814987182617
+        },
+        {
+            "id": "267",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.14934806628621963,
+            "explicacao": [
+                "mean texture",
+                "mean area",
+                "mean concavity",
+                "radius error",
+                "area error",
+                "symmetry error",
+                "worst texture",
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 9,
+            "tempo_execucao": 0.11413383483886719
+        },
+        {
+            "id": "177",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.2920038925551775,
+            "explicacao": [
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 1,
+            "tempo_execucao": 0.0
+        },
+        {
+            "id": "444",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.34453047218652094,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.020604848861694336
+        },
+        {
+            "id": "508",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.07608297348902483,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.02386188507080078
+        },
+        {
+            "id": "464",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.05291307141801162,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.003000020980834961
+        },
+        {
+            "id": "433",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.4519399076961885,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.015202045440673828
+        },
+        {
+            "id": "348",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.20179637570722986,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean compactness",
+                "mean concavity",
+                "mean symmetry",
+                "mean fractal dimension",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 15,
+            "tempo_execucao": 0.08826279640197754
+        },
+        {
+            "id": "37",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.197870019790746,
+            "explicacao": [
+                "mean radius",
+                "mean texture",
+                "mean area",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "area error",
+                "concave points error",
+                "worst texture",
+                "worst perimeter",
+                "worst area",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.11601948738098145
+        },
+        {
+            "id": "358",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 1,
+            "decision_score": 0.23048118615360108,
+            "explicacao": [
+                "mean radius",
+                "mean compactness",
+                "mean concavity",
+                "mean fractal dimension",
+                "radius error",
+                "area error",
+                "smoothness error",
+                "concave points error",
+                "worst perimeter",
+                "worst concave points",
+                "worst symmetry",
+                "worst fractal dimension"
+            ],
+            "tamanho_explicacao": 12,
+            "tempo_execucao": 0.08493518829345703
+        },
+        {
+            "id": "363",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.08112888588847268,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.017790794372558594
+        },
+        {
+            "id": "171",
+            "y_true": 0,
+            "y_pred_sem_rejeicao": 0,
+            "y_pred_com_rejeicao": 0,
+            "decision_score": -0.05505009685590046,
+            "explicacao": [
+                "worst perimeter",
+                "worst concave points"
+            ],
+            "tamanho_explicacao": 2,
+            "tempo_execucao": 0.01449275016784668
+        },
+        {
+            "id": "284",
+            "y_true": 1,
+            "y_pred_sem_rejeicao": 1,
+            "y_pred_com_rejeicao": 2,
+            "decision_score": 0.07345350772045149,
+            "explicacao": [],
+            "tamanho_explicacao": 0,
+            "tempo_execucao": 0.0
+        }
+    ]
+}
