@@ -16,35 +16,35 @@
   - Neurônios nas Camadas Ocultas: [100, 50]
   - Função de Ativação: relu
   - Solver: adam
-  - Épocas de Treinamento (Backpropagation): 14
+  - Épocas de Treinamento (Backpropagation): 33
 
 3. ZONA DE REJEIÇÃO
 --------------------------------------------------------------------------------
   - Custo de Rejeição (usado para otimização): 0.24
-  - Limiar Superior (t+): 0.1000
-  - Limiar Inferior (t-): -0.0114
-  - Tamanho da Zona de Rejeição: 0.1114
+  - Limiar Superior (t+): 0.1492
+  - Limiar Inferior (t-): -0.1090
+  - Tamanho da Zona de Rejeição: 0.2582
 
 4. DESEMPENHO DO CLASSIFICADOR
 --------------------------------------------------------------------------------
-  - Acurácia ANTES da Rejeição: 64.94%
-  - Acurácia DEPOIS da Rejeição (nas aceitas): 64.94%
-  - Taxa de Rejeição: 0.00%
-  - Instâncias Positivas: 0
-  - Instâncias Negativas: 231
-  - Instâncias Rejeitadas: 0
+  - Acurácia ANTES da Rejeição: 67.10%
+  - Acurácia DEPOIS da Rejeição (nas aceitas): 78.16%
+  - Taxa de Rejeição: 62.34%
+  - Instâncias Positivas: 40
+  - Instâncias Negativas: 47
+  - Instâncias Rejeitadas: 144
 
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  - Para Instâncias POSITIVAS (0):
-    - Tamanho Médio da Explicação: 0.00 features
-  - Para Instâncias NEGATIVAS (231):
-    - Tamanho Médio da Explicação: 0.00 features
-  - Para Instâncias REJEITADAS (0):
-    - Tamanho Médio da Explicação: 0.00 features
+  - Para Instâncias POSITIVAS (40):
+    - Tamanho Médio da Explicação: 3.98 features
+  - Para Instâncias NEGATIVAS (47):
+    - Tamanho Médio da Explicação: 6.94 features
+  - Para Instâncias REJEITADAS (144):
+    - Tamanho Médio da Explicação: 4.12 features
 
 6. TEMPO DE EXECUÇÃO (Geração das Explicações)
 --------------------------------------------------------------------------------
-  - Tempo Total: 0.72 segundos
-  - Tempo Médio por Instância: 0.0031 segundos
+  - Tempo Total: 2.51 segundos
+  - Tempo Médio por Instância: 0.0109 segundos
 

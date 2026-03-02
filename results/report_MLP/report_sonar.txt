@@ -4,47 +4,47 @@
 
 1. RESUMO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  - Nome do Dataset: breast_cancer
-  - Total de Instâncias: 569
-  - Total de Features: 30
+  - Nome do Dataset: sonar
+  - Total de Instâncias: 208
+  - Total de Features: 60
   - Divisão Treino/Teste: 70%/30%
-  - Instâncias de Treino: 398
-  - Instâncias de Teste: 171
+  - Instâncias de Treino: 145
+  - Instâncias de Teste: 63
 
 2. CONFIGURAÇÃO DO MODELO (MLP)
 --------------------------------------------------------------------------------
   - Neurônios nas Camadas Ocultas: [100, 50]
   - Função de Ativação: relu
   - Solver: adam
-  - Épocas de Treinamento (Backpropagation): 19
+  - Épocas de Treinamento (Backpropagation): 26
 
 3. ZONA DE REJEIÇÃO
 --------------------------------------------------------------------------------
   - Custo de Rejeição (usado para otimização): 0.24
-  - Limiar Superior (t+): 0.1187
-  - Limiar Inferior (t-): -0.0514
-  - Tamanho da Zona de Rejeição: 0.1701
+  - Limiar Superior (t+): 0.4250
+  - Limiar Inferior (t-): -0.0943
+  - Tamanho da Zona de Rejeição: 0.5193
 
 4. DESEMPENHO DO CLASSIFICADOR
 --------------------------------------------------------------------------------
-  - Acurácia ANTES da Rejeição: 90.06%
-  - Acurácia DEPOIS da Rejeição (nas aceitas): 90.91%
-  - Taxa de Rejeição: 22.81%
-  - Instâncias Positivas: 61
-  - Instâncias Negativas: 71
-  - Instâncias Rejeitadas: 39
+  - Acurácia ANTES da Rejeição: 71.43%
+  - Acurácia DEPOIS da Rejeição (nas aceitas): 85.29%
+  - Taxa de Rejeição: 46.03%
+  - Instâncias Positivas: 22
+  - Instâncias Negativas: 12
+  - Instâncias Rejeitadas: 29
 
 5. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  - Para Instâncias POSITIVAS (61):
-    - Tamanho Médio da Explicação: 14.87 features
-  - Para Instâncias NEGATIVAS (71):
-    - Tamanho Médio da Explicação: 2.80 features
-  - Para Instâncias REJEITADAS (39):
-    - Tamanho Médio da Explicação: 11.72 features
+  - Para Instâncias POSITIVAS (22):
+    - Tamanho Médio da Explicação: 15.09 features
+  - Para Instâncias NEGATIVAS (12):
+    - Tamanho Médio da Explicação: 27.08 features
+  - Para Instâncias REJEITADAS (29):
+    - Tamanho Médio da Explicação: 17.86 features
 
 6. TEMPO DE EXECUÇÃO (Geração das Explicações)
 --------------------------------------------------------------------------------
-  - Tempo Total: 4.84 segundos
-  - Tempo Médio por Instância: 0.0283 segundos
+  - Tempo Total: 5.70 segundos
+  - Tempo Médio por Instância: 0.0904 segundos
 
