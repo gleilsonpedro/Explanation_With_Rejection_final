@@ -5,67 +5,65 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: mnist
-  Instâncias de teste: 41
-  Features por instância: 784
+  Dataset: pima_indians_diabetes
+  Instâncias de teste: 231
+  Features por instância: 8
   Test size: 30.00%
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.000100
-  t- (limiar inferior): -0.000100
-  Largura da zona de rejeição: 0.000200
+  t+ (limiar superior): 0.665120
+  t- (limiar inferior): -0.331208
+  Largura da zona de rejeição: 0.996328
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 97.56%
-  Acurácia com rejeição: 97.56%
-  Taxa de rejeição: 0.00%
+  Acurácia sem rejeição: 68.40%
+  Acurácia com rejeição: 100.00%
+  Taxa de rejeição: 89.61%
 
 --------------------------------------------------------------------------------
 4. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 19
-    Tamanho médio: 19.16 features
-    Desvio padrão: 3.07
-    Mínimo: 15 features
-    Máximo: 27 features
+    Quantidade: 4
+    Tamanho médio: 5.75 features
+    Desvio padrão: 1.64
+    Mínimo: 3 features
+    Máximo: 7 features
 
   NEGATIVAS:
-    Quantidade: 22
-    Tamanho médio: 1.00 features
-    Desvio padrão: 0.00
-    Mínimo: 1 features
-    Máximo: 1 features
+    Quantidade: 20
+    Tamanho médio: 7.70 features
+    Desvio padrão: 0.64
+    Mínimo: 6 features
+    Máximo: 8 features
 
   REJEITADAS:
-    Quantidade: 0
-    Tamanho médio: 0.00 features
-    Desvio padrão: 0.00
-    Mínimo: 0 features
-    Máximo: 0 features
+    Quantidade: 207
+    Tamanho médio: 3.55 features
+    Desvio padrão: 0.84
+    Mínimo: 3 features
+    Máximo: 7 features
 
 --------------------------------------------------------------------------------
 5. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total: 109.8550s
-  Tempo médio por instância: 2.679390s
+  Tempo total: 2.1900s
+  Tempo médio por instância: 0.009480s
 
 --------------------------------------------------------------------------------
 6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel452: 16 ocorrências (39.0%)
-  pixel767: 12 ocorrências (29.3%)
-  pixel737: 10 ocorrências (24.4%)
-  pixel739: 10 ocorrências (24.4%)
-  pixel740: 10 ocorrências (24.4%)
-  pixel451: 9 ocorrências (22.0%)
-  pixel736: 9 ocorrências (22.0%)
-  pixel765: 9 ocorrências (22.0%)
-  pixel766: 8 ocorrências (19.5%)
-  pixel714: 8 ocorrências (19.5%)
+  diabetes_pedigree: 212 ocorrências (91.8%)
+  idade: 208 ocorrências (90.0%)
+  glicose: 182 ocorrências (78.8%)
+  insulina: 134 ocorrências (58.0%)
+  num_gravidezes: 53 ocorrências (22.9%)
+  imc: 47 ocorrências (20.3%)
+  espessura_pele: 42 ocorrências (18.2%)
+  pressao_sangue: 34 ocorrências (14.7%)
 

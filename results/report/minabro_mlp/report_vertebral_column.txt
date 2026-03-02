@@ -5,67 +5,63 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: mnist
-  Instâncias de teste: 41
-  Features por instância: 784
+  Dataset: vertebral_column
+  Instâncias de teste: 93
+  Features por instância: 6
   Test size: 30.00%
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.000100
-  t- (limiar inferior): -0.000100
-  Largura da zona de rejeição: 0.000200
+  t+ (limiar superior): 0.101339
+  t- (limiar inferior): -0.306250
+  Largura da zona de rejeição: 0.407589
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 97.56%
-  Acurácia com rejeição: 97.56%
-  Taxa de rejeição: 0.00%
+  Acurácia sem rejeição: 77.42%
+  Acurácia com rejeição: 86.15%
+  Taxa de rejeição: 30.11%
 
 --------------------------------------------------------------------------------
 4. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 19
-    Tamanho médio: 19.16 features
-    Desvio padrão: 3.07
-    Mínimo: 15 features
-    Máximo: 27 features
+    Quantidade: 48
+    Tamanho médio: 2.56 features
+    Desvio padrão: 1.12
+    Mínimo: 1 features
+    Máximo: 6 features
 
   NEGATIVAS:
-    Quantidade: 22
-    Tamanho médio: 1.00 features
-    Desvio padrão: 0.00
-    Mínimo: 1 features
-    Máximo: 1 features
+    Quantidade: 17
+    Tamanho médio: 5.94 features
+    Desvio padrão: 0.24
+    Mínimo: 5 features
+    Máximo: 6 features
 
   REJEITADAS:
-    Quantidade: 0
-    Tamanho médio: 0.00 features
-    Desvio padrão: 0.00
-    Mínimo: 0 features
-    Máximo: 0 features
+    Quantidade: 28
+    Tamanho médio: 5.00 features
+    Desvio padrão: 0.60
+    Mínimo: 3 features
+    Máximo: 6 features
 
 --------------------------------------------------------------------------------
 5. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total: 109.8550s
-  Tempo médio por instância: 2.679390s
+  Tempo total: 0.7242s
+  Tempo médio por instância: 0.007788s
 
 --------------------------------------------------------------------------------
 6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel452: 16 ocorrências (39.0%)
-  pixel767: 12 ocorrências (29.3%)
-  pixel737: 10 ocorrências (24.4%)
-  pixel739: 10 ocorrências (24.4%)
-  pixel740: 10 ocorrências (24.4%)
-  pixel451: 9 ocorrências (22.0%)
-  pixel736: 9 ocorrências (22.0%)
-  pixel765: 9 ocorrências (22.0%)
-  pixel766: 8 ocorrências (19.5%)
-  pixel714: 8 ocorrências (19.5%)
+  pelvic_incidence: 91 ocorrências (97.8%)
+  lumbar_lordosis_angle: 88 ocorrências (94.6%)
+  spondylolisthesis_grade: 57 ocorrências (61.3%)
+  pelvic_tilt: 55 ocorrências (59.1%)
+  pelvic_radius: 47 ocorrências (50.5%)
+  sacral_slope: 26 ocorrências (28.0%)
 

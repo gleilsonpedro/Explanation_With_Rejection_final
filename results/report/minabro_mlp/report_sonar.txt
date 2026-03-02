@@ -5,67 +5,67 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: mnist
-  Instâncias de teste: 41
-  Features por instância: 784
+  Dataset: sonar
+  Instâncias de teste: 63
+  Features por instância: 60
   Test size: 30.00%
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.000100
-  t- (limiar inferior): -0.000100
-  Largura da zona de rejeição: 0.000200
+  t+ (limiar superior): 0.394193
+  t- (limiar inferior): -0.124362
+  Largura da zona de rejeição: 0.518555
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 97.56%
-  Acurácia com rejeição: 97.56%
-  Taxa de rejeição: 0.00%
+  Acurácia sem rejeição: 71.43%
+  Acurácia com rejeição: 83.33%
+  Taxa de rejeição: 42.86%
 
 --------------------------------------------------------------------------------
 4. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 19
-    Tamanho médio: 19.16 features
-    Desvio padrão: 3.07
-    Mínimo: 15 features
-    Máximo: 27 features
+    Quantidade: 25
+    Tamanho médio: 15.40 features
+    Desvio padrão: 7.84
+    Mínimo: 8 features
+    Máximo: 49 features
 
   NEGATIVAS:
-    Quantidade: 22
-    Tamanho médio: 1.00 features
-    Desvio padrão: 0.00
-    Mínimo: 1 features
-    Máximo: 1 features
+    Quantidade: 11
+    Tamanho médio: 29.27 features
+    Desvio padrão: 8.01
+    Mínimo: 21 features
+    Máximo: 49 features
 
   REJEITADAS:
-    Quantidade: 0
-    Tamanho médio: 0.00 features
-    Desvio padrão: 0.00
-    Mínimo: 0 features
-    Máximo: 0 features
+    Quantidade: 27
+    Tamanho médio: 17.59 features
+    Desvio padrão: 4.17
+    Mínimo: 13 features
+    Máximo: 35 features
 
 --------------------------------------------------------------------------------
 5. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total: 109.8550s
-  Tempo médio por instância: 2.679390s
+  Tempo total: 5.5635s
+  Tempo médio por instância: 0.088310s
 
 --------------------------------------------------------------------------------
 6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel452: 16 ocorrências (39.0%)
-  pixel767: 12 ocorrências (29.3%)
-  pixel737: 10 ocorrências (24.4%)
-  pixel739: 10 ocorrências (24.4%)
-  pixel740: 10 ocorrências (24.4%)
-  pixel451: 9 ocorrências (22.0%)
-  pixel736: 9 ocorrências (22.0%)
-  pixel765: 9 ocorrências (22.0%)
-  pixel766: 8 ocorrências (19.5%)
-  pixel714: 8 ocorrências (19.5%)
+  feature_9: 50 ocorrências (79.4%)
+  feature_57: 47 ocorrências (74.6%)
+  feature_11: 46 ocorrências (73.0%)
+  feature_45: 45 ocorrências (71.4%)
+  feature_20: 42 ocorrências (66.7%)
+  feature_47: 42 ocorrências (66.7%)
+  feature_6: 41 ocorrências (65.1%)
+  feature_44: 38 ocorrências (60.3%)
+  feature_10: 37 ocorrências (58.7%)
+  feature_48: 37 ocorrências (58.7%)
 

@@ -1,0 +1,5518 @@
+{
+  "config": {
+    "dataset_name": "banknote",
+    "test_size": 0.3,
+    "random_state": 42,
+    "rejection_cost": 0.24,
+    "subsample_size": null
+  },
+  "thresholds": {
+    "t_plus": 0.11208415889873062,
+    "t_minus": -1.094907720138273,
+    "rejection_zone_width": 1.2069918790370038
+  },
+  "performance": {
+    "accuracy_without_rejection": 91.2621359223301,
+    "accuracy_with_rejection": 95.4954954954955,
+    "rejection_rate": 19.174757281553397,
+    "num_test_instances": 412,
+    "num_rejected": 79,
+    "num_accepted": 333
+  },
+  "explanation_stats": {
+    "positive": {
+      "count": 163,
+      "mean_length": 2.2822085889570554,
+      "std_length": 1.1538636215359872,
+      "min_length": 1,
+      "max_length": 4
+    },
+    "negative": {
+      "count": 170,
+      "mean_length": 1.4705882352941178,
+      "std_length": 0.7834799489775262,
+      "min_length": 1,
+      "max_length": 4
+    },
+    "rejected": {
+      "count": 79,
+      "mean_length": 3.7468354430379747,
+      "std_length": 0.625782637686495,
+      "min_length": 2,
+      "max_length": 4
+    }
+  },
+  "computation_time": {
+    "total": 2.262082500004908,
+    "mean_per_instance": 0.005490491504866282
+  },
+  "model": {
+    "params": {
+      "hidden_layer_sizes": [
+        100,
+        50
+      ],
+      "activation": "relu",
+      "solver": "adam",
+      "max_iter": 500,
+      "alpha": 0.0001,
+      "learning_rate_init": 0.001,
+      "early_stopping": true,
+      "n_iter_no_change": 10,
+      "validation_fraction": 0.1
+    },
+    "num_features": 4
+  },
+  "per_instance": [
+    {
+      "id": "484",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.099220285189616,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035436000034678727
+    },
+    {
+      "id": "1367",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.12275057238407852,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006641500018304214
+    },
+    {
+      "id": "711",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1032944858735492,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007737400010228157
+    },
+    {
+      "id": "1072",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.307258407611044,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007628300023498014
+    },
+    {
+      "id": "130",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4132825393506399,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035752000112552196
+    },
+    {
+      "id": "91",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2058316738901125,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035638000117614865
+    },
+    {
+      "id": "1287",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8910652844886104,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036199000023771077
+    },
+    {
+      "id": "1008",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7834905520060567,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005330099986167625
+    },
+    {
+      "id": "682",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6171169858290615,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036238999746274203
+    },
+    {
+      "id": "977",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2138984731854454,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007165799994254485
+    },
+    {
+      "id": "1073",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5139014341805915,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007057899987557903
+    },
+    {
+      "id": "366",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0667861188021552,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035219000128563493
+    },
+    {
+      "id": "459",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.114742576373764,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005320900003425777
+    },
+    {
+      "id": "670",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4853105784353622,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003528000001097098
+    },
+    {
+      "id": "660",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7281212132123434,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003623099997639656
+    },
+    {
+      "id": "1162",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.229271712356385,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.007036599999992177
+    },
+    {
+      "id": "474",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3410362073899496,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035274000256322324
+    },
+    {
+      "id": "122",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.0023843237807168,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007047799997963011
+    },
+    {
+      "id": "677",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7150136087093713,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.007438000000547618
+    },
+    {
+      "id": "460",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2493839287673916,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006080999999539927
+    },
+    {
+      "id": "315",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.022916750953721466,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0074606999987736344
+    },
+    {
+      "id": "276",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.82401956185706,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.005202800006372854
+    },
+    {
+      "id": "1248",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.2151628891874173,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003981799993198365
+    },
+    {
+      "id": "953",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.26736407923444544,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007564899977296591
+    },
+    {
+      "id": "776",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2820555977556052,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036943999875802547
+    },
+    {
+      "id": "664",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.496127968132911,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003562400001101196
+    },
+    {
+      "id": "803",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6299099174949816,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007138899993151426
+    },
+    {
+      "id": "475",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4669329102108668,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003644899989012629
+    },
+    {
+      "id": "13",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.7154052927448382,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007071200001519173
+    },
+    {
+      "id": "1004",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1254992994602664,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003533200011588633
+    },
+    {
+      "id": "882",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.3159979316977046,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035208999761380255
+    },
+    {
+      "id": "62",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8666061634041355,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003548600012436509
+    },
+    {
+      "id": "987",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.13515324268032713,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006505900004412979
+    },
+    {
+      "id": "981",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2218297134373326,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003502100007608533
+    },
+    {
+      "id": "187",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2986573503145753,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005396599997766316
+    },
+    {
+      "id": "1208",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5807856055999456,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005250199988950044
+    },
+    {
+      "id": "808",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8617255070727963,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035019000060856342
+    },
+    {
+      "id": "633",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8165924188866267,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036032000207342207
+    },
+    {
+      "id": "1339",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3624360257699217,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.00674140002229251
+    },
+    {
+      "id": "1258",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.42073958375642156,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007259200006956235
+    },
+    {
+      "id": "975",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6666715327942534,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003329399973154068
+    },
+    {
+      "id": "1359",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": true,
+      "decision_score": 0.04226144067010727,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007739499997114763
+    },
+    {
+      "id": "870",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1787068398615637,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006857500004116446
+    },
+    {
+      "id": "1213",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7797158569616904,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005666100012604147
+    },
+    {
+      "id": "1025",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2542217772026736,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007070100022247061
+    },
+    {
+      "id": "795",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2076062543412716,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006743100006133318
+    },
+    {
+      "id": "253",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4386086449384274,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037102000205777586
+    },
+    {
+      "id": "52",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2212201894775374,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004212899977574125
+    },
+    {
+      "id": "654",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8746814456837326,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003679999994346872
+    },
+    {
+      "id": "1107",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.34776521078464356,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005737800005590543
+    },
+    {
+      "id": "87",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9420738130447653,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00733540000510402
+    },
+    {
+      "id": "219",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.00573953869909,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0072985000151675195
+    },
+    {
+      "id": "984",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7963208791650837,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007062499993480742
+    },
+    {
+      "id": "764",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5675687703241725,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005027899984270334
+    },
+    {
+      "id": "989",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1651037209512323,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003383400005986914
+    },
+    {
+      "id": "906",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5943100199053305,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033719000057317317
+    },
+    {
+      "id": "293",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.164498749843663,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005208399990806356
+    },
+    {
+      "id": "614",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6122124541184684,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.00333659999887459
+    },
+    {
+      "id": "955",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6973140368615833,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005573599977651611
+    },
+    {
+      "id": "504",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9037027154522472,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038351000112015754
+    },
+    {
+      "id": "1092",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2850667289380433,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005857800017111003
+    },
+    {
+      "id": "990",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1664997763284255,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033428000169806182
+    },
+    {
+      "id": "560",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8203899266386516,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003333200002089143
+    },
+    {
+      "id": "1201",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8950427576761948,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007743800000753254
+    },
+    {
+      "id": "64",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4127098818229173,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003616900008637458
+    },
+    {
+      "id": "959",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5104471379727833,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036257999890949577
+    },
+    {
+      "id": "347",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6329254457850697,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036801999958697706
+    },
+    {
+      "id": "556",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7577870634447825,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005622199998470023
+    },
+    {
+      "id": "765",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.3434765458210607,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036321000079624355
+    },
+    {
+      "id": "288",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.35026211361364956,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007056100002955645
+    },
+    {
+      "id": "561",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.21076416869357378,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007142299989936873
+    },
+    {
+      "id": "1018",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6284197787951893,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007149400014895946
+    },
+    {
+      "id": "1210",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6712363689089252,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0070955000119283795
+    },
+    {
+      "id": "191",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7643093468873143,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035475000040605664
+    },
+    {
+      "id": "472",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.202212901263504,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035279000003356487
+    },
+    {
+      "id": "715",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2621734814138597,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035822000063490123
+    },
+    {
+      "id": "830",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": true,
+      "decision_score": 0.10006579288339838,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007104500022251159
+    },
+    {
+      "id": "565",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7887368374141694,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.00539450001087971
+    },
+    {
+      "id": "994",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5361245093357035,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007518600003095344
+    },
+    {
+      "id": "1198",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.554890760714511,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005243299994617701
+    },
+    {
+      "id": "1171",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1791659109458967,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033537000126671046
+    },
+    {
+      "id": "205",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.141663966454571,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033208999957423657
+    },
+    {
+      "id": "267",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7126578147605214,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.00360619998537004
+    },
+    {
+      "id": "612",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.46464255777720764,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007564300001831725
+    },
+    {
+      "id": "807",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.013074091233123,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033325999975204468
+    },
+    {
+      "id": "379",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2064942980597877,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033320999937132
+    },
+    {
+      "id": "489",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4008557815613811,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038161999837029725
+    },
+    {
+      "id": "769",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.09270103926194505,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006867699994472787
+    },
+    {
+      "id": "376",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1606005739578773,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003238500008592382
+    },
+    {
+      "id": "1034",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.0378706612482231,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007076000008964911
+    },
+    {
+      "id": "217",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9977986195225752,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0067186999949626625
+    },
+    {
+      "id": "596",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.7502000363565321,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006990699999732897
+    },
+    {
+      "id": "441",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.855239538845247,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006505900004412979
+    },
+    {
+      "id": "1204",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.805430447827082,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006638899998506531
+    },
+    {
+      "id": "295",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8691246464160234,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005885999999009073
+    },
+    {
+      "id": "128",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9218442401211873,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003337900008773431
+    },
+    {
+      "id": "836",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.050641697343419806,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006131699978141114
+    },
+    {
+      "id": "723",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.0196633940136655,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007658299989998341
+    },
+    {
+      "id": "844",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.7078008863610034,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00832210000953637
+    },
+    {
+      "id": "391",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0030655055281974,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005129400000441819
+    },
+    {
+      "id": "577",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7298409045490364,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038738000148441643
+    },
+    {
+      "id": "202",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4419221367562112,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006461999990278855
+    },
+    {
+      "id": "186",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3702547234448623,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003370799997355789
+    },
+    {
+      "id": "1295",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.2384185823435025,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003337900008773431
+    },
+    {
+      "id": "463",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6163517345707935,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.0056684000010136515
+    },
+    {
+      "id": "744",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.826102867823243,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003341200004797429
+    },
+    {
+      "id": "767",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7670480578115726,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006258599983993918
+    },
+    {
+      "id": "898",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9710372804425866,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038428000116255134
+    },
+    {
+      "id": "36",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.842975697484562,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003351099992869422
+    },
+    {
+      "id": "273",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.680768036885575,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0032934999908320606
+    },
+    {
+      "id": "1079",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.43779521579252667,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006633300014073029
+    },
+    {
+      "id": "1227",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7891496337806276,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005256599979475141
+    },
+    {
+      "id": "766",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.567377452532108,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003342599986353889
+    },
+    {
+      "id": "282",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2277968688642904,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003408300020964816
+    },
+    {
+      "id": "508",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.202667687417489,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.00332480002543889
+    },
+    {
+      "id": "502",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6886233375822768,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006912500015459955
+    },
+    {
+      "id": "678",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2178957935928136,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033335999760311097
+    },
+    {
+      "id": "625",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6648908270732097,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033110000076703727
+    },
+    {
+      "id": "1242",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.978224155495868,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003349699982209131
+    },
+    {
+      "id": "738",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.414309909674976,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005815600015921518
+    },
+    {
+      "id": "1346",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6739202603323744,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006569099990883842
+    },
+    {
+      "id": "672",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9669900084122927,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.009940999996615574
+    },
+    {
+      "id": "1323",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.594293793790939,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00787919998401776
+    },
+    {
+      "id": "385",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.055832223990196,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005145300005096942
+    },
+    {
+      "id": "1164",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2373098009740038,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036131000088062137
+    },
+    {
+      "id": "1185",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.551338906194042,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005000799981644377
+    },
+    {
+      "id": "509",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8389543850258078,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006898599996929988
+    },
+    {
+      "id": "496",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.217663294087614,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003564999991795048
+    },
+    {
+      "id": "35",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7254558425782935,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003340799972647801
+    },
+    {
+      "id": "1153",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7459087974889587,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005128799995873123
+    },
+    {
+      "id": "343",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7524787479809643,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006482400000095367
+    },
+    {
+      "id": "895",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1176082132857708,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006721399986417964
+    },
+    {
+      "id": "410",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8648104692267639,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006800099974498153
+    },
+    {
+      "id": "755",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.153249260080602,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038736000133212656
+    },
+    {
+      "id": "34",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.717790470773977,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007166700001107529
+    },
+    {
+      "id": "372",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8900958036923636,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006283199996687472
+    },
+    {
+      "id": "240",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9939364673022781,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034707000013440847
+    },
+    {
+      "id": "822",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0091591634195853,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037910000246483833
+    },
+    {
+      "id": "605",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3332026173481895,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005130200006533414
+    },
+    {
+      "id": "1231",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.17620407323611714,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006846600008429959
+    },
+    {
+      "id": "471",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.82149917333087,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0072954000206664205
+    },
+    {
+      "id": "1",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.738488183814633,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036604000197257847
+    },
+    {
+      "id": "1096",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.8165501369655026,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034958000178448856
+    },
+    {
+      "id": "161",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.397700720780576,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004013800004031509
+    },
+    {
+      "id": "1081",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9702747232767098,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003797899989876896
+    },
+    {
+      "id": "384",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7298731071671407,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006700500001898035
+    },
+    {
+      "id": "944",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6166137182574511,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.007714000006671995
+    },
+    {
+      "id": "665",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2241978372278601,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005523600004380569
+    },
+    {
+      "id": "308",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8898404077578634,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0039191000105347484
+    },
+    {
+      "id": "491",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2115938000936237,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003950900019844994
+    },
+    {
+      "id": "945",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.43216320302221517,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0077581000223290175
+    },
+    {
+      "id": "1303",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1200342227134583,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036643000203184783
+    },
+    {
+      "id": "1239",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1557664224295694,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006700199999613687
+    },
+    {
+      "id": "4",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.022938377959202238,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007353599998168647
+    },
+    {
+      "id": "973",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.26128018745891,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.007870999979786575
+    },
+    {
+      "id": "727",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.34465100683888567,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0083652000175789
+    },
+    {
+      "id": "476",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.159082039034588,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00795630001812242
+    },
+    {
+      "id": "348",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6530715224170829,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004107999993721023
+    },
+    {
+      "id": "146",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5611486529804646,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0039053999935276806
+    },
+    {
+      "id": "71",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6546537604355858,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004212400002870709
+    },
+    {
+      "id": "620",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3979704587642312,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003662899980554357
+    },
+    {
+      "id": "1299",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.505883731005351,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007228900009067729
+    },
+    {
+      "id": "562",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2233571462174226,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0072385999956168234
+    },
+    {
+      "id": "604",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.34465100683888567,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0070982999750413
+    },
+    {
+      "id": "159",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.93586962846929,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007138699991628528
+    },
+    {
+      "id": "252",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2319103875443536,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007188399991719052
+    },
+    {
+      "id": "1130",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.898426436581691,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005475699988892302
+    },
+    {
+      "id": "696",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0094037619896383,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006126599997514859
+    },
+    {
+      "id": "123",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6866869854993091,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007435599982272834
+    },
+    {
+      "id": "1315",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.2798019199192354,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003421600005822256
+    },
+    {
+      "id": "106",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.428081824120947,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005431700003100559
+    },
+    {
+      "id": "1155",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.11313570157848703,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005163499998161569
+    },
+    {
+      "id": "1076",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0509958177636245,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.00666579999960959
+    },
+    {
+      "id": "789",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.21860966915959354,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004866400005994365
+    },
+    {
+      "id": "911",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8055975695446536,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007822599989594892
+    },
+    {
+      "id": "524",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.5226104995910581,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006692700000712648
+    },
+    {
+      "id": "455",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4623258444475384,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034388999920338392
+    },
+    {
+      "id": "1147",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.509853202458049,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005878199997823685
+    },
+    {
+      "id": "1281",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0245893126842156,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0032983999990392476
+    },
+    {
+      "id": "741",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5253294873766905,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003334800014272332
+    },
+    {
+      "id": "823",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.5286570466390401,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0067789000167977065
+    },
+    {
+      "id": "691",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.2506966579077738,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006823000003350899
+    },
+    {
+      "id": "1370",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9553352887017006,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033383000118192285
+    },
+    {
+      "id": "1061",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9316375064575071,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007330300024477765
+    },
+    {
+      "id": "243",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.76112801723147,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003533899987814948
+    },
+    {
+      "id": "1269",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5836346276618058,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005009099986637011
+    },
+    {
+      "id": "1311",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.18840323350977178,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007345699996221811
+    },
+    {
+      "id": "147",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6826342995152775,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007113900006515905
+    },
+    {
+      "id": "241",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6094645800250198,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.0072395000024698675
+    },
+    {
+      "id": "894",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.525187562847344,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005149699980393052
+    },
+    {
+      "id": "246",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6790410919671614,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006666100001893938
+    },
+    {
+      "id": "1279",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.797482431484251,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033202999911736697
+    },
+    {
+      "id": "1344",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.04916913046856449,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007508599985158071
+    },
+    {
+      "id": "1036",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6221652977134922,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005259900004602969
+    },
+    {
+      "id": "1124",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3756761811115856,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005176499980734661
+    },
+    {
+      "id": "1043",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.520496209047562,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006856599997263402
+    },
+    {
+      "id": "1186",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.22369707912066,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003318500006571412
+    },
+    {
+      "id": "345",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.21800103225151246,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006663800013484433
+    },
+    {
+      "id": "387",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8899668520905524,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003571000008378178
+    },
+    {
+      "id": "330",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.7422801568639464,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006634799996390939
+    },
+    {
+      "id": "339",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.252689416188397,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005045099998824298
+    },
+    {
+      "id": "105",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3859627155186478,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035745000059250742
+    },
+    {
+      "id": "575",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2101517470582124,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0032452000014018267
+    },
+    {
+      "id": "956",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2677150040385397,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006689800007734448
+    },
+    {
+      "id": "1085",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7578059137548516,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005783900007372722
+    },
+    {
+      "id": "1087",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.23852099110715747,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0066522999841254205
+    },
+    {
+      "id": "112",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.511646932403128,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0032626999891363084
+    },
+    {
+      "id": "1202",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.0872860718581065,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006977499986533076
+    },
+    {
+      "id": "313",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.478800452477393,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004900600004475564
+    },
+    {
+      "id": "828",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8440222106735007,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006309899996267632
+    },
+    {
+      "id": "1211",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0136353193670495,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0031098999897949398
+    },
+    {
+      "id": "427",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.00573953869909,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007663500000489876
+    },
+    {
+      "id": "1148",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7090151090370631,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006942999985767528
+    },
+    {
+      "id": "608",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.3767153388542175,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003338400012580678
+    },
+    {
+      "id": "1098",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7178865895987772,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006138400000054389
+    },
+    {
+      "id": "262",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8475470138986594,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005987600015942007
+    },
+    {
+      "id": "809",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.135067402583466,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007380399998510256
+    },
+    {
+      "id": "768",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.6015352242017328,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007814600015990436
+    },
+    {
+      "id": "279",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.102127179060225,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.00585379998665303
+    },
+    {
+      "id": "216",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8041658310018002,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.008101799990981817
+    },
+    {
+      "id": "716",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.13627475861041072,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00798589998157695
+    },
+    {
+      "id": "1304",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.69222590694074,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004469699983019382
+    },
+    {
+      "id": "992",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.018263196128429,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.008085500012384728
+    },
+    {
+      "id": "1274",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.742972058874072,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.0056598000228405
+    },
+    {
+      "id": "200",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.5287921894297665,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005292399990139529
+    },
+    {
+      "id": "8",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0491986404112787,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036709999840240926
+    },
+    {
+      "id": "540",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5518736781525264,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0038192000065464526
+    },
+    {
+      "id": "40",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5753406931508556,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035875000176019967
+    },
+    {
+      "id": "1348",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5485123658533737,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033561000018380582
+    },
+    {
+      "id": "1035",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7502551959412339,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033420000108890235
+    },
+    {
+      "id": "1215",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0156563677700379,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006695999996736646
+    },
+    {
+      "id": "406",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.342057981497189,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007081500021740794
+    },
+    {
+      "id": "1285",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2645812928876796,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007053100009215996
+    },
+    {
+      "id": "134",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2326727543931806,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006939599988982081
+    },
+    {
+      "id": "230",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.666624797190591,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006641200016019866
+    },
+    {
+      "id": "458",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.722084571754776,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034551999997347593
+    },
+    {
+      "id": "454",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.0933632191332285,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0071773999952711165
+    },
+    {
+      "id": "862",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0773888283100683,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.00619749998440966
+    },
+    {
+      "id": "505",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.945018527274555,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036444999859668314
+    },
+    {
+      "id": "1324",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.3919765417292376,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007594499998958781
+    },
+    {
+      "id": "418",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.48051661261294015,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00695019998238422
+    },
+    {
+      "id": "183",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.097335537430255,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003340600000228733
+    },
+    {
+      "id": "583",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9215247553833672,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007119399990187958
+    },
+    {
+      "id": "510",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.8432650611579648,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0030795999919064343
+    },
+    {
+      "id": "787",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7355666335786797,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005265399988275021
+    },
+    {
+      "id": "413",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1886635828303649,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003624600009061396
+    },
+    {
+      "id": "681",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9829630461289109,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006602700013900176
+    },
+    {
+      "id": "224",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.20702994180104445,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006322899978840724
+    },
+    {
+      "id": "201",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.72954229936206,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003224999993108213
+    },
+    {
+      "id": "392",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8819088346701084,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006881500012241304
+    },
+    {
+      "id": "520",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0208870280316686,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0032979999959934503
+    },
+    {
+      "id": "20",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.929394377510712,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033823999983724207
+    },
+    {
+      "id": "687",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.49581457817797836,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007308500004000962
+    },
+    {
+      "id": "466",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9268872316765243,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.009842800005571917
+    },
+    {
+      "id": "1272",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9521553907050018,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.006055599980754778
+    },
+    {
+      "id": "700",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.242413768765103,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.007899199990788475
+    },
+    {
+      "id": "546",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3059311168633423,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.012509399995906278
+    },
+    {
+      "id": "438",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2610291905836295,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.009255699987988919
+    },
+    {
+      "id": "1267",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6986584424660187,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.009044299978995696
+    },
+    {
+      "id": "1238",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.4590271404091199,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.018205399974249303
+    },
+    {
+      "id": "591",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8907045137067461,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.015370799985248595
+    },
+    {
+      "id": "650",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1228962516824013,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007917899987660348
+    },
+    {
+      "id": "661",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.5349640590327487,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007437099993694574
+    },
+    {
+      "id": "156",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9364903579519043,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00791340001160279
+    },
+    {
+      "id": "435",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2068984635960556,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006288299977313727
+    },
+    {
+      "id": "899",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.48841213642800785,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00703170002088882
+    },
+    {
+      "id": "251",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7519438295193992,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.007325800019316375
+    },
+    {
+      "id": "1126",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.950122083584967,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003338599984999746
+    },
+    {
+      "id": "941",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.450852258657549,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005229899979894981
+    },
+    {
+      "id": "269",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.206914015493167,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003553899994585663
+    },
+    {
+      "id": "726",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4813441874981486,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007225499983178452
+    },
+    {
+      "id": "1196",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.27501874639103785,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006846000003861263
+    },
+    {
+      "id": "1121",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.5769000001013724,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034293000062461942
+    },
+    {
+      "id": "873",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1093385074022604,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006675300013739616
+    },
+    {
+      "id": "580",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7753497422593343,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003322200005641207
+    },
+    {
+      "id": "1000",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2090351870363076,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003456000005826354
+    },
+    {
+      "id": "242",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.1373205294511526,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005689700017683208
+    },
+    {
+      "id": "258",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6572923380833322,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003687999997055158
+    },
+    {
+      "id": "847",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.7219836699036108,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005725299997720867
+    },
+    {
+      "id": "1307",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.686869262947141,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005442099994979799
+    },
+    {
+      "id": "21",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.022916750953721466,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0075465000118128955
+    },
+    {
+      "id": "99",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6722869890315867,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007990900019649416
+    },
+    {
+      "id": "797",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4884086183866685,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006430400011595339
+    },
+    {
+      "id": "1249",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.165544555264198,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033549999934621155
+    },
+    {
+      "id": "160",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.4425136812520476,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.00387579997186549
+    },
+    {
+      "id": "1038",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0923400508663235,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007034899987047538
+    },
+    {
+      "id": "1207",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.127527350904797,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004182200005743653
+    },
+    {
+      "id": "786",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5649883929623272,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005696200008969754
+    },
+    {
+      "id": "800",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5482464589954357,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.00725250001414679
+    },
+    {
+      "id": "695",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6972964510889128,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006196700007421896
+    },
+    {
+      "id": "839",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1460404937551423,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.008503999997628853
+    },
+    {
+      "id": "143",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5871558494541476,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003514899988658726
+    },
+    {
+      "id": "693",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6547642021651758,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005265999992843717
+    },
+    {
+      "id": "1135",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.15735193445805007,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007920799980638549
+    },
+    {
+      "id": "854",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.9394309171963853,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005115799984196201
+    },
+    {
+      "id": "498",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.2506966579077738,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007654299988644198
+    },
+    {
+      "id": "27",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2541954911040585,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.008115599979646504
+    },
+    {
+      "id": "488",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7513821363170186,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005684400006430224
+    },
+    {
+      "id": "699",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7519134874568008,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003969599987613037
+    },
+    {
+      "id": "397",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.43927433115838443,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.008692000003065914
+    },
+    {
+      "id": "573",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.069442976526725,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034949999826494604
+    },
+    {
+      "id": "997",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.077448722889921,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005918100010603666
+    },
+    {
+      "id": "706",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5376268468317797,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004071699979249388
+    },
+    {
+      "id": "129",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5097612307777242,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004025700007332489
+    },
+    {
+      "id": "1111",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.1556158636436815,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003868800005875528
+    },
+    {
+      "id": "986",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.5803530360595804,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0077065000077709556
+    },
+    {
+      "id": "270",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7354316976301885,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034986999817192554
+    },
+    {
+      "id": "781",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5464043862417132,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.00574570000753738
+    },
+    {
+      "id": "652",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9639709351483339,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033671999990474433
+    },
+    {
+      "id": "1352",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.888777369492102,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007018100004643202
+    },
+    {
+      "id": "98",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7879215873401018,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003395700012333691
+    },
+    {
+      "id": "386",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.32744794130289606,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007159600005252287
+    },
+    {
+      "id": "400",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.000277357815427,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006839399982709438
+    },
+    {
+      "id": "58",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.118085490610324,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035025000106543303
+    },
+    {
+      "id": "831",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.38346347606491105,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006978000019444153
+    },
+    {
+      "id": "927",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9974538442060706,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003417200001422316
+    },
+    {
+      "id": "1305",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5172058154590755,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003302899975096807
+    },
+    {
+      "id": "1316",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5137535444324846,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006304600014118478
+    },
+    {
+      "id": "868",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0875198051768344,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004405600018799305
+    },
+    {
+      "id": "804",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.2856282259814091,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0079740000073798
+    },
+    {
+      "id": "566",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1668874227468633,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003723600006196648
+    },
+    {
+      "id": "80",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.0211348427450204,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003875700000207871
+    },
+    {
+      "id": "887",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.294299040899059,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004021800006739795
+    },
+    {
+      "id": "842",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.50158769247311,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005416299973148853
+    },
+    {
+      "id": "166",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4493514952490811,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005699500004993752
+    },
+    {
+      "id": "1363",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.001868981722448,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.007481700013158843
+    },
+    {
+      "id": "934",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9297683224325944,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.00747920002322644
+    },
+    {
+      "id": "663",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.644496548694869,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0039009000174701214
+    },
+    {
+      "id": "414",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7730980147905695,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005011400004150346
+    },
+    {
+      "id": "317",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.05232789476294,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033678000036161393
+    },
+    {
+      "id": "907",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0015289137996684,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005374500004108995
+    },
+    {
+      "id": "14",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.2296186134060108,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0035097000072710216
+    },
+    {
+      "id": "1166",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.643107034026807,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.0066818999766837806
+    },
+    {
+      "id": "867",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0027408322132922,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034887999936472625
+    },
+    {
+      "id": "901",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.196878346656666,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005256300006294623
+    },
+    {
+      "id": "964",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3948640586402845,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006858100008685142
+    },
+    {
+      "id": "214",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.94983282542957,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003587999992305413
+    },
+    {
+      "id": "1064",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.057340057343797,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003515300020808354
+    },
+    {
+      "id": "646",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.027643390040426,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.00771620002342388
+    },
+    {
+      "id": "647",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9672412885016113,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033642000053077936
+    },
+    {
+      "id": "85",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.039603077818522,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003594700014218688
+    },
+    {
+      "id": "102",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1993207058823616,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037597999908030033
+    },
+    {
+      "id": "150",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7483063419065275,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037868999934289604
+    },
+    {
+      "id": "1091",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4154793183100307,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.0052980000036768615
+    },
+    {
+      "id": "555",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4537319840146796,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005207099980907515
+    },
+    {
+      "id": "303",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6815687742728047,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007802000007359311
+    },
+    {
+      "id": "1364",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6988853484840658,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003540600009728223
+    },
+    {
+      "id": "373",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5641348030989997,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005619300005491823
+    },
+    {
+      "id": "189",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2515168079467778,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037619999784510583
+    },
+    {
+      "id": "47",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4419171988126882,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006565899995621294
+    },
+    {
+      "id": "233",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.28869234485433487,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007281800004420802
+    },
+    {
+      "id": "812",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0680491846611102,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006562599999597296
+    },
+    {
+      "id": "874",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.1403875418924074,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003616900008637458
+    },
+    {
+      "id": "378",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.390802295541672,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003521500009810552
+    },
+    {
+      "id": "817",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.032550909299467,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006379400001605973
+    },
+    {
+      "id": "121",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8001755437937943,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003650500002549961
+    },
+    {
+      "id": "1270",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.786866595798238,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007589500019093975
+    },
+    {
+      "id": "553",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4209371229577885,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004481999989366159
+    },
+    {
+      "id": "913",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.7341675419405449,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003855600021779537
+    },
+    {
+      "id": "415",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4694486667624853,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0037569999985862523
+    },
+    {
+      "id": "206",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7035375774605015,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003352100000483915
+    },
+    {
+      "id": "834",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.4814396401495797,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.0059216999798081815
+    },
+    {
+      "id": "1083",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0335841650692803,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.0066213000100106
+    },
+    {
+      "id": "563",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.8225971285449214,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.004061899991938844
+    },
+    {
+      "id": "855",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5639263067274372,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005511099996510893
+    },
+    {
+      "id": "704",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.236488068903732,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003318899980513379
+    },
+    {
+      "id": "1169",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6871463373731784,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006626400019740686
+    },
+    {
+      "id": "686",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.9237280326056587,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006551100028445944
+    },
+    {
+      "id": "401",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -1.0049419828810102,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0066213000100106
+    },
+    {
+      "id": "1246",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.5949471541852183,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004908100003376603
+    },
+    {
+      "id": "461",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.165985306078033,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033352000173181295
+    },
+    {
+      "id": "574",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.233502869354204,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004951399983838201
+    },
+    {
+      "id": "645",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.9721103339087211,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0033136999991256744
+    },
+    {
+      "id": "629",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7588853769990243,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003330899984575808
+    },
+    {
+      "id": "1264",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.3950593251216459,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003301899996586144
+    },
+    {
+      "id": "600",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8992424396676115,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006962899991776794
+    },
+    {
+      "id": "792",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.6137239243810975,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004984600003808737
+    },
+    {
+      "id": "856",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.30670059833947555,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0067811000044457614
+    },
+    {
+      "id": "1235",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0481723601190924,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003495499986456707
+    },
+    {
+      "id": "801",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.9676118921721663,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006938200007425621
+    },
+    {
+      "id": "452",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.2262837388881953,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005294399976264685
+    },
+    {
+      "id": "1050",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.0108509013701963,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0041628000035416335
+    },
+    {
+      "id": "759",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.4886820704164005,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0073272000008728355
+    },
+    {
+      "id": "232",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3206192494242124,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005111700011184439
+    },
+    {
+      "id": "138",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -3.0344344299744836,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.005254100018646568
+    },
+    {
+      "id": "879",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.2621846041540254,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006796900008339435
+    },
+    {
+      "id": "402",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.3225246536883637,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004991199995856732
+    },
+    {
+      "id": "1014",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.3483554042514734,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0070866000023670495
+    },
+    {
+      "id": "389",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.7512675968199503,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.003160000022035092
+    },
+    {
+      "id": "1328",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2742264639276677,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004817500011995435
+    },
+    {
+      "id": "337",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6177126977737638,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.007979199988767505
+    },
+    {
+      "id": "721",
+      "y_true": 0,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.11458066501644038,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0065002999908756465
+    },
+    {
+      "id": "1354",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0388013651789925,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0034533000143710524
+    },
+    {
+      "id": "197",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.7661839858325123,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005244800006039441
+    },
+    {
+      "id": "1010",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 2.3826819532938686,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.00310100000933744
+    },
+    {
+      "id": "170",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.2506966579077738,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006314899976132438
+    },
+    {
+      "id": "95",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.06959021974109267,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006731400004355237
+    },
+    {
+      "id": "592",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.7132865372868232,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0066024999832734466
+    },
+    {
+      "id": "1138",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.8872893955607664,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.004604999994626269
+    },
+    {
+      "id": "297",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.6071569859379295,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.006074100005207583
+    },
+    {
+      "id": "564",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8629664138687589,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.0072472000028938055
+    },
+    {
+      "id": "358",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.5195891786960596,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0031033999985083938
+    },
+    {
+      "id": "750",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -1.5395827981458667,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0036776000051759183
+    },
+    {
+      "id": "1069",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.517012034331129,
+      "explanation": [
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.0050589000165928155
+    },
+    {
+      "id": "1371",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.812251647718343,
+      "explanation": [
+        "curtosis",
+        "variance"
+      ],
+      "explanation_size": 2,
+      "computation_time": 0.005795600009150803
+    },
+    {
+      "id": "814",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.0089133890984894,
+      "explanation": [
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 3,
+      "computation_time": 0.006761900003766641
+    },
+    {
+      "id": "32",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.6291303985288046,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0031128000118769705
+    },
+    {
+      "id": "492",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.6198937103197831,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006128700013505295
+    },
+    {
+      "id": "325",
+      "y_true": 0,
+      "y_pred": 0,
+      "rejected": false,
+      "decision_score": -2.1952925550745634,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0030912000220268965
+    },
+    {
+      "id": "966",
+      "y_true": 1,
+      "y_pred": 0,
+      "rejected": true,
+      "decision_score": -0.8380564362644243,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006320299988146871
+    },
+    {
+      "id": "872",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 0.4586354198070935,
+      "explanation": [
+        "curtosis",
+        "entropy",
+        "skewness",
+        "variance"
+      ],
+      "explanation_size": 4,
+      "computation_time": 0.006097600009525195
+    },
+    {
+      "id": "1042",
+      "y_true": 1,
+      "y_pred": 1,
+      "rejected": false,
+      "decision_score": 1.2829187914855935,
+      "explanation": [
+        "variance"
+      ],
+      "explanation_size": 1,
+      "computation_time": 0.0031684999994467944
+    }
+  ]
+}
