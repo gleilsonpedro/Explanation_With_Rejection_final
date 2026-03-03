@@ -5,67 +5,67 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: breast_cancer
-  Instâncias de teste: 171
-  Features por instância: 30
+  Dataset: covertype
+  Instâncias de teste: 742
+  Features por instância: 54
   Test size: 30.00%
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. THRESHOLDS DE REJEIÇÃO
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.028369
-  t- (limiar inferior): -0.095169
-  Largura da zona de rejeição: 0.123538
+  t+ (limiar superior): 1.268865
+  t- (limiar inferior): -0.423022
+  Largura da zona de rejeição: 1.691887
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO MODELO
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 90.06%
-  Acurácia com rejeição: 93.38%
-  Taxa de rejeição: 11.70%
+  Acurácia sem rejeição: 92.05%
+  Acurácia com rejeição: 95.66%
+  Taxa de rejeição: 13.07%
 
 --------------------------------------------------------------------------------
 4. ESTATÍSTICAS DAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   POSITIVAS:
-    Quantidade: 90
-    Tamanho médio: 9.38 features
-    Desvio padrão: 2.42
-    Mínimo: 6 features
-    Máximo: 18 features
+    Quantidade: 380
+    Tamanho médio: 3.10 features
+    Desvio padrão: 2.46
+    Mínimo: 1 features
+    Máximo: 12 features
 
   NEGATIVAS:
-    Quantidade: 61
-    Tamanho médio: 4.92 features
-    Desvio padrão: 5.78
-    Mínimo: 1 features
-    Máximo: 30 features
+    Quantidade: 265
+    Tamanho médio: 10.29 features
+    Desvio padrão: 7.09
+    Mínimo: 3 features
+    Máximo: 34 features
 
   REJEITADAS:
-    Quantidade: 20
-    Tamanho médio: 12.55 features
-    Desvio padrão: 4.22
-    Mínimo: 6 features
-    Máximo: 24 features
+    Quantidade: 97
+    Tamanho médio: 43.81 features
+    Desvio padrão: 4.46
+    Mínimo: 19 features
+    Máximo: 48 features
 
 --------------------------------------------------------------------------------
 5. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total: 6.4948s
-  Tempo médio por instância: 0.037982s
+  Tempo total: 71.0925s
+  Tempo médio por instância: 0.095812s
 
 --------------------------------------------------------------------------------
 6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  worst perimeter: 160 ocorrências (93.6%)
-  worst concave points: 137 ocorrências (80.1%)
-  mean radius: 113 ocorrências (66.1%)
-  worst area: 100 ocorrências (58.5%)
-  mean fractal dimension: 79 ocorrências (46.2%)
-  mean perimeter: 76 ocorrências (44.4%)
-  mean concavity: 68 ocorrências (39.8%)
-  mean compactness: 66 ocorrências (38.6%)
-  worst fractal dimension: 57 ocorrências (33.3%)
-  mean symmetry: 51 ocorrências (29.8%)
+  feature_25: 295 ocorrências (39.8%)
+  feature_43: 277 ocorrências (37.3%)
+  feature_0: 271 ocorrências (36.5%)
+  feature_47: 238 ocorrências (32.1%)
+  feature_5: 235 ocorrências (31.7%)
+  feature_10: 232 ocorrências (31.3%)
+  feature_42: 222 ocorrências (29.9%)
+  feature_7: 211 ocorrências (28.4%)
+  feature_17: 211 ocorrências (28.4%)
+  feature_9: 210 ocorrências (28.3%)
 
