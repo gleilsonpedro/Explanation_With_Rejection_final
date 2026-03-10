@@ -8,7 +8,6 @@ from sklearn.linear_model import LogisticRegression
 # 1. GERAÇÃO DOS DADOS E TREINAMENTO GLOBAL (A MLP)
 # ==============================================================================
 print("[INFO] Gerando dataset artificial 'Moons'...")
-# Cria 500 pontos no formato de duas meias-luas entrelaçadas
 X, y = make_moons(n_samples=500, noise=0.15, random_state=42)
 
 print("[INFO] Treinando a MLP (Caixa-Preta) Global...")
@@ -16,107 +15,82 @@ mlp = MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42
 mlp.fit(X, y)
 
 # ==============================================================================
-# 2. DEFINIÇÃO DA VIZINHANÇA LOCAL E TREINAMENTO DO SURROGATE (LogReg)
+# 2. VIZINHANÇA DIRECIONADA: A IDEIA DO "SNIPER" (Interpolação na Fronteira)
 # ==============================================================================
-# Escolhendo um ponto crítico (bem no meio da curva da fronteira)
+# Escolhemos um paciente (Instância Alvo)
 instancia_alvo = np.array([[0.5, 0.0]]) 
+classe_alvo = mlp.predict(instancia_alvo)[0]
 
-print("[INFO] Gerando clones e treinando o Modelo Substituto Local (Regressão Logística)...")
-# Cria 1000 clones ao redor da instância (Vizinhança)
-ruido = np.random.normal(0, 0.25, size=(1000, 2))
-clones = instancia_alvo + ruido
+# Achamos os "inimigos" (dados da classe oposta)
+opostos_idx = np.where(y != classe_alvo)[0]
+X_opostos = X[opostos_idx]
 
-# O Oráculo (MLP) classifica os clones
-y_oraculo = mlp.predict(clones)
+# Calculamos a distância e pegamos o Inimigo Mais Próximo
+distancias = np.linalg.norm(X_opostos - instancia_alvo, axis=1)
+inimigo_mais_proximo = X_opostos[np.argmin(distancias)]
 
-# O Estudante (LogReg) aprende apenas com a vizinhança
+print("[INFO] Gerando clones na linha de fronteira...")
+# Geramos os clones caminhando em linha reta entre o Alvo e o Inimigo
+num_clones = 500
+alphas = np.linspace(-0.2, 1.2, num_clones)[:, np.newaxis]
+vetor_direcao = inimigo_mais_proximo - instancia_alvo[0]
+clones_na_reta = instancia_alvo[0] + alphas * vetor_direcao
+
+# Adicionamos um leve "cilindro de ruído" para a LogReg não bugar com a linha perfeita
+std_train = X.std(axis=0)
+ruido = np.random.normal(0, std_train * 0.05, size=clones_na_reta.shape)
+clones_finais = clones_na_reta + ruido
+clones_finais[0] = instancia_alvo[0]
+
+# O Oráculo (MLP) classifica esses clones gerados
+y_oraculo = mlp.predict(clones_finais)
+
+print("[INFO] Treinando o Modelo Substituto Local (Regressão Logística)...")
 logreg = LogisticRegression(C=1.0, solver='lbfgs')
-logreg.fit(clones, y_oraculo)
+logreg.fit(clones_finais, y_oraculo)
 
 # ==============================================================================
-# 3. FUNÇÃO DE VISUALIZAÇÃO 2D
+# 3. FUNÇÃO DE VISUALIZAÇÃO 2D (Para a Dissertação)
 # ==============================================================================
-def plot_2d():
-    plt.figure(figsize=(10, 7))
-    
-    # Cria uma malha (grid) para pintar o fundo
-    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
-    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
-    grid = np.c_[xx.ravel(), yy.ravel()]
+plt.figure(figsize=(10, 7))
 
-    # Fronteira Global da MLP (Curvas)
-    Z_mlp = mlp.predict(grid).reshape(xx.shape)
-    plt.contourf(xx, yy, Z_mlp, alpha=0.3, cmap='coolwarm')
-    
-    # Plota os dados originais do dataset
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap='coolwarm', edgecolors='k', alpha=0.6, label='Dados Originais')
-    
-    # Plota os Clones locais
-    plt.scatter(clones[:, 0], clones[:, 1], c='gray', s=10, alpha=0.1, label='Clones (Vizinhança)')
-    
-    # Fronteira Local da LogReg (Reta)
-    Z_lr = logreg.predict(grid).reshape(xx.shape)
-    plt.contour(xx, yy, Z_lr, colors='black', linewidths=2, linestyles='dashed')
-    
-    # Destaca a instância que estamos explicando
-    plt.scatter(instancia_alvo[:, 0], instancia_alvo[:, 1], color='lime', edgecolors='black', 
-                s=200, marker='*', zorder=5, label='Instância Explicada')
+# Cria a malha de fundo para pintar as regiões da MLP
+x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+grid = np.c_[xx.ravel(), yy.ravel()]
 
-    plt.title("Aproximação Local 2D: Reta da Regressão Logística vs Curva da MLP", fontsize=14)
-    plt.xlabel("Feature 1")
-    plt.ylabel("Feature 2")
-    plt.legend(loc="best")
-    plt.tight_layout()
-    plt.show()
+# Fundo colorido (A regra complexa da MLP)
+Z_mlp = mlp.predict(grid).reshape(xx.shape)
+plt.contourf(xx, yy, Z_mlp, alpha=0.3, cmap='coolwarm')
 
-# ==============================================================================
-# 4. FUNÇÃO DE VISUALIZAÇÃO 3D (O que o professor sugeriu!)
-# ==============================================================================
-def plot_3d():
-    fig = plt.figure(figsize=(12, 8))
-    ax = fig.add_subplot(111, projection='3d')
+# Plota os dados globais mais apagados
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='coolwarm', edgecolors='k', alpha=0.2, label='Dados Globais')
 
-    # Foca a malha 3D apenas na vizinhança do ponto
-    x_min, x_max = instancia_alvo[0][0] - 0.8, instancia_alvo[0][0] + 0.8
-    y_min, y_max = instancia_alvo[0][1] - 0.8, instancia_alvo[0][1] + 0.8
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.05), np.arange(y_min, y_max, 0.05))
-    grid = np.c_[xx.ravel(), yy.ravel()]
+# Plota a "Rodovia" (Linha ligando os dois pontos)
+plt.plot([instancia_alvo[0,0], inimigo_mais_proximo[0]], 
+         [instancia_alvo[0,1], inimigo_mais_proximo[1]], 
+         'k-', linewidth=2, label='Linha de Interpolação (Sniper)')
 
-    # Calcula as probabilidades (O Eixo Z)
-    Z_mlp_prob = mlp.predict_proba(grid)[:, 1].reshape(xx.shape)
-    Z_lr_prob = logreg.predict_proba(grid)[:, 1].reshape(xx.shape)
+# Plota os Clones (Vizinhança) em cima da linha
+plt.scatter(clones_finais[:, 0], clones_finais[:, 1], c='yellow', edgecolors='black', 
+            s=20, alpha=0.8, zorder=3, label='Clones (Interpolação)')
 
-    # Plota a Superfície da MLP (Montanha curva)
-    surf_mlp = ax.plot_surface(xx, yy, Z_mlp_prob, cmap='Blues', alpha=0.7, 
-                               linewidth=0, antialiased=True, label='MLP (Real)')
-    
-    # Plota a Superfície da Regressão Logística (Plano Reto/Vidro)
-    surf_lr = ax.plot_surface(xx, yy, Z_lr_prob, color='orange', alpha=0.5, 
-                              linewidth=0.5, edgecolors='k', antialiased=True, label='LogReg (Surrogate)')
+# Fronteira Local da LogReg (Reta Tracejada cortando a rodovia)
+Z_lr = logreg.predict(grid).reshape(xx.shape)
+plt.contour(xx, yy, Z_lr, colors='black', linewidths=3, linestyles='dashed')
 
-    # Ajustes estéticos
-    ax.set_title("Visão 3D: Superfície de Probabilidade (MLP vs Linear)", fontsize=14)
-    ax.set_xlabel('Feature X')
-    ax.set_ylabel('Feature Y')
-    ax.set_zlabel('Probabilidade da Classe 1')
-    
-    # Pulo do gato para colocar legenda no 3D do matplotlib
-    surf_mlp._facecolors2d = surf_mlp._facecolor3d
-    surf_mlp._edgecolors2d = surf_mlp._edgecolor3d
-    surf_lr._facecolors2d = surf_lr._facecolor3d
-    surf_lr._edgecolors2d = surf_lr._edgecolor3d
-    ax.legend()
+# Destaca os protagonistas da história
+plt.scatter(instancia_alvo[:, 0], instancia_alvo[:, 1], color='lime', edgecolors='black', 
+            s=300, marker='*', zorder=5, label='Paciente (Alvo)')
+plt.scatter(inimigo_mais_proximo[0], inimigo_mais_proximo[1], color='red', edgecolors='black', 
+            s=200, marker='X', zorder=5, label='Inimigo Mais Próximo')
 
-    plt.tight_layout()
-    plt.show()
+plt.title("Aproximação Local 2D: Busca de Fronteira Direcionada", fontsize=14, fontweight='bold')
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.legend(loc="best", framealpha=0.9)
+plt.tight_layout()
 
-# ==============================================================================
-# 5. EXECUÇÃO
-# ==============================================================================
-if __name__ == '__main__':
-    print("[INFO] Abrindo Visão 2D... (Feche a janela para abrir a Visão 3D logo em seguida)")
-    plot_2d()
-    print("[INFO] Abrindo Visão 3D... (Use o mouse para girar o gráfico!)")
-    plot_3d()
-    print("[INFO] Finalizado.")
+print("[INFO] Abrindo o gráfico... Salve a imagem para a sua dissertação!")
+plt.show()

@@ -91,19 +91,49 @@ def balancear_dados_treino(X: pd.DataFrame, y: pd.Series) -> Tuple[pd.DataFrame,
 # MOTOR DE EXPLICAÇÃO: SURROGATE LOCAL
 # ==============================================================================
 
-def gerar_vizinhanca_local_dinamica(instancia: np.ndarray, std_train: np.ndarray, modelo_mlp: Pipeline, feature_names: list, num_clones: int = 1000) -> Tuple[pd.DataFrame, np.ndarray]:
-    multiplicadores = [0.1, 0.5, 1.0, 2.0, 3.0] 
-    for mult in multiplicadores:
-        ruido = np.random.normal(0, std_train * mult, size=(num_clones, len(instancia)))
+def gerar_vizinhanca_local_fronteira(instancia: np.ndarray, X_pool: np.ndarray, std_train: np.ndarray, modelo_mlp: Pipeline, feature_names: list, num_clones: int = 1000) -> Tuple[pd.DataFrame, np.ndarray]:
+    """
+    Gera clones interpolando uma linha reta entre a instância alvo e o vizinho mais próximo da classe oposta.
+    (Ideia do 'Tiro de Sniper' sugerida pelo orientador).
+    """
+    # 1. Qual é a classe da instância original?
+    df_inst = pd.DataFrame([instancia], columns=feature_names)
+    classe_original = modelo_mlp.predict(df_inst)[0]
+    
+    # 2. Acha quem é da classe oposta no pool de dados (X_train)
+    df_pool = pd.DataFrame(X_pool, columns=feature_names)
+    preds_pool = modelo_mlp.predict(df_pool)
+    opostos_idx = np.where(preds_pool != classe_original)[0]
+    
+    # Fallback de segurança (caso extremo onde o modelo previu só 1 classe no treino)
+    if len(opostos_idx) == 0:
+        ruido = np.random.normal(0, std_train, size=(num_clones, len(instancia)))
         clones = instancia + ruido
-        clones[0] = instancia 
-        
         df_clones = pd.DataFrame(clones, columns=feature_names)
-        y_oraculo = modelo_mlp.predict(df_clones)
+        return df_clones, modelo_mlp.predict(df_clones)
         
-        if len(np.unique(y_oraculo)) > 1:
-            return df_clones, y_oraculo 
-            
+    X_opostos = X_pool[opostos_idx]
+    
+    # 3. Calcula distância Euclidiana para achar o "inimigo mais próximo"
+    distancias = np.linalg.norm(X_opostos - instancia, axis=1)
+    inimigo_mais_proximo = X_opostos[np.argmin(distancias)]
+    
+    # 4. Interpolação Linear (A Rodovia)
+    # Gera alphas de -0.1 até 1.1 (passando um pouquinho dos limites para garantir o corte da fronteira)
+    alphas = np.linspace(-0.1, 1.1, num_clones)[:, np.newaxis]
+    vetor_direcao = inimigo_mais_proximo - instancia
+    clones_na_reta = instancia + alphas * vetor_direcao
+    
+    # 5. Adiciona um micro-ruído para criar um "cilindro" e permitir que a LogReg treine em n-dimensões
+    ruido_cilindro = np.random.normal(0, std_train * 0.05, size=clones_na_reta.shape)
+    clones_finais = clones_na_reta + ruido_cilindro
+    
+    # Garante que a instância original exata seja o ponto zero
+    clones_finais[0] = instancia
+    
+    df_clones = pd.DataFrame(clones_finais, columns=feature_names)
+    y_oraculo = modelo_mlp.predict(df_clones)
+    
     return df_clones, y_oraculo
 
 def encontrar_thresholds_locais(modelo_lr: Pipeline, X_local: pd.DataFrame, y_local: np.ndarray, rejection_cost: float):
@@ -150,11 +180,11 @@ def check_fidelity_mlp(instancia_vals: np.ndarray, expl_indices: set, bounds: di
     
     return bool((preds[0] == original_pred) and (preds[1] == original_pred))
 
-def explicar_instancia_surrogate(instancia_vals: np.ndarray, modelo_mlp: Pipeline, feature_names: list, 
+def explicar_instancia_surrogate(instancia_vals: np.ndarray, X_pool_vals: np.ndarray, modelo_mlp: Pipeline, feature_names: list, 
                                  std_train: np.ndarray, rejection_cost: float) -> Tuple[List[str], int, bool]:
     
-    # 1. Cria a vizinhança dinâmica
-    df_clones, y_oraculo = gerar_vizinhanca_local_dinamica(instancia_vals, std_train, modelo_mlp, feature_names, num_clones=1000)
+    # 1. Cria a vizinhança mirando na fronteira (Sniper)
+    df_clones, y_oraculo = gerar_vizinhanca_local_fronteira(instancia_vals, X_pool_vals, std_train, modelo_mlp, feature_names, num_clones=1000)
     original_pred = y_oraculo[0]
     
     # Calcula os limites EXATOS dessa vizinhança para o teste de fidelidade local
@@ -265,7 +295,8 @@ def executar_experimento(dataset_name: str):
     print("[INFO] Treinando Oráculo (MLP)...")
     modelo_mlp = Pipeline([('scaler', MinMaxScaler()), ('mlp', MLPClassifier(**MLP_PARAMS))])
     modelo_mlp.fit(X_train_bal, y_train_bal)
-    
+    X_train_vals = X_train_bal.values
+
     std_train = X_train.std().values
     feature_names = X_train.columns.tolist()
     X_test_vals = X_test.values
@@ -281,7 +312,7 @@ def executar_experimento(dataset_name: str):
             inst_vals = X_test_vals[i]
             
             explicacao, pred_code, is_faithful = explicar_instancia_surrogate(
-                inst_vals, modelo_mlp, feature_names, std_train, cfg['rejection_cost']
+                inst_vals, X_train_vals, modelo_mlp, feature_names, std_train, cfg['rejection_cost']
             )
             
             duracao = time.perf_counter() - start_inst
