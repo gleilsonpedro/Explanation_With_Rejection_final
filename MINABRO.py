@@ -93,43 +93,61 @@ def balancear_dados_treino(X: pd.DataFrame, y: pd.Series) -> Tuple[pd.DataFrame,
 
 def gerar_vizinhanca_local_fronteira(instancia: np.ndarray, X_pool: np.ndarray, std_train: np.ndarray, modelo_mlp: Pipeline, feature_names: list, num_clones: int = 1000) -> Tuple[pd.DataFrame, np.ndarray]:
     """
-    Gera clones interpolando uma linha reta entre a instância alvo e o vizinho mais próximo da classe oposta.
-    (Ideia do 'Tiro de Sniper' sugerida pelo orientador).
+    Gera clones usando a Técnica do Espelho com Espalhamento Lateral Controlado (Nuvem Gorda).
+    Garante estabilidade ortogonal para a Regressão Logística sem explodir em altas dimensões.
     """
-    # 1. Qual é a classe da instância original?
     df_inst = pd.DataFrame([instancia], columns=feature_names)
-    classe_original = modelo_mlp.predict(df_inst)[0]
+    classe_alvo = modelo_mlp.predict(df_inst)[0]
     
-    # 2. Acha quem é da classe oposta no pool de dados (X_train)
+    # 1. Acha a direção do inimigo real mais próximo no pool de dados
     df_pool = pd.DataFrame(X_pool, columns=feature_names)
     preds_pool = modelo_mlp.predict(df_pool)
-    opostos_idx = np.where(preds_pool != classe_original)[0]
+    opostos_idx = np.where(preds_pool != classe_alvo)[0]
     
-    # Fallback de segurança (caso extremo onde o modelo previu só 1 classe no treino)
+    # Fallback de segurança caso a MLP tenha previsto só uma classe no treino
     if len(opostos_idx) == 0:
-        ruido = np.random.normal(0, std_train, size=(num_clones, len(instancia)))
+        ruido = np.random.normal(0, std_train * 0.15, size=(num_clones, len(instancia)))
         clones = instancia + ruido
         df_clones = pd.DataFrame(clones, columns=feature_names)
         return df_clones, modelo_mlp.predict(df_clones)
         
     X_opostos = X_pool[opostos_idx]
-    
-    # 3. Calcula distância Euclidiana para achar o "inimigo mais próximo"
     distancias = np.linalg.norm(X_opostos - instancia, axis=1)
-    inimigo_mais_proximo = X_opostos[np.argmin(distancias)]
+    inimigo_direcao = X_opostos[np.argmin(distancias)]
     
-    # 4. Interpolação Linear (A Rodovia)
-    # Gera alphas de -0.1 até 1.1 (passando um pouquinho dos limites para garantir o corte da fronteira)
-    alphas = np.linspace(-0.1, 1.1, num_clones)[:, np.newaxis]
-    vetor_direcao = inimigo_mais_proximo - instancia
-    clones_na_reta = instancia + alphas * vetor_direcao
+    # 2. Caminha milimetricamente para achar a FRONTEIRA EXATA (O Muro)
+    passos = np.linspace(0, 1, 100)[:, np.newaxis]
+    caminho = instancia + passos * (inimigo_direcao - instancia)
     
-    # 5. Adiciona um micro-ruído para criar um "cilindro" e permitir que a LogReg treine em n-dimensões
-    ruido_cilindro = np.random.normal(0, std_train * 0.05, size=clones_na_reta.shape)
-    clones_finais = clones_na_reta + ruido_cilindro
+    df_caminho = pd.DataFrame(caminho, columns=feature_names)
+    preds_caminho = modelo_mlp.predict(df_caminho)
     
-    # Garante que a instância original exata seja o ponto zero
-    clones_finais[0] = instancia
+    mudancas = np.where(preds_caminho != classe_alvo)[0]
+    if len(mudancas) > 0:
+        idx_fronteira = mudancas[0]
+        ponto_fronteira_exato = caminho[idx_fronteira]
+        
+        # 3. Cria o INIMIGO SINTÉTICO EQUIDISTANTE (O Espelho)
+        vetor_ate_fronteira = ponto_fronteira_exato - instancia
+        inimigo_final = instancia + 2.0 * vetor_ate_fronteira
+    else:
+        inimigo_final = inimigo_direcao # Fallback de segurança se não achar mudança
+        
+    # 4. O Eixo Central (A linha entre os pontos)
+    alphas = np.linspace(0.0, 1.0, num_clones)[:, np.newaxis]
+    vetor_balanceado = inimigo_final - instancia
+    linha_central = instancia + alphas * vetor_balanceado
+    
+    # 5. A Nuvem Gorda (Espalhamento Lateral Controlado)
+    # A sacada aqui é usar 15% do desvio padrão real de cada feature para o ruído.
+    # Isso estabiliza a Regressão Logística em todas as direções sem causar a 
+    # explosão dimensional que vimos nos datasets maiores.
+    ruido_gordo = np.random.normal(0, std_train * 0.15, size=linha_central.shape)
+    clones_finais = linha_central + ruido_gordo
+    
+    # Garante as âncoras intactas para máxima estabilidade (Paciente e Inimigo Perfeito)
+    clones_finais[0] = instancia 
+    clones_finais[1] = inimigo_final
     
     df_clones = pd.DataFrame(clones_finais, columns=feature_names)
     y_oraculo = modelo_mlp.predict(df_clones)
