@@ -67,7 +67,7 @@ def plot_surrogate(X, y, instancia_alvo, ax, title):
     linha_central = instancia_alvo[0] + alphas * vetor_balanceado
 
     std_train = X.std(axis=0)
-    ruido_gordo = np.random.normal(0, std_train * 0.45, size=linha_central.shape)
+    ruido_gordo = np.random.normal(0, std_train * 0.15, size=linha_central.shape)
     clones_finais = linha_central + ruido_gordo
     
     clones_finais[0] = instancia_alvo[0]
