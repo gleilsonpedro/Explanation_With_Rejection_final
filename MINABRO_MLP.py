@@ -49,7 +49,7 @@ DATASET_CONFIG = {
     "creditcard":           {'subsample_size': 0.03, 'test_size': 0.3, 'rejection_cost': 0.040},
     "covertype":            {'subsample_size': 0.005, 'test_size': 0.3, 'rejection_cost': 0.24},
     "gas_sensor":           {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.045},
-    "newsgroups":           {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "newsgroups":           {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.24},
     "rcv1":                 {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
 }
 

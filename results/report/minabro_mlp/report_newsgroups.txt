@@ -1,0 +1,71 @@
+================================================================================
+          RELATÓRIO DE ANÁLISE - MÉTODO MINABRO MLP COM REJEIÇÃO
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: newsgroups
+  Instâncias de teste: 119
+  Features por instância: 10000
+  Test size: 30.00%
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. THRESHOLDS DE REJEIÇÃO
+--------------------------------------------------------------------------------
+  t+ (limiar superior): 1.268865
+  t- (limiar inferior): -0.845944
+  Largura da zona de rejeição: 2.114809
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO MODELO
+--------------------------------------------------------------------------------
+  Acurácia sem rejeição: 92.44%
+  Acurácia com rejeição: 92.44%
+  Taxa de rejeição: 0.00%
+
+--------------------------------------------------------------------------------
+4. ESTATÍSTICAS DAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  POSITIVAS:
+    Quantidade: 56
+    Tamanho médio: 7277.79 features
+    Desvio padrão: 861.30
+    Mínimo: 5619 features
+    Máximo: 9466 features
+
+  NEGATIVAS:
+    Quantidade: 63
+    Tamanho médio: 7810.90 features
+    Desvio padrão: 1030.11
+    Mínimo: 5840 features
+    Máximo: 9914 features
+
+  REJEITADAS:
+    Quantidade: 0
+    Tamanho médio: 0.00 features
+    Desvio padrão: 0.00
+    Mínimo: 0 features
+    Máximo: 0 features
+
+--------------------------------------------------------------------------------
+5. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total: 1187.3443s
+  Tempo médio por instância: 9.977683s
+
+--------------------------------------------------------------------------------
+6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  dublin: 108 ocorrências (90.8%)
+  apollo: 106 ocorrências (89.1%)
+  chemical: 106 ocorrências (89.1%)
+  aeronautics: 104 ocorrências (87.4%)
+  especially: 104 ocorrências (87.4%)
+  genes: 104 ocorrências (87.4%)
+  mono: 104 ocorrências (87.4%)
+  crt: 104 ocorrências (87.4%)
+  201: 103 ocorrências (86.6%)
+  approx: 103 ocorrências (86.6%)
+
