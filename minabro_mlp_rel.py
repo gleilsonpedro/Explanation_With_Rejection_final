@@ -1,83 +1,112 @@
 import os
 import json
-import numpy as np
 from collections import Counter
 
-def gerar_relatorio_do_json(json_filepath: str, output_dir: str = 'results/report/minabro_mlp'):
-    """
-    Lê o JSON de resultados gerado pelo MINABRO_MLP e constrói 
-    um relatório de texto detalhado e bem formatado.
-    """
-    os.makedirs(output_dir, exist_ok=True)
+def gerar_relatorio_do_json(caminho_json: str):
+    if not os.path.exists(caminho_json):
+        print(f"[ERRO] Arquivo JSON não encontrado: {caminho_json}")
+        return
+
+    with open(caminho_json, 'r', encoding='utf-8') as f:
+        dados = json.load(f)
+
+    # 1. Extração de Blocos do Novo Layout Blindado
+    config = dados.get('config', {})
+    dataset_name = config.get('dataset_name', 'Desconhecido')
     
-    with open(json_filepath, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    thresh_mlp = dados.get('thresholds_globais_mlp', {})
+    perf_mlp = dados.get('performance_oraculo_mlp', {})
+    perf_expl = dados.get('performance_explicacoes_locais', {})
+    comp_time = dados.get('computation_time', {})
+    instancias = dados.get('per_instance', [])
 
-    dataset_name = data['config']['dataset_name']
-    output_path = os.path.join(output_dir, f"report_{dataset_name}.txt")
+    # 2. Configuração de Saída
+    nome_arquivo_txt = f"report_{dataset_name}.txt"
+    pasta_saida = "results/report/minabro_mlp"
+    os.makedirs(pasta_saida, exist_ok=True)
+    caminho_txt = os.path.join(pasta_saida, nome_arquivo_txt)
 
-    # Atalhos para os dicionários do JSON
-    cfg = data['config']
-    perf = data['performance']
-    thresh = data['thresholds']
-    exp_stats = data['explanation_stats']
-    comp_time = data['computation_time']
-    instancias = data['per_instance']
-
-    # Extrair Top 10 Features
-    todas_features = []
+    # 3. Processamento das Features mais frequentes
+    todas_features_explicacao = []
+    explicacoes_validas = 0
+    
     for inst in instancias:
-        todas_features.extend(inst['explanation'])
-    top_features = Counter(todas_features).most_common(10)
+        if not inst.get('rejected', False) and inst.get('explanation_size', 0) > 0:
+            todas_features_explicacao.extend(inst.get('explanation', []))
+            explicacoes_validas += 1
+            
+    contagem_features = Counter(todas_features_explicacao)
+    # Evita divisão por zero caso todas as decisões sejam incondicionais ou rejeitadas
+    divisor_freq = explicacoes_validas if explicacoes_validas > 0 else 1 
+    top_10 = contagem_features.most_common(10)
 
-    with open(output_path, 'w', encoding='utf-8') as f:
+    # 4. Geração do Relatório TXT
+    with open(caminho_txt, 'w', encoding='utf-8') as f:
         f.write("="*80 + "\n")
-        f.write("          RELATÓRIO DE ANÁLISE - MÉTODO MINABRO MLP COM REJEIÇÃO\n")
+        f.write("       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)\n")
         f.write("="*80 + "\n\n")
 
-        # 1. CONFIGURAÇÃO
-        f.write("-" * 80 + "\n1. CONFIGURAÇÃO DO EXPERIMENTO\n" + "-" * 80 + "\n")
-        f.write(f"  Dataset: {cfg['dataset_name']}\n")
-        f.write(f"  Instâncias de teste: {perf['num_test_instances']}\n")
-        f.write(f"  Features por instância: {data['model']['num_features']}\n")
-        f.write(f"  Test size: {cfg['test_size']:.2%}\n")
-        f.write(f"  Custo de rejeição (WR): {cfg['rejection_cost']:.4f}\n\n")
+        f.write("-" * 80 + "\n")
+        f.write("1. CONFIGURAÇÃO DO EXPERIMENTO\n")
+        f.write("-" * 80 + "\n")
+        f.write(f"  Dataset: {dataset_name}\n")
+        f.write(f"  Instâncias de teste avaliadas: {perf_mlp.get('num_test_instances', 0)}\n")
+        f.write(f"  Features Originais do Dataset: {dados.get('model', {}).get('num_features', 'N/A')}\n")
+        f.write(f"  Custo de rejeição (WR): {config.get('rejection_cost', 'N/A'):.4f}\n\n")
 
-        # 2. THRESHOLDS
-        f.write("-" * 80 + "\n2. THRESHOLDS DE REJEIÇÃO\n" + "-" * 80 + "\n")
-        f.write(f"  t+ (limiar superior): {thresh['t_plus']:.6f}\n")
-        f.write(f"  t- (limiar inferior): {thresh['t_minus']:.6f}\n")
-        f.write(f"  Largura da zona de rejeição: {thresh['rejection_zone_width']:.6f}\n\n")
+        f.write("-" * 80 + "\n")
+        f.write("2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)\n")
+        f.write("-" * 80 + "\n")
+        f.write(f"  Limiares Globais: t+ = {thresh_mlp.get('t_plus_global', 0):.6f} | t- = {thresh_mlp.get('t_minus_global', 0):.6f}\n")
+        f.write(f"  Largura da Zona de Rejeição: {thresh_mlp.get('rejection_zone_width', 0):.6f}\n")
+        f.write(f"  Acurácia (Sem Rejeição): {perf_mlp.get('accuracy_without_rejection', 0):.2f}%\n")
+        f.write(f"  Acurácia (Com Rejeição): {perf_mlp.get('accuracy_with_rejection', 0):.2f}%\n")
+        f.write(f"  Taxa de Rejeição Global: {perf_mlp.get('rejection_rate_global', 0):.2f}%\n")
+        f.write(f"  Instâncias Rejeitadas pela MLP: {perf_mlp.get('num_rejected', 0)} de {perf_mlp.get('num_test_instances', 0)}\n\n")
 
-        # 3. DESEMPENHO
-        f.write("-" * 80 + "\n3. DESEMPENHO DO MODELO\n" + "-" * 80 + "\n")
-        f.write(f"  Acurácia sem rejeição: {perf['accuracy_without_rejection']:.2f}%\n")
-        f.write(f"  Acurácia com rejeição: {perf['accuracy_with_rejection']:.2f}%\n")
-        f.write(f"  Taxa de rejeição: {perf['rejection_rate']:.2f}%\n\n")
+        f.write("-" * 80 + "\n")
+        f.write("3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)\n")
+        f.write("-" * 80 + "\n")
+        f.write(f"  Fidelidade Abdutiva (Pior Cenário): {perf_expl.get('fidelity_rate_worst_case', 0):.2f}%\n")
+        f.write("  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.\n\n")
+        
+        def escrever_estatisticas(nome, stats):
+            f.write(f"  EXPLICAÇÕES {nome}:\n")
+            if stats.get('count', 0) == 0:
+                f.write("    Quantidade: 0\n\n")
+                return
+            f.write(f"    Quantidade: {stats.get('count', 0)}\n")
+            f.write(f"    Tamanho médio: {stats.get('mean_length', 0):.2f} features\n")
+            f.write(f"    Desvio padrão: {stats.get('std_length', 0):.2f}\n")
+            f.write(f"    Mínimo: {stats.get('min_length', 0)} features\n")
+            f.write(f"    Máximo: {stats.get('max_length', 0)} features\n\n")
 
-        # 4. ESTATÍSTICAS DAS EXPLICAÇÕES
-        f.write("-" * 80 + "\n4. ESTATÍSTICAS DAS EXPLICAÇÕES\n" + "-" * 80 + "\n")
-        for tipo_label, key in [('POSITIVAS', 'positive'), ('NEGATIVAS', 'negative'), ('REJEITADAS', 'rejected')]:
-            stats = exp_stats[key]
-            f.write(f"  {tipo_label}:\n")
-            f.write(f"    Quantidade: {stats['count']}\n")
-            f.write(f"    Tamanho médio: {stats['mean_length']:.2f} features\n")
-            f.write(f"    Desvio padrão: {stats['std_length']:.2f}\n")
-            f.write(f"    Mínimo: {stats['min_length']} features\n")
-            f.write(f"    Máximo: {stats['max_length']} features\n\n")
+        escrever_estatisticas("POSITIVAS (Classe 1)", perf_expl.get('positive', {}))
+        escrever_estatisticas("NEGATIVAS (Classe 0)", perf_expl.get('negative', {}))
 
-        # 5. TEMPOS DE EXECUÇÃO
-        f.write("-" * 80 + "\n5. TEMPOS DE EXECUÇÃO\n" + "-" * 80 + "\n")
-        f.write(f"  Tempo total: {comp_time['total']:.4f}s\n")
-        f.write(f"  Tempo médio por instância: {comp_time['mean_per_instance']:.6f}s\n\n")
+        f.write("-" * 80 + "\n")
+        f.write("4. TEMPOS DE EXECUÇÃO\n")
+        f.write("-" * 80 + "\n")
+        f.write(f"  Tempo total da extração abdutiva: {comp_time.get('total', 0):.4f}s\n")
+        f.write(f"  Tempo médio por instância: {comp_time.get('mean_per_instance', 0):.4f}s\n\n")
 
-        # 6. TOP 10 FEATURES
-        f.write("-" * 80 + "\n6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES\n" + "-" * 80 + "\n")
-        if not top_features:
-            f.write("  Nenhuma feature selecionada.\n")
-        for feat, count in top_features:
-            freq_pct = (count / perf['num_test_instances'] * 100)
-            f.write(f"  {feat}: {count} ocorrências ({freq_pct:.1f}%)\n")
-        f.write("\n")
+        f.write("-" * 80 + "\n")
+        f.write("5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES\n")
+        f.write("-" * 80 + "\n")
+        if not top_10:
+            f.write("  Nenhuma feature registrada (todas as decisões foram incondicionais ou rejeitadas).\n")
+        else:
+            for feature, count in top_10:
+                freq_relativa = (count / divisor_freq) * 100
+                f.write(f"  {feature}: {count} ocorrências ({freq_relativa:.1f}%)\n")
+        f.write("\n" + "="*80 + "\n")
 
-    print(f"[RELATÓRIO] Documento formatado salvo em: {output_path}")
+    print(f"[SUCESSO] Relatório txt blindado gerado em: {caminho_txt}")
+
+if __name__ == '__main__':
+    # Permite rodar o script isoladamente passando o caminho do JSON no terminal
+    import sys
+    if len(sys.argv) > 1:
+        gerar_relatorio_do_json(sys.argv[1])
+    else:
+        print("Passe o caminho do arquivo JSON como argumento ou importe a função 'gerar_relatorio_do_json'.")

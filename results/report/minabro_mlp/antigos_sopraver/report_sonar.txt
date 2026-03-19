@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: sonar
+  Instâncias de teste avaliadas: 63
+  Features Originais do Dataset: 60
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.394193 | t- = -0.124362
+  Largura da Zona de Rejeição: 0.518555
+  Acurácia (Sem Rejeição): 71.43%
+  Acurácia (Com Rejeição): 83.33%
+  Taxa de Rejeição Global: 42.86%
+  Instâncias Rejeitadas pela MLP: 27 de 63
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 85.71%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 46
+    Tamanho médio: 25.63 features
+    Desvio padrão: 5.53
+    Mínimo: 20 features
+    Máximo: 41 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 17
+    Tamanho médio: 29.59 features
+    Desvio padrão: 9.88
+    Mínimo: 21 features
+    Máximo: 55 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 2.4067s
+  Tempo médio por instância: 0.0382s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  feature_35: 51 ocorrências (81.0%)
+  feature_11: 47 ocorrências (74.6%)
+  feature_32: 47 ocorrências (74.6%)
+  feature_31: 47 ocorrências (74.6%)
+  feature_36: 44 ocorrências (69.8%)
+  feature_26: 42 ocorrências (66.7%)
+  feature_33: 40 ocorrências (63.5%)
+  feature_20: 40 ocorrências (63.5%)
+  feature_57: 40 ocorrências (63.5%)
+  feature_30: 39 ocorrências (61.9%)
+
+================================================================================

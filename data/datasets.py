@@ -285,11 +285,21 @@ def carregar_dataset(nome_dataset: str) -> Tuple[Optional[pd.DataFrame], Optiona
             y_series = data_openml.target.astype(int)
             class_names_list = ['Normal', 'Fraude']
         elif nome_dataset == 'covertype':
-            # Covertype: 581k instances, 54 features, 7 classes
-            # Binarization: 2 most frequent classes (Spruce/Fir=1 vs Lodgepole Pine=2)
             print("Carregando Covertype (581k instances, 54 features)...")
+            from sklearn.datasets import fetch_covtype
             data = fetch_covtype()
-            X = pd.DataFrame(data.data, columns=[f"feature_{i}" for i in range(data.data.shape[1])])
+            
+            # Nomes reais das 54 features geográficas
+            col_names = [
+                "Elevation", "Aspect", "Slope", 
+                "Horiz_Dist_To_Hydrology", "Vert_Dist_To_Hydrology", 
+                "Horiz_Dist_To_Roadways", "Hillshade_9am", 
+                "Hillshade_Noon", "Hillshade_3pm", "Horiz_Dist_To_Fire_Points"
+            ]
+            col_names += [f"Wilderness_Area_{i}" for i in range(1, 5)]
+            col_names += [f"Soil_Type_{i}" for i in range(1, 41)]
+            
+            X = pd.DataFrame(data.data, columns=col_names)
             y_all = pd.Series(data.target, name='target')
             
             # Convert to binary: class 1 vs class 2 (most common classes)

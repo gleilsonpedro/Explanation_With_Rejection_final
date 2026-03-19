@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: heart_disease
+  Instâncias de teste avaliadas: 90
+  Features Originais do Dataset: 13
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.067302 | t- = -0.365842
+  Largura da Zona de Rejeição: 0.433144
+  Acurácia (Sem Rejeição): 81.11%
+  Acurácia (Com Rejeição): 97.06%
+  Taxa de Rejeição Global: 62.22%
+  Instâncias Rejeitadas pela MLP: 56 de 90
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 78.89%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 29
+    Tamanho médio: 4.14 features
+    Desvio padrão: 2.58
+    Mínimo: 1 features
+    Máximo: 11 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 61
+    Tamanho médio: 3.08 features
+    Desvio padrão: 1.96
+    Mínimo: 1 features
+    Máximo: 12 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 4.2319s
+  Tempo médio por instância: 0.0470s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  exang: 55 ocorrências (61.1%)
+  thal: 53 ocorrências (58.9%)
+  cp: 42 ocorrências (46.7%)
+  slope: 40 ocorrências (44.4%)
+  thalach: 26 ocorrências (28.9%)
+  sex: 22 ocorrências (24.4%)
+  restecg: 22 ocorrências (24.4%)
+  fbs: 14 ocorrências (15.6%)
+  trestbps: 10 ocorrências (11.1%)
+  ca: 9 ocorrências (10.0%)
+
+================================================================================

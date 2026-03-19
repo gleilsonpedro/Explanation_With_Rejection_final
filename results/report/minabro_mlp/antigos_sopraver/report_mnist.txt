@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: mnist
+  Instâncias de teste avaliadas: 41
+  Features Originais do Dataset: 784
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.000100 | t- = -0.000100
+  Largura da Zona de Rejeição: 0.000200
+  Acurácia (Sem Rejeição): 97.56%
+  Acurácia (Com Rejeição): 97.56%
+  Taxa de Rejeição Global: 0.00%
+  Instâncias Rejeitadas pela MLP: 0 de 41
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 97.56%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 19
+    Tamanho médio: 261.00 features
+    Desvio padrão: 77.23
+    Mínimo: 197 features
+    Máximo: 556 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 22
+    Tamanho médio: 251.77 features
+    Desvio padrão: 53.46
+    Mínimo: 206 features
+    Máximo: 436 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 11.5631s
+  Tempo médio por instância: 0.2820s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  pixel489: 35 ocorrências (85.4%)
+  pixel488: 34 ocorrências (82.9%)
+  pixel376: 33 ocorrências (80.5%)
+  pixel487: 33 ocorrências (80.5%)
+  pixel321: 32 ocorrências (78.0%)
+  pixel601: 32 ocorrências (78.0%)
+  pixel292: 31 ocorrências (75.6%)
+  pixel320: 31 ocorrências (75.6%)
+  pixel570: 31 ocorrências (75.6%)
+  pixel241: 31 ocorrências (75.6%)
+
+================================================================================

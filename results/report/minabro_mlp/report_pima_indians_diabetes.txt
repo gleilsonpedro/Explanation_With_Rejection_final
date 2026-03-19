@@ -1,69 +1,61 @@
 ================================================================================
-          RELATÓRIO DE ANÁLISE - MÉTODO MINABRO MLP COM REJEIÇÃO
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
 ================================================================================
 
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
   Dataset: pima_indians_diabetes
-  Instâncias de teste: 231
-  Features por instância: 8
-  Test size: 30.00%
+  Instâncias de teste avaliadas: 231
+  Features Originais do Dataset: 8
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
-2. THRESHOLDS DE REJEIÇÃO
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.665120
-  t- (limiar inferior): -0.331208
-  Largura da zona de rejeição: 0.996328
+  Limiares Globais: t+ = 0.155743 | t- = -0.000100
+  Largura da Zona de Rejeição: 0.155843
+  Acurácia (Sem Rejeição): 68.40%
+  Acurácia (Com Rejeição): 75.82%
+  Taxa de Rejeição Global: 21.21%
+  Instâncias Rejeitadas pela MLP: 49 de 231
 
 --------------------------------------------------------------------------------
-3. DESEMPENHO DO MODELO
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 68.40%
-  Acurácia com rejeição: 68.56%
-  Taxa de rejeição: 0.87%
+  Fidelidade Abdutiva (Pior Cenário): 98.27%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
---------------------------------------------------------------------------------
-4. ESTATÍSTICAS DAS EXPLICAÇÕES
---------------------------------------------------------------------------------
-  POSITIVAS:
-    Quantidade: 122
-    Tamanho médio: 3.77 features
-    Desvio padrão: 1.23
-    Mínimo: 2 features
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 124
+    Tamanho médio: 3.20 features
+    Desvio padrão: 1.37
+    Mínimo: 1 features
     Máximo: 7 features
 
-  NEGATIVAS:
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
     Quantidade: 107
-    Tamanho médio: 3.47 features
-    Desvio padrão: 1.27
-    Mínimo: 2 features
-    Máximo: 8 features
-
-  REJEITADAS:
-    Quantidade: 2
-    Tamanho médio: 7.50 features
-    Desvio padrão: 0.50
-    Mínimo: 7 features
+    Tamanho médio: 2.94 features
+    Desvio padrão: 1.48
+    Mínimo: 1 features
     Máximo: 8 features
 
 --------------------------------------------------------------------------------
-5. TEMPOS DE EXECUÇÃO
+4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total: 5.6978s
-  Tempo médio por instância: 0.024666s
+  Tempo total da extração abdutiva: 80.4473s
+  Tempo médio por instância: 0.3483s
 
 --------------------------------------------------------------------------------
-6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  diabetes_pedigree: 158 ocorrências (68.4%)
-  idade: 153 ocorrências (66.2%)
-  num_gravidezes: 149 ocorrências (64.5%)
-  glicose: 105 ocorrências (45.5%)
-  imc: 100 ocorrências (43.3%)
-  espessura_pele: 71 ocorrências (30.7%)
-  insulina: 55 ocorrências (23.8%)
-  pressao_sangue: 55 ocorrências (23.8%)
+  idade: 173 ocorrências (74.9%)
+  diabetes_pedigree: 171 ocorrências (74.0%)
+  num_gravidezes: 131 ocorrências (56.7%)
+  glicose: 119 ocorrências (51.5%)
+  insulina: 78 ocorrências (33.8%)
+  espessura_pele: 22 ocorrências (9.5%)
+  imc: 13 ocorrências (5.6%)
+  pressao_sangue: 5 ocorrências (2.2%)
 
+================================================================================

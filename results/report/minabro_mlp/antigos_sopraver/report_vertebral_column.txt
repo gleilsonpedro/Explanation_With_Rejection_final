@@ -1,0 +1,59 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: vertebral_column
+  Instâncias de teste avaliadas: 93
+  Features Originais do Dataset: 6
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.101339 | t- = -0.306250
+  Largura da Zona de Rejeição: 0.407589
+  Acurácia (Sem Rejeição): 77.42%
+  Acurácia (Com Rejeição): 86.15%
+  Taxa de Rejeição Global: 30.11%
+  Instâncias Rejeitadas pela MLP: 28 de 93
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 91.40%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 54
+    Tamanho médio: 3.17 features
+    Desvio padrão: 0.60
+    Mínimo: 2 features
+    Máximo: 5 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 39
+    Tamanho médio: 3.10 features
+    Desvio padrão: 0.63
+    Mínimo: 2 features
+    Máximo: 5 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 2.2851s
+  Tempo médio por instância: 0.0246s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  pelvic_incidence: 74 ocorrências (79.6%)
+  lumbar_lordosis_angle: 69 ocorrências (74.2%)
+  pelvic_tilt: 61 ocorrências (65.6%)
+  pelvic_radius: 59 ocorrências (63.4%)
+  spondylolisthesis_grade: 16 ocorrências (17.2%)
+  sacral_slope: 13 ocorrências (14.0%)
+
+================================================================================

@@ -1,71 +1,63 @@
 ================================================================================
-          RELATÓRIO DE ANÁLISE - MÉTODO MINABRO MLP COM REJEIÇÃO
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
 ================================================================================
 
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
   Dataset: breast_cancer
-  Instâncias de teste: 171
-  Features por instância: 30
-  Test size: 30.00%
+  Instâncias de teste avaliadas: 171
+  Features Originais do Dataset: 30
   Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
-2. THRESHOLDS DE REJEIÇÃO
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
 --------------------------------------------------------------------------------
-  t+ (limiar superior): 0.028369
-  t- (limiar inferior): -0.095169
-  Largura da zona de rejeição: 0.123538
+  Limiares Globais: t+ = 0.028369 | t- = -0.095169
+  Largura da Zona de Rejeição: 0.123538
+  Acurácia (Sem Rejeição): 90.06%
+  Acurácia (Com Rejeição): 93.38%
+  Taxa de Rejeição Global: 11.70%
+  Instâncias Rejeitadas pela MLP: 20 de 171
 
 --------------------------------------------------------------------------------
-3. DESEMPENHO DO MODELO
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Acurácia sem rejeição: 90.06%
-  Acurácia com rejeição: 90.00%
-  Taxa de rejeição: 0.58%
+  Fidelidade Abdutiva (Pior Cenário): 98.25%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
---------------------------------------------------------------------------------
-4. ESTATÍSTICAS DAS EXPLICAÇÕES
---------------------------------------------------------------------------------
-  POSITIVAS:
-    Quantidade: 93
-    Tamanho médio: 12.05 features
-    Desvio padrão: 3.05
-    Mínimo: 8 features
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 94
+    Tamanho médio: 9.73 features
+    Desvio padrão: 5.04
+    Mínimo: 4 features
     Máximo: 26 features
 
-  NEGATIVAS:
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
     Quantidade: 77
-    Tamanho médio: 12.03 features
-    Desvio padrão: 3.11
-    Mínimo: 9 features
+    Tamanho médio: 9.96 features
+    Desvio padrão: 4.49
+    Mínimo: 5 features
     Máximo: 26 features
 
-  REJEITADAS:
-    Quantidade: 1
-    Tamanho médio: 28.00 features
-    Desvio padrão: 0.00
-    Mínimo: 28 features
-    Máximo: 28 features
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 34.5310s
+  Tempo médio por instância: 0.2019s
 
 --------------------------------------------------------------------------------
-5. TEMPOS DE EXECUÇÃO
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  Tempo total: 4.7256s
-  Tempo médio por instância: 0.027635s
+  worst concave points: 160 ocorrências (93.6%)
+  worst perimeter: 138 ocorrências (80.7%)
+  mean concavity: 116 ocorrências (67.8%)
+  mean compactness: 113 ocorrências (66.1%)
+  smoothness error: 96 ocorrências (56.1%)
+  worst concavity: 86 ocorrências (50.3%)
+  mean texture: 78 ocorrências (45.6%)
+  mean radius: 74 ocorrências (43.3%)
+  worst compactness: 72 ocorrências (42.1%)
+  worst area: 68 ocorrências (39.8%)
 
---------------------------------------------------------------------------------
-6. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
---------------------------------------------------------------------------------
-  worst concave points: 162 ocorrências (94.7%)
-  mean compactness: 117 ocorrências (68.4%)
-  smoothness error: 110 ocorrências (64.3%)
-  mean texture: 102 ocorrências (59.6%)
-  mean concavity: 101 ocorrências (59.1%)
-  worst compactness: 101 ocorrências (59.1%)
-  worst symmetry: 101 ocorrências (59.1%)
-  texture error: 99 ocorrências (57.9%)
-  worst concavity: 93 ocorrências (54.4%)
-  worst perimeter: 93 ocorrências (54.4%)
-
+================================================================================

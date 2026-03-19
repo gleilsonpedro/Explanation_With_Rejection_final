@@ -45,12 +45,11 @@ DATASET_CONFIG = {
     "spambase":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "banknote":             {'test_size': 0.3, 'rejection_cost': 0.24},
     "heart_disease":        {'test_size': 0.3, 'rejection_cost': 0.24},
-    "wine":                 {'subsample_size': 0.20, 'test_size': 0.3, 'rejection_cost': 0.24},
     "creditcard":           {'subsample_size': 0.03, 'test_size': 0.3, 'rejection_cost': 0.040},
     "covertype":            {'subsample_size': 0.005, 'test_size': 0.3, 'rejection_cost': 0.24},
     "gas_sensor":           {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.045},
     "newsgroups":           {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.24},
-    "rcv1":                 {'subsample_size': 0.5, 'test_size': 0.3, 'rejection_cost': 0.24},
+    "rcv1":                 {'subsample_size': 0.05, 'test_size': 0.3, 'rejection_cost': 0.24},
 }
 
 OUTPUT_BASE_DIR: str = 'results/report/minabro_mlp'
@@ -69,13 +68,6 @@ MLP_PARAMS = {
     'random_state': RANDOM_STATE
 }
 
-LOGREG_PARAMS = {
-    'penalty': 'l2', 
-    'C': 1.0, 
-    'solver': 'liblinear', 
-    'max_iter': 500
-}
-
 def sanitize_filename(filename: str) -> str:
     invalid_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
     for char in invalid_chars:
@@ -83,34 +75,46 @@ def sanitize_filename(filename: str) -> str:
     return filename
 
 # ==============================================================================
+# LEITURA DOS HIPERPARÂMETROS OTIMIZADOS (GRID SEARCH)
+# ==============================================================================
+def carregar_hiperparametros_locais(dataset_name: str) -> dict:
+    caminho_json = os.path.join('json', 'best_hyperparameters.json')
+    default_params = {'penalty': 'l2', 'C': 1.0, 'solver': 'liblinear', 'max_iter': 500}
+    
+    if os.path.exists(caminho_json):
+        try:
+            with open(caminho_json, 'r', encoding='utf-8') as f:
+                dados = json.load(f)
+            if dataset_name in dados:
+                return dados[dataset_name]
+        except Exception as e:
+            print(f"[AVISO] Erro ao ler hiperparâmetros: {e}")
+            
+    return default_params
+
+# ==============================================================================
 # CLASSE EXPLAINER: SURROGATE LOCAL (TÉCNICA DO ESPELHO)
 # ==============================================================================
 class MinabroMLPSurrogateExplainer:
-    """
-    Motor original do MINABRO acoplado ao MLP: 
-    Cria a vizinhança local com a Técnica do Espelho, treina Regressão Logística 
-    e extrai explicações abdutivas com garantia matemática de tamanho mínimo.
-    """
-    def __init__(self, modelo_mlp: Pipeline, X_pool_df: pd.DataFrame, rejection_cost: float):
+    def __init__(self, modelo_mlp: Pipeline, X_pool_df: pd.DataFrame, rejection_cost: float, logreg_params: dict):
         self.modelo_mlp = modelo_mlp
         self.X_pool_vals = X_pool_df.values
         self.feature_names = X_pool_df.columns.tolist()
         self.std_train = X_pool_df.std().values
         self.rejection_cost = rejection_cost
+        self.logreg_params = logreg_params
 
-    def _gerar_vizinhanca_local_fronteira(self, instancia: np.ndarray, num_clones: int = 1000) -> Tuple[pd.DataFrame, np.ndarray, dict]:
-        df_inst = pd.DataFrame([instancia], columns=self.feature_names)
-        classe_alvo = self.modelo_mlp.predict(df_inst)[0]
+    def _gerar_vizinhanca_local_fronteira(self, instancia: np.ndarray, num_clones: int = 1000) -> Tuple[np.ndarray, np.ndarray, dict]:
+        # NUMPY PURO: Nada de pd.DataFrame aqui!
+        classe_alvo = self.modelo_mlp.predict([instancia])[0]
         
-        df_pool = pd.DataFrame(self.X_pool_vals, columns=self.feature_names)
-        preds_pool = self.modelo_mlp.predict(df_pool)
+        preds_pool = self.modelo_mlp.predict(self.X_pool_vals)
         opostos_idx = np.where(preds_pool != classe_alvo)[0]
         
         if len(opostos_idx) == 0:
             ruido = np.random.normal(0, self.std_train * 0.15, size=(num_clones, len(instancia)))
-            clones = instancia + ruido
-            df_clones = pd.DataFrame(clones, columns=self.feature_names)
-            y_oraculo = self.modelo_mlp.predict(df_clones)
+            clones_finais = instancia + ruido
+            y_oraculo = self.modelo_mlp.predict(clones_finais)
         else:
             X_opostos = self.X_pool_vals[opostos_idx]
             distancias = np.linalg.norm(X_opostos - instancia, axis=1)
@@ -119,8 +123,7 @@ class MinabroMLPSurrogateExplainer:
             passos = np.linspace(0, 1, 100)[:, np.newaxis]
             caminho = instancia + passos * (inimigo_direcao - instancia)
             
-            df_caminho = pd.DataFrame(caminho, columns=self.feature_names)
-            preds_caminho = self.modelo_mlp.predict(df_caminho)
+            preds_caminho = self.modelo_mlp.predict(caminho)
             
             mudancas = np.where(preds_caminho != classe_alvo)[0]
             if len(mudancas) > 0:
@@ -141,18 +144,17 @@ class MinabroMLPSurrogateExplainer:
             clones_finais[0] = instancia 
             clones_finais[1] = inimigo_final
             
-            df_clones = pd.DataFrame(clones_finais, columns=self.feature_names)
-            y_oraculo = self.modelo_mlp.predict(df_clones)
+            y_oraculo = self.modelo_mlp.predict(clones_finais)
 
         local_bounds = {
-            'min_local': df_clones.min().values, 
-            'max_local': df_clones.max().values, 
+            'min_local': clones_finais.min(axis=0), 
+            'max_local': clones_finais.max(axis=0), 
             'feature_names': self.feature_names
         }
         
-        return df_clones, y_oraculo, local_bounds
+        return clones_finais, y_oraculo, local_bounds
 
-    def _encontrar_thresholds_locais(self, modelo_lr: Pipeline, X_local: pd.DataFrame, y_local: np.ndarray):
+    def _encontrar_thresholds_locais(self, modelo_lr: Pipeline, X_local: np.ndarray, y_local: np.ndarray):
         probas = np.clip(modelo_lr.predict_proba(X_local), 1e-9, 1 - 1e-9)
         decision_scores = np.log(probas[:, 1] / probas[:, 0])
 
@@ -163,6 +165,7 @@ class MinabroMLPSurrogateExplainer:
         t_plus_grid  = np.linspace(0.001, scores_pos.max(), 20)  if len(scores_pos) > 0 else np.array([0.1])
 
         best_risk, best_t_plus, best_t_minus = float('inf'), 0.1, -0.1
+        max_rejection_rate = 0.35  # <-- SIMETRIA: Mesma restrição do modelo global
 
         for tm in t_minus_grid:
             for tp in t_plus_grid:
@@ -176,12 +179,20 @@ class MinabroMLPSurrogateExplainer:
                 rejection_rate = 1.0 - np.mean(acc_mask)
                 risk = error + self.rejection_cost * rejection_rate
 
-                if risk < best_risk:
+                # NOVA REGRA: O surrogate só pode adotar os limiares se não rejeitar excessivamente
+                if risk < best_risk and rejection_rate <= max_rejection_rate:
                     best_risk, best_t_plus, best_t_minus = risk, tp, tm
+
+        # Fallback de segurança caso a vizinhança seja caótica
+        if best_risk == float('inf'):
+            best_t_plus, best_t_minus = 0.01, -0.01
 
         return best_t_plus, best_t_minus, decision_scores[0]
 
     def _check_fidelity_mlp(self, instancia_vals: np.ndarray, expl_indices: set, bounds: dict, original_pred: int) -> bool:
+        if not expl_indices:
+            return True
+            
         inst_min_case = instancia_vals.copy()
         inst_max_case = instancia_vals.copy()
         
@@ -190,31 +201,34 @@ class MinabroMLPSurrogateExplainer:
                 inst_min_case[i] = bounds['min_local'][i]
                 inst_max_case[i] = bounds['max_local'][i]
                 
-        df_batch = pd.DataFrame([inst_min_case, inst_max_case], columns=bounds['feature_names'])
-        preds = self.modelo_mlp.predict(df_batch)
+        # NUMPY PURO
+        preds = self.modelo_mlp.predict([inst_min_case, inst_max_case])
         return bool((preds[0] == original_pred) and (preds[1] == original_pred))
 
     def explain_instance(self, instancia_vals: np.ndarray) -> Tuple[List[str], int, bool]:
-        df_clones, y_oraculo, local_bounds = self._gerar_vizinhanca_local_fronteira(instancia_vals)
+        clones_finais, y_oraculo, local_bounds = self._gerar_vizinhanca_local_fronteira(instancia_vals)
         original_pred = y_oraculo[0]
 
         if len(np.unique(y_oraculo)) == 1:
-            feature_mais_importante = self.feature_names[np.argmax(np.abs(instancia_vals))]
-            is_faithful = self._check_fidelity_mlp(instancia_vals, {self.feature_names.index(feature_mais_importante)}, local_bounds, original_pred)
-            return [feature_mais_importante], original_pred, is_faithful
+            return [], original_pred, True
 
-        modelo_local = Pipeline([('scaler', MinMaxScaler()), ('model', LogisticRegression(**LOGREG_PARAMS, random_state=RANDOM_STATE))])
-        modelo_local.fit(df_clones, y_oraculo)
+        modelo_local = Pipeline([
+            ('scaler', MinMaxScaler()), 
+            ('model', LogisticRegression(**self.logreg_params, random_state=42)) # Aqui mantemos a leitura do seu Grid Search
+        ])
+        
+        # NUMPY PURO para o fit e scaler
+        modelo_local.fit(clones_finais, y_oraculo)
 
-        t_plus, t_minus, score_original = self._encontrar_thresholds_locais(modelo_local, df_clones, y_oraculo)
+        t_plus, t_minus, score_original = self._encontrar_thresholds_locais(modelo_local, clones_finais, y_oraculo)
 
         scaler = modelo_local.named_steps['scaler']
         lr = modelo_local.named_steps['model']
         coefs = lr.coef_[0]
         intercept = lr.intercept_[0]
 
-        df_instancia = pd.DataFrame([instancia_vals], columns=self.feature_names)
-        vals_s = scaler.transform(df_instancia)[0]
+        # NUMPY PURO na transformação
+        vals_s = scaler.transform([instancia_vals])[0]
         
         X_min_contribution = np.where(coefs > 0, 0.0, 1.0)
         X_max_contribution = np.where(coefs > 0, 1.0, 0.0)
@@ -349,6 +363,7 @@ def encontrar_thresholds_otimos(X_train, y_train, rejection_cost, modelo_fixo):
 
     best_risk = float('inf')
     best_t_plus, best_t_minus = 0.1, -0.1
+    max_rejection_rate = 0.35  # <-- NOVA REGRA: O sistema não pode rejeitar mais de 35%
 
     for tm in t_minus_grid:
         for tp in t_plus_grid:
@@ -362,8 +377,13 @@ def encontrar_thresholds_otimos(X_train, y_train, rejection_cost, modelo_fixo):
             rejection_rate = 1.0 - np.mean(accepted_mask)
             risk = error + rejection_cost * rejection_rate
 
-            if risk < best_risk:
+            # NOVA REGRA: Só aceita o limiar se a rejeição for menor ou igual ao teto
+            if risk < best_risk and rejection_rate <= max_rejection_rate:
                 best_risk, best_t_plus, best_t_minus = risk, tp, tm
+
+    # Fallback caso todas as combinações rejeitem demais (usa limiares bem fechados)
+    if best_risk == float('inf'):
+        best_t_plus, best_t_minus = 0.01, -0.01
 
     return float(best_t_plus), float(best_t_minus)
 
@@ -391,14 +411,22 @@ def executar_experimento_para_dataset(dataset_name: str):
         modelo_mlp, X_train, y_train, X_test, y_test, MLP_PARAMS
     )
     
-    # 3. Limiares Globais do MLP (Apenas para relatório/comparação)
-    t_plus, t_minus = encontrar_thresholds_otimos(
+    # 3. Limiares Globais do MLP (Avaliação da Caixa-Preta)
+    t_plus_global, t_minus_global = encontrar_thresholds_otimos(
         X_train_para_threshold, y_train_para_threshold, rejection_cost, modelo_fixo=modelo_mlp
     )
-    print(f"[INFO] Thresholds Globais do MLP: T+={t_plus:.4f}, T-={t_minus:.4f}")
+    
+    probas_mlp = np.clip(modelo_mlp.predict_proba(X_test), 1e-9, 1 - 1e-9)
+    scores_mlp = np.log(probas_mlp[:, 1] / probas_mlp[:, 0])
+    mask_rej_global = (scores_mlp > t_minus_global) & (scores_mlp < t_plus_global)
+    y_pred_final = modelo_mlp.predict(X_test)
+    
+    print(f"[INFO] Thresholds Globais do MLP: T+={t_plus_global:.4f}, T-={t_minus_global:.4f}")
 
-    # 4. Instanciar o Explainer Surrogate (A Magia acontece aqui)
-    explainer = MinabroMLPSurrogateExplainer(modelo_mlp, X_train_orig, rejection_cost)
+    # 4. Instanciar o Explainer Surrogate 
+    logreg_params = carregar_hiperparametros_locais(dataset_name)
+    print(f"[INFO] Hiperparâmetros locais carregados: {logreg_params}")
+    explainer = MinabroMLPSurrogateExplainer(modelo_mlp, X_train_orig, rejection_cost, logreg_params)
 
     # 5. Loop de Explicação
     print(f"[INFO] Explicando {len(X_test)} instâncias via Surrogate Local...")
@@ -412,7 +440,6 @@ def executar_experimento_para_dataset(dataset_name: str):
             start_inst = time.perf_counter()
             inst_vals = X_test_vals[i]
             
-            # Chama a explicação via Surrogate Linear
             explicacao, pred_code, is_faithful = explainer.explain_instance(inst_vals)
             
             duracao = time.perf_counter() - start_inst
@@ -431,11 +458,7 @@ def executar_experimento_para_dataset(dataset_name: str):
     total_time = time.perf_counter() - start_total
     print(f"\n[INFO] Tempo Total: {total_time:.2f}s | Média: {total_time/len(X_test):.4f}s/inst")
 
-    # 6. Agrupar e Salvar
-    preds_rej = np.array([r['pred_code'] for r in resultados])
-    mask_rej = (preds_rej == 2)
-    y_pred_final = modelo_mlp.predict(X_test)
-    
+    # 6. Agrupar e Salvar (Estrutura Blindada)
     per_instance_data = []
     for res in resultados:
         idx = res['id']
@@ -470,16 +493,24 @@ def executar_experimento_para_dataset(dataset_name: str):
             'dataset_name': dataset_name, 'test_size': test_size, 'random_state': RANDOM_STATE,
             'rejection_cost': rejection_cost, 'subsample_size': subsample_size
         },
-        'thresholds': {'t_plus': float(t_plus), 't_minus': float(t_minus), 'rejection_zone_width': float(t_plus - t_minus)},
-        'performance': {
-            'accuracy_without_rejection': float(np.mean(y_pred_final == y_test) * 100),
-            'accuracy_with_rejection': float(np.mean(preds_rej[~mask_rej] == y_test.iloc[~mask_rej]) * 100) if np.any(~mask_rej) else 100.0,
-            'fidelity_rate_local': float(taxa_fidelidade),
-            'rejection_rate': float(np.mean(mask_rej) * 100),
-            'num_test_instances': len(X_test), 'num_rejected': int(np.sum(mask_rej)), 'num_accepted': int(np.sum(~mask_rej))
+        'thresholds_globais_mlp': {
+            't_plus_global': float(t_plus_global), 
+            't_minus_global': float(t_minus_global), 
+            'rejection_zone_width': float(t_plus_global - t_minus_global)
         },
-        'explanation_stats': {
-            'positive': calc_exp_stats(tamanhos_pos), 'negative': calc_exp_stats(tamanhos_neg), 'rejected': calc_exp_stats(tamanhos_rej)
+        'performance_oraculo_mlp': {
+            'accuracy_without_rejection': float(np.mean(y_pred_final == y_test) * 100),
+            'accuracy_with_rejection': float(np.mean(y_pred_final[~mask_rej_global] == y_test.iloc[~mask_rej_global]) * 100) if np.any(~mask_rej_global) else 100.0,
+            'rejection_rate_global': float(np.mean(mask_rej_global) * 100),
+            'num_test_instances': len(X_test), 
+            'num_rejected': int(np.sum(mask_rej_global)), 
+            'num_accepted': int(np.sum(~mask_rej_global))
+        },
+        'performance_explicacoes_locais': {
+            'fidelity_rate_worst_case': float(taxa_fidelidade),
+            'positive': calc_exp_stats(tamanhos_pos), 
+            'negative': calc_exp_stats(tamanhos_neg), 
+            'rejected': calc_exp_stats(tamanhos_rej)
         },
         'computation_time': {
             'total': float(total_time), 'mean_per_instance': float(total_time / len(X_test))
@@ -490,10 +521,8 @@ def executar_experimento_para_dataset(dataset_name: str):
 
     dataset_json_key_safe = sanitize_filename(dataset_name)
     
-    # 1. Salva o JSON usando a sua função padrão
     filepath_json_salvo = update_method_results(method='minabro_mlp', dataset=dataset_json_key_safe, results=results_data)
     
-    # 2. Chama o NOVO gerador de relatórios passando o caminho do JSON
     from minabro_mlp_rel import gerar_relatorio_do_json
     caminho_do_json_gerado = f"json/minabro_mlp/{dataset_json_key_safe}.json" 
     

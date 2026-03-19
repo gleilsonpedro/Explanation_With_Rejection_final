@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: newsgroups
+  Instâncias de teste avaliadas: 119
+  Features Originais do Dataset: 10000
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 1.268865 | t- = -0.845944
+  Largura da Zona de Rejeição: 2.114809
+  Acurácia (Sem Rejeição): 92.44%
+  Acurácia (Com Rejeição): 100.00%
+  Taxa de Rejeição Global: 15.13%
+  Instâncias Rejeitadas pela MLP: 18 de 119
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 85.59%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 56
+    Tamanho médio: 7278.82 features
+    Desvio padrão: 859.81
+    Mínimo: 5571 features
+    Máximo: 9518 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 62
+    Tamanho médio: 7779.39 features
+    Desvio padrão: 998.12
+    Mínimo: 5821 features
+    Máximo: 9799 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 1220.3163s
+  Tempo médio por instância: 10.2548s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  cereals: 105 ocorrências (89.0%)
+  protein: 105 ocorrências (89.0%)
+  ring: 105 ocorrências (89.0%)
+  difficulty: 104 ocorrências (88.1%)
+  aluminum: 103 ocorrências (87.3%)
+  glutamate: 103 ocorrências (87.3%)
+  hand: 103 ocorrências (87.3%)
+  otc: 103 ocorrências (87.3%)
+  ribs: 103 ocorrências (87.3%)
+  salt: 103 ocorrências (87.3%)
+
+================================================================================

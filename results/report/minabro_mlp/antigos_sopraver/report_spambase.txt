@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: spambase
+  Instâncias de teste avaliadas: 1381
+  Features Originais do Dataset: 57
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.186517 | t- = -1.268865
+  Largura da Zona de Rejeição: 1.455383
+  Acurácia (Sem Rejeição): 93.85%
+  Acurácia (Com Rejeição): 94.99%
+  Taxa de Rejeição Global: 6.01%
+  Instâncias Rejeitadas pela MLP: 83 de 1381
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 98.33%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 534
+    Tamanho médio: 24.31 features
+    Desvio padrão: 10.74
+    Mínimo: 2 features
+    Máximo: 56 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 847
+    Tamanho médio: 24.87 features
+    Desvio padrão: 12.11
+    Mínimo: 2 features
+    Máximo: 53 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 469.0983s
+  Tempo médio por instância: 0.3397s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  word_freq_george: 1321 ocorrências (95.7%)
+  word_freq_hp: 1275 ocorrências (92.3%)
+  word_freq_remove: 1154 ocorrências (83.6%)
+  char_freq_dollar: 1140 ocorrências (82.5%)
+  word_freq_415: 1083 ocorrências (78.4%)
+  word_freq_meeting: 1074 ocorrências (77.8%)
+  word_freq_hpl: 1071 ocorrências (77.6%)
+  char_freq_exclamation: 1060 ocorrências (76.8%)
+  word_freq_000: 1050 ocorrências (76.0%)
+  word_freq_edu: 990 ocorrências (71.7%)
+
+================================================================================

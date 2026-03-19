@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: breast_cancer
+  Instâncias de teste avaliadas: 171
+  Features Originais do Dataset: 30
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.028369 | t- = -0.095169
+  Largura da Zona de Rejeição: 0.123538
+  Acurácia (Sem Rejeição): 90.06%
+  Acurácia (Com Rejeição): 93.38%
+  Taxa de Rejeição Global: 11.70%
+  Instâncias Rejeitadas pela MLP: 20 de 171
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 97.66%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 94
+    Tamanho médio: 9.60 features
+    Desvio padrão: 5.12
+    Mínimo: 4 features
+    Máximo: 28 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 77
+    Tamanho médio: 9.94 features
+    Desvio padrão: 4.53
+    Mínimo: 5 features
+    Máximo: 25 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 30.4113s
+  Tempo médio por instância: 0.1778s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  worst concave points: 166 ocorrências (97.1%)
+  worst perimeter: 143 ocorrências (83.6%)
+  mean concavity: 114 ocorrências (66.7%)
+  mean compactness: 111 ocorrências (64.9%)
+  smoothness error: 94 ocorrências (55.0%)
+  worst concavity: 77 ocorrências (45.0%)
+  worst compactness: 76 ocorrências (44.4%)
+  mean texture: 72 ocorrências (42.1%)
+  mean radius: 68 ocorrências (39.8%)
+  worst symmetry: 66 ocorrências (38.6%)
+
+================================================================================

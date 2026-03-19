@@ -6,46 +6,46 @@
     "rejection_cost": 0.24,
     "subsample_size": null
   },
-  "thresholds": {
-    "t_plus": 0.11208415889873062,
-    "t_minus": -1.0949077201382733,
+  "thresholds_globais_mlp": {
+    "t_plus_global": 0.11208415889873062,
+    "t_minus_global": -1.0949077201382733,
     "rejection_zone_width": 1.206991879037004
   },
-  "performance": {
+  "performance_oraculo_mlp": {
     "accuracy_without_rejection": 91.2621359223301,
-    "accuracy_with_rejection": 91.24087591240875,
-    "fidelity_rate_local": 98.29683698296837,
-    "rejection_rate": 0.24271844660194172,
+    "accuracy_with_rejection": 95.4954954954955,
+    "rejection_rate_global": 19.174757281553397,
     "num_test_instances": 412,
-    "num_rejected": 1,
-    "num_accepted": 411
+    "num_rejected": 79,
+    "num_accepted": 333
   },
-  "explanation_stats": {
+  "performance_explicacoes_locais": {
+    "fidelity_rate_worst_case": 99.75728155339806,
     "positive": {
       "count": 165,
-      "mean_length": 1.8666666666666667,
-      "std_length": 0.5777000724747867,
+      "mean_length": 1.4,
+      "std_length": 0.720269309902816,
       "min_length": 1,
       "max_length": 4
     },
     "negative": {
-      "count": 246,
-      "mean_length": 1.7398373983739837,
-      "std_length": 0.6965349590440291,
+      "count": 247,
+      "mean_length": 1.408906882591093,
+      "std_length": 0.7732899505388985,
       "min_length": 1,
       "max_length": 4
     },
     "rejected": {
-      "count": 1,
-      "mean_length": 4.0,
+      "count": 0,
+      "mean_length": 0.0,
       "std_length": 0.0,
-      "min_length": 4,
-      "max_length": 4
+      "min_length": 0,
+      "max_length": 0
     }
   },
   "computation_time": {
-    "total": 11.861716999999771,
-    "mean_per_instance": 0.028790575242717893
+    "total": 94.91057670000009,
+    "mean_per_instance": 0.2303654774271847
   },
   "model": {
     "params": {
@@ -75,7 +75,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.04735129999971832
+      "computation_time": 0.15964400000120804
     },
     {
       "id": "1367",
@@ -89,7 +89,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.03447520000008808
+      "computation_time": 0.45158579999952053
     },
     {
       "id": "711",
@@ -97,11 +97,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021870700000363286
+      "explanation_size": 1,
+      "computation_time": 0.196901399998751
     },
     {
       "id": "1072",
@@ -109,11 +108,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0249232000005577
+      "explanation_size": 1,
+      "computation_time": 0.20513969999956316
     },
     {
       "id": "130",
@@ -121,11 +119,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02358749999984866
+      "explanation_size": 1,
+      "computation_time": 0.11629849999917496
     },
     {
       "id": "91",
@@ -136,7 +133,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022631399999227142
+      "computation_time": 0.18288960000063526
     },
     {
       "id": "1287",
@@ -144,11 +141,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022520299999087
+      "explanation_size": 1,
+      "computation_time": 0.2447039999988192
     },
     {
       "id": "1008",
@@ -156,11 +152,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.020872099999905913
+      "explanation_size": 1,
+      "computation_time": 0.13656499999888183
     },
     {
       "id": "682",
@@ -168,11 +163,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026915499998722225
+      "explanation_size": 1,
+      "computation_time": 0.14385109999966517
     },
     {
       "id": "977",
@@ -180,11 +174,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
+        "skewness",
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02940359999956854
+      "computation_time": 0.1450569999997242
     },
     {
       "id": "1073",
@@ -196,7 +190,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.025201899999956368
+      "computation_time": 0.4425834000012401
     },
     {
       "id": "366",
@@ -204,11 +198,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026341799999499926
+      "explanation_size": 1,
+      "computation_time": 0.15447430000131135
     },
     {
       "id": "459",
@@ -219,7 +212,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.029652699999132892
+      "computation_time": 0.2403325000013865
     },
     {
       "id": "670",
@@ -227,11 +220,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025938399998267414
+      "explanation_size": 1,
+      "computation_time": 0.2623602000003302
     },
     {
       "id": "660",
@@ -242,7 +234,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023022400000627385
+      "computation_time": 0.24093309999989287
     },
     {
       "id": "1162",
@@ -254,7 +246,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.025245400000130758
+      "computation_time": 0.15633300000081363
     },
     {
       "id": "474",
@@ -262,11 +254,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03336029999991297
+      "explanation_size": 1,
+      "computation_time": 0.10789929999918968
     },
     {
       "id": "122",
@@ -274,11 +265,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03320549999989453
+      "explanation_size": 1,
+      "computation_time": 0.27212370000052033
     },
     {
       "id": "677",
@@ -290,7 +280,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.022432099998695776
+      "computation_time": 0.10222780000003695
     },
     {
       "id": "460",
@@ -301,7 +291,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.036368099999890546
+      "computation_time": 0.208183700000518
     },
     {
       "id": "315",
@@ -315,7 +305,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.03254940000078932
+      "computation_time": 0.41196409999975003
     },
     {
       "id": "276",
@@ -326,7 +316,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02598279999983788
+      "computation_time": 0.2243588000001182
     },
     {
       "id": "1248",
@@ -334,11 +324,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025433000000703032
+      "explanation_size": 1,
+      "computation_time": 0.17497739999998885
     },
     {
       "id": "953",
@@ -346,11 +335,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028156599999419996
+      "explanation_size": 3,
+      "computation_time": 0.49951359999977285
     },
     {
       "id": "776",
@@ -358,11 +348,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.034285599998838734
+      "explanation_size": 1,
+      "computation_time": 0.16470159999880707
     },
     {
       "id": "664",
@@ -373,7 +362,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.04146799999944051
+      "computation_time": 0.19304100000044855
     },
     {
       "id": "803",
@@ -385,7 +374,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04606890000104613
+      "computation_time": 0.17476589999932912
     },
     {
       "id": "475",
@@ -396,7 +385,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.05800700000145298
+      "computation_time": 0.21568070000103035
     },
     {
       "id": "13",
@@ -408,7 +397,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.09038599999985308
+      "computation_time": 0.2554818999997224
     },
     {
       "id": "1004",
@@ -416,11 +405,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.055366499998854124
+      "explanation_size": 1,
+      "computation_time": 0.1633758999996644
     },
     {
       "id": "882",
@@ -428,11 +416,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.06016079999972135
+      "explanation_size": 1,
+      "computation_time": 0.16798620000008668
     },
     {
       "id": "62",
@@ -440,11 +427,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.048760600000605336
+      "explanation_size": 1,
+      "computation_time": 0.12410839999938617
     },
     {
       "id": "987",
@@ -457,7 +443,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.030548899998393608
+      "computation_time": 0.6585904999992636
     },
     {
       "id": "981",
@@ -468,7 +454,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.035708100000192644
+      "computation_time": 0.21498400000018592
     },
     {
       "id": "187",
@@ -476,11 +462,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.05382380000082776
+      "explanation_size": 1,
+      "computation_time": 0.2815377000006265
     },
     {
       "id": "1208",
@@ -488,11 +473,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.054606000001513166
+      "explanation_size": 1,
+      "computation_time": 0.25883210000029067
     },
     {
       "id": "808",
@@ -503,7 +487,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.07897720000073605
+      "computation_time": 0.17628069999955187
     },
     {
       "id": "633",
@@ -514,7 +498,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03742750000128581
+      "computation_time": 0.16731930000059947
     },
     {
       "id": "1339",
@@ -526,7 +510,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02856919999976526
+      "computation_time": 0.19322880000072473
     },
     {
       "id": "1258",
@@ -534,11 +518,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
+        "entropy",
+        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.04285460000028252
+      "explanation_size": 3,
+      "computation_time": 0.3267347000000882
     },
     {
       "id": "975",
@@ -549,7 +534,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.029188099999373662
+      "computation_time": 0.1906425000015588
     },
     {
       "id": "1359",
@@ -563,7 +548,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.02709590000085882
+      "computation_time": 0.474010999998427
     },
     {
       "id": "870",
@@ -574,7 +559,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.039518600000519655
+      "computation_time": 0.3035141999989719
     },
     {
       "id": "1213",
@@ -582,11 +567,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025036000000909553
+      "explanation_size": 1,
+      "computation_time": 0.195640200001435
     },
     {
       "id": "1025",
@@ -598,7 +582,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0298808999996254
+      "computation_time": 0.17246479999994335
     },
     {
       "id": "795",
@@ -611,7 +595,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.027849500000229455
+      "computation_time": 0.4498706000013044
     },
     {
       "id": "253",
@@ -619,11 +603,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.029684199998882832
+      "explanation_size": 1,
+      "computation_time": 0.10545570000067528
     },
     {
       "id": "52",
@@ -634,7 +617,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.020883700000922545
+      "computation_time": 0.16086379999978817
     },
     {
       "id": "654",
@@ -642,11 +625,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023717199999737204
+      "explanation_size": 1,
+      "computation_time": 0.1993177000003925
     },
     {
       "id": "1107",
@@ -658,7 +640,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0217387000011513
+      "computation_time": 0.4148908000006486
     },
     {
       "id": "87",
@@ -666,11 +648,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.034761500000968226
+      "explanation_size": 1,
+      "computation_time": 0.19620869999926072
     },
     {
       "id": "219",
@@ -682,7 +663,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.032271899999614106
+      "computation_time": 0.12808190000032482
     },
     {
       "id": "984",
@@ -694,7 +675,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027001999998901738
+      "computation_time": 0.26967399999921327
     },
     {
       "id": "764",
@@ -702,11 +683,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021367000001191627
+      "explanation_size": 1,
+      "computation_time": 0.12766829999964102
     },
     {
       "id": "989",
@@ -714,11 +694,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03063069999916479
+      "explanation_size": 1,
+      "computation_time": 0.1722747999992862
     },
     {
       "id": "906",
@@ -729,7 +708,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.027671199999531382
+      "computation_time": 0.2792098999998416
     },
     {
       "id": "293",
@@ -740,7 +719,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.029653999999936786
+      "computation_time": 0.1547977999998693
     },
     {
       "id": "614",
@@ -748,11 +727,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024710800000320887
+      "explanation_size": 1,
+      "computation_time": 0.16338699999869277
     },
     {
       "id": "955",
@@ -760,11 +738,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.033244800000829855
+      "explanation_size": 1,
+      "computation_time": 0.13947670000015933
     },
     {
       "id": "504",
@@ -775,7 +752,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02314509999996517
+      "computation_time": 0.1444817999999941
     },
     {
       "id": "1092",
@@ -783,11 +760,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024399399999310845
+      "explanation_size": 1,
+      "computation_time": 0.2123128999992332
     },
     {
       "id": "990",
@@ -795,11 +771,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02447559999927762
+      "explanation_size": 1,
+      "computation_time": 0.12093249999998079
     },
     {
       "id": "560",
@@ -807,11 +782,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.031170799999017618
+      "explanation_size": 1,
+      "computation_time": 0.08572490000005928
     },
     {
       "id": "1201",
@@ -819,11 +793,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027960100000200327
+      "explanation_size": 1,
+      "computation_time": 0.26181389999874227
     },
     {
       "id": "64",
@@ -834,7 +807,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02406660000087868
+      "computation_time": 0.11425440000130038
     },
     {
       "id": "959",
@@ -842,11 +815,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025078900000153226
+      "explanation_size": 1,
+      "computation_time": 0.189395000001241
     },
     {
       "id": "347",
@@ -854,11 +826,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0289706000003207
+      "explanation_size": 1,
+      "computation_time": 0.3104299999995419
     },
     {
       "id": "556",
@@ -869,7 +840,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02592700000059267
+      "computation_time": 0.22141610000107903
     },
     {
       "id": "765",
@@ -877,11 +848,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02425319999929343
+      "explanation_size": 1,
+      "computation_time": 0.19612980000056268
     },
     {
       "id": "288",
@@ -893,7 +863,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0232508000008238
+      "computation_time": 0.5221280000005208
     },
     {
       "id": "561",
@@ -906,7 +876,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.030627199999798904
+      "computation_time": 0.49332549999962794
     },
     {
       "id": "1018",
@@ -918,7 +888,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.026268899999195128
+      "computation_time": 0.25053010000010545
     },
     {
       "id": "1210",
@@ -930,7 +900,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027118899999550194
+      "computation_time": 0.24677969999902416
     },
     {
       "id": "191",
@@ -938,11 +908,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022236299999349285
+      "explanation_size": 1,
+      "computation_time": 0.0817693999997573
     },
     {
       "id": "472",
@@ -953,7 +922,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03612249999969208
+      "computation_time": 0.15981439999995928
     },
     {
       "id": "715",
@@ -961,11 +930,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02417550000063784
+      "explanation_size": 1,
+      "computation_time": 0.14595319999898493
     },
     {
       "id": "830",
@@ -979,7 +947,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.02585930000168446
+      "computation_time": 0.42346249999900465
     },
     {
       "id": "565",
@@ -987,11 +955,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022433800000726478
+      "explanation_size": 1,
+      "computation_time": 0.18521030000010796
     },
     {
       "id": "994",
@@ -999,10 +966,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.03712410000116506
+      "explanation_size": 2,
+      "computation_time": 0.42121790000055626
     },
     {
       "id": "1198",
@@ -1010,11 +978,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03543129999889061
+      "explanation_size": 1,
+      "computation_time": 0.1326773000000685
     },
     {
       "id": "1171",
@@ -1025,7 +992,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02920339999946009
+      "computation_time": 0.2229815000009694
     },
     {
       "id": "205",
@@ -1036,7 +1003,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.040866200000891695
+      "computation_time": 0.12211009999919042
     },
     {
       "id": "267",
@@ -1044,11 +1011,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.04369150000093214
+      "explanation_size": 1,
+      "computation_time": 0.08872390000033192
     },
     {
       "id": "612",
@@ -1060,7 +1026,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.026555399999779183
+      "computation_time": 0.3329969999995228
     },
     {
       "id": "807",
@@ -1068,11 +1034,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026523299999098526
+      "explanation_size": 1,
+      "computation_time": 0.14287479999984498
     },
     {
       "id": "379",
@@ -1080,11 +1045,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02726059999986319
+      "explanation_size": 1,
+      "computation_time": 0.1553206999997201
     },
     {
       "id": "489",
@@ -1095,7 +1059,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03112179999880027
+      "computation_time": 0.21950090000063938
     },
     {
       "id": "769",
@@ -1103,12 +1067,13 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.03688979999969888
+      "explanation_size": 4,
+      "computation_time": 0.4824645999997301
     },
     {
       "id": "376",
@@ -1119,7 +1084,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03405730000122276
+      "computation_time": 0.14542529999926046
     },
     {
       "id": "1034",
@@ -1131,7 +1096,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03187679999973625
+      "computation_time": 0.1651758999996673
     },
     {
       "id": "217",
@@ -1143,7 +1108,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02334049999990384
+      "computation_time": 0.16716009999981907
     },
     {
       "id": "596",
@@ -1151,11 +1116,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03813649999938207
+      "explanation_size": 1,
+      "computation_time": 0.24313979999897128
     },
     {
       "id": "441",
@@ -1163,11 +1127,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.034641099999134894
+      "explanation_size": 1,
+      "computation_time": 0.1774915999994846
     },
     {
       "id": "1204",
@@ -1178,7 +1141,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.024074599999948987
+      "computation_time": 0.30861280000135594
     },
     {
       "id": "295",
@@ -1186,11 +1149,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02406209999935527
+      "explanation_size": 1,
+      "computation_time": 0.1914308000013989
     },
     {
       "id": "128",
@@ -1201,7 +1163,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02772229999936826
+      "computation_time": 0.2544311000001471
     },
     {
       "id": "836",
@@ -1215,7 +1177,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.027599999999438296
+      "computation_time": 0.44250839999949676
     },
     {
       "id": "723",
@@ -1226,7 +1188,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.026350000000093132
+      "computation_time": 0.3144587999995565
     },
     {
       "id": "844",
@@ -1238,7 +1200,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027385699999285862
+      "computation_time": 0.2300422999996954
     },
     {
       "id": "391",
@@ -1246,11 +1208,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030750400001124945
+      "explanation_size": 1,
+      "computation_time": 0.19955929999923683
     },
     {
       "id": "577",
@@ -1258,11 +1219,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03469020000011369
+      "explanation_size": 1,
+      "computation_time": 0.1869275999997626
     },
     {
       "id": "202",
@@ -1270,11 +1230,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02423790000102599
+      "explanation_size": 1,
+      "computation_time": 0.21907030000147643
     },
     {
       "id": "186",
@@ -1282,11 +1241,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02663149999898451
+      "explanation_size": 1,
+      "computation_time": 0.16564739999921585
     },
     {
       "id": "1295",
@@ -1294,11 +1252,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03584749999936321
+      "explanation_size": 1,
+      "computation_time": 0.10530239999934565
     },
     {
       "id": "463",
@@ -1310,7 +1267,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0287410999990243
+      "computation_time": 0.26801179999893066
     },
     {
       "id": "744",
@@ -1321,7 +1278,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02404519999981858
+      "computation_time": 0.16301250000105938
     },
     {
       "id": "767",
@@ -1329,11 +1286,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024583599999459693
+      "explanation_size": 1,
+      "computation_time": 0.18227630000001227
     },
     {
       "id": "898",
@@ -1345,7 +1301,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027540400000361842
+      "computation_time": 0.17862769999919692
     },
     {
       "id": "36",
@@ -1356,7 +1312,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.031718399999590474
+      "computation_time": 0.18676799999957439
     },
     {
       "id": "273",
@@ -1364,11 +1320,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0285621999992145
+      "explanation_size": 1,
+      "computation_time": 0.26359279999996943
     },
     {
       "id": "1079",
@@ -1380,7 +1335,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023895999998785555
+      "computation_time": 0.36522879999938596
     },
     {
       "id": "1227",
@@ -1388,11 +1343,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025428099999771803
+      "explanation_size": 1,
+      "computation_time": 0.15438879999965138
     },
     {
       "id": "766",
@@ -1400,11 +1354,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03034000000116066
+      "explanation_size": 1,
+      "computation_time": 0.10867449999932433
     },
     {
       "id": "282",
@@ -1412,11 +1365,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022483500000817003
+      "explanation_size": 1,
+      "computation_time": 0.1712733999993361
     },
     {
       "id": "508",
@@ -1427,7 +1379,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.025189600000885548
+      "computation_time": 0.18433569999979227
     },
     {
       "id": "502",
@@ -1438,7 +1390,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03307719999975234
+      "computation_time": 0.36446609999984503
     },
     {
       "id": "678",
@@ -1446,11 +1398,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027336300001479685
+      "explanation_size": 1,
+      "computation_time": 0.18433989999903133
     },
     {
       "id": "625",
@@ -1461,7 +1412,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.025418200000785873
+      "computation_time": 0.17860749999999825
     },
     {
       "id": "1242",
@@ -1472,7 +1423,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.0290435000006255
+      "computation_time": 0.266273999999612
     },
     {
       "id": "738",
@@ -1483,7 +1434,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.034198100000139675
+      "computation_time": 0.19711789999928442
     },
     {
       "id": "1346",
@@ -1491,11 +1442,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03800800000135496
+      "explanation_size": 1,
+      "computation_time": 0.14726789999986067
     },
     {
       "id": "672",
@@ -1507,7 +1457,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023992500000531436
+      "computation_time": 0.2473504999998113
     },
     {
       "id": "1323",
@@ -1519,7 +1469,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023392499999317806
+      "computation_time": 0.30152090000046883
     },
     {
       "id": "385",
@@ -1530,7 +1480,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.026879799999733223
+      "computation_time": 0.22743249999984982
     },
     {
       "id": "1164",
@@ -1541,7 +1491,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02381029999924067
+      "computation_time": 0.21800530000109575
     },
     {
       "id": "1185",
@@ -1549,11 +1499,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027455399998871144
+      "explanation_size": 1,
+      "computation_time": 0.21524350000072445
     },
     {
       "id": "509",
@@ -1561,11 +1510,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
+        "skewness",
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023956000000907807
+      "computation_time": 0.32751549999920826
     },
     {
       "id": "496",
@@ -1573,11 +1522,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03534589999981108
+      "explanation_size": 1,
+      "computation_time": 0.1933774999997695
     },
     {
       "id": "35",
@@ -1588,7 +1536,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.031023800000184565
+      "computation_time": 0.14139029999932973
     },
     {
       "id": "1153",
@@ -1596,11 +1544,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02588379999906465
+      "explanation_size": 1,
+      "computation_time": 0.19143690000055358
     },
     {
       "id": "343",
@@ -1608,11 +1555,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02971570000045176
+      "explanation_size": 1,
+      "computation_time": 0.13531829999919864
     },
     {
       "id": "895",
@@ -1624,7 +1570,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03231480000067677
+      "computation_time": 0.14702109999961976
     },
     {
       "id": "410",
@@ -1635,7 +1581,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.031012100000225473
+      "computation_time": 0.30184099999860337
     },
     {
       "id": "755",
@@ -1646,7 +1592,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02259530000083032
+      "computation_time": 0.18806500000027881
     },
     {
       "id": "34",
@@ -1657,7 +1603,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.028799599998819758
+      "computation_time": 0.3138822999990225
     },
     {
       "id": "372",
@@ -1665,11 +1611,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030280800001492025
+      "explanation_size": 1,
+      "computation_time": 0.20078009999997448
     },
     {
       "id": "240",
@@ -1680,7 +1625,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.036922799999956624
+      "computation_time": 0.2051406999999017
     },
     {
       "id": "822",
@@ -1691,7 +1636,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02692160000151489
+      "computation_time": 0.14647119999972347
     },
     {
       "id": "605",
@@ -1702,7 +1647,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02700100000038219
+      "computation_time": 0.19866410000031465
     },
     {
       "id": "1231",
@@ -1715,7 +1660,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03337230000033742
+      "computation_time": 0.47060570000030566
     },
     {
       "id": "471",
@@ -1726,7 +1671,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02871159999995143
+      "computation_time": 0.2045023000009678
     },
     {
       "id": "1",
@@ -1737,7 +1682,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.029765600000246195
+      "computation_time": 0.16263879999860364
     },
     {
       "id": "1096",
@@ -1748,7 +1693,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02259299999968789
+      "computation_time": 0.2597083999989991
     },
     {
       "id": "161",
@@ -1759,7 +1704,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02711509999971895
+      "computation_time": 0.17290460000003804
     },
     {
       "id": "1081",
@@ -1767,11 +1712,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.032980999998471816
+      "explanation_size": 1,
+      "computation_time": 0.2148472999997466
     },
     {
       "id": "384",
@@ -1783,7 +1727,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02785539999968023
+      "computation_time": 0.16860209999867948
     },
     {
       "id": "944",
@@ -1791,11 +1735,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02762549999897601
+      "explanation_size": 1,
+      "computation_time": 0.264999799999714
     },
     {
       "id": "665",
@@ -1803,11 +1746,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03390910000052827
+      "explanation_size": 1,
+      "computation_time": 0.19056170000112616
     },
     {
       "id": "308",
@@ -1815,11 +1757,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028142099999968195
+      "explanation_size": 1,
+      "computation_time": 0.1519862999994075
     },
     {
       "id": "491",
@@ -1830,7 +1771,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02467189999879338
+      "computation_time": 0.30629810000027646
     },
     {
       "id": "945",
@@ -1842,7 +1783,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02844389999881969
+      "computation_time": 0.487508499998512
     },
     {
       "id": "1303",
@@ -1850,11 +1791,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03266740000071877
+      "explanation_size": 1,
+      "computation_time": 0.16982660000030592
     },
     {
       "id": "1239",
@@ -1862,17 +1802,16 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0321806000010838
+      "explanation_size": 1,
+      "computation_time": 0.26129709999986517
     },
     {
       "id": "4",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": true,
+      "rejected": false,
       "explanation": [
         "curtosis",
         "entropy",
@@ -1880,7 +1819,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.031159000000116066
+      "computation_time": 0.41909429999941494
     },
     {
       "id": "973",
@@ -1892,7 +1831,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.035264899999674526
+      "computation_time": 0.09219339999981457
     },
     {
       "id": "727",
@@ -1904,7 +1843,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04432480000104988
+      "computation_time": 0.4839976999992359
     },
     {
       "id": "476",
@@ -1917,7 +1856,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.026918399998976383
+      "computation_time": 0.5772474000004877
     },
     {
       "id": "348",
@@ -1925,11 +1864,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.031076900000698515
+      "explanation_size": 1,
+      "computation_time": 0.24543369999992137
     },
     {
       "id": "146",
@@ -1940,7 +1878,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.033106599999882746
+      "computation_time": 0.1760123999993084
     },
     {
       "id": "71",
@@ -1951,7 +1889,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.041267700000389596
+      "computation_time": 0.18441250000068976
     },
     {
       "id": "620",
@@ -1959,11 +1897,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03283550000014657
+      "explanation_size": 1,
+      "computation_time": 0.18724920000022394
     },
     {
       "id": "1299",
@@ -1972,11 +1909,10 @@
       "rejected": false,
       "explanation": [
         "entropy",
-        "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.025147499998638523
+      "explanation_size": 2,
+      "computation_time": 0.31171139999969455
     },
     {
       "id": "562",
@@ -1984,11 +1920,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
+        "skewness",
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.040331599999262835
+      "computation_time": 0.16441589999885764
     },
     {
       "id": "604",
@@ -2000,7 +1936,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.024265699999887147
+      "computation_time": 0.34190980000130367
     },
     {
       "id": "159",
@@ -2012,7 +1948,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.022879800000737305
+      "computation_time": 0.170686299999943
     },
     {
       "id": "252",
@@ -2023,7 +1959,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02364549999947485
+      "computation_time": 0.3571300000003248
     },
     {
       "id": "1130",
@@ -2031,11 +1967,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030695100000230013
+      "explanation_size": 1,
+      "computation_time": 0.14615039999989676
     },
     {
       "id": "696",
@@ -2043,11 +1978,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027297200000248267
+      "explanation_size": 1,
+      "computation_time": 0.1324137999999948
     },
     {
       "id": "123",
@@ -2059,7 +1993,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023097799999959534
+      "computation_time": 0.31955999999991036
     },
     {
       "id": "1315",
@@ -2067,11 +2001,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02428390000022773
+      "explanation_size": 1,
+      "computation_time": 0.09526010000081442
     },
     {
       "id": "106",
@@ -2079,11 +2012,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023058700000547105
+      "explanation_size": 1,
+      "computation_time": 0.10893789999863657
     },
     {
       "id": "1155",
@@ -2097,7 +2029,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.028649600000790088
+      "computation_time": 0.44243810000079975
     },
     {
       "id": "1076",
@@ -2109,7 +2041,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.028766100000211736
+      "computation_time": 0.12174289999893517
     },
     {
       "id": "789",
@@ -2122,7 +2054,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.026512299999012612
+      "computation_time": 0.450995299999704
     },
     {
       "id": "911",
@@ -2130,11 +2062,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02660660000037751
+      "explanation_size": 1,
+      "computation_time": 0.24464930000067397
     },
     {
       "id": "524",
@@ -2142,11 +2073,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
+        "skewness",
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04403899999852001
+      "computation_time": 0.4245359999986249
     },
     {
       "id": "455",
@@ -2154,11 +2085,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027941000000282656
+      "explanation_size": 1,
+      "computation_time": 0.16529459999946994
     },
     {
       "id": "1147",
@@ -2166,11 +2096,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026400299999295385
+      "explanation_size": 1,
+      "computation_time": 0.15818819999913103
     },
     {
       "id": "1281",
@@ -2178,11 +2107,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022514099999170867
+      "explanation_size": 1,
+      "computation_time": 0.12495950000084122
     },
     {
       "id": "741",
@@ -2190,11 +2118,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.04755060000024969
+      "explanation_size": 1,
+      "computation_time": 0.19423149999965972
     },
     {
       "id": "823",
@@ -2202,10 +2129,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.041584500000681146
+      "explanation_size": 2,
+      "computation_time": 0.558717500000057
     },
     {
       "id": "691",
@@ -2218,7 +2146,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.032129400000485475
+      "computation_time": 0.4093462000000727
     },
     {
       "id": "1370",
@@ -2226,11 +2154,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.06488749999880383
+      "explanation_size": 1,
+      "computation_time": 0.2838289999999688
     },
     {
       "id": "1061",
@@ -2242,7 +2169,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03925390000040352
+      "computation_time": 0.29452300000048126
     },
     {
       "id": "243",
@@ -2253,7 +2180,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02411469999969995
+      "computation_time": 0.19675869999991846
     },
     {
       "id": "1269",
@@ -2261,11 +2188,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03364849999888975
+      "explanation_size": 1,
+      "computation_time": 0.18437210000047344
     },
     {
       "id": "1311",
@@ -2278,7 +2204,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03214289999959874
+      "computation_time": 0.5078936999998405
     },
     {
       "id": "147",
@@ -2289,7 +2215,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023726700001134304
+      "computation_time": 0.37543189999996684
     },
     {
       "id": "241",
@@ -2301,7 +2227,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027549099999305326
+      "computation_time": 0.2548675000016374
     },
     {
       "id": "894",
@@ -2309,11 +2235,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025315899998531677
+      "explanation_size": 1,
+      "computation_time": 0.15359650000027614
     },
     {
       "id": "246",
@@ -2324,7 +2249,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03381260000060138
+      "computation_time": 0.28763640000033774
     },
     {
       "id": "1279",
@@ -2332,11 +2257,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.053902000001471606
+      "explanation_size": 1,
+      "computation_time": 0.30206120000002556
     },
     {
       "id": "1344",
@@ -2350,7 +2274,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.06068770000092627
+      "computation_time": 0.329162300000462
     },
     {
       "id": "1036",
@@ -2358,11 +2282,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.04853990000083286
+      "explanation_size": 1,
+      "computation_time": 0.24681129999953555
     },
     {
       "id": "1124",
@@ -2370,11 +2293,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.04862409999986994
+      "explanation_size": 1,
+      "computation_time": 0.23786830000062764
     },
     {
       "id": "1043",
@@ -2385,7 +2307,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03980229999979201
+      "computation_time": 0.17368069999974978
     },
     {
       "id": "1186",
@@ -2393,11 +2315,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027484000000185915
+      "explanation_size": 1,
+      "computation_time": 0.17723670000123093
     },
     {
       "id": "345",
@@ -2410,7 +2331,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.06451930000002903
+      "computation_time": 0.41964349999943806
     },
     {
       "id": "387",
@@ -2421,7 +2342,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.06026399999973364
+      "computation_time": 0.18615950000094017
     },
     {
       "id": "330",
@@ -2429,12 +2350,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.03820990000167512
+      "explanation_size": 2,
+      "computation_time": 0.21998700000040117
     },
     {
       "id": "339",
@@ -2445,7 +2365,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023571399999127607
+      "computation_time": 0.16501679999964836
     },
     {
       "id": "105",
@@ -2453,11 +2373,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026312600000892417
+      "explanation_size": 1,
+      "computation_time": 0.12531979999948817
     },
     {
       "id": "575",
@@ -2468,7 +2387,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02755789999901026
+      "computation_time": 0.1668478999999934
     },
     {
       "id": "956",
@@ -2480,7 +2399,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03844030000072962
+      "computation_time": 0.09764720000021043
     },
     {
       "id": "1085",
@@ -2488,11 +2407,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0326731999994081
+      "explanation_size": 1,
+      "computation_time": 0.16168690000085917
     },
     {
       "id": "1087",
@@ -2505,7 +2423,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03014909999910742
+      "computation_time": 0.28852569999980915
     },
     {
       "id": "112",
@@ -2513,11 +2431,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03403499999876658
+      "explanation_size": 1,
+      "computation_time": 0.13729720000083034
     },
     {
       "id": "1202",
@@ -2531,7 +2448,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.03300710000075924
+      "computation_time": 0.4446806000014476
     },
     {
       "id": "313",
@@ -2539,11 +2456,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.032821799999510404
+      "explanation_size": 1,
+      "computation_time": 0.2006175999995321
     },
     {
       "id": "828",
@@ -2551,11 +2467,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03525160000026517
+      "explanation_size": 1,
+      "computation_time": 0.15143340000031458
     },
     {
       "id": "1211",
@@ -2566,7 +2481,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.05611680000038177
+      "computation_time": 0.21163130000059027
     },
     {
       "id": "427",
@@ -2578,7 +2493,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0448381000005611
+      "computation_time": 0.11244640000040818
     },
     {
       "id": "1148",
@@ -2590,7 +2505,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03337479999936477
+      "computation_time": 0.22013109999898006
     },
     {
       "id": "608",
@@ -2601,7 +2516,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.04066660000171396
+      "computation_time": 0.18295620000026247
     },
     {
       "id": "1098",
@@ -2609,11 +2524,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026538099999015685
+      "explanation_size": 1,
+      "computation_time": 0.10368209999978717
     },
     {
       "id": "262",
@@ -2624,7 +2538,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03553960000135703
+      "computation_time": 0.18762889999925392
     },
     {
       "id": "809",
@@ -2635,7 +2549,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.04025469999942288
+      "computation_time": 0.19814670000050683
     },
     {
       "id": "768",
@@ -2647,7 +2561,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02344019999873126
+      "computation_time": 0.3085393000001204
     },
     {
       "id": "279",
@@ -2655,11 +2569,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02863429999888467
+      "explanation_size": 1,
+      "computation_time": 0.15331960000003164
     },
     {
       "id": "216",
@@ -2671,7 +2584,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04585899999983667
+      "computation_time": 0.24024840000129188
     },
     {
       "id": "716",
@@ -2679,12 +2592,13 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.03148959999998624
+      "explanation_size": 4,
+      "computation_time": 0.3966801000005944
     },
     {
       "id": "1304",
@@ -2692,11 +2606,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02656820000083826
+      "explanation_size": 1,
+      "computation_time": 0.17499080000015965
     },
     {
       "id": "992",
@@ -2707,7 +2620,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03366230000028736
+      "computation_time": 0.18058470000141824
     },
     {
       "id": "1274",
@@ -2715,11 +2628,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026850999998714542
+      "explanation_size": 1,
+      "computation_time": 0.20815760000004957
     },
     {
       "id": "200",
@@ -2731,7 +2643,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0242988999998488
+      "computation_time": 0.27036170000064885
     },
     {
       "id": "8",
@@ -2742,7 +2654,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.021974400000544847
+      "computation_time": 0.13117079999938142
     },
     {
       "id": "540",
@@ -2753,7 +2665,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02485049999995681
+      "computation_time": 0.21576830000049085
     },
     {
       "id": "40",
@@ -2764,7 +2676,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02549619999990682
+      "computation_time": 0.20428700000047684
     },
     {
       "id": "1348",
@@ -2775,7 +2687,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.027239399998506997
+      "computation_time": 0.21240810000017518
     },
     {
       "id": "1035",
@@ -2786,7 +2698,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022188100001585553
+      "computation_time": 0.3898545000010927
     },
     {
       "id": "1215",
@@ -2798,7 +2710,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023518199999671197
+      "computation_time": 0.16497080000044662
     },
     {
       "id": "406",
@@ -2806,11 +2718,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.031860800001595635
+      "explanation_size": 1,
+      "computation_time": 0.13767560000087542
     },
     {
       "id": "1285",
@@ -2822,7 +2733,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.024094300000797375
+      "computation_time": 0.15804690000004484
     },
     {
       "id": "134",
@@ -2833,7 +2744,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023931899999297457
+      "computation_time": 0.3058435000002646
     },
     {
       "id": "230",
@@ -2845,7 +2756,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02240480000000389
+      "computation_time": 0.3799292999992758
     },
     {
       "id": "458",
@@ -2856,7 +2767,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.027026300000215997
+      "computation_time": 0.19151979999878677
     },
     {
       "id": "454",
@@ -2867,7 +2778,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.037865700000111246
+      "computation_time": 0.19014249999963795
     },
     {
       "id": "862",
@@ -2878,7 +2789,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.037273300000379095
+      "computation_time": 0.19131130000096164
     },
     {
       "id": "505",
@@ -2889,7 +2800,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.028195500000947504
+      "computation_time": 0.1544768000003387
     },
     {
       "id": "1324",
@@ -2901,7 +2812,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03645890000007057
+      "computation_time": 0.2564253999989887
     },
     {
       "id": "418",
@@ -2909,10 +2820,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "entropy",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.03679750000083004
+      "explanation_size": 2,
+      "computation_time": 0.3687305000003107
     },
     {
       "id": "183",
@@ -2923,7 +2835,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022705500001393375
+      "computation_time": 0.21524740000131715
     },
     {
       "id": "583",
@@ -2934,7 +2846,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.025695800000903546
+      "computation_time": 0.40278939999916474
     },
     {
       "id": "510",
@@ -2942,11 +2854,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030765299999984563
+      "explanation_size": 1,
+      "computation_time": 0.1705309999997553
     },
     {
       "id": "787",
@@ -2957,7 +2868,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.030367800000021816
+      "computation_time": 0.18210539999927278
     },
     {
       "id": "413",
@@ -2968,7 +2879,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022735199998351163
+      "computation_time": 0.24595620000036433
     },
     {
       "id": "681",
@@ -2976,11 +2887,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023370299999442068
+      "explanation_size": 1,
+      "computation_time": 0.21255750000091211
     },
     {
       "id": "224",
@@ -2988,12 +2898,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
+        "entropy",
         "skewness",
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02745839999988675
+      "computation_time": 0.4353014999996958
     },
     {
       "id": "201",
@@ -3001,11 +2911,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02402559999973164
+      "explanation_size": 1,
+      "computation_time": 0.2530566999994335
     },
     {
       "id": "392",
@@ -3013,10 +2922,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.025151199999527307
+      "explanation_size": 2,
+      "computation_time": 0.23477429999911692
     },
     {
       "id": "520",
@@ -3027,7 +2937,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023228299998663715
+      "computation_time": 0.15489340000021912
     },
     {
       "id": "20",
@@ -3038,7 +2948,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02769550000084564
+      "computation_time": 0.19841070000074978
     },
     {
       "id": "687",
@@ -3050,7 +2960,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02872679999927641
+      "computation_time": 0.3175281999992876
     },
     {
       "id": "466",
@@ -3058,11 +2968,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02402290000100038
+      "explanation_size": 1,
+      "computation_time": 0.25292129999979807
     },
     {
       "id": "1272",
@@ -3073,7 +2982,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022708700000293902
+      "computation_time": 0.2220183999997971
     },
     {
       "id": "700",
@@ -3084,7 +2993,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02415090000067721
+      "computation_time": 0.1259130999987974
     },
     {
       "id": "546",
@@ -3095,7 +3004,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.028219399999215966
+      "computation_time": 0.2670211999993626
     },
     {
       "id": "438",
@@ -3106,7 +3015,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.026117800000065472
+      "computation_time": 0.18568469999991066
     },
     {
       "id": "1267",
@@ -3114,11 +3023,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022540899999512476
+      "explanation_size": 1,
+      "computation_time": 0.20678419999967446
     },
     {
       "id": "1238",
@@ -3131,7 +3039,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024263199999040808
+      "computation_time": 0.24712730000101146
     },
     {
       "id": "591",
@@ -3139,11 +3047,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.044669899998552864
+      "explanation_size": 1,
+      "computation_time": 0.27703400000063994
     },
     {
       "id": "650",
@@ -3151,11 +3058,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027091399999335408
+      "explanation_size": 1,
+      "computation_time": 0.24629749999985506
     },
     {
       "id": "661",
@@ -3167,7 +3073,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023225299999467097
+      "computation_time": 0.34223799999926996
     },
     {
       "id": "156",
@@ -3175,11 +3081,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022758299999622977
+      "explanation_size": 1,
+      "computation_time": 0.20277460000033898
     },
     {
       "id": "435",
@@ -3190,7 +3095,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022071899998991285
+      "computation_time": 0.23644810000041616
     },
     {
       "id": "899",
@@ -3199,10 +3104,11 @@
       "rejected": false,
       "explanation": [
         "entropy",
+        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02812870000161638
+      "explanation_size": 3,
+      "computation_time": 0.3391200000005483
     },
     {
       "id": "251",
@@ -3210,11 +3116,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021672099999705097
+      "explanation_size": 1,
+      "computation_time": 0.14135059999898658
     },
     {
       "id": "1126",
@@ -3222,11 +3127,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02268969999931869
+      "explanation_size": 1,
+      "computation_time": 0.19718189999912283
     },
     {
       "id": "941",
@@ -3234,11 +3138,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021201800000199
+      "explanation_size": 1,
+      "computation_time": 0.2859747000002244
     },
     {
       "id": "269",
@@ -3249,7 +3152,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02656100000058359
+      "computation_time": 0.2166269999997894
     },
     {
       "id": "726",
@@ -3261,7 +3164,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02800100000058592
+      "computation_time": 0.13737089999995078
     },
     {
       "id": "1196",
@@ -3269,10 +3172,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "entropy",
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.028278199999476783
+      "explanation_size": 3,
+      "computation_time": 0.515517900001214
     },
     {
       "id": "1121",
@@ -3280,11 +3185,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023939300001075026
+      "explanation_size": 1,
+      "computation_time": 0.21098649999839836
     },
     {
       "id": "873",
@@ -3295,7 +3199,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02859840000019176
+      "computation_time": 0.3265465000004042
     },
     {
       "id": "580",
@@ -3306,7 +3210,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02549150000049849
+      "computation_time": 0.25451299999986077
     },
     {
       "id": "1000",
@@ -3314,11 +3218,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024605200000223704
+      "explanation_size": 1,
+      "computation_time": 0.16223059999902034
     },
     {
       "id": "242",
@@ -3330,7 +3233,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.020564500000546104
+      "computation_time": 0.2118927999999869
     },
     {
       "id": "258",
@@ -3341,7 +3244,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.024006799998460338
+      "computation_time": 0.19605140000021493
     },
     {
       "id": "847",
@@ -3349,11 +3252,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024947799998699338
+      "explanation_size": 1,
+      "computation_time": 0.18816679999872576
     },
     {
       "id": "1307",
@@ -3361,11 +3263,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021229300000413787
+      "explanation_size": 1,
+      "computation_time": 0.20887409999886586
     },
     {
       "id": "21",
@@ -3379,7 +3280,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.024093700001685647
+      "computation_time": 0.4818526999988535
     },
     {
       "id": "99",
@@ -3387,11 +3288,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
+        "skewness",
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023418800001309137
+      "computation_time": 0.42951689999972587
     },
     {
       "id": "797",
@@ -3399,11 +3300,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028238299999429728
+      "explanation_size": 1,
+      "computation_time": 0.17510910000055446
     },
     {
       "id": "1249",
@@ -3414,7 +3314,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03200329999890528
+      "computation_time": 0.1551179999987653
     },
     {
       "id": "160",
@@ -3425,7 +3325,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.020817900000110967
+      "computation_time": 0.1735404999999446
     },
     {
       "id": "1038",
@@ -3437,7 +3337,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023900800000774325
+      "computation_time": 0.1208664999994653
     },
     {
       "id": "1207",
@@ -3445,11 +3345,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027137999999467866
+      "explanation_size": 1,
+      "computation_time": 0.14271869999902265
     },
     {
       "id": "786",
@@ -3457,11 +3356,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.029209100001025945
+      "explanation_size": 1,
+      "computation_time": 0.21923010000136856
     },
     {
       "id": "800",
@@ -3469,11 +3367,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024938500000644126
+      "explanation_size": 1,
+      "computation_time": 0.11999259999902279
     },
     {
       "id": "695",
@@ -3481,11 +3378,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023449099999197642
+      "explanation_size": 1,
+      "computation_time": 0.1562551999995776
     },
     {
       "id": "839",
@@ -3493,11 +3389,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03993819999959669
+      "explanation_size": 1,
+      "computation_time": 0.19940020000103686
     },
     {
       "id": "143",
@@ -3505,11 +3400,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028444999999919673
+      "explanation_size": 1,
+      "computation_time": 0.14666550000038114
     },
     {
       "id": "693",
@@ -3520,7 +3414,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023053400000208057
+      "computation_time": 0.2476161000013235
     },
     {
       "id": "1135",
@@ -3533,7 +3427,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024511100000381703
+      "computation_time": 0.5122202000002289
     },
     {
       "id": "854",
@@ -3541,11 +3435,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02396759999828646
+      "explanation_size": 1,
+      "computation_time": 0.1610850000015489
     },
     {
       "id": "498",
@@ -3558,7 +3451,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.0313730999987456
+      "computation_time": 0.3900702999999339
     },
     {
       "id": "27",
@@ -3570,7 +3463,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02294610000171815
+      "computation_time": 0.15843300000051386
     },
     {
       "id": "488",
@@ -3578,11 +3471,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022833500001070206
+      "explanation_size": 1,
+      "computation_time": 0.2193358000004082
     },
     {
       "id": "699",
@@ -3590,11 +3482,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024660600000061095
+      "explanation_size": 1,
+      "computation_time": 0.10702359999959299
     },
     {
       "id": "397",
@@ -3602,12 +3493,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.029024699999354198
+      "explanation_size": 2,
+      "computation_time": 0.2831853999996383
     },
     {
       "id": "573",
@@ -3615,11 +3505,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02681750000010652
+      "explanation_size": 1,
+      "computation_time": 0.2723208999996132
     },
     {
       "id": "997",
@@ -3630,7 +3519,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02272649999940768
+      "computation_time": 0.2065392000004067
     },
     {
       "id": "706",
@@ -3641,7 +3530,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.027718600000298466
+      "computation_time": 0.1378181999989465
     },
     {
       "id": "129",
@@ -3652,7 +3541,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.027618899999652058
+      "computation_time": 0.17261210000106075
     },
     {
       "id": "1111",
@@ -3660,11 +3549,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022250300000450807
+      "explanation_size": 1,
+      "computation_time": 0.12746060000063153
     },
     {
       "id": "986",
@@ -3676,7 +3564,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02364769999985583
+      "computation_time": 0.24819919999936246
     },
     {
       "id": "270",
@@ -3684,11 +3572,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026097399999343907
+      "explanation_size": 1,
+      "computation_time": 0.12092040000061388
     },
     {
       "id": "781",
@@ -3696,11 +3583,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024667800000315765
+      "explanation_size": 1,
+      "computation_time": 0.17469119999987015
     },
     {
       "id": "652",
@@ -3708,11 +3594,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023540800000773743
+      "explanation_size": 1,
+      "computation_time": 0.20689390000006824
     },
     {
       "id": "1352",
@@ -3724,7 +3609,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023233500000060303
+      "computation_time": 0.16676399999960267
     },
     {
       "id": "98",
@@ -3732,11 +3617,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022727499999746215
+      "explanation_size": 1,
+      "computation_time": 0.14856850000069244
     },
     {
       "id": "386",
@@ -3749,7 +3633,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.034960099999807426
+      "computation_time": 0.44796410000162723
     },
     {
       "id": "400",
@@ -3761,7 +3645,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.031183600000076694
+      "computation_time": 0.22340450000046985
     },
     {
       "id": "58",
@@ -3772,7 +3656,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.024058099999820115
+      "computation_time": 0.21658509999906528
     },
     {
       "id": "831",
@@ -3780,10 +3664,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.025626200000260724
+      "explanation_size": 2,
+      "computation_time": 0.534338999999818
     },
     {
       "id": "927",
@@ -3794,7 +3679,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.03524949999882665
+      "computation_time": 0.31155129999933706
     },
     {
       "id": "1305",
@@ -3805,7 +3690,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.028523800001494237
+      "computation_time": 0.20639999999912106
     },
     {
       "id": "1316",
@@ -3813,11 +3698,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02373769999940123
+      "explanation_size": 1,
+      "computation_time": 0.24459589999969467
     },
     {
       "id": "868",
@@ -3825,11 +3709,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022021099999619764
+      "explanation_size": 1,
+      "computation_time": 0.16614389999995183
     },
     {
       "id": "804",
@@ -3842,7 +3725,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024832300001435215
+      "computation_time": 0.39612970000052883
     },
     {
       "id": "566",
@@ -3853,7 +3736,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.025744200000190176
+      "computation_time": 0.17746029999943858
     },
     {
       "id": "80",
@@ -3861,11 +3744,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021477099999174243
+      "explanation_size": 1,
+      "computation_time": 0.1766317000001436
     },
     {
       "id": "887",
@@ -3873,11 +3755,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02273570000033942
+      "explanation_size": 1,
+      "computation_time": 0.15940779999982624
     },
     {
       "id": "842",
@@ -3885,11 +3766,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02321950000077777
+      "explanation_size": 1,
+      "computation_time": 0.21140059999925143
     },
     {
       "id": "166",
@@ -3900,7 +3780,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022697700000207988
+      "computation_time": 0.2951876999995875
     },
     {
       "id": "1363",
@@ -3908,11 +3788,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0245918000000529
+      "explanation_size": 1,
+      "computation_time": 0.21523399999932735
     },
     {
       "id": "934",
@@ -3920,11 +3799,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025182999999742606
+      "explanation_size": 1,
+      "computation_time": 0.42897890000131156
     },
     {
       "id": "663",
@@ -3935,7 +3813,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02083919999859063
+      "computation_time": 0.11218749999898137
     },
     {
       "id": "414",
@@ -3943,11 +3821,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030932499999835272
+      "explanation_size": 1,
+      "computation_time": 0.18906000000060885
     },
     {
       "id": "317",
@@ -3955,11 +3832,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024901799999497598
+      "explanation_size": 1,
+      "computation_time": 0.19365470000047935
     },
     {
       "id": "907",
@@ -3967,11 +3843,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024118699999235105
+      "explanation_size": 1,
+      "computation_time": 0.15683910000007018
     },
     {
       "id": "14",
@@ -3979,11 +3854,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022396200000002864
+      "explanation_size": 1,
+      "computation_time": 0.17285529999935534
     },
     {
       "id": "1166",
@@ -3991,11 +3865,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021670000000085565
+      "explanation_size": 1,
+      "computation_time": 0.15071750000061002
     },
     {
       "id": "867",
@@ -4003,11 +3876,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03171690000090166
+      "explanation_size": 1,
+      "computation_time": 0.16005800000129966
     },
     {
       "id": "901",
@@ -4015,11 +3887,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023949799999172683
+      "explanation_size": 1,
+      "computation_time": 0.24464289999923494
     },
     {
       "id": "964",
@@ -4027,11 +3898,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021575499999016756
+      "explanation_size": 1,
+      "computation_time": 0.19100860000071407
     },
     {
       "id": "214",
@@ -4042,7 +3912,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02333320000070671
+      "computation_time": 0.22701190000043425
     },
     {
       "id": "1064",
@@ -4050,11 +3920,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021491699999387492
+      "explanation_size": 1,
+      "computation_time": 0.14469069999904605
     },
     {
       "id": "646",
@@ -4062,11 +3931,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02363129999866942
+      "explanation_size": 1,
+      "computation_time": 0.0823528000000806
     },
     {
       "id": "647",
@@ -4077,7 +3945,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02465419999862206
+      "computation_time": 0.11732669999946665
     },
     {
       "id": "85",
@@ -4085,11 +3953,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02346399999987625
+      "explanation_size": 1,
+      "computation_time": 0.1316581999999471
     },
     {
       "id": "102",
@@ -4100,7 +3967,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023165200000221375
+      "computation_time": 0.2583749999994325
     },
     {
       "id": "150",
@@ -4111,7 +3978,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.028238299999429728
+      "computation_time": 0.17513959999996587
     },
     {
       "id": "1091",
@@ -4119,11 +3986,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025696099999549915
+      "explanation_size": 1,
+      "computation_time": 0.2595038999988901
     },
     {
       "id": "555",
@@ -4131,11 +3997,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022163899999213754
+      "explanation_size": 1,
+      "computation_time": 0.15885160000107135
     },
     {
       "id": "303",
@@ -4147,7 +4012,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02354170000035083
+      "computation_time": 0.16366480000033334
     },
     {
       "id": "1364",
@@ -4155,11 +4020,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021089199999551056
+      "explanation_size": 1,
+      "computation_time": 0.14852370000153314
     },
     {
       "id": "373",
@@ -4170,7 +4034,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02608710000095016
+      "computation_time": 0.17735590000120283
     },
     {
       "id": "189",
@@ -4178,11 +4042,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026835699998628115
+      "explanation_size": 1,
+      "computation_time": 0.16348529999959283
     },
     {
       "id": "47",
@@ -4190,11 +4053,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022387999999409658
+      "explanation_size": 1,
+      "computation_time": 0.19379469999876164
     },
     {
       "id": "233",
@@ -4203,10 +4065,11 @@
       "rejected": false,
       "explanation": [
         "entropy",
+        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02547500000036962
+      "explanation_size": 3,
+      "computation_time": 0.41803020000043034
     },
     {
       "id": "812",
@@ -4217,7 +4080,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.026320799999666633
+      "computation_time": 0.177498300001389
     },
     {
       "id": "874",
@@ -4225,11 +4088,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027956199999607634
+      "explanation_size": 1,
+      "computation_time": 0.17242169999917678
     },
     {
       "id": "378",
@@ -4237,11 +4099,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02617909999935364
+      "explanation_size": 1,
+      "computation_time": 0.15615489999981946
     },
     {
       "id": "817",
@@ -4249,11 +4110,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02174149999882502
+      "explanation_size": 1,
+      "computation_time": 0.17991369999981544
     },
     {
       "id": "121",
@@ -4261,11 +4121,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028226599999470636
+      "explanation_size": 1,
+      "computation_time": 0.12991730000067037
     },
     {
       "id": "1270",
@@ -4276,7 +4135,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.026220699999612407
+      "computation_time": 0.283540800000992
     },
     {
       "id": "553",
@@ -4284,11 +4143,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023292800000490388
+      "explanation_size": 1,
+      "computation_time": 0.17570599999999104
     },
     {
       "id": "913",
@@ -4300,7 +4158,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.021378999999797088
+      "computation_time": 0.1874487000004592
     },
     {
       "id": "415",
@@ -4308,11 +4166,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021680100000594393
+      "explanation_size": 1,
+      "computation_time": 0.2575880000003963
     },
     {
       "id": "206",
@@ -4323,7 +4180,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023113700000976678
+      "computation_time": 0.14888320000136446
     },
     {
       "id": "834",
@@ -4331,11 +4188,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.027366000000256463
+      "explanation_size": 1,
+      "computation_time": 0.162039900000309
     },
     {
       "id": "1083",
@@ -4347,7 +4203,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.021957799999654526
+      "computation_time": 0.19258069999887084
     },
     {
       "id": "563",
@@ -4355,11 +4211,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02007210000010673
+      "explanation_size": 1,
+      "computation_time": 0.15315910000026633
     },
     {
       "id": "855",
@@ -4367,11 +4222,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021214999998846906
+      "explanation_size": 1,
+      "computation_time": 0.13836480000099982
     },
     {
       "id": "704",
@@ -4382,7 +4236,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.023896799999420182
+      "computation_time": 0.17660150000119756
     },
     {
       "id": "1169",
@@ -4394,7 +4248,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.023731599998427555
+      "computation_time": 0.20943780000015977
     },
     {
       "id": "686",
@@ -4402,11 +4256,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022672000000966364
+      "explanation_size": 1,
+      "computation_time": 0.25497899999936635
     },
     {
       "id": "401",
@@ -4417,7 +4270,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.0214998999999807
+      "computation_time": 0.2916617999999289
     },
     {
       "id": "1246",
@@ -4425,11 +4278,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021295300000929274
+      "explanation_size": 1,
+      "computation_time": 0.11848150000150781
     },
     {
       "id": "461",
@@ -4440,7 +4292,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.021462599999722443
+      "computation_time": 0.19320999999945343
     },
     {
       "id": "574",
@@ -4451,7 +4303,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02784599999904458
+      "computation_time": 0.24021929999980784
     },
     {
       "id": "645",
@@ -4462,7 +4314,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.022398200000679935
+      "computation_time": 0.14546399999926507
     },
     {
       "id": "629",
@@ -4473,7 +4325,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02216020000014396
+      "computation_time": 0.20792810000057216
     },
     {
       "id": "1264",
@@ -4481,11 +4333,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "curtosis",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026240600000164704
+      "explanation_size": 1,
+      "computation_time": 0.1922711999995954
     },
     {
       "id": "600",
@@ -4497,7 +4348,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02275290000034147
+      "computation_time": 0.15183019999858516
     },
     {
       "id": "792",
@@ -4508,7 +4359,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.021907499998633284
+      "computation_time": 0.2967036999998527
     },
     {
       "id": "856",
@@ -4516,11 +4367,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022242999999434687
+      "explanation_size": 3,
+      "computation_time": 0.4517552999986947
     },
     {
       "id": "1235",
@@ -4531,7 +4383,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.020854700000199955
+      "computation_time": 0.3219472000000678
     },
     {
       "id": "801",
@@ -4539,11 +4391,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022552700000233017
+      "explanation_size": 1,
+      "computation_time": 0.2732527999996819
     },
     {
       "id": "452",
@@ -4554,7 +4405,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02710090000073251
+      "computation_time": 0.31534239999928104
     },
     {
       "id": "1050",
@@ -4562,11 +4413,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.021964600000501378
+      "explanation_size": 1,
+      "computation_time": 0.12082999999984168
     },
     {
       "id": "759",
@@ -4578,7 +4428,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02081490000091435
+      "computation_time": 0.094444399999702
     },
     {
       "id": "232",
@@ -4589,7 +4439,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.021145200000319164
+      "computation_time": 0.36717760000101407
     },
     {
       "id": "138",
@@ -4597,11 +4447,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02418519999991986
+      "explanation_size": 1,
+      "computation_time": 0.11183109999910812
     },
     {
       "id": "879",
@@ -4609,11 +4458,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023589100001117913
+      "explanation_size": 3,
+      "computation_time": 0.4002963999992062
     },
     {
       "id": "402",
@@ -4621,11 +4471,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.025463199999649078
+      "explanation_size": 1,
+      "computation_time": 0.23097629999938363
     },
     {
       "id": "1014",
@@ -4638,7 +4487,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.027440400001069065
+      "computation_time": 0.44959360000029847
     },
     {
       "id": "389",
@@ -4646,11 +4495,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022427400001106435
+      "explanation_size": 1,
+      "computation_time": 0.10623899999882269
     },
     {
       "id": "1328",
@@ -4658,11 +4506,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023487200000090525
+      "explanation_size": 1,
+      "computation_time": 0.2257039000014629
     },
     {
       "id": "337",
@@ -4674,7 +4521,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.024538800000300398
+      "computation_time": 0.28601309999976365
     },
     {
       "id": "721",
@@ -4688,7 +4535,7 @@
         "variance"
       ],
       "explanation_size": 4,
-      "computation_time": 0.022173199999087956
+      "computation_time": 0.543763299998318
     },
     {
       "id": "1354",
@@ -4699,7 +4546,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.020564800001011463
+      "computation_time": 0.3136792000004789
     },
     {
       "id": "197",
@@ -4707,11 +4554,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.020895999999993364
+      "explanation_size": 1,
+      "computation_time": 0.17604770000070857
     },
     {
       "id": "1010",
@@ -4719,11 +4565,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024156600000424078
+      "explanation_size": 1,
+      "computation_time": 0.18599640000138606
     },
     {
       "id": "170",
@@ -4736,7 +4581,7 @@
         "variance"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02158219999910216
+      "computation_time": 0.37658790000023146
     },
     {
       "id": "95",
@@ -4744,12 +4589,13 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "curtosis",
         "entropy",
         "skewness",
         "variance"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.023824100000638282
+      "explanation_size": 4,
+      "computation_time": 0.4709733999989112
     },
     {
       "id": "592",
@@ -4761,7 +4607,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.021391300000686897
+      "computation_time": 0.29546470000059344
     },
     {
       "id": "1138",
@@ -4769,11 +4615,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022464100000433973
+      "explanation_size": 1,
+      "computation_time": 0.16859720000138623
     },
     {
       "id": "297",
@@ -4781,11 +4626,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023811699998987024
+      "explanation_size": 1,
+      "computation_time": 0.13585330000023532
     },
     {
       "id": "564",
@@ -4796,7 +4640,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.025810399998590583
+      "computation_time": 0.27103019999958633
     },
     {
       "id": "358",
@@ -4804,11 +4648,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.022441499999331427
+      "explanation_size": 1,
+      "computation_time": 0.07507489999989048
     },
     {
       "id": "750",
@@ -4819,7 +4662,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02158159999999043
+      "computation_time": 0.16892989999905694
     },
     {
       "id": "1069",
@@ -4827,11 +4670,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02073289999862027
+      "explanation_size": 1,
+      "computation_time": 0.11103790000015579
     },
     {
       "id": "1371",
@@ -4839,11 +4681,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.023262300001078984
+      "explanation_size": 1,
+      "computation_time": 0.1466670999998314
     },
     {
       "id": "814",
@@ -4851,11 +4692,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "skewness",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02728679999927408
+      "explanation_size": 1,
+      "computation_time": 0.27440410000053816
     },
     {
       "id": "32",
@@ -4866,7 +4706,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.021369899999626796
+      "computation_time": 0.2562389000013354
     },
     {
       "id": "492",
@@ -4878,7 +4718,7 @@
         "variance"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02191579999998794
+      "computation_time": 0.2427042999988771
     },
     {
       "id": "325",
@@ -4889,7 +4729,7 @@
         "variance"
       ],
       "explanation_size": 1,
-      "computation_time": 0.02170529999966675
+      "computation_time": 0.17063650000091002
     },
     {
       "id": "966",
@@ -4897,11 +4737,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02564629999869794
+      "explanation_size": 1,
+      "computation_time": 0.2523399999990943
     },
     {
       "id": "872",
@@ -4909,10 +4748,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "skewness",
         "variance"
       ],
-      "explanation_size": 1,
-      "computation_time": 0.023719200000414276
+      "explanation_size": 2,
+      "computation_time": 0.3635739999990619
     },
     {
       "id": "1042",
@@ -4920,11 +4760,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "entropy",
         "variance"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0208029000004899
+      "explanation_size": 1,
+      "computation_time": 0.2198073999988992
     }
   ]
 }

@@ -1,0 +1,61 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: pima_indians_diabetes
+  Instâncias de teste avaliadas: 231
+  Features Originais do Dataset: 8
+  Custo de rejeição (WR): 0.2400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 0.665120 | t- = -0.331208
+  Largura da Zona de Rejeição: 0.996328
+  Acurácia (Sem Rejeição): 68.40%
+  Acurácia (Com Rejeição): 100.00%
+  Taxa de Rejeição Global: 89.61%
+  Instâncias Rejeitadas pela MLP: 207 de 231
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 96.54%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 124
+    Tamanho médio: 3.20 features
+    Desvio padrão: 1.40
+    Mínimo: 1 features
+    Máximo: 7 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 107
+    Tamanho médio: 2.88 features
+    Desvio padrão: 1.43
+    Mínimo: 1 features
+    Máximo: 7 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 85.1199s
+  Tempo médio por instância: 0.3685s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  diabetes_pedigree: 170 ocorrências (73.6%)
+  idade: 169 ocorrências (73.2%)
+  num_gravidezes: 131 ocorrências (56.7%)
+  glicose: 116 ocorrências (50.2%)
+  insulina: 76 ocorrências (32.9%)
+  espessura_pele: 26 ocorrências (11.3%)
+  imc: 11 ocorrências (4.8%)
+  pressao_sangue: 6 ocorrências (2.6%)
+
+================================================================================
