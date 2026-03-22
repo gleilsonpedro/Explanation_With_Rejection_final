@@ -210,7 +210,7 @@ class MinabroMLPSurrogateExplainer:
         original_pred = y_oraculo[0]
 
         if len(np.unique(y_oraculo)) == 1:
-            return [], original_pred, True
+            return [], original_pred, True, local_bounds
 
         modelo_local = Pipeline([
             ('scaler', MinMaxScaler()), 
@@ -281,7 +281,7 @@ class MinabroMLPSurrogateExplainer:
         if pred_code != 2: 
             is_faithful = self._check_fidelity_mlp(instancia_vals, expl_indices, local_bounds, original_pred)
         
-        return explicacao_final, pred_code, is_faithful
+        return explicacao_final, pred_code, is_faithful, local_bounds
 
 # ==============================================================================
 # PIPELINE DE TREINAMENTO E AVALIAÇÃO
