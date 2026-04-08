@@ -1,3 +1,9 @@
+
+'''Utiliza os datasets make_moons (2D) e make_classification 
+(3D) para testar a "blindagem" do seu método. Ele verifica se 
+a explicação local realmente cobre a área da MLP sem que a 
+"curva" da rede invada o limite do plano local.'''
+
 import warnings
 import numpy as np
 import pandas as pd

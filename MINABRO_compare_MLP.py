@@ -1,3 +1,9 @@
+
+'''Executa o MINABRO, LIME e SHAP em uma amostra de instâncias 
+e imprime uma tabela comparando Tempo de Execução e Fidelidade. 
+É um script de "sanidade" para ver se o custo computacional do 
+MINABRO compensa o ganho em fidelidade.'''
+
 import os
 import time
 import warnings

@@ -1,3 +1,11 @@
+
+'''Compara o MINABRO contra o LIME e o SHAP. Ele não olha 
+apenas para a explicação, mas calcula a Fidelidade Abdutiva 
+(se a explicação se mantém em cenários de pior caso) e a 
+Estabilidade (Jaccard). Ele gera os dados para a "Tabela 1" 
+que você mencionou, mostrando onde os métodos clássicos 
+falham em ser estáveis ou fiéis à lógica do modelo.'''
+
 import os
 import time
 import json

@@ -1,3 +1,12 @@
+
+
+'''Treina a rede neural (MLP), define os limiares de rejeição (thresholds) 
+e implementa a lógica de criar "clones" ao redor de uma instância 
+para treinar uma Regressão Logística local. É aqui que a mágica da abdução 
+acontece para encontrar o menor conjunto de características que explica a 
+decisão (ou a dúvida) da MLP.'''
+
+
 import os
 import json
 import time
