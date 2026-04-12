@@ -96,14 +96,16 @@ class ProgressBar:
         
         # Montar string da barra
         progress_str = (
-            f"\r{self.description}: "
+            f"{self.description}: "
             f"{percent:>5.1f}% |{bar}| "
             f"{self.current}/{self.total} "
             f"[{elapsed_str}<{eta_str}, {speed:.2f}it/s]"
         )
         
-        # Escrever no terminal (sem quebra de linha)
-        sys.stdout.write(progress_str)
+        # \033[2K limpa a linha inteira no terminal
+        # \r volta o cursor para o começo
+        # Adicionamos um padding de espaços (<100) para garantir que limpa resíduos em IDEs
+        sys.stdout.write(f"\r\033[2K{progress_str: <100}")
         sys.stdout.flush()
     
     def _format_time(self, seconds: float) -> str:
@@ -142,21 +144,6 @@ class ProgressBar:
 def create_progress_bar(total: int, description: str = "Processando", disable: bool = False) -> ProgressBar:
     """
     Factory function para criar barra de progresso.
-    
-    Args:
-        total: Número total de iterações
-        description: Descrição do processo
-        disable: Se True, desabilita a barra
-    
-    Returns:
-        Instância de ProgressBar
-    
-    Exemplo:
-        pbar = create_progress_bar(100, "Gerando explicações")
-        for i in range(100):
-            # ... processar ...
-            pbar.update()
-        pbar.close()
     """
     return ProgressBar(total=total, description=description, disable=disable)
 

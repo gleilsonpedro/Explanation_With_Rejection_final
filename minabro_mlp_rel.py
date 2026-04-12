@@ -1,3 +1,5 @@
+"""Script Utilizado pelo MINABRO_MLP.py para gerar um relatório txt blindado a partir do JSON de resultados da execução do MINABRO_MLP.py. O objetivo é fornecer uma análise detalhada e estruturada dos resultados, destacando a fidelidade das explicações locais em relação à caixa-preta MLP, especialmente em cenários 2D e 3D. O relatório inclui métricas de desempenho, estatísticas das explicações e as features"""
+
 import os
 import json
 from collections import Counter

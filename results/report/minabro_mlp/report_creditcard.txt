@@ -1,0 +1,63 @@
+================================================================================
+       RELATÓRIO DE ANÁLISE - MINABRO MLP COM REJEIÇÃO (ARQUITETURA BLINDADA)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. CONFIGURAÇÃO DO EXPERIMENTO
+--------------------------------------------------------------------------------
+  Dataset: creditcard
+  Instâncias de teste avaliadas: 2563
+  Features Originais do Dataset: 29
+  Custo de rejeição (WR): 0.0400
+
+--------------------------------------------------------------------------------
+2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
+--------------------------------------------------------------------------------
+  Limiares Globais: t+ = 1.268865 | t- = -0.000100
+  Largura da Zona de Rejeição: 1.268965
+  Acurácia (Sem Rejeição): 99.69%
+  Acurácia (Com Rejeição): 99.77%
+  Taxa de Rejeição Global: 0.08%
+  Instâncias Rejeitadas pela MLP: 2 de 2563
+
+--------------------------------------------------------------------------------
+3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
+--------------------------------------------------------------------------------
+  Fidelidade Abdutiva (Pior Cenário): 99.65%
+  *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
+
+  EXPLICAÇÕES POSITIVAS (Classe 1):
+    Quantidade: 9
+    Tamanho médio: 15.00 features
+    Desvio padrão: 3.94
+    Mínimo: 11 features
+    Máximo: 21 features
+
+  EXPLICAÇÕES NEGATIVAS (Classe 0):
+    Quantidade: 2553
+    Tamanho médio: 14.86 features
+    Desvio padrão: 3.16
+    Mínimo: 6 features
+    Máximo: 29 features
+
+--------------------------------------------------------------------------------
+4. TEMPOS DE EXECUÇÃO
+--------------------------------------------------------------------------------
+  Tempo total da extração abdutiva: 1509.5324s
+  Tempo médio por instância: 0.5890s
+
+--------------------------------------------------------------------------------
+5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
+--------------------------------------------------------------------------------
+  Amount: 1794 ocorrências (70.0%)
+  V14: 1790 ocorrências (69.9%)
+  V10: 1757 ocorrências (68.6%)
+  V18: 1705 ocorrências (66.5%)
+  V12: 1647 ocorrências (64.3%)
+  V9: 1631 ocorrências (63.7%)
+  V24: 1536 ocorrências (60.0%)
+  V26: 1440 ocorrências (56.2%)
+  V4: 1436 ocorrências (56.0%)
+  V22: 1403 ocorrências (54.8%)
+
+================================================================================

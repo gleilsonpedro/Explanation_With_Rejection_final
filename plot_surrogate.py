@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
@@ -56,13 +58,24 @@ def plot_surrogate(X, y, instancia_alvo, ax, title):
         ponto_fronteira_exato = caminho[idx_fronteira]
         vetor_ate_fronteira = ponto_fronteira_exato - instancia_alvo[0]
         inimigo_equidistante = instancia_alvo[0] + 2.0 * vetor_ate_fronteira
+
+
     except IndexError:
         ponto_fronteira_exato = inimigo_direcao
         inimigo_equidistante = inimigo_direcao
+        
+     # OFFSET VISUAL — só para o marcador no plot, não afeta o método
+    direcao = inimigo_equidistante - instancia_alvo[0]
+    norma = np.linalg.norm(direcao)
+    if norma > 0:
+        offset = (direcao / norma) * 0.15
+    else:
+        offset = np.zeros_like(direcao)
+    inimigo_plot = inimigo_equidistante + offset
 
     num_clones = 600
     np.random.seed(42) # Semente travada
-    alphas = np.random.uniform(-0.5, 1.5, num_clones)[:, np.newaxis]
+    alphas = np.linspace(0.0, 1.0, num_clones)[:, np.newaxis]
     vetor_balanceado = inimigo_equidistante - instancia_alvo[0]
     linha_central = instancia_alvo[0] + alphas * vetor_balanceado
 
@@ -75,7 +88,8 @@ def plot_surrogate(X, y, instancia_alvo, ax, title):
 
     y_oraculo = mlp.predict(clones_finais)
 
-    logreg = LogisticRegression(C=1.0, solver='lbfgs')
+    logreg = Pipeline([('scaler', MinMaxScaler()), 
+                   ('model', LogisticRegression(C=1.0, solver='lbfgs'))])
     logreg.fit(clones_finais, y_oraculo)
     
     t_plus, t_minus = encontrar_thresholds_locais(logreg, clones_finais, y_oraculo)
@@ -102,7 +116,7 @@ def plot_surrogate(X, y, instancia_alvo, ax, title):
 
     ax.scatter(instancia_alvo[:, 0], instancia_alvo[:, 1], color='lime', edgecolors='black', s=250, marker='*', zorder=5)
     ax.scatter(ponto_fronteira_exato[0], ponto_fronteira_exato[1], color='white', edgecolors='black', s=80, marker='D', zorder=5)
-    ax.scatter(inimigo_equidistante[0], inimigo_equidistante[1], color='magenta', edgecolors='black', s=150, marker='X', zorder=5)
+    ax.scatter(inimigo_plot[0], inimigo_plot[1], color='magenta', edgecolors='black', s=150, marker='X', zorder=5)
 
     ax.set_title(title, fontsize=12, fontweight='bold')
     ax.set_xticks([])
@@ -126,14 +140,14 @@ fig1, axes1 = plt.subplots(2, 2, figsize=(14, 11))
 plt.subplots_adjust(bottom=0.15)
 
 X1, y1 = make_moons(n_samples=500, noise=0.15, random_state=42)
-plot_surrogate(X1, y1, np.array([[0.5, 0.0]]), axes1[0, 0], "Moons: Alvo no Centro")
+plot_surrogate(X1, y1, np.array([[0.1, 0.1]]), axes1[0, 0], "Moons: Alvo no Centro")
 plot_surrogate(X1, y1, np.array([[-0.5, 0.8]]), axes1[0, 1], "Moons: Alvo na Borda Externa")
 
 X2, y2 = make_circles(n_samples=500, noise=0.1, factor=0.5, random_state=42)
-plot_surrogate(X2, y2, np.array([[0.0, 0.0]]), axes1[1, 0], "Circles: Alvo no Núcleo")
+plot_surrogate(X2, y2, np.array([[0.7, 0.3]]), axes1[1, 0], "Circles: Alvo no Núcleo")
 
 X3, y3 = make_classification(n_samples=500, n_features=2, n_redundant=0, n_clusters_per_class=1, random_state=42)
-plot_surrogate(X3, y3, np.array([[0.0, -1.0]]), axes1[1, 1], "Linear Blobs: Alvo Próximo à Divisa")
+plot_surrogate(X3, y3, np.array([[0.3, 0.5]]), axes1[1, 1], "Linear Blobs: Alvo Próximo à Divisa")
 
 fig1.legend(handles=legend_elements, loc='lower center', ncol=3, fontsize=12, frameon=True, shadow=True, bbox_to_anchor=(0.5, 0.02))
 

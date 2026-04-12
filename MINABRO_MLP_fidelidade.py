@@ -50,7 +50,7 @@ def executar_prova_de_conceito():
         explainer = MinabroMLPSurrogateExplainer(mlp, df_X, 0.24, logreg_params)
 
         # 3. Testar a fidelidade em 10 instâncias aleatórias
-        amostra = X_test.sample(10, random_state=RANDOM_STATE)
+        amostra = X_test.sample(50, random_state=RANDOM_STATE)
         amostra_vals = amostra.values
         
         fidelidades = []
@@ -61,7 +61,7 @@ def executar_prova_de_conceito():
             original_pred = mlp.predict(pd.DataFrame([inst_vals], columns=colunas))[0]
             
             # Gera a explicação e afere a fidelidade de pior caso
-            explicacao, pred_code, is_faithful = explainer.explain_instance(inst_vals)
+            explicacao, pred_code, is_faithful, _ = explainer.explain_instance(inst_vals)
             
             # Ignoramos casos rejeitados para focar na explicação da fronteira clássica
             if pred_code != 2:

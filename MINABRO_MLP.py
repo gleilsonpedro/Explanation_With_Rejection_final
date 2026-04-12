@@ -38,7 +38,7 @@ RANDOM_STATE: int = 42
 
 MNIST_CONFIG = {
     'feature_mode': 'raw',
-    'digit_pair': (3, 8),
+    'digit_pair': (4, 9),
     'top_k_features': None,
     'test_size': 0.3,
     'rejection_cost': 0.24,
@@ -217,41 +217,42 @@ class MinabroMLPSurrogateExplainer:
     def explain_instance(self, instancia_vals: np.ndarray) -> Tuple[List[str], int, bool]:
         clones_finais, y_oraculo, local_bounds = self._gerar_vizinhanca_local_fronteira(instancia_vals)
         original_pred = y_oraculo[0]
-
+    
         if len(np.unique(y_oraculo)) == 1:
             return [], original_pred, True, local_bounds
-
+    
         modelo_local = Pipeline([
             ('scaler', MinMaxScaler()), 
-            ('model', LogisticRegression(**self.logreg_params, random_state=42)) # Aqui mantemos a leitura do seu Grid Search
+            ('model', LogisticRegression(**self.logreg_params, random_state=42))
         ])
         
-        # NUMPY PURO para o fit e scaler
         modelo_local.fit(clones_finais, y_oraculo)
-
+    
         t_plus, t_minus, score_original = self._encontrar_thresholds_locais(modelo_local, clones_finais, y_oraculo)
-
+    
         scaler = modelo_local.named_steps['scaler']
         lr = modelo_local.named_steps['model']
         coefs = lr.coef_[0]
         intercept = lr.intercept_[0]
-
-        # NUMPY PURO na transformação
+    
         vals_s = scaler.transform([instancia_vals])[0]
         
         X_min_contribution = np.where(coefs > 0, 0.0, 1.0)
         X_max_contribution = np.where(coefs > 0, 1.0, 0.0)
-
+    
         base_min_score = intercept + np.dot(coefs, X_min_contribution)
         base_max_score = intercept + np.dot(coefs, X_max_contribution)
         
         gains_from_min = (vals_s * coefs) - (X_min_contribution * coefs)
         losses_from_max = (X_max_contribution * coefs) - (vals_s * coefs)
-
-        if score_original >= t_plus: mode, sort_metric = 'positive', gains_from_min
-        elif score_original <= t_minus: mode, sort_metric = 'negative', losses_from_max
-        else: mode, sort_metric = 'rejected', gains_from_min 
-
+    
+        if score_original >= t_plus:
+            mode, sort_metric = 'positive', gains_from_min
+        elif score_original <= t_minus:
+            mode, sort_metric = 'negative', losses_from_max
+        else:
+            mode, sort_metric = 'rejected', gains_from_min
+    
         expl_indices = set()
         for idx in np.argsort(-sort_metric):
             curr_gain = np.sum(gains_from_min[list(expl_indices)]) if expl_indices else 0.0
@@ -260,15 +261,20 @@ class MinabroMLPSurrogateExplainer:
             worst_max = base_max_score - curr_loss
             
             is_valid = False
-            if mode == 'positive': is_valid = worst_min >= t_plus - 1e-5
-            elif mode == 'negative': is_valid = worst_max <= t_minus + 1e-5
-            elif mode == 'rejected': is_valid = (worst_min >= t_minus - 1e-5) and (worst_max <= t_plus + 1e-5)
+            if mode == 'positive':
+                is_valid = worst_min >= t_plus - 1e-5
+            elif mode == 'negative':
+                is_valid = worst_max <= t_minus + 1e-5
+            elif mode == 'rejected':
+                is_valid = (worst_min >= t_minus - 1e-5) and (worst_max <= t_plus + 1e-5)
             
-            if is_valid: break
+            if is_valid:
+                break
             expl_indices.add(int(idx))
-
+    
         for idx in sorted(list(expl_indices), key=lambda i: sort_metric[i]):
-            if len(expl_indices) <= 1: break
+            if len(expl_indices) <= 1:
+                break
             expl_indices.remove(idx)
             
             curr_gain = np.sum(gains_from_min[list(expl_indices)])
@@ -277,17 +283,21 @@ class MinabroMLPSurrogateExplainer:
             worst_max = base_max_score - curr_loss
             
             is_valid = False
-            if mode == 'positive': is_valid = worst_min >= t_plus - 1e-5
-            elif mode == 'negative': is_valid = worst_max <= t_minus + 1e-5
-            elif mode == 'rejected': is_valid = (worst_min >= t_minus - 1e-5) and (worst_max <= t_plus + 1e-5)
+            if mode == 'positive':
+                is_valid = worst_min >= t_plus - 1e-5
+            elif mode == 'negative':
+                is_valid = worst_max <= t_minus + 1e-5
+            elif mode == 'rejected':
+                is_valid = (worst_min >= t_minus - 1e-5) and (worst_max <= t_plus + 1e-5)
             
-            if not is_valid: expl_indices.add(idx)
-
+            if not is_valid:
+                expl_indices.add(idx)
+    
         explicacao_final = [self.feature_names[i] for i in sorted(list(expl_indices))]
         pred_code = 1 if mode == 'positive' else (0 if mode == 'negative' else 2)
         
         is_faithful = True
-        if pred_code != 2: 
+        if pred_code != 2:
             is_faithful = self._check_fidelity_mlp(instancia_vals, expl_indices, local_bounds, original_pred)
         
         return explicacao_final, pred_code, is_faithful, local_bounds
@@ -449,7 +459,7 @@ def executar_experimento_para_dataset(dataset_name: str):
             start_inst = time.perf_counter()
             inst_vals = X_test_vals[i]
             
-            explicacao, pred_code, is_faithful = explainer.explain_instance(inst_vals)
+            explicacao, pred_code, is_faithful, _ = explainer.explain_instance(inst_vals)
             
             duracao = time.perf_counter() - start_inst
             original_idx = str(X_test.index[i])
