@@ -8,30 +8,30 @@
   },
   "thresholds_globais_mlp": {
     "t_plus_global": 0.0673016386560133,
-    "t_minus_global": -0.36584192649626374,
-    "rejection_zone_width": 0.43314356515227703
+    "t_minus_global": -0.06574598680702165,
+    "rejection_zone_width": 0.13304762546303495
   },
   "performance_oraculo_mlp": {
     "accuracy_without_rejection": 81.11111111111111,
-    "accuracy_with_rejection": 97.05882352941177,
-    "rejection_rate_global": 62.22222222222222,
+    "accuracy_with_rejection": 82.05128205128204,
+    "rejection_rate_global": 13.333333333333334,
     "num_test_instances": 90,
-    "num_rejected": 56,
-    "num_accepted": 34
+    "num_rejected": 12,
+    "num_accepted": 78
   },
   "performance_explicacoes_locais": {
-    "fidelity_rate_worst_case": 78.88888888888889,
+    "fidelity_rate_worst_case": 73.33333333333333,
     "positive": {
       "count": 29,
-      "mean_length": 4.137931034482759,
-      "std_length": 2.582756318768828,
+      "mean_length": 4.172413793103448,
+      "std_length": 2.7551702559225073,
       "min_length": 1,
-      "max_length": 11
+      "max_length": 12
     },
     "negative": {
       "count": 61,
-      "mean_length": 3.081967213114754,
-      "std_length": 1.9610559381026447,
+      "mean_length": 3.0655737704918034,
+      "std_length": 2.031464403234055,
       "min_length": 1,
       "max_length": 12
     },
@@ -44,8 +44,8 @@
     }
   },
   "computation_time": {
-    "total": 4.231872199999998,
-    "mean_per_instance": 0.0470208022222222
+    "total": 3.796349000011105,
+    "mean_per_instance": 0.042181655555678946
   },
   "model": {
     "params": {
@@ -80,10 +80,11 @@
         "sex",
         "slope",
         "thal",
-        "thalach"
+        "thalach",
+        "trestbps"
       ],
-      "explanation_size": 9,
-      "computation_time": 0.0637047000000166
+      "explanation_size": 10,
+      "computation_time": 0.07141739997314289
     },
     {
       "id": "206",
@@ -93,11 +94,10 @@
       "explanation": [
         "cp",
         "exang",
-        "restecg",
-        "slope"
+        "oldpeak"
       ],
-      "explanation_size": 4,
-      "computation_time": 0.035142599999971935
+      "explanation_size": 3,
+      "computation_time": 0.03006919997278601
     },
     {
       "id": "222",
@@ -105,11 +105,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "cp",
         "slope",
         "thalach"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.032555399999864676
+      "explanation_size": 3,
+      "computation_time": 0.03466990002198145
     },
     {
       "id": "262",
@@ -121,7 +122,7 @@
         "exang"
       ],
       "explanation_size": 2,
-      "computation_time": 0.042560399999956644
+      "computation_time": 0.040110600006300956
     },
     {
       "id": "278",
@@ -129,11 +130,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "sex",
-        "slope"
+        "cp",
+        "sex"
       ],
       "explanation_size": 2,
-      "computation_time": 0.027571699999953125
+      "computation_time": 0.04527020000386983
     },
     {
       "id": "23",
@@ -143,10 +144,10 @@
       "explanation": [
         "cp",
         "exang",
-        "thalach"
+        "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03811080000014044
+      "computation_time": 0.048859500035177916
     },
     {
       "id": "295",
@@ -158,7 +159,7 @@
         "thalach"
       ],
       "explanation_size": 2,
-      "computation_time": 0.025290099999892846
+      "computation_time": 0.03661360003752634
     },
     {
       "id": "103",
@@ -167,11 +168,10 @@
       "rejected": false,
       "explanation": [
         "fbs",
-        "slope",
-        "thal"
+        "slope"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.02609289999986686
+      "explanation_size": 2,
+      "computation_time": 0.026403400057461113
     },
     {
       "id": "198",
@@ -179,11 +179,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
+        "exang",
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.05079920000002858
+      "computation_time": 0.035261399985756725
     },
     {
       "id": "246",
@@ -191,6 +191,7 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "cp",
         "exang",
         "restecg",
         "sex",
@@ -198,8 +199,8 @@
         "thal",
         "thalach"
       ],
-      "explanation_size": 6,
-      "computation_time": 0.05533470000000307
+      "explanation_size": 7,
+      "computation_time": 0.057565999974031
     },
     {
       "id": "280",
@@ -207,12 +208,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "cp",
         "exang",
-        "thal",
-        "thalach"
+        "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03213469999991503
+      "computation_time": 0.045949599996674806
     },
     {
       "id": "126",
@@ -224,7 +225,7 @@
         "sex"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0421808000000965
+      "computation_time": 0.022470699972473085
     },
     {
       "id": "76",
@@ -233,10 +234,11 @@
       "rejected": false,
       "explanation": [
         "cp",
-        "exang"
+        "exang",
+        "slope"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.05110570000010739
+      "explanation_size": 3,
+      "computation_time": 0.036494200001470745
     },
     {
       "id": "34",
@@ -244,13 +246,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "restecg",
         "thal",
-        "thalach",
         "trestbps"
       ],
-      "explanation_size": 4,
-      "computation_time": 0.02873090000002776
+      "explanation_size": 2,
+      "computation_time": 0.029300800000783056
     },
     {
       "id": "232",
@@ -263,7 +263,7 @@
         "slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.0848879999998644
+      "computation_time": 0.09111480001593009
     },
     {
       "id": "56",
@@ -271,11 +271,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "cp",
         "exang",
         "sex"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.030766600000106337
+      "explanation_size": 3,
+      "computation_time": 0.025568699988070875
     },
     {
       "id": "169",
@@ -287,7 +288,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04430870000010145
+      "computation_time": 0.032130799954757094
     },
     {
       "id": "137",
@@ -301,14 +302,15 @@
         "exang",
         "fbs",
         "oldpeak",
+        "restecg",
         "sex",
         "slope",
         "thal",
         "thalach",
         "trestbps"
       ],
-      "explanation_size": 11,
-      "computation_time": 0.0649655999998231
+      "explanation_size": 12,
+      "computation_time": 0.0668500000028871
     },
     {
       "id": "298",
@@ -317,10 +319,11 @@
       "rejected": false,
       "explanation": [
         "cp",
-        "thalach"
+        "exang",
+        "restecg"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.040000899999995454
+      "explanation_size": 3,
+      "computation_time": 0.037674999970477074
     },
     {
       "id": "151",
@@ -328,18 +331,16 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "ca",
         "cp",
         "exang",
-        "fbs",
         "sex",
         "slope",
         "thal",
         "thalach",
         "trestbps"
       ],
-      "explanation_size": 9,
-      "computation_time": 0.07558549999998831
+      "explanation_size": 7,
+      "computation_time": 0.07441180001478642
     },
     {
       "id": "290",
@@ -361,7 +362,7 @@
         "trestbps"
       ],
       "explanation_size": 12,
-      "computation_time": 0.08759190000000672
+      "computation_time": 0.06719660002272576
     },
     {
       "id": "113",
@@ -370,11 +371,12 @@
       "rejected": false,
       "explanation": [
         "cp",
+        "exang",
         "slope",
         "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.05196409999985008
+      "explanation_size": 4,
+      "computation_time": 0.04640089999884367
     },
     {
       "id": "167",
@@ -386,7 +388,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.030519200000071578
+      "computation_time": 0.02903360000345856
     },
     {
       "id": "260",
@@ -398,7 +400,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03261509999992995
+      "computation_time": 0.037725400005001575
     },
     {
       "id": "172",
@@ -412,7 +414,7 @@
         "slope"
       ],
       "explanation_size": 4,
-      "computation_time": 0.03339049999999588
+      "computation_time": 0.048631499987095594
     },
     {
       "id": "133",
@@ -420,11 +422,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "restecg",
-        "thal"
+        "thal",
+        "thalach"
       ],
       "explanation_size": 2,
-      "computation_time": 0.032449199999973644
+      "computation_time": 0.0233695000060834
     },
     {
       "id": "70",
@@ -433,11 +435,11 @@
       "rejected": false,
       "explanation": [
         "cp",
-        "slope",
-        "thal"
+        "restecg",
+        "slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.04147469999998066
+      "computation_time": 0.04411960003199056
     },
     {
       "id": "195",
@@ -449,7 +451,7 @@
         "trestbps"
       ],
       "explanation_size": 2,
-      "computation_time": 0.055253400000083275
+      "computation_time": 0.0416564000188373
     },
     {
       "id": "69",
@@ -461,7 +463,7 @@
         "sex"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03378159999988384
+      "computation_time": 0.022131300007458776
     },
     {
       "id": "104",
@@ -469,12 +471,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
+        "ca",
         "exang",
         "sex"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03914250000002539
+      "computation_time": 0.0436601999681443
     },
     {
       "id": "67",
@@ -486,7 +488,7 @@
         "slope"
       ],
       "explanation_size": 2,
-      "computation_time": 0.030313100000057602
+      "computation_time": 0.01756010000826791
     },
     {
       "id": "27",
@@ -494,17 +496,18 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "age",
         "ca",
         "cp",
         "exang",
+        "oldpeak",
         "restecg",
-        "sex",
         "slope",
         "thal",
         "thalach"
       ],
-      "explanation_size": 8,
-      "computation_time": 0.07303929999989123
+      "explanation_size": 9,
+      "computation_time": 0.07004540000343695
     },
     {
       "id": "101",
@@ -516,7 +519,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03576939999993556
+      "computation_time": 0.04152949998388067
     },
     {
       "id": "214",
@@ -528,7 +531,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0518347999998241
+      "computation_time": 0.052687899966258556
     },
     {
       "id": "210",
@@ -536,11 +539,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "exang",
+        "cp",
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.026988500000015847
+      "computation_time": 0.04365210002288222
     },
     {
       "id": "216",
@@ -548,12 +551,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "exang",
+        "cp",
         "slope",
         "thalach"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03199610000001485
+      "computation_time": 0.049074199981987476
     },
     {
       "id": "64",
@@ -566,11 +569,10 @@
         "restecg",
         "slope",
         "thal",
-        "thalach",
-        "trestbps"
+        "thalach"
       ],
-      "explanation_size": 7,
-      "computation_time": 0.05139469999994617
+      "explanation_size": 6,
+      "computation_time": 0.04064319998724386
     },
     {
       "id": "213",
@@ -578,13 +580,13 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "cp",
         "exang",
         "sex",
-        "slope",
-        "thal"
+        "slope"
       ],
       "explanation_size": 4,
-      "computation_time": 0.0957604000000174
+      "computation_time": 0.06633170001441613
     },
     {
       "id": "286",
@@ -592,12 +594,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "cp",
         "exang",
         "slope"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.049057500000117216
+      "explanation_size": 2,
+      "computation_time": 0.047237100021447986
     },
     {
       "id": "116",
@@ -605,11 +606,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "fbs",
+        "exang",
+        "restecg",
         "thal"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02594220000014502
+      "explanation_size": 3,
+      "computation_time": 0.025894600024912506
     },
     {
       "id": "114",
@@ -618,12 +620,11 @@
       "rejected": false,
       "explanation": [
         "cp",
-        "slope",
-        "thal",
+        "restecg",
         "thalach"
       ],
-      "explanation_size": 4,
-      "computation_time": 0.033839199999874836
+      "explanation_size": 3,
+      "computation_time": 0.02698000002419576
     },
     {
       "id": "90",
@@ -635,7 +636,7 @@
         "exang"
       ],
       "explanation_size": 2,
-      "computation_time": 0.06422219999990375
+      "computation_time": 0.040601300017442554
     },
     {
       "id": "193",
@@ -647,7 +648,7 @@
         "fbs"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03959920000011152
+      "computation_time": 0.04406179999932647
     },
     {
       "id": "98",
@@ -655,11 +656,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "restecg",
+        "exang",
         "slope"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0386318000000756
+      "computation_time": 0.03181000001495704
     },
     {
       "id": "255",
@@ -667,12 +668,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "exang",
-        "slope",
+        "cp",
         "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.05123600000001716
+      "explanation_size": 2,
+      "computation_time": 0.0497285999590531
     },
     {
       "id": "238",
@@ -684,7 +684,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.060788400000092224
+      "computation_time": 0.05290960002457723
     },
     {
       "id": "221",
@@ -693,11 +693,10 @@
       "rejected": false,
       "explanation": [
         "exang",
-        "restecg",
-        "slope"
+        "restecg"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.06414600000016435
+      "explanation_size": 2,
+      "computation_time": 0.04045179998502135
     },
     {
       "id": "155",
@@ -716,7 +715,7 @@
         "trestbps"
       ],
       "explanation_size": 9,
-      "computation_time": 0.08056849999979931
+      "computation_time": 0.05360849999124184
     },
     {
       "id": "88",
@@ -728,7 +727,7 @@
         "slope"
       ],
       "explanation_size": 2,
-      "computation_time": 0.051364599999942584
+      "computation_time": 0.06092079996597022
     },
     {
       "id": "175",
@@ -738,10 +737,11 @@
       "explanation": [
         "cp",
         "exang",
-        "thal"
+        "thal",
+        "thalach"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.04316530000005514
+      "explanation_size": 4,
+      "computation_time": 0.0448892000131309
     },
     {
       "id": "66",
@@ -750,11 +750,11 @@
       "rejected": false,
       "explanation": [
         "exang",
-        "oldpeak",
+        "restecg",
         "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.06221660000005613
+      "computation_time": 0.021919700026046485
     },
     {
       "id": "292",
@@ -762,13 +762,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "cp",
         "exang",
         "slope",
         "thal"
       ],
-      "explanation_size": 4,
-      "computation_time": 0.04441879999990306
+      "explanation_size": 3,
+      "computation_time": 0.0365497000166215
     },
     {
       "id": "168",
@@ -787,7 +786,7 @@
         "trestbps"
       ],
       "explanation_size": 9,
-      "computation_time": 0.04933849999997619
+      "computation_time": 0.04375160002382472
     },
     {
       "id": "183",
@@ -805,7 +804,7 @@
         "thalach"
       ],
       "explanation_size": 8,
-      "computation_time": 0.08660420000001068
+      "computation_time": 0.0968354000360705
     },
     {
       "id": "62",
@@ -817,7 +816,7 @@
         "fbs"
       ],
       "explanation_size": 2,
-      "computation_time": 0.025569500000074186
+      "computation_time": 0.025236900022719055
     },
     {
       "id": "289",
@@ -825,12 +824,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
-        "restecg",
         "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.08210359999998218
+      "explanation_size": 1,
+      "computation_time": 0.03531460004160181
     },
     {
       "id": "282",
@@ -838,11 +835,10 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "exang",
-        "thal"
+        "exang"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.0417606999999407
+      "explanation_size": 1,
+      "computation_time": 0.03550899995025247
     },
     {
       "id": "275",
@@ -850,12 +846,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
         "exang",
         "sex"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.03389979999997195
+      "explanation_size": 2,
+      "computation_time": 0.030065400002058595
     },
     {
       "id": "162",
@@ -868,7 +863,7 @@
         "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.04470949999995355
+      "computation_time": 0.060567500011529773
     },
     {
       "id": "157",
@@ -878,10 +873,11 @@
       "explanation": [
         "ca",
         "exang",
+        "sex",
         "thalach"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.058928100000002814
+      "explanation_size": 4,
+      "computation_time": 0.03025280003203079
     },
     {
       "id": "242",
@@ -893,7 +889,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03589529999999286
+      "computation_time": 0.03151270002126694
     },
     {
       "id": "236",
@@ -902,10 +898,11 @@
       "rejected": false,
       "explanation": [
         "ca",
-        "exang"
+        "exang",
+        "restecg"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.028960500000039247
+      "explanation_size": 3,
+      "computation_time": 0.027927700022701174
     },
     {
       "id": "190",
@@ -913,11 +910,10 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "exang",
         "thal"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.042831299999988914
+      "explanation_size": 1,
+      "computation_time": 0.0358917000121437
     },
     {
       "id": "270",
@@ -928,11 +924,12 @@
         "ca",
         "cp",
         "exang",
+        "fbs",
         "restecg",
         "thal"
       ],
-      "explanation_size": 5,
-      "computation_time": 0.060919900000044436
+      "explanation_size": 6,
+      "computation_time": 0.048370499978773296
     },
     {
       "id": "124",
@@ -940,11 +937,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
-        "fbs"
+        "fbs",
+        "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.034159000000045125
+      "computation_time": 0.03148100001271814
     },
     {
       "id": "272",
@@ -955,7 +952,7 @@
         "exang"
       ],
       "explanation_size": 1,
-      "computation_time": 0.04770020000000841
+      "computation_time": 0.04592369997408241
     },
     {
       "id": "102",
@@ -968,7 +965,7 @@
         "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.04608929999994871
+      "computation_time": 0.04800879996037111
     },
     {
       "id": "20",
@@ -978,10 +975,11 @@
       "explanation": [
         "age",
         "cp",
-        "slope"
+        "slope",
+        "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.07079999999996289
+      "explanation_size": 4,
+      "computation_time": 0.09330700000282377
     },
     {
       "id": "265",
@@ -996,7 +994,7 @@
         "thalach"
       ],
       "explanation_size": 5,
-      "computation_time": 0.04880959999991319
+      "computation_time": 0.062214799982029945
     },
     {
       "id": "200",
@@ -1007,7 +1005,7 @@
         "thal"
       ],
       "explanation_size": 1,
-      "computation_time": 0.0361932999999226
+      "computation_time": 0.0280347999650985
     },
     {
       "id": "194",
@@ -1023,7 +1021,7 @@
         "thalach"
       ],
       "explanation_size": 6,
-      "computation_time": 0.08508599999981925
+      "computation_time": 0.07190239999908954
     },
     {
       "id": "187",
@@ -1033,14 +1031,15 @@
       "explanation": [
         "ca",
         "cp",
+        "exang",
         "restecg",
         "sex",
         "slope",
         "thalach",
         "trestbps"
       ],
-      "explanation_size": 7,
-      "computation_time": 0.09479579999992893
+      "explanation_size": 8,
+      "computation_time": 0.09188950003590435
     },
     {
       "id": "297",
@@ -1053,7 +1052,7 @@
         "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024442200000066805
+      "computation_time": 0.022645900025963783
     },
     {
       "id": "6",
@@ -1067,7 +1066,7 @@
         "slope"
       ],
       "explanation_size": 4,
-      "computation_time": 0.046303699999953096
+      "computation_time": 0.03419429995119572
     },
     {
       "id": "164",
@@ -1075,11 +1074,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "exang",
         "fbs",
         "thal"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.03274669999996149
+      "explanation_size": 3,
+      "computation_time": 0.027589499950408936
     },
     {
       "id": "93",
@@ -1087,12 +1087,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
-        "thal",
-        "thalach"
+        "sex",
+        "slope",
+        "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.029842799999869385
+      "computation_time": 0.025779600022360682
     },
     {
       "id": "300",
@@ -1104,7 +1104,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.04219710000006671
+      "computation_time": 0.03085450001526624
     },
     {
       "id": "163",
@@ -1112,16 +1112,16 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "ca",
         "cp",
         "exang",
-        "fbs",
         "sex",
         "slope",
         "thal",
         "thalach"
       ],
       "explanation_size": 7,
-      "computation_time": 0.08792079999989255
+      "computation_time": 0.062080100004095584
     },
     {
       "id": "14",
@@ -1129,12 +1129,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "restecg",
         "slope",
         "trestbps"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.05365729999994073
+      "explanation_size": 2,
+      "computation_time": 0.0342782000079751
     },
     {
       "id": "239",
@@ -1142,12 +1141,11 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
         "slope",
         "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.03839990000005855
+      "explanation_size": 2,
+      "computation_time": 0.029659299994818866
     },
     {
       "id": "203",
@@ -1160,7 +1158,7 @@
         "slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.049575100000083694
+      "computation_time": 0.0331550000119023
     },
     {
       "id": "21",
@@ -1169,10 +1167,11 @@
       "rejected": false,
       "explanation": [
         "cp",
-        "fbs"
+        "fbs",
+        "thal"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024215099999992162
+      "explanation_size": 3,
+      "computation_time": 0.022731899982318282
     },
     {
       "id": "252",
@@ -1180,11 +1179,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "cp",
-        "restecg"
+        "restecg",
+        "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.026166600000124163
+      "computation_time": 0.026700400048866868
     },
     {
       "id": "5",
@@ -1193,10 +1192,11 @@
       "rejected": false,
       "explanation": [
         "restecg",
+        "slope",
         "thal"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.035276900000098976
+      "explanation_size": 3,
+      "computation_time": 0.03167529997881502
     },
     {
       "id": "281",
@@ -1208,7 +1208,7 @@
         "thal"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03748960000007173
+      "computation_time": 0.031157399993389845
     },
     {
       "id": "132",
@@ -1217,11 +1217,10 @@
       "rejected": false,
       "explanation": [
         "restecg",
-        "thal",
-        "thalach"
+        "thal"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.025847200000043813
+      "explanation_size": 2,
+      "computation_time": 0.025900899956468493
     },
     {
       "id": "33",
@@ -1231,10 +1230,11 @@
       "explanation": [
         "exang",
         "restecg",
-        "sex"
+        "sex",
+        "slope"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.044492400000081034
+      "explanation_size": 4,
+      "computation_time": 0.044706800021231174
     },
     {
       "id": "1",
@@ -1246,7 +1246,7 @@
         "fbs"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03568390000009458
+      "computation_time": 0.026170700031798333
     },
     {
       "id": "135",
@@ -1254,12 +1254,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
-        "cp",
+        "exang",
         "restecg",
         "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.07738189999986389
+      "computation_time": 0.030757499975152314
     },
     {
       "id": "3",
@@ -1268,11 +1268,11 @@
       "rejected": false,
       "explanation": [
         "exang",
-        "thal",
-        "thalach"
+        "slope",
+        "thal"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02099250000014763
+      "computation_time": 0.022826400003395975
     }
   ]
 }

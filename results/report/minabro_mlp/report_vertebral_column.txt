@@ -5,59 +5,55 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: creditcard
-  Instâncias de teste avaliadas: 2563
-  Features Originais do Dataset: 29
-  Custo de rejeição (WR): 0.0400
+  Dataset: vertebral_column
+  Instâncias de teste avaliadas: 93
+  Features Originais do Dataset: 6
+  Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
 --------------------------------------------------------------------------------
-  Limiares Globais: t+ = 1.268865 | t- = -0.000100
-  Largura da Zona de Rejeição: 1.268965
-  Acurácia (Sem Rejeição): 99.69%
-  Acurácia (Com Rejeição): 99.77%
-  Taxa de Rejeição Global: 0.08%
-  Instâncias Rejeitadas pela MLP: 2 de 2563
+  Limiares Globais: t+ = 0.101339 | t- = -0.052885
+  Largura da Zona de Rejeição: 0.154223
+  Acurácia (Sem Rejeição): 77.42%
+  Acurácia (Com Rejeição): 78.82%
+  Taxa de Rejeição Global: 8.60%
+  Instâncias Rejeitadas pela MLP: 8 de 93
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 99.80%
+  Fidelidade Abdutiva (Pior Cenário): 93.55%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 9
-    Tamanho médio: 15.22 features
-    Desvio padrão: 4.02
-    Mínimo: 12 features
-    Máximo: 24 features
+    Quantidade: 54
+    Tamanho médio: 3.19 features
+    Desvio padrão: 0.64
+    Mínimo: 2 features
+    Máximo: 5 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 2553
-    Tamanho médio: 14.82 features
-    Desvio padrão: 3.16
-    Mínimo: 7 features
-    Máximo: 25 features
+    Quantidade: 39
+    Tamanho médio: 3.10 features
+    Desvio padrão: 0.59
+    Mínimo: 2 features
+    Máximo: 5 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 1645.8509s
-  Tempo médio por instância: 0.6422s
+  Tempo total da extração abdutiva: 2.2246s
+  Tempo médio por instância: 0.0239s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  V14: 1812 ocorrências (70.7%)
-  Amount: 1792 ocorrências (69.9%)
-  V10: 1759 ocorrências (68.7%)
-  V18: 1680 ocorrências (65.6%)
-  V12: 1639 ocorrências (64.0%)
-  V9: 1587 ocorrências (61.9%)
-  V24: 1546 ocorrências (60.3%)
-  V4: 1434 ocorrências (56.0%)
-  V22: 1427 ocorrências (55.7%)
-  V26: 1425 ocorrências (55.6%)
+  pelvic_incidence: 74 ocorrências (79.6%)
+  lumbar_lordosis_angle: 71 ocorrências (76.3%)
+  pelvic_radius: 58 ocorrências (62.4%)
+  pelvic_tilt: 58 ocorrências (62.4%)
+  sacral_slope: 16 ocorrências (17.2%)
+  spondylolisthesis_grade: 16 ocorrências (17.2%)
 
 ================================================================================

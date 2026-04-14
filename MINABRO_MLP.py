@@ -38,7 +38,7 @@ RANDOM_STATE: int = 42
 
 MNIST_CONFIG = {
     'feature_mode': 'raw',
-    'digit_pair': (4, 9),
+    'digit_pair': (3, 8), # atebçao a mudança de pares de diguitos é feita no peab.py
     'top_k_features': None,
     'test_size': 0.3,
     'rejection_cost': 0.24,

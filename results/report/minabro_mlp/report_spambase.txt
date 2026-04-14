@@ -5,59 +5,59 @@
 --------------------------------------------------------------------------------
 1. CONFIGURAÇÃO DO EXPERIMENTO
 --------------------------------------------------------------------------------
-  Dataset: creditcard
-  Instâncias de teste avaliadas: 2563
-  Features Originais do Dataset: 29
-  Custo de rejeição (WR): 0.0400
+  Dataset: spambase
+  Instâncias de teste avaliadas: 1381
+  Features Originais do Dataset: 57
+  Custo de rejeição (WR): 0.2400
 
 --------------------------------------------------------------------------------
 2. AVALIAÇÃO DA CAIXA-PRETA (ORÁCULO MLP)
 --------------------------------------------------------------------------------
-  Limiares Globais: t+ = 1.268865 | t- = -0.000100
-  Largura da Zona de Rejeição: 1.268965
-  Acurácia (Sem Rejeição): 99.69%
-  Acurácia (Com Rejeição): 99.77%
-  Taxa de Rejeição Global: 0.08%
-  Instâncias Rejeitadas pela MLP: 2 de 2563
+  Limiares Globais: t+ = 0.186517 | t- = -1.268865
+  Largura da Zona de Rejeição: 1.455383
+  Acurácia (Sem Rejeição): 93.85%
+  Acurácia (Com Rejeição): 94.99%
+  Taxa de Rejeição Global: 6.01%
+  Instâncias Rejeitadas pela MLP: 83 de 1381
 
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 99.80%
+  Fidelidade Abdutiva (Pior Cenário): 97.90%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 9
-    Tamanho médio: 15.22 features
-    Desvio padrão: 4.02
-    Mínimo: 12 features
-    Máximo: 24 features
+    Quantidade: 534
+    Tamanho médio: 24.43 features
+    Desvio padrão: 10.58
+    Mínimo: 3 features
+    Máximo: 54 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 2553
-    Tamanho médio: 14.82 features
-    Desvio padrão: 3.16
-    Mínimo: 7 features
-    Máximo: 25 features
+    Quantidade: 847
+    Tamanho médio: 24.98 features
+    Desvio padrão: 12.08
+    Mínimo: 2 features
+    Máximo: 54 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 1645.8509s
-  Tempo médio por instância: 0.6422s
+  Tempo total da extração abdutiva: 469.0793s
+  Tempo médio por instância: 0.3397s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  V14: 1812 ocorrências (70.7%)
-  Amount: 1792 ocorrências (69.9%)
-  V10: 1759 ocorrências (68.7%)
-  V18: 1680 ocorrências (65.6%)
-  V12: 1639 ocorrências (64.0%)
-  V9: 1587 ocorrências (61.9%)
-  V24: 1546 ocorrências (60.3%)
-  V4: 1434 ocorrências (56.0%)
-  V22: 1427 ocorrências (55.7%)
-  V26: 1425 ocorrências (55.6%)
+  word_freq_george: 1330 ocorrências (96.3%)
+  word_freq_hp: 1273 ocorrências (92.2%)
+  word_freq_remove: 1156 ocorrências (83.7%)
+  char_freq_dollar: 1144 ocorrências (82.8%)
+  word_freq_415: 1101 ocorrências (79.7%)
+  word_freq_meeting: 1081 ocorrências (78.3%)
+  word_freq_hpl: 1071 ocorrências (77.6%)
+  char_freq_exclamation: 1067 ocorrências (77.3%)
+  word_freq_000: 1055 ocorrências (76.4%)
+  word_freq_lab: 995 ocorrências (72.0%)
 
 ================================================================================

@@ -28,7 +28,7 @@ MNIST_CONFIG = {
     'feature_mode': 'raw',
     
     # Digits para classificacao binaria (classe A vs classe B)
-    'digit_pair': (4, 9),
+    'digit_pair': (3, 8),
     
     # Top-K features: None = usa todas features disponiveis, N > 0 = seleciona apenas as N features mais relevantes via ANOVA F-test
     'top_k_features': None,

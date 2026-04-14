@@ -8,30 +8,30 @@
   },
   "thresholds_globais_mlp": {
     "t_plus_global": 0.10133887435675103,
-    "t_minus_global": -0.30625040704169293,
-    "rejection_zone_width": 0.40758928139844397
+    "t_minus_global": -0.05288455293822292,
+    "rejection_zone_width": 0.15422342729497396
   },
   "performance_oraculo_mlp": {
     "accuracy_without_rejection": 77.41935483870968,
-    "accuracy_with_rejection": 86.15384615384616,
-    "rejection_rate_global": 30.107526881720432,
+    "accuracy_with_rejection": 78.82352941176471,
+    "rejection_rate_global": 8.60215053763441,
     "num_test_instances": 93,
-    "num_rejected": 28,
-    "num_accepted": 65
+    "num_rejected": 8,
+    "num_accepted": 85
   },
   "performance_explicacoes_locais": {
-    "fidelity_rate_worst_case": 91.39784946236558,
+    "fidelity_rate_worst_case": 93.54838709677419,
     "positive": {
       "count": 54,
-      "mean_length": 3.1666666666666665,
-      "std_length": 0.6009252125773316,
+      "mean_length": 3.185185185185185,
+      "std_length": 0.6404302394737251,
       "min_length": 2,
       "max_length": 5
     },
     "negative": {
       "count": 39,
       "mean_length": 3.1025641025641026,
-      "std_length": 0.6322475900481003,
+      "std_length": 0.5903007401651968,
       "min_length": 2,
       "max_length": 5
     },
@@ -44,8 +44,8 @@
     }
   },
   "computation_time": {
-    "total": 2.285102800000004,
-    "mean_per_instance": 0.02457099784946241
+    "total": 2.2245861000264995,
+    "mean_per_instance": 0.02392028064544623
   },
   "model": {
     "params": {
@@ -73,11 +73,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_radius",
+        "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.030802300000004834
+      "computation_time": 0.02660979999927804
     },
     {
       "id": "281",
@@ -92,7 +92,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.03683899999987261
+      "computation_time": 0.028377800015732646
     },
     {
       "id": "85",
@@ -105,7 +105,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023275100000091697
+      "computation_time": 0.02358389995060861
     },
     {
       "id": "127",
@@ -118,7 +118,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02838249999990694
+      "computation_time": 0.02533089998178184
     },
     {
       "id": "284",
@@ -132,7 +132,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 4,
-      "computation_time": 0.024156100000027436
+      "computation_time": 0.027559900016058236
     },
     {
       "id": "65",
@@ -140,11 +140,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "lumbar_lordosis_angle",
         "pelvic_radius",
         "pelvic_tilt"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.026685899999847607
+      "explanation_size": 3,
+      "computation_time": 0.030455000000074506
     },
     {
       "id": "194",
@@ -157,7 +158,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023189000000002125
+      "computation_time": 0.031530799984466285
     },
     {
       "id": "258",
@@ -170,7 +171,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.018541400000003705
+      "computation_time": 0.02596970001468435
     },
     {
       "id": "107",
@@ -183,7 +184,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.021281400000134454
+      "computation_time": 0.028855299984570593
     },
     {
       "id": "289",
@@ -196,7 +197,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02184609999994791
+      "computation_time": 0.02875050000147894
     },
     {
       "id": "297",
@@ -205,10 +206,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
+        "pelvic_incidence",
         "pelvic_tilt"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.024421699999948032
+      "explanation_size": 3,
+      "computation_time": 0.025261000031605363
     },
     {
       "id": "268",
@@ -223,7 +225,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.023410399999875153
+      "computation_time": 0.02626010001404211
     },
     {
       "id": "47",
@@ -236,7 +238,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.019083200000068246
+      "computation_time": 0.033046399999875575
     },
     {
       "id": "193",
@@ -249,7 +251,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02184280000005856
+      "computation_time": 0.02476479997858405
     },
     {
       "id": "201",
@@ -262,7 +264,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.0214408999997886
+      "computation_time": 0.0240021999925375
     },
     {
       "id": "36",
@@ -275,7 +277,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02050239999994119
+      "computation_time": 0.027791499975137413
     },
     {
       "id": "251",
@@ -288,7 +290,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.022384099999953833
+      "computation_time": 0.03883309999946505
     },
     {
       "id": "74",
@@ -301,7 +303,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.025372900000093068
+      "computation_time": 0.04084669996518642
     },
     {
       "id": "51",
@@ -314,7 +316,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023469599999998536
+      "computation_time": 0.02682730002561584
     },
     {
       "id": "242",
@@ -327,7 +329,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02997400000003836
+      "computation_time": 0.02242430002661422
     },
     {
       "id": "135",
@@ -336,11 +338,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_radius",
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023775099999966187
+      "computation_time": 0.026184799964539707
     },
     {
       "id": "197",
@@ -349,11 +351,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_tilt",
-        "sacral_slope"
+        "sacral_slope",
+        "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.018170099999906597
+      "computation_time": 0.01791280001634732
     },
     {
       "id": "95",
@@ -366,7 +368,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.019932800000106
+      "computation_time": 0.026209899981040508
     },
     {
       "id": "267",
@@ -379,7 +381,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02200130000005629
+      "computation_time": 0.02103279996663332
     },
     {
       "id": "174",
@@ -390,10 +392,10 @@
         "lumbar_lordosis_angle",
         "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt"
+        "spondylolisthesis_grade"
       ],
       "explanation_size": 4,
-      "computation_time": 0.028207699999938995
+      "computation_time": 0.020969900011550635
     },
     {
       "id": "100",
@@ -401,12 +403,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_radius",
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02801920000001701
+      "computation_time": 0.032601799990516156
     },
     {
       "id": "270",
@@ -416,11 +418,10 @@
       "explanation": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
-      "explanation_size": 4,
-      "computation_time": 0.030370500000117318
+      "explanation_size": 3,
+      "computation_time": 0.01948159997118637
     },
     {
       "id": "27",
@@ -433,7 +434,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02883079999992333
+      "computation_time": 0.027035299979615957
     },
     {
       "id": "162",
@@ -443,10 +444,10 @@
       "explanation": [
         "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt"
+        "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.030436699999881967
+      "computation_time": 0.02136780001455918
     },
     {
       "id": "28",
@@ -455,11 +456,10 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_tilt"
+        "pelvic_incidence"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.022491400000035355
+      "explanation_size": 2,
+      "computation_time": 0.022128899989183992
     },
     {
       "id": "211",
@@ -473,7 +473,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 4,
-      "computation_time": 0.024384900000086418
+      "computation_time": 0.02226379996864125
     },
     {
       "id": "212",
@@ -486,7 +486,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.028531200000088575
+      "computation_time": 0.043571899994276464
     },
     {
       "id": "273",
@@ -499,7 +499,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.027794300000095973
+      "computation_time": 0.047789899981580675
     },
     {
       "id": "32",
@@ -511,7 +511,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 2,
-      "computation_time": 0.02553259999990587
+      "computation_time": 0.05287070001941174
     },
     {
       "id": "44",
@@ -524,7 +524,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023737600000004022
+      "computation_time": 0.0506978000048548
     },
     {
       "id": "159",
@@ -537,7 +537,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03327650000005633
+      "computation_time": 0.04105940001318231
     },
     {
       "id": "102",
@@ -547,10 +547,10 @@
       "explanation": [
         "pelvic_incidence",
         "pelvic_radius",
-        "spondylolisthesis_grade"
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024712800000088464
+      "computation_time": 0.020205300010275096
     },
     {
       "id": "131",
@@ -560,10 +560,11 @@
       "explanation": [
         "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_tilt",
+        "spondylolisthesis_grade"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.029311399999869536
+      "explanation_size": 4,
+      "computation_time": 0.02238989999750629
     },
     {
       "id": "171",
@@ -576,7 +577,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02493800000002011
+      "computation_time": 0.02489809994585812
     },
     {
       "id": "130",
@@ -591,7 +592,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.022055599999930564
+      "computation_time": 0.023863299982622266
     },
     {
       "id": "156",
@@ -604,7 +605,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02741890000015701
+      "computation_time": 0.028994699998293072
     },
     {
       "id": "35",
@@ -617,7 +618,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.03091590000008182
+      "computation_time": 0.018559199990704656
     },
     {
       "id": "34",
@@ -631,7 +632,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 4,
-      "computation_time": 0.020238800000015544
+      "computation_time": 0.020648000005166978
     },
     {
       "id": "11",
@@ -643,7 +644,7 @@
         "pelvic_incidence"
       ],
       "explanation_size": 2,
-      "computation_time": 0.03125410000006923
+      "computation_time": 0.022942000010516495
     },
     {
       "id": "4",
@@ -656,7 +657,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.034003799999936746
+      "computation_time": 0.023374199983663857
     },
     {
       "id": "230",
@@ -665,11 +666,10 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_incidence"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.0213123999999425
+      "explanation_size": 2,
+      "computation_time": 0.022522899962496012
     },
     {
       "id": "203",
@@ -679,10 +679,10 @@
       "explanation": [
         "pelvic_incidence",
         "pelvic_radius",
-        "sacral_slope"
+        "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.020747799999980998
+      "computation_time": 0.02329240000108257
     },
     {
       "id": "29",
@@ -695,7 +695,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.028631399999994755
+      "computation_time": 0.023158299969509244
     },
     {
       "id": "308",
@@ -708,7 +708,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.025519100000110484
+      "computation_time": 0.01900610001757741
     },
     {
       "id": "262",
@@ -717,11 +717,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
+        "pelvic_radius",
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02351390000012543
+      "computation_time": 0.02041670004837215
     },
     {
       "id": "70",
@@ -729,12 +729,13 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "lumbar_lordosis_angle",
         "pelvic_incidence",
         "pelvic_radius",
         "pelvic_tilt"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.024691800000027797
+      "explanation_size": 4,
+      "computation_time": 0.023109800007659942
     },
     {
       "id": "41",
@@ -743,10 +744,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence"
+        "pelvic_incidence",
+        "pelvic_tilt"
       ],
-      "explanation_size": 2,
-      "computation_time": 0.02353510000011738
+      "explanation_size": 3,
+      "computation_time": 0.020554899994749576
     },
     {
       "id": "142",
@@ -759,7 +761,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.026464300000043295
+      "computation_time": 0.019577300001401454
     },
     {
       "id": "128",
@@ -772,7 +774,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.020082899999806614
+      "computation_time": 0.017800499976146966
     },
     {
       "id": "239",
@@ -785,7 +787,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.027760100000023158
+      "computation_time": 0.019911999988835305
     },
     {
       "id": "224",
@@ -793,12 +795,11 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
-        "lumbar_lordosis_angle",
         "pelvic_incidence",
         "pelvic_radius"
       ],
-      "explanation_size": 3,
-      "computation_time": 0.019930500000100437
+      "explanation_size": 2,
+      "computation_time": 0.023339100007433444
     },
     {
       "id": "80",
@@ -807,11 +808,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_incidence",
+        "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02414730000009513
+      "computation_time": 0.03389660001266748
     },
     {
       "id": "304",
@@ -824,7 +825,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.019461100000171427
+      "computation_time": 0.021528600016608834
     },
     {
       "id": "136",
@@ -837,7 +838,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02569210000001476
+      "computation_time": 0.024503099964931607
     },
     {
       "id": "141",
@@ -845,12 +846,12 @@
       "y_pred": 1,
       "rejected": false,
       "explanation": [
+        "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02466479999998228
+      "computation_time": 0.016365299990866333
     },
     {
       "id": "133",
@@ -863,7 +864,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.022172299999965617
+      "computation_time": 0.017971600056625903
     },
     {
       "id": "89",
@@ -876,7 +877,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023642100000188293
+      "computation_time": 0.020462900050915778
     },
     {
       "id": "207",
@@ -886,10 +887,10 @@
       "explanation": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_tilt"
+        "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02403079999999136
+      "computation_time": 0.01675549999345094
     },
     {
       "id": "205",
@@ -898,11 +899,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_tilt",
-        "spondylolisthesis_grade"
+        "pelvic_incidence",
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.025657800000089992
+      "computation_time": 0.018869100022129714
     },
     {
       "id": "161",
@@ -911,11 +912,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_radius",
+        "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02101700000002893
+      "computation_time": 0.014879499969538301
     },
     {
       "id": "233",
@@ -928,7 +929,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023169800000005125
+      "computation_time": 0.020726399961858988
     },
     {
       "id": "123",
@@ -941,7 +942,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.018163100000037957
+      "computation_time": 0.022659000009298325
     },
     {
       "id": "134",
@@ -954,7 +955,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.021533899999894857
+      "computation_time": 0.017404699989128858
     },
     {
       "id": "61",
@@ -964,10 +965,10 @@
       "explanation": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "spondylolisthesis_grade"
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02798860000007153
+      "computation_time": 0.016527800005860627
     },
     {
       "id": "231",
@@ -977,10 +978,10 @@
       "explanation": [
         "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius"
+        "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.020434600000044156
+      "computation_time": 0.016874599969014525
     },
     {
       "id": "261",
@@ -993,7 +994,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.01706319999993866
+      "computation_time": 0.018148900009691715
     },
     {
       "id": "150",
@@ -1006,7 +1007,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.025507199999992736
+      "computation_time": 0.02695769997080788
     },
     {
       "id": "247",
@@ -1019,7 +1020,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02631510000014714
+      "computation_time": 0.022846699983347207
     },
     {
       "id": "173",
@@ -1031,7 +1032,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 2,
-      "computation_time": 0.0236701000001176
+      "computation_time": 0.025377999991178513
     },
     {
       "id": "294",
@@ -1045,7 +1046,7 @@
         "sacral_slope"
       ],
       "explanation_size": 4,
-      "computation_time": 0.028638399999863395
+      "computation_time": 0.01646339998114854
     },
     {
       "id": "43",
@@ -1059,7 +1060,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 4,
-      "computation_time": 0.03249770000002172
+      "computation_time": 0.01763099996605888
     },
     {
       "id": "14",
@@ -1074,7 +1075,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.026376400000117428
+      "computation_time": 0.015982399985659868
     },
     {
       "id": "296",
@@ -1082,12 +1083,12 @@
       "y_pred": 0,
       "rejected": false,
       "explanation": [
+        "lumbar_lordosis_angle",
         "pelvic_incidence",
-        "pelvic_radius",
-        "pelvic_tilt"
+        "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.024909600000000864
+      "computation_time": 0.016418599989265203
     },
     {
       "id": "71",
@@ -1100,7 +1101,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023412099999859493
+      "computation_time": 0.014992099953815341
     },
     {
       "id": "40",
@@ -1109,11 +1110,11 @@
       "rejected": false,
       "explanation": [
         "lumbar_lordosis_angle",
-        "pelvic_radius",
-        "spondylolisthesis_grade"
+        "pelvic_incidence",
+        "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02603929999986576
+      "computation_time": 0.017523700022138655
     },
     {
       "id": "12",
@@ -1126,7 +1127,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02962159999992764
+      "computation_time": 0.01882369996747002
     },
     {
       "id": "26",
@@ -1139,7 +1140,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.02472839999995813
+      "computation_time": 0.017893999989610165
     },
     {
       "id": "292",
@@ -1152,7 +1153,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.021327700000028926
+      "computation_time": 0.01731239998480305
     },
     {
       "id": "103",
@@ -1167,7 +1168,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.019551699999965422
+      "computation_time": 0.019378900004085153
     },
     {
       "id": "269",
@@ -1180,7 +1181,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.01912510000011025
+      "computation_time": 0.01970400003483519
     },
     {
       "id": "122",
@@ -1193,7 +1194,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.020669900000029884
+      "computation_time": 0.020020600000862032
     },
     {
       "id": "301",
@@ -1203,10 +1204,10 @@
       "explanation": [
         "pelvic_incidence",
         "pelvic_radius",
-        "pelvic_tilt"
+        "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.015922300000056566
+      "computation_time": 0.021773400017991662
     },
     {
       "id": "83",
@@ -1219,7 +1220,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023128499999984342
+      "computation_time": 0.020273500005714595
     },
     {
       "id": "302",
@@ -1232,7 +1233,7 @@
         "sacral_slope"
       ],
       "explanation_size": 3,
-      "computation_time": 0.0170429999998305
+      "computation_time": 0.021765500016044825
     },
     {
       "id": "98",
@@ -1245,7 +1246,7 @@
         "pelvic_tilt"
       ],
       "explanation_size": 3,
-      "computation_time": 0.016430099999979575
+      "computation_time": 0.015504400013014674
     },
     {
       "id": "62",
@@ -1258,7 +1259,7 @@
         "pelvic_radius"
       ],
       "explanation_size": 3,
-      "computation_time": 0.023922300000094765
+      "computation_time": 0.018932299979496747
     },
     {
       "id": "0",
@@ -1271,7 +1272,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 3,
-      "computation_time": 0.0328038000000106
+      "computation_time": 0.015438699978403747
     },
     {
       "id": "285",
@@ -1286,7 +1287,7 @@
         "spondylolisthesis_grade"
       ],
       "explanation_size": 5,
-      "computation_time": 0.029562599999962913
+      "computation_time": 0.017652400012593716
     }
   ]
 }
