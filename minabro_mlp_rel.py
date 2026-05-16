@@ -21,6 +21,7 @@ def gerar_relatorio_do_json(caminho_json: str):
     perf_expl = dados.get('performance_explicacoes_locais', {})
     comp_time = dados.get('computation_time', {})
     instancias = dados.get('per_instance', [])
+    comp_amost = dados.get('comparativo_amostragem', {}) # NOVO BLOCO EXTRAÍDO
 
     # 2. Configuração de Saída
     nome_arquivo_txt = f"report_{dataset_name}.txt"
@@ -33,8 +34,8 @@ def gerar_relatorio_do_json(caminho_json: str):
     explicacoes_validas = 0
     
     for inst in instancias:
-        if not inst.get('rejected', False) and inst.get('explanation_size', 0) > 0:
-            todas_features_explicacao.extend(inst.get('explanation', []))
+        if not inst.get('padrao', {}).get('rejected', False) and inst.get('padrao', {}).get('size', 0) > 0:
+            todas_features_explicacao.extend(inst.get('padrao', {}).get('explanation', []))
             explicacoes_validas += 1
             
     contagem_features = Counter(todas_features_explicacao)
@@ -96,12 +97,28 @@ def gerar_relatorio_do_json(caminho_json: str):
         f.write("5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES\n")
         f.write("-" * 80 + "\n")
         if not top_10:
-            f.write("  Nenhuma feature registrada (todas as decisões foram incondicionais ou rejeitadas).\n")
+            f.write("  Nenhuma feature registrada (todas as decisões foram incondicionais ou rejeitadas).\n\n")
         else:
             for feature, count in top_10:
                 freq_relativa = (count / divisor_freq) * 100
                 f.write(f"  {feature}: {count} ocorrências ({freq_relativa:.1f}%)\n")
-        f.write("\n" + "="*80 + "\n")
+            f.write("\n")
+
+        # =====================================================================
+        # NOVO BLOCO: TABELA COMPARATIVA (A ideia do seu professor)
+        # =====================================================================
+        if comp_amost:
+            padrao = comp_amost.get('padrao_espelho', {})
+            aprimorado = comp_amost.get('aprimorado_abdutivo', {})
+
+            f.write("-" * 80 + "\n")
+            f.write("6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)\n")
+            f.write("-" * 80 + "\n")
+            f.write("                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)\n")
+            f.write(f"Fidelidade Abdutiva    | {padrao.get('fidelity_rate', 0):>22.2f}% | {aprimorado.get('fidelity_rate', 0):>26.2f}%\n")
+            f.write(f"Tam. Médio (Positivas) | {padrao.get('mean_size_positive', 0):>22.2f}  | {aprimorado.get('mean_size_positive', 0):>26.2f}\n")
+            f.write(f"Tam. Médio (Rejeitadas)| {padrao.get('mean_size_rejected', 0):>22.2f}  | {aprimorado.get('mean_size_rejected', 0):>26.2f}\n")
+            f.write("=" * 80 + "\n")
 
     print(f"[SUCESSO] Relatório txt blindado gerado em: {caminho_txt}")
 

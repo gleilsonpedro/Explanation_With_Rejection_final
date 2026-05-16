@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 97.56%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 19
-    Tamanho médio: 266.84 features
-    Desvio padrão: 75.09
-    Mínimo: 209 features
-    Máximo: 553 features
+    Quantidade: 16
+    Tamanho médio: 664.06 features
+    Desvio padrão: 207.98
+    Mínimo: 272 features
+    Máximo: 784 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 22
-    Tamanho médio: 253.00 features
-    Desvio padrão: 49.68
-    Mínimo: 211 features
-    Máximo: 423 features
+    Quantidade: 25
+    Tamanho médio: 610.08 features
+    Desvio padrão: 234.13
+    Mínimo: 235 features
+    Máximo: 784 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 11.3645s
-  Tempo médio por instância: 0.2772s
+  Tempo total da extração abdutiva: 16.6036s
+  Tempo médio por instância: 0.4050s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pixel514: 34 ocorrências (82.9%)
-  pixel292: 32 ocorrências (78.0%)
-  pixel320: 32 ocorrências (78.0%)
-  pixel376: 32 ocorrências (78.0%)
-  pixel489: 32 ocorrências (78.0%)
-  pixel264: 31 ocorrências (75.6%)
-  pixel321: 30 ocorrências (73.2%)
-  pixel382: 30 ocorrências (73.2%)
-  pixel466: 30 ocorrências (73.2%)
-  pixel241: 30 ocorrências (73.2%)
+  pixel159: 41 ocorrências (100.0%)
+  pixel488: 41 ocorrências (100.0%)
+  pixel489: 41 ocorrências (100.0%)
+  pixel486: 40 ocorrências (97.6%)
+  pixel572: 40 ocorrências (97.6%)
+  pixel600: 40 ocorrências (97.6%)
+  pixel207: 39 ocorrências (95.1%)
+  pixel290: 39 ocorrências (95.1%)
+  pixel302: 39 ocorrências (95.1%)
+  pixel323: 39 ocorrências (95.1%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                     100.00%
+Tam. Médio (Positivas) |                 643.24  |                     664.06
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

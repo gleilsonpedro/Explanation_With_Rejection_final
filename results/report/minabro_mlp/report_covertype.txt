@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 58.33%
+  Fidelidade Abdutiva (Pior Cenário): 99.33%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 436
-    Tamanho médio: 22.65 features
-    Desvio padrão: 10.66
-    Mínimo: 6 features
-    Máximo: 47 features
+    Quantidade: 224
+    Tamanho médio: 52.52 features
+    Desvio padrão: 6.52
+    Mínimo: 15 features
+    Máximo: 54 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 260
-    Tamanho médio: 28.68 features
-    Desvio padrão: 8.30
-    Mínimo: 7 features
-    Máximo: 48 features
+    Quantidade: 518
+    Tamanho médio: 53.86 features
+    Desvio padrão: 1.68
+    Mínimo: 26 features
+    Máximo: 54 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 566.3065s
-  Tempo médio por instância: 0.7632s
+  Tempo total da extração abdutiva: 445.5153s
+  Tempo médio por instância: 0.6004s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  Elevation: 599 ocorrências (86.1%)
-  Soil_Type_12: 565 ocorrências (81.2%)
-  Wilderness_Area_1: 547 ocorrências (78.6%)
-  Wilderness_Area_3: 541 ocorrências (77.7%)
-  Horiz_Dist_To_Roadways: 519 ocorrências (74.6%)
-  Horiz_Dist_To_Fire_Points: 499 ocorrências (71.7%)
-  Horiz_Dist_To_Hydrology: 486 ocorrências (69.8%)
-  Slope: 483 ocorrências (69.4%)
-  Soil_Type_29: 481 ocorrências (69.1%)
-  Aspect: 476 ocorrências (68.4%)
+  Elevation: 740 ocorrências (99.7%)
+  Wilderness_Area_1: 740 ocorrências (99.7%)
+  Aspect: 739 ocorrências (99.6%)
+  Hillshade_3pm: 739 ocorrências (99.6%)
+  Slope: 738 ocorrências (99.5%)
+  Hillshade_Noon: 738 ocorrências (99.5%)
+  Soil_Type_10: 738 ocorrências (99.5%)
+  Horiz_Dist_To_Hydrology: 737 ocorrências (99.3%)
+  Hillshade_9am: 737 ocorrências (99.3%)
+  Horiz_Dist_To_Fire_Points: 737 ocorrências (99.3%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                  99.19% |                      99.33%
+Tam. Médio (Positivas) |                  52.18  |                      52.52
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

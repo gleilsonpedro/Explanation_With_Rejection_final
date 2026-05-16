@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 97.90%
+  Fidelidade Abdutiva (Pior Cenário): 99.93%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 534
-    Tamanho médio: 24.43 features
-    Desvio padrão: 10.58
-    Mínimo: 3 features
-    Máximo: 54 features
+    Quantidade: 840
+    Tamanho médio: 53.85 features
+    Desvio padrão: 8.27
+    Mínimo: 14 features
+    Máximo: 57 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 847
-    Tamanho médio: 24.98 features
-    Desvio padrão: 12.08
-    Mínimo: 2 features
-    Máximo: 54 features
+    Quantidade: 541
+    Tamanho médio: 51.20 features
+    Desvio padrão: 10.81
+    Mínimo: 15 features
+    Máximo: 57 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 469.0793s
-  Tempo médio por instância: 0.3397s
+  Tempo total da extração abdutiva: 930.2791s
+  Tempo médio por instância: 0.6736s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  word_freq_george: 1330 ocorrências (96.3%)
-  word_freq_hp: 1273 ocorrências (92.2%)
-  word_freq_remove: 1156 ocorrências (83.7%)
-  char_freq_dollar: 1144 ocorrências (82.8%)
-  word_freq_415: 1101 ocorrências (79.7%)
-  word_freq_meeting: 1081 ocorrências (78.3%)
-  word_freq_hpl: 1071 ocorrências (77.6%)
-  char_freq_exclamation: 1067 ocorrências (77.3%)
-  word_freq_000: 1055 ocorrências (76.4%)
-  word_freq_lab: 995 ocorrências (72.0%)
+  word_freq_george: 1377 ocorrências (99.8%)
+  word_freq_hp: 1370 ocorrências (99.3%)
+  word_freq_remove: 1352 ocorrências (98.0%)
+  word_freq_415: 1351 ocorrências (97.9%)
+  char_freq_dollar: 1349 ocorrências (97.8%)
+  word_freq_meeting: 1348 ocorrências (97.7%)
+  char_freq_exclamation: 1344 ocorrências (97.4%)
+  word_freq_hpl: 1340 ocorrências (97.1%)
+  word_freq_000: 1339 ocorrências (97.0%)
+  word_freq_free: 1333 ocorrências (96.6%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                      99.93%
+Tam. Médio (Positivas) |                  52.56  |                      53.85
+Tam. Médio (Rejeitadas)|                  57.00  |                       0.00
 ================================================================================

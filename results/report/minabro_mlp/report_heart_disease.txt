@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 73.33%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 29
-    Tamanho médio: 4.17 features
-    Desvio padrão: 2.76
-    Mínimo: 1 features
-    Máximo: 12 features
+    Quantidade: 45
+    Tamanho médio: 10.73 features
+    Desvio padrão: 3.89
+    Mínimo: 3 features
+    Máximo: 13 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 61
-    Tamanho médio: 3.07 features
-    Desvio padrão: 2.03
-    Mínimo: 1 features
-    Máximo: 12 features
+    Quantidade: 45
+    Tamanho médio: 4.67 features
+    Desvio padrão: 3.66
+    Mínimo: 2 features
+    Máximo: 13 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 3.7963s
-  Tempo médio por instância: 0.0422s
+  Tempo total da extração abdutiva: 6.6128s
+  Tempo médio por instância: 0.0735s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  exang: 59 ocorrências (65.6%)
-  thal: 53 ocorrências (58.9%)
-  cp: 40 ocorrências (44.4%)
-  slope: 40 ocorrências (44.4%)
-  sex: 23 ocorrências (25.6%)
-  restecg: 23 ocorrências (25.6%)
-  thalach: 21 ocorrências (23.3%)
-  fbs: 12 ocorrências (13.3%)
-  trestbps: 10 ocorrências (11.1%)
-  ca: 10 ocorrências (11.1%)
+  thal: 79 ocorrências (87.8%)
+  exang: 71 ocorrências (78.9%)
+  cp: 68 ocorrências (75.6%)
+  slope: 64 ocorrências (71.1%)
+  restecg: 62 ocorrências (68.9%)
+  thalach: 59 ocorrências (65.6%)
+  fbs: 57 ocorrências (63.3%)
+  sex: 54 ocorrências (60.0%)
+  trestbps: 52 ocorrências (57.8%)
+  ca: 52 ocorrências (57.8%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                  90.00% |                     100.00%
+Tam. Médio (Positivas) |                  10.87  |                      10.73
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

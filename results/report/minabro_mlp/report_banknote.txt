@@ -27,31 +27,38 @@
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 165
-    Tamanho médio: 1.38 features
-    Desvio padrão: 0.70
+    Quantidade: 411
+    Tamanho médio: 3.06 features
+    Desvio padrão: 1.26
     Mínimo: 1 features
     Máximo: 4 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 247
-    Tamanho médio: 1.41 features
-    Desvio padrão: 0.77
-    Mínimo: 1 features
-    Máximo: 4 features
+    Quantidade: 1
+    Tamanho médio: 2.00 features
+    Desvio padrão: 0.00
+    Mínimo: 2 features
+    Máximo: 2 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 98.1248s
-  Tempo médio por instância: 0.2382s
+  Tempo total da extração abdutiva: 154.2408s
+  Tempo médio por instância: 0.3744s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
   variance: 412 ocorrências (100.0%)
-  entropy: 86 ocorrências (20.9%)
-  skewness: 62 ocorrências (15.0%)
-  curtosis: 16 ocorrências (3.9%)
+  entropy: 303 ocorrências (73.5%)
+  skewness: 287 ocorrências (69.7%)
+  curtosis: 253 ocorrências (61.4%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                     100.00%
+Tam. Médio (Positivas) |                   3.05  |                       3.06
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

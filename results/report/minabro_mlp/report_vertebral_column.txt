@@ -23,37 +23,40 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 93.55%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 54
-    Tamanho médio: 3.19 features
-    Desvio padrão: 0.64
-    Mínimo: 2 features
-    Máximo: 5 features
+    Quantidade: 0
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 39
-    Tamanho médio: 3.10 features
-    Desvio padrão: 0.59
-    Mínimo: 2 features
-    Máximo: 5 features
+    Quantidade: 93
+    Tamanho médio: 5.58 features
+    Desvio padrão: 0.87
+    Mínimo: 3 features
+    Máximo: 6 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 2.2246s
-  Tempo médio por instância: 0.0239s
+  Tempo total da extração abdutiva: 2.0192s
+  Tempo médio por instância: 0.0217s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  pelvic_incidence: 74 ocorrências (79.6%)
-  lumbar_lordosis_angle: 71 ocorrências (76.3%)
-  pelvic_radius: 58 ocorrências (62.4%)
-  pelvic_tilt: 58 ocorrências (62.4%)
-  sacral_slope: 16 ocorrências (17.2%)
-  spondylolisthesis_grade: 16 ocorrências (17.2%)
+  pelvic_incidence: 91 ocorrências (97.8%)
+  pelvic_tilt: 89 ocorrências (95.7%)
+  lumbar_lordosis_angle: 89 ocorrências (95.7%)
+  pelvic_radius: 89 ocorrências (95.7%)
+  sacral_slope: 76 ocorrências (81.7%)
+  spondylolisthesis_grade: 73 ocorrências (78.5%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                  98.92% |                     100.00%
+Tam. Médio (Positivas) |                   0.00  |                       0.00
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

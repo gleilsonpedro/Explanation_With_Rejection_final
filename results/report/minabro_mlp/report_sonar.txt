@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 92.06%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 46
-    Tamanho médio: 25.61 features
-    Desvio padrão: 5.68
-    Mínimo: 20 features
-    Máximo: 42 features
+    Quantidade: 38
+    Tamanho médio: 57.82 features
+    Desvio padrão: 9.27
+    Mínimo: 18 features
+    Máximo: 60 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 17
-    Tamanho médio: 29.35 features
-    Desvio padrão: 9.27
-    Mínimo: 20 features
-    Máximo: 50 features
+    Quantidade: 25
+    Tamanho médio: 60.00 features
+    Desvio padrão: 0.00
+    Mínimo: 60 features
+    Máximo: 60 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 1.6201s
-  Tempo médio por instância: 0.0257s
+  Tempo total da extração abdutiva: 2.1610s
+  Tempo médio por instância: 0.0343s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  feature_35: 51 ocorrências (81.0%)
-  feature_11: 49 ocorrências (77.8%)
-  feature_32: 49 ocorrências (77.8%)
-  feature_36: 45 ocorrências (71.4%)
-  feature_20: 44 ocorrências (69.8%)
-  feature_31: 42 ocorrências (66.7%)
-  feature_57: 41 ocorrências (65.1%)
-  feature_33: 39 ocorrências (61.9%)
-  feature_34: 39 ocorrências (61.9%)
-  feature_30: 38 ocorrências (60.3%)
+  feature_0: 63 ocorrências (100.0%)
+  feature_1: 63 ocorrências (100.0%)
+  feature_4: 63 ocorrências (100.0%)
+  feature_6: 63 ocorrências (100.0%)
+  feature_7: 63 ocorrências (100.0%)
+  feature_8: 63 ocorrências (100.0%)
+  feature_9: 63 ocorrências (100.0%)
+  feature_10: 63 ocorrências (100.0%)
+  feature_11: 63 ocorrências (100.0%)
+  feature_12: 63 ocorrências (100.0%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                     100.00%
+Tam. Médio (Positivas) |                  60.00  |                      57.82
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

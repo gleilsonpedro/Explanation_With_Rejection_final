@@ -23,41 +23,48 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 99.80%
+  Fidelidade Abdutiva (Pior Cenário): 99.96%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 9
-    Tamanho médio: 15.22 features
-    Desvio padrão: 4.02
-    Mínimo: 12 features
-    Máximo: 24 features
+    Quantidade: 213
+    Tamanho médio: 28.63 features
+    Desvio padrão: 2.69
+    Mínimo: 7 features
+    Máximo: 29 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 2553
-    Tamanho médio: 14.82 features
-    Desvio padrão: 3.16
-    Mínimo: 7 features
-    Máximo: 25 features
+    Quantidade: 2348
+    Tamanho médio: 18.71 features
+    Desvio padrão: 8.77
+    Mínimo: 3 features
+    Máximo: 29 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 1645.8509s
-  Tempo médio por instância: 0.6422s
+  Tempo total da extração abdutiva: 1514.9614s
+  Tempo médio por instância: 0.5911s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  V14: 1812 ocorrências (70.7%)
-  Amount: 1792 ocorrências (69.9%)
-  V10: 1759 ocorrências (68.7%)
-  V18: 1680 ocorrências (65.6%)
-  V12: 1639 ocorrências (64.0%)
-  V9: 1587 ocorrências (61.9%)
-  V24: 1546 ocorrências (60.3%)
-  V4: 1434 ocorrências (56.0%)
-  V22: 1427 ocorrências (55.7%)
-  V26: 1425 ocorrências (55.6%)
+  V14: 2227 ocorrências (87.0%)
+  V12: 2188 ocorrências (85.5%)
+  V10: 2152 ocorrências (84.1%)
+  V4: 2123 ocorrências (82.9%)
+  V9: 2121 ocorrências (82.9%)
+  Amount: 2120 ocorrências (82.8%)
+  V18: 2115 ocorrências (82.6%)
+  V19: 2111 ocorrências (82.5%)
+  V13: 2079 ocorrências (81.2%)
+  V22: 2063 ocorrências (80.6%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                  99.92% |                      99.96%
+Tam. Médio (Positivas) |                  28.78  |                      28.63
+Tam. Médio (Rejeitadas)|                  29.00  |                      29.00
 ================================================================================

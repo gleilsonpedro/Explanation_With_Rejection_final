@@ -23,39 +23,46 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 98.27%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 124
-    Tamanho médio: 3.22 features
-    Desvio padrão: 1.41
-    Mínimo: 1 features
-    Máximo: 7 features
+    Quantidade: 92
+    Tamanho médio: 7.04 features
+    Desvio padrão: 1.57
+    Mínimo: 3 features
+    Máximo: 8 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 107
-    Tamanho médio: 2.93 features
-    Desvio padrão: 1.44
+    Quantidade: 139
+    Tamanho médio: 5.56 features
+    Desvio padrão: 2.80
     Mínimo: 1 features
-    Máximo: 7 features
+    Máximo: 8 features
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 80.1905s
-  Tempo médio por instância: 0.3471s
+  Tempo total da extração abdutiva: 111.7009s
+  Tempo médio por instância: 0.4836s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  idade: 174 ocorrências (75.3%)
-  diabetes_pedigree: 168 ocorrências (72.7%)
-  num_gravidezes: 134 ocorrências (58.0%)
-  glicose: 116 ocorrências (50.2%)
-  insulina: 78 ocorrências (33.8%)
-  espessura_pele: 25 ocorrências (10.8%)
-  imc: 13 ocorrências (5.6%)
-  pressao_sangue: 4 ocorrências (1.7%)
+  diabetes_pedigree: 221 ocorrências (95.7%)
+  idade: 210 ocorrências (90.9%)
+  num_gravidezes: 193 ocorrências (83.5%)
+  glicose: 175 ocorrências (75.8%)
+  insulina: 162 ocorrências (70.1%)
+  espessura_pele: 146 ocorrências (63.2%)
+  pressao_sangue: 135 ocorrências (58.4%)
+  imc: 133 ocorrências (57.6%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                     100.00%
+Tam. Médio (Positivas) |                   6.67  |                       7.04
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

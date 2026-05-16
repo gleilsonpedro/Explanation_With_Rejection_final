@@ -23,41 +23,44 @@
 --------------------------------------------------------------------------------
 3. DESEMPENHO DO EXPLICADOR (SURROGATE LOCAL)
 --------------------------------------------------------------------------------
-  Fidelidade Abdutiva (Pior Cenário): 98.25%
+  Fidelidade Abdutiva (Pior Cenário): 100.00%
   *Nota: Garante matematicamente a invariância da classe nos limites do hiper-retângulo da explicação.
 
   EXPLICAÇÕES POSITIVAS (Classe 1):
-    Quantidade: 94
-    Tamanho médio: 9.61 features
-    Desvio padrão: 5.23
-    Mínimo: 4 features
-    Máximo: 28 features
+    Quantidade: 171
+    Tamanho médio: 26.83 features
+    Desvio padrão: 5.53
+    Mínimo: 9 features
+    Máximo: 30 features
 
   EXPLICAÇÕES NEGATIVAS (Classe 0):
-    Quantidade: 77
-    Tamanho médio: 9.88 features
-    Desvio padrão: 4.36
-    Mínimo: 5 features
-    Máximo: 25 features
+    Quantidade: 0
 
 --------------------------------------------------------------------------------
 4. TEMPOS DE EXECUÇÃO
 --------------------------------------------------------------------------------
-  Tempo total da extração abdutiva: 32.0284s
-  Tempo médio por instância: 0.1873s
+  Tempo total da extração abdutiva: 68.5496s
+  Tempo médio por instância: 0.4009s
 
 --------------------------------------------------------------------------------
 5. TOP 10 FEATURES MAIS FREQUENTES NAS EXPLICAÇÕES
 --------------------------------------------------------------------------------
-  worst concave points: 162 ocorrências (94.7%)
-  worst perimeter: 134 ocorrências (78.4%)
-  mean compactness: 114 ocorrências (66.7%)
-  mean concavity: 113 ocorrências (66.1%)
-  smoothness error: 97 ocorrências (56.7%)
-  worst concavity: 88 ocorrências (51.5%)
-  worst compactness: 73 ocorrências (42.7%)
-  mean texture: 73 ocorrências (42.7%)
-  mean radius: 71 ocorrências (41.5%)
-  worst symmetry: 66 ocorrências (38.6%)
+  worst concave points: 171 ocorrências (100.0%)
+  worst perimeter: 169 ocorrências (98.8%)
+  mean compactness: 167 ocorrências (97.7%)
+  mean concavity: 162 ocorrências (94.7%)
+  worst concavity: 160 ocorrências (93.6%)
+  worst symmetry: 155 ocorrências (90.6%)
+  smoothness error: 154 ocorrências (90.1%)
+  mean symmetry: 150 ocorrências (87.7%)
+  mean radius: 149 ocorrências (87.1%)
+  mean texture: 149 ocorrências (87.1%)
 
+--------------------------------------------------------------------------------
+6. COMPARATIVO DE AMOSTRAGEM (TÉCNICA DO ESPELHO VS. ABDUTIVA)
+--------------------------------------------------------------------------------
+                       | Padrão (Só Interpolação) | Aprimorada (Com Pior Caso)
+Fidelidade Abdutiva    |                 100.00% |                     100.00%
+Tam. Médio (Positivas) |                  24.09  |                      26.83
+Tam. Médio (Rejeitadas)|                   0.00  |                       0.00
 ================================================================================

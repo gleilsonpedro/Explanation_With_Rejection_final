@@ -20,20 +20,20 @@
     "num_accepted": 78
   },
   "performance_explicacoes_locais": {
-    "fidelity_rate_worst_case": 73.33333333333333,
+    "fidelity_rate_worst_case": 100.0,
     "positive": {
-      "count": 29,
-      "mean_length": 4.172413793103448,
-      "std_length": 2.7551702559225073,
-      "min_length": 1,
-      "max_length": 12
+      "count": 45,
+      "mean_length": 10.733333333333333,
+      "std_length": 3.889587238883952,
+      "min_length": 3,
+      "max_length": 13
     },
     "negative": {
-      "count": 61,
-      "mean_length": 3.0655737704918034,
-      "std_length": 2.031464403234055,
-      "min_length": 1,
-      "max_length": 12
+      "count": 45,
+      "mean_length": 4.666666666666667,
+      "std_length": 3.663635110409089,
+      "min_length": 2,
+      "max_length": 13
     },
     "rejected": {
       "count": 0,
@@ -43,9 +43,21 @@
       "max_length": 0
     }
   },
+  "comparativo_amostragem": {
+    "padrao_espelho": {
+      "fidelity_rate": 90.0,
+      "mean_size_positive": 10.872727272727273,
+      "mean_size_rejected": 0.0
+    },
+    "aprimorado_abdutivo": {
+      "fidelity_rate": 100.0,
+      "mean_size_positive": 10.733333333333333,
+      "mean_size_rejected": 0.0
+    }
+  },
   "computation_time": {
-    "total": 3.796349000011105,
-    "mean_per_instance": 0.042181655555678946
+    "total": 6.612768799997866,
+    "mean_per_instance": 0.07347520888886518
   },
   "model": {
     "params": {
@@ -70,1209 +82,3259 @@
       "id": "245",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "chol",
-        "cp",
-        "exang",
-        "oldpeak",
-        "sex",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 10,
-      "computation_time": 0.07141739997314289
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.11473560001468286
     },
     {
       "id": "206",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "oldpeak"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.03006919997278601
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.060419099987484515
     },
     {
       "id": "222",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "slope",
-        "thalach"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.03466990002198145
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang",
+          "slope"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.05233759997645393
     },
     {
       "id": "262",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.040110600006300956
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.06226730000344105
     },
     {
       "id": "278",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "sex"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.04527020000386983
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.051944200007710606
     },
     {
       "id": "23",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.048859500035177916
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "thalach",
+          "exang",
+          "thal"
+        ],
+        "size": 5,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.06682619999628514
     },
     {
       "id": "295",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.03661360003752634
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "thalach",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thalach",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.05168579999008216
     },
     {
       "id": "103",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "fbs",
-        "slope"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.026403400057461113
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.09067289999802597
     },
     {
       "id": "198",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.035261399985756725
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.07970030000433326
     },
     {
       "id": "246",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "restecg",
-        "sex",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 7,
-      "computation_time": 0.057565999974031
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.08853440001257695
     },
     {
       "id": "280",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.045949599996674806
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thalach",
+          "exang",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "restecg",
+          "thalach",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 7,
+        "faithful": true
+      },
+      "computation_time": 0.04988750000484288
     },
     {
       "id": "126",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "sex"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.022470699972473085
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "exang"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "exang",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.052565199992386624
     },
     {
       "id": "76",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "slope"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.036494200001470745
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.06354850000934675
     },
     {
       "id": "34",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal",
-        "trestbps"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.029300800000783056
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "thalach",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.06604390000575222
     },
     {
       "id": "232",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "slope"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.09111480001593009
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.11579779998282902
     },
     {
       "id": "56",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "sex"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.025568699988070875
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.06551999997464009
     },
     {
       "id": "169",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.032130799954757094
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.1171191000030376
     },
     {
       "id": "137",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "chol",
-        "cp",
-        "exang",
-        "fbs",
-        "oldpeak",
-        "restecg",
-        "sex",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 12,
-      "computation_time": 0.0668500000028871
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.1317810000036843
     },
     {
       "id": "298",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "restecg"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.037674999970477074
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp"
+        ],
+        "size": 1,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thalach",
+          "exang"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.07104500001878478
     },
     {
       "id": "151",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "sex",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 7,
-      "computation_time": 0.07441180001478642
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.13374900000053458
     },
     {
       "id": "290",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "chol",
-        "cp",
-        "exang",
-        "fbs",
-        "oldpeak",
-        "restecg",
-        "sex",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 12,
-      "computation_time": 0.06719660002272576
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.11333240001113154
     },
     {
       "id": "113",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.04640089999884367
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.06382499999017455
     },
     {
       "id": "167",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "fbs",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.02903360000345856
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "fbs",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.06433480000123382
     },
     {
       "id": "260",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.037725400005001575
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.0630620000010822
     },
     {
       "id": "172",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "sex",
-        "slope"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.048631499987095594
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07698630000231788
     },
     {
       "id": "133",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.0233695000060834
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.052261200005887076
     },
     {
       "id": "70",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "restecg",
-        "slope"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.04411960003199056
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.08143629998085089
     },
     {
       "id": "195",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "trestbps"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.0416564000188373
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "trestbps",
+          "exang"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.0947671000030823
     },
     {
       "id": "69",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "sex"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.022131300007458776
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "restecg",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.05262689999653958
     },
     {
       "id": "104",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "exang",
-        "sex"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.0436601999681443
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07565700000850484
     },
     {
       "id": "67",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "sex",
-        "slope"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.01756010000826791
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.04380220000166446
     },
     {
       "id": "27",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "ca",
-        "cp",
-        "exang",
-        "oldpeak",
-        "restecg",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 9,
-      "computation_time": 0.07004540000343695
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.12666859998716973
     },
     {
       "id": "101",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.04152949998388067
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "thalach",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.05827300000237301
     },
     {
       "id": "214",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.052687899966258556
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.09243300001253374
     },
     {
       "id": "210",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.04365210002288222
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.04840260001947172
     },
     {
       "id": "216",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "slope",
-        "thalach"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.049074199981987476
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang",
+          "slope"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.07139739999547601
     },
     {
       "id": "64",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "restecg",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 6,
-      "computation_time": 0.04064319998724386
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.08377679999102838
     },
     {
       "id": "213",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "sex",
-        "slope"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.06633170001441613
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 10,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "restecg",
+          "exang",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 7,
+        "faithful": true
+      },
+      "computation_time": 0.10338749998481944
     },
     {
       "id": "286",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.047237100021447986
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "trestbps",
+          "restecg",
+          "thalach",
+          "exang",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 9,
+        "faithful": true
+      },
+      "computation_time": 0.07759729999816045
     },
     {
       "id": "116",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.025894600024912506
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.05915570000070147
     },
     {
       "id": "114",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "restecg",
-        "thalach"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.02698000002419576
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.05631849999190308
     },
     {
       "id": "90",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "exang"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.040601300017442554
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "restecg",
+          "exang",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 7,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "ca"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.10902720000012778
     },
     {
       "id": "193",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "fbs"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.04406179999932647
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.04869169997982681
     },
     {
       "id": "98",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.03181000001495704
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang",
+          "slope"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.06276790000265464
     },
     {
       "id": "255",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.0497285999590531
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.07298789999913424
     },
     {
       "id": "238",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.05290960002457723
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.055549300013808534
     },
     {
       "id": "221",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.04045179998502135
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "exang",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.07348180000553839
     },
     {
       "id": "155",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "ca",
-        "cp",
-        "exang",
-        "restecg",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 9,
-      "computation_time": 0.05360849999124184
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.11698289998457767
     },
     {
       "id": "88",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.06092079996597022
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.08499289999599569
     },
     {
       "id": "175",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.0448892000131309
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thalach",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 5,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thalach",
+          "exang",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.07362080001621507
     },
     {
       "id": "66",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.021919700026046485
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "exang",
+          "oldpeak",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.0639820999931544
     },
     {
       "id": "292",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.0365497000166215
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.055863299989141524
     },
     {
       "id": "168",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "chol",
-        "cp",
-        "exang",
-        "sex",
-        "slope",
-        "thal",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 9,
-      "computation_time": 0.04375160002382472
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07655509997857735
     },
     {
       "id": "183",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "cp",
-        "exang",
-        "restecg",
-        "sex",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 8,
-      "computation_time": 0.0968354000360705
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.12520489998860285
     },
     {
       "id": "62",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "fbs"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.025236900022719055
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "exang"
+        ],
+        "size": 2,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.041165800008457154
     },
     {
       "id": "289",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal"
-      ],
-      "explanation_size": 1,
-      "computation_time": 0.03531460004160181
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.07093009998789057
     },
     {
       "id": "282",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang"
-      ],
-      "explanation_size": 1,
-      "computation_time": 0.03550899995025247
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.06117709999671206
     },
     {
       "id": "275",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "sex"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.030065400002058595
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.05316900002071634
     },
     {
       "id": "162",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.060567500011529773
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07564329999149777
     },
     {
       "id": "157",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "exang",
-        "sex",
-        "thalach"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.03025280003203079
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "thalach",
+          "exang",
+          "ca"
+        ],
+        "size": 5,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "thalach",
+          "exang",
+          "ca"
+        ],
+        "size": 6,
+        "faithful": true
+      },
+      "computation_time": 0.07861569998203777
     },
     {
       "id": "242",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.03151270002126694
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "restecg",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "slope",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.06669570002122782
     },
     {
       "id": "236",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "exang",
-        "restecg"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.027927700022701174
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "thalach",
+          "exang",
+          "ca"
+        ],
+        "size": 3,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.04571090001263656
     },
     {
       "id": "190",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal"
-      ],
-      "explanation_size": 1,
-      "computation_time": 0.0358917000121437
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.06886510000913404
     },
     {
       "id": "270",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "cp",
-        "exang",
-        "fbs",
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 6,
-      "computation_time": 0.048370499978773296
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "trestbps",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 10,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.06828830001177266
     },
     {
       "id": "124",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "fbs",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.03148100001271814
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.06677899998612702
     },
     {
       "id": "272",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang"
-      ],
-      "explanation_size": 1,
-      "computation_time": 0.04592369997408241
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "exang"
+        ],
+        "size": 1,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07144349999725819
     },
     {
       "id": "102",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.04800879996037111
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.07624419999774545
     },
     {
       "id": "20",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "age",
-        "cp",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.09330700000282377
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.09325609999359585
     },
     {
       "id": "265",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 5,
-      "computation_time": 0.062214799982029945
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.0746025999833364
     },
     {
       "id": "200",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "thal"
-      ],
-      "explanation_size": 1,
-      "computation_time": 0.0280347999650985
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "thalach",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "slope",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.05704590000095777
     },
     {
       "id": "194",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "cp",
-        "exang",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 6,
-      "computation_time": 0.07190239999908954
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.11582720000296831
     },
     {
       "id": "187",
       "y_true": 1,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "cp",
-        "exang",
-        "restecg",
-        "sex",
-        "slope",
-        "thalach",
-        "trestbps"
-      ],
-      "explanation_size": 8,
-      "computation_time": 0.09188950003590435
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.15401900000870228
     },
     {
       "id": "297",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "fbs",
-        "sex",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.022645900025963783
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "sex",
+          "cp",
+          "fbs",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.036298399994848296
     },
     {
       "id": "6",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "exang",
-        "sex",
-        "slope"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.03419429995119572
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.0750975999981165
     },
     {
       "id": "164",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "fbs",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.027589499950408936
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.05132709999452345
     },
     {
       "id": "93",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "sex",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.025779600022360682
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "thalach",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.07864319998770952
     },
     {
       "id": "300",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.03085450001526624
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.04927849999512546
     },
     {
       "id": "163",
       "y_true": 0,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "ca",
-        "cp",
-        "exang",
-        "sex",
-        "slope",
-        "thal",
-        "thalach"
-      ],
-      "explanation_size": 7,
-      "computation_time": 0.062080100004095584
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.0986700999783352
     },
     {
       "id": "14",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "slope",
-        "trestbps"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.0342782000079751
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "exang",
+          "slope"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.055907700007082894
     },
     {
       "id": "239",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.029659299994818866
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.06192219999502413
     },
     {
       "id": "203",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg",
-        "slope"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.0331550000119023
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.057364000007510185
     },
     {
       "id": "21",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "cp",
-        "fbs",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.022731899982318282
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": false
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.050633100006962195
     },
     {
       "id": "252",
       "y_true": 0,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.026700400048866868
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.06288839998887852
     },
     {
       "id": "5",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "restecg",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.03167529997881502
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "trestbps",
+          "restecg",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.05461510000168346
     },
     {
       "id": "281",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.031157399993389845
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "thal"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "computation_time": 0.053839200001675636
     },
     {
       "id": "132",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.025900899956468493
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thalach",
+          "exang",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.053424600017024204
     },
     {
       "id": "33",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg",
-        "sex",
-        "slope"
-      ],
-      "explanation_size": 4,
-      "computation_time": 0.044706800021231174
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "sex",
+          "cp",
+          "trestbps",
+          "chol",
+          "fbs",
+          "restecg",
+          "thalach",
+          "exang",
+          "oldpeak",
+          "slope",
+          "ca",
+          "thal"
+        ],
+        "size": 13,
+        "faithful": true
+      },
+      "computation_time": 0.08516719998442568
     },
     {
       "id": "1",
       "y_true": 1,
       "y_pred": 1,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "fbs"
-      ],
-      "explanation_size": 2,
-      "computation_time": 0.026170700031798333
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "fbs",
+          "exang"
+        ],
+        "size": 2,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "age",
+          "fbs",
+          "exang"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "computation_time": 0.0453671999857761
     },
     {
       "id": "135",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "restecg",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.030757499975152314
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "restecg",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "exang",
+          "oldpeak",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.07116140000289306
     },
     {
       "id": "3",
       "y_true": 0,
       "y_pred": 0,
-      "rejected": false,
-      "explanation": [
-        "exang",
-        "slope",
-        "thal"
-      ],
-      "explanation_size": 3,
-      "computation_time": 0.022826400003395975
+      "padrao": {
+        "rejected": false,
+        "explanation": [
+          "exang",
+          "slope",
+          "thal"
+        ],
+        "size": 3,
+        "faithful": true
+      },
+      "aprimorado": {
+        "rejected": false,
+        "explanation": [
+          "cp",
+          "thalach",
+          "exang",
+          "thal"
+        ],
+        "size": 4,
+        "faithful": true
+      },
+      "computation_time": 0.054242299986071885
     }
   ]
 }
