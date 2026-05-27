@@ -204,6 +204,9 @@ def executar_batalha_dos_titas_v4():
             res = {'Dataset': nome_dataset, 'Validas': instancias_coletadas, 'Rejeitadas': instancias_rejeitadas}
             for k in metricas.keys():
                 res[k] = np.mean(metricas[k]) if metricas[k] else 0.0
+            res['tam_m_std'] = float(np.std(metricas['tam_m'])) if metricas['tam_m'] else 0.0
+            res['tam_l_std'] = float(np.std(metricas['tam_l'])) if metricas['tam_l'] else 0.0
+            res['tam_s_std'] = float(np.std(metricas['tam_s'])) if metricas['tam_s'] else 0.0
             resultados_globais.append(res)
             print(f"    [OK] {instancias_coletadas} validas | {instancias_rejeitadas} rejeitadas por seguranca.")
 
@@ -221,10 +224,10 @@ def executar_batalha_dos_titas_v4():
     print("\n" + "="*120)
     print(" TABELA 2: FIDELIDADE LOCAL, TAMANHO E TEMPO")
     print("="*120)
-    print(f"{'Dataset':<18} | {'FLoc_MIN':<8} | {'FLoc_LIM':<8} | {'FLoc_SHA':<8} | {'Tam_MIN':<7} | {'Tam_LIM':<7} | {'Tam_SHA':<7} | {'T_MIN':<7} | {'T_LIM':<7} | {'T_SHA':<7}")
+    print(f"{'Dataset':<18} | {'FLoc_MIN':<8} | {'FLoc_LIM':<8} | {'FLoc_SHA':<8} | {'Tam_MIN ± Std':<16} | {'Tam_LIM ± Std':<16} | {'Tam_SHA ± Std':<16} | {'T_MIN':<7} | {'T_LIM':<7} | {'T_SHA':<7}")
     print("-" * 120)
     for r in resultados_globais:
-        print(f"{r['Dataset']:<18} | {r['fid_loc_m']*100:>7.1f}% | {r['fid_loc_l']*100:>7.1f}% | {r['fid_loc_s']*100:>7.1f}% | {r['tam_m']:>7.1f} | {r['tam_l']:>7.1f} | {r['tam_s']:>7.1f} | {r['t_m']:>6.3f}s | {r['t_l']:>6.3f}s | {r['t_s']:>6.3f}s")
+        print(f"{r['Dataset']:<18} | {r['fid_loc_m']*100:>7.1f}% | {r['fid_loc_l']*100:>7.1f}% | {r['fid_loc_s']*100:>7.1f}% | {r['tam_m']:>6.2f} ± {r['tam_m_std']:<6.2f} | {r['tam_l']:>6.2f} ± {r['tam_l_std']:<6.2f} | {r['tam_s']:>6.2f} ± {r['tam_s_std']:<6.2f} | {r['t_m']:>6.3f}s | {r['t_l']:>6.3f}s | {r['t_s']:>6.3f}s")
     print("=" * 120)
 
 if __name__ == '__main__':

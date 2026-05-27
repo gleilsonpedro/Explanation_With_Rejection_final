@@ -69,6 +69,8 @@ def gerar_tabelas_terminais():
         # Consolidação Estatística
         mean_tam_p = np.mean(tam_padrao) if tam_padrao else 0.0
         mean_tam_a = np.mean(tam_aprimorado) if tam_aprimorado else 0.0
+        std_tam_p = np.std(tam_padrao) if len(tam_padrao) > 1 else 0.0
+        std_tam_a = np.std(tam_aprimorado) if len(tam_aprimorado) > 1 else 0.0
         
         fid_p = (fid_padrao_hits / count_padrao_acc * 100) if count_padrao_acc > 0 else 100.0
         fid_a = (fid_aprimorado_hits / count_aprimorado_acc * 100) if count_aprimorado_acc > 0 else 100.0
@@ -92,7 +94,7 @@ def gerar_tabelas_terminais():
         # Montagem Tabela 3
         linhas_tabela3.append(
             f"{dataset_name:<15} | {fid_p:>10.1f}% | {fid_a:>13.1f}% | "
-            f"{mean_tam_p:>14.2f} | {mean_tam_a:>15.2f} | {jaccard_medio:>19.1f}%"
+            f"{mean_tam_p:>8.2f} ± {std_tam_p:<6.2f} | {mean_tam_a:>8.2f} ± {std_tam_a:<6.2f} | {jaccard_medio:>19.1f}%"
         )
 
     # =========================================================
@@ -122,7 +124,7 @@ def gerar_tabelas_terminais():
     print("="*104)
     cabecalho3 = (
         f"{'Dataset':<15} | {'Fid. Padrão':<11} | {'Fid. Abdutiva':<14} | "
-        f"{'Tam Médio Pad':<14} | {'Tam Médio Abdut':<15} | {'Sobreposição (Jaccard)':<22}"
+        f"{'Tam Médio Pad ± Std':<24} | {'Tam Médio Abdut ± Std':<25} | {'Sobreposição (Jaccard)':<22}"
     )
     print(cabecalho3)
     print("-" * len(cabecalho3))
