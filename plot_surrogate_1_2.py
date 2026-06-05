@@ -4,20 +4,21 @@ import matplotlib.patches as patches
 from matplotlib.lines import Line2D
 
 def gerar_fluxograma():
-    fig, ax = plt.subplots(figsize=(10, 12))
+    fig, ax = plt.subplots(figsize=(10, 12), facecolor='white')
     ax.axis('off')
     
+    # Lista de passos atualizada com os novos nomes de batismo
     passos = [
         "[Instância X]\n(Paciente Alvo)",
         "[Busca pelo Vizinho Oposto]\n(Distância Euclidiana)",
         "[Projeção do Inimigo Equidistante]\n(Fronteira Exata + Simetria)",
-        "[Geração de 1.000 Clones]\n(Interpolação + Ruído Gaussiano de 15%)",
-        "[Rotulação pelo Oráculo]\n(MLP classifica os clones)",
-        "[Treinamento da Regressão Logística]\n(Ajuste do Modelo Substituto)",
-        "[Cálculo dos Limiares t+ e t-]\n(Otimização de Risco local)",
-        "[Extração via Algoritmo Guloso]\n(Busca pelo Tamanho Mínimo)",
-        "[Validação Abdutiva]\n(Teste no Pior Cenário Possível)",
-        "[Explicação Final] ou [Rejeição]\n(Saída do Sistema)"
+        "[Amostragem por Interpolação Direcional]\n(Geração de 1.000 Clones com Ruído 15%)",
+        "[Rotulação pelo Oráculo]\n(MLP Classifica a Vizinhança)",
+        "[Treinamento do Substituto Linear]\n(Ajuste da Regressão Logística)",
+        "[Cálculo das Margens de Rejeição]\n(Limiares t+ e t- de Segurança)",
+        "[Extração da Explicação]\n(Algoritmo Guloso: Tamanho Mínimo)",
+        "[Validação por Piores Casos]\n(Teste Adversarial Abdutivo nas Quinas)",
+        "[Explicação Final] ou [Rejeição]\n(Saída Segura do Sistema)"
     ]
 
     num_passos = len(passos)
@@ -35,8 +36,9 @@ def gerar_fluxograma():
 
     plt.title("Fluxograma do Ciclo de Explicação Local (MINABRO)", fontsize=16, fontweight='bold', pad=20)
     plt.tight_layout()
-    plt.savefig('fluxograma_pipeline.png', dpi=300, bbox_inches='tight')
+    plt.savefig('fluxograma_minabro.png', dpi=300, bbox_inches='tight')
     plt.close()
+    print("[SUCESSO] Imagem 'fluxograma_minabro.png' atualizada e salva!")
 
 def gerar_paineis_amostragem():
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))

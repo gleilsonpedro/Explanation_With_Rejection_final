@@ -197,7 +197,7 @@ class MinabroMLPSurrogateExplainer:
             best_t_plus, best_t_minus = 0.01, -0.01
 
         return best_t_plus, best_t_minus, decision_scores[0]
-
+# METODO DE TESTE DOI PROFESSOr - depois das features travadas na explicação ele gera os casos extremos (min e max) e testa se a MLP continua com a mesma predição, garantindo a fidelidade da explicação.
     def _check_fidelity_mlp(self, instancia_vals: np.ndarray, expl_indices: set, bounds: dict, original_pred: int) -> bool:
         if not expl_indices:
             return True
